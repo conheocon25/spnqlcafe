@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="row-fluid">
+					<div class="span3">
+						<div class="menu">
+							<ul class="nav nav-list">
+								<li class="nav-header">TỔNG HỢP</li>								
+								<li tal:attributes="class php:Tracking->getId()==Tracking1->getId()?'active':'disable'" tal:repeat="Tracking1 TrackingAll">
+									<a tal:attributes="href Tracking1/getURLView"><span tal:content="Tracking1/getName"/></a>
+								</li>
+							</ul>
+						</div>						
+					</div>
+					<div class="span9">
+						<div class="content">
+							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+							<a class="btn btn-primary" target="blank" tal:attributes="href Tracking/getURLCourse">THỔNG KÊ MÓN</a>
+							<table class="table table-striped table-hover">
+								<caption><h3>DOANH SỐ BÁN HÀNG</h3></caption>
+								<thead>
+									<tr>										
+										<th>NGÀY</th>										
+										<th width="32" />
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Day Tracking/getURLDayAll">										
+										<td><a tal:attributes="href php:Day[1]" target="blank"><span tal:content="php:Day[0]"/></a></td>
+										<td width="32"><a class="btn" tal:attributes="href php:Day[1]" target="blank"><span class="icon-print"/></a></td>
+									</tr>
+									<tr>
+										<td><a tal:attributes="href Tracking/getURLSellingGeneral" target="blank">TỔNG HỢP</a></td>
+										<td width="32"><a class="btn btn-primary" tal:attributes="href Tracking/getURLSellingGeneral" target="blank"><span class="icon-print"/></a></td>
+									</tr>
+								</tbody>								
+							</table>							
+						</div>
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>
+	</body>
+</html>
+<!--
+				<div data-role="collapsible-set" data-inset="false" data-theme="b" data-content-theme="d" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+					<div data-role="collapsible">
+						<h3 tal:content="php:DateCurrent . ' - DOANH SỐ '"/>
+						<ul data-role="listview">
+							<li><a data-corners="false" target="blank" data-ajax="false" tal:attributes="href Tracking/getURLSellingGeneral" data-theme="c">TỔNG HỢP</a></li>
+							<li tal:repeat="Day Tracking/getURLDayAll">
+								<a tal:attributes="href php:Day[1]" target="blank" data-corners="false" data-ajax="false" data-theme="c"><span tal:content="php:Day[0]"/></a>
+							</li>
+							<li><a data-corners="false" data-ajax="false" tal:attributes="href Tracking/getURLSellingRefesh" data-theme="c">REFESH DATA</a></li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h3 tal:content="php:DateCurrent . ' - KHOẢN CHI'"/>
+						<ul data-role="listview">
+							<li><a data-corners="false" target="blank" data-ajax="false" tal:attributes="href Tracking/getURLPaidGeneral" data-theme="c">TỔNG HỢP</a></li>
+							<li><a target="blank" data-corners="true" data-ajax="false" tal:attributes="href Tracking/getURLPaidPayRoll" data-theme="c">LƯƠNG NHÂN VIÊN</a></li>
+							<li tal:repeat="Term TermPaidAll">
+								<a target="blank" data-corners="true" data-ajax="false" tal:attributes="href php:Tracking->getURLPaidDetail( Term->getId() )" data-theme="c"><span tal:content="Term/getName"/></a>
+							</li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h3 tal:content="php:DateCurrent . ' - KHOẢN THU'"/>
+						<ul data-role="listview">
+							<li tal:repeat="Term TermCollectAll">
+								<a target="blank" data-corners="true" data-ajax="false" tal:attributes="href php:Tracking->getURLCollectDetail( Term->getId() )" data-theme="c"><span tal:content="Term/getName"/></a>
+							</li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h3 tal:content="php:DateCurrent . ' - KHÁCH HÀNG '"/>
+						<ul data-role="listview">
+							<li tal:repeat="Customer CustomerAll">
+								<a target="blank" data-corners="true" data-ajax="false" tal:attributes="href php:Tracking->getURLCustomerDetail( Customer->getId() )" data-theme="c"><span tal:content="Customer/getName"/></a>
+							</li>
+						</ul>
+					</div>
+					<div data-role="collapsible" data-collapsed="true">
+						<h3 tal:content="php:DateCurrent . ' - NHẬP HÀNG '"/>
+						<ul data-role="listview">
+							<li><a data-corners="false" target="blank" data-ajax="false" tal:attributes="href Tracking/getURLImportGeneral" data-theme="c">TỔNG HỢP</a></li>
+							<li tal:repeat="Supplier SupplierAll">
+								<a data-corners="false" target="blank" data-ajax="false" tal:attributes="href php:Tracking->getURLImportDetail( Supplier->getId() )" data-theme="c"><span tal:content="Supplier/getName"/></a>
+							</li>
+						</ul>
+					</div>
+					<div data-role="collapsible">
+						<h3 tal:content="php:DateCurrent . ' - TỔNG KẾT '"/>
+						<ul data-role="listview">
+							<li><a data-corners="false" data-ajax="false" tal:attributes="href Tracking/getURLEvalStore" data-theme="c">TÍNH TOÁN TỔN KHO</a></li>
+							<li><a data-corners="false" target="blank" data-ajax="false" tal:attributes="href Tracking/getURLStore" data-theme="c">TỔN KHO</a></li>
+							<li><a data-corners="false" target="blank" data-ajax="false" tal:attributes="href Tracking/getURLCourse" data-theme="c">GỌI MÓN</a></li>
+							<li><a data-corners="false" target="blank" data-ajax="false" tal:attributes="href Tracking/getURLGeneral" data-theme="c">BẢNG TỔNG KẾT</a></li>
+						</ul>					
+					</div>
+				</div>	
+			</div>
+			<div class="content-secondary">				
+				<ul data-role="listview" data-theme="c" data-dividertheme="d">
+					<li tal:content="string:THEO DÕI" data-role="list-divider" />
+					<li tal:attributes="data-theme php:Tracking->getId()==Tracking1->getId()?'a':'c'" tal:repeat="Tracking1 TrackingAll">
+						<a data-transition="none" tal:attributes="href Tracking1/getURLView">
+							<span tal:content="Tracking1/getName"/>
+						</a>
+					</li>				
+!-->

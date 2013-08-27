@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="span3" />
+				<div class="span9 main">
+					<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+					<form class="form-horizontal" tal:attributes="action Course/getURLUpdExe" method="post">
+						<div class="control-group">
+							<label class="control-label" for="IdCategory">Danh mục</label>
+							<div class="controls">
+								<select name="IdCategory" id="IdCategory">
+									<option tal:repeat="Category1 CategoryAll" tal:attributes="value Category1/getId;selected php:Category1->getId()==Category->getId()">
+										<span tal:content="Category1/getName" />
+									</option>
+								</select>
+							</div>														
+						</div>						
+						<div class="control-group">
+							<label class="control-label" for="Name">Tên món</label>
+							<div class="controls">
+								<input id="Name" name="Name" type="text" tal:attributes="value Course/getName" />
+							</div>														
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="NameReduce">Tên rút gọn</label>
+							<div class="controls">
+								<input id="ShortName" name="ShortName" type="text" tal:attributes="value Course/getShortName"/>
+							</div>														
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="Unit">Đơn vị</label>
+							<div class="controls">
+								<select name="Unit" id="Unit">
+									<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName;selected php:Course->getUnit()==Unit->getName()">
+										<span tal:content="Unit/getName" />
+									</option>
+								</select>
+							</div>														
+						</div>							
+						<div class="control-group">
+							<label class="control-label" for="Prie1">Giá</label>							
+							<div class="controls">
+								<input id="Price1" name="Price1" type="text" tal:attributes="value Course/getPrice1"/>
+							</div>														
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit" class="btn" value="submit-value">Cập nhật</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+	</head>
+<body>
+	<div data-role="page" class="type-interior">
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">
+				<ul data-role="listview" data-theme="c" data-dividertheme="b">
+					<li data-role="list-divider" tal:content="Title"/>
+					<li tal:repeat="Paid PaidAll">
+						<a data-ajax="false" tal:attributes="href Paid/getURLUpdLoad">
+							<h3><span tal:content="Paid/getDatePrint"/></h3>
+							<p><span tal:content="Paid/getNote" /></p>
+							<p class="ui-li-aside"><strong tal:content="Paid/getValuePrint"></strong></p>
+						</a>
+						<a tal:attributes="href Paid/getURLDelLoad" data-theme='c' data-icon="delete"/>
+					</li>
+					<li>
+						<a data-corners="false" data-ajax="false" tal:attributes="href Supplier/getURLPaidInsLoad" data-theme="c">Thêm mới ...</a>
+						<a data-ajax="false" tal:attributes="href Supplier/getURLPaidInsLoad" data-theme='c' data-icon="plus"/>
+					</li>
+				</ul>
+			</div>
+			<div class="content-secondary">
+				<ul data-role="listview" data-theme="c" data-dividertheme="d">					
+					<li data-role="list-divider">CÁC TRANG</li>
+					<li tal:repeat="P PN/getPages" tal:attributes="data-theme php: P->getId()==Page?'a':'c'">
+						<a data-ajax="false" tal:attributes="href P/getURL" tal:content="P/getName"/>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

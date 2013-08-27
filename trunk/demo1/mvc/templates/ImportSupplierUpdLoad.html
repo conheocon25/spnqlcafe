@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/ImportSupplierUpdLoad.js"/>
+	</head>
+<body>
+	<div class="type-interior" data-role="page">
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">				
+				<form id="FormImportSupplierUpdLoad" data-ajax="false" tal:attributes="action OrderImport/getURLUpdExe" method="post">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">
+						<li data-role="list-divider" tal:content="Title" />
+						<li data-role="fieldcontain">
+							<label for="Date">Ngày:</label>
+							<input class="required" name="Date" id="Date" tal:attributes="value OrderImport/getDate"/>
+						</li>
+						<li data-role="fieldcontain">
+							<label for="Note" class="text">Diễn giải:</label>
+							<textarea cols="40" rows="8" name="Note" id="Note" data-mini="true" tal:content="OrderImport/getDescription"/>
+						</li>						
+						<button data-corners="false" type="submit" data-theme="c"  data-icon="edit" name="submit" value="submit-value">Cập nhật</button>
+					</ul>
+				</form>
+			</div>
+			<div class="content-secondary">
+				
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

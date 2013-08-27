@@ -1,0 +1,53 @@
+<body>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B>CAFE CÕI RIÊNG</B></td>
+			<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
+		</tr>
+		<tr>
+			<td width="50%" align="left">Phạm Thái Bường, P.4, TP.VL</td>
+			<td width="50%" align="right">Lưu hành nội bộ</td>
+		</tr>
+		<tr>
+			<td width="50%" align="left">0939 000 848</td>
+			<td width="50%" align="left" />
+		</tr>
+	</table>
+	<BR/>
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>			
+			<th width="25%" align="right"><B>NGÀY</B></th>			
+			<th width="75%" align="right"><B>TỔNG TIỀN</B></th>
+		</tr>
+		<tr tal:repeat="DC ChartData">
+			<td align="right" tal:content="php:DC[0]" />			
+			<td align="right" tal:content="php:DC[1]" />
+		</tr>
+		<tr>
+			<th align="right"><H3>TỔNG CỘNG</H3></th>			
+			<th align="right"><H3 tal:content="Sum" /></th>
+		</tr>
+	</table>
+	<P/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" tal:content="DateCurrent" />
+		</tr>
+		<tr>
+			<td width="35%" align="center">QUẢN LÝ</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">CHỦ TIỆM</td>
+		</tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr>
+			<td width="35%" align="center" />
+			<td width="30%" align="center" />
+			<td width="35%" align="center"></td>
+		</tr>
+	</table>
+</body>
