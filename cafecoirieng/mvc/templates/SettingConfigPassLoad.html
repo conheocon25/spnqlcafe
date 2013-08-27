@@ -1,0 +1,35 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingConfigPassExe.js"/>
+	</head>
+<body>	
+	<div data-role="page" class="category type-interior">		
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">								
+				<form data-ajax="false" id="FormSettingConfigPassLoad" action="/setting/config/pass/exe" method="post">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">
+						<li data-role="list-divider" tal:content="Title" />
+						<li data-role="fieldcontain">
+							<label for="NewPass1" class="text">Mật khẩu mới:</label>
+							<input class="required" id="NewPass1" name="NewPass1" type="password" />
+						</li>
+						<li data-role="fieldcontain">
+							<label for="NewPass2" class="text">Nhập lại mật khẩu:</label>
+							<input class="required" id="NewPass2" name="NewPass2" type="password" />
+						</li>
+						<button data-corners="false" type="submit" data-theme="c"  data-icon="plus" name="submit" value="submit-value">Thay Đổi</button>
+					</ul>
+				</form>				
+			</div>
+			<div class="content-secondary">
+				
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

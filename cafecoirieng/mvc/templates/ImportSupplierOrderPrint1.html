@@ -1,0 +1,54 @@
+<body>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B>KARAOKE BA ĐỨC</B></td>
+			<td width="50%" align="right"><B>PHIẾU NHẬP HÀNG VÀO KHO</B></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐC: 67/26B Phó Cơ Điều, P.4, TP.VL</td>
+			<td width="50%" align="right"><span tal:content="php:mb_strtoupper(Supplier->getName(),'UTF8')"/></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐT: (0703) 828 555</td>
+			<td width="50%" align="right"><span tal:content="OI/getDatePrint"/></td>
+		</tr>
+	</table>
+	<p align="center"><span tal:content="OI/getDescription"/></p>
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>
+			<th width="5%"><B>STT</B></th>
+			<th width="45%" align="left"><B>TÊN</B></th>
+			<th width="25%" align="right" ><B>SỐ LƯỢNG</B></th>
+			<th width="25%" align="right" ><B>ĐƠN VỊ</B></th>
+		</tr>
+		<tr tal:repeat="Detail OI/getDetails">
+			<td align="center" tal:content="repeat/Detail/number" />
+			<td>
+				<span tal:content="Detail/getResource/getName" />
+			</td>
+			<td align="right" tal:content="Detail/getCountPrint" />
+			<td align="right" tal:content="Detail/getResource/getUnit" />
+		</tr>
+	</table>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center"><span tal:content="DateCurrent" /></td>
+		</tr>
+		<tr>
+			<td width="35%" align="center">QUẢN LÝ KHO</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">THỦ QUỸ</td>
+		</tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" />
+		</tr>
+	</table>
+</body>
