@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SellingDomainTableCallLoad.js"/>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="row-fluid">
+					<div class="span3">
+						<div class="menu">
+							<ul class="nav nav-list">
+								<li class="nav-header">DANH MỤC</li>
+								<li tal:repeat="Category1 CategoryAll" tal:attributes="class php: Category1->getId()==Category->getId() ? 'active':'disable'">
+									<a tal:attributes="href php: URLCallLoad . '/' . Category1->getId()"><span tal:content="Category1/getName"/><span class="badge badge-info pull-right" tal:content="Category1/getCourses/count"/></a>
+								</li>
+							</ul>
+						</div>						
+					</div>
+					<div class="span9">
+						<div class="content">
+							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+							<table class="Table table table-striped table-hover" tal:attributes="alt URLCall">
+								<thead>
+									<tr>
+										<th width="32">STT</th>
+										<th>TÊN</th>
+										<th width="60">TĂNG</th>
+										<th width="60"></th>
+										<th width="60">GIẢM</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="Course" tal:repeat="Course Category/getCourses" tal:attributes="alt Course/getId">
+										<td width="32">
+											<div tal:content="repeat/Course/number" />
+										</td>
+										<td>											
+											<span tal:content="Course/getName"/>
+										</td>										
+										<td>
+											<button class="Plus btn" tal:attributes="alt Course/getId">Tăng</button>
+										</td>
+										<td><span class="count" tal:content="string:0"/></td>
+										<td>											
+											<button class="Minus btn" tal:attributes="alt Course/getId">Giảm</button>
+										</td>
+									</tr>									
+								</tbody>
+							</table>							
+						</div>
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>
+	</body>
+</html>
