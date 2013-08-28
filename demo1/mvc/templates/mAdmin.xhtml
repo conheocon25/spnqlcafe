@@ -4,17 +4,17 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Hệ thống quản lý Cafe Cõi Riêng"/>
+		<title tal:content="string:Hệ thống quản lý Cafe SPN"/>
 		<base href="http://demo1.quanly-cafe.com"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Hệ thống quản lý Cafe Cõi Riêng"/>
-		<meta name="description" content="Hệ thống quản lý Cafe Cõi Riêng"/>
-		<meta name="page-topic" content="Hệ thống quản lý Cafe Cõi Riêng"/>
-		<meta name="Abstract" content="Hệ thống quản lý Cafe Cõi Riêng"/>
-		<meta name="classification" content="Hệ thống quản lý Cafe Cõi Riêng"/>
+		<meta name="keywords" content="Hệ thống quản lý Cafe SPN"/>
+		<meta name="description" content="Hệ thống quản lý Cafe SPN"/>
+		<meta name="page-topic" content="Hệ thống quản lý Cafe SPN"/>
+		<meta name="Abstract" content="Hệ thống quản lý Cafe SPN"/>
+		<meta name="classification" content="Hệ thống quản lý Cafe SPN"/>
 		<link rel="icon" type="image/png" href="/data/images/icon.png" />
 	</span>
 	
@@ -40,7 +40,7 @@
 	<div metal:define-macro="Header">
 		<div class="navbar navbar-inverse">
 			<div class="navbar-inner">
-				<a class="brand" href="/app">Cafe Cõi Riêng</a>
+				<a class="brand" href="/app">Demo Cafe SPN</a>
 				<p class="navbar-text pull-right">
 					<a class="navbar-link" href="/signout/load"><span tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a>
 				</p>
