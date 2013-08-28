@@ -1,11 +1,6 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-AuthUserFile I:\quanly-cafe\cafecoirieng\.htpasswd
-AuthType Basic
-AuthName "Bao ve thu muc"
-Require valid-user
-
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
