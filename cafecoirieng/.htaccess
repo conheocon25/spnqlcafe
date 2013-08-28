@@ -1,12 +1,6 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-RewriteCond %{HTTP_USER_AGENT} AltaVista [OR]
-RewriteCond %{HTTP_USER_AGENT} Googlebot [OR]
-RewriteCond %{HTTP_USER_AGENT} msnbot [OR]
-RewriteCond %{HTTP_USER_AGENT} Slurp
-RewriteRule ^.*$ "http\:\/\/quanly-cafe\.com" [R=301,L]
-
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
 #---------------------------------------------------------------------------------------------------------------------------
