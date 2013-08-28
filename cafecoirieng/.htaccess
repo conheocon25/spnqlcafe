@@ -1,10 +1,11 @@
 Options +FollowSymlinks
 RewriteEngine on
 
-AuthUserFile I:\quanly-cafe\cafecoirieng\.htpasswd
-AuthType Basic
-AuthName "Bao ve thu muc"
-Require valid-user
+RewriteCond %{HTTP_USER_AGENT} AltaVista [OR]
+RewriteCond %{HTTP_USER_AGENT} Googlebot [OR]
+RewriteCond %{HTTP_USER_AGENT} msnbot [OR]
+RewriteCond %{HTTP_USER_AGENT} Slurp
+RewriteRule ^.*$ "http\:\/\/quanly-cafe\.com" [R=301,L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM
@@ -341,3 +342,7 @@ RewriteRule ^setting/user/([0-9]+)/upd/load$ 					?cmd=SettingUserUpdLoad&IdUser
 RewriteRule ^setting/user/([0-9]+)/upd/exe$ 					?cmd=SettingUserUpdExe&IdUser=$1 [L]
 RewriteRule ^setting/user/([0-9]+)/del/load$ 					?cmd=SettingUserDelLoad&IdUser=$1 [L]
 RewriteRule ^setting/user/([0-9]+)/del/exe$ 					?cmd=SettingUserDelExe&IdUser=$1 [L]
+AuthType Basic
+AuthName "cafecoirieng"
+require valid-user
+AuthUserFile "/home/qlcafe/.htpasswds/public_html/cafecoirieng/passwd"
