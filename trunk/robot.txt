@@ -1,0 +1,11 @@
+User-agent: Googlebot
+User-agent: google
+User-agent: yahoo
+User-agent: Yahoo-slurp
+User-agent: msn
+User-agent: Slurp
+User-agent: msnbot
+User-agent: Mediapartners-Google*
+User-agent: Googlebot-Image
+User-agent: Yahoo-MMCrawler
+Disallow: /
