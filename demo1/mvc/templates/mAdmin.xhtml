@@ -23,6 +23,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css" media="screen"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/font-awesome.min.css"/>
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/madmin.css"/>
 	</span>
 	
@@ -40,7 +41,13 @@
 	<div metal:define-macro="Header">
 		<div class="navbar navbar-inverse">
 			<div class="navbar-inner">
-				<a class="brand" href="/app">Demo Cafe SPN</a>
+				<a class="brand" href="/app">
+					<span class="icon-stack">
+						<i class="icon-circle icon-stack-base"></i>
+						<i class="icon-coffee" style="color:red;"></i>
+					</span>
+					Demo Cafe SPN
+				</a>
 				<p class="navbar-text pull-right">
 					<a class="navbar-link" href="/signout/load"><span tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a>
 				</p>
