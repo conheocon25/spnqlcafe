@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 26, 2013 at 12:41 PM
+-- Generation Time: Aug 31, 2013 at 12:36 PM
 -- Server version: 5.1.70-cll
 -- PHP Version: 5.3.17
 
@@ -17,16 +17,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `spnsoft_customer`
+-- Database: `qlcafe_dbdemo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_app`
+-- Table structure for table `cafedemo_app`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_app` (
+CREATE TABLE IF NOT EXISTS `cafedemo_app` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
@@ -44,19 +44,19 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_app` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `cafecoirieng_app`
+-- Dumping data for table `cafedemo_app`
 --
 
-INSERT INTO `cafecoirieng_app` (`id`, `name`, `phone`, `address`, `email`, `banner`, `prefix`, `alias`, `date_created`, `date_modified`, `date_activity`, `type`, `page_view`) VALUES
-(1, 'Karaoke Ba Đức', '0945 03 07 09', 'Phó Cơ Điều P3 - TPVL', '', 'data/images/banner/logo.png', 'cafecoirieng_', 'cafecoirieng_', '2012-06-30 10:00:00', '0000-00-00 00:00:00', '2012-12-26 00:28:02', 0, 0);
+INSERT INTO `cafedemo_app` (`id`, `name`, `phone`, `address`, `email`, `banner`, `prefix`, `alias`, `date_created`, `date_modified`, `date_activity`, `type`, `page_view`) VALUES
+(1, 'Cafe Demo', '0996 355 368', 'Thành Phố Vĩnh Long', '', 'data/images/banner/logo.png', 'cafedemo_', 'cafedemo_', '2012-06-30 10:00:00', '0000-00-00 00:00:00', '2012-12-26 00:28:02', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_category`
+-- Table structure for table `cafedemo_category`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_category` (
+CREATE TABLE IF NOT EXISTS `cafedemo_category` (
   `id` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `picture` binary(255) DEFAULT NULL,
@@ -64,10 +64,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `cafecoirieng_category`
+-- Dumping data for table `cafedemo_category`
 --
 
-INSERT INTO `cafecoirieng_category` (`id`, `name`, `picture`) VALUES
+INSERT INTO `cafedemo_category` (`id`, `name`, `picture`) VALUES
 (13, 'Cafe', NULL),
 (14, 'Sinh tố', NULL),
 (15, 'Nước ép', NULL),
@@ -86,57 +86,57 @@ INSERT INTO `cafecoirieng_category` (`id`, `name`, `picture`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_collect_customer`
+-- Table structure for table `cafedemo_collect_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_collect_customer` (
+CREATE TABLE IF NOT EXISTS `cafedemo_collect_customer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idcustomer` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_customer_collect_1` (`idcustomer`)
+  KEY `cafedemo_customer_collect_1` (`idcustomer`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `cafecoirieng_collect_customer`
+-- Dumping data for table `cafedemo_collect_customer`
 --
 
-INSERT INTO `cafecoirieng_collect_customer` (`id`, `idcustomer`, `date`, `value`, `note`) VALUES
+INSERT INTO `cafedemo_collect_customer` (`id`, `idcustomer`, `date`, `value`, `note`) VALUES
 (2, 15, '2013-05-18', 1000001, 'Trả lần 1, lẻ 1 đồng'),
 (3, 17, '2013-05-01', 2087000, 'thanh toán nợ cũ');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_collect_general`
+-- Table structure for table `cafedemo_collect_general`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_collect_general` (
+CREATE TABLE IF NOT EXISTS `cafedemo_collect_general` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_term` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_collect_1` (`id_term`)
+  KEY `cafedemo_collect_1` (`id_term`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `cafecoirieng_collect_general`
+-- Dumping data for table `cafedemo_collect_general`
 --
 
-INSERT INTO `cafecoirieng_collect_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
+INSERT INTO `cafedemo_collect_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
 (5, 2, '2013-05-18', 10, 'd');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_config`
+-- Table structure for table `cafedemo_config`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_config` (
+CREATE TABLE IF NOT EXISTS `cafedemo_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `param` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
@@ -144,10 +144,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_config` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `cafecoirieng_config`
+-- Dumping data for table `cafedemo_config`
 --
 
-INSERT INTO `cafecoirieng_config` (`id`, `param`, `value`) VALUES
+INSERT INTO `cafedemo_config` (`id`, `param`, `value`) VALUES
 (1, 'ROW_PER_PAGE', '12'),
 (2, 'PRICE_HOUR_NORMAL_2', '90000'),
 (3, 'PRICE_HOUR_VIP_1', '80000'),
@@ -157,10 +157,10 @@ INSERT INTO `cafecoirieng_config` (`id`, `param`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_course`
+-- Table structure for table `cafedemo_course`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_course` (
+CREATE TABLE IF NOT EXISTS `cafedemo_course` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idcategory` int(25) DEFAULT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -176,10 +176,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_course` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=245 ;
 
 --
--- Dumping data for table `cafecoirieng_course`
+-- Dumping data for table `cafedemo_course`
 --
 
-INSERT INTO `cafecoirieng_course` (`id`, `idcategory`, `name`, `shortname`, `unit`, `price1`, `price2`, `price3`, `price4`, `picture`) VALUES
+INSERT INTO `cafedemo_course` (`id`, `idcategory`, `name`, `shortname`, `unit`, `price1`, `price2`, `price3`, `price4`, `picture`) VALUES
 (148, 13, 'Cafe đá', '', 'Ly', 10000, 0, 0, 0, ''),
 (149, 13, 'Cafe đen', '', 'Ly', 9000, 0, 0, 0, ''),
 (150, 13, 'Cafe sữa nóng', '', 'Ly', 13000, 0, 0, 0, ''),
@@ -188,7 +188,7 @@ INSERT INTO `cafecoirieng_course` (`id`, `idcategory`, `name`, `shortname`, `uni
 (153, 14, 'Sinh tố Sapô', '', 'Ly', 20000, 0, 0, 0, ''),
 (154, 14, 'Sinh tố mãng cầu', '', 'Ly', 20000, 0, 0, 0, ''),
 (155, 14, 'Sinh tố cà chua', '', 'Ly', 20000, 0, 0, 0, ''),
-(156, 14, 'Sinh tố cà rốt', '', 'Ly', 20000, 0, 0, 0, ''),
+(156, 14, 'Sinh tố cà rốt', 'Sinh tố cà rốt', 'Ly', 20000, 0, 0, 0, ''),
 (157, 14, 'Sinh tố thơm', '', 'Ly', 20000, 0, 0, 0, ''),
 (158, 14, 'Sinh tố cam', '', 'Ly', 20000, 0, 0, 0, ''),
 (159, 14, 'Sinh tố chanh tuyết', '', 'Ly', 20000, 0, 0, 0, ''),
@@ -279,10 +279,10 @@ INSERT INTO `cafecoirieng_course` (`id`, `idcategory`, `name`, `shortname`, `uni
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_customer`
+-- Table structure for table `cafedemo_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_customer` (
+CREATE TABLE IF NOT EXISTS `cafedemo_customer` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
@@ -295,10 +295,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_customer` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `cafecoirieng_customer`
+-- Dumping data for table `cafedemo_customer`
 --
 
-INSERT INTO `cafecoirieng_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `note`, `discount`) VALUES
+INSERT INTO `cafedemo_customer` (`id`, `name`, `type`, `card`, `phone`, `address`, `note`, `discount`) VALUES
 (1, 'Khách Hàng Vãng Lai', 0, '893970784300', '0945030709', '', '', 0),
 (12, 'Lê Hồng Đức', 1, '893970784301', '0918585203', 'Cty TNHH MTV Ba Đức Vĩnh Long', 'Giám Đốc', 0),
 (13, 'Nguyễn Quang Minh', 0, '893970784302', '', '', '', 0),
@@ -311,31 +311,31 @@ INSERT INTO `cafecoirieng_customer` (`id`, `name`, `type`, `card`, `phone`, `add
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_domain`
+-- Table structure for table `cafedemo_domain`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_domain` (
+CREATE TABLE IF NOT EXISTS `cafedemo_domain` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `cafecoirieng_domain`
+-- Dumping data for table `cafedemo_domain`
 --
 
-INSERT INTO `cafecoirieng_domain` (`id`, `name`) VALUES
-(1, 'KHU SV'),
-(2, 'KHU Phòng Lạnh'),
-(4, 'Khách lẻ');
+INSERT INTO `cafedemo_domain` (`id`, `name`) VALUES
+(1, 'KV Sân Vườn'),
+(2, 'KV Phòng Máy Lạnh'),
+(4, 'KV Khác');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_employee`
+-- Table structure for table `cafedemo_employee`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_employee` (
+CREATE TABLE IF NOT EXISTS `cafedemo_employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `gender` tinyint(2) NOT NULL,
@@ -345,33 +345,33 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_employee` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `cafecoirieng_employee`
+-- Dumping data for table `cafedemo_employee`
 --
 
-INSERT INTO `cafecoirieng_employee` (`id`, `name`, `gender`, `phone`, `address`) VALUES
+INSERT INTO `cafedemo_employee` (`id`, `name`, `gender`, `phone`, `address`) VALUES
 (1, 'Phan Xuân Mai', 1, '0946 915 700', 'Cao Lãnh - Đồng Tháp'),
 (2, 'Phan Lê Hữu Phúc', 0, '0986 468 896', 'Cao Lãnh, Đồng Tháp');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_order_import`
+-- Table structure for table `cafedemo_order_import`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_order_import` (
+CREATE TABLE IF NOT EXISTS `cafedemo_order_import` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idsupplier` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` varchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_order_import_1` (`idsupplier`)
+  KEY `cafedemo_order_import_1` (`idsupplier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=124 ;
 
 --
--- Dumping data for table `cafecoirieng_order_import`
+-- Dumping data for table `cafedemo_order_import`
 --
 
-INSERT INTO `cafecoirieng_order_import` (`id`, `idsupplier`, `date`, `description`) VALUES
+INSERT INTO `cafedemo_order_import` (`id`, `idsupplier`, `date`, `description`) VALUES
 (7, 9, '2013-04-07', ''),
 (18, 9, '2013-04-05', ''),
 (19, 9, '2013-04-09', ''),
@@ -437,25 +437,25 @@ INSERT INTO `cafecoirieng_order_import` (`id`, `idsupplier`, `date`, `descriptio
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_order_import_detail`
+-- Table structure for table `cafedemo_order_import_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_order_import_detail` (
+CREATE TABLE IF NOT EXISTS `cafedemo_order_import_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idorder` int(11) NOT NULL,
   `idresource` int(11) NOT NULL,
   `count` float NOT NULL,
   `price` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_order_import_detail_1` (`idorder`),
-  KEY `cafecoirieng_order_import_detail_2` (`idresource`)
+  KEY `cafedemo_order_import_detail_1` (`idorder`),
+  KEY `cafedemo_order_import_detail_2` (`idresource`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=209 ;
 
 --
--- Dumping data for table `cafecoirieng_order_import_detail`
+-- Dumping data for table `cafedemo_order_import_detail`
 --
 
-INSERT INTO `cafecoirieng_order_import_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
+INSERT INTO `cafedemo_order_import_detail` (`id`, `idorder`, `idresource`, `count`, `price`) VALUES
 (2, 7, 44, 100, 3000),
 (23, 18, 59, 9, 26667),
 (24, 18, 58, 1, 0),
@@ -579,47 +579,47 @@ INSERT INTO `cafecoirieng_order_import_detail` (`id`, `idorder`, `idresource`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_paid_customer`
+-- Table structure for table `cafedemo_paid_customer`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_paid_customer` (
+CREATE TABLE IF NOT EXISTS `cafedemo_paid_customer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idcustomer` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_customer_paid_1` (`idcustomer`)
+  KEY `cafedemo_customer_paid_1` (`idcustomer`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=19 ;
 
 --
--- Dumping data for table `cafecoirieng_paid_customer`
+-- Dumping data for table `cafedemo_paid_customer`
 --
 
-INSERT INTO `cafecoirieng_paid_customer` (`id`, `idcustomer`, `date`, `value`, `note`) VALUES
+INSERT INTO `cafedemo_paid_customer` (`id`, `idcustomer`, `date`, `value`, `note`) VALUES
 (18, 1, '2013-05-16', 1, '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_paid_general`
+-- Table structure for table `cafedemo_paid_general`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_paid_general` (
+CREATE TABLE IF NOT EXISTS `cafedemo_paid_general` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_term` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_paid_1` (`id_term`)
+  KEY `cafedemo_paid_1` (`id_term`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=89 ;
 
 --
--- Dumping data for table `cafecoirieng_paid_general`
+-- Dumping data for table `cafedemo_paid_general`
 --
 
-INSERT INTO `cafecoirieng_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
+INSERT INTO `cafedemo_paid_general` (`id`, `id_term`, `date`, `value`, `note`) VALUES
 (9, 10, '2013-04-01', 157000, 'Chi tiền chợ'),
 (10, 10, '2013-04-02', 146000, 'Tiền chợ'),
 (11, 10, '2013-04-03', 189000, 'Tiền chợ'),
@@ -698,24 +698,24 @@ INSERT INTO `cafecoirieng_paid_general` (`id`, `id_term`, `date`, `value`, `note
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_paid_supplier`
+-- Table structure for table `cafedemo_paid_supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_paid_supplier` (
+CREATE TABLE IF NOT EXISTS `cafedemo_paid_supplier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idsupplier` int(11) NOT NULL,
   `date` date NOT NULL,
   `value` int(11) NOT NULL,
   `note` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_supplier_paid_1` (`idsupplier`)
+  KEY `cafedemo_supplier_paid_1` (`idsupplier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=18 ;
 
 --
--- Dumping data for table `cafecoirieng_paid_supplier`
+-- Dumping data for table `cafedemo_paid_supplier`
 --
 
-INSERT INTO `cafecoirieng_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VALUES
+INSERT INTO `cafedemo_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `note`) VALUES
 (1, 1, '2012-08-01', 2300000, 'được không ?'),
 (2, 1, '2012-07-03', 350000, 'Ghi chú gì đây'),
 (3, 1, '2012-07-26', 750000, 'Ghi ghi gì gì đó'),
@@ -732,27 +732,27 @@ INSERT INTO `cafecoirieng_paid_supplier` (`id`, `idsupplier`, `date`, `value`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_r2c`
+-- Table structure for table `cafedemo_r2c`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_r2c` (
+CREATE TABLE IF NOT EXISTS `cafedemo_r2c` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_course` int(11) NOT NULL,
   `id_resource` int(11) NOT NULL,
   `value1` double NOT NULL,
   `value2` double NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_r2c_1` (`id_course`),
-  KEY `cafecoirieng_r2c_2` (`id_resource`)
+  KEY `cafedemo_r2c_1` (`id_course`),
+  KEY `cafedemo_r2c_2` (`id_resource`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_resource`
+-- Table structure for table `cafedemo_resource`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_resource` (
+CREATE TABLE IF NOT EXISTS `cafedemo_resource` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `idsupplier` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
@@ -760,14 +760,14 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_resource` (
   `price` int(10) NOT NULL,
   `description` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `cafecoirieng_resource_1` (`idsupplier`)
+  KEY `cafedemo_resource_1` (`idsupplier`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=77 ;
 
 --
--- Dumping data for table `cafecoirieng_resource`
+-- Dumping data for table `cafedemo_resource`
 --
 
-INSERT INTO `cafecoirieng_resource` (`id`, `idsupplier`, `name`, `unit`, `price`, `description`) VALUES
+INSERT INTO `cafedemo_resource` (`id`, `idsupplier`, `name`, `unit`, `price`, `description`) VALUES
 (1, 1, 'Nước đá ống', 'Kg', 0, 'Nước đá dùng để uống trà, cafe'),
 (2, 1, 'Nước đá ướp', 'Cây', 0, 'Dùng để ướp lạnh'),
 (3, 1, 'Nước đá viên', 'Kg', 0, 'Viên cưa dùng uống bia'),
@@ -819,10 +819,10 @@ INSERT INTO `cafecoirieng_resource` (`id`, `idsupplier`, `name`, `unit`, `price`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_session`
+-- Table structure for table `cafedemo_session`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_session` (
+CREATE TABLE IF NOT EXISTS `cafedemo_session` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idtable` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
@@ -839,14 +839,14 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_session` (
   PRIMARY KEY (`id`),
   KEY `idtable` (`idtable`),
   KEY `iduser` (`iduser`),
-  KEY `cafecoirieng_session_3` (`idcustomer`)
+  KEY `cafedemo_session_3` (`idcustomer`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1427 ;
 
 --
--- Dumping data for table `cafecoirieng_session`
+-- Dumping data for table `cafedemo_session`
 --
 
-INSERT INTO `cafecoirieng_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
+INSERT INTO `cafedemo_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
 (1, 29, 1, 1, '2013-08-14 01:35:40', '2013-08-14 01:35:40', '', 1, 0, 10, 0, 0, 40000),
 (2, 1, 1, 1, '2013-08-14 01:57:01', '2013-08-14 01:57:01', '', 1, 0, 0, 0, 0, 52000),
 (3, 4, 1, 1, '2013-08-14 02:03:06', '2013-08-14 02:03:06', '', 1, 0, 0, 0, 0, 54000),
@@ -1418,7 +1418,7 @@ INSERT INTO `cafecoirieng_session` (`id`, `idtable`, `iduser`, `idcustomer`, `da
 (580, 35, 2, 1, '2013-08-19 08:10:48', '2013-08-19 08:10:48', '', 1, 0, 0, 0, 0, 45000),
 (581, 41, 2, 1, '2013-08-19 08:17:39', '2013-08-19 08:17:39', '', 1, 0, 0, 0, 0, 14000),
 (582, 45, 2, 1, '2013-08-19 08:22:00', '2013-08-19 08:22:00', '', 1, 0, 0, 0, 0, 25000);
-INSERT INTO `cafecoirieng_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
+INSERT INTO `cafedemo_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
 (583, 30, 2, 1, '2013-08-19 08:31:40', '2013-08-19 08:31:40', '', 1, 0, 0, 0, 0, 36000),
 (584, 40, 2, 1, '2013-08-19 08:33:30', '2013-08-19 08:33:30', '', 1, 0, 0, 0, 0, 0),
 (585, 1, 2, 1, '2013-08-19 08:36:17', '2013-08-19 08:36:17', '', 1, 0, 0, 0, 0, 35000),
@@ -1990,7 +1990,7 @@ INSERT INTO `cafecoirieng_session` (`id`, `idtable`, `iduser`, `idcustomer`, `da
 (1153, 3, 2, 1, '2013-08-24 07:13:03', '2013-08-24 07:13:03', '', 1, 0, 0, 0, 0, 24000),
 (1154, 4, 2, 1, '2013-08-24 07:13:50', '2013-08-24 07:13:50', '', 1, 0, 0, 0, 0, 20000),
 (1155, 38, 2, 1, '2013-08-24 07:23:25', '2013-08-24 07:23:25', '', 1, 0, 0, 0, 0, 48000);
-INSERT INTO `cafecoirieng_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
+INSERT INTO `cafedemo_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`, `datetimeend`, `note`, `status`, `discount_value`, `discount_percent`, `surtax`, `payment`, `value`) VALUES
 (1156, 31, 2, 1, '2013-08-24 07:32:39', '2013-08-24 07:32:39', '', 1, 0, 0, 0, 0, 34000),
 (1157, 39, 2, 1, '2013-08-24 07:43:02', '2013-08-24 07:43:02', '', 1, 0, 0, 0, 0, 14000),
 (1158, 37, 2, 1, '2013-08-24 07:43:24', '2013-08-24 07:43:24', '', 1, 0, 0, 0, 0, 24000),
@@ -2264,10 +2264,10 @@ INSERT INTO `cafecoirieng_session` (`id`, `idtable`, `iduser`, `idcustomer`, `da
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_session_detail`
+-- Table structure for table `cafedemo_session_detail`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_session_detail` (
+CREATE TABLE IF NOT EXISTS `cafedemo_session_detail` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `idsession` int(11) NOT NULL,
   `idcourse` int(11) NOT NULL,
@@ -2279,10 +2279,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_session_detail` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2788 ;
 
 --
--- Dumping data for table `cafecoirieng_session_detail`
+-- Dumping data for table `cafedemo_session_detail`
 --
 
-INSERT INTO `cafecoirieng_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price`) VALUES
+INSERT INTO `cafedemo_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price`) VALUES
 (1, 1, 215, 2, 12000),
 (2, 1, 148, 2, 10000),
 (3, 2, 215, 2, 12000),
@@ -4253,7 +4253,7 @@ INSERT INTO `cafecoirieng_session_detail` (`id`, `idsession`, `idcourse`, `count
 (2066, 1051, 148, 1, 10000),
 (2067, 1052, 151, 1, 14000),
 (2068, 1052, 225, 1, 10000);
-INSERT INTO `cafecoirieng_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price`) VALUES
+INSERT INTO `cafedemo_session_detail` (`id`, `idsession`, `idcourse`, `count`, `price`) VALUES
 (2069, 1052, 232, 1, 15000),
 (2070, 1051, 238, 1, 7000),
 (2071, 1041, 241, 1, 14000),
@@ -4957,10 +4957,10 @@ INSERT INTO `cafecoirieng_session_detail` (`id`, `idsession`, `idcourse`, `count
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_store`
+-- Table structure for table `cafedemo_store`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_store` (
+CREATE TABLE IF NOT EXISTS `cafedemo_store` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `note` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
@@ -4968,19 +4968,19 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_store` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `cafecoirieng_store`
+-- Dumping data for table `cafedemo_store`
 --
 
-INSERT INTO `cafecoirieng_store` (`id`, `name`, `note`) VALUES
+INSERT INTO `cafedemo_store` (`id`, `name`, `note`) VALUES
 (1, 'Kho nhà', 'Ghi chú gì đây ?');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_supplier`
+-- Table structure for table `cafedemo_supplier`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_supplier` (
+CREATE TABLE IF NOT EXISTS `cafedemo_supplier` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
@@ -4991,23 +4991,23 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_supplier` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `cafecoirieng_supplier`
+-- Dumping data for table `cafedemo_supplier`
 --
 
-INSERT INTO `cafecoirieng_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
+INSERT INTO `cafedemo_supplier` (`id`, `name`, `phone`, `address`, `note`, `debt`) VALUES
 (1, 'ĐL Nước Đá', '0703456456', 'Trí Phường 4', 'Cung cấp nước đá', 0),
-(6, 'Coop Mart', '070', 'Vĩnh Long', 'Cung cấp mọi thứ', 0),
+(6, 'Siêu Thị', '070', 'Vĩnh Long', 'Cung cấp mọi thứ', 0),
 (8, 'Nhà PP Đoan Trang', '0703 822 227 - ', '64/6N Trần Phú P4 TP Vĩnh Long', '', 0),
 (9, 'KHÁC', '', '', '', 0),
-(11, 'CH Tuấn', '', 'P4, TPVL', 'Cung cấp thực phẩm', 0);
+(11, 'Cửa Hàng A', '', 'P4, TPVL', 'Cung cấp thực phẩm', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_table`
+-- Table structure for table `cafedemo_table`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_table` (
+CREATE TABLE IF NOT EXISTS `cafedemo_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `iddomain` int(11) NOT NULL,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
@@ -5018,10 +5018,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_table` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=60 ;
 
 --
--- Dumping data for table `cafecoirieng_table`
+-- Dumping data for table `cafedemo_table`
 --
 
-INSERT INTO `cafecoirieng_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
+INSERT INTO `cafedemo_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VALUES
 (1, 1, 'Bàn 18', 0, '0'),
 (2, 1, 'Bàn 19', 0, '0'),
 (3, 1, 'Bàn 20', 0, '0'),
@@ -5062,10 +5062,10 @@ INSERT INTO `cafecoirieng_table` (`id`, `iddomain`, `name`, `iduser`, `type`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_term`
+-- Table structure for table `cafedemo_term`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_term` (
+CREATE TABLE IF NOT EXISTS `cafedemo_term` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
@@ -5073,10 +5073,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_term` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `cafecoirieng_term`
+-- Dumping data for table `cafedemo_term`
 --
 
-INSERT INTO `cafecoirieng_term` (`id`, `name`, `type`) VALUES
+INSERT INTO `cafedemo_term` (`id`, `name`, `type`) VALUES
 (1, 'Tiền Điện', 0),
 (2, 'Tiền Nước', 0),
 (3, 'Thuế', 0),
@@ -5088,30 +5088,30 @@ INSERT INTO `cafecoirieng_term` (`id`, `name`, `type`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_term_collect`
+-- Table structure for table `cafedemo_term_collect`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_term_collect` (
+CREATE TABLE IF NOT EXISTS `cafedemo_term_collect` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `cafecoirieng_term_collect`
+-- Dumping data for table `cafedemo_term_collect`
 --
 
-INSERT INTO `cafecoirieng_term_collect` (`id`, `name`) VALUES
+INSERT INTO `cafedemo_term_collect` (`id`, `name`) VALUES
 (2, 'Phụ Phẩm'),
 (3, 'Đặc Biệt');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_tracking`
+-- Table structure for table `cafedemo_tracking`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_tracking` (
+CREATE TABLE IF NOT EXISTS `cafedemo_tracking` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
@@ -5119,10 +5119,10 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_tracking` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `cafecoirieng_tracking`
+-- Dumping data for table `cafedemo_tracking`
 --
 
-INSERT INTO `cafecoirieng_tracking` (`id`, `date_start`, `date_end`) VALUES
+INSERT INTO `cafedemo_tracking` (`id`, `date_start`, `date_end`) VALUES
 (1, '2013-08-01', '2013-08-31'),
 (2, '2013-09-01', '2013-09-30'),
 (3, '2013-10-01', '2013-10-31'),
@@ -5132,20 +5132,20 @@ INSERT INTO `cafecoirieng_tracking` (`id`, `date_start`, `date_end`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_unit`
+-- Table structure for table `cafedemo_unit`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_unit` (
+CREATE TABLE IF NOT EXISTS `cafedemo_unit` (
   `id` int(25) NOT NULL AUTO_INCREMENT,
   `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=20 ;
 
 --
--- Dumping data for table `cafecoirieng_unit`
+-- Dumping data for table `cafedemo_unit`
 --
 
-INSERT INTO `cafecoirieng_unit` (`id`, `name`) VALUES
+INSERT INTO `cafedemo_unit` (`id`, `name`) VALUES
 (1, 'Ly'),
 (2, 'Điếu'),
 (3, 'Chai'),
@@ -5168,10 +5168,10 @@ INSERT INTO `cafecoirieng_unit` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cafecoirieng_user`
+-- Table structure for table `cafedemo_user`
 --
 
-CREATE TABLE IF NOT EXISTS `cafecoirieng_user` (
+CREATE TABLE IF NOT EXISTS `cafedemo_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -5187,11 +5187,11 @@ CREATE TABLE IF NOT EXISTS `cafecoirieng_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `cafecoirieng_user`
+-- Dumping data for table `cafedemo_user`
 --
 
-INSERT INTO `cafecoirieng_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
-(1, 'Quản lý', 'quanly@gmail.com', '000848', 0, ' Người quản lý hệ thống', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, ''),
+INSERT INTO `cafedemo_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
+(1, 'Quản lý', 'quanly@gmail.com', '123456', 0, ' Người quản lý hệ thống', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 4, ''),
 (2, 'Quí Hữu', 'quihuu@gmail.com', '123456', 0, '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 1, ''),
 (9, 'Bán hàng 1', 'banhang1@gmail.com', '123456', 1, '', '2013-08-13 19:31:11', '2013-08-13 19:31:11', '2013-08-13 19:31:11', 1, '');
 
@@ -5200,87 +5200,87 @@ INSERT INTO `cafecoirieng_user` (`id`, `name`, `email`, `pass`, `gender`, `note`
 --
 
 --
--- Constraints for table `cafecoirieng_collect_customer`
+-- Constraints for table `cafedemo_collect_customer`
 --
-ALTER TABLE `cafecoirieng_collect_customer`
-  ADD CONSTRAINT `cafecoirieng_customer_collect_1` FOREIGN KEY (`idcustomer`) REFERENCES `cafecoirieng_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_collect_customer`
+  ADD CONSTRAINT `cafedemo_customer_collect_1` FOREIGN KEY (`idcustomer`) REFERENCES `cafedemo_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_collect_general`
+-- Constraints for table `cafedemo_collect_general`
 --
-ALTER TABLE `cafecoirieng_collect_general`
-  ADD CONSTRAINT `cafecoirieng_collect_general_1` FOREIGN KEY (`id_term`) REFERENCES `cafecoirieng_term_collect` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_collect_general`
+  ADD CONSTRAINT `cafedemo_collect_general_1` FOREIGN KEY (`id_term`) REFERENCES `cafedemo_term_collect` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_course`
+-- Constraints for table `cafedemo_course`
 --
-ALTER TABLE `cafecoirieng_course`
-  ADD CONSTRAINT `cafecoirieng_course_1` FOREIGN KEY (`idcategory`) REFERENCES `cafecoirieng_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_course`
+  ADD CONSTRAINT `cafedemo_course_1` FOREIGN KEY (`idcategory`) REFERENCES `cafedemo_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_order_import`
+-- Constraints for table `cafedemo_order_import`
 --
-ALTER TABLE `cafecoirieng_order_import`
-  ADD CONSTRAINT `cafecoirieng_order_import_1` FOREIGN KEY (`idsupplier`) REFERENCES `cafecoirieng_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_order_import`
+  ADD CONSTRAINT `cafedemo_order_import_1` FOREIGN KEY (`idsupplier`) REFERENCES `cafedemo_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_order_import_detail`
+-- Constraints for table `cafedemo_order_import_detail`
 --
-ALTER TABLE `cafecoirieng_order_import_detail`
-  ADD CONSTRAINT `cafecoirieng_order_import_detail_1` FOREIGN KEY (`idorder`) REFERENCES `cafecoirieng_order_import` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cafecoirieng_order_import_detail_2` FOREIGN KEY (`idresource`) REFERENCES `cafecoirieng_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_order_import_detail`
+  ADD CONSTRAINT `cafedemo_order_import_detail_1` FOREIGN KEY (`idorder`) REFERENCES `cafedemo_order_import` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cafedemo_order_import_detail_2` FOREIGN KEY (`idresource`) REFERENCES `cafedemo_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_paid_customer`
+-- Constraints for table `cafedemo_paid_customer`
 --
-ALTER TABLE `cafecoirieng_paid_customer`
-  ADD CONSTRAINT `cafecoirieng_customer_paid_1` FOREIGN KEY (`idcustomer`) REFERENCES `cafecoirieng_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_paid_customer`
+  ADD CONSTRAINT `cafedemo_customer_paid_1` FOREIGN KEY (`idcustomer`) REFERENCES `cafedemo_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_paid_general`
+-- Constraints for table `cafedemo_paid_general`
 --
-ALTER TABLE `cafecoirieng_paid_general`
-  ADD CONSTRAINT `cafecoirieng_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `cafecoirieng_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_paid_general`
+  ADD CONSTRAINT `cafedemo_paid_general_1` FOREIGN KEY (`id_term`) REFERENCES `cafedemo_term` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_paid_supplier`
+-- Constraints for table `cafedemo_paid_supplier`
 --
-ALTER TABLE `cafecoirieng_paid_supplier`
-  ADD CONSTRAINT `cafecoirieng_supplier_paid_1` FOREIGN KEY (`idsupplier`) REFERENCES `cafecoirieng_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_paid_supplier`
+  ADD CONSTRAINT `cafedemo_supplier_paid_1` FOREIGN KEY (`idsupplier`) REFERENCES `cafedemo_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_r2c`
+-- Constraints for table `cafedemo_r2c`
 --
-ALTER TABLE `cafecoirieng_r2c`
-  ADD CONSTRAINT `cafecoirieng_r2c_1` FOREIGN KEY (`id_course`) REFERENCES `cafecoirieng_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cafecoirieng_r2c_2` FOREIGN KEY (`id_resource`) REFERENCES `cafecoirieng_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_r2c`
+  ADD CONSTRAINT `cafedemo_r2c_1` FOREIGN KEY (`id_course`) REFERENCES `cafedemo_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cafedemo_r2c_2` FOREIGN KEY (`id_resource`) REFERENCES `cafedemo_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_resource`
+-- Constraints for table `cafedemo_resource`
 --
-ALTER TABLE `cafecoirieng_resource`
-  ADD CONSTRAINT `cafecoirieng_resource_1` FOREIGN KEY (`idsupplier`) REFERENCES `cafecoirieng_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_resource`
+  ADD CONSTRAINT `cafedemo_resource_1` FOREIGN KEY (`idsupplier`) REFERENCES `cafedemo_supplier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_session`
+-- Constraints for table `cafedemo_session`
 --
-ALTER TABLE `cafecoirieng_session`
-  ADD CONSTRAINT `cafecoirieng_session_1` FOREIGN KEY (`idtable`) REFERENCES `cafecoirieng_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cafecoirieng_session_2` FOREIGN KEY (`iduser`) REFERENCES `cafecoirieng_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cafecoirieng_session_3` FOREIGN KEY (`idcustomer`) REFERENCES `cafecoirieng_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_session`
+  ADD CONSTRAINT `cafedemo_session_1` FOREIGN KEY (`idtable`) REFERENCES `cafedemo_table` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cafedemo_session_2` FOREIGN KEY (`iduser`) REFERENCES `cafedemo_user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cafedemo_session_3` FOREIGN KEY (`idcustomer`) REFERENCES `cafedemo_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_session_detail`
+-- Constraints for table `cafedemo_session_detail`
 --
-ALTER TABLE `cafecoirieng_session_detail`
-  ADD CONSTRAINT `cafecoirieng_session_detail_1` FOREIGN KEY (`idsession`) REFERENCES `cafecoirieng_session` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `cafecoirieng_session_detail_2` FOREIGN KEY (`idcourse`) REFERENCES `cafecoirieng_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_session_detail`
+  ADD CONSTRAINT `cafedemo_session_detail_1` FOREIGN KEY (`idsession`) REFERENCES `cafedemo_session` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cafedemo_session_detail_2` FOREIGN KEY (`idcourse`) REFERENCES `cafedemo_course` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `cafecoirieng_table`
+-- Constraints for table `cafedemo_table`
 --
-ALTER TABLE `cafecoirieng_table`
-  ADD CONSTRAINT `cafecoirieng_table_1` FOREIGN KEY (`iddomain`) REFERENCES `cafecoirieng_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `cafedemo_table`
+  ADD CONSTRAINT `cafedemo_table_1` FOREIGN KEY (`iddomain`) REFERENCES `cafedemo_domain` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
