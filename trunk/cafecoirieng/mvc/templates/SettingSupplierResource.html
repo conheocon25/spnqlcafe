@@ -16,7 +16,7 @@
 								<li class="nav-header">NHÀ PHÂN PHỐI</li>
 								<li tal:attributes="class php: Supplier1->getId()==Supplier->getId() ? 'active':'disable'" tal:repeat="Supplier1 SupplierAll">
 									<a tal:attributes="href Supplier1/getURLResource">
-										<span tal:content="Supplier1/getName" /> <span class="badge badge-info pull-right" tal:content="Supplier1/getResources/count"/>
+										<span tal:content="Supplier1/getName" /> <span class="badge badge-info pull-right" tal:content="Supplier1/getResourceAll/count"/>
 									</a>
 								</li>
 							</ul>
@@ -34,7 +34,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Resource Supplier/getResources">
+									<tr tal:repeat="Resource Supplier/getResourceAll">
 										<td width="32">
 											<div tal:content="repeat/Resource/number" />
 										</td>
@@ -51,7 +51,7 @@
 								<tfoot>
 									<tr>
 										<td colspan="4" align="center">
-											<a class="btn" tal:attributes="href Supplier/getURLResourceInsLoad">
+											<a class="btn btn-primary" tal:attributes="href Supplier/getURLResourceInsLoad">
 												<span class="icon-plus"/>Thêm mới
 											</a>
 										</td>
