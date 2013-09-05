@@ -5,6 +5,7 @@
 	$mSession		 	= new \MVC\Mapper\Session();
 	$mSessionDetail	 	= new \MVC\Mapper\SessionDetail();
 	$mSupplier 			= new \MVC\Mapper\Supplier();
+	$mEmployee 			= new \MVC\Mapper\Employee();
 	$mUnit 				= new \MVC\Mapper\Unit();
 	$mCustomer 			= new \MVC\Mapper\Customer();	
 	$mCategory 			= new \MVC\Mapper\Category();	

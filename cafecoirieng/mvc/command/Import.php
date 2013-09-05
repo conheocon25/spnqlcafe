@@ -24,22 +24,35 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$SupplierAll = $mSupplier->findAll();
 			$Supplier = $mSupplier->find($IdSupplier);
+			if (!isset($Supplier)){
+				$Supplier = $SupplierAll->current();
+				$IdSupplier = $Supplier->getId();
+			}
+			
 			$Config = $mConfig->findByName('ROW_PER_PAGE');
 			if (!isset($Page)) $Page = 1;
 			$OrderAll = $mOrder->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Supplier->getOrders()->count(), $Config->getValue(), $Supplier->getURLImport());
+			$PN = new \MVC\Domain\PageNavigation( $Supplier->getOrderAll()->count(), $Config->getValue(), $Supplier->getURLImport());
+			
+			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("NHẬP HÀNG", "/import")				
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
+			$request->setObject("SupplierAll", $SupplierAll);
 			$request->setObject("Supplier", $Supplier);
 			$request->setObject("OrderAll", $OrderAll);
 			$request->setObject("PN", $PN);
-			
-			$request->setProperty('URLHeader', "/app");
+						
 			$request->setProperty('Page', $Page);			
-			$request->setProperty('Title', "NHẬP HÀNG / ".$Supplier->getName() );
+			$request->setProperty('Title', $Title );
+			$request->setObject("Navigation", $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -55,6 +55,7 @@ RewriteRule ^customer/([0-9]+)$											?cmd=FindCustomer&IdCard=$1 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^import$ 								?cmd=Import [L]
 RewriteRule ^import/([0-9]+)$ 						?cmd=Import&IdSupplier=$1 [L]
 RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=Import&IdSupplier=$1&Page=$2 [L]
 RewriteRule ^import/([0-9]+)/ins/load$ 				?cmd=ImportSupplierInsLoad&IdSupplier=$1 [L]
@@ -296,7 +297,7 @@ RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/del/exe$ 		?cmd=SettingSupplierR
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.EMPLOYEE
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/employee$ 									?cmd=SettingEmployeeInsLoad [L]
+RewriteRule ^setting/employee$ 									?cmd=SettingEmployee [L]
 RewriteRule ^setting/employee/ins/load$ 						?cmd=SettingEmployeeInsLoad [L]
 RewriteRule ^setting/employee/ins/exe$ 							?cmd=SettingEmployeeInsExe [L]
 RewriteRule ^setting/employee/([0-9]+)/upd/load$ 				?cmd=SettingEmployeeUpdLoad&IdEmployee=$1 [L]
@@ -336,7 +337,3 @@ RewriteRule ^setting/user/([0-9]+)/upd/load$ 					?cmd=SettingUserUpdLoad&IdUser
 RewriteRule ^setting/user/([0-9]+)/upd/exe$ 					?cmd=SettingUserUpdExe&IdUser=$1 [L]
 RewriteRule ^setting/user/([0-9]+)/del/load$ 					?cmd=SettingUserDelLoad&IdUser=$1 [L]
 RewriteRule ^setting/user/([0-9]+)/del/exe$ 					?cmd=SettingUserDelExe&IdUser=$1 [L]
-AuthType Basic
-AuthName "cafecoirieng"
-require valid-user
-AuthUserFile "/home/qlcafe/.htpasswds/public_html/cafecoirieng/passwd"
