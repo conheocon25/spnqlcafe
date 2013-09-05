@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/ReportDetailInsLoad.js"/>
+	</head>
+<body>	
+	<div data-role="page" class="category type-interior">		
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">
+				
+				<form id="FormReportDetailInsLoad"  data-ajax="false" action="/report/ins/exe" method="post">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">
+						<li data-role="list-divider" tal:content="Title" />
+						<li data-role="fieldcontain">
+							<label for="DateStart">Bắt đầu:</label>
+							<input class="required" name="DateStart" id="DateStart" />
+						</li>
+						<li data-role="fieldcontain">
+							<label for="DateEnd">Kết thúc:</label>
+							<input class="required" name="DateEnd" id="DateEnd" />
+						</li>
+						<li data-role="fieldcontain">
+							<label for="EstateRate">Khấu hao tài sản:</label>
+							<input class="required" name="EstateRate" id="EstateRate" />
+						</li>
+						<button data-corners="false" type="submit" data-theme="c"  data-icon="plus" name="submit" value="submit-value">Thêm</button>
+					</ul>
+				</form>
+
+			</div>
+			<div class="content-secondary">
+				
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

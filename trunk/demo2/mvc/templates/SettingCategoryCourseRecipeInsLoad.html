@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+	</head>
+<body>
+	<div data-role="page" class="type-interior">
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">				
+				<form tal:attributes="action Course/getURLRecipeInsExe" method="post" data-ajax="false">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">
+						<li data-role="list-divider" tal:content="Title" />
+						<li data-role="fieldcontain">
+							<label for="IdResource" class="text">Nguyên liệu:</label>
+							<select name="IdResource" id="IdResource">
+								<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
+									<span tal:content="Resource/getName" /> (<span tal:content="Resource/getUnit" />)
+								</option>
+							</select>
+						</li>
+						<li data-role="fieldcontain">
+							<label for="Value1" class="text">Giá trị 1:</label>
+							<input class="required"  id="Value1" name="Value1" type="text" value="1" />
+						</li>
+						<li data-role="fieldcontain">
+							<label for="Value2" class="text">Giá trị 2:</label>
+							<input class="required"  id="Value2" name="Value2" type="text" value="1" />
+						</li>
+						<button data-corners="false" type="submit" data-theme="c"  data-icon="edit" name="submit" value="submit-value">Thêm mới</button>
+					</ul>
+				</form>
+			</div>
+			<div class="content-secondary">
+				
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>
