@@ -81,18 +81,18 @@ RewriteRule ^report$ 									?cmd=Report [L]
 
 RewriteRule ^report/recipe/print$ 						?cmd=ReportStoreRecipePrint [L]
 
-RewriteRule ^report/selling/([0-9]+)$ 				?cmd=ReportSelling&Type=$1 [L]
-RewriteRule ^report/selling/([0-9]+)/refresh$ 		?cmd=ReportSellingRefresh&IdTrack=$1 [L]
-RewriteRule ^report/selling/([0-9]+)/general$ 		?cmd=ReportSellingGeneral&IdTrack=$1 [L]
+RewriteRule ^report/selling/([0-9]+)$ 					?cmd=ReportSelling&Type=$1 [L]
+RewriteRule ^report/selling/([0-9]+)/refresh$ 			?cmd=ReportSellingRefresh&IdTrack=$1 [L]
+RewriteRule ^report/selling/([0-9]+)/general$ 			?cmd=ReportSellingGeneral&IdTrack=$1 [L]
 RewriteRule ^report/selling/([a-z0-9_-]+)/detail$ 		?cmd=ReportSellingDetail&Type=$1 [L]
 
 RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
 RewriteRule ^report/ins/load$ 							?cmd=ReportDetailInsLoad [L]
 RewriteRule ^report/ins/exe$ 							?cmd=ReportDetailInsExe [L]
-RewriteRule ^report/([0-9]+)/upd/load$ 				?cmd=ReportDetailUpdLoad&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/upd/exe$ 				?cmd=ReportDetailUpdExe&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/del/load$ 				?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/del/exe$ 				?cmd=ReportDetailDelExe&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/upd/load$ 					?cmd=ReportDetailUpdLoad&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/upd/exe$ 					?cmd=ReportDetailUpdExe&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/del/load$ 					?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/del/exe$ 					?cmd=ReportDetailDelExe&IdTrack=$1 [L]
 
 RewriteRule ^report/([0-9]+)/1$ 						?cmd=ReportDetailType1&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/2$ 						?cmd=ReportDetailType2&IdTrack=$1 [L]
@@ -101,20 +101,26 @@ RewriteRule ^report/paid/([0-9]+)$ 						?cmd=ReportPaidGeneral&IdTrack=$1 [L]
 RewriteRule ^report/paid/([0-9]+)/([0-9]+)$ 			?cmd=ReportPaidDetail&IdTrack=$1&IdTerm=$2 [L]
 RewriteRule ^report/paid/payroll/([0-9]+)$ 				?cmd=ReportPaidPayRoll&IdTrack=$1 [L]
 
-RewriteRule ^report/customer/([0-9]+)$ 				?cmd=ReportCustomerGeneral&IdTrack=$1 [L]
+RewriteRule ^report/customer/([0-9]+)$ 					?cmd=ReportCustomerGeneral&IdTrack=$1 [L]
 RewriteRule ^report/customer/([0-9]+)/([0-9]+)$ 		?cmd=ReportCustomerDetail&IdTrack=$1&IdCustomer=$2 [L]
 
 RewriteRule ^report/collect/([0-9]+)$ 					?cmd=ReportCollectGeneral&IdTrack=$1 [L]
 RewriteRule ^report/collect/([0-9]+)/([0-9]+)$ 			?cmd=ReportCollectDetail&IdTrack=$1&IdTerm=$2 [L]
 
-RewriteRule ^report/import/([0-9]+)/general$ 		?cmd=ReportImportGeneral&IdTrack=$1 [L]
-RewriteRule ^report/import/([0-9]+)/([0-9]+)$ 	?cmd=ReportImportDetail&IdTrack=$1&IdSupplier=$2 [L]
+RewriteRule ^report/import/([0-9]+)/general$ 			?cmd=ReportImportGeneral&IdTrack=$1 [L]
+RewriteRule ^report/import/([0-9]+)/([0-9]+)$ 			?cmd=ReportImportDetail&IdTrack=$1&IdSupplier=$2 [L]
 RewriteRule ^report/store/([0-9]+)$ 					?cmd=ReportStore&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/eval$ 			?cmd=ReportEvalStore&IdTrack=$1 [L]
-RewriteRule ^report/course/([0-9]+)$ 				?cmd=ReportCourse&IdTrack=$1 [L]
-RewriteRule ^report/general/([0-9]+)$ 				?cmd=ReportGeneral&IdTrack=$1 [L]
+RewriteRule ^report/store/([0-9]+)/eval$ 				?cmd=ReportEvalStore&IdTrack=$1 [L]
+RewriteRule ^report/course/([0-9]+)$ 					?cmd=ReportCourse&IdTrack=$1 [L]
+RewriteRule ^report/general/([0-9]+)$ 					?cmd=ReportGeneral&IdTrack=$1 [L]
 
 RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PAYROLL
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^payroll$ 									?cmd=PayRoll [L]
+RewriteRule ^payroll/([0-9]+)$ 							?cmd=PayRoll&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # PAID.GENERAL

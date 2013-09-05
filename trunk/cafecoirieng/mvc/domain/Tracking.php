@@ -14,7 +14,7 @@ class Tracking extends Object{
     
 	function getId() {return $this->Id;}	
 	function getIdPrint(){return "u" . $this->getId();}	
-	function getName(){$Name = 'BÁO CÁO THÁNG '.\date("m/Y", strtotime($this->getDateStart()));return $Name;}
+	function getName(){$Name = 'THÁNG '.\date("m/Y", strtotime($this->getDateStart()));return $Name;}
 	
     function setDateStart( $DateStart ) {$this->DateStart = $DateStart;$this->markDirty();}   
 	function getDateStart( ) {return $this->DateStart;}	
@@ -260,6 +260,7 @@ class Tracking extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
+	function getURLPayRoll(){return "/payroll/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLPaidPayRoll(){return "/report/paid/payroll/".$this->getId();}	
 	function getURLPaidGeneral(){return "/report/paid/".$this->getId();}
