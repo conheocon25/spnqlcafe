@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<script type="text/javascript">
+			/*<![CDATA[*/			
+			$(document).bind( "pagebeforechange", function( e, data ) {
+				$("#Date").scroller({ 
+					preset: 'date', 
+					mode: 'clickpick',
+					dateOrder:'yymmdd',
+					dateFormat: 'yy-mm-dd',
+					dayText:'Ngày',
+					monthText:'Tháng',
+					yearText:'Năm'
+				});
+			});
+			/*]]>*/
+		</script>
+	</head>
+<body>	
+	<div data-role="page" class="category type-interior">
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">
+				<form data-ajax="false" tal:attributes="action PPR/getURLUpdExe" method="post">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">
+						<li data-role="list-divider" tal:content="Title" />
+						<li data-role="fieldcontain">
+							<label for="Date">Ngày:</label>
+							<input class="required" name="Date" id="Date" tal:attributes="value PPR/getDate" />
+						</li>
+						<li data-role="fieldcontain">
+							<label for="ValueBase" class="text">Lương cơ bản:</label>
+							<input class="required" id="ValueBase" name="ValueBase" type="text" tal:attributes="value PPR/getValueBase"/>
+						</li>
+						<li data-role="fieldcontain">
+							<label for="ValueSub" class="text">Phụ cấp:</label>
+							<input class="required" id="ValueSub" name="ValueSub" type="text" tal:attributes="value PPR/getValueSub"/>
+						</li>
+						<li data-role="fieldcontain">
+							<label for="ValuePre" class="text">Tạm ứng:</label>
+							<input class="required" id="ValuePre" name="ValuePre" type="text" tal:attributes="value PPR/getValuePre"/>
+						</li>
+						<li data-role="fieldcontain">
+							<label for="Note" class="text">Diễn giải:</label>
+							<textarea cols="40" rows="8" name="Note" id="Note" data-mini="true" tal:content="PPR/getNote"/>
+						</li>
+						<button data-corners="false" type="submit" data-theme="c"  data-icon="edit" name="submit" value="submit-value">Cập nhật</button>
+					</ul>
+				</form>
+			</div>
+			<div class="content-secondary">
+				
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

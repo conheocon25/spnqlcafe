@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="span3" />
+				<div class="span9 main">
+					<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+					<form class="form-horizontal" tal:attributes="action 'setting/domain/ins/exe'" method="post">
+						<div class="control-group">
+							<label class="control-label" for="Name">Tên</label>
+							<div class="controls">
+								<input id="Name" name="Name" type="text" />
+							</div>														
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit" class="btn" value="submit-value">Thêm mới</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>
+	</body>
+</html>

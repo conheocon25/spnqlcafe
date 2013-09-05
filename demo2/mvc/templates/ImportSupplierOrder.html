@@ -1,0 +1,57 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+	</head>
+<body>	
+	<div data-role="page" class="type-interior">
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">				
+				<ul data-role="listview" data-theme="c" data-dividertheme="b">
+					<li data-role="list-divider" tal:content="php:'NHẬP HÀNG / ' . mb_strtoupper(Supplier->getName(),'UTF8') . ' / ' . OI->getDatePrint()" />
+					<li data-theme="d">
+						<h3>NGÀY:</h3><span class="ui-li-aside" tal:content="OI/getDatePrint"/>
+						<p><span tal:content="OI/getDescription"/></p>
+					</li>
+					<li tal:repeat="Detail OI/getDetails">
+						<a tal:attributes="href Detail/getURLUpdLoad">
+							<strong>
+								<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
+								<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit"/>) x<span tal:content="Detail/getPricePrint"/>
+							</strong>
+							<span class="ui-li-count" tal:content="Detail/getValuePrint" />
+						</a>
+					</li>
+					<li data-theme="d">
+						<h3>TỔNG CỘNG:</h3><span class="ui-li-count" tal:content="OI/getValuePrint"/>
+						<p>( <span tal:content="OI/getValueStrPrint"/> )</p>
+					</li>
+				</ul>
+			</div>
+			<div class="content-secondary">
+				<ul data-role="listview" data-theme="c" data-dividertheme="d">
+					<li tal:content="string:CHỨC NĂNG" data-role="list-divider" />
+					<li>
+						<a data-transition="none" tal:attributes="href OI/getURLUpdLoad">
+							Cập nhật
+						</a>
+					</li>
+					<li>
+						<a target="blank" data-transition="none" tal:attributes="href OI/getURLPrint">
+							In phiếu duyệt
+						</a>
+					</li>
+					<li>
+						<a target="blank" data-transition="none" tal:attributes="href OI/getURLPrint1">
+							In nhập kho
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
+</html>

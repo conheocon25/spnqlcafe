@@ -1,0 +1,57 @@
+<body>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B>SPN CAFE DEMO</B></td>
+			<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">P.5, TP.VL</td>
+			<td width="50%" align="right">Lưu hành nội bộ</td>
+		</tr>
+		<tr>
+			<td width="50%" align="left">0909 ..... </td>
+			<td width="50%" align="left" />
+		</tr>
+	</table>
+	<BR />
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>			
+			<th width="15%" align="right"><B>NGÀY</B></th>
+			<th width="55%" align="left"><B>GHI CHÚ</B></th>
+			<th width="30%" align="right"><B>TỔNG TIỀN</B></th>
+		</tr>
+		<tr tal:repeat="Collect php:Tracking->getCollectAll( Term->getId() )">
+			<td align="right" tal:content="Collect/getDatePrint" />
+			<td align="left" tal:content="Collect/getNote" />
+			<td align="right" tal:content="Collect/getValuePrint" />
+		</tr>
+		<tr>
+			<th align="right" colspan="2"><H3>TỔNG CỘNG</H3></th>
+			<th align="right">
+				<H3 tal:content="php:Tracking->getCollectAllValuePrint( Term->getId() )" />
+			</th>
+		</tr>
+	</table>					
+		
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" tal:content="DateCurrent" />
+		</tr>
+		<tr>
+			<td width="35%" align="center">NGƯỜI LẬP BẢNG</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">P.GIÁM ĐỐC</td>
+		</tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr>
+			<td width="35%" align="center" />
+			<td width="30%" align="center" />
+			<td width="35%" align="center">Lê Nguyễn Đông Khoa</td>
+		</tr>
+	</table>
+</body>
