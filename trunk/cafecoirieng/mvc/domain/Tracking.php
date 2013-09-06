@@ -234,7 +234,22 @@ class Tracking extends Object{
 	function getCustomerNewDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->formatCurrency()." đ";}	
 	function getCustomerNewDebtStrPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->readDigit();}	
 	//CÁC LIÊN KẾT CỦA CÁC NGÀY TRONG THÁNG
-	function getURLDayAll(){$Data = array();$Date = $this->getDateStart();$EndDate = $this->getDateEnd();while (strtotime($Date) <= strtotime($EndDate)){$Data[] = array(\date("d/m", strtotime($Date)),"/report/selling/".$Date."/detail");$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));}return $Data;}
+	function getURLDayAll(){
+		$Data = array();
+		$Date = $this->getDateStart();
+		$EndDate = $this->getDateEnd();
+		while (strtotime($Date) <= strtotime($EndDate)){
+			$Data[] = array(
+						\date("d/m", strtotime($Date)),
+						"/report/selling/".$Date."/detail",
+						"/payroll/".$this->getId()."/".$Date,
+						"/payroll/".$this->getId()."/absent/".$Date,
+						"/payroll/".$this->getId()."/late/".$Date
+					);
+			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
+		}
+		return $Data;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//LƯƠNG NHÂN VIÊN
