@@ -15,7 +15,7 @@
 							<ul class="nav nav-list">
 								<li class="nav-header">DANH MỤC</li>
 								<li tal:repeat="Category1 CategoryAll" tal:attributes="class php: Category1->getId()==Category->getId() ? 'active':'disable'">
-									<a tal:attributes="href Category1/getURLCourse"><span tal:content="Category1/getName"/><span class="badge badge-info pull-right" tal:content="Category1/getCourses/count"/></a>
+									<a tal:attributes="href Category1/getURLCourse"><i class="icon-food"/> <span tal:content="Category1/getName"/><span class="badge badge-info pull-right" tal:content="Category1/getCourses/count"/></a>
 								</li>
 							</ul>
 						</div>						
@@ -26,23 +26,25 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">STT</th>
-										<th>TÊN</th>										
-										<th width="32">XÓA</th>
+										<th width="32"><div class="text-center">STT</div></th>
+										<th>TÊN</th>
+										<th width="120"><div class="text-left">ĐƠN VỊ</div></th>	
+										<th width="120"><div class="text-right">GIÁ</div></th>
+										<th width="32" />
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Course Category/getCourses">
-										<td width="32">
-											<div tal:content="repeat/Course/number" />
-										</td>
+										<td width="32"><div class="text-center" tal:content="repeat/Course/number" /></td>
 										<td>
 											<a tal:attributes="href Course/getURLUpdLoad">
 												<div tal:content="Course/getName" />
 											</a>
 										</td>
+										<td><div class="text-left" tal:content="Course/getUnit" /></td>
+										<td><div class="text-right" tal:content="Course/getPrice1Print" /></td>
 										<td width="32">
-											<a tal:attributes="href Course/getURLDelLoad"><span class="icon-remove"/></a>
+											<a class="btn" tal:attributes="href Course/getURLDelLoad"><span class="icon-remove"/></a>
 										</td>
 									</tr>
 								</tbody>
