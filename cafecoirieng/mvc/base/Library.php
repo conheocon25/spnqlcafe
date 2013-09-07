@@ -13,4 +13,5 @@
 	require_once("mvc/library/Image.php");
 	require_once("mvc/library/String.php");
 	require_once("mvc/library/Barcode.php");
+	require_once("mvc/library/Statistic.php");
 ?>
