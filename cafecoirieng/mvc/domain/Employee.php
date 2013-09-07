@@ -25,20 +25,19 @@
 	private $Job;
 	private $Phone;
 	private $Address;
+	private $SalaryBase;
 	
-	private $Paids;
-	private $PaidsTop10;
-			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null){
+    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null){
         $this->Id = $Id;
 		$this->Name = $Name;
 		$this->Gender = $Gender;
 		$this->Job = $Job;
 		$this->Phone = $Phone;
 		$this->Address = $Address;
+		$this->SalaryBase = $SalaryBase;
 		
         parent::__construct( $Id );
     }
@@ -61,52 +60,16 @@
 	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress( ) {return $this->Address;}
 	
+	function setSalaryBase( $SalaryBase ) {$this->SalaryBase = $SalaryBase;$this->markDirty();}
+	function getSalaryBase( ) {return $this->SalaryBase;}
+	function getSalaryBasePrint( ) {
+		$N = new \MVC\Library\Number($this->SalaryBase);
+		return $N->formatCurrency();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
-	//-------------------------------------------------------------------------------
-	function getPaids(){
-		if (!isset($this->Paids)){
-			$mPE = new \MVC\Mapper\PaidEmployee();
-			$this->Paids = $mPE->findBy(array($this->getId()));
-		}
-		return $this->Paids;
-	}
-	function getPaidsTop10(){
-		if (!isset($this->PaidsTop10)){
-			$mPE = new \MVC\Mapper\PaidEmployee();
-			$this->PaidsTop10 = $mPE->findByTop10(array($this->getId()));
-		}
-		return $this->PaidsTop10;
-	}
-	
-	function getPaidsTracking(){
-		if (!isset($this->PaidsTracking)){		
-			$mPE = new \MVC\Mapper\PaidEmployee();
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportEmployeeDateStart();
-			$DateEnd = $Session->getReportEmployeeDateEnd();
-			
-			$this->PaidsTracking = $mPE->findByTracking(array($this->getId(),$DateStart, $DateEnd));
-		}
-		return $this->PaidsTracking;
-	}
-	         
-	function getPaidsTrackingValue(){
-		$Paids = $this->getPaidsTracking();
-		$Sum = 0;
-		$Paids->rewind();
-		while ($Paids->valid()){
-			$Sum += $Paids->current()->getValue();
-			$Paids->next();
-		}
-		return $Sum;
-	}
-	
-	function getPaidsTrackingValuePrint(){
-		$num = new \MVC\Library\Number($this->getPaidsTrackingValue());
-		return $num->formatCurrency()." đ";
-	}
-		
+	//-------------------------------------------------------------------------------						
 	function getPayRollAll(){
 		$mPPR = new \MVC\Mapper\PaidPayRoll();
 		$PRRAll = $mPPR->findBy(array($this->getId()));

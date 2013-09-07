@@ -19,9 +19,12 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th>STT</th>
-										<th>TÊN</th>										
-										<th />
+										<th width="32">STT</th>
+										<th>TÊN</th>
+										<th>ĐỊA CHỈ</th>
+										<th width="120">ĐIỆN THOẠI</th>
+										<th width="120"><div class="text-right">LƯƠNG CB</div></th>
+										<th width="32"/>
 									</tr>
 								</thead>
 								<tbody>
@@ -31,7 +34,10 @@
 											<a tal:attributes="href Employee/getURLUpdLoad">
 												<div tal:content="Employee/getName" />
 											</a>
-										</td>										
+										</td>
+										<td><div tal:content="Employee/getAddress" /></td>
+										<td><div tal:content="Employee/getPhone" /></td>
+										<td><div class="text-right" tal:content="Employee/getSalaryBasePrint" /></td>
 										<td width="32"><a class="btn" tal:attributes="href Employee/getURLDelLoad"><span class="icon-remove"/></a></td>
 									</tr>
 								</tbody>
