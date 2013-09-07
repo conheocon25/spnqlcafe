@@ -25,7 +25,8 @@
 			$Title = "THÊM MỚI";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
-				array("THIẾT LẬP", "/setting")
+				array("THIẾT LẬP", "/setting"),
+				array("KHU VỰC", "/setting/domain")
 			);
 			
 			//-------------------------------------------------------------
@@ -34,7 +35,6 @@
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('Domains', $Domains);
-			$request->setProperty('URLHeader', '/setting#domain');
 		}
 	}
 ?>

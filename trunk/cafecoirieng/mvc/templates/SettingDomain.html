@@ -19,29 +19,21 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">STT</th>
+										<th width="32"><div class="text-center">STT</div></th>
 										<th>TÊN</th>
 										<th width="120">BÀN</th>
-										<th width="32">XÓA</th>
+										<th width="32" />
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Domain DomainAll">
-										<td width="32">
-											<div tal:content="repeat/Domain/number" />
-										</td>
+										<td width="32"><div class="text-center" tal:content="repeat/Domain/number" /></td>
 										<td>
-											<a tal:attributes="href Domain/getURLUpdLoad">
-												<div tal:content="Domain/getName" />
-											</a>
+											<a tal:attributes="href Domain/getURLUpdLoad"><div tal:content="Domain/getName" /></a>
 										</td>
-										<td>
-											<a tal:attributes="href Domain/getURLTable">
-												Bàn (<span tal:content="Domain/getTables/count"/>)
-											</a>
-										</td>
+										<td><a class="btn" tal:attributes="href Domain/getURLTable"><span tal:content="Domain/getTables/count"/></a></td>
 										<td width="32">
-											<a tal:attributes="href Domain/getURLDelLoad"><span class="icon-remove"/></a>
+											<a class="btn" tal:attributes="href Domain/getURLDelLoad"><span class="icon-remove"/></a>
 										</td>
 									</tr>
 								</tbody>

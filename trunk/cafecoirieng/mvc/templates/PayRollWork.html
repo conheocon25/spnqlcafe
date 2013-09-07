@@ -37,7 +37,7 @@
 														<i class="icon-check icon-2x"/>
 													</div>													
 												</a>
-												<a tal:condition="php: Employee->getPayRoll(Date)" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes'">													
+												<a tal:condition="php: Employee->getPayRoll(Date)" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes'">
 													<div tal:condition="php: Employee->getPayRoll(Date)->getState()==0" >
 														<i class="icon-unchecked icon-2x"/>
 													</div>
@@ -51,10 +51,11 @@
 											<div class="text-center" tal:condition="php: Employee->getPayRoll(Date)">
 												<a tal:condition="php: Employee->getPayRoll(Date)->getExtra()==1" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/100/0'">
 													<div><i class="icon-check icon-2x"/></div>
-												</a>
-												<a tal:condition="php: Employee->getPayRoll(Date)->getExtra()==0" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/100/1'">
+												</a>												
+												<a tal:condition="php: Employee->getPayRoll(Date)->getState()==1 && Employee->getPayRoll(Date)->getExtra()==0" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/100/1'">
 													<div><i class="icon-unchecked icon-2x"/></div>
 												</a>
+												
 											</div>
 										</td>
 										<td>

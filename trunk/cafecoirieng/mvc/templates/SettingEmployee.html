@@ -19,7 +19,7 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">STT</th>
+										<th width="32"><div class="text-center">STT</div></th>
 										<th>TÊN</th>
 										<th>ĐỊA CHỈ</th>
 										<th width="120">ĐIỆN THOẠI</th>
@@ -29,7 +29,7 @@
 								</thead>
 								<tbody>
 									<tr tal:repeat="Employee EmployeeAll1">
-										<td width="32"><div tal:content="repeat/Employee/number" /></td>
+										<td width="32"><div class="text-center" tal:content="repeat/Employee/number" /></td>
 										<td>
 											<a tal:attributes="href Employee/getURLUpdLoad">
 												<div tal:content="Employee/getName" />
