@@ -37,5 +37,6 @@ class TrackingStoreCollection extends Collection implements \MVC\Domain\Tracking
 
 class R2CCollection extends Collection implements \MVC\Domain\R2CCollection{function targetClass(){return "\MVC\Domain\R2C";}}
 class PageCollection extends Collection implements \MVC\Domain\PageCollection{function targetClass(){return "\MVC\Domain\Page";}}
+class GuestCollection extends Collection implements \MVC\Domain\GuestCollection{function targetClass(){return "\MVC\Domain\Guest";}}
 
 ?>

@@ -33,7 +33,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Tracking.php");
 	require_once( "mvc/mapper/TrackingStore.php");
 	require_once( "mvc/mapper/R2C.php");
-		
+	require_once( "mvc/mapper/Guest.php");
 }
 
 class HelperFactory {

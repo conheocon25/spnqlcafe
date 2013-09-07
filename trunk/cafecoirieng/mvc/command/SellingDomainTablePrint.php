@@ -6,7 +6,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			$Session = \MVC\Base\SessionRegistry::instance();
+			//$Session = \MVC\Base\SessionRegistry::instance();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
@@ -28,13 +28,17 @@
 			$Table = $mTable->find($IdTable);
 			$Domain = $mDomain->find($IdDomain);
 			$Session = $mSession->find($IdSession);
-						
+			
+			$Session->setStatus(1);
+			$Session->setValue( $Session->getReValue() );
+			$mSession->update($Session);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setObject("Table", $Table);
 			$request->setObject("Domain", $Domain);
-			$request->setObject("Session", $Session);			
+			$request->setObject("Session", $Session);
 		}
 	}
 ?>

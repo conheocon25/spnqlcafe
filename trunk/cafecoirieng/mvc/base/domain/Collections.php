@@ -35,5 +35,5 @@ interface TrackingStoreCollection extends \Iterator {function add( Object $Track
 
 interface R2CCollection extends \Iterator {function add( Object $R2C);}
 interface PageCollection extends \Iterator {function add( Object $Page);}
-
+interface GuestCollection extends \Iterator {function add( Object $Guest);}
 ?>
