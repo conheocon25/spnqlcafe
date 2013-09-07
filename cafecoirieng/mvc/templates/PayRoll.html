@@ -29,18 +29,14 @@
 								<thead>
 									<tr>										
 										<th>NGÀY</th>										
-										<th width="120">ĐI LÀM</th>
-										<th width="120">TĂNG CA</th>
-										<th width="120">ĐI TRỄ</th>
+										<th width="120">NHÂN VIÊN</th>										
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Day Track/getURLDayAll">
 										<td><span tal:content="php:Day[0]"/></td>
-										<td><a class="btn" tal:attributes="href php:Day[2]" ><span class="icon-edit"/></a></td>
-										<td><a class="btn" tal:attributes="href php:Day[3]" ><span class="icon-edit"/></a></td>
-										<td><a class="btn" tal:attributes="href php:Day[4]" ><span class="icon-edit"/></a></td>
-									</tr>									
+										<td><a class="btn" tal:attributes="href php:Day[2]" ><span class="icon-edit"/></a></td>										
+									</tr>
 								</tbody>								
 							</table>
 						</div>
