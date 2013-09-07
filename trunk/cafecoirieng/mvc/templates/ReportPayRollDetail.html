@@ -13,9 +13,35 @@
 			<td width="50%" align="left">0939 000 848</td>
 			<td width="50%" align="left" />
 		</tr>
-	</table>
-	
+	</table>	
 	<br/>
+	<table width="100%" border="0" cellpadding="2">
+		<tr>
+			<td align="right" width="50%">LƯƠNG CƠ BẢN</td>
+			<td align="left" width="50%"> + <B tal:content="Employee/getSalaryBasePrint"/> ĐỒNG</td>
+		</tr>		
+		<tr>
+			<td align="right">LÀM THÊM</td>
+			<td align="left"> + <B tal:content="ExtraValue"/> ĐỒNG (<span tal:content="Extra"/> CA)</td>
+		</tr>		
+		<tr>
+			<td align="right">NGHỈ </td>
+			<td align="left"> - <B tal:content="AbsentValue"/> ĐỒNG (<span tal:content="Absent"/> CA)</td>
+		</tr>		
+		<tr>
+			<td align="right">PHẠT TRỄ</td>
+			<td align="left"> - <B tal:content="LateValue"/> ĐỒNG (<span tal:content="Late"/> PHÚT)</td>
+		</tr>
+		<tr>
+			<td align="right">--------------------------</td>
+			<td align="left">--------------</td>
+		</tr>
+		<tr>
+			<td align="right"><b>TỔNG LƯƠNG</b></td>
+			<td align="left"> + <B tal:content="Salary"/> ĐỒNG</td>
+		</tr>
+	</table>
+	<BR/>
 	<table width="100%" border="1" cellpadding="2" >		
 		<tr>
 			<th width="5%"><B>#ID</B></th>
@@ -30,32 +56,6 @@
 			<td align="left" 	tal:content="PR/getStatePrint" />
 			<td align="left" 	tal:content="PR/getExtraPrint" />
 			<td align="left" 	tal:content="PR/getLatePrint" />
-		</tr>
-		<tr>
-			<th align="right" colspan="4" width="75%"><H3>TỔNG</H3></th>
-			<th align="right" width="25%"><B tal:content="string:0"/></th>
-		</tr>
-	</table>
-	<br />
-	
-	<table width="100%" border="0" cellpadding="2">		
-		<tr>
-			<td width="35%" align="center"></td>
-			<td width="30%" align="center" />
-			<td width="35%" align="center" tal:content="DateCurrent"/>
-		</tr>
-		<tr>
-			<td width="35%" align="center">BÁN HÀNG</td>
-			<td width="30%" align="center" />
-			<td width="35%" align="center">QUẢN LÝ</td>
-		</tr>
-		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
-		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
-		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
-		<tr>
-			<td width="35%" align="center"></td>
-			<td width="30%" align="center" />
-			<td width="35%" align="center" />
-		</tr>
+		</tr>		
 	</table>
 </body>
