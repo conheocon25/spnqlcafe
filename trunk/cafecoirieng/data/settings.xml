@@ -77,8 +77,9 @@
 		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
 		<command name="ReportGeneral"><view>ReportGeneral</view></command>
 		
-		<command name="ReportPaidPayRoll"><view>ReportPaidPayRoll</view></command>
-						
+		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
+		<command name="ReportPayRollDetail"><view>ReportPayRollDetail</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->				

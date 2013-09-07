@@ -39,12 +39,15 @@ class PayRoll extends Object{
     
 	function setState( $State ) { $this->State = $State; $this->markDirty(); }	
 	function getState( ) { return $this->State;}
+	function getStatePrint( ) { return $this->State==1?'Có':'Không';}
 	
 	function setExtra( $Extra ) { $this->Extra = $Extra; $this->markDirty(); }
 	function getExtra( ) { return $this->Extra;}
+	function getExtraPrint( ) { return $this->Extra==1?'Có':'Không';}
 	
 	function setLate( $Late ) { $this->Late= $Late; $this->markDirty(); }
 	function getLate( ) { return $this->Late;}
+	function getLatePrint( ) { return $this->Late." phút";}
 	
 	function setDate( $Date ) {$this->Date = $Date; $this->markDirty(); }
 	function getDate( ) { return $this->Date; }

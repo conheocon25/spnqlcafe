@@ -17,14 +17,10 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
 		$findByStmt = sprintf("select * from %s where idemployee = ? order by date DESC", $tblPayRoll);
 				
 		$findByTrackingStmt = sprintf(
-			"select
-				*
-			from 
-				%s
+			"select * from %s
 			where
-				date >= ? AND date <= ?
-			order by 
-				date DESC
+				idemployee = ? AND `date` >= ? AND `date` <= ?
+			ORDER BY `date`
 			"
 		, $tblPayRoll);
 		$checkStmt = sprintf("
@@ -95,6 +91,7 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
     }
 			
 	function findByTracking($values ){
+		//print_r($values);
         $this->findByTrackingStmt->execute( $values );
         return new PayRollCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }

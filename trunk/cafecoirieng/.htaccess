@@ -94,12 +94,11 @@ RewriteRule ^report/([0-9]+)/upd/exe$ 					?cmd=ReportDetailUpdExe&IdTrack=$1 [L
 RewriteRule ^report/([0-9]+)/del/load$ 					?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/del/exe$ 					?cmd=ReportDetailDelExe&IdTrack=$1 [L]
 
-RewriteRule ^report/([0-9]+)/1$ 						?cmd=ReportDetailType1&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/2$ 						?cmd=ReportDetailType2&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/payroll/general$ 			?cmd=ReportPayRoll&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/payroll/([0-9]+)$ 			?cmd=ReportPayRollDetail&IdTrack=$1&IdEmployee=$2 [L]
 
 RewriteRule ^report/paid/([0-9]+)$ 						?cmd=ReportPaidGeneral&IdTrack=$1 [L]
 RewriteRule ^report/paid/([0-9]+)/([0-9]+)$ 			?cmd=ReportPaidDetail&IdTrack=$1&IdTerm=$2 [L]
-RewriteRule ^report/paid/payroll/([0-9]+)$ 				?cmd=ReportPaidPayRoll&IdTrack=$1 [L]
 
 RewriteRule ^report/customer/([0-9]+)$ 					?cmd=ReportCustomerGeneral&IdTrack=$1 [L]
 RewriteRule ^report/customer/([0-9]+)/([0-9]+)$ 		?cmd=ReportCustomerDetail&IdTrack=$1&IdCustomer=$2 [L]
