@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="span12 main">
+					<div class="signin-inner">
+						<form class="form-action" tal:attributes="action '/signin/exe'" method="post">
+							<legend>Đăng nhập hệ thống</legend>
+							<div class="control-group">								
+								<div class="input-prepend">
+									<span class="add-on">@</span>
+									<input type="text" id="Email" name="Email" placeholder="Tài khoản email" />
+								</div>
+							</div>
+							<div class="control-group">								
+								<div class="input-prepend">
+									<span class="add-on"><i class="icon-key"/></span>
+									<input type="Password" id="Pass" name="Pass" placeholder="Mật khẩu"/>
+								</div>
+							</div>																								
+							<div class="control-group">
+								<div class="controls">
+									<button type="submit" class="btn btn-primary" value="submit-value">Đăng nhập</button>
+								</div>
+							</div>						
+						</form>
+					</div>
+				</div>
+			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+		</div>		
+	</body>
+</html>
