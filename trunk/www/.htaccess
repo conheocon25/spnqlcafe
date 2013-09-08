@@ -1,0 +1,17 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
+RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
+RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
+RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
+RewriteRule ^change/pass/load$ 		?cmd=ChangePassLoad [L]
+RewriteRule ^change/pass/exe$ 		?cmd=ChangePassExe [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# APP
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^app$ 													?cmd=App [L]
