@@ -35,7 +35,9 @@
 								<tbody>
 									<tr tal:repeat="Day Track/getURLDayAll">
 										<td><span tal:content="php:Day[0]"/></td>
-										<td><a class="btn" tal:attributes="href php:Day[2]" ><span class="icon-edit"/></a></td>										
+										<td>
+											<a class="btn" tal:attributes="href php:Day[2]" ><span class="icon-edit"/></a>
+										</td>
 									</tr>
 								</tbody>								
 							</table>

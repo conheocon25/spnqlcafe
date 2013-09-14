@@ -4,6 +4,17 @@
 		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
 		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+			<script type="text/javascript">
+			/*<![CDATA[*/
+			$(function() {
+				$('.Print').click(function(){										
+					//$(this.parentNode.parentNode.parentNode).addClass('info');
+					location.reload();
+					window.open($(this).attr('alt'), '_blank');
+				});
+			});
+			/*]]>*/
+		</script>
 	</head>
 	<body>
 		<div class="container-fluid">
@@ -29,7 +40,8 @@
 										<th>BÀN</th>
 										<th width="120">PHIẾU</th>
 										<th width="60"><div class="text-center">IN</div></th>
-										<th width="60"><div class="text-center">VÀO</div></th>										
+										<th width="60"><div class="text-center">VÀO</div></th>
+										<th width="60"><div class="text-center">RA</div></th>
 										<th width="60"><div class="text-center">GỌI</div></th>
 										<th width="60"><div class="text-center">SỔ</div></th>
 										<th width="60"><div class="text-center">DỜI</div></th>										
@@ -37,15 +49,29 @@
 									</tr>
 								</thead>
 								<tbody>
+									<!--
 									<tr tal:repeat="Table Domain/getTables" tal:attributes="class php: Table->getSessionActive()!=null ? 'error':''">
+									!-->
+									<tr tal:repeat="Table Domain/getTables" tal:attributes="class php: Table->getSessionActive()!=null ? (Table->getSessionActive()->getNote()=='In phieu' ? 'info':'error') :''">
 										<td><div tal:content="Table/getName"/></td>
 										<td>
 											<a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getSessionActive/getURLDetail">
 												<span tal:content="Table/getSessionActive/getValuePrint" />
 											</a>
 										</td>
-										<td><div class="text-center"><a class="btn" tal:condition="Table/getSessionActive" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><span class="icon-print"/></a></div></td>
+										<td>
+											<div class="text-center" tal:condition="Table/getSessionActive">
+												<div class="btn Print" tal:attributes="alt Table/getSessionActive/getURLPrint"><span class="icon-print"/></div>
+											</div>
+										</td>
 										<td><div class="text-center"><a class="btn" tal:condition="not: Table/getSessionActive" tal:attributes="href Table/getURLCheckinExe"><span class="icon-arrow-right"/></a></div></td>
+										<td>
+											<div class="text-center" tal:condition="Table/getSessionActive">
+												<a class="btn" tal:condition="Table/getSessionActive/getNote" tal:attributes="href Table/getSessionActive/getURLCheckoutExe">
+													<span class="icon-arrow-left"/>
+												</a>
+											</div>
+										</td>
 										<td><div class="text-center"><a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLCallLoad"><span class="icon-plus"/></a></div></td>
 										<td><div class="text-center"><a class="btn" tal:attributes="href Table/getURLLog"><span class="icon-edit"/></a></div></td>
 										<td><div class="text-center"><a class="btn" tal:condition="Table/getSessionActive" tal:attributes="href Table/getURLMoveLoad"><span class="icon-move"/></a></div></td>

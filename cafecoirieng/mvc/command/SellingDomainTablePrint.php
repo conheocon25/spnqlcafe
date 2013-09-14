@@ -29,7 +29,7 @@
 			$Domain = $mDomain->find($IdDomain);
 			$Session = $mSession->find($IdSession);
 			
-			$Session->setStatus(1);
+			$Session->setNote("In phieu");
 			$Session->setValue( $Session->getReValue() );
 			$mSession->update($Session);
 			

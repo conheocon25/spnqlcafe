@@ -43,7 +43,13 @@
 			}else{
 				$PR = $mPayRoll->find($IdPR);								
 				$PR->setState($State=='yes'?1:0);
-				if (isset($Minute) && $Minute < 100) $PR->setLate($Minute);
+				if (isset($Minute) && $Minute < 100){ 
+					$PR->setLate($Minute);					
+				}
+				if ($State=='no'){
+					$PR->setLate(0);
+					$PR->setExtra(0);
+				}
 				if (isset($Extra)) $PR->setExtra($Extra);
 				$mPayRoll->update($PR);
 			}			
