@@ -12,35 +12,16 @@ interface Finder {
 
 interface AppFinder  extends Finder {}
 interface UserFinder  extends Finder {}
-interface DomainFinder  extends Finder {}
-interface TableFinder  extends Finder {}
-interface SessionFinder  extends Finder {}
-interface SessionDetailFinder  extends Finder {}
-interface CategoryFinder  extends Finder {}
-interface CourseFinder  extends Finder {}
-interface SupplierFinder extends Finder {}
+interface ConfigFinder  extends Finder {}
+interface CategoryAlbumFinder  extends Finder {}
+interface AlbumFinder  extends Finder {}
+interface CategoryNewsFinder  extends Finder {}
+interface NewsFinder  extends Finder {}
 
-interface PaidSupplierFinder extends Finder {}
-interface PaidPayRollFinder extends Finder {}
-interface PaidEmployeeFinder extends Finder {}
-interface PaidGeneralFinder extends Finder {}
-
-interface TermPaidFinder extends Finder {}
-interface TermCollectFinder extends Finder {}
-
-interface CollectGeneralFinder extends Finder {}
-interface CollectCustomerFinder extends Finder {}
-
-interface ResourceFinder extends Finder {}
-interface OrderImportFinder extends Finder {}
-interface OrderImportDetailFinder extends Finder {}
+interface CategoryVideoFinder  extends Finder {}
+interface VideoFinder  extends Finder {}
 interface CustomerFinder extends Finder {}
-interface EmployeeFinder extends Finder {}
-interface UnitFinder extends Finder {}
-interface ConfigFinder extends Finder {}
-interface TrackingFinder extends Finder {}
-interface TrackingStoreFinder extends Finder {}
 
-interface R2CFinder extends Finder {}
 interface GuestFinder extends Finder {}
+
 ?>

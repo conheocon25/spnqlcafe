@@ -1,31 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<span metal:use-macro="base.xhtml/IncludeMETA"/>
+		<span metal:use-macro="base.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="base.xhtml/IncludeJS"/>
+		<script>
+		/*<![CDATA[*/
+			$(document).ready(function() {				
+				$("#CaptchaSecurity").hide();
+			});			
+			function validateFormContactLoad() {
+				var OldCode = $("#CaptchaSecurity").val();
+				var KeydownCode = $("#CodeCaptcha").val();					
+				if ( OldCode == KeydownCode && OldCode != "" && KeydownCode != "") {
+					$("#Mesenge").html("");
+					return true; 
+				} else {
+					$("#Mesenge").html("Mã xác nhận sai! Nhập lại!");
+					$("#CodeCaptcha").val("");
+					$("#CodeCaptcha").focus();
+					return false;
+				}
+			}
+		/*]]>*/
+		</script>
 	</head>
-	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-						<div class="menu">
-							<ul class="nav nav-list">
-								<li class="nav-header">DANH MỤC</li>
-								<li><a data-ajax="false" tal:attributes="href '/signin/load'">Đăng nhập</a></li>
-							</ul>
+<body>
+	<a href="http://www.quanly-karaoke.com/#" class="scrolltop" style="display: none;"><span>&#8593;</span></a>
+	<div metal:use-macro="base.xhtml/Header"/>
+
+    <div id="hero">
+        <div class="container">
+            <!-- starts carousel -->
+            <div class="row animated fadeInDown">
+                <div class="span12">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- carousel items -->
+                        <div class="carousel-inner">
+                            <!-- slide -->
+                            <div class="item slide1 active">
+                                <div class="row">
+                                    <div class="span6">
+                                        <img src="/data/images/slide/slide1.png" alt="slide1"/>
+                                    </div>
+                                    <div class="span4">
+                                        <h1>Tương thích trên mọi thiết bị</h1>
+                                        <p>Ứng dụng có thể hoạt động trên Desktop, Tablet, Smartphone. Hay trên bất kỳ thiết bị nào có sử dụng Web Browser.</p>
+                                        <a href="#" class="btn btn-success btn-large">
+                                            Dùng thử ngay bây giờ !
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- slide -->
+                            <div class="item slide2">
+                                <div class="row">
+                                    <div class="span4 animated fadeInUpBig">
+                                        <h1>Thuận tiện để theo dõi công việc, quản lý từ xa</h1>
+                                        <p>SKaraoke giúp bạn theo dõi, quản lý công việc bất cứ lúc nào, tại bất cứ nơi đâu.</p>
+                                        <a href="http://wbpreview.com/previews/WB0D95984/blog.html" class="btn btn-success btn-large">Dùng thử ngay bây giờ!</a>
+                                    </div>
+                                    <div class="span6 animated fadeInDownBig">
+                                        <img src="/data/images/slide/slide2.png" alt="slide2"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- slide -->
+                            <div class="item slide3 animated fadeInUpBig">
+                                <img src="/data/images/slide/slide3.png" alt="slide3"/>
+                            </div>
+                        </div>
+                        <!-- Carousel nav -->
+                        <a class="carousel-control left" href="http://wbpreview.com/previews/WB0D95984/#myCarousel" data-slide="prev">‹</a>
+                        <a class="carousel-control right" href="http://wbpreview.com/previews/WB0D95984/#myCarousel" data-slide="next">›</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="intro">
+        <div class="container">
+            <h1>Giải pháp cho công việc quản lý quán Karaoke của bạn một cách chuyên nghiệp nhất</h1>
+        </div>
+    </div>
+
+		<!-- features -->
+		<div id="features">
+			<div class="container">
+				<!-- header -->
+				<h2 class="section_header">
+					<hr class="left visible-desktop" />
+						<span>Tính năng</span>
+					<hr class="right visible-desktop" />
+				</h2>
+
+            <!-- feature list -->
+            <div class="row">
+                <div class="span4 feature">
+                    <img src="/data/images/slide/feature1.jpg" alt="feature1" class="thumb"/>
+                    <h3>
+                        <i class="i_cloud"></i> Tính năng 1
+                    </h3>
+                    <p class="description">
+                        Giới thiệu sơ lược
+                    </p>
+                    <a href="http://wbpreview.com/previews/WB0D95984/#" class="btn btn-default">Chi tiết</a>
+                </div>
+                <div class="span4 feature">
+                    <img src="/data/images/slide/feature2.jpg" alt="feature2" class="thumb"/>
+                    <h3>
+                        <i class="i_chart"></i> Tính năng 2
+                    </h3>
+                    <p class="description">
+                        Giới thiệu sơ lược
+                    </p>
+                    <a href="http://wbpreview.com/previews/WB0D95984/#" class="btn btn-default">Chi tiết</a>
+                </div>
+                <div class="span4 feature">
+                    <img src="/data/images/slide/feature3.jpg" alt="feature3" class="thumb"/>
+                    <h3>
+                        <i class="i_movil"></i> Tính năng 3
+                    </h3>
+                    <p class="description">
+                        Giới thiệu sơ lược
+                    </p>
+                    <a href="http://wbpreview.com/previews/WB0D95984/#" class="btn btn-default">Chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<!-- starts pricing -->
+		<div id="pricing">
+			<div class="container">
+				<!-- header -->
+				<h2 class="section_header">
+					<hr class="left visible-desktop" />
+					<span>Phí dịch vụ</span>
+					<hr class="right visible-desktop" />
+				</h2>
+
+            <!-- pricing charts -->
+            <div class="row">
+                <div class="span4">
+                    <div class="price_wrapper lite regular">
+                        <div class="header">
+                            <span>Không giới hạn</span>
+                            <div class="price">
+                                <span>$499</span>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <h3>Không giới hạn các chức năng và thời gian sử dụng hệ thống.</h3>
+                            <ul class="perks">
+                                <li><i class="icon-star" />Tư vấn giải pháp</li>
+                                <li><i class="icon-star" />Huấn luyện sử dụng</li>
+								<li><i class="icon-star" />Hỗ trợ nhập liệu</li>
+								<li><i class="icon-star" />Cập nhật chức năng theo yêu cầu</li>
+								<li><i class="icon-star" />Hỗ trợ chạy Offline</li>
+								<li><i class="icon-star" />Hỗ trợ kỹ thuật 24/7</li>
+                            </ul>
+                            <a href="#" data-section="#footer" class="btn scroller">Liên hệ bán hàng</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="price_wrapper pro">
+                        <div class="header">
+                            <span>Trọn gói 1 năm</span>
+                            <div class="price"><span>$199</span></div>
+                        </div>
+                        <div class="section">
+                            <h3>Sử dụng được đầy đủ các chức năng cơ bản và nâng cao. 
+							Giới hạn thời gian sử dụng trong 1 năm</h3>
+                            <ul class="perks">
+                                <li><i class="icon-star" />Tư vấn giải pháp</li>
+                                <li><i class="icon-star" />Huấn luyện sử dụng</li>
+								<li><i class="icon-star" />Hỗ trợ nhập liệu</li>
+								<li><i class="icon-star" />Cập nhật theo yêu cầu</li>
+								<li><i class="icon-star" />Hỗ trợ kỹ thuật 24/7</li>
+                            </ul>
+                            <a href="#" data-section="#footer" class="btn scroller">Liên hệ bán hàng</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="price_wrapper standard regular">
+                        <div class="header">
+                            <span>Dùng thử 1 tháng</span>
+                            <div class="price">
+                                <span>$ 0</span>
+                                Miễn phí
+                            </div>
+                        </div>
+                        <div class="section">
+                            <h3>Sử dụng được đầy đủ các chức năng cơ bản và nâng cao. 
+							Giới hạn thời gian sử dụng trong 30 ngày.</h3>
+                            <ul class="perks">
+                                <li><i class="icon-star" />Tư vấn giải pháp</li>
+                                <li><i class="icon-star" />Huấn luyện sử dụng</li>
+								<li><i class="icon-star" />Hỗ trợ nhập liệu</li>
+                            </ul>
+                            <a href="#" data-section="#footer" class="btn scroller">Liên hệ bán hàng</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- starts testimonial -->
+    <div id="testimonials">
+        <div class="container">
+            <div class="controls">
+                <hr/>
+            </div>
+            <div class="phrases_wrapper">
+                <div class="phrase">
+                    <div class="row">
+                        <div class="span7">
+                            <p class="testimony">
+								Công nghệ thông tin đang dần thay đổi thế giới, thay đổi thói quen trong làm việc và suy nghĩ mọi người. Nhiệm vụ của chúng tôi là tạo ra sản phẩm dịch vụ tốt với chi phí hợp lí !.
+                                <span>"</span>
+                            </p>
+                        </div>
+                        <div class="span3 offset1">
+                            <div class="pic">
+                                <img src="/data/images/slide/pic1.jpg" alt="author" class="img-circle"/>
+                                <span class="name">Tuan B.T</span>
+                                <span class="position">, Trưởng nhóm phát triển hệ thống</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+		<!-- starts footer -->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="span8">
+						<h3>Câu chuyện khách hàng</h3>
+						<div class="blog_post">
+							<div class="row">
+								<div class="span2">
+									<a href="#">
+										<img src="/data/images/slide/pic_blog.png" alt="post image" class="img-circle" />
+									</a>
+								</div>
+								<div class="span4">
+									<a href="#" class="title">
+										Karaoke Ba Đức
+									</a>
+									<div class="intro">
+										Karaoke Ba Đức tọa lạc tại số 67/26B Phó Cơ Điều, Phường 4, TP Vĩnh Long. Vĩnh Long. Quán Karaoke
+										Gia Đình này có tổng cộng 10 phòng ...  
+									</div>
+									<div class="date">
+										9/9/2013
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="span9">
-						<div class="content">
-							<center><img src="/data/images/bg_manager.jpg" width="50%" style="opacity:.25;"/></center>
-						</div>
+					<div class="span4 contact_us">
+						<h3>Liên hệ</h3>
+						<form class="form-horizontal" onsubmit="return validateFormContactLoad()" action="contact/ins/exe" method="post">
+							<input type="text" id="CaptchaSecurity" tal:attributes="value CaptchaSecurity" />
+							<div class="field">
+								<div class="label_field">
+									<label for="inputName">Họ tên</label>
+								</div>
+								<input type="text" id="inputName" name="inputName"/>
+							</div>
+
+							<div class="field">
+								<div class="label_field">
+									<label for="inputEmail">Email</label>
+								</div>
+								<input type="text" id="inputEmail" name="inputEmail"/>
+							</div>
+
+							<div class="field">
+								<div class="label_field">
+									<label for="inputCity">Địa chỉ</label>
+								</div>
+								<input type="text" id="inputCity" name="inputCity"/>
+							</div>
+							<div class="field">
+								<div class="label_field" >
+									<label for="PicCaptcha" >Mã xác nhận</label>																												
+								</div>
+									<img src="/data/captcha.jpg" />									
+								<br />
+							</div>
+							<div class="field">
+								<div class="label_field" >
+									<label for="CodeCaptcha" >Nhập mã xác nhận</label>																												
+								</div>									
+									<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
+								<label id="Mesenge" tal:attributes="text MsgCaptcha" />	
+							</div>							
+							<div class="field">
+								<div class="label_field">
+									<label for="inputComment">Ghi chú</label>
+								</div>
+								<textarea name="comments"></textarea>
+							</div>
+							<button type="submit" class="btn">Gửi thư</button>
+						</form>
+					</div>
+				</div>
+				<hr/>
+				<div class="row copyright">
+					<div class="span5">
+						<h3>Kết nối với chúng tôi</h3>
+						<a href="http://wbpreview.com/previews/WB0D95984/#" class="social fb">
+							<i class="i_facebook" />
+						</a>
+						<a href="http://wbpreview.com/previews/WB0D95984/#" class="social tw">
+							<i class="i_twitter"></i>
+						</a>
+						<a href="http://wbpreview.com/previews/WB0D95984/#" class="social yt">
+							<i class="i_youtube"></i>
+						</a>
+					</div>
+					<div class="span3 offset4 copy">
+						<p>&#0169; 2012 <img src="data/images/logo/spn_2013.png"/></p>
 					</div>
 				</div>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
 	</body>
 </html>

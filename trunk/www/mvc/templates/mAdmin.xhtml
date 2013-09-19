@@ -3,19 +3,19 @@
 	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
-	
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Website hệ thống quản lý Cafe"/>
-		<base href="http://www.quanly-cafe.com"/>
+		<title tal:content="string:Website hệ thống quản lý Karaoke"/>
+		<base href="http://www.quanly-karaoke.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Website hệ thống quản lý Cafe"/>
-		<meta name="description" content="Website hệ thống quản lý Cafe"/>
-		<meta name="page-topic" content="Website hệ thống quản lý Cafe"/>
-		<meta name="Abstract" content="Website hệ thống quản lý Cafe"/>
-		<meta name="classification" content="Website hệ thống quản lý Cafe"/>
+		<meta name="keywords" content="Website hệ thống quản lý Karaoke"/>
+		<meta name="description" content="Website hệ thống quản lý Karaoke"/>
+		<meta name="page-topic" content="Website hệ thống quản lý Karaoke"/>
+		<meta name="Abstract" content="Website hệ thống quản lý Karaoke"/>
+		<meta name="classification" content="Website hệ thống quản lý Karaoke"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
 	</span>
 	
@@ -23,132 +23,139 @@
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/bootstrap.min.css" media="screen"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/madmin.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/datepicker.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/datetimepicker.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/font.awesome.css"/>
+		
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/font-awesome.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/fullcalendar.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery.css"/>	
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn_002.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.css" class="skin-color"/>
 	</span>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeJS">
-		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery-1.7.1.min.js"/>		
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap.min.js"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap-datepicker.js"/>		
-		
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap-datetimepicker.js"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap-datetimepicker.vi.js"/>
+		<script src="/mvc/templates/theme/cms/js/excanvas.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery_003.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery-ui.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery_005.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery_006.js"></script>
+		<script src="/mvc/templates/theme/cms/js/fullcalendar.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery_004.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery_002.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn_002.js"></script>
 	</span>
 	
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
-		<div class="navbar navbar-inverse">
-			<div class="navbar-inner">
-				<a class="brand" href="/app">					
-					<span class="icon-stack">
-						<i class="icon-circle icon-stack-base"></i>
-						<i class="icon-music" style="color:blue;"></i>
-					</span>
-					Hệ thống quản lý Cafe
-				</a>
-				<p class="navbar-text pull-right">
-					<a class="navbar-link" href="/signout/load"><span tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a>
-				</p>
-			</div>
+		<div id="header">
+			<h1><a href="/setting"></a></h1>	
+			<a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>	
 		</div>
+		<div id="user-nav">
+            <ul style="width: auto; margin: 0px;" class="btn-group">
+                <li class="btn"><a href="/signout/load"><i class="icon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+            </ul>
+        </div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- CONTENT HEADER															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="ContentHeader" id="content-header">
+		<h1>www.quanly-karaoke.com</h1>
+		<ul class="mini-stats box-3">
+			<li>
+				<div class="right">
+					<strong tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/>
+					<i class="icon-user"/> Trực tuyến
+				</div>
+			</li>
+			<li>
+				<div class="right">
+					<strong tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/>
+					<i class="icon-bar-chart"/> Lượt xem
+				</div>
+			</li>
+		</ul>
 	</div>
 	
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="LocationBar">
-		<div class="row-fluid">			
-			<ul class="span12 breadcrumb">
-				<li tal:repeat="Item Navigation">
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" /> <span class="divider">/</span>
+		<div id="breadcrumb">
+			<i class="icon-gear"/>
+			<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
+			<a tal:content="Title" class="current"/>
+		</div>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- PAGE BAR																  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="PageBar" class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers">
+		<a class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled"><i class="icon-angle-left"/>
+		</a><a tal:repeat="P PN/getPages" tal:attributes="href P/getURL; class php:Page==P->getId()?'fg-button ui-button ui-state-default':'fg-button ui-button ui-state-default ui-state-disabled'" tal:content="P/getName">
+		</a><a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default"><i class="icon-angle-right"/></a>
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- MENU																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Menu" class="menu">
+		<div id="sidebar">
+			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+				<li tal:attributes="class php: ActiveAdmin=='CategoryNews'?'active':''">
+					<a tal:attributes="href 'setting/category/news'">
+						<i class="icon-tags"></i> <span>Tin tức</span>
+					</a>
 				</li>
-				<li class="active" tal:content="Title"/>
+				<li tal:attributes="class php: ActiveAdmin=='CategoryAlbum'?'active':''">
+					<a tal:attributes="href 'setting/category/album'">
+						<i class="icon-tags"></i> <span>Album</span>
+					</a>
+				</li>
+				<li tal:attributes="class php: ActiveAdmin=='CategoryVideo'?'active':''">
+					<a tal:attributes="href 'setting/category/video'">
+						<i class="icon-tags"></i> <span>Video</span>
+					</a>
+				</li>
+				<li tal:attributes="class php: ActiveAdmin=='Customer'?'active':''">
+					<a tal:attributes="href 'setting/customer'">
+						<i class="icon-user"></i> <span>Khách hàng</span>
+					</a>
+				</li>
+				<li tal:attributes="class php: ActiveAdmin=='Report'?'active':''">
+					<a tal:attributes="href 'setting/report'">
+						<i class="icon-book"></i> <span>Báo cáo</span>
+					</a>
+				</li>
+				<li tal:attributes="class php: ActiveAdmin=='Config'?'active':''">
+					<a tal:attributes="href '/setting/config'">
+						<i class="icon-gear"></i> <span>Cấu hình</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</div>
 	
 	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="PageBar" class="pagination">
-		<ul>
-			<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'disabled':'active'">
-				<a tal:attributes="href P/getURL" tal:content="P/getName" />
-			</li>
-		</ul>
-	</div>
-							
-	<div metal:define-macro="Menu" class="menu">
-		<ul class="nav nav-list">
-			<li class="nav-header">THIẾT LẬP</li>																																						
-			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-				<a tal:attributes="href '/setting/category'" >
-					<i class="icon-beer" />DANH MỤC MÓN<span class="badge badge-info pull-right" tal:content="CategoryAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
-				<a tal:attributes="href '/setting/domain'">
-					<i class="icon-map-marker" />KHU VỰC QUÁN<span class="badge badge-info pull-right" tal:content="DomainAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-				<a tal:attributes="href '/setting/supplier'">
-					<i class="icon-truck" />NHÀ CUNG CẤP <span class="badge badge-info pull-right" tal:content="SupplierAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/setting/user'">
-					<i class="icon-user" />NGƯỜI DÙNG <span class="badge badge-info pull-right" tal:content="UserAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
-				<a tal:attributes="href '/setting/customer'">
-					<i class="icon-user" />KHÁCH HÀNG <span class="badge badge-info pull-right" tal:content="CustomerAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
-				<a tal:attributes="href '/setting/unit'">
-					<i class="icon-tag" />ĐƠN VỊ TÍNH <span class="badge badge-info pull-right" tal:content="UnitAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
-				<a tal:attributes="href '/setting/employee'">
-					<i class="icon-user" />NHÂN VIÊN<span class="badge badge-info pull-right" tal:content="EmployeeAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-				<a tal:attributes="href '/setting/termcollect'">
-					<i class="icon-tag" />DANH MỤC THU<span class="badge badge-info pull-right" tal:content="TermCollectAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-				<a tal:attributes="href '/setting/termpaid'">
-					<i class="icon-tag" />DANH MỤC CHI<span class="badge badge-info pull-right" tal:content="TermPaidAll/count"/> 
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-				<a tal:attributes="href '/setting/config'">
-					<i class="icon-gear" />CẤU HÌNH <span class="badge badge-info pull-right" tal:content="ConfigAll/count"/>
-				</a>
-			</li>			
-		</ul>
-	</div>
-	
-	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="Footer">
-		<div class="row-fluid footer">
-			<span class="label pull-right copyright">&#169; 2012 SPN</span>
+	<div metal:define-macro="Footer" class="row">
+		<div id="footer" class="col-xs-12">
+			<p class="pull-right" style="margin-right:20px;">
+				<img src="data/images/logo/spn_2013.png"/>&#0169;
+			</p>
 		</div>
 	</div>	
 </body>

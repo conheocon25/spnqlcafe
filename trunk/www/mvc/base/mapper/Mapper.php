@@ -17,10 +17,10 @@ abstract class Mapper implements \MVC\Domain\Finder {
     protected static $PDO;
     function __construct() { 
         if ( ! isset(self::$PDO) ) { 
-            
+            		
 			$dsn = "mysql:host=localhost;";
-			$dbname = "dbname=qlkao_db";			
-			$user = "qlkao_userdb";
+			$dbname = "dbname=qlkara_customer";
+			$user = "qlkara_userdb";
 			$pass = "admin068198";
 						
             if ( is_null( $dsn ) ) {
