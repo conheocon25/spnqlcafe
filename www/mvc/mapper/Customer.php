@@ -6,34 +6,25 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 
     function __construct() {
         parent::__construct();
-        $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from baduc_customer");
-        $this->selectStmt = self::$PDO->prepare( 
-                            "select * from baduc_customer where id=?");
-        $this->updateStmt = self::$PDO->prepare( 
-                            "update baduc_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
-        $this->insertStmt = self::$PDO->prepare( 
-                            "insert into baduc_customer (name, type, card, phone, address, note, discount) 
+        $this->selectAllStmt = self::$PDO->prepare( "select * from www_customer");
+        $this->selectStmt = self::$PDO->prepare( "select * from www_customer where id=?");
+        $this->updateStmt = self::$PDO->prepare( "update www_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+        $this->insertStmt = self::$PDO->prepare( "insert into www_customer (name, type, card, phone, address, note, discount) 
 							values( ?, ?, ?, ?, ?, ?, ?)");
-		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from baduc_customer where id=?");
+		$this->deleteStmt = self::$PDO->prepare( "delete from www_customer where id=?");
 		$this->findByPositionStmt = self::$PDO->prepare("
 						SELECT id 
-						FROM baduc_customer
+						FROM www_customer
 						WHERE idlocation=?
 						LIMIT ?,1
 						ORDER By id asc
 		");
-		$this->findByCardStmt = self::$PDO->prepare("select * from baduc_customer where card=?");
-		
-		$tblCustomer = "baduc_customer";
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomer);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-		 
-    } 
+		 $this->findByCardStmt = self::$PDO->prepare("SELECT * from www_customer where card=?");
+		 $this->findByPageStmt = self::$PDO->prepare("SELECT * FROM  www_customer LIMIT :start,:max");
+    }
+	
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
-
-    protected function doCreateObject( array $array ) {		
+    protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Customer( 
 			$array['id'],  
 			$array['name'],
@@ -47,10 +38,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "Customer";
-    }
-
+    protected function targetClass() {  return "Customer"; }
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(  
 			$object->getName(),
@@ -80,8 +68,12 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $this->updateStmt->execute( $values );
     }
 	
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
+    function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}
+	
 	function findByPostion($values) {		
-        $str = "SELECT id FROM baduc_customer ORDER BY id LIMIT ". $values[0] .",1";		
+        $str = "SELECT id FROM www_customer ORDER BY id LIMIT ". $values[0] .",1";		
 		$this->findByPositionStmt = self::$PDO->prepare($str);
         $this->findByPositionStmt->execute($values);
 		$result = $this->findByPositionStmt->fetchAll();
@@ -97,19 +89,12 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $object = $this->doCreateObject( $array );
         return $object;		
     }
-	
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
-    function selectStmt() {return $this->selectStmt;}	
-    function selectAllStmt() {return $this->selectAllStmt;}
-	
-	function findByPage( $values ) {
+				
+	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new SupplierCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CustomerCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 }
 ?>

@@ -1,12 +1,11 @@
 <?php	
-	$mCategory 		= new \MVC\Mapper\Category();
-	$mEmployee 		= new \MVC\Mapper\Employee();
-	$mDomain 		= new \MVC\Mapper\Domain();
-	$mSupplier 		= new \MVC\Mapper\Supplier();			
-	$mUnit 			= new \MVC\Mapper\Unit();
-	$mCustomer 		= new \MVC\Mapper\Customer();
-	$mTermPaid 		= new \MVC\Mapper\TermPaid();
-	$mTermCollect 	= new \MVC\Mapper\TermCollect();
-	$mUser 			= new \MVC\Mapper\User();			
-	$mConfig 		= new \MVC\Mapper\Config();
+	$mUser 					= new \MVC\Mapper\User();
+	$mCategoryNews 			= new \MVC\Mapper\CategoryNews();
+	$mNews 					= new \MVC\Mapper\News();
+	$mConfig				= new \MVC\Mapper\Config();
+	$mCategoryAlbum			= new \MVC\Mapper\CategoryAlbum();
+	$mAlbum					= new \MVC\Mapper\Album();
+	$mCategoryVideo			= new \MVC\Mapper\CategoryVideo();
+	$mVideo					= new \MVC\Mapper\Video();
+	$mCustomer				= new \MVC\Mapper\Customer();
 ?>

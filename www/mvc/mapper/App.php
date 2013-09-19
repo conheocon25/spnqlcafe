@@ -6,52 +6,19 @@ class App extends Mapper implements \MVC\Domain\AppFinder {
 
     function __construct() {
         parent::__construct();
-        $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from baduc_app");
-        $this->selectStmt = self::$PDO->prepare( 
-                            "select * from baduc_app where id=?");
-		$this->findByStmt = self::$PDO->prepare( 
-                            "select * from baduc_app where alias=?");
+        $this->selectAllStmt = self::$PDO->prepare( "");
+        $this->selectStmt = self::$PDO->prepare( "");
+		$this->findByStmt = self::$PDO->prepare("");
 		
-		$this->notSignedStmt = self::$PDO->prepare("
-							SELECT * 
-							FROM `baduc_app` 
-							WHERE 
-								id NOT IN ( 
-									SELECT id_app FROM cfa_user_app
-									where id_user=?
-								)
-							");
-							
-        $this->updateStmt = self::$PDO->prepare( 
-                            "update baduc_app set 
-								name=?, 
-								phone=?, 
-								address=?, 
-								email=?, 
-								banner=?, 
-								prefix=?, 
-								alias=?, 
-								date_created=?, 
-								date_modified=?, 
-								date_activity=?, 
-								type=?,
-								page_view=?
-							where id=?
-						");
-        $this->insertStmt = self::$PDO->prepare( 
-                            "insert into baduc_app ( name, phone, address, email, banner, prefix, app, datecreate, dateupdate, dateactivity, type) values(?,?,?,?,?,?,?,?,?,?,?)");
-		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from baduc_app where id=?");
-		$this->checkStmt = self::$PDO->prepare( 
-                            "select distinct id from baduc_app where app=?");			
-		$this->checkEmailStmt = self::$PDO->prepare( 
-                            "select distinct id from baduc_app where email=?");									
-		
+		$this->notSignedStmt = self::$PDO->prepare("");							
+        $this->updateStmt = self::$PDO->prepare("");
+        $this->insertStmt = self::$PDO->prepare("");
+		$this->deleteStmt = self::$PDO->prepare("");
+		$this->checkStmt = self::$PDO->prepare("");
+		$this->checkEmailStmt = self::$PDO->prepare("");		
     } 
-    function getCollection( array $raw ) {
-        return new AppCollection( $raw, $this );
-    }
+	
+    function getCollection( array $raw ) {return new AppCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ){
         $obj = new \MVC\Domain\App(
