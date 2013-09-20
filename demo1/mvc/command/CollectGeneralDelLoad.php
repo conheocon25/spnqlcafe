@@ -25,14 +25,20 @@
 			//-------------------------------------------------------------						
 			$Term = $mTerm->find($IdTerm);
 			$Collect = $mCollect->find($IdCollect);
-			$Title = "KHOẢN THU / ".$Collect->getDatePrint()." / CẬP NHẬT";
+			
+			$Title = $Collect->getDatePrint();
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN THU", "/collect"),
+				array("CHUNG", "/collect/general")
+			);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);			
 			$request->setObject('Collect', $Collect);
-			$request->setProperty('URLHeader', $Term->getURLCollect() );
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

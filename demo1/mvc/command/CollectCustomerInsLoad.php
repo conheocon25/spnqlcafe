@@ -23,13 +23,20 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Customer = $mCustomer->find($IdCustomer);			
-			$Title = mb_strtoupper("KHÁCH HÀNG / ".$Customer->getName()." / KHOẢN THU / THÊM", 'UTF8');
+			
+			$Title = "THÊM MỚI";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN THU", "/collect"),
+				array("KHÁCH HÀNG", "/collect/customer"),
+				array(mb_strtoupper($Customer->getName(), 'UTF8'), $Customer->getURLCollect())
+			);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', $Customer->getURLCollect() );
+			$request->setObject('Navigation', $Navigation);
 			$request->setObject('Customer', $Customer);
 		}
 	}

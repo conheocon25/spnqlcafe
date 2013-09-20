@@ -25,7 +25,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setProperty('Title', $Title);						
+			$request->setProperty('Title', $Title);
+			$request->setProperty('ActiveAdmin', "Report");						
 			$request->setObject('Tracks', $Tracks);
 			$request->setObject('Navigation', $Navigation);
 		}

@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class PaidSupplierInsLoad extends Command{
+	class Selling extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -9,36 +9,37 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdSupplier = $request->getProperty("IdSupplier");
-			
+			//THAM SỐ GỬI ĐẾN
+			//-------------------------------------------------------------
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------						
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$mPS = new \MVC\Mapper\PaidSupplier();
+			//-------------------------------------------------------------
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Supplier = $mSupplier->find($IdSupplier);
-			$PSs = $mPS->findBy(array($IdSupplier));
-			
-			$Title = "THÊM MỚI";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("KHOẢN CHI", "/paid"),
-				array("NHÀ CUNG CẤP", "/paid/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLPaid())
-			);
+			$DomainAll = $mDomain->findAll();			
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
+			//-------------------------------------------------------------									
+			$Title = "BÁN HÀNG";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app")				
+			);
+			
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐI
+			//-------------------------------------------------------------
 			$request->setProperty('Title', $Title);
+			$request->setProperty('ActiveAdmin', 'Selling');
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Supplier', $Supplier);			
+			
+			$request->setObject('DomainAll', $DomainAll);			
+						
+			return self::statuses('CMD_DEFAULT');
 		}
 	}
 ?>

@@ -19,8 +19,12 @@
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->
+		<command name="Selling"><view>Selling</view></command>
 		<command name="SellingDomain"><view>SellingDomain</view></command>
+		
 		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
+		
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>
 		<command name="Setting"><view>Setting</view></command>

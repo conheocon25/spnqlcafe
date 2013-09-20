@@ -15,7 +15,7 @@ RewriteRule ^change/pass/exe$ 		?cmd=ChangePassExe [L]
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 													?cmd=App [L]
-RewriteRule ^selling$ 												?cmd=SellingDomain [L]
+RewriteRule ^selling$ 												?cmd=Selling [L]
 RewriteRule ^selling/([0-9]+)$ 										?cmd=SellingDomain&IdDomain=$1 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingDomainTable&IdDomain=$1&IdTable=$2 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)/eval/load$ 					?cmd=SellingDomainTableEvalLoad&IdDomain=$1&IdTable=$2 [L]
@@ -56,8 +56,9 @@ RewriteRule ^customer/([0-9]+)$											?cmd=FindCustomer&IdCard=$1 [L]
 # IMPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^import$ 								?cmd=Import [L]
-RewriteRule ^import/([0-9]+)$ 						?cmd=Import&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=Import&IdSupplier=$1&Page=$2 [L]
+RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^import/([0-9]+)$ 						?cmd=ImportSupplier&IdSupplier=$1 [L]
+RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&Page=$2 [L]
 RewriteRule ^import/([0-9]+)/ins/load$ 				?cmd=ImportSupplierInsLoad&IdSupplier=$1 [L]
 RewriteRule ^import/([0-9]+)/ins/exe$ 				?cmd=ImportSupplierInsExe&IdSupplier=$1 [L]
 RewriteRule ^import/([0-9]+)/([0-9]+)/upd/load$		?cmd=ImportSupplierUpdLoad&IdSupplier=$1&IdOrderImport=$2 [L]
@@ -131,6 +132,9 @@ RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=Pa
 #---------------------------------------------------------------------------------------------------------------------------
 # PAID.GENERAL
 #---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^paid$ 										?cmd=Paid [L]
+
+RewriteRule ^paid/general$ 								?cmd=PaidGeneral [L]
 RewriteRule ^paid/general/([0-9]+)$ 					?cmd=PaidGeneral&IdTerm=$1 [L]
 RewriteRule ^paid/general/([0-9]+)/page/([0-9]+)$ 		?cmd=PaidGeneral&IdTerm=$1&Page=$2 [L]
 

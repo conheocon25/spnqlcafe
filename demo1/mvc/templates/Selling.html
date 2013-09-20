@@ -6,12 +6,12 @@
 	</head>
 	
 	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
-			<div class="container-fluid">							
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-xs-12">
 						<div class="widget-box">
@@ -25,27 +25,18 @@
 										<thead>
 											<tr role="row">
 												<th width="35">STT</th>
-												<th><div class="text-left">THÁNG</div></th>												
-												<th width="32"><i class="icon-refresh my-ico"/></th>
+												<th><div class="text-left">TÊN</div></th>
 												<th width="32"><i class="icon-trash my-ico"/></th>
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Track Tracks" class="gradeA odd">
-												<td align="center" tal:content="repeat/Track/number"/>
-												<td><a tal:attributes="href Track/getURLView" tal:content="Track/getName"/></td>
-												<td align="center"><a tal:attributes="href Track/getURLUpdLoad"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Track/getURLDelLoad"><i class="icon-remove"/></a></td>
-											</tr>
+											<tr class="gradeA odd" tal:repeat="Domain DomainAll">
+												<td align="center" tal:content="repeat/Domain/number"/>
+												<td><a tal:attributes="href Domain/getURLSelling" ><span tal:content="Domain/getName"/></a></td>
+												<td align="center"><a tal:attributes="href Domain/getURLSelling"><i class="icon-shopping-cart"/></a></td>
+											</tr>											
 										</tbody>
-									</table>
-									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-										<div class="dataTables_filter">
-											<label style="margin-top:5px;">
-												<a href="/report/ins/load"><span class="icon-plus"/> Thêm mới</a>
-											</label>
-										</div>										
-									</div>
+									</table>									
 								</div>  
 							</div>
 						</div>

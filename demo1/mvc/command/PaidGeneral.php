@@ -23,23 +23,35 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Term = $mTerm->find($IdTerm);
+			//-------------------------------------------------------------
+			$TermAll = $mTerm->findAll();
+			if (isset($IdTerm)){
+				$Term = $mTerm->find($IdTerm);
+			}else{
+				$Term = $TermAll->current();
+				$IdTerm = $Term->getId();
+			}						
 			$Config = $mConfig->findByName('ROW_PER_PAGE');
 			if (!isset($Page)) $Page = 1;
 			$PaidAll = $mPaidGeneral->findByPage(array($IdTerm, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Term->getPaids()->count(), $Config->getValue(), $Term->getURLDetail());
 			
+			$Title = "CHUNG";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN CHI", "/paid")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setObject('Term', $Term);
+			$request->setObject('TermAll', $TermAll);
 			$request->setObject('PaidAll', $PaidAll);
 			$request->setObject('PN', $PN);
-			$request->setProperty('Title', "KHOẢN CHI / ".$Term->getName());
-			$request->setProperty('URLHeader', "/app");
 			$request->setProperty('Page', $Page);
-			
+			$request->setProperty('Title', $Title);			
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

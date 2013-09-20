@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class Import extends Command {
+	class Paid extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -15,25 +15,20 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mSupplier = new \MVC\Mapper\Supplier();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$SupplierAll = $mSupplier->findAll();
-												
-			$Title = "NHẬP HÀNG";
+			//-------------------------------------------------------------						
+			$Title = "KHOẢN CHI";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app")				
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$request->setObject("SupplierAll", $SupplierAll);
-												
+			//-------------------------------------------------------------																		
 			$request->setProperty('Title', $Title );
-			$request->setProperty('ActiveAdmin', 'Import' );
+			$request->setProperty('ActiveAdmin', 'TermPaid' );
 			$request->setObject("Navigation", $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
