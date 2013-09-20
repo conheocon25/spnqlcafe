@@ -6,7 +6,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 
     function __construct() {
         parent::__construct();
-		$tblResource = "cafecoirieng_resource";
+		$tblResource = "demo1_resource";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
@@ -15,6 +15,12 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 							values( ?, ?, ?, ?, ?)", $tblResource);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
 		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
+		$findByPageStmt = sprintf("
+							SELECT *
+							FROM %s
+							WHERE idsupplier=:idsupplier
+							LIMIT :start,:max
+				", $tblResource);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -22,12 +28,10 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findBySupplierStmt = self::$PDO->prepare($findBySupplierStmt);
+		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
     } 
-    function getCollection( array $raw ) {
-        return new ResourceCollection( $raw, $this );
-    }
-
+    function getCollection( array $raw ) {return new ResourceCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\Resource( 
 			$array['id'],
@@ -40,12 +44,9 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "Resource";
-    }
-
+    protected function targetClass(){return "Resource";}
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array(  
+        $values = array(
 			$object->getIdSupplier(),
 			$object->getName(),	
 			$object->getUnit(),	
@@ -68,20 +69,21 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
 	function findBySupplier(array $values) {
         $this->findBySupplierStmt->execute( $values );
         return new SupplierCollection( $this->findBySupplierStmt->fetchAll(), $this );
     }
 	
-    function selectStmt() {
-        return $this->selectStmt;
-    }	
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }	
+    function selectStmt() {return $this->selectStmt;}	
+    function selectAllStmt() {return $this->selectAllStmt;}
+	
+	function findByPage( $values ) {
+		$this->findByPageStmt->bindValue(':idsupplier', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
+		$this->findByPageStmt->execute();
+        return new ResourceCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
 }
 ?>
