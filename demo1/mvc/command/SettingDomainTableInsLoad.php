@@ -36,9 +36,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject("Navigation", $Navigation);			
-			$request->setObject("Domain", $Domain);
-			$request->setProperty("Title", $Title);			
+			$request->setObject("Domain", $Domain);			
+			$request->setProperty("Title", $Title);
+			$request->setObject("Navigation", $Navigation);
 		}
 	}
 ?>

@@ -25,7 +25,8 @@
 			//-------------------------------------------------------------	
 			$Category = $mCategory->find($IdCategory);
 			$Course = $mCourse->find($IdCourse);			
-			$Title = mb_strtoupper($Course->getName(),'UTF8');
+			
+			$Title = mb_strtoupper($Course->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
@@ -38,8 +39,7 @@
 			//-------------------------------------------------------------
 			$request->setObject('Course', $Course);
 			$request->setProperty('Title', $Title);
-			$request->setObject('Category', $Category);
-			$request->setObject("Navigation", $Navigation );
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

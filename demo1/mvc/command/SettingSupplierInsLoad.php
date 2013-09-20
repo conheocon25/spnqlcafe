@@ -19,9 +19,7 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------													
-			$Suppliers = $mSupplier->findAll();
-			
+			//-------------------------------------------------------------										
 			$Title = "THÊM MỚI";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
@@ -34,8 +32,6 @@
 			//-------------------------------------------------------------						
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Suppliers', $Suppliers);
-			
 		}
 	}
 ?>

@@ -21,7 +21,6 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------													
 			$Domains = $mDomain->findAll();
-			
 			$Title = "THÊM MỚI";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
@@ -33,8 +32,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty('Title', $Title);
-			$request->setObject('Navigation', $Navigation);
 			$request->setObject('Domains', $Domains);
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

@@ -24,7 +24,7 @@
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
-				array("KHOẢN THU", "/setting/termcollect")
+				array("DANH MỤC THU", "/setting/termcollect")
 			);
 						
 			//-------------------------------------------------------------

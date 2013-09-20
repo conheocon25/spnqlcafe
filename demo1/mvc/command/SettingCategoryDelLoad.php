@@ -33,7 +33,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Category', $Category);			
+			$request->setObject('Category', $Category);
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
 		}

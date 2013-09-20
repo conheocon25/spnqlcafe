@@ -21,7 +21,6 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------													
 			$Customers = $mCustomer->findAll();
-			
 			$Title = "THÊM MỚI";
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),

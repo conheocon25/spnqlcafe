@@ -16,11 +16,11 @@
 			$Job = $request->getProperty('Job');
 			$Phone = $request->getProperty('Phone');
 			$Address = $request->getProperty('Address');
-			$SalaryBase = $request->getProperty('SalaryBase');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------											
+			//-------------------------------------------------------------
+												
 			$mEmployee = new \MVC\Mapper\Employee();
 			
 			//-------------------------------------------------------------
@@ -35,8 +35,7 @@
 				$Gender,
 				$Job,
 				$Phone,
-				$Address,
-				$SalaryBase
+				$Address									
 			);
 			$mEmployee->insert($Employee);
 						

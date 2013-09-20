@@ -8,9 +8,7 @@ class Domain extends Object{
 	//-------------------------------------------------------------------------------
 	private $Id;
 	private $Name;
-	
-	private $Tables;
-
+		
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
@@ -20,76 +18,22 @@ class Domain extends Object{
 		parent::__construct( $Id );
 	}
 		
-	function getId() {
-		return $this->Id;
-	}
-	function getIdPrint() {
-		return "d".$this->Id;
-	}
-	
-	function setName($Name) {
-		$this->Name = $Name;
-		$this->markDirty();
-	}
-	function getName() {
-		return $this->Name;
-	}
+	function getId() {return $this->Id;}
+		
+	function setName($Name) {$this->Name = $Name;$this->markDirty();}
+	function getName() {return $this->Name;}
 			
 	//-------------------------------------------------------------------------------
 	//GET LIST
-	//-------------------------------------------------------------------------------
-	function getNonGuestTables(){
-		$mTable = new \MVC\Mapper\Table();
-		$Tables = $mTable->findNonGuest(array($this->getId()));
-		return $Tables;
-	}
-	
-	function getGuestTables(){
-		$mTable = new \MVC\Mapper\Table();
-		$Tables = $mTable->findGuest(array($this->getId()));
-		return $Tables;
-	}
-	
-	function getTables(){
+	//-------------------------------------------------------------------------------		
+	function getTableAll(){
 		if (!isset($this->Tables)){
 			$mTable = new \MVC\Mapper\Table();
-			$this->Tables = $mTable->findByDomain(array($this->getId()));
+			$TableAll = $mTable->findByDomain(array($this->getId()));
 		}
-		return $this->Tables;
+		return $TableAll;
 	}
-	
-	function getSessionsValue(){
-		$Sum = 0;
-		$Tables = $this->getTables();
-		$Tables->rewind();
-		while ( $Tables->valid() ){
-			$Table = $Tables->current();
-			$Sum += $Table->getSessionsValue();
-			$Tables->next();
-		}		
-		return $Sum;
-	}
-	function getSessionsValuePrint(){
-		$num = new \MVC\Library\Number($this->getSessionsValue());
-		return $num->formatCurrency()." d";
-	}
-	
-	function getSessionsTrackingValue(){
-		$Sum = 0;
-		$Tables = $this->getTables();
-		$Tables->rewind();
-		while ( $Tables->valid() ){
-			$Table = $Tables->current();
-			$Sum += $Table->getSessionsTrackingValue();
-			$Tables->next();
-		}
-		return $Sum;
-	}
-	function getSessionsTrackingValuePrint(){
-		$num = new \MVC\Library\Number($this->getSessionsTrackingValue());
-		return $num->formatCurrency()." d";
-	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------

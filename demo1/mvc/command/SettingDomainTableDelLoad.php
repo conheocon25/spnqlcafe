@@ -26,7 +26,7 @@
 			$Domain = $mDomain->find($IdDomain);
 			$Table = $mTable->find($IdTable);			
 			
-			$Title = mb_strtoupper($Table->getName(), 'UTF8');
+			$Title = mb_strtoupper($Table->getName(), 'UTF8');			
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
@@ -38,9 +38,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setObject('Table', $Table);
-			$request->setObject('Navigation', $Navigation);
 			$request->setProperty('Title', $Title);
-			
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>
