@@ -33,8 +33,6 @@
 			$Supplier = $mSupplier->find($IdSupplier);
 			$Resource = $mResource->find($IdResource);
 						
-			$Title = mb_strtoupper("NHẬP HÀNG / ".$Supplier->getName()." / ".$OI->getDatePrint()." / ".$Resource->getName()." / CẬP NHẬT", 'UTF8');
-			
 			//Kiểm tra xem record có tồn tại chưa
 			$IdOID = $mOID->exist(array($IdOrderImport, $IdResource));
 			
@@ -47,13 +45,22 @@
 				$Count = 1;
 			}
 			$DetailURLUpdExe = "/import/".$Supplier->getId()."/".$OI->getId()."/".$Resource->getId()."/upd/exe";
+			
+			$Title = mb_strtoupper($Resource->getName(), 'UTF8');
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("NHẬP HÀNG", "/import"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport()),
+				array($OI->getDatePrint(), $OI->getURLDetail())
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('Title', $Title);			
-			$request->setProperty('DetailURLUpdExe', $DetailURLUpdExe);
+			$request->setProperty('Title', $Title);
+			$request->setObject('Navigation', $Navigation);
 			
-			$request->setProperty('URLHeader', $OI->getURLDetail());
+			$request->setProperty('DetailURLUpdExe', $DetailURLUpdExe);						
 			$request->setProperty('Count', $Count);
 			$request->setProperty('Price', $Price);
 		}

@@ -25,14 +25,21 @@
 			//-------------------------------------------------------------						
 			$Term = $mTerm->find($IdTerm);
 			$Paid = $mPaid->find($IdPaid);
-			$Title = "CHI PHÍ / ".$Paid->getDatePrint()." / CẬP NHẬT";
+			
+			$Title = $Paid->getDatePrint();
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN CHI", "/paid"),
+				array("CHUNG", "/paid/general")
+			);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', $Term->getURLDetail() );
+			$request->setProperty('Title', $Title);			
 			$request->setObject('Paid', $Paid);
+			$request->setObject('Navigation', $Navigation);
+			
 		}
 	}
 ?>

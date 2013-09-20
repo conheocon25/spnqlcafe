@@ -24,30 +24,24 @@
 			//-------------------------------------------------------------
 			$DomainAll = $mDomain->findAll();
 			$Domain = $mDomain->find($IdDomain);
+			if (!isset($Domain)){
+				$Domain = $DomainAll->current();
+				$IdDomain = $Domain->getId();
+			}
 			
-			if (!isset($IdDomain))
-				$Domain = $DomainAll->current();				
-			
-			$TableAll1 = $mTable->findAllGuest(null);
-			$TableAll2 = $mTable->findAllNonGuest(null);
-														
 			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
-				array("BÁN HÀNG", "/selling")
+				array("BÁN HÀNG", "/selling")				
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setObject("Navigation", $Navigation);
-			
+			//-------------------------------------------------------------												
 			$request->setObject("Domain", $Domain);
 			$request->setObject("DomainAll", $DomainAll);
-			$request->setObject("TableAll1", $TableAll1);
-			$request->setObject("TableAll2", $TableAll2);
-			
+			$request->setProperty("Title", $Title);
+			$request->setObject("Navigation", $Navigation);
 		}
 	}
 ?>

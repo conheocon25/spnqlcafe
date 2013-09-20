@@ -24,14 +24,20 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Customer = $mCustomer->find($IdCustomer);
-			$CC = $mCC->find($IdCollect);			
-			$Title = mb_strtoupper("KHÁCH HÀNG / ".$Customer->getName()."/".$CC->getDatePrint()." / CẬP NHẬT", 'UTF8');
-						
+			$CC = $mCC->find($IdCollect);						
+			$Title = $CC->getDatePrint();
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN THU", "/collect"),
+				array("KHÁCH HÀNG", "/collect/customer"),
+				array(mb_strtoupper($Customer->getName(), 'UTF8'), $Customer->getURLCollect())
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', $Customer->getURLCollect());
+			$request->setObject('Navigation', $Navigation);
 			
 			$request->setObject('CollectCustomer', $CC);
 		}

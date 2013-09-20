@@ -10,11 +10,11 @@
 		<div class="menu">
 			<div id="sidebar">
 				<ul style="display: block;">
-					<li tal:repeat="Term1 TermAll" tal:attributes="class php:Term1->getId()==Term->getId()?'active':'disable'">
-						<a tal:attributes="href Term1/getURLDetail">
-							<i class="icon-tag"/> <span tal:content="Term1/getName" />
+					<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+						<a tal:attributes="href Supplier1/getURLImport">
+							<i class="icon-truck" /><span tal:content="Supplier1/getName"/>							
 						</a>
-					</li>								
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -30,35 +30,47 @@
 								<h5 tal:content="Title"/> 
 							</div>
 							<div class="widget-content nopadding">
-								<div role="grid" class="dataTables_wrapper">																		
+								<div role="grid" class="dataTables_wrapper">
 									<table class="table table-bordered table-striped table-hover data-table">
 										<thead>
 											<tr>
-												<th width="30"><div class="text-center">STT</div></th>
-												<th width="120">NGÀY</th>
+												<th width="30">STT</th>
+												<th width="120"><div class="text-left">NGÀY</div></th>
 												<th><div class="text-left">DIỄN GIẢI</div></th>
-												<th width="120"><div class="text-right">GIÁ TRỊ</div></th>
-												<th width="30" />
+												<th width="160"><div class="text-right">GIÁ TRỊ</div></th>
+												<th width="30">IN</th>
+												<th width="30">XÓA</th>
 											</tr>
 										</thead>								
-										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Paid PaidAll">
-												<td><div class="text-center" tal:content="repeat/Paid/number" /></td>
-												<td><a tal:attributes="href Paid/getURLUpdLoad"><div tal:content="Paid/getDatePrint"/></a></td>
-												<td><div tal:content="Paid/getNote"/></td>
-												<td><div class="text-right" tal:content="Paid/getValuePrint"/></td>
-												<td><a tal:attributes="href Paid/getURLDelLoad"><span class="icon-remove"/></a></td>
+										<tbody>
+											<tr tal:repeat="Order OrderAll">
+												<td><div tal:content="repeat/Order/number" /></td>
+												<td><a tal:attributes="href Order/getURLUpdLoad"><div tal:content="Order/getDatePrint"/></a></td>
+												<td align="left"><div tal:content="Order/getDescription"/></td>
+												<td align="right">
+													<a tal:attributes="href Order/getURLDetail">
+														<div tal:content="Order/getValuePrint"/>
+													</a>
+												</td>
+												<td>
+													<a target="blank" tal:attributes="href Order/getURLPrint">
+														<i class="icon-print"/>
+													</a>
+												</td>
+												<td>
+													<a tal:attributes="href Order/getURLDelLoad"><span class="icon-remove"/></a>
+												</td>
 											</tr>
 										</tbody>
 									</table>
 									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
 										<div class="dataTables_filter">
 											<label style="margin-top:5px;">
-												<a tal:attributes="href Term/getURLPaidInsLoad"><span class="icon-plus"/> Thêm mới</a>
+												<a tal:attributes="href Supplier/getURLImportInsLoad"><span class="icon-plus"/> Thêm mới</a>
 											</label>
 										</div>
 										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
-									</div>
+									</div>									
 								</div>  
 							</div>
 						</div>
@@ -69,5 +81,4 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
-</html>							
-						
+</html>
