@@ -28,10 +28,10 @@ class Category extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getCourses(){
+	function getCourseAll(){
 		$mCourse = new \MVC\Mapper\Course();
-		$Courses = $mCourse->findByCategory(array($this->getId()));
-		return $Courses;
+		$CourseAll = $mCourse->findByCategory(array($this->getId()));
+		return $CourseAll;
 	}
 	
 	//-------------------------------------------------------------------------------

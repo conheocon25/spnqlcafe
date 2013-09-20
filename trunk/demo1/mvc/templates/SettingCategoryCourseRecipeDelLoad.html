@@ -1,26 +1,27 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html> 
+<html>
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-	</head>	
-	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="span3">
-					
-				</div>
-				<div class="span9">
-					<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-					<form class="form-actions" tal:attributes="action Recipe/getURLDelExe" method="post">
-						<p>Bạn có chắc chắn muốn xóa ?</p>
-						<button type="submit" class="btn btn-primary" value="submit-value"><span class="icon-remove"/>Xóa</button>
-					</form>
-				</div>
+		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
+		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+	</head>
+<body>	
+	<div data-role="page" class="type-interior">		
+		<span metal:use-macro="macros.xhtml/header"/>
+		<div data-role="content">
+			<div class="content-primary">				
+				<form tal:attributes="action Recipe/getURLDelExe" method="post" data-ajax="false">
+					<ul data-role="listview" data-theme="c" data-dividertheme="b">
+						<li data-role="list-divider" tal:content="Title" />
+					</ul>
+					<p>Có đồng ý xóa ánh xạ không ?</p>
+					<button data-corners="false" type="submit" data-theme="c"  data-icon="delete" name="submit" value="submit-value">Xóa</button>
+				</form>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
+			<div class="content-secondary">
+				
+			</div>
 		</div>
-	</body>
+		<span metal:use-macro="macros.xhtml/footer"/>
+	</div>
+</body>
 </html>

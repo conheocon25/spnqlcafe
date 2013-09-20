@@ -39,8 +39,9 @@
 			//-------------------------------------------------------------
 			$request->setProperty("Title", $Title);
 			$request->setObject("Navigation", $Navigation);
+			
 			$request->setObject("UnitAll", $UnitAll);
-			$request->setObject("Category", $Category);			
+			$request->setObject("Category", $Category);
 						
 		}
 	}

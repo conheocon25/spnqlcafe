@@ -23,8 +23,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			if (!isset($Name))
-				return self::statuses('CMD_OK');
+			if (!isset($Name)) return self::statuses('CMD_OK');
 				
 			$Term = $mTerm->find($IdTerm);
 			$Term->setName($Name);

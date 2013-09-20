@@ -22,7 +22,6 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
 			$Config = $mConfig->find($IdConfig);			
-			
 			$Title = mb_strtoupper($Config->getParam(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
@@ -33,7 +32,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Config', $Config);
+			$request->setObject('Config', $Config);			
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
 		}

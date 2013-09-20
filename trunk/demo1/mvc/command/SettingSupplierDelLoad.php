@@ -22,8 +22,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Supplier = $mSupplier->find($IdSupplier);
-			$Suppliers = $mSupplier->findAll();
-						
+									
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
@@ -34,8 +33,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Supplier', $Supplier);
-			$request->setObject('Suppliers', $Suppliers);
+			$request->setObject('Supplier', $Supplier);			
 			$request->setObject('Navigation', $Navigation);
 			$request->setProperty('Title', $Title);
 		}

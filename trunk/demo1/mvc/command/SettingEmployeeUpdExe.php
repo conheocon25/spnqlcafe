@@ -17,7 +17,6 @@
 			$Job = $request->getProperty('Job');
 			$Phone = $request->getProperty('Phone');
 			$Address = $request->getProperty('Address');
-			$SalaryBase = $request->getProperty('SalaryBase');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -34,8 +33,6 @@
 				$Employee->setJob($Job);
 				$Employee->setPhone($Phone);
 				$Employee->setAddress($Address);
-				$Employee->setSalaryBase($SalaryBase);
-				
 				$mEmployee->update($Employee);
 			}
 			
