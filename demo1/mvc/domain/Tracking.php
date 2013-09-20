@@ -14,7 +14,7 @@ class Tracking extends Object{
     
 	function getId() {return $this->Id;}	
 	function getIdPrint(){return "u" . $this->getId();}	
-	function getName(){$Name = 'BÁO CÁO THÁNG '.\date("m/Y", strtotime($this->getDateStart()));return $Name;}
+	function getName(){$Name = 'THÁNG '.\date("m/Y", strtotime($this->getDateStart()));return $Name;}
 	
     function setDateStart( $DateStart ) {$this->DateStart = $DateStart;$this->markDirty();}   
 	function getDateStart( ) {return $this->DateStart;}	
@@ -234,7 +234,22 @@ class Tracking extends Object{
 	function getCustomerNewDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->formatCurrency()." đ";}	
 	function getCustomerNewDebtStrPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->readDigit();}	
 	//CÁC LIÊN KẾT CỦA CÁC NGÀY TRONG THÁNG
-	function getURLDayAll(){$Data = array();$Date = $this->getDateStart();$EndDate = $this->getDateEnd();while (strtotime($Date) <= strtotime($EndDate)){$Data[] = array(\date("d/m", strtotime($Date)),"/report/selling/".$Date."/detail");$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));}return $Data;}
+	function getURLDayAll(){
+		$Data = array();
+		$Date = $this->getDateStart();
+		$EndDate = $this->getDateEnd();
+		while (strtotime($Date) <= strtotime($EndDate)){
+			$Data[] = array(
+						\date("d/m", strtotime($Date)),
+						"/report/selling/".$Date."/detail",
+						"/payroll/".$this->getId()."/".$Date,
+						"/payroll/".$this->getId()."/absent/".$Date,
+						"/payroll/".$this->getId()."/late/".$Date
+					);
+			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
+		}
+		return $Data;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//LƯƠNG NHÂN VIÊN
@@ -260,6 +275,7 @@ class Tracking extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
+	function getURLPayRoll(){return "/payroll/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLPaidPayRoll(){return "/report/paid/payroll/".$this->getId();}	
 	function getURLPaidGeneral(){return "/report/paid/".$this->getId();}

@@ -13,6 +13,7 @@ interface SupplierCollection extends \Iterator {function add( Object $supplier )
 
 interface PaidSupplierCollection extends \Iterator {function add( Object $PaidSupplier );}
 interface PaidPayRollCollection extends \Iterator {function add( Object $PaidPayRoll );}
+interface PayRollCollection extends \Iterator {function add( Object $PayRoll );}
 interface PaidEmployeeCollection extends \Iterator {function add( Object $PaidEmployee );}
 interface PaidGeneralCollection extends \Iterator {function add( Object $PaidGeneral );}
 
@@ -34,5 +35,5 @@ interface TrackingStoreCollection extends \Iterator {function add( Object $Track
 
 interface R2CCollection extends \Iterator {function add( Object $R2C);}
 interface PageCollection extends \Iterator {function add( Object $Page);}
-
+interface GuestCollection extends \Iterator {function add( Object $Guest);}
 ?>

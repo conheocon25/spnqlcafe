@@ -1,57 +1,79 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</head>
-<body>	
-	<div data-role="page" class="type-interior">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">				
-				<ul data-role="listview" data-theme="c" data-dividertheme="b">
-					<li data-role="list-divider" tal:content="php:'NHẬP HÀNG / ' . mb_strtoupper(Supplier->getName(),'UTF8') . ' / ' . OI->getDatePrint()" />
-					<li data-theme="d">
-						<h3>NGÀY:</h3><span class="ui-li-aside" tal:content="OI/getDatePrint"/>
-						<p><span tal:content="OI/getDescription"/></p>
-					</li>
-					<li tal:repeat="Detail OI/getDetails">
-						<a tal:attributes="href Detail/getURLUpdLoad">
-							<strong>
-								<span tal:content="repeat/Detail/number" />. <span tal:content="Detail/getResource/getName" />
-								<span tal:content="Detail/getCount"/>(<span tal:content="Detail/getResource/getUnit"/>) x<span tal:content="Detail/getPricePrint"/>
-							</strong>
-							<span class="ui-li-count" tal:content="Detail/getValuePrint" />
-						</a>
-					</li>
-					<li data-theme="d">
-						<h3>TỔNG CỘNG:</h3><span class="ui-li-count" tal:content="OI/getValuePrint"/>
-						<p>( <span tal:content="OI/getValueStrPrint"/> )</p>
-					</li>
-				</ul>
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="row-fluid">
+					<div class="span3">
+						<div class="menu">
+							<ul class="nav nav-list">
+								<li class="nav-header">CHỨC NĂNG</li>
+								<li><a tal:attributes="href OI/getURLUpdLoad">Cập nhật</a></li>
+								<li>
+									<a target="blank" data-transition="none" tal:attributes="href OI/getURLPrint">
+										<i class="icon-print icon-2x"/> In phiếu duyệt
+									</a>
+								</li>
+								<li>
+									<a target="blank" data-transition="none" tal:attributes="href OI/getURLPrint1">
+										<i class="icon-print icon-2x"/> In nhập kho
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="span9">												
+						<div class="content">
+							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="30">STT</th>
+										<th>TÊN</th>
+										<th width="120">
+											<div class="text-right">
+												SỐ LƯỢNG
+											</div>
+										</th>
+										<th width="120">
+											<div class="text-right">
+												ĐƠN GIÁ
+											</div>
+										</th>
+										<th width="120">
+											<div class="text-right">
+												THÀNH TIỀN
+											</div>
+										</th>										
+									</tr>
+								</thead>								
+								<tbody>
+									<tr tal:repeat="Detail OI/getDetails">
+										<td><div tal:content="repeat/Detail/number" /></td>
+										<td><a tal:attributes="href Detail/getURLUpdLoad"><div tal:content="Detail/getResource/getName"/></a></td>
+										<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+										<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+										<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="4"><div class="text-right">TỔNG</div></td>
+										<td><div class="text-right" tal:content="OI/getValuePrint" /></td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>						
+					</div>
+				</div>
 			</div>
-			<div class="content-secondary">
-				<ul data-role="listview" data-theme="c" data-dividertheme="d">
-					<li tal:content="string:CHỨC NĂNG" data-role="list-divider" />
-					<li>
-						<a data-transition="none" tal:attributes="href OI/getURLUpdLoad">
-							Cập nhật
-						</a>
-					</li>
-					<li>
-						<a target="blank" data-transition="none" tal:attributes="href OI/getURLPrint">
-							In phiếu duyệt
-						</a>
-					</li>
-					<li>
-						<a target="blank" data-transition="none" tal:attributes="href OI/getURLPrint1">
-							In nhập kho
-						</a>
-					</li>
-				</ul>
-			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+	</body>
 </html>

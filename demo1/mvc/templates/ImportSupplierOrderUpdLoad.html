@@ -1,36 +1,39 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/ImportSupplierOrderUpdLoad.js"/>
-	</head>
-<body>
-	<div data-role="page" class="type-interior">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">		
-			<div class="content-primary">				
-				<form id="FormImportSupplierOrderUpdLoad" data-ajax="false" tal:attributes="action DetailURLUpdExe" method="post">
-					<ul data-role="listview" data-theme="c" data-dividertheme="b">
-						<li data-role="list-divider" tal:content="Title" />
-						<li data-role="fieldcontain">
-							<label for="Count">Số lượng:</label>
-							<input class="required" type="text" name="Count" id="Count" tal:attributes="value Count"/>
-						</li>
-						<li data-role="fieldcontain">
-							<label for="Price">Đơn giá:</label>
-							<input class="required" type="text" name="Price" id="Price" tal:attributes="value Price"/>
-						</li>						
-						<button data-corners="false" type="submit" data-theme="c"  data-icon="edit" name="submit" value="submit-value">Cập nhật</button>
-					</ul>
-				</form>
+		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</head>	
+	<body>
+		<div class="container-fluid">
+			<span metal:use-macro="mAdmin.xhtml/Header"/>
+			<div class="row-fluid">
+				<div class="span3" />
+				<div class="span9 main">
+					<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
+					<form class="form-horizontal" tal:attributes="action DetailURLUpdExe" method="post">						
+						<div class="control-group">
+							<label class="control-label" for="Count">Số lượng</label>
+							<div class="controls">
+								<input id="Count" name="Count" type="text" tal:attributes="value Count"/>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="Price">Đơn giá</label>
+							<div class="controls">
+								<input id="Price" name="Price" type="text" tal:attributes="value Price"/>
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit" class="btn" value="submit-value">Cập nhật</button>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
-			<div class="content-secondary">
-				
-			</div>
+			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
-		
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+	</body>
 </html>

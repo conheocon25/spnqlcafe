@@ -22,6 +22,7 @@ interface SupplierFinder extends Finder {}
 
 interface PaidSupplierFinder extends Finder {}
 interface PaidPayRollFinder extends Finder {}
+interface PayRollFinder extends Finder {}
 interface PaidEmployeeFinder extends Finder {}
 interface PaidGeneralFinder extends Finder {}
 
@@ -42,4 +43,5 @@ interface TrackingFinder extends Finder {}
 interface TrackingStoreFinder extends Finder {}
 
 interface R2CFinder extends Finder {}
+interface GuestFinder extends Finder {}
 ?>

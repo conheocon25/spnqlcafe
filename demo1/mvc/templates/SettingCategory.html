@@ -19,38 +19,34 @@
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="32">STT</th>
+										<th width="32"><div class="text-center">STT</div></th>
 										<th>TÊN</th>
 										<th width="120">MÓN</th>
-										<th width="32">XÓA</th>
+										<th width="32" />
 									</tr>
 								</thead>
 								<tbody>
 									<tr tal:repeat="Category CategoryAll">
-										<td width="32">
-											<div tal:content="repeat/Category/number" />
-										</td>
+										<td width="32"><div class="text-center" tal:content="repeat/Category/number" /></td>
 										<td>
 											<a tal:attributes="href Category/getURLUpdLoad">
 												<div tal:content="Category/getName" />
 											</a>
 										</td>
 										<td>
-											<a tal:attributes="href Category/getURLCourse">
-												Món (<span tal:content="Category/getCourses/count"/>)
+											<a class="btn" tal:attributes="href Category/getURLCourse">
+												<span tal:content="Category/getCourses/count"/>
 											</a>
 										</td>
 										<td width="32">
-											<a tal:attributes="href Category/getURLDelLoad"><span class="icon-remove"/></a>
+											<a class="btn" tal:attributes="href Category/getURLDelLoad"><span class="icon-remove"/></a>
 										</td>
 									</tr>
 								</tbody>
 								<tfoot>
 									<tr>
 										<td colspan="4" align="center">
-											<a class="btn" href="/setting/category/ins/load">
-												<span class="icon-plus"/>Thêm mới
-											</a>
+											<a class="btn btn-primary" href="/setting/category/ins/load"><span class="icon-plus"/>Thêm mới</a>
 										</td>
 									</tr>
 								</tfoot>

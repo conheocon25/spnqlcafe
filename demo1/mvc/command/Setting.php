@@ -33,7 +33,8 @@
 			$UserAll = $mUser->findAll();
 			$TermPaidAll = $mTermPaid->findAll();
 			$TermCollectAll = $mTermCollect->findAll();
-			$ConfigAll = $mConfig->findAll();			
+			$ConfigAll = $mConfig->findAll();
+			$EmployeeAll = $mEmployee->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -52,6 +53,7 @@
 			$request->setObject('TermPaidAll', $TermPaidAll);
 			$request->setObject('TermCollectAll', $TermCollectAll);
 			$request->setObject('ConfigAll', $ConfigAll);
+			$request->setObject('EmployeeAll', $EmployeeAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

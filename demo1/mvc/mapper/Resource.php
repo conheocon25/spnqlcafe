@@ -6,15 +6,15 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 
     function __construct() {
         parent::__construct();
-		$cafedemo = "cafedemo_resource";
+		$tblResource = "cafecoirieng_resource";
 						
-		$selectAllStmt = sprintf("select * from %s", $cafedemo);
-		$selectStmt = sprintf("select * from %s where id=?", $cafedemo);
-		$updateStmt = sprintf("update %s set name=?, unit=?, price=?, description=? where id=?", $cafedemo);
+		$selectAllStmt = sprintf("select * from %s", $tblResource);
+		$selectStmt = sprintf("select * from %s where id=?", $tblResource);
+		$updateStmt = sprintf("update %s set name=?, unit=?, price=?, description=? where id=?", $tblResource);
 		$insertStmt = sprintf("insert into %s ( idsupplier, name, unit, price, description ) 
-							values( ?, ?, ?, ?, ?)", $cafedemo);
-		$deleteStmt = sprintf("delete from %s where id=?", $cafedemo);
-		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $cafedemo);
+							values( ?, ?, ?, ?, ?)", $tblResource);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblResource);
+		$findBySupplierStmt = sprintf("select * from %s where idsupplier=?", $tblResource);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);

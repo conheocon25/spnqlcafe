@@ -7,25 +7,25 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from cafedemo_customer");
+                            "select * from cafecoirieng_customer");
         $this->selectStmt = self::$PDO->prepare( 
-                            "select * from cafedemo_customer where id=?");
+                            "select * from cafecoirieng_customer where id=?");
         $this->updateStmt = self::$PDO->prepare( 
-                            "update cafedemo_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+                            "update cafecoirieng_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
         $this->insertStmt = self::$PDO->prepare( 
-                            "insert into cafedemo_customer (name, type, card, phone, address, note, discount) 
+                            "insert into cafecoirieng_customer (name, type, card, phone, address, note, discount) 
 							values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from cafedemo_customer where id=?");
+                            "delete from cafecoirieng_customer where id=?");
 		$this->findByPositionStmt = self::$PDO->prepare("
 						SELECT id 
-						FROM cafedemo_customer
+						FROM cafecoirieng_customer
 						WHERE idlocation=?
 						LIMIT ?,1
 						ORDER By id asc
 		");
 		 $this->findByCardStmt = self::$PDO->prepare( 
-                            "select * from cafedemo_customer where card=?");
+                            "select * from cafecoirieng_customer where card=?");
     } 
     function getCollection( array $raw ) {
         return new CustomerCollection( $raw, $this );
@@ -79,7 +79,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     }
 	
 	function findByPostion($values) {		
-        $str = "SELECT id FROM cafedemo_customer ORDER BY id LIMIT ". $values[0] .",1";		
+        $str = "SELECT id FROM cafecoirieng_customer ORDER BY id LIMIT ". $values[0] .",1";		
 		$this->findByPositionStmt = self::$PDO->prepare($str);
         $this->findByPositionStmt->execute($values);
 		$result = $this->findByPositionStmt->fetchAll();
