@@ -25,6 +25,7 @@
 			$TermPaidAll = $mTermPaid->findAll();
 			$TermCollectAll = $mTermCollect->findAll();
 			$ConfigAll = $mConfig->findAll();
+			$EmployeeAll = $mEmployee->findAll();
 			
 			$Title = "DANH MỤC MÓN";
 			$Navigation = array(
@@ -48,6 +49,7 @@
 			$request->setObject('TermPaidAll', $TermPaidAll);
 			$request->setObject('TermCollectAll', $TermCollectAll);
 			$request->setObject('ConfigAll', $ConfigAll);
+			$request->setObject('EmployeeAll', $EmployeeAll);
 		}
 	}
 ?>

@@ -15,9 +15,7 @@
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
 		<command name="App"><view>App</view></command>		
-		<command name="RegisterExe" type="public"><view>RegisterExe</view><status value="CMD_OK"><forward>Home</forward></status></command>		
-		<command name="FindCustomer" type="public"><view>FindCustomer</view></command>
-		
+				
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->
@@ -33,6 +31,18 @@
 			<status value="CMD_OK"><forward>SignoutExe</forward></status>
 		</command>
 		
+		<!-- ============================================================================== -->
+		<!-- PAYROLL			 															-->
+		<!-- ============================================================================== -->		
+		<command name="PayRoll"><view>PayRoll</view></command>
+		<command name="PayRollWork"><view>PayRollWork</view></command>
+		<command name="PayRollWorkDetail">
+			<status value="CMD_OK">
+				<forward>PayRollWork</forward>
+			</status>
+			<view>PayRollWorkDetail</view>
+		</command>
+				
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->		
@@ -67,8 +77,9 @@
 		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
 		<command name="ReportGeneral"><view>ReportGeneral</view></command>
 		
-		<command name="ReportPaidPayRoll"><view>ReportPaidPayRoll</view></command>
-						
+		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
+		<command name="ReportPayRollDetail"><view>ReportPayRollDetail</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->				

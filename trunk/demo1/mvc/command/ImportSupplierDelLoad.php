@@ -25,13 +25,18 @@
 			//-------------------------------------------------------------						
 			$OI = $mOI->find($IdOrderImport);
 			$Supplier = $mSupplier->find($IdSupplier);						
-			$Title = "NHẬP HÀNG / ".mb_strtoupper($Supplier->getName()." / ".$OI->getDatePrint()." / XÓA", 'UTF8');
+			$Title = $OI->getDatePrint();
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("NHẬP HÀNG", "/import"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())				
+			);
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', $Supplier->getURLImport());
+			$request->setObject('Navigation', $Navigation);
 			$request->setObject('Supplier', $Supplier);
 			$request->setObject('OrderImport', $OI);
 		}

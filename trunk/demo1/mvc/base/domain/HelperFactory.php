@@ -13,6 +13,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	
 	require_once( "mvc/mapper/PaidSupplier.php");
 	require_once( "mvc/mapper/PaidPayRoll.php");
+	require_once( "mvc/mapper/PayRoll.php");
 	require_once( "mvc/mapper/PaidEmployee.php");
 	require_once( "mvc/mapper/PaidGeneral.php");
 	
@@ -32,7 +33,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Tracking.php");
 	require_once( "mvc/mapper/TrackingStore.php");
 	require_once( "mvc/mapper/R2C.php");
-		
+	require_once( "mvc/mapper/Guest.php");
 }
 
 class HelperFactory {
