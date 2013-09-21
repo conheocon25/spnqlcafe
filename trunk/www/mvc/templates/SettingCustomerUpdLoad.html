@@ -21,48 +21,40 @@
 							</div>
 							<div class="widget-content nopadding">
 								<form class="form-horizontal" tal:attributes="action Customer/getURLUpdExe" method="post">
-									<div class="form-group">
+									<div class="control-group">
 										<label class="control-label">Tên</label>
 										<div class="controls">
 											<input id="Name" name="Name" type="text" class="form-control input-sm" tal:attributes="value Customer/getName"/>
 										</div>
 									</div>
-									<div class="form-group">
+									<div class="control-group">
+										<label class="control-label">Email</label>
+										<div class="controls">
+											<input id="Email" name="Email" type="text" class="form-control input-sm" tal:attributes="value Customer/getEmail"/>
+										</div>
+									</div>
+									<div class="control-group">
 										<label class="control-label">Điện thoại</label>
 										<div class="controls">
 											<input id="Phone" name="Phone" type="text" class="form-control input-sm" tal:attributes="value Customer/getPhone"/>
 										</div>
-									</div>
-									<div class="form-group">
+									</div>									
+									<div class="control-group">
 										<label class="control-label">Loại</label>
 										<div class="controls">
-											<input id="Type" name="Type" type="text" class="form-control input-sm" tal:attributes="value Customer/getType"/>
+											<select name="Type" id="Type" class="form-control input-sm">
+												<option tal:repeat="Package CategoryPackageAll" tal:attributes="value Package/getId;selected php:Package->getId()==Customer->getType()">
+													<span tal:content="Package/getName" />
+												</option>
+											</select>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="control-label">Thẻ</label>
-										<div class="controls">
-											<input id="Card" name="Card" type="text" class="form-control input-sm" tal:attributes="value Customer/getCard"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Ghi chú</label>
-										<div class="controls">
-											<input id="Note" name="Note" type="text" class="form-control input-sm" tal:attributes="value Customer/getNote"/>
-										</div>
-									</div>
-									<div class="form-group">
+									<div class="control-group">
 										<label class="control-label">Địa chỉ</label>
 										<div class="controls">
 											<input id="Address" name="Address" type="text" class="form-control input-sm" tal:attributes="value Customer/getAddress"/>
 										</div>
 									</div>
-									<div class="form-group">
-										<label class="control-label">Giảm giá</label>
-										<div class="controls">
-											<input id="Discount" name="Discount" type="text" class="form-control input-sm" tal:attributes="value Customer/getDiscount"/>
-										</div>
-									</div>									
 									<div class="form-actions">
 										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Lưu</button>
 									</div>

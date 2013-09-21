@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCustomerInsExe extends Command {
+	class SettingCategoryPackageDelLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,40 +10,33 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$Name = $request->getProperty('Name');
-			$Email = $request->getProperty('Email');
-			$Phone = $request->getProperty('Phone');
-			$Type = $request->getProperty('Type');			
-			$Address = $request->getProperty('Address');
-			$Key = $request->getProperty('Key');
+			//-------------------------------------------------------------			
+			$IdCategory = $request->getProperty('IdCategory');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer = new \MVC\Mapper\Customer();
+			$mCategory = new \MVC\Mapper\CategoryPackage();
 					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			if (!isset($Name)||$Name=="") return self::statuses('CMD_OK');
-				
-			$Customer = new \MVC\Domain\Customer(
-				null,
-				$Name,
-				$Email,
-				$Phone,
-				$Type,
-				$Address,
-				$Key
+			//-------------------------------------------------------------							
+			$Category = $mCategory->find($IdCategory);			
+			
+			$Title = mb_strtoupper($Category->getName(), 'UTF8');
+			$Navigation = array(
+				array("ỨNG DỤNG", "/home"),
+				array("THIẾT LẬP", "/setting"),				
+				array("GÓI ỨNG DỤNG", "/setting/category/package")
 			);
-			$Customer->reKey();
-			$mCustomer->insert($Customer);
-									
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			return self::statuses('CMD_OK');
+			$request->setObject('Category', $Category);
+			$request->setProperty('Title', $Title);
+			$request->setProperty('ActiveAdmin', 'CategoryPackage');
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

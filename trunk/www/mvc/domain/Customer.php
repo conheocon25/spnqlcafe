@@ -1,61 +1,66 @@
 <?php
-namespace MVC\Domain;
+Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class Customer extends Object{
 
     private $Id;
-	private $name;
-	private $phone;
-    private $type;
-    private $card;
-    private $note;
-    private $address;
-	private $discount;
+	private $Name;
+	private $Email;
+	private $Phone;
+    private $Type;        
+    private $Address;
+	private $Key;
 	
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $name=null, $type=null, $card=null, $phone=null, $address=null, $note=null, $discount=null ) {
+    function __construct( $Id=null, $Name=null, $Email=null, $Phone=null, $Type=null, $Address=null, $Key=null ){
         $this->Id = $Id;
-		$this->name = $name;
-		$this->type = $type;
-		$this->card = $card;
-		$this->phone = $phone;
-		$this->address = $address;
-		$this->note = $note;
-		$this->discount = $discount;
+		$this->Name = $Name;
+		$this->Email = $Email;
+		$this->Phone = $Phone;
+		$this->Type = $Type;
+		$this->Address = $Address;
+		$this->Key = $Key;
+		
         parent::__construct( $Id );
     }
-	
     function getId( ) {return $this->Id;}
+						
+	function getName(){return $this->Name;}	
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 	
-	function getType(){return $this->type;}
+	function getEmail(){return $this->Email;}	
+    function setEmail( $Email ) {$this->Email = $Email;$this->markDirty();}
 	
-    function setType( $type ) {$this->type = $type;$this->markDirty();}
-	function getTypePrint(){if ($this->type==1) return "VIP"; return "thường";}
+	function getPhone(){return $this->Phone;}	
+    function setPhone( $Phone ) {$this->Phone = $Phone;$this->markDirty();}
 	
-	function getCard(){return $this->card;}
+	function getType(){return $this->Type;}	
+    function setType( $Type ) {$this->Type = $Type;$this->markDirty();}
 	
-    function setCard( $card ) {$this->card = $card;$this->markDirty();}	
-	function getNote(){return $this->note;}	
-    function setNote( $note ) {$this->note = $note;$this->markDirty();}	
-	function getName(){return $this->name;}	
-    function setName( $name ) {$this->name = $name;$this->markDirty();}
-	function getPhone(){return $this->phone;}	
-    function setPhone( $phone ) {$this->phone = $phone;$this->markDirty();}			
-    function setAddress( $address ) {$this->address = $address;$this->markDirty();}
-	function getAddress(){return $this->address;}
+	function getTypePrint( ) {		
+		//$mA = new \MVC\Mapper\Unit();
+		//$A = $mA->findAll();
+		return "abc";
+	}
+	
+    function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
+	function getAddress(){return $this->Address;}
 		
-	function setDiscount( $discount ) {$this->discount = $discount;$this->markDirty();}
-	function getDiscount(){return $this->discount;}
-			
+	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
+	function getKey(){return $this->Key;}
+	function reKey( ) {
+		$Str = new \MVC\Library\String($this->Name);
+		$this->Key = $Str->converturl();
+	}
+	
 	//=================================================================================		
 	function getURLUpdLoad(){	return "/setting/customer/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "/setting/customer/".$this->getId()."/upd/exe";}
 	
 	function getURLDelLoad(){	return "/setting/customer/".$this->getId()."/del/load";}
 	function getURLDelExe(){	return "/setting/customer/".$this->getId()."/del/exe";}
-	function getURLBarcode(){	return "/setting/customer/".$this->getId()."/barcode";}
-			
+				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 	

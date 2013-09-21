@@ -44,6 +44,17 @@
 		<command name="SettingConfigDelExe"><view>SettingConfigDelExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
 
 		<!-- ============================================================================== -->
+		<!-- SETTING.CATEGORY.PACKAGE 															-->
+		<!-- ============================================================================== -->		
+		<command name="SettingCategoryPackage"><view>SettingCategoryPackage</view></command>
+		<command name="SettingCategoryPackageInsLoad"><view>SettingCategoryPackageInsLoad</view></command>
+		<command name="SettingCategoryPackageInsExe"><view>SettingCategoryPackageInsExe</view><status value="CMD_OK"><forward>SettingCategoryPackage</forward></status></command>
+		<command name="SettingCategoryPackageUpdLoad"><view>SettingCategoryPackageUpdLoad</view></command>
+		<command name="SettingCategoryPackageUpdExe"><view>SettingCategoryPackageUpdExe</view><status value="CMD_OK"><forward>SettingCategoryPackage</forward></status></command>
+		<command name="SettingCategoryPackageDelLoad"><view>SettingCategoryPackageDelLoad</view></command>
+		<command name="SettingCategoryPackageDelExe"><view>SettingCategoryPackageDelExe</view><status value="CMD_OK"><forward>SettingCategoryPackage</forward></status></command>
+		
+		<!-- ============================================================================== -->
 		<!-- SETTING.CUSTOMER 																-->
 		<!-- ============================================================================== -->
 		<command name="SettingCustomer"><view>SettingCustomer</view></command>
