@@ -4,11 +4,12 @@
 		<!-- Các lệnh xử lí SYSTEM 															-->
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
-		<command name="Home" type="public"><view>Home</view></command>
-		<command name="Video" type="public"><view>Video</view></command>
-		<command name="SigninLoad" type="public"><view>SigninLoad</view></command>
+		<command name="Blog"><view>Blog</view></command>
+		<command name="Home"><view>Home</view></command>
+		<command name="Video"><view>Video</view></command>
+		<command name="SigninLoad"><view>SigninLoad</view></command>
 		
-		<command name="SigninExe" type="public">
+		<command name="SigninExe">
 			<view>SigninExe</view>
 			<status value="CMD_OK"><forward>Setting</forward></status>
 			<status value="CMD_NO_AUTHOR"><forward>SigninLoad</forward></status>
@@ -17,7 +18,7 @@
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>						
 		<command name="Setting"><view>Setting</view></command>
 		
-		<command name="ContactInsExe" type="public"><view>ContactInsExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
+		<command name="ContactInsExe"><view>ContactInsExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
 		<!-- ============================================================================== -->		

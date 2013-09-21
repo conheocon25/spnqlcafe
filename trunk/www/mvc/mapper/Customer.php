@@ -12,15 +12,9 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         $this->insertStmt = self::$PDO->prepare( "insert into www_customer (name, email, phone, type, address, `key`)
 							values( ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( "delete from www_customer where id=?");
-		$this->findByPositionStmt = self::$PDO->prepare("
-						SELECT id 
-						FROM www_customer
-						WHERE idlocation=?
-						LIMIT ?,1
-						ORDER By id asc
-		");
-		 $this->findByCardStmt = self::$PDO->prepare("SELECT * from www_customer where card=?");
-		 $this->findByPageStmt = self::$PDO->prepare("SELECT * FROM  www_customer LIMIT :start,:max");
+		$this->findByKeyStmt = self::$PDO->prepare("SELECT * FROM www_customer WHERE `key`=?");
+		$this->findByCardStmt = self::$PDO->prepare("SELECT * from www_customer where card=?");
+		$this->findByPageStmt = self::$PDO->prepare("SELECT * FROM  www_customer LIMIT :start,:max");
     }
 	
     function getCollection( array $raw ) {return new CustomerCollection( $raw, $this );}
@@ -77,6 +71,15 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
         return $result[0][0];
     }
 	
+	function findByKey( $values ) {	
+		$this->findByKeyStmt->execute( array($values) );
+        $array = $this->findByKeyStmt->fetch();
+        $this->findByKeyStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
+    }
 	function findByCard( $values ) {	
 		$this->findByCardStmt->execute( $values );
         $array = $this->findByCardStmt->fetch();
