@@ -25,28 +25,24 @@
 										<thead>
 											<tr role="row">
 												<th width="35">STT</th>
-												<th><div class="text-left">TÊN</div></th>
-												<th width="120"><div class="text-left">GÓI</div></th>
-												<th width="120"><div class="text-left">ĐIỆN THOẠI</div></th>
+												<th><div class="text-left">TÊN</div></th>												
 												<th width="32"><i class="icon-pencil my-ico"/></th>
 												<th width="32"><i class="icon-trash my-ico"/></th>
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Customer CustomerAll1" class="gradeA odd">
-												<td align="center" tal:content="repeat/Customer/number"/>
-												<td><a tal:attributes="href Customer/getURLUpdLoad" tal:content="Customer/getName"/></td>
-												<td><div class="text-left" tal:content="Customer/getTypePrint"/></td>
-												<td><div tal:content="Customer/getPhone"/></td>
-												<td align="center"><a tal:attributes="href Customer/getURLUpdLoad"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Customer/getURLDelLoad"><i class="icon-remove"/></a></td>
+											<tr tal:repeat="Category CategoryAll1" class="gradeA odd">
+												<td align="center" tal:content="repeat/Category/number"/>
+												<td><a tal:attributes="href Category/getURLUpdLoad" tal:content="Category/getName"/></td>												
+												<td align="center"><a tal:attributes="href Category/getURLDelLoad"><i class="icon-pencil"/></a></td>
+												<td align="center"><a tal:attributes="href Category/getURLDelLoad"><i class="icon-remove"/></a></td>
 											</tr>
 										</tbody>
 									</table>
 									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
 										<div class="dataTables_filter">
 											<label style="margin-top:5px;">
-												<a href="/setting/customer/ins/load">
+												<a href="/setting/category/album/ins/load">
 													<span class="icon-plus"/> Thêm mới
 												</a>
 											</label>

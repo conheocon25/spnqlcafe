@@ -20,6 +20,8 @@ interface NewsFinder  extends Finder {}
 
 interface CategoryVideoFinder  extends Finder {}
 interface VideoFinder  extends Finder {}
+
+interface CategoryPackageFinder  extends Finder {}
 interface CustomerFinder extends Finder {}
 
 interface GuestFinder extends Finder {}

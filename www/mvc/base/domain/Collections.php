@@ -13,7 +13,10 @@ interface CategoryVideoCollection extends \Iterator {function add( Object $Categ
 interface VideoCollection extends \Iterator {function add( Object $Video );	}
 
 interface GuestCollection extends \Iterator {function add( Object $Guest);}
+
+interface CategoryPackageCollection extends \Iterator {function add( Object $CategoryPackage);}
 interface CustomerCollection extends \Iterator {function add( Object $Customer);}
+
 interface PageCollection extends \Iterator {function add( Object $Page);}
 
 ?>

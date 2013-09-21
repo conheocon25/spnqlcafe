@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 19, 2013 at 07:56 AM
+-- Generation Time: Sep 21, 2013 at 12:34 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `qlkara_customer`
+-- Database: `qlcafe_db`
 --
 
 -- --------------------------------------------------------
@@ -89,6 +89,29 @@ INSERT INTO `www_category_news` (`id`, `name`, `key`, `order`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `www_category_package`
+--
+
+CREATE TABLE IF NOT EXISTS `www_category_package` (
+  `id` int(25) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `order` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `www_category_package`
+--
+
+INSERT INTO `www_category_package` (`id`, `name`, `key`, `order`) VALUES
+(1, 'Gói 11', '', 0),
+(2, 'Gói 2', '0', 0),
+(3, 'Gói 3', '0', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `www_category_video`
 --
 
@@ -127,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `www_config` (
 
 INSERT INTO `www_config` (`id`, `param`, `value`) VALUES
 (6, 'ROW_PER_PAGE', '12'),
-(7, 'GUEST_VISIT', '576');
+(7, 'GUEST_VISIT', '685');
 
 -- --------------------------------------------------------
 
@@ -138,19 +161,21 @@ INSERT INTO `www_config` (`id`, `param`, `value`) VALUES
 CREATE TABLE IF NOT EXISTS `www_customer` (
   `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
-  `card` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `note` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `discount` int(11) NOT NULL,
+  `key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `www_customer`
 --
 
+INSERT INTO `www_customer` (`id`, `name`, `email`, `phone`, `type`, `address`, `key`) VALUES
+(1, 'Cafe Cõi Riêng', 'cafecoirieng.vinhlong@gmail.com', '0919570207', 3, 'Phạm Thái Bường P4 Vĩnh Long', 'cafe-coi-rieng'),
+(2, 'Cafe Vạn Xuân', 'cafevanxuan.vinhlong@gmail.com', '0919 153 189', 2, 'Phạm Thái Bường P4 Vĩnh Long', 'cafe-van-xuan');
 
 -- --------------------------------------------------------
 
@@ -165,14 +190,14 @@ CREATE TABLE IF NOT EXISTS `www_guest` (
   `exit_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `agent` varchar(16) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `www_guest`
 --
 
 INSERT INTO `www_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
-(9, '192.168.1.3', '1379563995', '1379567595', '192.168.1.3');
+(11, '192.168.1.3', '1379713431', '1379717031', '192.168.1.3');
 
 -- --------------------------------------------------------
 

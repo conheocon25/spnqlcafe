@@ -11,6 +11,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/CategoryVideo.php" );
 	require_once( "mvc/mapper/Video.php" );
 	require_once( "mvc/mapper/Guest.php");
+	require_once( "mvc/mapper/CategoryPackage.php" );
 	require_once( "mvc/mapper/Customer.php");
 }
 
