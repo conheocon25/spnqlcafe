@@ -3,6 +3,7 @@
 	$mCategoryNews 			= new \MVC\Mapper\CategoryNews();
 	$mNews 					= new \MVC\Mapper\News();
 	$mConfig				= new \MVC\Mapper\Config();
+	$mBCategoryAlbum		= new \MVC\Mapper\BCategoryAlbum();
 	$mCategoryAlbum			= new \MVC\Mapper\CategoryAlbum();
 	$mAlbum					= new \MVC\Mapper\Album();
 	$mCategoryVideo			= new \MVC\Mapper\CategoryVideo();

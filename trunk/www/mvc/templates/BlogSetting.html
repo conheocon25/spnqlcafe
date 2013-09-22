@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mBlog.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mBlog.xhtml/Header"/>
+		<div metal:use-macro="mBlog.xhtml/Menu"/>
+		<div id="content">
+			<div metal:use-macro="mBlog.xhtml/ContentHeader"/>
+			<div metal:use-macro="mBlog.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				ABC
+			</div>
+		</div>
+		<div metal:use-macro="mBlog.xhtml/Footer"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeJS"/>
+	</body>
+</html>

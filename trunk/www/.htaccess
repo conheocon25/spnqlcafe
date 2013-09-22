@@ -15,8 +15,6 @@ RewriteRule ^home$ 					?cmd=Home [L]
 RewriteRule ^video/([0-9])$ 		?cmd=Video&IdCategoryVideo=$1 [L]
 RewriteRule ^contact/ins/exe$ 		?cmd=ContactInsExe [L]
 
-RewriteRule ^blog/([a-z0-9_-]+)$ 		?cmd=Blog&IdKey=$1 [L]
-
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
@@ -135,3 +133,21 @@ RewriteRule ^setting/category/video/([0-9])/([0-9])/upd/load$ 		?cmd=SettingVide
 RewriteRule ^setting/category/video/([0-9])/([0-9])/upd/exe$ 		?cmd=SettingVideoUpdExe&IdCategory=$1&IdVideo=$2 [L]
 RewriteRule ^setting/category/video/([0-9])/([0-9])/del/load$ 		?cmd=SettingVideoDelLoad&IdCategory=$1&IdVideo=$2 [L]
 RewriteRule ^setting/category/video/([0-9])/([0-9])/del/exe$ 		?cmd=SettingVideoDelExe&IdCategory=$1&IdVideo=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM.BLOG
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^blog/([a-z0-9_-]+)$ 											?cmd=Blog&IdKey=$1 [L]
+
+RewriteRule ^blog/([a-z0-9_-]+)/signin/load$ 								?cmd=BlogSigninLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/signin/exe$ 								?cmd=BlogSigninExe&IdKey=$1 [L]
+
+RewriteRule ^blog/([a-z0-9_-]+)/setting$ 									?cmd=BlogSetting&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album$ 					?cmd=BlogSettingCategoryAlbum&IdKey=$1 [L]
+
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/load$ 			?cmd=BlogSettingCategoryAlbumInsLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/exe$ 			?cmd=BlogSettingCategoryAlbumInsExe&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/load$ 	?cmd=BlogSettingCategoryAlbumUpdLoad&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/exe$ 	?cmd=BlogSettingCategoryAlbumUpdExe&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/load$ 	?cmd=BlogSettingCategoryAlbumDelLoad&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/exe$ 	?cmd=BlogSettingCategoryAlbumDelExe&IdKey=$1&IdCategory=$2 [L]
