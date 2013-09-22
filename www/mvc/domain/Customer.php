@@ -39,9 +39,9 @@ class Customer extends Object{
     function setType( $Type ) {$this->Type = $Type;$this->markDirty();}
 	
 	function getTypePrint( ) {		
-		//$mA = new \MVC\Mapper\Unit();
-		//$A = $mA->findAll();
-		return "abc";
+		$mA = new \MVC\Mapper\CategoryPackage();
+		$A = $mA->find($this->Type);
+		return $A->getName();
 	}
 	
     function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
@@ -55,11 +55,22 @@ class Customer extends Object{
 	}
 	
 	//=================================================================================		
+	function getURLSigninExe(){	return "/blog/".$this->getKey()."/signin/exe";}
+	
 	function getURLUpdLoad(){	return "/setting/customer/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "/setting/customer/".$this->getId()."/upd/exe";}
 	
 	function getURLDelLoad(){	return "/setting/customer/".$this->getId()."/del/load";}
 	function getURLDelExe(){	return "/setting/customer/".$this->getId()."/del/exe";}
+	
+	function getURLSetingCategoryNews(){	return "/blog/".$this->getKey()."/setting/category/news";}
+		
+	function getURLSetingCategoryAlbum(){	return "/blog/".$this->getKey()."/setting/category/album";}
+	function getURLSetingCategoryAlbumInsLoad(){	return "/blog/".$this->getKey()."/setting/category/album/ins/load";}
+	function getURLSetingCategoryAlbumInsExe(){		return "/blog/".$this->getKey()."/setting/category/album/ins/exe";}
+	
+	function getURLSetingCategoryVideo(){	return "/blog/".$this->getKey()."/setting/category/video";}
+	function getURLSetingConfig(){			return "/blog/".$this->getKey()."/setting/config";}
 				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

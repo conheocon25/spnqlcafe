@@ -7,8 +7,7 @@
 		<command name="Blog"><view>Blog</view></command>
 		<command name="Home"><view>Home</view></command>
 		<command name="Video"><view>Video</view></command>
-		<command name="SigninLoad"><view>SigninLoad</view></command>
-		
+		<command name="SigninLoad"><view>SigninLoad</view></command>		
 		<command name="SigninExe">
 			<view>SigninExe</view>
 			<status value="CMD_OK"><forward>Setting</forward></status>
@@ -132,8 +131,7 @@
 		<command name="SettingVideoUpdExe"><view>SettingVideoUpdExe</view><status value="CMD_OK"><forward>SettingVideo</forward></status></command>
 		<command name="SettingVideoDelLoad"><view>SettingVideoDelLoad</view></command>
 		<command name="SettingVideoDelExe"><view>SettingVideoDelExe</view><status value="CMD_OK"><forward>SettingVideo</forward></status></command>
-		
-		
+				
 		<!-- ============================================================================== -->
 		<!-- SETTING.CUSTOMER			 													-->
 		<!-- ============================================================================== -->
@@ -144,6 +142,33 @@
 		<command name="SettingCustomerUpdExe"><view>SettingCustomerUpdExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>		
 		<command name="SettingCustomerDelLoad"><view>SettingCustomerDelLoad</view></command>
 		<command name="SettingCustomerDelExe"><view>SettingCustomerDelExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- BLOG			 																-->
+		<!-- ============================================================================== -->
+		<command name="BlogSigninLoad"><view>BlogSigninLoad</view></command>		
+		<command name="BlogSigninExe">
+			<view>BlogSigninExe</view>
+			<status value="CMD_OK"><forward>BlogSetting</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>BlogSigninLoad</forward></status>
+		</command>		
+		<command name="BlogSetting"><view>BlogSetting</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- BLOG.CATEGORY.ALBUM															-->
+		<!-- ============================================================================== -->
+		<command name="BlogSettingCategoryAlbum"><view>BlogSettingCategoryAlbum</view></command>
+		<command name="BlogSettingCategoryAlbumInsLoad"><view>BlogSettingCategoryAlbumInsLoad</view></command>
+		<command name="BlogSettingCategoryAlbumInsExe"><view>BlogSettingCategoryAlbumInsExe</view><status value="CMD_OK"><forward>BlogSettingCategoryAlbum</forward></status></command>
+		<command name="BlogSettingCategoryAlbumUpdLoad"><view>BlogSettingCategoryAlbumUpdLoad</view></command>
+		<command name="BlogSettingCategoryAlbumUpdExe"><view>BlogSettingCategoryAlbumUpdExe</view><status value="CMD_OK"><forward>BlogSettingCategoryAlbum</forward></status></command>		
+		<command name="BlogSettingCategoryAlbumDelLoad"><view>BlogSettingCategoryAlbumDelLoad</view></command>
+		<command name="BlogSettingCategoryAlbumDelExe"><view>BlogSettingCategoryAlbumDelExe</view><status value="CMD_OK"><forward>BlogSettingCategoryAlbum</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- BLOG.CATEGORY.NEWS																-->
+		<!-- ============================================================================== -->
+		<command name="BlogSettingCategoryNews"><view>BlogSettingCategoryNews</view></command>
 		
 	</control>
 </options>

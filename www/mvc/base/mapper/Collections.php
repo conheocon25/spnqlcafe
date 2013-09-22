@@ -7,6 +7,7 @@ class AppCollection extends Collection implements \MVC\Domain\AppCollection {fun
 class UserCollection extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 class ConfigCollection extends Collection implements \MVC\Domain\ConfigCollection {function targetClass( ) {return "\MVC\Domain\Config";}}
 
+class BCategoryAlbumCollection extends Collection implements \MVC\Domain\BCategoryAlbumCollection {function targetClass( ) {return "\MVC\Domain\BCategoryAlbum";}}
 class CategoryAlbumCollection extends Collection implements \MVC\Domain\CategoryAlbumCollection {function targetClass( ) {return "\MVC\Domain\CategoryAlbum";}}
 class AlbumCollection extends Collection implements \MVC\Domain\AlbumCollection {function targetClass( ) {return "\MVC\Domain\Album";}}
 
