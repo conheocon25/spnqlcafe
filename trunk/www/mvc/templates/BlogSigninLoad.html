@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/bootstrap.css"/>
+        <link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/font.awesome.css"/>
+        <link rel="stylesheet" type="text/css" href="/mvc/templates/theme/cms/css/unicorn.login.css"/>
+	</head>
+	<body>
+		<div id="container">
+            <div id="logo">
+                <img src="/mvc/templates/theme/cms/img/SCMS2.png" alt="logo"/>
+            </div>
+            <div id="user">
+                <div class="avatar">
+                    <div class="inner"></div>
+                    <img src="/mvc/templates/theme/cms/img/av1_1.jpg"/>
+                </div>
+                <div class="text">
+                    <h4>Đang xác thực . . . <p class="user_name"/></h4>
+                </div>
+            </div>
+            <div id="loginbox">
+				<form id="loginform" tal:attributes="action Customer/getURLSigninExe" method="post">
+    				<h4>Hệ thống quản trị Website</h4>
+                    <div class="input-group input-sm">
+                        <span class="input-group-addon"><i class="icon-user"></i></span><input class="form-control" name="Email" id="username" placeholder="Email" type="text"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-lock"></i></span><input class="form-control" name="Pass" id="password" placeholder="Mật khẩu" type="password"/>
+                    </div>
+                    <div class="form-actions clearfix">
+                        <!--
+						<div class="pull-left">
+                            <a class="flip-link to-register blue">Tạo tài khoản mới</a>
+                        </div>
+						-->
+                        <div class="pull-right">
+                            <a class="flip-link to-recover grey">Quên mật khẩu?</a>
+                        </div>
+                        <button class="btn btn-block btn-primary btn-default" value="Đăng nhập" type="submit">Đăng nhập <i class="icon-signin"/></button>
+						<p><img src="/mvc/templates/theme/cms/img/SPNSoft.png"/> &#0169;</p>
+                    </div>
+					<!--
+                    <div class="footer-login">
+                        <div class="pull-left text">
+                            Tài khoản khác
+                        </div>
+                        <div class="pull-right btn-social">
+                            <a class="btn btn-facebook" href="#"><i class="icon-facebook"></i></a>
+                            <a class="btn btn-twitter" href="#"><i class="icon-twitter"></i></a>
+                            <a class="btn btn-google-plus" href="#"><i class="icon-google-plus"></i></a>
+                        </div>
+                    </div>
+					-->
+                </form>
+                <form id="recoverform" action="#">
+    				<p>Nhập email bên dưới và chúng tôi sẽ xác nhận để phục hồi mật khẩu cho bạn</p>
+    				<div class="input-group">
+                        <span class="input-group-addon"><i class="icon-envelope"></i></span><input class="form-control" placeholder="E-mail address" type="text"/>
+                    </div>
+                    <div class="form-actions clearfix">
+                        <div class="pull-left">
+                            <a class="grey flip-link to-login">Đăng nhập</a>
+                        </div>
+						<!--
+                        <div class="pull-right">
+                            <a class="blue flip-link to-register">Create new account</a>
+                        </div>
+						-->
+                        <input class="btn btn-block btn-inverse" value="Phục hồi" type="submit"/>
+                    </div>
+                </form>
+				<!--
+                <form id="registerform" action="#">
+                    <p>Enter information required to register:</p>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-user"></i></span><input class="form-control" placeholder="Enter Username" type="text"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-lock"></i></span><input class="form-control" placeholder="Choose Password" type="password"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-lock"></i></span><input class="form-control" placeholder="Confirm password" type="password"/>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-envelope"></i></span><input class="form-control" placeholder="Enter E-mail address" type="text"/>
+                    </div>
+                    <div class="form-actions clearfix">
+                        <div class="pull-left">
+                            <a class="grey flip-link to-login">Click to login</a>
+                        </div>
+                        <div class="pull-right">
+                            <a class="grey flip-link to-recover">Lost password?</a>
+                        </div>
+                        <input class="btn btn-block btn-success" value="Register" type="submit"/>
+                    </div>
+                </form>
+				-->
+            </div>
+        </div>
+		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/signin.jquery.js"/> 
+        <script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/jquery.ui.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/cms/js/signin.unicorn.js"/>
+	</body>
+</html>
