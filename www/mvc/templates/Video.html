@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<span metal:use-macro="base.xhtml/IncludeMETA"/>
+		<span metal:use-macro="base.xhtml/IncludeCSS"/>		
+		<span metal:use-macro="base.xhtml/IncludeJS"/>
+		<script>
+		/*<![CDATA[*/
+			$(document).ready(function() {				
+				$("#CaptchaSecurity").hide();
+			});			
+			function validateFormContactLoad() {
+				var OldCode = $("#CaptchaSecurity").val();
+				var KeydownCode = $("#CodeCaptcha").val();					
+				if ( OldCode == KeydownCode && OldCode != "" && KeydownCode != "") {
+					$("#Mesenge").html("");
+					return true; 
+				} else {
+					$("#Mesenge").html("Mã xác nhận sai! Nhập lại!");
+					$("#CodeCaptcha").val("");
+					$("#CodeCaptcha").focus();
+					return false;
+				}
+			}
+			$( window ).load(function() {
+				$("#myCarousel").carousel('pause');
+			});
+		/*]]>*/
+		</script>
+	</head>
+<body>
+	<a href="http://www.quanly-karaoke.com/#" class="scrolltop" style="display: none;"><span>&#8593;</span></a>
+	<div metal:use-macro="base.xhtml/HeaderVideo"/>
+
+    <div id="hero">
+        <div class="container">
+            <!-- starts carousel -->
+            <div class="row animated fadeInDown">
+                <div class="span12">
+                    <div id="myCarousel" class="carousel slide">
+                        <!-- carousel items -->
+                        <div class="carousel-inner">
+                            <!-- slide -->
+							<div class="item slide1 active">
+                                <div class="row">
+                                    <div class="span6">
+                                        <div class="img-polaroid">
+											<iframe width="100%" height="320" tal:attributes="src Category/getVideoAll/current/getURL" frameborder="0" allowfullscreen="true"></iframe>
+										</div>
+                                    </div>
+                                    <div class="span4">
+                                        <h1 tal:content="Category/getVideoAll/current/getName" />
+                                        <p tal:content="Category/getVideoAll/current/getNote" />
+                                        <a href="#" class="btn btn-success btn-large">
+                                            Dùng thử ngay bây giờ !
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+							
+                            <div class="item slide1" tal:repeat="Video Category/getVideoAll">
+                                <div class="row">
+                                    <div class="span6">
+                                        <div class="img-polaroid">
+											<iframe width="100%" height="320" tal:attributes="src Video/getURL" frameborder="0" allowfullscreen="true"></iframe>
+										</div>
+                                    </div>
+                                    <div class="span4">
+                                        <h1 tal:content="Video/getName" />
+                                        <p tal:content="Video/getNote"/>
+                                        <a href="#" class="btn btn-success btn-large">
+                                            Dùng thử ngay bây giờ !
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel nav -->
+                        <a class="carousel-control left" href="http://wbpreview.com/previews/WB0D95984/#myCarousel" data-slide="prev">‹</a>
+                        <a class="carousel-control right" href="http://wbpreview.com/previews/WB0D95984/#myCarousel" data-slide="next">›</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+		<!-- starts footer -->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+					<div class="span8">
+						<h3>Câu chuyện khách hàng</h3>
+						<div class="blog_post">
+							<div class="row">
+								<div class="span2">
+									<a href="#">
+										<img src="/data/images/slide/pic_blog.png" alt="post image" class="img-circle" />
+									</a>
+								</div>
+								<div class="span4">
+									<a href="#" class="title">
+										Karaoke Ba Đức
+									</a>
+									<div class="intro">
+										Karaoke Ba Đức tọa lạc tại số 67/26B Phó Cơ Điều, Phường 4, TP Vĩnh Long. Vĩnh Long. Quán Karaoke
+										Gia Đình này có tổng cộng 10 phòng ...  
+									</div>
+									<div class="date">
+										9/9/2013
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="span4 contact_us">
+						<h3>Liên hệ</h3>
+						<form class="form-horizontal" onsubmit="return validateFormContactLoad()" action="contact/ins/exe" method="post">
+							<input type="text" id="CaptchaSecurity" tal:attributes="value CaptchaSecurity" />
+							<div class="field">
+								<div class="label_field">
+									<label for="inputName">Họ tên</label>
+								</div>
+								<input type="text" id="inputName" name="inputName"/>
+							</div>
+
+							<div class="field">
+								<div class="label_field">
+									<label for="inputEmail">Email</label>
+								</div>
+								<input type="text" id="inputEmail" name="inputEmail"/>
+							</div>
+
+							<div class="field">
+								<div class="label_field">
+									<label for="inputCity">Địa chỉ</label>
+								</div>
+								<input type="text" id="inputCity" name="inputCity"/>
+							</div>
+							<div class="field">
+								<div class="label_field" >
+									<label for="PicCaptcha" >Mã xác nhận</label>																												
+								</div>
+									<img src="/data/captcha.jpg" />									
+								<br />
+							</div>
+							<div class="field">
+								<div class="label_field" >
+									<label for="CodeCaptcha" >Nhập mã xác nhận</label>																												
+								</div>									
+									<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
+								<label id="Mesenge" tal:attributes="text MsgCaptcha" />	
+							</div>							
+							<div class="field">
+								<div class="label_field">
+									<label for="inputComment">Ghi chú</label>
+								</div>
+								<textarea name="comments"></textarea>
+							</div>
+							<button type="submit" class="btn">Gửi thư</button>
+						</form>
+					</div>
+				</div>
+				<hr/>
+				<div class="row copyright">
+					<div class="span5">
+						<h3>Kết nối với chúng tôi</h3>
+						<a href="http://wbpreview.com/previews/WB0D95984/#" class="social fb">
+							<i class="i_facebook" />
+						</a>
+						<a href="http://wbpreview.com/previews/WB0D95984/#" class="social tw">
+							<i class="i_twitter"></i>
+						</a>
+						<a href="http://wbpreview.com/previews/WB0D95984/#" class="social yt">
+							<i class="i_youtube"></i>
+						</a>
+					</div>
+					<div class="span3 offset4 copy">
+						<p>&#0169; 2012 <img src="data/images/logo/spn_2013.png"/></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
