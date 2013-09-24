@@ -42,28 +42,6 @@
 		<command name="SettingConfigUpdExe"><view>SettingConfigUpdExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
 		<command name="SettingConfigDelLoad"><view>SettingConfigDelLoad</view></command>
 		<command name="SettingConfigDelExe"><view>SettingConfigDelExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
-
-		<!-- ============================================================================== -->
-		<!-- SETTING.CATEGORY.PACKAGE 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingCategoryPackage"><view>SettingCategoryPackage</view></command>
-		<command name="SettingCategoryPackageInsLoad"><view>SettingCategoryPackageInsLoad</view></command>
-		<command name="SettingCategoryPackageInsExe"><view>SettingCategoryPackageInsExe</view><status value="CMD_OK"><forward>SettingCategoryPackage</forward></status></command>
-		<command name="SettingCategoryPackageUpdLoad"><view>SettingCategoryPackageUpdLoad</view></command>
-		<command name="SettingCategoryPackageUpdExe"><view>SettingCategoryPackageUpdExe</view><status value="CMD_OK"><forward>SettingCategoryPackage</forward></status></command>
-		<command name="SettingCategoryPackageDelLoad"><view>SettingCategoryPackageDelLoad</view></command>
-		<command name="SettingCategoryPackageDelExe"><view>SettingCategoryPackageDelExe</view><status value="CMD_OK"><forward>SettingCategoryPackage</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.CUSTOMER 																-->
-		<!-- ============================================================================== -->
-		<command name="SettingCustomer"><view>SettingCustomer</view></command>
-		<command name="SettingCustomerInsLoad"><view>SettingCustomerInsLoad</view></command>
-		<command name="SettingCustomerInsExe"><view>SettingCustomerInsExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
-		<command name="SettingCustomerUpdLoad"><view>SettingCustomerUpdLoad</view></command>
-		<command name="SettingCustomerUpdExe"><view>SettingCustomerUpdExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
-		<command name="SettingCustomerDelLoad"><view>SettingCustomerDelLoad</view></command>
-		<command name="SettingCustomerDelExe"><view>SettingCustomerDelExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING.CATEGORY.NEWS 															-->
@@ -90,13 +68,13 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING.CATEGORY.ALBUM	 														-->
 		<!-- ============================================================================== -->
-		<command name="SettingCategoryAlbum"><view>SettingCategoryAlbum</view></command>
-		<command name="SettingCategoryAlbumInsLoad"><view>SettingCategoryAlbumInsLoad</view></command>
-		<command name="SettingCategoryAlbumInsExe"><view>SettingCategoryAlbumInsExe</view><status value="CMD_OK"><forward>SettingCategoryAlbum</forward></status></command>
-		<command name="SettingCategoryAlbumUpdLoad"><view>SettingCategoryAlbumUpdLoad</view></command>
-		<command name="SettingCategoryAlbumUpdExe"><view>SettingCategoryAlbumUpdExe</view><status value="CMD_OK"><forward>SettingCategoryAlbum</forward></status></command>		
-		<command name="SettingCategoryAlbumDelLoad"><view>SettingCategoryAlbumDelLoad</view></command>
-		<command name="SettingCategoryAlbumDelExe"><view>SettingCategoryAlbumDelExe</view><status value="CMD_OK"><forward>SettingCategoryAlbum</forward></status></command>
+		<command name="SettingBCategoryAlbum"><view>SettingBCategoryAlbum</view></command>
+		<command name="SettingBCategoryAlbumInsLoad"><view>SettingBCategoryAlbumInsLoad</view></command>
+		<command name="SettingBCategoryAlbumInsExe"><view>SettingBCategoryAlbumInsExe</view><status value="CMD_OK"><forward>SettingBCategoryAlbum</forward></status></command>
+		<command name="SettingBCategoryAlbumUpdLoad"><view>SettingBCategoryAlbumUpdLoad</view></command>
+		<command name="SettingBCategoryAlbumUpdExe"><view>SettingBCategoryAlbumUpdExe</view><status value="CMD_OK"><forward>SettingBCategoryAlbum</forward></status></command>		
+		<command name="SettingBCategoryAlbumDelLoad"><view>SettingBCategoryAlbumDelLoad</view></command>
+		<command name="SettingBCategoryAlbumDelExe"><view>SettingBCategoryAlbumDelExe</view><status value="CMD_OK"><forward>SettingBCategoryAlbum</forward></status></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING.Album 																	-->

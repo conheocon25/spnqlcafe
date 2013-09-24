@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCategoryPackageUpdLoad extends Command {
+	class SettingBCategoryAlbumUpdLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,23 +11,25 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
+			$IdKey = $request->getProperty('IdKey');
 			$IdCategory = $request->getProperty('IdCategory');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryPackage();
-								
+			$mCategory = new \MVC\Mapper\BCategoryAlbum();
+			$mCustomer = new \MVC\Mapper\Customer();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Category = $mCategory->find($IdCategory);			
-			
+			$Category = $mCategory->find($IdCategory);
+			$Customer = $mCustomer->findByKey($IdKey);									
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
-				array("ỨNG DỤNG", "/home"),
-				array("THIẾT LẬP", "/setting"),				
-				array("GÓI ỨNG DỤNG", "/setting/category/package")
+				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
+				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
+				array("ALBUM", $Customer->getURLSettingCategoryAlbum() )
 			);
 			
 			//-------------------------------------------------------------
@@ -35,7 +37,7 @@
 			//-------------------------------------------------------------						
 			$request->setObject('Category', $Category);			
 			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'CategoryPackage');
+			$request->setProperty('ActiveAdmin', 'CategoryAlbum');
 			$request->setObject('Navigation', $Navigation);
 		}
 	}

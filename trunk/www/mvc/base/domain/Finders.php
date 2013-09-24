@@ -14,7 +14,6 @@ interface AppFinder  extends Finder {}
 interface UserFinder  extends Finder {}
 interface ConfigFinder  extends Finder {}
 
-interface CategoryAlbumFinder  extends Finder {}
 interface BCategoryAlbumFinder  extends Finder {}
 
 interface AlbumFinder  extends Finder {}

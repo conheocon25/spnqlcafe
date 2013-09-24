@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class BlogSetting extends Command {
+	class SettingBCategoryAlbum extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -16,23 +16,35 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer = new \MVC\Mapper\Customer();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Title = "ỨNG DỤNG";
-			$Customer = $mCustomer->findByKey($IdKey);
+			$Title = "ALBUM";
+			$Customer = $mCustomer->findByKey($IdKey);			
+			$Navigation = array(
+				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
+				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting")				
+			);
 			
-			$Navigation = array();
+			if (!isset($Page)) $Page=1;
+			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$CategoryAll = $mBCategoryAlbum->findBy(array($Customer->getId()));
+			$CategoryAll1 = $mBCategoryAlbum->findByPage(array($Customer->getId(), $Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($CategoryAll->count(), $Config->getValue(), "/setting/category/news" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);
-			$request->setProperty("ActiveAdmin", "");
+			$request->setProperty("Page", $Page);
+			$request->setProperty("ActiveAdmin", "CategoryAlbum");
 			$request->setObject("Navigation", $Navigation);
+			$request->setObject("PN", $PN);
+			
 			$request->setObject("Customer", $Customer);
+			$request->setObject("CategoryAll1", $CategoryAll1);
 		}
 	}
 ?>

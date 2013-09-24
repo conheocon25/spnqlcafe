@@ -63,11 +63,11 @@ class Customer extends Object{
 	function getURLDelLoad(){	return "/setting/customer/".$this->getId()."/del/load";}
 	function getURLDelExe(){	return "/setting/customer/".$this->getId()."/del/exe";}
 	
-	function getURLSetingCategoryNews(){	return "/blog/".$this->getKey()."/setting/category/news";}
+	function getURLSettingCategoryNews(){	return "/blog/".$this->getKey()."/setting/category/news";}
 		
-	function getURLSetingCategoryAlbum(){	return "/blog/".$this->getKey()."/setting/category/album";}
-	function getURLSetingCategoryAlbumInsLoad(){	return "/blog/".$this->getKey()."/setting/category/album/ins/load";}
-	function getURLSetingCategoryAlbumInsExe(){		return "/blog/".$this->getKey()."/setting/category/album/ins/exe";}
+	function getURLSettingCategoryAlbum(){			return "/blog/".$this->getKey()."/setting/category/album";}
+	function getURLSettingCategoryAlbumInsLoad(){	return "/blog/".$this->getKey()."/setting/category/album/ins/load";}
+	function getURLSettingCategoryAlbumInsExe(){	return "/blog/".$this->getKey()."/setting/category/album/ins/exe";}
 	
 	function getURLSetingCategoryVideo(){	return "/blog/".$this->getKey()."/setting/category/video";}
 	function getURLSetingConfig(){			return "/blog/".$this->getKey()."/setting/config";}

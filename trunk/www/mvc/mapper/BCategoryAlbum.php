@@ -11,8 +11,8 @@ class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder 
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY `order`", $tblCategory);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblCategory);
-		$updateStmt = sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategory);
-		$insertStmt = sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategory);
+		$updateStmt = sprintf("update %s set id_customer=?, name=?, `order`=?, `key`=? where id=?", $tblCategory);
+		$insertStmt = sprintf("insert into %s ( id_customer, name, `order`, `key`) values(?, ?, ?, ?)", $tblCategory);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCategory);
 		$findByStmt = sprintf("select *  from %s where id_customer=?", $tblCategory);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblCategory);
@@ -61,6 +61,7 @@ class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder 
 			$object->getKey(),
 			$object->getId()
 		);
+		//print_r($values);
         $this->updateStmt->execute( $values );
     }
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}

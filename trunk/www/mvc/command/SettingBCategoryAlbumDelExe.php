@@ -1,8 +1,8 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCategoryAlbumDelLoad extends Command {
+	class SettingBCategoryAlbumDelExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");			
+			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
@@ -12,31 +12,21 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$IdCategory = $request->getProperty('IdCategory');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryAlbum();
-					
+			$mCategory = new \MVC\Mapper\BCategoryAlbum();
+								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Category = $mCategory->find($IdCategory);			
-			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation = array(
-				array("ỨNG DỤNG", "/home"),
-				array("THIẾT LẬP", "/setting"),				
-				array("ALBUM", "/setting/category/album")
-			);
-			
+			$Category = $mCategory->delete(array($IdCategory));
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Category', $Category);
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'CategoryAlbum');
-			$request->setObject('Navigation', $Navigation);
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>

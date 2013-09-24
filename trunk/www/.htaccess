@@ -21,32 +21,6 @@ RewriteRule ^contact/ins/exe$ 		?cmd=ContactInsExe [L]
 RewriteRule ^setting$ 										?cmd=Setting [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.PACKAGE
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/package$ 						?cmd=SettingCategoryPackage [L]
-RewriteRule ^setting/category/package/page/([0-9])$ 		?cmd=SettingCategoryPackage&Page=$1 [L]
-
-RewriteRule ^setting/category/package/ins/load$ 			?cmd=SettingCategoryPackageInsLoad [L]
-RewriteRule ^setting/category/package/ins/exe$ 				?cmd=SettingCategoryPackageInsExe [L]
-RewriteRule ^setting/category/package/([0-9])/upd/load$ 	?cmd=SettingCategoryPackageUpdLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/package/([0-9])/upd/exe$ 		?cmd=SettingCategoryPackageUpdExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/package/([0-9])/del/load$ 	?cmd=SettingCategoryPackageDelLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/package/([0-9])/del/exe$ 		?cmd=SettingCategoryPackageDelExe&IdCategory=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CUSTOMER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/customer$ 								?cmd=SettingCustomer [L]
-RewriteRule ^setting/customer/page/([0-9])$ 				?cmd=SettingCustomer&Page=$1 [L]
-
-RewriteRule ^setting/customer/ins/load$ 					?cmd=SettingCustomerInsLoad [L]
-RewriteRule ^setting/customer/ins/exe$ 						?cmd=SettingCustomerInsExe [L]
-RewriteRule ^setting/customer/([0-9])/upd/load$ 			?cmd=SettingCustomerUpdLoad&IdCustomer=$1 [L]
-RewriteRule ^setting/customer/([0-9])/upd/exe$ 				?cmd=SettingCustomerUpdExe&IdCustomer=$1 [L]
-RewriteRule ^setting/customer/([0-9])/del/load$ 			?cmd=SettingCustomerDelLoad&IdCustomer=$1 [L]
-RewriteRule ^setting/customer/([0-9])/del/exe$ 				?cmd=SettingCustomerDelExe&IdCustomer=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
 # SETTING.CATEGORY.NEWS
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/config$ 								?cmd=SettingConfig [L]
@@ -142,12 +116,12 @@ RewriteRule ^blog/([a-z0-9_-]+)$ 											?cmd=Blog&IdKey=$1 [L]
 RewriteRule ^blog/([a-z0-9_-]+)/signin/load$ 								?cmd=BlogSigninLoad&IdKey=$1 [L]
 RewriteRule ^blog/([a-z0-9_-]+)/signin/exe$ 								?cmd=BlogSigninExe&IdKey=$1 [L]
 
-RewriteRule ^blog/([a-z0-9_-]+)/setting$ 									?cmd=BlogSetting&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album$ 					?cmd=BlogSettingCategoryAlbum&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting$ 									?cmd=Setting&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album$ 					?cmd=SettingBCategoryAlbum&IdKey=$1 [L]
 
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/load$ 			?cmd=BlogSettingCategoryAlbumInsLoad&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/exe$ 			?cmd=BlogSettingCategoryAlbumInsExe&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/load$ 	?cmd=BlogSettingCategoryAlbumUpdLoad&IdKey=$1&IdCategory=$2 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/exe$ 	?cmd=BlogSettingCategoryAlbumUpdExe&IdKey=$1&IdCategory=$2 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/load$ 	?cmd=BlogSettingCategoryAlbumDelLoad&IdKey=$1&IdCategory=$2 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/exe$ 	?cmd=BlogSettingCategoryAlbumDelExe&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/load$ 			?cmd=SettingBCategoryAlbumInsLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/exe$ 			?cmd=SettingBCategoryAlbumInsExe&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/load$ 	?cmd=SettingBCategoryAlbumUpdLoad&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/exe$ 	?cmd=SettingBCategoryAlbumUpdExe&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/load$ 	?cmd=SettingBCategoryAlbumDelLoad&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/exe$ 	?cmd=SettingBCategoryAlbumDelExe&IdKey=$1&IdCategory=$2 [L]

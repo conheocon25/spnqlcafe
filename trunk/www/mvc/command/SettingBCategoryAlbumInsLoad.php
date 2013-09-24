@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCustomerUpdExe extends Command {
+	class SettingBCategoryAlbumInsLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,40 +11,32 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$IdCustomer = $request->getProperty('IdCustomer');
-			$Name = $request->getProperty('Name');
-			$Email = $request->getProperty('Email');
-			$Phone = $request->getProperty('Phone');
-			$Type = $request->getProperty('Type');			
-			$Address = $request->getProperty('Address');
-			$Key = $request->getProperty('Key');
+			$IdKey = $request->getProperty('IdKey');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			$mCategory = new \MVC\Mapper\CategoryAlbum();
 			$mCustomer = new \MVC\Mapper\Customer();
-					
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			if (!isset($Name)||$Name=="") return self::statuses('CMD_OK');
-			
-			$Customer = $mCustomer->find($IdCustomer);
-			
-			$Customer->setName($Name);
-			$Customer->setEmail($Email);
-			$Customer->setPhone($Phone);
-			$Customer->setType($Type);
-			$Customer->setAddress($Address);
-			$Customer->setKey($Key);
-			$Customer->reKey();
-			
-			$mCustomer->update($Customer);
-			
+			//-------------------------------------------------------------										
+			$Title = "THÊM MỚI";
+			$Customer = $mCustomer->findByKey($IdKey);
+			$Navigation = array(
+				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
+				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
+				array("ALBUM", $Customer->getURLSettingCategoryAlbum() )
+			);
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			return self::statuses('CMD_OK');
+			//-------------------------------------------------------------						
+			$request->setProperty('Title', $Title);
+			$request->setProperty('ActiveAdmin', 'CategoryAlbum');
+			$request->setObject('Navigation', $Navigation);
+			$request->setObject("Customer", $Customer);
 		}
 	}
 ?>
