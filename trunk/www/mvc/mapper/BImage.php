@@ -1,20 +1,20 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class Album extends Mapper implements \MVC\Domain\AlbumFinder {
+class BImage extends Mapper implements \MVC\Domain\BImageFinder {
 
     function __construct() {
         parent::__construct();
-		$tblAlbum = "www_album";
+		$tblBImage = "www_blog_image";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY time DESC", $tblAlbum);
-		$selectStmt = sprintf("select *  from %s where id=?", $tblAlbum);
-		$updateStmt = sprintf("update %s set id_category=?, name=?, url=?, note=?, time=?, `key`=? where id=?", $tblAlbum);
-		$insertStmt = sprintf("insert into %s ( id_category, name, url, note, `key`) values(?, ?, ?, ?, ?)", $tblAlbum);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblAlbum);
-		$findByCategoryStmt = sprintf("select *  from %s where id_category=?", $tblAlbum);
-		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblAlbum);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblAlbum);
+		$selectAllStmt = sprintf("select * from %s ORDER BY time DESC", $tblBImage);
+		$selectStmt = sprintf("select *  from %s where id=?", $tblBImage);
+		$updateStmt = sprintf("update %s set id_category=?, name=?, url=?, note=?, time=?, `key`=? where id=?", $tblBImage);
+		$insertStmt = sprintf("insert into %s ( id_category, name, url, note, `key`) values(?, ?, ?, ?, ?)", $tblBImage);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblBImage);
+		$findByCategoryStmt = sprintf("select *  from %s where id_category=?", $tblBImage);
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblBImage);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblBImage);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -25,10 +25,10 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
-    function getCollection( array $raw ) {return new AlbumCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new BImageCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\Album(
+        $obj = new \MVC\Domain\BImage(
 			$array['id'],
 			$array['id_category'],
 			$array['name'],
@@ -40,7 +40,7 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
         return $obj;
     }
 
-    protected function targetClass(){return "Album";}
+    protected function targetClass(){return "BImage";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
@@ -84,12 +84,12 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new AlbumCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new BImageCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 	function findByCategory( $values ){
         $this->findByCategoryStmt->execute( $values );
-        return new AlbumCollection( $this->findByCategoryStmt->fetchAll(), $this);
+        return new BImageCollection( $this->findByCategoryStmt->fetchAll(), $this);
     }
 	
 }

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingBCategoryAlbumUpdLoad extends Command {
+	class SettingBAlbumDelLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -17,25 +17,27 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\BCategoryAlbum();
+			$mAlbum = new \MVC\Mapper\BAlbum();
 			$mCustomer = new \MVC\Mapper\Customer();
-			
+					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Category = $mCategory->find($IdCategory);
-			$Customer = $mCustomer->findByKey($IdKey);									
+			$Category = $mAlbum->find($IdCategory);
+			$Customer = $mCustomer->findByKey($IdKey);
+			
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
 				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
-				array("ALBUM", $Customer->getURLSettingCategoryAlbum() )
+				array("ALBUM", $Customer->getURLSettingBAlbum() )
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$request->setObject('Category', $Category);			
+			//-------------------------------------------------------------			
+			$request->setObject('Customer', $Customer);
+			$request->setObject('Category', $Category);
 			$request->setProperty('Title', $Title);
 			$request->setProperty('ActiveAdmin', 'CategoryAlbum');
 			$request->setObject('Navigation', $Navigation);

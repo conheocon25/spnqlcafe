@@ -1,8 +1,8 @@
 <?php
 	namespace MVC\Command;	
-	class SettingBCategoryAlbumInsExe extends Command {
+	class SettingBAlbumDelExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");			
+			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
@@ -10,33 +10,19 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------						
-			$IdKey = $request->getProperty('IdKey');
-			$Name = $request->getProperty('Name');
-			
+			//-------------------------------------------------------------			
+			$IdCategory = $request->getProperty('IdCategory');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer = new \MVC\Mapper\Customer();
-			$mCategory = new \MVC\Mapper\BCategoryAlbum();
-					
+			$mAlbum = new \MVC\Mapper\BAlbum();
+								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			if (!isset($Name)||$Name=="")
-				return self::statuses('CMD_OK');
-			
-			$Customer = $mCustomer->findByKey($IdKey);
-			$Category = new \MVC\Domain\BCategoryAlbum(
-				null,
-				$Customer->getId(),
-				$Name,				
-				0,
-				"abc"			
-			);
-			$Category->reKey();
-			$mCategory->insert($Category);
-			
+			//-------------------------------------------------------------							
+			$Category = $mAlbum->delete(array($IdCategory));
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			

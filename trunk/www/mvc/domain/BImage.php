@@ -3,7 +3,7 @@ namespace MVC\Domain;
 use MVC\Library\Number;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Album extends Object{
+class BImage extends Object{
 
     private $Id;
 	private $IdCategory;
@@ -45,11 +45,11 @@ class Album extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------		
-	function getURLUpdLoad(){	return "/setting/category/album/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/category/album/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
+	function getURLUpdLoad(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){	return "/setting/category/album/".$this->getIdCategory()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/category/album/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
+	function getURLDelLoad(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/del/load";}
+	function getURLDelExe(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
 			
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

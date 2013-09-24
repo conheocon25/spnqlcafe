@@ -2,7 +2,7 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder {
+class BAlbum extends Mapper implements \MVC\Domain\BAlbumFinder {
 
     function __construct() {
         parent::__construct();
@@ -28,10 +28,10 @@ class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder 
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		
     } 
-    function getCollection( array $raw ) {return new BCategoryAlbumCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new BAlbumCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\BCategoryAlbum( 
+        $obj = new \MVC\Domain\BAlbum( 
 			$array['id'],
 			$array['id_customer'],
 			$array['name'],
@@ -40,7 +40,7 @@ class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder 
 		);
         return $obj;
     }
-    protected function targetClass() {return "BCategoryAlbum";}
+    protected function targetClass() {return "BAlbum";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCustomer(),
@@ -70,7 +70,7 @@ class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder 
 	
 	function findBy( $values ){
         $this->findByStmt->execute( $values );
-        return new BCategoryAlbumCollection( $this->findByStmt->fetchAll(), $this);
+        return new BAlbumCollection( $this->findByStmt->fetchAll(), $this);
     }
 	
 	function findByKey( $values ) {	
@@ -87,7 +87,7 @@ class BCategoryAlbum extends Mapper implements \MVC\Domain\BCategoryAlbumFinder 
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new BCategoryAlbumCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new BAlbumCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 }
 ?>
