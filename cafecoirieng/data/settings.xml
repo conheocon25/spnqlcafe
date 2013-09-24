@@ -104,7 +104,7 @@
 		<command name="SellingDomainTableLogDetail"><view>SellingDomainTableLogDetail</view></command>
 		
 		<command name="SellingDomainTablePrint"><view>SellingDomainTablePrint</view></command>
-		<command name="SellingDomainTableCheckinExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckinExe</view></command>
+		<command name="SellingDomainTableCheckinExe"><status value="CMD_OK"><forward>SellingDomainTableCallLoad</forward></status><view>SellingDomainTableCheckinExe</view></command>
 		<command name="SellingDomainTableCheckoutExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckoutExe</view></command>
 		
 		<!-- ============================================================================== -->
