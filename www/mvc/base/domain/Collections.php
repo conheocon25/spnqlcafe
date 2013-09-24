@@ -5,9 +5,9 @@ interface AppCollection extends \Iterator {function add( Object $App );}
 interface UserCollection extends \Iterator {function add( Object $user );}
 interface ConfigCollection extends \Iterator {function add( Object $Config );}
 
-interface BCategoryAlbumCollection extends \Iterator {function add( Object $BCategoryAlbum );}
+interface BAlbumCollection extends \Iterator {function add( Object $BAlbum );}
+interface BImageCollection extends \Iterator {function add( Object $BImage );}
 
-interface AlbumCollection extends \Iterator {function add( Object $Album );}
 interface CategoryNewsCollection extends \Iterator {function add( Object $CategoryNews );	}
 interface NewsCollection extends \Iterator {function add( Object $News );}
 

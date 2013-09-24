@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingBCategoryAlbumInsLoad extends Command {
+	class SettingBAlbumInsLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -16,7 +16,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryAlbum();
+			$mAlbum = new \MVC\Mapper\BAlbum();
 			$mCustomer = new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
@@ -27,7 +27,7 @@
 			$Navigation = array(
 				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
 				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
-				array("ALBUM", $Customer->getURLSettingCategoryAlbum() )
+				array("ALBUM", $Customer->getURLSettingBAlbum() )
 			);
 									
 			//-------------------------------------------------------------

@@ -16,20 +16,15 @@
 					<div class="col-xs-12">
 						<div class="widget-box">
 							<div class="widget-title">
-								<span class="icon"><i class="icon-align-justify"></i></span>
-								<h5>THÊM MỚI</h5>
+								<span class="icon"><i class="icon-warning-sign"></i></span>
+								<h5>XÓA</h5>
 							</div>
-							<div class="widget-content nopadding">								
-								<form class="form-horizontal" tal:attributes="action Customer/getURLSettingCategoryAlbumInsExe" method="post">
-									<div class="form-group">
-										<label class="control-label">Tên</label>
-										<div class="controls">
-											<input id="Name" name="Name" type="text" class="form-control input-sm"/>
-										</div>
+							<div class="widget-content">								
+								<form class="form-actions" tal:attributes="action Category/getURLDelExe" method="post">
+									<div class="alert alert-danger alert-block">
+										<h4 class="alert-heading">Bạn có chắc chắn muốn xóa ?</h4>
 									</div>
-									<div class="form-actions">
-										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Lưu</button>
-									</div>
+									<button type="submit" class="btn btn-primary" value="submit-value"><i class="icon-trash"/> Xóa</button>
 								</form>
 							</div>
 						</div>

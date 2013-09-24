@@ -34,81 +34,6 @@ RewriteRule ^setting/config/([0-9])/del/load$ 				?cmd=SettingConfigDelLoad&IdCo
 RewriteRule ^setting/config/([0-9])/del/exe$ 				?cmd=SettingConfigDelExe&IdConfig=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.NEWS
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/news$ 								?cmd=SettingCategoryNews [L]
-RewriteRule ^setting/category/news/page/([0-9])$ 					?cmd=SettingCategoryNews&Page=$1 [L]
-
-RewriteRule ^setting/category/news/ins/load$ 						?cmd=SettingCategoryNewsInsLoad [L]
-RewriteRule ^setting/category/news/ins/exe$ 						?cmd=SettingCategoryNewsInsExe [L]
-RewriteRule ^setting/category/news/([0-9])/upd/load$ 				?cmd=SettingCategoryNewsUpdLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/news/([0-9])/upd/exe$ 				?cmd=SettingCategoryNewsUpdExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/news/([0-9])/del/load$ 				?cmd=SettingCategoryNewsDelLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/news/([0-9])/del/exe$ 				?cmd=SettingCategoryNewsDelExe&IdCategory=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.NEWS
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/news/([0-9])$ 						?cmd=SettingNews&IdCategory=$1 [L]
-RewriteRule ^setting/category/news/([0-9])page/([0-9])$ 			?cmd=SettingNews&IdCategory=$1&Page=$2 [L]
-RewriteRule ^setting/category/news/([0-9])/ins/load$ 				?cmd=SettingNewsInsLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/news/([0-9])/ins/exe$ 				?cmd=SettingNewsInsExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/news/([0-9])/([0-9])/upd/load$ 		?cmd=SettingNewsUpdLoad&IdCategory=$1&IdNews=$2 [L]
-RewriteRule ^setting/category/news/([0-9])/([0-9])/upd/exe$ 		?cmd=SettingNewsUpdExe&IdCategory=$1&IdNews=$2 [L]
-RewriteRule ^setting/category/news/([0-9])/([0-9])/del/load$ 		?cmd=SettingNewsDelLoad&IdCategory=$1&IdNews=$2 [L]
-RewriteRule ^setting/category/news/([0-9])/([0-9])/del/exe$ 		?cmd=SettingNewsDelExe&IdCategory=$1&IdNews=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.ALBUM
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/album$ 								?cmd=SettingCategoryAlbum [L]
-RewriteRule ^setting/category/album/page/([0-9])$ 					?cmd=SettingCategoryAlbum&Page=$1 [L]
-
-RewriteRule ^setting/category/album/ins/load$ 						?cmd=SettingCategoryAlbumInsLoad [L]
-RewriteRule ^setting/category/album/ins/exe$ 						?cmd=SettingCategoryAlbumInsExe [L]
-RewriteRule ^setting/category/album/([0-9])/upd/load$ 				?cmd=SettingCategoryAlbumUpdLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/album/([0-9])/upd/exe$ 				?cmd=SettingCategoryAlbumUpdExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/album/([0-9])/del/load$ 				?cmd=SettingCategoryAlbumDelLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/album/([0-9])/del/exe$ 				?cmd=SettingCategoryAlbumDelExe&IdCategory=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.ALBUM
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/album/([0-9])$ 						?cmd=SettingAlbum&IdCategory=$1 [L]
-RewriteRule ^setting/category/album/([0-9])page/([0-9])$ 			?cmd=SettingAlbum&IdCategory=$1&Page=$2 [L]
-RewriteRule ^setting/category/album/([0-9])/ins/load$ 				?cmd=SettingAlbumInsLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/album/([0-9])/ins/exe$ 				?cmd=SettingAlbumInsExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/album/([0-9])/([0-9])/upd/load$ 		?cmd=SettingAlbumUpdLoad&IdCategory=$1&IdAlbum=$2 [L]
-RewriteRule ^setting/category/album/([0-9])/([0-9])/upd/exe$ 		?cmd=SettingAlbumUpdExe&IdCategory=$1&IdAlbum=$2 [L]
-RewriteRule ^setting/category/album/([0-9])/([0-9])/del/load$ 		?cmd=SettingAlbumDelLoad&IdCategory=$1&IdAlbum=$2 [L]
-RewriteRule ^setting/category/album/([0-9])/([0-9])/del/exe$ 		?cmd=SettingAlbumDelExe&IdCategory=$1&IdAlbum=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.VIDEO
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/video$ 								?cmd=SettingCategoryVideo [L]
-RewriteRule ^setting/category/video/page/([0-9])$ 					?cmd=SettingCategoryVideo&Page=$1 [L]
-
-RewriteRule ^setting/category/video/ins/load$ 						?cmd=SettingCategoryVideoInsLoad [L]
-RewriteRule ^setting/category/video/ins/exe$ 						?cmd=SettingCategoryVideoInsExe [L]
-RewriteRule ^setting/category/video/([0-9])/upd/load$ 				?cmd=SettingCategoryVideoUpdLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/video/([0-9])/upd/exe$ 				?cmd=SettingCategoryVideoUpdExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/video/([0-9])/del/load$ 				?cmd=SettingCategoryVideoDelLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/video/([0-9])/del/exe$ 				?cmd=SettingCategoryVideoDelExe&IdCategory=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.VIDEO
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/video/([0-9])$ 						?cmd=SettingVideo&IdCategory=$1 [L]
-RewriteRule ^setting/category/video/([0-9])page/([0-9])$ 			?cmd=SettingVideo&IdCategory=$1&Page=$2 [L]
-RewriteRule ^setting/category/video/([0-9])/ins/load$ 				?cmd=SettingVideoInsLoad&IdCategory=$1 [L]
-RewriteRule ^setting/category/video/([0-9])/ins/exe$ 				?cmd=SettingVideoInsExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/video/([0-9])/([0-9])/upd/load$ 		?cmd=SettingVideoUpdLoad&IdCategory=$1&IdVideo=$2 [L]
-RewriteRule ^setting/category/video/([0-9])/([0-9])/upd/exe$ 		?cmd=SettingVideoUpdExe&IdCategory=$1&IdVideo=$2 [L]
-RewriteRule ^setting/category/video/([0-9])/([0-9])/del/load$ 		?cmd=SettingVideoDelLoad&IdCategory=$1&IdVideo=$2 [L]
-RewriteRule ^setting/category/video/([0-9])/([0-9])/del/exe$ 		?cmd=SettingVideoDelExe&IdCategory=$1&IdVideo=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM.BLOG
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^blog/([a-z0-9_-]+)$ 											?cmd=Blog&IdKey=$1 [L]
@@ -116,12 +41,16 @@ RewriteRule ^blog/([a-z0-9_-]+)$ 											?cmd=Blog&IdKey=$1 [L]
 RewriteRule ^blog/([a-z0-9_-]+)/signin/load$ 								?cmd=BlogSigninLoad&IdKey=$1 [L]
 RewriteRule ^blog/([a-z0-9_-]+)/signin/exe$ 								?cmd=BlogSigninExe&IdKey=$1 [L]
 
-RewriteRule ^blog/([a-z0-9_-]+)/setting$ 									?cmd=Setting&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album$ 					?cmd=SettingBCategoryAlbum&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting$ 							?cmd=Setting&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album$ 						?cmd=SettingBAlbum&IdKey=$1 [L]
 
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/load$ 			?cmd=SettingBCategoryAlbumInsLoad&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/ins/exe$ 			?cmd=SettingBCategoryAlbumInsExe&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/load$ 	?cmd=SettingBCategoryAlbumUpdLoad&IdKey=$1&IdCategory=$2 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/upd/exe$ 	?cmd=SettingBCategoryAlbumUpdExe&IdKey=$1&IdCategory=$2 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/load$ 	?cmd=SettingBCategoryAlbumDelLoad&IdKey=$1&IdCategory=$2 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/setting/category/album/([0-9])/del/exe$ 	?cmd=SettingBCategoryAlbumDelExe&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/ins/load$ 			?cmd=SettingBAlbumInsLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/ins/exe$ 				?cmd=SettingBAlbumInsExe&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/upd/load$ 	?cmd=SettingBAlbumUpdLoad&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/upd/exe$ 		?cmd=SettingBAlbumUpdExe&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/del/load$ 	?cmd=SettingBAlbumDelLoad&IdKey=$1&IdCategory=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/del/exe$ 		?cmd=SettingBAlbumDelExe&IdKey=$1&IdCategory=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# BLOG.IMAGE
+#---------------------------------------------------------------------------------------------------------------------------

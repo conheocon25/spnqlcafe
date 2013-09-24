@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingBCategoryAlbumUpdExe extends Command {
+	class SettingBAlbumInsExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,29 +10,36 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$IdCategory = $request->getProperty('IdCategory');
+			//-------------------------------------------------------------						
+			$IdKey = $request->getProperty('IdKey');
 			$Name = $request->getProperty('Name');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\BCategoryAlbum();
-								
+			$mCustomer = new \MVC\Mapper\Customer();
+			$mAlbum = new \MVC\Mapper\BAlbum();
+					
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			if (!isset($Name))
+			if (!isset($Name)||$Name=="")
 				return self::statuses('CMD_OK');
-				
-			$Category = $mCategory->find($IdCategory);
-			$Category->setName($Name);
-			$mCategory->update($Category);
-						
+			
+			$Customer = $mCustomer->findByKey($IdKey);
+			$Category = new \MVC\Domain\BAlbum(
+				null,
+				$Customer->getId(),
+				$Name,				
+				0,
+				"abc"			
+			);
+			$Category->reKey();
+			$mAlbum->insert($Category);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			
 			return self::statuses('CMD_OK');
 		}
 	}

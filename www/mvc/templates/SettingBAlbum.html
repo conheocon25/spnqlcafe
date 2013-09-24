@@ -26,7 +26,7 @@
 											<tr role="row">
 												<th width="35">STT</th>
 												<th><div class="text-left">TÊN</div></th>
-												<th width="120"><div class="text-left">ALBUM</div></th>
+												<th width="120"><div class="text-left">CHI TIẾT</div></th>
 												<th width="32"><i class="icon-refresh my-ico"/></th>
 												<th width="32"><i class="icon-trash my-ico"/></th>
 											</tr>
@@ -35,7 +35,7 @@
 											<tr tal:repeat="Category CategoryAll1" class="gradeA odd">
 												<td align="center" tal:content="repeat/Category/number"/>
 												<td><a tal:attributes="href Category/getURLUpdLoad" tal:content="Category/getName"/></td>
-												<td><a tal:attributes="href Category/getURLView" tal:content="Category/getAlbumAll/count"/></td>
+												<td><a tal:attributes="href Category/getURLView"><span tal:content="Category/getAlbumAll/count" /> ảnh</a></td>
 												<td align="center"><a tal:attributes="href Category/getURLDelLoad"><i class="icon-pencil"/></a></td>
 												<td align="center"><a tal:attributes="href Category/getURLDelLoad"><i class="icon-remove"/></a></td>
 											</tr>
@@ -44,7 +44,7 @@
 									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
 										<div class="dataTables_filter">
 											<label style="margin-top:5px;">
-												<a tal:attributes="href Customer/getURLSettingCategoryAlbumInsLoad"><span class="icon-plus"/> Thêm mới</a>
+												<a tal:attributes="href Customer/getURLSettingBAlbumInsLoad"><span class="icon-plus"/> Thêm mới</a>
 											</label>
 										</div>
 										<div metal:use-macro="mBlog.xhtml/Pagebar"/>

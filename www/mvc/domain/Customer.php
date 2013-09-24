@@ -65,9 +65,9 @@ class Customer extends Object{
 	
 	function getURLSettingCategoryNews(){	return "/blog/".$this->getKey()."/setting/category/news";}
 		
-	function getURLSettingCategoryAlbum(){			return "/blog/".$this->getKey()."/setting/category/album";}
-	function getURLSettingCategoryAlbumInsLoad(){	return "/blog/".$this->getKey()."/setting/category/album/ins/load";}
-	function getURLSettingCategoryAlbumInsExe(){	return "/blog/".$this->getKey()."/setting/category/album/ins/exe";}
+	function getURLSettingBAlbum(){			return "/blog/".$this->getKey()."/setting/album";}
+	function getURLSettingBAlbumInsLoad(){	return "/blog/".$this->getKey()."/setting/album/ins/load";}
+	function getURLSettingBAlbumInsExe(){	return "/blog/".$this->getKey()."/setting/album/ins/exe";}
 	
 	function getURLSetingCategoryVideo(){	return "/blog/".$this->getKey()."/setting/category/video";}
 	function getURLSetingConfig(){			return "/blog/".$this->getKey()."/setting/config";}

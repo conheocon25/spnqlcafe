@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class BCategoryAlbum extends Object{
+class BAlbum extends Object{
 
     private $Id;
 	private $IdCustomer;
@@ -42,21 +42,21 @@ class BCategoryAlbum extends Object{
 	//GET LISTs
 	//-------------------------------------------------------------------------------
 	function getAlbumAll(){
-		$mAlbum = new \MVC\Mapper\Album();
-		$AlbumAll = $mAlbum->findByCategory(array($this->getId()));
-		return $AlbumAll;
+		$mBImage = new \MVC\Mapper\BImage();
+		$ImageAll = $mBImage->findByCategory(array($this->getId()));
+		return $ImageAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){		return "/setting/category/album/".$this->getId();}
-		
-	function getURLUpdLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/category/album/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/category/album/".$this->getId()."/upd/exe";}
+	function getURLView(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId();}
+	
+	function getURLUpdLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/exe";}
 			
-	function getURLDelLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/category/album/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/category/album/".$this->getId()."/del/exe";}
+	function getURLDelLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/del/load";}
+	function getURLDelExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/del/exe";}
 		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

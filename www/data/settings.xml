@@ -66,61 +66,27 @@
 		<command name="SettingNewsDelExe"><view>SettingNewsDelExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
 		
 		<!-- ============================================================================== -->
-		<!-- SETTING.CATEGORY.ALBUM	 														-->
+		<!-- SETTING.BLOG.ALBUM	 														-->
 		<!-- ============================================================================== -->
-		<command name="SettingBCategoryAlbum"><view>SettingBCategoryAlbum</view></command>
-		<command name="SettingBCategoryAlbumInsLoad"><view>SettingBCategoryAlbumInsLoad</view></command>
-		<command name="SettingBCategoryAlbumInsExe"><view>SettingBCategoryAlbumInsExe</view><status value="CMD_OK"><forward>SettingBCategoryAlbum</forward></status></command>
-		<command name="SettingBCategoryAlbumUpdLoad"><view>SettingBCategoryAlbumUpdLoad</view></command>
-		<command name="SettingBCategoryAlbumUpdExe"><view>SettingBCategoryAlbumUpdExe</view><status value="CMD_OK"><forward>SettingBCategoryAlbum</forward></status></command>		
-		<command name="SettingBCategoryAlbumDelLoad"><view>SettingBCategoryAlbumDelLoad</view></command>
-		<command name="SettingBCategoryAlbumDelExe"><view>SettingBCategoryAlbumDelExe</view><status value="CMD_OK"><forward>SettingBCategoryAlbum</forward></status></command>
+		<command name="SettingBAlbum"><view>SettingBAlbum</view></command>
+		<command name="SettingBAlbumInsLoad"><view>SettingBAlbumInsLoad</view></command>
+		<command name="SettingBAlbumInsExe"><view>SettingBAlbumInsExe</view><status value="CMD_OK"><forward>SettingBAlbum</forward></status></command>
+		<command name="SettingBAlbumUpdLoad"><view>SettingBAlbumUpdLoad</view></command>
+		<command name="SettingBAlbumUpdExe"><view>SettingBAlbumUpdExe</view><status value="CMD_OK"><forward>SettingBAlbum</forward></status></command>		
+		<command name="SettingBAlbumDelLoad"><view>SettingBAlbumDelLoad</view></command>
+		<command name="SettingBAlbumDelExe"><view>SettingBAlbumDelExe</view><status value="CMD_OK"><forward>SettingBAlbum</forward></status></command>
 		
 		<!-- ============================================================================== -->
-		<!-- SETTING.Album 																	-->
-		<!-- ============================================================================== -->		
-		<command name="SettingAlbum"><view>SettingAlbum</view></command>
-		<command name="SettingAlbumInsLoad"><view>SettingAlbumInsLoad</view></command>
-		<command name="SettingAlbumInsExe"><view>SettingAlbumInsExe</view><status value="CMD_OK"><forward>SettingAlbum</forward></status></command>
-		<command name="SettingAlbumUpdLoad"><view>SettingAlbumUpdLoad</view></command>
-		<command name="SettingAlbumUpdExe"><view>SettingAlbumUpdExe</view><status value="CMD_OK"><forward>SettingAlbum</forward></status></command>
-		<command name="SettingAlbumDelLoad"><view>SettingAlbumDelLoad</view></command>
-		<command name="SettingAlbumDelExe"><view>SettingAlbumDelExe</view><status value="CMD_OK"><forward>SettingAlbum</forward></status></command>
-		
-		
+		<!-- SETTING.BLOG.ALBUM 															-->
 		<!-- ============================================================================== -->
-		<!-- SETTING.CATEGORY.VIDEO	 														-->
-		<!-- ============================================================================== -->
-		<command name="SettingCategoryVideo"><view>SettingCategoryVideo</view></command>
-		<command name="SettingCategoryVideoInsLoad"><view>SettingCategoryVideoInsLoad</view></command>
-		<command name="SettingCategoryVideoInsExe"><view>SettingCategoryVideoInsExe</view><status value="CMD_OK"><forward>SettingCategoryVideo</forward></status></command>
-		<command name="SettingCategoryVideoUpdLoad"><view>SettingCategoryVideoUpdLoad</view></command>
-		<command name="SettingCategoryVideoUpdExe"><view>SettingCategoryVideoUpdExe</view><status value="CMD_OK"><forward>SettingCategoryVideo</forward></status></command>		
-		<command name="SettingCategoryVideoDelLoad"><view>SettingCategoryVideoDelLoad</view></command>
-		<command name="SettingCategoryVideoDelExe"><view>SettingCategoryVideoDelExe</view><status value="CMD_OK"><forward>SettingCategoryVideo</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.VIDEO 																	-->
-		<!-- ============================================================================== -->		
-		<command name="SettingVideo"><view>SettingVideo</view></command>
-		<command name="SettingVideoInsLoad"><view>SettingVideoInsLoad</view></command>
-		<command name="SettingVideoInsExe"><view>SettingVideoInsExe</view><status value="CMD_OK"><forward>SettingVideo</forward></status></command>
-		<command name="SettingVideoUpdLoad"><view>SettingVideoUpdLoad</view></command>
-		<command name="SettingVideoUpdExe"><view>SettingVideoUpdExe</view><status value="CMD_OK"><forward>SettingVideo</forward></status></command>
-		<command name="SettingVideoDelLoad"><view>SettingVideoDelLoad</view></command>
-		<command name="SettingVideoDelExe"><view>SettingVideoDelExe</view><status value="CMD_OK"><forward>SettingVideo</forward></status></command>
+		<command name="SettingBImage"><view>SettingBImage</view></command>
+		<command name="SettingBImageInsLoad"><view>SettingBImageInsLoad</view></command>
+		<command name="SettingBImageInsExe"><view>SettingBImageInsExe</view><status value="CMD_OK"><forward>SettingBImage</forward></status></command>
+		<command name="SettingBImageUpdLoad"><view>SettingBImageUpdLoad</view></command>
+		<command name="SettingBImageUpdExe"><view>SettingBImageUpdExe</view><status value="CMD_OK"><forward>SettingBImage</forward></status></command>
+		<command name="SettingBImageDelLoad"><view>SettingBImageDelLoad</view></command>
+		<command name="SettingBImageDelExe"><view>SettingBImageDelExe</view><status value="CMD_OK"><forward>SettingBImage</forward></status></command>
 				
-		<!-- ============================================================================== -->
-		<!-- SETTING.CUSTOMER			 													-->
-		<!-- ============================================================================== -->
-		<command name="SettingCustomer"><view>SettingCustomer</view></command>
-		<command name="SettingCustomerInsLoad"><view>SettingCustomerInsLoad</view></command>
-		<command name="SettingCustomerInsExe"><view>SettingCustomerInsExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
-		<command name="SettingCustomerUpdLoad"><view>SettingCustomerUpdLoad</view></command>
-		<command name="SettingCustomerUpdExe"><view>SettingCustomerUpdExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>		
-		<command name="SettingCustomerDelLoad"><view>SettingCustomerDelLoad</view></command>
-		<command name="SettingCustomerDelExe"><view>SettingCustomerDelExe</view><status value="CMD_OK"><forward>SettingCustomer</forward></status></command>
-		
 		<!-- ============================================================================== -->
 		<!-- BLOG			 																-->
 		<!-- ============================================================================== -->
@@ -131,22 +97,6 @@
 			<status value="CMD_NO_AUTHOR"><forward>BlogSigninLoad</forward></status>
 		</command>		
 		<command name="BlogSetting"><view>BlogSetting</view></command>
-		
-		<!-- ============================================================================== -->
-		<!-- BLOG.CATEGORY.ALBUM															-->
-		<!-- ============================================================================== -->
-		<command name="BlogSettingCategoryAlbum"><view>BlogSettingCategoryAlbum</view></command>
-		<command name="BlogSettingCategoryAlbumInsLoad"><view>BlogSettingCategoryAlbumInsLoad</view></command>
-		<command name="BlogSettingCategoryAlbumInsExe"><view>BlogSettingCategoryAlbumInsExe</view><status value="CMD_OK"><forward>BlogSettingCategoryAlbum</forward></status></command>
-		<command name="BlogSettingCategoryAlbumUpdLoad"><view>BlogSettingCategoryAlbumUpdLoad</view></command>
-		<command name="BlogSettingCategoryAlbumUpdExe"><view>BlogSettingCategoryAlbumUpdExe</view><status value="CMD_OK"><forward>BlogSettingCategoryAlbum</forward></status></command>		
-		<command name="BlogSettingCategoryAlbumDelLoad"><view>BlogSettingCategoryAlbumDelLoad</view></command>
-		<command name="BlogSettingCategoryAlbumDelExe"><view>BlogSettingCategoryAlbumDelExe</view><status value="CMD_OK"><forward>BlogSettingCategoryAlbum</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- BLOG.CATEGORY.NEWS																-->
-		<!-- ============================================================================== -->
-		<command name="BlogSettingCategoryNews"><view>BlogSettingCategoryNews</view></command>
-		
+				
 	</control>
 </options>
