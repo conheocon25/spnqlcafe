@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html style="overflow-y:hidden;" lang="en">
 	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeCSS"/>
 	</head>
 	
 	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mBlog.xhtml/Header"/>
 		<div class="menu">
 			<div id="sidebar">
 				<ul style="display: block;">
-					<li tal:repeat="Category1 CategoryAll" tal:attributes="class php: Category->getId()==Category1->getId()?'active':''">
-						<a tal:attributes="href Category1/getURLView">
-							<i class="icon-tags"></i> <span tal:content="Category1/getName"/>
+					<li tal:repeat="Album1 AlbumAll" tal:attributes="class php: Album->getId()==Album1->getId()?'active':''">
+						<a tal:attributes="href Album1/getURLImage">
+							<i class="icon-tags"></i> <span tal:content="Album1/getName"/>
 						</a>
 					</li>					
 				</ul>
 			</div>
 		</div>
 		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
-			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div metal:use-macro="mBlog.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mBlog.xhtml/LocationBar"/>
 			<div class="container-fluid">							
 				<div class="row">
 					<div class="col-xs-12">
@@ -41,23 +41,23 @@
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Video VideoAll" class="gradeA odd">
-												<td align="center" tal:content="repeat/Video/number"/>
-												<td><a tal:attributes="href Video/getURLUpdLoad" tal:content="Video/getName"/></td>
-												<td align="center"><a tal:attributes="href Video/getURLUpdLoad"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Video/getURLDelLoad"><i class="icon-remove"/></a></td>
+											<tr tal:repeat="Image ImageAll1" class="gradeA odd">
+												<td align="center" tal:content="repeat/Image/number"/>
+												<td><a tal:attributes="href Image/getURLUpdLoad" tal:content="Image/getName"/></td>
+												<td align="center"><a tal:attributes="href Image/getURLUpdLoad"><i class="icon-pencil"/></a></td>
+												<td align="center"><a tal:attributes="href Image/getURLDelLoad"><i class="icon-remove"/></a></td>
 											</tr>
 										</tbody>
 									</table>
 									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
 										<div class="dataTables_filter">
 											<label style="margin-top:5px;">
-												<a tal:attributes="href Category/getURLVideoInsLoad">
+												<a tal:attributes="href Album/getURLImageInsLoad">
 													<span class="icon-plus"/> Thêm mới
 												</a>
 											</label>
 										</div>
-										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
+										<div metal:use-macro="mBlog.xhtml/Pagebar"/>
 									</div>
 								</div>  
 							</div>
@@ -66,7 +66,7 @@
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mBlog.xhtml/Footer"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeJS"/>
 	</body>
 </html>

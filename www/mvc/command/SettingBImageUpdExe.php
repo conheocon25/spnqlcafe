@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCategoryVideoDelLoad extends Command {
+	class SettingBImageUpdExe extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,32 +11,36 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdAlbum = $request->getProperty('IdAlbum');
+			$IdImage = $request->getProperty('IdImage');
+			$Name = $request->getProperty('Name');
+			$URL = $request->getProperty('URL');
+			$Note = $request->getProperty('Note');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryVideo();
-					
+			$mImage = new \MVC\Mapper\BImage();
+								
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------							
-			$Category = $mCategory->find($IdCategory);			
+			//-------------------------------------------------------------
+			if (!isset($Name))
+				return self::statuses('CMD_OK');
+				
+			$Image = $mImage->find($IdImage);
+			$Image->setName($Name);
+			$Image->setURL($URL);
+			$Image->setNote($Note);
+			$Image->reKey();
 			
-			$Title = mb_strtoupper($Category->getName(), 'UTF8');
-			$Navigation = array(
-				array("ỨNG DỤNG", "/home"),
-				array("THIẾT LẬP", "/setting"),				
-				array("VIDEO", "/setting/category/video")
-			);
-			
+			$mImage->update($Image);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Category', $Category);
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'CategoryVideo');
-			$request->setObject('Navigation', $Navigation);
+			
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>

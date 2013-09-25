@@ -42,31 +42,9 @@
 		<command name="SettingConfigUpdExe"><view>SettingConfigUpdExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
 		<command name="SettingConfigDelLoad"><view>SettingConfigDelLoad</view></command>
 		<command name="SettingConfigDelExe"><view>SettingConfigDelExe</view><status value="CMD_OK"><forward>SettingConfig</forward></status></command>
-		
+	
 		<!-- ============================================================================== -->
-		<!-- SETTING.CATEGORY.NEWS 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingCategoryNews"><view>SettingCategoryNews</view></command>
-		<command name="SettingCategoryNewsInsLoad"><view>SettingCategoryNewsInsLoad</view></command>
-		<command name="SettingCategoryNewsInsExe"><view>SettingCategoryNewsInsExe</view><status value="CMD_OK"><forward>SettingCategoryNews</forward></status></command>
-		<command name="SettingCategoryNewsUpdLoad"><view>SettingCategoryNewsUpdLoad</view></command>
-		<command name="SettingCategoryNewsUpdExe"><view>SettingCategoryNewsUpdExe</view><status value="CMD_OK"><forward>SettingCategoryNews</forward></status></command>
-		<command name="SettingCategoryNewsDelLoad"><view>SettingCategoryNewsDelLoad</view></command>
-		<command name="SettingCategoryNewsDelExe"><view>SettingCategoryNewsDelExe</view><status value="CMD_OK"><forward>SettingCategoryNews</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.NEWS 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingNews"><view>SettingNews</view></command>
-		<command name="SettingNewsInsLoad"><view>SettingNewsInsLoad</view></command>
-		<command name="SettingNewsInsExe"><view>SettingNewsInsExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
-		<command name="SettingNewsUpdLoad"><view>SettingNewsUpdLoad</view></command>
-		<command name="SettingNewsUpdExe"><view>SettingNewsUpdExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
-		<command name="SettingNewsDelLoad"><view>SettingNewsDelLoad</view></command>
-		<command name="SettingNewsDelExe"><view>SettingNewsDelExe</view><status value="CMD_OK"><forward>SettingNews</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.BLOG.ALBUM	 														-->
+		<!-- SETTING.BLOG.ALBUM	 															-->
 		<!-- ============================================================================== -->
 		<command name="SettingBAlbum"><view>SettingBAlbum</view></command>
 		<command name="SettingBAlbumInsLoad"><view>SettingBAlbumInsLoad</view></command>

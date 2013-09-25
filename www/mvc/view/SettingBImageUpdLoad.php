@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/SettingAlbumDelLoad.html");
+	$Viewer = new Viewer("mvc/templates/SettingBImageUpdLoad.html");
 	echo $Viewer->html();
 ?>

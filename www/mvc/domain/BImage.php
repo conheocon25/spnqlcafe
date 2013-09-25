@@ -6,7 +6,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class BImage extends Object{
 
     private $Id;
-	private $IdCategory;
+	private $IdAlbum;
 	private $Name;
     private $Time;
 	private $URL;
@@ -16,11 +16,16 @@ class BImage extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null, $Name=null, $Time=null, $URL=null, $Note=null, $Key=null){$this->Id = $Id; $this->IdCategory = $IdCategory; $this->Name = $Name;$this->Time = $Time;$this->URL = $URL;$this->Note = $Note; $this->Key = $Key; parent::__construct( $Id );}
+    function __construct( $Id=null, $IdAlbum=null, $Name=null, $Time=null, $URL=null, $Note=null, $Key=null){$this->Id = $Id; $this->IdAlbum = $IdAlbum; $this->Name = $Name;$this->Time = $Time;$this->URL = $URL;$this->Note = $Note; $this->Key = $Key; parent::__construct( $Id );}
     function getId( ) {return $this->Id;}
 	
-	function setIdCategory( $IdCategory ){$this->IdCategory = $IdCategory;$this->markDirty();}
-    function getIdCategory( ) {return $this->IdCategory;}
+	function setIdAlbum( $IdAlbum ){$this->IdAlbum = $IdAlbum;$this->markDirty();}
+    function getIdAlbum( ) {return $this->IdAlbum;}
+	function getAlbum( ) {	
+		$mAlbum = new \MVC\Mapper\BAlbum();
+		$Album = $mAlbum->find($this->IdAlbum);		
+		return $Album;
+	}
 	
     function setName( $Name ){$this->Name = $Name;$this->markDirty();}
     function getName( ) {return $this->Name;}
@@ -44,12 +49,12 @@ class BImage extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------		
-	function getURLUpdLoad(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
+	//-------------------------------------------------------------------------------	
+	function getURLUpdLoad(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/category/BImage/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
+	function getURLDelLoad(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/del/load";}
+	function getURLDelExe(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/del/exe";}
 			
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

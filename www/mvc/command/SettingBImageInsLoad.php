@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCategoryVideoInsLoad extends Command {
+	class SettingBImageInsLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -10,29 +10,37 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-						
+			//-------------------------------------------------------------
+			$IdKey = $request->getProperty('IdKey');
+			$IdAlbum = $request->getProperty('IdAlbum');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryVideo();
+			$mAlbum = new \MVC\Mapper\BAlbum();
+			$mCustomer = new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------										
-			$Title = "THÊM MỚI";			
+			$Title = "THÊM MỚI";
+			$Customer = $mCustomer->findByKey($IdKey);
+			$Album = $mAlbum->find($IdAlbum);
 			$Navigation = array(
-				array("ỨNG DỤNG", "/home"),
-				array("THIẾT LẬP", "/setting"),
-				array("VIDEO", "/setting/category/video")
+				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
+				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
+				array("ALBUM", $Customer->getURLSettingBAlbum()),
+				array(mb_strtoupper($Album->getName(), 'UTF8'), $Album->getURLImage())
 			);
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
 			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'CategoryVideo');
+			$request->setProperty('ActiveAdmin', 'CategoryAlbum');
 			$request->setObject('Navigation', $Navigation);
+			$request->setObject("Customer", $Customer);
+			$request->setObject("Album", $Album);
 		}
 	}
 ?>
