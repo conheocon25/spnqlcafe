@@ -28,10 +28,10 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
         * (2) format định dạng các Stmt có sử dụng tiền tố
         * (3) prepare các Stmt 
         */
-		$tblCourse = "cafedemo_course";
-		$tblSession = "cafedemo_session";
-		$tblSessionDetail = "cafedemo_session_detail";
-		$tblR2C = "cafedemo_r2c";
+		$tblCourse = "demo2_course";
+		$tblSession = "demo2_session";
+		$tblSessionDetail = "demo2_session_detail";
+		$tblR2C = "demo2_r2c";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSessionDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSessionDetail);

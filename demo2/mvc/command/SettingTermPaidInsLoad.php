@@ -24,7 +24,7 @@
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
-				array("KHOẢN CHI", "/setting/termpaid")
+				array("DANH MỤC CHI", "/setting/termpaid")
 			);
 						
 			//-------------------------------------------------------------
@@ -32,7 +32,6 @@
 			//-------------------------------------------------------------						
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
-			
 		}
 	}
 ?>

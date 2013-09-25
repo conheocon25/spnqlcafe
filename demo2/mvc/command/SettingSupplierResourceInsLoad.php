@@ -31,7 +31,7 @@
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("NHÀ CUNG CẤP", "/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource() )
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource())
 			);
 			
 			//-------------------------------------------------------------
@@ -40,7 +40,7 @@
 			$request->setObject("Units", $Units);
 			$request->setObject("Supplier", $Supplier);			
 			$request->setProperty("Title", $Title);
-			$request->setObject("Navigation", $Navigation );
+			$request->setObject("Navigation", $Navigation);
 		}
 	}
 ?>

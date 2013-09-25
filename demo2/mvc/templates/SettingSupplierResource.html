@@ -1,71 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-						<div class="menu">
-							<ul class="nav nav-list">
-								<li class="nav-header">NHÀ PHÂN PHỐI</li>
-								<li tal:attributes="class php: Supplier1->getId()==Supplier->getId() ? 'active':'disable'" tal:repeat="Supplier1 SupplierAll">
-									<a tal:attributes="href Supplier1/getURLResource">
-										<span tal:content="Supplier1/getName" /> <span class="badge badge-info pull-right" tal:content="Supplier1/getResources/count"/>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="span9">
-						<div class="content">
-							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-										<th width="32">STT</th>
-										<th>TÊN</th>										
-										<th width="32">XÓA</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr tal:repeat="Resource Supplier/getResources">
-										<td width="32">
-											<div tal:content="repeat/Resource/number" />
-										</td>
-										<td>
-											<a tal:attributes="href Resource/getURLUpdLoad">
-												<div tal:content="Resource/getName" />
-											</a>
-										</td>										
-										<td width="32">
-											<a tal:attributes="href Resource/getURLDelLoad"><span class="icon-remove"/></a>
-										</td>
-									</tr>
-								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="4" align="center">
-											<a class="btn" tal:attributes="href Supplier/getURLResourceInsLoad">
-												<span class="icon-plus"/>Thêm mới
-											</a>
-										</td>
-									</tr>
-								</tfoot>
-							</table>
-							<!--
-							<span metal:use-macro="mAdmin.xhtml/PageBar"/>
-							!-->
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">
+			<div id="sidebar">
+				<ul style="display: block;">																				
+					<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+						<a tal:attributes="href Supplier1/getURLResource">
+							<i class="icon-truck" /><span tal:content="Supplier1/getName"/>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr role="row">
+												<th width="35">STT</th>
+												<th><div class="text-left">TÊN</div></th>
+												<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
+												<th width="120"><div class="text-right">GIÁ NHẬP</div></th>
+												<th width="32"><i class="icon-pencil my-ico"/></th>
+												<th width="32"><i class="icon-trash my-ico"/></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Resource ResourceAll" class="gradeA odd">
+												<td align="center" tal:content="repeat/Resource/number"/>
+												<td><a tal:attributes="href Resource/getURLUpdLoad" tal:content="Resource/getName"/></td>
+												<td align="left"><div tal:content="Resource/getUnit"/></td>
+												<td align="right"><div tal:content="Resource/getPricePrint"/></td>
+												<td align="center"><a tal:attributes="href Resource/getURLUpdLoad"><i class="icon-pencil"/></a></td>
+												<td align="center"><a tal:attributes="href Resource/getURLDelLoad"><i class="icon-remove"/></a></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+										<div class="dataTables_filter">
+											<label style="margin-top:5px;">
+												<a tal:attributes="href Supplier/getURLResourceInsLoad"><span class="icon-plus"/> Thêm mới</a>
+											</label>
+										</div>
+										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
+									</div>
+								</div>  
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
 </html>

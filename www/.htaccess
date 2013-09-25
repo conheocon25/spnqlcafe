@@ -36,12 +36,17 @@ RewriteRule ^setting/config/([0-9])/del/exe$ 				?cmd=SettingConfigDelExe&IdConf
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM.BLOG
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^blog/([a-z0-9_-]+)$ 											?cmd=Blog&IdKey=$1 [L]
-
-RewriteRule ^blog/([a-z0-9_-]+)/signin/load$ 								?cmd=BlogSigninLoad&IdKey=$1 [L]
-RewriteRule ^blog/([a-z0-9_-]+)/signin/exe$ 								?cmd=BlogSigninExe&IdKey=$1 [L]
-
+RewriteRule ^blog/([a-z0-9_-]+)$ 									?cmd=Blog&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/signin/load$ 						?cmd=BlogSigninLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/signin/exe$ 						?cmd=BlogSigninExe&IdKey=$1 [L]
 RewriteRule ^blog/([a-z0-9_-]+)/setting$ 							?cmd=Setting&IdKey=$1 [L]
+
+RewriteRule ^blog/([a-z0-9_-]+)/setting/info/upd/load$ 				?cmd=SettingInfoUpdLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/info/upd/exe$ 				?cmd=SettingInfoUpdExe&IdKey=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# BLOG.ALBUM
+#---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^blog/([a-z0-9_-]+)/setting/album$ 						?cmd=SettingBAlbum&IdKey=$1 [L]
 
 RewriteRule ^blog/([a-z0-9_-]+)/setting/album/ins/load$ 			?cmd=SettingBAlbumInsLoad&IdKey=$1 [L]

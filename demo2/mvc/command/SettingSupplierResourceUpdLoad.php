@@ -27,13 +27,13 @@
 			$Units = $mUnit->findAll();			
 			$Resource = $mResource->find($IdResource);
 			$Supplier = $mSupplier->find($IdSupplier);
-						
+				
 			$Title = mb_strtoupper($Resource->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("NHÀ CUNG CẤP", "/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource() )
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource())
 			);
 			
 			//-------------------------------------------------------------

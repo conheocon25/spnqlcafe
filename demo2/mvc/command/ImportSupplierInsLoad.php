@@ -22,13 +22,18 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Supplier = $mSupplier->find($IdSupplier);
-			$Title = "NHẬP HÀNG / ".mb_strtoupper($Supplier->getName()." / THÊM", 'UTF8');
+			$Title = "THÊM MỚI";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("NHẬP HÀNG", "/import"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLImport())				
+			);
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', $Supplier->getURLImport());
+			$request->setObject('Navigation', $Navigation);			
 			$request->setObject('Supplier', $Supplier);			
 						
 			return self::statuses('CMD_DEFAULT');

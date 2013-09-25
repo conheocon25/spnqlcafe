@@ -22,12 +22,17 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
 			$Tracking = $mTracking->find($IdTrack);
-			$Title = mb_strtoupper("BÁO CÁO / THEO DÕI / XÓA", 'UTF8');
+			$Title = mb_strtoupper($Tracking->getName(), 'UTF8');
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("BÁO CÁO", "/report")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject('Tracking', $Tracking);	
+			$request->setObject('Navigation', $Navigation);	
 			$request->setProperty('Title', $Title);
 			$request->setProperty('URLHeader', '/report');
 		}

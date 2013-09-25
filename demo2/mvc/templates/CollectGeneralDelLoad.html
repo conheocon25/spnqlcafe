@@ -1,28 +1,38 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>	
-	<div data-role="page" class="category type-interior">		
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">				
-				<form tal:attributes="action Collect/getURLDelExe" method="post" data-ajax="false">
-					<ul data-role="listview" data-theme="c" data-dividertheme="b">
-						<li data-role="list-divider">
-							Chắc chắn muốn xóa phí <b tal:content="Collect/getDatePrint" /> ?
-						</li>
-						<button data-corners="false" type="submit" data-theme="c"  data-icon="delete" name="submit" value="submit-value">Xóa</button>
-					</ul>					
-				</form>				
-			</div>
-			<div class="content-secondary">
-				
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-warning-sign"></i></span>
+								<h5>XÓA</h5>
+							</div>
+							<div class="widget-content">								
+								<form class="form-actions" tal:attributes="action Collect/getURLDelExe" method="post">
+									<div class="alert alert-danger alert-block">
+										<h4 class="alert-heading">Bạn có chắc chắn muốn xóa ?</h4>
+									</div>
+									<button type="submit" class="btn btn-primary" value="submit-value"><i class="icon-trash"/> Xóa</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
 </html>

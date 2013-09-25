@@ -56,13 +56,10 @@ class Customer extends Object{
 	
 	//=================================================================================		
 	function getURLSigninExe(){	return "/blog/".$this->getKey()."/signin/exe";}
-	
-	function getURLUpdLoad(){	return "/setting/customer/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/customer/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){	return "/setting/customer/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/customer/".$this->getId()."/del/exe";}
-	
+		
+	function getURLUpdLoad(){	return "/blog/".$this->getKey()."/setting/info/upd/load";}
+	function getURLUpdExe(){	return "/blog/".$this->getKey()."/setting/info/upd/exe";}
+			
 	function getURLSettingCategoryNews(){	return "/blog/".$this->getKey()."/setting/category/news";}
 		
 	function getURLSettingBAlbum(){			return "/blog/".$this->getKey()."/setting/album";}

@@ -29,14 +29,13 @@
 				array("THIẾT LẬP", "/setting"),
 				array("CẤU HÌNH", "/setting/config")
 			);
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Config', $Config);			
-			$request->setObject('Navigation', $Navigation);
 			$request->setProperty('Title', $Title);
-			
+			$request->setObject('Config', $Config);
+			$request->setObject('Navigation', $Navigation);			
 		}
 	}
 ?>

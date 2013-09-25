@@ -31,15 +31,15 @@
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("NHÀ CUNG CẤP", "/setting/supplier"),
-				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource() )
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLResource())
 			);
-			
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('Resource', $Resource);			
+			$request->setObject('Resource', $Resource);
 			$request->setProperty('Title', $Title);
-			$request->setObject("Navigation", $Navigation );
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

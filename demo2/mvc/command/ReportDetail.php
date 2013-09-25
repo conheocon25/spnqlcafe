@@ -21,6 +21,7 @@
 			$mTermCollect = new \MVC\Mapper\TermCollect();
 			$mCustomer = new \MVC\Mapper\Customer();
 			$mSupplier = new \MVC\Mapper\Supplier();
+			$mEmployee = new \MVC\Mapper\Employee();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,6 +32,7 @@
 			$TermCollectAll = $mTermCollect->findAll();
 			$SupplierAll = $mSupplier->findAll();
 			$CustomerAll = $mCustomer->findAll();
+			$EmployeeAll = $mEmployee->findAll();
 			
 			$DateCurrent = 'THÁNG '.\date("m/Y", strtotime($Tracking->getDateStart()));
 			
@@ -52,6 +54,7 @@
 			$request->setObject('TermPaidAll', $TermPaidAll);
 			$request->setObject('TermCollectAll', $TermCollectAll);
 			$request->setObject('SupplierAll', $SupplierAll);
+			$request->setObject('EmployeeAll', $EmployeeAll);
 		}
 	}
 ?>

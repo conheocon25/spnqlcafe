@@ -1,44 +1,76 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>
-	<div tal:attributes="id Employee/getIdPrint" data-role="page" class="type-interior" tal:repeat="Employee EmployeeAll">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">
-				<ul data-role="listview" data-theme="c" data-dividertheme="b">
-					<li data-role="list-divider" tal:content="php:'CHI PHÍ / LƯƠNG NHÂN VIÊN / ' . mb_strtoupper(Employee->getName(), 'UTF8')"/>
-					<li tal:repeat="Paid Employee/getPayRollAll">
-						<a data-ajax="false" tal:attributes="href Paid/getURLUpdLoad">
-							<h3><span tal:content="Paid/getDatePrint"/></h3>
-							<p><span tal:content="Paid/getNote" /></p>
-							<p class="ui-li-aside"><strong tal:content="Paid/getValueBasePrint"></strong></p>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">
+			<div id="sidebar">
+				<ul style="display: block;">
+					<li tal:repeat="Employee1 EmployeeAll" tal:attributes="class php:Employee1->getId()==Employee->getId()?'active':'disable'">
+						<a tal:attributes="href Employee1/getURLPPR">
+							<i class="icon-user" /><span tal:content="Employee1/getName"/>							
 						</a>
-						<a tal:attributes="href Paid/getURLDelLoad" data-theme='c' data-icon="delete"/>
-					</li>
-					<li>
-						<a data-corners="false" data-ajax="false" tal:attributes="href Employee/getURLPPRInsLoad" data-theme="c">Thêm mới ...</a>
-						<a data-ajax="false" tal:attributes="href Employee/getURLPPRInsLoad" data-theme='c' data-icon="plus"/>
 					</li>
 				</ul>
 			</div>
-			<div class="content-secondary">
-				<div data-role="collapsible" data-collapsed="false" data-theme="b" data-content-theme="d">
-					<h3>NHÂN VIÊN</h3>
-					<ul data-role="listview" data-theme="c" data-dividertheme="d">
-						<li tal:attributes="data-theme php:Employee->getId()==Employee1->getId()?'a':'c'" tal:repeat="Employee1 EmployeeAll1">
-							<a data-transition="none" tal:attributes="href Employee1/getURLPPR">
-								<span tal:content="repeat/Employee1/number"/>. <span tal:content="Employee1/getName"/>
-							</a>
-						</li>
-					</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr>
+												<th width="30"><div class="text-center">STT</div></th>
+												<th><div class="text-left">NGÀY</div></th>
+												<th width="120"><div class="text-right">CƠ BẢN</div></th>
+												<th width="120"><div class="text-right">PHỤ CẤP</div></th>
+												<th width="120"><div class="text-right">TẠM ỨNG</div></th>
+												<th width="120"><div class="text-right">T.TIỀN</div></th>
+												<th width="30" />
+											</tr>
+										</thead>								
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Paid Employee/getPayRollAll">
+												<td><div class="text-center" tal:content="repeat/Paid/number" /></td>
+												<td><a tal:attributes="href Paid/getURLUpdLoad"><div tal:content="Paid/getDatePrint"/></a></td>										
+												<td><div class="text-right" tal:content="Paid/getValueBasePrint"/></td>
+												<td><div class="text-right" tal:content="Paid/getValueSubPrint"/></td>
+												<td><div class="text-right" tal:content="Paid/getValuePrePrint"/></td>
+												<td><div class="text-right" tal:content="Paid/getValueRealPrint"/></td>
+												<td><a tal:attributes="href Paid/getURLDelLoad"><span class="icon-remove"/></a></td>
+											</tr>
+										</tbody>										
+									</table>
+									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+										<div class="dataTables_filter">
+											<label style="margin-top:5px;">
+												<a tal:attributes="href Employee/getURLPPRInsLoad"><span class="icon-plus"/> Thêm mới</a>
+											</label>
+										</div>
+										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
+									</div>
+								</div>  
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
 </html>

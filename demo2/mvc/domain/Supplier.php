@@ -35,50 +35,22 @@ class Supplier extends Object{
 		
         parent::__construct( $id );
     }
-    function getId( ) {
-        return $this->id;
-    }	
-	function getIdPrint( ) {
-        return "s".$this->id;
-    }	
+    function getId( ) {return $this->id;}	
+		
+    function setName( $name ) {$this->name = $name;$this->markDirty();}
+    function getName( ) {return $this->name;}
 	
-    function setName( $name ) {
-        $this->name = $name;
-        $this->markDirty();
-    }
-    function getName( ) {
-        return $this->name;
-    }
-	function getPhone( ) {
-        return $this->phone;
-    }
-    function setPhone( $phone ) {
-        $this->phone = $phone;
-        $this->markDirty();
-    }
-	function setAddress( $address ) {
-        $this->address = $address;
-        $this->markDirty();
-    }
-    function getAddress( ) {
-        return $this->address;
-    }
+	function getPhone( ) {return $this->phone;}
+    function setPhone( $phone ) {$this->phone = $phone;$this->markDirty();}
 	
-	function setNote( $Note ) {
-        $this->note = $Note;
-        $this->markDirty();
-    }
-	function getNote( ) {
-        return $this->note;
-    }
+	function setAddress( $address ) {$this->address = $address;$this->markDirty();}
+    function getAddress( ) {return $this->address;}
 	
-	function setDebt( $Debt ) {
-        $this->debt = $Debt;
-        $this->markDirty();
-    }
-	function getDebt( ){
-        return $this->debt;
-    }
+	function setNote( $Note ) {$this->note = $Note;$this->markDirty();}
+	function getNote( ) {return $this->note;}
+	
+	function setDebt( $Debt ) {$this->debt = $Debt; $this->markDirty();}
+	function getDebt( ){return $this->debt;}
 	
 	//--------------------------------------------------------	
 	//TÍNH CÔNG NỢ
@@ -130,18 +102,12 @@ class Supplier extends Object{
 	//GET LISTs
 	//-------------------------------------------------------------------------------
 	
-	//Lấy về danh sách trả tiền
-	function getPaidsTop10(){		
+	//Lấy về danh sách trả tiền	
+	function getPaidAll(){		
 		$mSP = new \MVC\Mapper\PaidSupplier();
-		$paids = $mSP->findByTop10(array($this->getId()));
-		return $paids;
-	}
-	function getPaids(){
-		if (!isset($this->paids)){
-			$mSP = new \MVC\Mapper\PaidSupplier();
-			$this->paids = $mSP->findBy(array($this->getId()));
-		}
-		return $this->paids;
+		$PaidAll = $mSP->findBy(array($this->getId()));
+		
+		return $PaidAll;
 	}
 	function getPaidsTracking(){
 		if (!isset($this->PaidsTracking)){
@@ -172,17 +138,12 @@ class Supplier extends Object{
 	
 			
 	//Lấy về danh sách các đơn hàng
-	function getOrders(){
+	function getOrderAll(){
 		$mOrderImport = new \MVC\Mapper\OrderImport();
-		$Orders = $mOrderImport->findBy(array($this->getId()));
-		return $Orders;
+		$OrderAll = $mOrderImport->findBy(array($this->getId()));
+		return $OrderAll;
 	}
-	function getOrdersTop10(){
-		$mOrderImport = new \MVC\Mapper\OrderImport();
-		$Orders = $mOrderImport->findByTop10(array($this->getId()));
-		return $Orders;
-	}
-	
+		
 	function getOrdersTracking(){
 		if (!isset($this->OrdersTracking)){
 			$Session = \MVC\Base\SessionRegistry::instance();
@@ -212,7 +173,7 @@ class Supplier extends Object{
 	}
 	
 	//Lấy về danh sách các tài nguyên nhà cung cấp có
-	function getResources() {
+	function getResourceAll() {
 		$mResource = new \MVC\Mapper\Resource();
 		$Resources = $mResource->findBySupplier(array($this->getId()));
 		return $Resources;
@@ -228,18 +189,14 @@ class Supplier extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.SUPPLIER
 	//-------------------------------------------------------------------------------	
-	function getURL(){return "/setting/resource#".$this->getId();}
+	function getURLResource(){return "/setting/supplier/".$this->getId();}
 		
 	function getURLUpdLoad(){return "/setting/supplier/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){return "/setting/supplier/".$this->getId()."/upd/exe";}
 	
 	function getURLDelLoad(){return "/setting/supplier/".$this->getId()."/del/load";}
 	function getURLDelExe(){return "/setting/supplier/".$this->getId()."/del/exe";}
-	
-	function getURLResource(){		
-		return "/setting/supplier/".$this->getId();
-	}
-	
+			
 	function getURLResourceInsLoad(){return "/setting/supplier/".$this->getId()."/ins/load";}
 	function getURLResourceInsExe(){return "/setting/supplier/".$this->getId()."/ins/exe";}
 	

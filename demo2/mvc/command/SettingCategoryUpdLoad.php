@@ -22,6 +22,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
 			$Category = $mCategory->find($IdCategory);			
+			
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
@@ -34,7 +35,7 @@
 			//-------------------------------------------------------------						
 			$request->setObject('Category', $Category);			
 			$request->setProperty('Title', $Title);
-			$request->setObject('Navigation', $Navigation);			
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

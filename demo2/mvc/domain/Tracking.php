@@ -6,11 +6,12 @@ class Tracking extends Object{
     private $Id;
 	private $DateStart;
 	private $DateEnd;
-		
+	private $EstateRate;
+	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $DateStart=null, $DateEnd=null, $EstateRate=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd;  parent::__construct( $Id );}
+    function __construct( $Id=null, $DateStart=null, $DateEnd=null, $EstateRate=null) {$this->Id = $Id; $this->DateStart = $DateStart; $this->DateEnd = $DateEnd; $this->EstateRate = $EstateRate;  parent::__construct( $Id );}
     
 	function getId() {return $this->Id;}	
 	function getIdPrint(){return "u" . $this->getId();}	
@@ -23,6 +24,10 @@ class Tracking extends Object{
 	function setDateEnd( $DateEnd ) {$this->DateEnd= $DateEnd;$this->markDirty();}   
 	function getDateEnd( ) {return $this->DateEnd;}	
 	function getDateEndPrint( ) {$D = new \MVC\Library\Date($this->DateEnd);return $D->getDateFormat();}
+	
+	function setEstateRate( $EstateRate ) {$this->EstateRate = $EstateRate;$this->markDirty();}   
+	function getEstateRate( ) {return $this->EstateRate;}
+	function getEstateRatePrint( ) {$N = new \MVC\Library\Number($this->EstateRate);return $N->formatCurrency();}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -233,8 +238,22 @@ class Tracking extends Object{
 	function getCustomerNewDebt($IdCustomer){return \abs($this->getCustomerOldDebt($IdCustomer)) + $this->getCustomerDebtSessionAllValue($IdCustomer) - $this->getCustomerCollectAllValue($IdCustomer);}
 	function getCustomerNewDebtPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->formatCurrency()." đ";}	
 	function getCustomerNewDebtStrPrint($IdCustomer){$N = new \MVC\Library\Number( $this->getCustomerNewDebt($IdCustomer) );return $N->readDigit();}	
+	
 	//CÁC LIÊN KẾT CỦA CÁC NGÀY TRONG THÁNG
-	function getURLDayAll(){$Data = array();$Date = $this->getDateStart();$EndDate = $this->getDateEnd();while (strtotime($Date) <= strtotime($EndDate)){$Data[] = array(\date("d/m", strtotime($Date)),"/report/selling/".$Date."/detail");$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));}return $Data;}
+	function getURLDayAll(){
+		$Data = array();
+		$Date = $this->getDateStart();
+		$EndDate = $this->getDateEnd();
+		while (strtotime($Date) <= strtotime($EndDate)){
+			$Data[] = array(
+					\date("d/m", strtotime($Date)),
+					"/report/selling/".$Date."/detail",
+					"/report/import/".$Date."/detail",
+					"/report/paid/".$Date."/detail",
+					"/report/collect/".$Date."/detail"
+			);
+			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));}return $Data;
+		}
 	
 	//-------------------------------------------------------------------------------
 	//LƯƠNG NHÂN VIÊN
@@ -260,6 +279,8 @@ class Tracking extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
+	
+	function getURLCustomer(){return "/report/customer/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLPaidPayRoll(){return "/report/paid/payroll/".$this->getId();}	
 	function getURLPaidGeneral(){return "/report/paid/".$this->getId();}

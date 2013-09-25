@@ -1,40 +1,50 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>						
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>		
-	<!-- supplier -->
-	<div data-role="page" class="supplier type-interior">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">				
-				<ul data-role="listview" data-theme="c" data-dividertheme="b">
-					<li data-role="list-divider" tal:content="Title" />
-					<li tal:repeat="Order OrderAll">
-						<a data-ajax="false" tal:attributes="href Order/getURLDetail">
-							<span tal:content="repeat/Order/number"/>. <span tal:content="Order/getDatePrint"/>
-							<span class="ui-li-count" tal:content="Order/getValuePrint" />
-						</a>
-						<a tal:attributes="href Order/getURLDelLoad" data-theme="c" data-icon="delete" />
-					</li>
-					<li>
-						<a data-theme="c" data-ajax="false" tal:attributes="href Supplier/getURLImportInsLoad">Thêm mới ...</a>
-						<a data-ajax="false" tal:attributes="href Supplier/getURLImportInsLoad" data-theme="c" data-icon="plus" />
-					</li>
-				</ul>				
-			</div>
-			<div class="content-secondary">
-				<ul data-role="listview" data-theme="c" data-dividertheme="d">					
-					<li data-role="list-divider">CÁC TRANG</li>
-					<li tal:repeat="P PN/getPages" tal:attributes="data-theme php: P->getId()==Page?'a':'c'">
-						<a data-ajax="false" tal:attributes="href P/getURL" tal:content="P/getName"/>
-					</li>
-				</ul>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr role="row">
+												<th width="35">STT</th>
+												<th><div class="text-left">TÊN</div></th>
+												<th width="32"><i class="icon-truck my-ico"/></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr class="gradeA odd" tal:repeat="Supplier SupplierAll">
+												<td align="center" tal:content="repeat/Supplier/number"/>
+												<td><a tal:attributes="href Supplier/getURLImport" ><span tal:content="Supplier/getName"/></a></td>
+												<td align="center"><a tal:attributes="href Supplier/getURLImport"><i class="icon-truck"/></a></td>
+											</tr>											
+										</tbody>
+									</table>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
 </html>

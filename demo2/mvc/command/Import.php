@@ -11,35 +11,30 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdSupplier = $request->getProperty('IdSupplier');
-			$Page = $request->getProperty('Page');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mSupplier = new \MVC\Mapper\Supplier();
-			$mOrder = new \MVC\Mapper\OrderImport();
-			$mConfig = new \MVC\Mapper\Config();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Supplier = $mSupplier->find($IdSupplier);
-			$Config = $mConfig->findByName('ROW_PER_PAGE');
-			if (!isset($Page)) $Page = 1;
-			$OrderAll = $mOrder->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Supplier->getOrders()->count(), $Config->getValue(), $Supplier->getURLImport());
+			$SupplierAll = $mSupplier->findAll();
+												
+			$Title = "NHẬP HÀNG";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app")				
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject("Supplier", $Supplier);
-			$request->setObject("OrderAll", $OrderAll);
-			$request->setObject("PN", $PN);
-			
-			$request->setProperty('URLHeader', "/app");
-			$request->setProperty('Page', $Page);			
-			$request->setProperty('Title', "NHẬP HÀNG / ".$Supplier->getName() );
+			$request->setObject("SupplierAll", $SupplierAll);
+												
+			$request->setProperty('Title', $Title );
+			$request->setProperty('ActiveAdmin', 'Import' );
+			$request->setObject("Navigation", $Navigation);
 			
 			return self::statuses('CMD_DEFAULT');
 		}
