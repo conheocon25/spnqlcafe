@@ -1,39 +1,59 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/PaidSupplierListInsLoad.js"/>
-	</head>
-<body>	
-	<div data-role="page" class="category type-interior">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">				
-				<form data-ajax="false" tal:attributes="action Customer/getURLCollectInsExe" method="post">
-					<ul data-role="listview" data-theme="c" data-dividertheme="b">
-						<li data-role="list-divider" tal:content="Title" />
-						<li data-role="fieldcontain">
-							<label for="Date">Ngày:</label>
-							<input class="required" name="Date" id="Date" />
-						</li>
-						<li data-role="fieldcontain">
-							<label for="Value" class="text">Giá trị:</label>
-							<input class="required" id="Value" name="Value" type="text" />
-						</li>
-						<li data-role="fieldcontain">
-							<label for="Note" class="text">Diễn giải:</label>
-							<textarea cols="40" rows="8" name="Note" id="Note" data-mini="true"></textarea>
-						</li>
-						<button data-corners="false" type="submit" data-theme="c"  data-icon="check" name="submit" value="submit-value">Thêm mới</button>
-					</ul>
-				</form>
-			</div>
-			<div class="content-secondary">
-				
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+	</head>	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-align-justify"></i></span>
+								<h5>THÊM MỚI</h5>
+							</div>
+							<div class="widget-content nopadding">
+								<form class="form-horizontal" tal:attributes="action Customer/getURLCollectInsExe" method="post">
+									<div class="control-group">
+										<label class="control-label" for="Date">Ngày</label>
+										<div class="controls">
+											<input id="Date" name="Date" type="text" data-date-format="yyyy-mm-dd" class="form-control input-sm"/>
+										</div>
+									</div>									
+									<div class="control-group">
+										<label class="control-label" for="Value">Giá trị</label>
+										<div class="controls">
+											<input id="ValueSub" name="Value" type="text" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="Note">Diễn giải</label>
+										<div class="controls">
+											<input id="Note" name="Note" type="text" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="form-actions">
+										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Lưu</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+			/*<![CDATA[*/
+				$('#Date').datepicker();
+			/*]]>*/
+		</script>
+	</body>
 </html>

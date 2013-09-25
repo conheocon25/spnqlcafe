@@ -25,16 +25,14 @@
 										<thead>
 											<tr role="row">
 												<th width="35">STT</th>
-												<th><div class="text-left">THÁNG</div></th>												
-												<th width="32"><i class="icon-refresh my-ico"/></th>
+												<th><div class="text-left">THÁNG</div></th>																								
 												<th width="32"><i class="icon-trash my-ico"/></th>
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
 											<tr tal:repeat="Track Tracks" class="gradeA odd">
 												<td align="center" tal:content="repeat/Track/number"/>
-												<td><a tal:attributes="href Track/getURLView" tal:content="Track/getName"/></td>
-												<td align="center"><a tal:attributes="href Track/getURLUpdLoad"><i class="icon-pencil"/></a></td>
+												<td><a tal:attributes="href Track/getURLView" tal:content="Track/getName"/></td>												
 												<td align="center"><a tal:attributes="href Track/getURLDelLoad"><i class="icon-remove"/></a></td>
 											</tr>
 										</tbody>

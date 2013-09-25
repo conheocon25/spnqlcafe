@@ -112,6 +112,29 @@
 		<command name="SellingDomainTableCheckoutExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckoutExe</view></command>
 		
 		<!-- ============================================================================== -->
+		<!-- COLLECT.CUSTOMER			 														-->
+		<!-- ============================================================================== -->						
+		<command name="CollectCustomer"><view>CollectCustomer</view></command>
+		<command name="CollectCustomerInsLoad"><view>CollectCustomerInsLoad</view></command>
+		<command name="CollectCustomerInsExe"><view>CollectCustomerInsExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
+		<command name="CollectCustomerUpdLoad"><view>CollectCustomerUpdLoad</view></command>
+		<command name="CollectCustomerUpdExe"><view>CollectCustomerUpdExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
+		<command name="CollectCustomerDelLoad"><view>CollectCustomerDelLoad</view></command>
+		<command name="CollectCustomerDelExe"><view>CollectCustomerDelExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
+		
+		<!-- ============================================================================== -->
+		<!-- COLLECT.GENERAL		 														-->
+		<!-- ============================================================================== -->
+		<command name="Collect"><view>Collect</view></command>
+		<command name="CollectGeneral"><view>CollectGeneral</view></command>
+		<command name="CollectGeneralInsLoad"><view>CollectGeneralInsLoad</view></command>
+		<command name="CollectGeneralInsExe"><view>CollectGeneralInsExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
+		<command name="CollectGeneralUpdLoad"><view>CollectGeneralUpdLoad</view></command>
+		<command name="CollectGeneralUpdExe"><view>CollectGeneralUpdExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
+		<command name="CollectGeneralDelLoad"><view>CollectGeneralDelLoad</view></command>
+		<command name="CollectGeneralDelExe"><view>CollectGeneralDelExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
+		
+		<!-- ============================================================================== -->
 		<!-- PAID.GENERAL		 															-->
 		<!-- ============================================================================== -->								
 		<command name="PaidGeneral"><view>PaidGeneral</view></command>
