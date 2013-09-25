@@ -13,7 +13,6 @@
 			//-------------------------------------------------------------						
 			$DateStart = $request->getProperty('DateStart');
 			$DateEnd = $request->getProperty('DateEnd');
-			$EstateRate = $request->getProperty('EstateRate');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -30,7 +29,7 @@
 				null,
 				$DateStart,
 				$DateEnd,
-				$EstateRate
+				0
 			);			
 			$mTracking->insert($Tracking);
 			
