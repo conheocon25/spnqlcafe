@@ -1,40 +1,72 @@
-<!DOCTYPE html> 
-<html>
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="macros.xhtml/IncludeCSS_Mobile"/>
-		<span metal:use-macro="macros.xhtml/IncludeJS_Mobile"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-<body>
-	<div data-role="page" class="type-interior">
-		<span metal:use-macro="macros.xhtml/header"/>
-		<div data-role="content">
-			<div class="content-primary">
-				<ul data-role="listview" data-theme="c" data-dividertheme="b">
-					<li data-role="list-divider" tal:content="php:'KHÁCH HÀNG / ' . mb_strtoupper(Customer->getName(), 'UTF8') . ' / TRẢ TIỀN'"/>
-					<li tal:repeat="Collect CollectAll">
-						<a data-ajax="false" tal:attributes="href Collect/getURLUpdLoad">
-							<h3><span tal:content="repeat/Collect/number"/>. <span tal:content="Collect/getDatePrint"/></h3>
-							<p><span tal:content="Collect/getNote" /></p>
-							<p class="ui-li-aside"><strong tal:content="Collect/getValuePrint"></strong></p>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">
+			<div id="sidebar">
+				<ul style="display: block;">
+					<li tal:repeat="Customer1 CustomerAll" tal:attributes="class php:Customer1->getId()==Customer->getId()?'active':'disable'">
+						<a tal:attributes="href Customer1/getURLCollect">
+							<i class="icon-truck" /><span tal:content="Customer1/getName"/>							
 						</a>
-						<a tal:attributes="href Collect/getURLDelLoad" data-theme='c' data-icon="delete"/>
-					</li>
-					<li>						
-						<a data-corners="false" data-ajax="false" tal:attributes="href Customer/getURLCollectInsLoad" data-theme="c">Thêm mới ...</a>
-						<a data-ajax="false" tal:attributes="href Customer/getURLCollectInsLoad" data-theme='c' data-icon="plus"/>
-					</li>
-				</ul>								
-			</div><!--/content-primary -->
-			<div class="content-secondary">
-				<ul data-role="listview" data-theme="c" data-dividertheme="d">					
-					<li data-role="list-divider">CÁC TRANG</li>
-					<li tal:repeat="P PN/getPages" tal:attributes="data-theme php: P->getId()==Page?'a':'c'">
-						<a data-ajax="false" tal:attributes="href P/getURL" tal:content="P/getName"/>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<span metal:use-macro="macros.xhtml/footer"/>
-	</div>
-</body>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr>
+												<th width="30"><div class="text-center">STT</div></th>
+												<th width="120">NGÀY</th>
+												<th>DIỄN GIẢI</th>
+												<th width="120"><div class="text-right">GIÁ TRỊ</div></th>
+												<th width="30" />
+											</tr>
+										</thead>								
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="Collect CollectAll">
+												<td><div class="text-center" tal:content="repeat/Collect/number" /></td>
+												<td><a tal:attributes="href Collect/getURLUpdLoad"><div tal:content="Collect/getDatePrint"/></a></td>
+												<td><div tal:content="Collect/getNote"/></td>
+												<td><div class="text-right" tal:content="Collect/getValuePrint"/></td>
+												<td><a tal:attributes="href Collect/getURLDelLoad"><span class="icon-remove"/></a></td>
+											</tr>
+										</tbody>										
+									</table>
+									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+										<div class="dataTables_filter">
+											<label style="margin-top:5px;">
+												<a tal:attributes="href Customer/getURLCollectInsLoad"><span class="icon-plus"/> Thêm mới</a>
+											</label>
+										</div>
+										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
+									</div>
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
 </html>

@@ -18,14 +18,18 @@
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Title = "BÁO CÁO / THÊM THEO DÕI";
+			//-------------------------------------------------------------			
+			$Title = "THÊM MỚI";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("BÁO CÁO", "/report")
+			);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setProperty('Title', $Title);			
-			$request->setProperty('URLHeader', '/report');
+			$request->setProperty('Title', $Title);
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

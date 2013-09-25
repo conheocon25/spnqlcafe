@@ -23,6 +23,7 @@
 			//-------------------------------------------------------------							
 			$Unit = $mUnit->find($IdUnit);
 			$Title = mb_strtoupper($Unit->getName(), 'UTF8');
+			
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
@@ -32,10 +33,9 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Unit', $Unit);			
-			$request->setObject('Navigation', $Navigation);			
+			$request->setObject('Unit', $Unit);
+			$request->setObject('Navigation', $Navigation);
 			$request->setProperty('Title', $Title);
-			
 		}
 	}
 ?>

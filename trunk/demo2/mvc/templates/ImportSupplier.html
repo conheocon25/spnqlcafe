@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">
+			<div id="sidebar">
+				<ul style="display: block;">
+					<li tal:repeat="Supplier1 SupplierAll" tal:attributes="class php:Supplier1->getId()==Supplier->getId()?'active':'disable'">
+						<a tal:attributes="href Supplier1/getURLImport">
+							<i class="icon-truck" /><span tal:content="Supplier1/getName"/>							
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-table"/></span>
+								<h5 tal:content="Title"/> 
+							</div>
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover data-table">
+										<thead>
+											<tr>
+												<th width="30">STT</th>
+												<th width="120"><div class="text-left">NGÀY</div></th>
+												<th><div class="text-left">DIỄN GIẢI</div></th>
+												<th width="160"><div class="text-right">GIÁ TRỊ</div></th>
+												<th width="30">IN</th>
+												<th width="30">XÓA</th>
+											</tr>
+										</thead>								
+										<tbody>
+											<tr tal:repeat="Order OrderAll">
+												<td><div tal:content="repeat/Order/number" /></td>
+												<td><a tal:attributes="href Order/getURLUpdLoad"><div tal:content="Order/getDatePrint"/></a></td>
+												<td align="left"><div tal:content="Order/getDescription"/></td>
+												<td align="right">
+													<a tal:attributes="href Order/getURLDetail">
+														<div tal:content="Order/getValuePrint"/>
+													</a>
+												</td>
+												<td>
+													<a target="blank" tal:attributes="href Order/getURLPrint">
+														<i class="icon-print"/>
+													</a>
+												</td>
+												<td>
+													<a tal:attributes="href Order/getURLDelLoad"><span class="icon-remove"/></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+										<div class="dataTables_filter">
+											<label style="margin-top:5px;">
+												<a tal:attributes="href Supplier/getURLImportInsLoad"><span class="icon-plus"/> Thêm mới</a>
+											</label>
+										</div>
+										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
+									</div>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

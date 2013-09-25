@@ -24,15 +24,21 @@
 			//-------------------------------------------------------------						
 			$Supplier = $mSupplier->find($IdSupplier);
 			$PSs = $mPS->findBy(array($IdSupplier));
-			$Title = mb_strtoupper("CHI PHÍ / ".$Supplier->getName()." / THÊM", 'UTF8');
+			
+			$Title = "THÊM MỚI";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN CHI", "/paid"),
+				array("NHÀ CUNG CẤP", "/paid/supplier"),
+				array(mb_strtoupper($Supplier->getName(), 'UTF8'), $Supplier->getURLPaid())
+			);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setProperty('Title', $Title);
-			$request->setProperty('URLHeader', $Supplier->getURLPaid() );
-			$request->setObject('Supplier', $Supplier);
-			$request->setObject('PaidSuppliers1', $PSs);
+			$request->setObject('Navigation', $Navigation);
+			$request->setObject('Supplier', $Supplier);			
 		}
 	}
 ?>

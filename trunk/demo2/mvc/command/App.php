@@ -31,9 +31,15 @@
 			$DomainAll = $mDomain->findAll();
 			$CustomerAll = $mCustomer->findAll();
 			
+			$Title = "ỨNG DỤNG";
+			$Navigation = array();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
+			//-------------------------------------------------------------
+			$request->setProperty("ActiveAdmin", "Admin");
+			$request->setProperty("Title", $Title);
+			$request->setObject("Navigation", $Navigation);
 			$request->setObject("DomainAll", $DomainAll);
 			$request->setObject("TermCollectAll", $TermCollectAll);
 			$request->setObject("TermPaidAll", $TermPaidAll);

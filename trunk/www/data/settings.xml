@@ -14,9 +14,7 @@
 			<status value="CMD_NO_AUTHOR"><forward>SigninLoad</forward></status>
 		</command>		
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
-		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>						
-		<command name="Setting"><view>Setting</view></command>
-		
+		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>										
 		<command name="ContactInsExe"><view>ContactInsExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
@@ -28,9 +26,11 @@
 		</command>
 		
 		<!-- ============================================================================== -->
-		<!-- REPORT.DETAIL			 														-->
-		<!-- ============================================================================== -->		
-		<command name="Report"><view>Report</view></command>
+		<!-- SETTING			 														-->
+		<!-- ============================================================================== -->				
+		<command name="Setting"><view>Setting</view></command>
+		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
+		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING.CONFIG 																-->

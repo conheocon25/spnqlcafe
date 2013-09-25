@@ -21,7 +21,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$UserSelected = $mUser->find($IdUser);			
+			$UserSelected = $mUser->find($IdUser);
 			
 			$Title = mb_strtoupper($UserSelected->getName(), 'UTF8');
 			$Navigation = array(
@@ -29,7 +29,7 @@
 				array("THIẾT LẬP", "/setting"),
 				array("NGƯỜI DÙNG", "/setting/user")
 			);
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			

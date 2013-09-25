@@ -24,11 +24,24 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Supplier = $mSupplier->find($IdSupplier);
+			$SupplierAll = $mSupplier->findAll();
+			if (!isset($IdSupplier)){
+				$Supplier = $SupplierAll->current();
+				$IdSupplier = $Supplier->getId();
+			}else{
+				$Supplier = $mSupplier->find($IdSupplier);
+			}
+			
 			$Config = $mConfig->findByName('ROW_PER_PAGE');
 			if (!isset($Page)) $Page = 1;
 			$PaidAll = $mPaidSupplier->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation( $Supplier->getPaids()->count(), $Config->getValue(), $Supplier->getURLPaid());
+			$PN = new \MVC\Domain\PageNavigation( $Supplier->getPaidAll()->count(), $Config->getValue(), $Supplier->getURLPaid());
+			
+			$Title = "NHÀ CUNG CẤP";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN CHI", "/paid")
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -36,9 +49,10 @@
 			$request->setObject('PN', $PN);
 			$request->setObject('PaidAll', $PaidAll);
 			$request->setObject('Supplier', $Supplier);
+			$request->setObject('SupplierAll', $SupplierAll);
 			$request->setProperty('Page', $Page);
-			$request->setProperty('URLHeader', "/app");
-			$request->setProperty('Title', "CÁC KHOẢN CHI / NHÀ CUNG CẤP / ".$Supplier->getName() );			
+			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title', $Title);
 		}
 	}
 ?>

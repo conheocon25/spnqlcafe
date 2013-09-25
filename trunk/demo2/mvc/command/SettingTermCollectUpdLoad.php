@@ -21,20 +21,20 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Term = $mTerm->find($IdTerm);			
+			$Term = $mTerm->find($IdTerm);
 			$Title = mb_strtoupper($Term->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
-				array("KHOẢN THU", "/setting/termcollect")
+				array("DANH MỤC THU", "/setting/termcollect")
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject('Term', $Term);			
-			$request->setProperty('Title', $Title);
-			$request->setObject('Navigation', $Navigation);
+			$request->setObject('Term', $Term);
+			$request->setObject('Navigation', $Navigation);			
+			$request->setProperty('Title', $Title);			
 		}
 	}
 ?>

@@ -6,7 +6,7 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTracking = "cafedemo_tracking";
+		$tblTracking = "demo2_tracking";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY date_start", $tblTracking);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);

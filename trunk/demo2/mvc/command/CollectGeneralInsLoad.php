@@ -23,12 +23,19 @@
 			//-------------------------------------------------------------						
 			$Term = $mTerm->find($IdTerm);
 			
+			$Title = "THÊM MỚI";
+			$Navigation = array(
+				array("ỨNG DỤNG", "/app"),
+				array("KHOẢN THU", "/collect"),
+				array("CHUNG", "/collect/general")
+			);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject('Term', $Term);
-			$request->setProperty('URLHeader', $Term->getURLCollect() );
-			$request->setProperty('Title', "KHOẢN THU / ".mb_strtoupper($Term->getName(), 'UTF8')." / THÊM");
+			$request->setObject('Term', $Term);			
+			$request->setProperty('Title', $Title);
+			$request->setObject('Navigation', $Navigation);
 		}
 	}
 ?>

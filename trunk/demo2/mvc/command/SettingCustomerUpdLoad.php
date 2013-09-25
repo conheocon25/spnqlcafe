@@ -23,7 +23,6 @@
 			//-------------------------------------------------------------							
 			$Customer = $mCustomer->find($IdCustomer);
 			$Customers = $mCustomer->findAll();			
-			
 			$Title = mb_strtoupper($Customer->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
