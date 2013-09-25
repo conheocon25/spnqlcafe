@@ -11,7 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdAlbum = $request->getProperty('IdAlbum');
 			$Name = $request->getProperty('Name');
 			
 			//-------------------------------------------------------------
@@ -25,7 +25,7 @@
 			if (!isset($Name))
 				return self::statuses('CMD_OK');
 				
-			$Category = $mAlbum->find($IdCategory);
+			$Category = $mAlbum->find($IdAlbum);
 			$Category->setName($Name);
 			$mAlbum->update($Category);
 						

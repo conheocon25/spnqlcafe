@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingBAlbum extends Command{
+	class SettingBImage extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -12,6 +12,7 @@
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
 			$IdKey = $request->getProperty('IdKey');
+			$IdAlbum = $request->getProperty('IdAlbum');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -20,19 +21,22 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Title = "ALBUM";
-			$Customer = $mCustomer->findByKey($IdKey);			
-			$Navigation = array(
-				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
-				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting")
-			);
-			
+			//-------------------------------------------------------------												
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$AlbumAll = $mBAlbum->findBy(array($Customer->getId()));
-			$AlbumAll1 = $mBAlbum->findByPage(array($Customer->getId(), $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($AlbumAll->count(), $Config->getValue(), "/setting/album/news" );
+			$Album = $mBAlbum->find($IdAlbum);
+			$AlbumAll = $mBAlbum->findAll();
+			$ImageAll = $mBImage->findBy(array($IdAlbum));
+			$ImageAll1 = $mBImage->findByPage(array($IdAlbum, $Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($ImageAll->count(), $Config->getValue(), "/setting/category/news" );
+			
+			$Title = mb_strtoupper($Album->getName(), 'UTF8');
+			$Customer = $mCustomer->findByKey($IdKey);
+			$Navigation = array(
+				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
+				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
+				array("ALBUM", $Customer->getURLSettingBAlbum())
+			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -44,7 +48,9 @@
 			$request->setObject("PN", $PN);
 			
 			$request->setObject("Customer", $Customer);
-			$request->setObject("AlbumAll1", $AlbumAll1);
+			$request->setObject("Album", $Album);
+			$request->setObject("AlbumAll", $AlbumAll);
+			$request->setObject("ImageAll1", $ImageAll1);
 		}
 	}
 ?>

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html style="overflow-y:hidden;" lang="en">
 	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeCSS"/>
 	</head>
 	
 	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/Menu"/>
+		<div metal:use-macro="mBlog.xhtml/Header"/>		
 		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div metal:use-macro="mBlog.xhtml/ContentHeader"/>
+			<div metal:use-macro="mBlog.xhtml/LocationBar"/>
 			<div class="container-fluid">							
 				<div class="row">
 					<div class="col-xs-12">
@@ -20,7 +19,7 @@
 								<h5>XÓA</h5>
 							</div>
 							<div class="widget-content">								
-								<form class="form-actions" tal:attributes="action Category/getURLDelExe" method="post">
+								<form class="form-actions" tal:attributes="action Image/getURLDelExe" method="post">
 									<div class="alert alert-danger alert-block">
 										<h4 class="alert-heading">Bạn có chắc chắn muốn xóa ?</h4>
 									</div>
@@ -32,7 +31,7 @@
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mBlog.xhtml/Footer"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeJS"/>
 	</body>
 </html>

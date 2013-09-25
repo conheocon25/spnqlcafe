@@ -32,12 +32,12 @@
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Category CategoryAll1" class="gradeA odd">
-												<td align="center" tal:content="repeat/Category/number"/>
-												<td><a tal:attributes="href Category/getURLUpdLoad" tal:content="Category/getName"/></td>
-												<td><a tal:attributes="href Category/getURLView"><span tal:content="Category/getAlbumAll/count" /> ảnh</a></td>
-												<td align="center"><a tal:attributes="href Category/getURLDelLoad"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Category/getURLDelLoad"><i class="icon-remove"/></a></td>
+											<tr tal:repeat="Album AlbumAll1" class="gradeA odd">
+												<td align="center" tal:content="repeat/Album/number"/>
+												<td><a tal:attributes="href Album/getURLUpdLoad" tal:content="Album/getName"/></td>
+												<td><a tal:attributes="href Album/getURLImage"><span tal:content="Album/getImageAll/count" /> ảnh</a></td>
+												<td align="center"><a tal:attributes="href Album/getURLDelLoad"><i class="icon-pencil"/></a></td>
+												<td align="center"><a tal:attributes="href Album/getURLDelLoad"><i class="icon-remove"/></a></td>
 											</tr>
 										</tbody>
 									</table>

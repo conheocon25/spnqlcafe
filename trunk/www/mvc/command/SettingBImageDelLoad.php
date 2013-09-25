@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingCategoryNewsInsLoad extends Command {
+	class SettingBImageDelLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,25 +11,37 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-						
+			$IdKey = $request->getProperty('IdKey');
+			$IdAlbum = $request->getProperty('IdAlbum');
+			$IdImage = $request->getProperty('IdImage');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCategory = new \MVC\Mapper\CategoryNews();
+			$mAlbum = new \MVC\Mapper\BAlbum();
+			$mImage = new \MVC\Mapper\BImage();
+			$mCustomer = new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------										
-			$Title = "THÊM MỚI";			
+			//-------------------------------------------------------------							
+			$Album = $mAlbum->find($IdAlbum);
+			$Image = $mImage->find($IdImage);
+			$Customer = $mCustomer->findByKey($IdKey);									
+			
+			$Title = mb_strtoupper($Image->getName(), 'UTF8');
 			$Navigation = array(
-				array("ỨNG DỤNG", "/home"),
-				array("THIẾT LẬP", "/setting"),
-				array("DANH MỤC MÓN", "/setting/category")
+				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
+				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
+				array("ALBUM", $Customer->getURLSettingBAlbum() ),
+				array(mb_strtoupper($Album->getName(), 'UTF8'), $Album->getURLImage() )
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
+			$request->setObject('Image', $Image);
+			$request->setObject('Customer', $Customer);
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
 		}

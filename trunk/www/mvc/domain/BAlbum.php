@@ -41,16 +41,18 @@ class BAlbum extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getAlbumAll(){
+	function getImageAll(){
 		$mBImage = new \MVC\Mapper\BImage();
-		$ImageAll = $mBImage->findByCategory(array($this->getId()));
+		$ImageAll = $mBImage->findBy(array($this->getId()));
 		return $ImageAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId();}
+	function getURLImage(){				return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId();}
+	function getURLImageInsLoad(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/ins/load";}
+	function getURLImageInsExe(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/ins/exe";}
 	
 	function getURLUpdLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/load";}
 	function getURLUpdExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/exe";}

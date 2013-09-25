@@ -12,7 +12,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$IdKey = $request->getProperty('IdKey');
-			$IdCategory = $request->getProperty('IdCategory');
+			$IdAlbum = $request->getProperty('IdAlbum');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -23,7 +23,7 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
-			$Category = $mAlbum->find($IdCategory);
+			$Category = $mAlbum->find($IdAlbum);
 			$Customer = $mCustomer->findByKey($IdKey);
 			
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
