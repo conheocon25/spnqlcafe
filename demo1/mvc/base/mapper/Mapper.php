@@ -20,7 +20,7 @@ abstract class Mapper implements \MVC\Domain\Finder {
             
 			$dsn = "mysql:host=localhost;";
 			$dbname = "dbname=qlcafe_dbdemo";			
-			$user = "qlcafe_userdb";
+			$user = "qlcafe_userdemo";
 			$pass = "admin068198";
 						
             if ( is_null( $dsn ) ) {
