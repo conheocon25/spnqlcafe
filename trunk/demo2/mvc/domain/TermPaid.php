@@ -48,10 +48,10 @@ class TermPaid extends Object{
 	function getURLDelLoad(){return "/setting/termpaid/".$this->getId()."/del/load";}
 	function getURLDelExe(){return "/setting/termpaid/".$this->getId()."/del/exe";}
 	
-	function getURLDetail(){return "/paid/general/".$this->getId();}
+	function getURLDetail(){return "/money/paid/general/".$this->getId();}
 	
-	function getURLPaidInsLoad(){return "/paid/general/".$this->getId()."/ins/load";}
-	function getURLPaidInsExe(){return "/paid/general/".$this->getId()."/ins/exe";}
+	function getURLPaidInsLoad(){return "/money/paid/general/".$this->getId()."/ins/load";}
+	function getURLPaidInsExe(){return "/money/paid/general/".$this->getId()."/ins/exe";}
 		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

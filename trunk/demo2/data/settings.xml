@@ -49,10 +49,7 @@
 				
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
-		<!-- ============================================================================== -->		
-		<command name="ReportStoreRecipePrint"><view>ReportStoreRecipePrint</view></command>
-		<command name="ReportFormStorePrint"><view>ReportFormStorePrint</view></command>
-								
+		<!-- ============================================================================== -->												
 		<command name="ReportDetail"><view>ReportDetail</view></command>
 		<command name="ReportDetailInsLoad"><view>ReportDetailInsLoad</view></command>
 		<command name="ReportDetailInsExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailInsExe</view></command>
@@ -60,15 +57,11 @@
 		<command name="ReportDetailUpdExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailUpdExe</view></command>
 		<command name="ReportDetailDelLoad"><view>ReportDetailDelLoad</view></command>
 		<command name="ReportDetailDelExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailDelExe</view></command>
+			
 				
-		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
-		<command name="ReportCustomerGeneral"><view>ReportCustomerGeneral</view></command>
-		
 		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
 		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
-		<command name="ReportImportDetail"><view>ReportImportDetail</view></command>
-		<command name="ReportImportGeneral"><view>ReportImportGeneral</view></command>
-		
+				
 		<command name="ReportCollectDetail"><view>ReportCollectDetail</view></command>
 		<command name="ReportCollectGeneral"><view>ReportCollectGeneral</view></command>
 		
@@ -76,9 +69,7 @@
 		<command name="ReportSellingDetail"><view>ReportSellingDetail</view></command>
 		<command name="ReportSellingRefresh"><view>ReportSellingRefresh</view></command>
 		
-		<command name="ReportCourse"><view>ReportCourse</view></command>
-		<command name="ReportStore"><view>ReportStore</view></command>
-		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
+		<command name="ReportCourse"><view>ReportCourse</view></command>		
 		<command name="ReportGeneral"><view>ReportGeneral</view></command>
 		
 		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
@@ -110,97 +101,28 @@
 		<command name="SellingDomainTablePrint"><view>SellingDomainTablePrint</view></command>
 		<command name="SellingDomainTableCheckinExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckinExe</view></command>
 		<command name="SellingDomainTableCheckoutExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckoutExe</view></command>
-		
+						
 		<!-- ============================================================================== -->
-		<!-- COLLECT.CUSTOMER			 														-->
-		<!-- ============================================================================== -->						
-		<command name="CollectCustomer"><view>CollectCustomer</view></command>
-		<command name="CollectCustomerInsLoad"><view>CollectCustomerInsLoad</view></command>
-		<command name="CollectCustomerInsExe"><view>CollectCustomerInsExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		<command name="CollectCustomerUpdLoad"><view>CollectCustomerUpdLoad</view></command>
-		<command name="CollectCustomerUpdExe"><view>CollectCustomerUpdExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		<command name="CollectCustomerDelLoad"><view>CollectCustomerDelLoad</view></command>
-		<command name="CollectCustomerDelExe"><view>CollectCustomerDelExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		
+		<!-- MONEY		 														-->
 		<!-- ============================================================================== -->
-		<!-- COLLECT.GENERAL		 														-->
-		<!-- ============================================================================== -->
-		<command name="Collect"><view>Collect</view></command>
-		<command name="CollectGeneral"><view>CollectGeneral</view></command>
-		<command name="CollectGeneralInsLoad"><view>CollectGeneralInsLoad</view></command>
-		<command name="CollectGeneralInsExe"><view>CollectGeneralInsExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
-		<command name="CollectGeneralUpdLoad"><view>CollectGeneralUpdLoad</view></command>
-		<command name="CollectGeneralUpdExe"><view>CollectGeneralUpdExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
-		<command name="CollectGeneralDelLoad"><view>CollectGeneralDelLoad</view></command>
-		<command name="CollectGeneralDelExe"><view>CollectGeneralDelExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
+		<command name="Money"><view>Money</view></command>
 		
-		<!-- ============================================================================== -->
-		<!-- PAID.GENERAL		 															-->
-		<!-- ============================================================================== -->								
-		<command name="PaidGeneral"><view>PaidGeneral</view></command>
-		<command name="PaidGeneralInsLoad"><view>PaidGeneralInsLoad</view></command>
-		<command name="PaidGeneralInsExe"><view>PaidGeneralInsExe</view><status value="CMD_OK"><forward>PaidGeneral</forward></status></command>
-		<command name="PaidGeneralUpdLoad"><view>PaidGeneralUpdLoad</view></command>
-		<command name="PaidGeneralUpdExe"><view>PaidGeneralUpdExe</view><status value="CMD_OK"><forward>PaidGeneral</forward></status></command>
-		<command name="PaidGeneralDelLoad"><view>PaidGeneralDelLoad</view></command>
-		<command name="PaidGeneralDelExe"><view>PaidGeneralDelExe</view><status value="CMD_OK"><forward>PaidGeneral</forward></status></command>
-
-		<!-- ============================================================================== -->
-		<!-- PAID.PAYROLL			 														-->
-		<!-- ============================================================================== -->						
-		<command name="PaidPayRoll"><view>PaidPayRoll</view></command>
-		<command name="PaidPayRollInsLoad"><view>PaidPayRollInsLoad</view></command>
-		<command name="PaidPayRollInsExe"><view>PaidPayRollInsExe</view><status value="CMD_OK"><forward>PaidPayRoll</forward></status></command>
-		<command name="PaidPayRollUpdLoad"><view>PaidPayRollUpdLoad</view></command>
-		<command name="PaidPayRollUpdExe"><view>PaidPayRollUpdExe</view><status value="CMD_OK"><forward>PaidPayRoll</forward></status></command>
-		<command name="PaidPayRollDelLoad"><view>PaidPayRollDelLoad</view></command>
-		<command name="PaidPayRollDelExe"><view>PaidPayRollDelExe</view><status value="CMD_OK"><forward>PaidPayRoll</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- PAID.EMPLOYEE			 														-->
-		<!-- ============================================================================== -->						
-		<command name="PaidEmployee"><view>PaidEmployee</view></command>
-		<command name="PaidEmployeeInsLoad"><view>PaidEmployeeInsLoad</view></command>
-		<command name="PaidEmployeeInsExe"><view>PaidEmployeeInsExe</view><status value="CMD_OK"><forward>PaidEmployee</forward></status></command>
-		<command name="PaidEmployeeUpdLoad"><view>PaidEmployeeUpdLoad</view></command>
-		<command name="PaidEmployeeUpdExe"><view>PaidEmployeeUpdExe</view><status value="CMD_OK"><forward>PaidEmployee</forward></status></command>
-		<command name="PaidEmployeeDelLoad"><view>PaidEmployeeDelLoad</view></command>
-		<command name="PaidEmployeeDelExe"><view>PaidEmployeeDelExe</view><status value="CMD_OK"><forward>PaidEmployee</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- PAID.SUPPLIER			 														-->
-		<!-- ============================================================================== -->						
-		<command name="PaidSupplier"><view>PaidSupplier</view></command>
-		<command name="PaidSupplierInsLoad"><view>PaidSupplierInsLoad</view></command>
-		<command name="PaidSupplierInsExe"><view>PaidSupplierInsExe</view><status value="CMD_OK"><forward>PaidSupplier</forward></status></command>
-		<command name="PaidSupplierUpdLoad"><view>PaidSupplierUpdLoad</view></command>
-		<command name="PaidSupplierUpdExe"><view>PaidSupplierUpdExe</view><status value="CMD_OK"><forward>PaidSupplier</forward></status></command>
-		<command name="PaidSupplierDelLoad"><view>PaidSupplierDelLoad</view></command>
-		<command name="PaidSupplierDelExe"><view>PaidSupplierDelExe</view><status value="CMD_OK"><forward>PaidSupplier</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- COLLECT.CUSTOMER			 														-->
-		<!-- ============================================================================== -->						
-		<command name="CollectCustomer"><view>CollectCustomer</view></command>
-		<command name="CollectCustomerInsLoad"><view>CollectCustomerInsLoad</view></command>
-		<command name="CollectCustomerInsExe"><view>CollectCustomerInsExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		<command name="CollectCustomerUpdLoad"><view>CollectCustomerUpdLoad</view></command>
-		<command name="CollectCustomerUpdExe"><view>CollectCustomerUpdExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		<command name="CollectCustomerDelLoad"><view>CollectCustomerDelLoad</view></command>
-		<command name="CollectCustomerDelExe"><view>CollectCustomerDelExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- COLLECT.GENERAL		 															-->
-		<!-- ============================================================================== -->								
-		<command name="CollectGeneral"><view>CollectGeneral</view></command>
-		<command name="CollectGeneralInsLoad"><view>CollectGeneralInsLoad</view></command>
-		<command name="CollectGeneralInsExe"><view>CollectGeneralInsExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
-		<command name="CollectGeneralUpdLoad"><view>CollectGeneralUpdLoad</view></command>
-		<command name="CollectGeneralUpdExe"><view>CollectGeneralUpdExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
-		<command name="CollectGeneralDelLoad"><view>CollectGeneralDelLoad</view></command>
-		<command name="CollectGeneralDelExe"><view>CollectGeneralDelExe</view><status value="CMD_OK"><forward>CollectGeneral</forward></status></command>
-		
-		
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectGeneralInsLoad"><view>MoneyCollectGeneralInsLoad</view></command>
+		<command name="MoneyCollectGeneralInsExe"><view>MoneyCollectGeneralInsExe</view><status value="CMD_OK"><forward>MoneyCollectGeneral</forward></status></command>
+		<command name="MoneyCollectGeneralUpdLoad"><view>MoneyCollectGeneralUpdLoad</view></command>
+		<command name="MoneyCollectGeneralUpdExe"><view>MoneyCollectGeneralUpdExe</view><status value="CMD_OK"><forward>MoneyCollectGeneral</forward></status></command>
+		<command name="MoneyCollectGeneralDelLoad"><view>MoneyCollectGeneralDelLoad</view></command>
+		<command name="MoneyCollectGeneralDelExe"><view>MoneyCollectGeneralDelExe</view><status value="CMD_OK"><forward>MoneyCollectGeneral</forward></status></command>
+				
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidGeneralInsLoad"><view>MoneyPaidGeneralInsLoad</view></command>
+		<command name="MoneyPaidGeneralInsExe"><view>MoneyPaidGeneralInsExe</view><status value="CMD_OK"><forward>MoneyPaidGeneral</forward></status></command>
+		<command name="MoneyPaidGeneralUpdLoad"><view>MoneyPaidGeneralUpdLoad</view></command>
+		<command name="MoneyPaidGeneralUpdExe"><view>MoneyPaidGeneralUpdExe</view><status value="CMD_OK"><forward>MoneyPaidGeneral</forward></status></command>
+		<command name="MoneyPaidGeneralDelLoad"><view>MoneyPaidGeneralDelLoad</view></command>
+		<command name="MoneyPaidGeneralDelExe"><view>MoneyPaidGeneralDelExe</view><status value="CMD_OK"><forward>MoneyPaidGeneral</forward></status></command>
+			
 		<!-- ============================================================================== -->
 		<!-- SETTING.CUSTOMER	 															-->
 		<!-- ============================================================================== -->		
@@ -302,17 +224,7 @@
 		<command name="SettingCategoryCourseUpdExe"><view>SettingCategoryCourseUpdExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>		
 		<command name="SettingCategoryCourseDelLoad"><view>SettingCategoryCourseDelLoad</view></command>
 		<command name="SettingCategoryCourseDelExe"><view>SettingCategoryCourseDelExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.CATEGORY.COURSE.RECIPE													-->
-		<!-- ============================================================================== -->
-		<command name="SettingCategoryCourseRecipe"><view>SettingCategoryCourseRecipe</view></command>
-		<command name="SettingCategoryCourseRecipeInsLoad"><view>SettingCategoryCourseRecipeInsLoad</view></command>
-		<command name="SettingCategoryCourseRecipeInsExe"><view>SettingCategoryCourseRecipeInsExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
-		<command name="SettingCategoryCourseRecipeUpdLoad"><view>SettingCategoryCourseRecipeUpdLoad</view></command>
-		<command name="SettingCategoryCourseRecipeUpdExe"><view>SettingCategoryCourseRecipeUpdExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
-		<command name="SettingCategoryCourseRecipeDelLoad"><view>SettingCategoryCourseRecipeDelLoad</view></command>
-		<command name="SettingCategoryCourseRecipeDelExe"><view>SettingCategoryCourseRecipeDelExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
+				
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING.SUPPLIER	 															-->
@@ -357,8 +269,7 @@
 		<command name="SettingSupplierResourceUpdExe"><view>SettingSupplierResourceUpdExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
 		<command name="SettingSupplierResourceDelLoad"><view>SettingSupplierResourceDelLoad</view></command>
 		<command name="SettingSupplierResourceDelExe"><view>SettingSupplierResourceDelExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>		
-				
-								
+										
 		<!-- ============================================================================== -->
 		<!-- SETTING.INFO		 															-->
 		<!-- ============================================================================== -->		

@@ -10,9 +10,8 @@
 		<div class="menu">
 			<div id="sidebar">
 				<ul style="display: block;">
-					<li><a tal:attributes="href Tracking/getURLCustomer"><i class="icon-user" />KHÁCH HÀNG</a></li>
 					<li><a target="blank" tal:attributes="href Tracking/getURLCourse"><i class="icon-beer" /> CÁC MÓN</a></li>
-					<li><a target="blank" tal:attributes="href Tracking/getURLStore"><i class="icon-book" /> TỔN KHO</a></li>
+					<li><a target="blank" tal:attributes="href Tracking/getURLSellingGeneral"><i class="icon-book" /> TỔNG KẾT</a></li>
 				</ul>
 			</div>
 		</div>
@@ -34,28 +33,48 @@
 											<tr role="row">												
 												<th><div class="text-left">NGÀY</div></th>
 												<th width="120"><div class="text-left">DOANH SỐ</div></th>
-												<th width="120"><div class="text-left">NHẬP HÀNG</div></th>
-												<th width="120"><div class="text-left">KHOẢN CHI</div></th>
-												<th width="120"><div class="text-left">KHOẢN THU</div></th>
 											</tr>
 										</thead>
 										<tbody role="alert" aria-live="polite" aria-relevant="all">											
 											<tr tal:repeat="Day Tracking/getURLDayAll" class="gradeA odd">
 												<td><a tal:attributes="href php:Day[1]" target="blank"><span tal:content="php:Day[0]"/></a></td>
 												<td><a tal:attributes="href php:Day[1]" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href php:Day[2]" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href php:Day[3]" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href php:Day[4]" target="blank"><span class="icon-print"/></a></td>
+											</tr>											
+										</tbody>
+									</table>
+									<br/>
+									<table class="table table-bordered table-striped table-hover data-table">
+										<caption><h3>LƯƠNG THÁNG</h3></caption>
+										<thead>
+											<tr>										
+												<th width="32"><div class="text-center">STT</div></th>
+												<th><div class="text-left">NHÂN VIÊN</div></th>
+												<th width="120"><div class="text-left">LƯƠNG</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">											
+											<tr tal:repeat="Employee EmployeeAll">
+												<td><div class="text-center" tal:content="repeat/Employee/number"/></td>
+												<td><div tal:content="Employee/getName"/></td>
+												<td>
+													<div class="text-left">
+														<a target="blank" tal:attributes="href php:'/report/' . Tracking->getId() . '/payroll/' . Employee->getId()">
+															<i class="icon-print"/>
+														</a>
+													</div>
+												</td>
 											</tr>
 											<tr>
-												<td><a tal:attributes="href Tracking/getURLGeneral" target="blank">TỔNG HỢP</a></td>
-												<td><a tal:attributes="href Tracking/getURLSellingGeneral" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href Tracking/getURLImportGeneral" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href Tracking/getURLPaidGeneral" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href Tracking/getURLCollectGeneral" target="blank"><span class="icon-print"/></a></td>
+												<td />
+												<td><div class="text-left" tal:content="string:BẢNG TỔNG HỢP"/></td>
+												<td>
+													<div class="text-left">
+														<a target="blank" tal:attributes="href php:'/report/' . Tracking->getId() . '/payroll/general'"><i class="icon-print"/></a>
+													</div>
+												</td>
 											</tr>
 										</tbody>
-									</table>									
+									</table>
 								</div>  
 							</div>
 						</div>

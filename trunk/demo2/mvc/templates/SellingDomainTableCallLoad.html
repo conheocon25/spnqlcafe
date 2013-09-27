@@ -33,7 +33,7 @@
 										<thead>
 											<tr>
 												<th width="32">STT</th>
-												<th>TÊN</th>
+												<th><div class="text-left">TÊN</div></th>
 												<th width="60">TĂNG</th>
 												<th width="60"></th>
 												<th width="60">GIẢM</th>
@@ -48,11 +48,11 @@
 													<span tal:content="Course/getName"/>
 												</td>										
 												<td>
-													<button class="Plus btn btn-primary" tal:attributes="alt Course/getId">Tăng</button>
+													<button class="Plus btn" tal:attributes="alt Course/getId">Tăng</button>
 												</td>
 												<td><span class="count" tal:content="string:0"/></td>
 												<td>											
-													<button class="Minus btn btn-primary" tal:attributes="alt Course/getId">Giảm</button>
+													<button class="Minus btn" tal:attributes="alt Course/getId">Giảm</button>
 												</td>
 											</tr>									
 										</tbody>

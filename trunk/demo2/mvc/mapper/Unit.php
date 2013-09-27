@@ -63,7 +63,7 @@ class Unit extends Mapper implements \MVC\Domain\UnitFinder{
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new SupplierCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new UnitCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	
 }

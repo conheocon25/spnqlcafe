@@ -109,7 +109,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new SupplierCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new CustomerCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 }
 ?>

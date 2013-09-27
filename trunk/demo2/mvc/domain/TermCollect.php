@@ -47,29 +47,15 @@ class TermCollect extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){		
-		return "/setting/termcollect/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/termcollect/".$this->getId()."/upd/exe";
-	}
+	function getURLUpdLoad(){	return "/setting/termcollect/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/termcollect/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){		
-		return "/setting/termcollect/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){		
-		return "/setting/termcollect/".$this->getId()."/del/exe";
-	}
+	function getURLDelLoad(){return "/setting/termcollect/".$this->getId()."/del/load";}
+	function getURLDelExe(){return "/setting/termcollect/".$this->getId()."/del/exe";}
 	
-	function getURLCollect(){
-		return "/collect/general/".$this->getId();
-	}
-	function getURLCollectInsLoad(){		
-		return "/collect/general/".$this->getId()."/ins/load";
-	}
-	function getURLPaidInsExe(){
-		return "/collect/general/".$this->getId()."/ins/exe";
-	}
+	function getURLCollect(){return "/money/collect/general/".$this->getId();}
+	function getURLCollectInsLoad(){return "/money/collect/general/".$this->getId()."/ins/load";}
+	function getURLPaidInsExe(){return "/money/collect/general/".$this->getId()."/ins/exe";}
 		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
