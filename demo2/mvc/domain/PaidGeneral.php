@@ -66,10 +66,10 @@ class PaidGeneral extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLUpdLoad(){return "/paid/general/".$this->getIdTerm()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/paid/general/".$this->getIdTerm()."/".$this->getId()."/upd/exe";}
+	function getURLUpdLoad(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){return "/paid/general/".$this->getIdTerm()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/paid/general/".$this->getIdTerm()."/".$this->getId()."/del/exe";}
+	function getURLDelLoad(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/del/load";}
+	function getURLDelExe(){return "/money/paid/general/".$this->getIdTerm()."/".$this->getId()."/del/exe";}
 }
 ?>

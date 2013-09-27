@@ -125,14 +125,11 @@
 				<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 					<a tal:attributes="href '/selling'"><i class="icon-shopping-cart" />BÁN HÀNG</a>
 				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-					<a tal:attributes="href '/import'"><i class="icon-truck" />NHẬP HÀNG</a>
+				<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
+					<a tal:attributes="href '/payroll'"><i class="icon-check" />CHẤM CÔNG</a>
 				</li>
-				<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-					<a tal:attributes="href '/paid'"><i class="icon-dollar" />KHOẢN CHI</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-					<a tal:attributes="href '/collect'"><i class="icon-dollar" />KHOẢN THU</a>
+				<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
+					<a tal:attributes="href '/money'"><i class="icon-dollar" />THU / CHI</a>
 				</li>
 				<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
 					<a tal:attributes="href '/report'"><i class="icon-book" />BÁO CÁO</a>
@@ -193,11 +190,13 @@
 						<i class="icon-map-marker" />KHU VỰC
 					</a>
 				</li>
+				<!--
 				<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
 					<a tal:attributes="href '/setting/supplier'">
 						<i class="icon-truck" />NHÀ CUNG CẤP
 					</a>
 				</li>
+				!-->
 				<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 					<a tal:attributes="href '/setting/user'">
 						<i class="icon-user" />NGƯỜI DÙNG 
@@ -255,11 +254,11 @@
 				<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
 			</tr>
 			<tr>
-				<td width="50%" align="left">P.5, TP.VL</td>
+				<td width="50%" align="left">P.4, TP.VL</td>
 				<td width="50%" align="right">Lưu hành nội bộ</td>
 			</tr>
 			<tr>
-				<td width="50%" align="left">0919 111 222</td>
+				<td width="50%" align="left">0919 222 444</td>
 				<td width="50%" align="left" />
 			</tr>
 		</table>

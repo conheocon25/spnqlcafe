@@ -19,11 +19,11 @@
 			$Price2 = $request->getProperty('Price2');
 			$Price3 = $request->getProperty('Price3');
 			$Price4 = $request->getProperty('Price4');
+			$Rate = $request->getProperty('Rate');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			
+			//-------------------------------------------------------------			
 			$mCourse = new \MVC\Mapper\Course();								
 			
 			//-------------------------------------------------------------
@@ -39,7 +39,8 @@
 					0,
 					0,
 					0,
-					""
+					"",
+					$Rate
 			);
 			$mCourse->Insert($Course);
 									

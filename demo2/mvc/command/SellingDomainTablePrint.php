@@ -30,7 +30,6 @@
 			$Session = $mSession->find($IdSession);
 			
 			$Session->setNote("In phieu");
-			$Session->setValue( $Session->getReValue() );
 			$mSession->update($Session);
 			
 			//-------------------------------------------------------------
