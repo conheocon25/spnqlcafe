@@ -310,6 +310,7 @@ RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/del/exe$ 		?cmd=SettingSupplierR
 # SETTING.EMPLOYEE
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/employee$ 									?cmd=SettingEmployee [L]
+RewriteRule ^setting/employee/page/([0-9]+)$ 					?cmd=SettingEmployee&Page=$1 [L]
 RewriteRule ^setting/employee/ins/load$ 						?cmd=SettingEmployeeInsLoad [L]
 RewriteRule ^setting/employee/ins/exe$ 							?cmd=SettingEmployeeInsExe [L]
 RewriteRule ^setting/employee/([0-9]+)/upd/load$ 				?cmd=SettingEmployeeUpdLoad&IdEmployee=$1 [L]
@@ -321,6 +322,7 @@ RewriteRule ^setting/employee/([0-9]+)/del/exe$ 				?cmd=SettingEmployeeDelExe&I
 # SETTING.TERM.PAID
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/termpaid$ 									?cmd=SettingTermPaid [L]
+RewriteRule ^setting/termpaid/page/([0-9]+)$ 					?cmd=SettingTermPaid&Page=$1 [L]
 RewriteRule ^setting/termpaid/ins/load$ 						?cmd=SettingTermPaidInsLoad [L]
 RewriteRule ^setting/termpaid/ins/exe$ 							?cmd=SettingTermPaidInsExe [L]
 RewriteRule ^setting/termpaid/([0-9]+)/upd/load$ 				?cmd=SettingTermPaidUpdLoad&IdTerm=$1 [L]
@@ -332,6 +334,7 @@ RewriteRule ^setting/termpaid/([0-9]+)/del/exe$ 				?cmd=SettingTermPaidDelExe&I
 # SETTING.TERM.COLLECT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/termcollect$ 								?cmd=SettingTermCollect [L]
+RewriteRule ^setting/termcollect/page/([0-9]+)$ 				?cmd=SettingTermCollect&Page=$1 [L]
 RewriteRule ^setting/termcollect/ins/load$ 						?cmd=SettingTermCollectInsLoad [L]
 RewriteRule ^setting/termcollect/ins/exe$ 						?cmd=SettingTermCollectInsExe [L]
 RewriteRule ^setting/termcollect/([0-9]+)/upd/load$ 			?cmd=SettingTermCollectUpdLoad&IdTerm=$1 [L]
@@ -343,6 +346,7 @@ RewriteRule ^setting/termcollect/([0-9]+)/del/exe$ 				?cmd=SettingTermCollectDe
 # SETTING.USER
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/user$ 										?cmd=SettingUser [L]
+RewriteRule ^setting/user/page/([0-9]+)$ 						?cmd=SettingUser&Page=$1 [L]
 RewriteRule ^setting/user/ins/load$ 							?cmd=SettingUserInsLoad [L]
 RewriteRule ^setting/user/ins/exe$ 								?cmd=SettingUserInsExe [L]
 RewriteRule ^setting/user/([0-9]+)/upd/load$ 					?cmd=SettingUserUpdLoad&IdUser=$1 [L]
