@@ -1,7 +1,7 @@
 <?php	
 	namespace MVC\Command;
-	class SettingCategoryCourseUpdExe extends Command {
-		function doExecute( \MVC\Controller\Request $request ) {
+	class SettingCategoryCourseUpdExe extends Command{
+		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
@@ -20,11 +20,11 @@
 			$Price2 = $request->getProperty("Price2");
 			$Price3 = $request->getProperty("Price3");
 			$Price4 = $request->getProperty("Price4");
+			$Rate = $request->getProperty("Rate");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			
+			//-------------------------------------------------------------			
 			$mCourse = new \MVC\Mapper\Course();
 			
 			//-------------------------------------------------------------
@@ -42,8 +42,9 @@
 			$Course->setPrice2($Price2);
 			$Course->setPrice3($Price3);
 			$Course->setPrice4($Price4);
+			$Course->setRate($Rate);			
+			$mCourse->update($Course);
 			
-			$mCourse->update($Course);									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

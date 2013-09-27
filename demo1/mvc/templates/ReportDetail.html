@@ -10,9 +10,7 @@
 		<div class="menu">
 			<div id="sidebar">
 				<ul style="display: block;">
-					<li><a tal:attributes="href Tracking/getURLCustomer"><i class="icon-user" />KHÁCH HÀNG</a></li>
 					<li><a target="blank" tal:attributes="href Tracking/getURLCourse"><i class="icon-beer" /> CÁC MÓN</a></li>
-					<li><a target="blank" tal:attributes="href Tracking/getURLStore"><i class="icon-book" /> TỔN KHO</a></li>
 				</ul>
 			</div>
 		</div>
@@ -33,8 +31,7 @@
 										<thead>
 											<tr role="row">												
 												<th><div class="text-left">NGÀY</div></th>
-												<th width="120"><div class="text-left">DOANH SỐ</div></th>
-												<th width="120"><div class="text-left">NHẬP HÀNG</div></th>
+												<th width="120"><div class="text-left">DOANH SỐ</div></th>												
 												<th width="120"><div class="text-left">KHOẢN CHI</div></th>
 												<th width="120"><div class="text-left">KHOẢN THU</div></th>
 											</tr>
@@ -42,15 +39,13 @@
 										<tbody role="alert" aria-live="polite" aria-relevant="all">											
 											<tr tal:repeat="Day Tracking/getURLDayAll" class="gradeA odd">
 												<td><a tal:attributes="href php:Day[1]" target="blank"><span tal:content="php:Day[0]"/></a></td>
-												<td><a tal:attributes="href php:Day[1]" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href php:Day[2]" target="blank"><span class="icon-print"/></a></td>
+												<td><a tal:attributes="href php:Day[1]" target="blank"><span class="icon-print"/></a></td>												
 												<td><a tal:attributes="href php:Day[3]" target="blank"><span class="icon-print"/></a></td>
 												<td><a tal:attributes="href php:Day[4]" target="blank"><span class="icon-print"/></a></td>
 											</tr>
 											<tr>
 												<td><a tal:attributes="href Tracking/getURLGeneral" target="blank">TỔNG HỢP</a></td>
-												<td><a tal:attributes="href Tracking/getURLSellingGeneral" target="blank"><span class="icon-print"/></a></td>
-												<td><a tal:attributes="href Tracking/getURLImportGeneral" target="blank"><span class="icon-print"/></a></td>
+												<td><a tal:attributes="href Tracking/getURLSellingGeneral" target="blank"><span class="icon-print"/></a></td>												
 												<td><a tal:attributes="href Tracking/getURLPaidGeneral" target="blank"><span class="icon-print"/></a></td>
 												<td><a tal:attributes="href Tracking/getURLCollectGeneral" target="blank"><span class="icon-print"/></a></td>
 											</tr>

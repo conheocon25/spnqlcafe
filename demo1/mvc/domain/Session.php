@@ -211,20 +211,11 @@ class Session extends Object{
 	}
 	
 	function getValue(){
-		if ($this->Value <= 0 || $this->Value == null){
-			$mSD = new \MVC\Mapper\SessionDetail();
-			$Value = $this->getSurtax() + (int)(($mSD->evaluate(array($this->getId())) + 500 + $this->getValueHours() - $this->getDiscountValue())*(1.0 - $this->getDiscountPercent()/100.0)/1000)*1000;
-			return $Value;
-		}
-		return $this->Value;
-	}
-	
-	function getReValue(){
 		$mSD = new \MVC\Mapper\SessionDetail();
 		$Value = $this->getSurtax() + (int)(($mSD->evaluate(array($this->getId())) + 500 + $this->getValueHours() - $this->getDiscountValue())*(1.0 - $this->getDiscountPercent()/100.0)/1000)*1000;
 		return $Value;
 	}
-	
+			
 	function getValuePrint(){
 		$num = new Number($this->getValue());
 		return $num->formatCurrency()." đ";
@@ -234,15 +225,15 @@ class Session extends Object{
 		$num = new Number($this->getValue());
 		return $num->readDigit()." đồng";
 	}
-	
-	function getPreValue(){		
-		$mSD = new \MVC\Mapper\SessionDetail();
-		$Value = $mSD->evaluate(array($this->getId()));
+			
+	function getValueBase(){
+		$Value = 0;
+		$SDs = $this->getDetails();
+		while($SDs->valid()){
+			$Value += $SDs->current()->getValueBase();
+			$SDs->next();
+		}
 		return $Value;
-	}	
-	function getPreValuePrint(){
-		$num = new Number($this->getPreValue());
-		return $num->formatCurrency()." đ";
 	}
 	
 	//-------------------------------------------------------------------------------
