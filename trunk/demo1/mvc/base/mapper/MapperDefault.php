@@ -1,10 +1,8 @@
-<?php	
-	$mOrderImport 		= new \MVC\Mapper\OrderImport();	
+<?php		
 	$mDomain	 		= new \MVC\Mapper\Domain();	
 	$mTable		 		= new \MVC\Mapper\Table();	
 	$mSession		 	= new \MVC\Mapper\Session();
-	$mSessionDetail	 	= new \MVC\Mapper\SessionDetail();
-	$mSupplier 			= new \MVC\Mapper\Supplier();
+	$mSessionDetail	 	= new \MVC\Mapper\SessionDetail();	
 	$mEmployee 			= new \MVC\Mapper\Employee();
 	$mUnit 				= new \MVC\Mapper\Unit();
 	$mCustomer 			= new \MVC\Mapper\Customer();	

@@ -16,21 +16,10 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTermCollect = new \MVC\Mapper\TermCollect();
-			$mTermPaid = new \MVC\Mapper\TermPaid();
-			$mSupplier = new \MVC\Mapper\Supplier();
-			$mDomain = new \MVC\Mapper\Domain();
-			$mCustomer = new \MVC\Mapper\Customer();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$TermCollectAll = $mTermCollect->findAll();
-			$TermPaidAll = $mTermPaid->findAll();
-			$SupplierAll = $mSupplier->findAll();
-			$DomainAll = $mDomain->findAll();
-			$CustomerAll = $mCustomer->findAll();
-			
+			//-------------------------------------------------------------						
 			$Title = "ỨNG DỤNG";
 			$Navigation = array();
 			
@@ -40,11 +29,6 @@
 			$request->setProperty("ActiveAdmin", "Admin");
 			$request->setProperty("Title", $Title);
 			$request->setObject("Navigation", $Navigation);
-			$request->setObject("DomainAll", $DomainAll);
-			$request->setObject("TermCollectAll", $TermCollectAll);
-			$request->setObject("TermPaidAll", $TermPaidAll);
-			$request->setObject("SupplierAll", $SupplierAll);
-			$request->setObject("CustomerAll", $CustomerAll);
 		}
 	}
 ?>

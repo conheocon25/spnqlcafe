@@ -22,7 +22,6 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$CategoryAll = $mCategory->findAll();
-			$SupplierAll = $mSupplier->findAll();
 			$DomainAll = $mDomain->findAll();			
 			$EmployeeAll = $mEmployee->findAll();
 			$UnitAll = $mUnit->findAll();			
@@ -53,8 +52,7 @@
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('EmployeeAll1', $EmployeeAll1);
 			
-			$request->setObject('CategoryAll', $CategoryAll);
-			$request->setObject('SupplierAll', $SupplierAll);
+			$request->setObject('CategoryAll', $CategoryAll);			
 			$request->setObject('DomainAll', $DomainAll);			
 			$request->setObject('EmployeeAll', $EmployeeAll);
 			$request->setObject('UnitAll', $UnitAll);			
