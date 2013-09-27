@@ -19,8 +19,7 @@
 			$mTracking = new \MVC\Mapper\Tracking();
 			$mTermPaid = new \MVC\Mapper\TermPaid();
 			$mTermCollect = new \MVC\Mapper\TermCollect();
-			$mCustomer = new \MVC\Mapper\Customer();
-			$mSupplier = new \MVC\Mapper\Supplier();
+			$mCustomer = new \MVC\Mapper\Customer();			
 			$mEmployee = new \MVC\Mapper\Employee();
 									
 			//-------------------------------------------------------------
@@ -29,8 +28,7 @@
 			$Tracking = $mTracking->find($IdTrack);
 			$TrackingAll = $mTracking->findAll();
 			$TermPaidAll = $mTermPaid->findAll();
-			$TermCollectAll = $mTermCollect->findAll();
-			$SupplierAll = $mSupplier->findAll();
+			$TermCollectAll = $mTermCollect->findAll();			
 			$CustomerAll = $mCustomer->findAll();
 			$EmployeeAll = $mEmployee->findAll();
 			
@@ -48,12 +46,13 @@
 			$request->setProperty('DateCurrent', $DateCurrent);
 			$request->setProperty('Title', $Title);
 			$request->setObject('Navigation', $Navigation);
+			
 			$request->setObject('TrackingAll', $TrackingAll);
 			$request->setObject('Tracking', $Tracking);
+			
 			$request->setObject('CustomerAll', $CustomerAll);
 			$request->setObject('TermPaidAll', $TermPaidAll);
-			$request->setObject('TermCollectAll', $TermCollectAll);
-			$request->setObject('SupplierAll', $SupplierAll);
+			$request->setObject('TermCollectAll', $TermCollectAll);			
 			$request->setObject('EmployeeAll', $EmployeeAll);
 		}
 	}
