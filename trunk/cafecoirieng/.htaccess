@@ -52,27 +52,6 @@ RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$		?cmd=SellingDomai
 # CUSTOMER
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^customer/([0-9]+)$											?cmd=FindCustomer&IdCard=$1 [L]
-#---------------------------------------------------------------------------------------------------------------------------
-# IMPORT
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^import$ 								?cmd=Import [L]
-RewriteRule ^import/([0-9]+)$ 						?cmd=Import&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=Import&IdSupplier=$1&Page=$2 [L]
-RewriteRule ^import/([0-9]+)/ins/load$ 				?cmd=ImportSupplierInsLoad&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)/ins/exe$ 				?cmd=ImportSupplierInsExe&IdSupplier=$1 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/upd/load$		?cmd=ImportSupplierUpdLoad&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/upd/exe$		?cmd=ImportSupplierUpdExe&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/del/load$		?cmd=ImportSupplierDelLoad&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/del/exe$		?cmd=ImportSupplierDelExe&IdSupplier=$1&IdOrderImport=$2 [L]
-
-RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/print/1$		?cmd=ImportSupplierOrderPrint1&IdSupplier=$1&IdOrderImport=$2 [L]
-
-RewriteRule ^import/([0-9]+)/([0-9]+)/ins/load$				?cmd=ImportSupplierOrderInsLoad&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/ins/exe$				?cmd=ImportSupplierOrderInsExe&IdSupplier=$1&IdOrderImport=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/upd/load$	?cmd=ImportSupplierOrderUpdLoad&IdSupplier=$1&IdOrderImport=$2&IdResource=$3 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/upd/exe$		?cmd=ImportSupplierOrderUpdExe&IdSupplier=$1&IdOrderImport=$2&IdResource=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
@@ -96,24 +75,6 @@ RewriteRule ^report/([0-9]+)/del/exe$ 					?cmd=ReportDetailDelExe&IdTrack=$1 [L
 
 RewriteRule ^report/([0-9]+)/payroll/general$ 			?cmd=ReportPayRoll&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/payroll/([0-9]+)$ 			?cmd=ReportPayRollDetail&IdTrack=$1&IdEmployee=$2 [L]
-
-RewriteRule ^report/paid/([0-9]+)$ 						?cmd=ReportPaidGeneral&IdTrack=$1 [L]
-RewriteRule ^report/paid/([0-9]+)/([0-9]+)$ 			?cmd=ReportPaidDetail&IdTrack=$1&IdTerm=$2 [L]
-
-RewriteRule ^report/customer/([0-9]+)$ 					?cmd=ReportCustomerGeneral&IdTrack=$1 [L]
-RewriteRule ^report/customer/([0-9]+)/([0-9]+)$ 		?cmd=ReportCustomerDetail&IdTrack=$1&IdCustomer=$2 [L]
-
-RewriteRule ^report/collect/([0-9]+)$ 					?cmd=ReportCollectGeneral&IdTrack=$1 [L]
-RewriteRule ^report/collect/([0-9]+)/([0-9]+)$ 			?cmd=ReportCollectDetail&IdTrack=$1&IdTerm=$2 [L]
-
-RewriteRule ^report/import/([0-9]+)/general$ 			?cmd=ReportImportGeneral&IdTrack=$1 [L]
-RewriteRule ^report/import/([0-9]+)/([0-9]+)$ 			?cmd=ReportImportDetail&IdTrack=$1&IdSupplier=$2 [L]
-RewriteRule ^report/store/([0-9]+)$ 					?cmd=ReportStore&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/eval$ 				?cmd=ReportEvalStore&IdTrack=$1 [L]
-RewriteRule ^report/course/([0-9]+)$ 					?cmd=ReportCourse&IdTrack=$1 [L]
-RewriteRule ^report/general/([0-9]+)$ 					?cmd=ReportGeneral&IdTrack=$1 [L]
-
-RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # PAYROLL
@@ -229,17 +190,6 @@ RewriteRule ^setting/category/([0-9]+)/([0-9]+)/del/load$ 		?cmd=SettingCategory
 RewriteRule ^setting/category/([0-9]+)/([0-9]+)/del/exe$ 		?cmd=SettingCategoryCourseDelExe&IdCategory=$1&IdCourse=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.COURSE.RECIPE
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe$ 						?cmd=SettingCategoryCourseRecipe&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/ins/load$ 				?cmd=SettingCategoryCourseRecipeInsLoad&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/ins/exe$ 				?cmd=SettingCategoryCourseRecipeInsExe&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/upd/load$ 	?cmd=SettingCategoryCourseRecipeUpdLoad&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/upd/exe$ 	?cmd=SettingCategoryCourseRecipeUpdExe&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/del/load$ 	?cmd=SettingCategoryCourseRecipeDelLoad&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/del/exe$ 	?cmd=SettingCategoryCourseRecipeDelExe&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
 # SETTING.DOMAIN
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/domain$ 									?cmd=SettingDomain [L]
@@ -284,28 +234,6 @@ RewriteRule ^setting/config/([0-9]+)/upd/load$ 					?cmd=SettingConfigUpdLoad&Id
 RewriteRule ^setting/config/([0-9]+)/upd/exe$ 					?cmd=SettingConfigUpdExe&IdConfig=$1 [L]
 RewriteRule ^setting/config/([0-9]+)/del/load$ 					?cmd=SettingConfigDelLoad&IdConfig=$1 [L]
 RewriteRule ^setting/config/([0-9]+)/del/exe$ 					?cmd=SettingConfigDelExe&IdConfig=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.SUPPLIER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/supplier$ 									?cmd=SettingSupplier [L]
-RewriteRule ^setting/supplier/ins/load$ 						?cmd=SettingSupplierInsLoad [L]
-RewriteRule ^setting/supplier/ins/exe$ 							?cmd=SettingSupplierInsExe [L]
-RewriteRule ^setting/supplier/([0-9]+)/upd/load$ 				?cmd=SettingSupplierUpdLoad&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/upd/exe$ 				?cmd=SettingSupplierUpdExe&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/del/load$ 				?cmd=SettingSupplierDelLoad&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/del/exe$ 				?cmd=SettingSupplierDelExe&IdSupplier=$1 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.SUPPLIER.RESOURCE
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/supplier/([0-9]+)$ 						?cmd=SettingSupplierResource&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/ins/load$ 				?cmd=SettingSupplierResourceInsLoad&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/ins/exe$ 				?cmd=SettingSupplierResourceInsExe&IdSupplier=$1 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/upd/load$ 		?cmd=SettingSupplierResourceUpdLoad&IdSupplier=$1&IdResource=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/upd/exe$ 		?cmd=SettingSupplierResourceUpdExe&IdSupplier=$1&IdResource=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/del/load$ 		?cmd=SettingSupplierResourceDelLoad&IdSupplier=$1&IdResource=$2 [L]
-RewriteRule ^setting/supplier/([0-9]+)/([0-9]+)/del/exe$ 		?cmd=SettingSupplierResourceDelExe&IdSupplier=$1&IdResource=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.EMPLOYEE

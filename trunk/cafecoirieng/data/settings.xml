@@ -45,10 +45,7 @@
 				
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
-		<!-- ============================================================================== -->		
-		<command name="ReportStoreRecipePrint"><view>ReportStoreRecipePrint</view></command>
-		<command name="ReportFormStorePrint"><view>ReportFormStorePrint</view></command>
-								
+		<!-- ============================================================================== -->											
 		<command name="ReportDetail"><view>ReportDetail</view></command>
 		<command name="ReportDetailInsLoad"><view>ReportDetailInsLoad</view></command>
 		<command name="ReportDetailInsExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailInsExe</view></command>
@@ -57,24 +54,11 @@
 		<command name="ReportDetailDelLoad"><view>ReportDetailDelLoad</view></command>
 		<command name="ReportDetailDelExe"><status value="CMD_OK"><forward>Report</forward></status><view>ReportDetailDelExe</view></command>
 				
-		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
-		<command name="ReportCustomerGeneral"><view>ReportCustomerGeneral</view></command>
-		
-		<command name="ReportPaidDetail"><view>ReportPaidDetail</view></command>
-		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>
-		<command name="ReportImportDetail"><view>ReportImportDetail</view></command>
-		<command name="ReportImportGeneral"><view>ReportImportGeneral</view></command>
-		
-		<command name="ReportCollectDetail"><view>ReportCollectDetail</view></command>
-		<command name="ReportCollectGeneral"><view>ReportCollectGeneral</view></command>
-		
 		<command name="ReportSellingGeneral"><view>ReportSellingGeneral</view></command>
 		<command name="ReportSellingDetail"><view>ReportSellingDetail</view></command>
 		<command name="ReportSellingRefresh"><view>ReportSellingRefresh</view></command>
 		
 		<command name="ReportCourse"><view>ReportCourse</view></command>
-		<command name="ReportStore"><view>ReportStore</view></command>
-		<command name="ReportEvalStore"><view>ReportEvalStore</view></command>
 		<command name="ReportGeneral"><view>ReportGeneral</view></command>
 		
 		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
@@ -128,40 +112,7 @@
 		<command name="PaidPayRollUpdExe"><view>PaidPayRollUpdExe</view><status value="CMD_OK"><forward>PaidPayRoll</forward></status></command>
 		<command name="PaidPayRollDelLoad"><view>PaidPayRollDelLoad</view></command>
 		<command name="PaidPayRollDelExe"><view>PaidPayRollDelExe</view><status value="CMD_OK"><forward>PaidPayRoll</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- PAID.EMPLOYEE			 														-->
-		<!-- ============================================================================== -->						
-		<command name="PaidEmployee"><view>PaidEmployee</view></command>
-		<command name="PaidEmployeeInsLoad"><view>PaidEmployeeInsLoad</view></command>
-		<command name="PaidEmployeeInsExe"><view>PaidEmployeeInsExe</view><status value="CMD_OK"><forward>PaidEmployee</forward></status></command>
-		<command name="PaidEmployeeUpdLoad"><view>PaidEmployeeUpdLoad</view></command>
-		<command name="PaidEmployeeUpdExe"><view>PaidEmployeeUpdExe</view><status value="CMD_OK"><forward>PaidEmployee</forward></status></command>
-		<command name="PaidEmployeeDelLoad"><view>PaidEmployeeDelLoad</view></command>
-		<command name="PaidEmployeeDelExe"><view>PaidEmployeeDelExe</view><status value="CMD_OK"><forward>PaidEmployee</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- PAID.SUPPLIER			 														-->
-		<!-- ============================================================================== -->						
-		<command name="PaidSupplier"><view>PaidSupplier</view></command>
-		<command name="PaidSupplierInsLoad"><view>PaidSupplierInsLoad</view></command>
-		<command name="PaidSupplierInsExe"><view>PaidSupplierInsExe</view><status value="CMD_OK"><forward>PaidSupplier</forward></status></command>
-		<command name="PaidSupplierUpdLoad"><view>PaidSupplierUpdLoad</view></command>
-		<command name="PaidSupplierUpdExe"><view>PaidSupplierUpdExe</view><status value="CMD_OK"><forward>PaidSupplier</forward></status></command>
-		<command name="PaidSupplierDelLoad"><view>PaidSupplierDelLoad</view></command>
-		<command name="PaidSupplierDelExe"><view>PaidSupplierDelExe</view><status value="CMD_OK"><forward>PaidSupplier</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- COLLECT.CUSTOMER			 														-->
-		<!-- ============================================================================== -->						
-		<command name="CollectCustomer"><view>CollectCustomer</view></command>
-		<command name="CollectCustomerInsLoad"><view>CollectCustomerInsLoad</view></command>
-		<command name="CollectCustomerInsExe"><view>CollectCustomerInsExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		<command name="CollectCustomerUpdLoad"><view>CollectCustomerUpdLoad</view></command>
-		<command name="CollectCustomerUpdExe"><view>CollectCustomerUpdExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		<command name="CollectCustomerDelLoad"><view>CollectCustomerDelLoad</view></command>
-		<command name="CollectCustomerDelExe"><view>CollectCustomerDelExe</view><status value="CMD_OK"><forward>CollectCustomer</forward></status></command>
-		
+						
 		<!-- ============================================================================== -->
 		<!-- COLLECT.GENERAL		 															-->
 		<!-- ============================================================================== -->								
@@ -275,29 +226,7 @@
 		<command name="SettingCategoryCourseUpdExe"><view>SettingCategoryCourseUpdExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>		
 		<command name="SettingCategoryCourseDelLoad"><view>SettingCategoryCourseDelLoad</view></command>
 		<command name="SettingCategoryCourseDelExe"><view>SettingCategoryCourseDelExe</view><status value="CMD_OK"><forward>SettingCategoryCourse</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.CATEGORY.COURSE.RECIPE													-->
-		<!-- ============================================================================== -->
-		<command name="SettingCategoryCourseRecipe"><view>SettingCategoryCourseRecipe</view></command>
-		<command name="SettingCategoryCourseRecipeInsLoad"><view>SettingCategoryCourseRecipeInsLoad</view></command>
-		<command name="SettingCategoryCourseRecipeInsExe"><view>SettingCategoryCourseRecipeInsExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
-		<command name="SettingCategoryCourseRecipeUpdLoad"><view>SettingCategoryCourseRecipeUpdLoad</view></command>
-		<command name="SettingCategoryCourseRecipeUpdExe"><view>SettingCategoryCourseRecipeUpdExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
-		<command name="SettingCategoryCourseRecipeDelLoad"><view>SettingCategoryCourseRecipeDelLoad</view></command>
-		<command name="SettingCategoryCourseRecipeDelExe"><view>SettingCategoryCourseRecipeDelExe</view><status value="CMD_OK"><forward>SettingCategoryCourseRecipe</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.SUPPLIER	 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingSupplier"><view>SettingSupplier</view></command>
-		<command name="SettingSupplierInsLoad"><view>SettingSupplierInsLoad</view></command>
-		<command name="SettingSupplierInsExe"><view>SettingSupplierInsExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>
-		<command name="SettingSupplierUpdLoad"><view>SettingSupplierUpdLoad</view></command>
-		<command name="SettingSupplierUpdExe"><view>SettingSupplierUpdExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>
-		<command name="SettingSupplierDelLoad"><view>SettingSupplierDelLoad</view></command>
-		<command name="SettingSupplierDelExe"><view>SettingSupplierDelExe</view><status value="CMD_OK"><forward>SettingSupplier</forward></status></command>
-		
+				
 		<!-- ============================================================================== -->
 		<!-- SETTING.TERM	 																-->
 		<!-- ============================================================================== -->
@@ -319,44 +248,6 @@
 		<command name="SettingTermCollectUpdExe"><view>SettingTermCollectUpdExe</view><status value="CMD_OK"><forward>SettingTermCollect</forward></status></command>
 		<command name="SettingTermCollectDelLoad"><view>SettingTermCollectDelLoad</view></command>
 		<command name="SettingTermCollectDelExe"><view>SettingTermCollectDelExe</view><status value="CMD_OK"><forward>SettingTermCollect</forward></status></command>
-										
-		<!-- ============================================================================== -->
-		<!-- SETTING.SUPPLIER.RESOURCE														-->
-		<!-- ============================================================================== -->
-		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
-		<command name="SettingSupplierResourceInsLoad"><view>SettingSupplierResourceInsLoad</view></command>
-		<command name="SettingSupplierResourceInsExe"><view>SettingSupplierResourceInsExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
-		<command name="SettingSupplierResourceUpdLoad"><view>SettingSupplierResourceUpdLoad</view></command>
-		<command name="SettingSupplierResourceUpdExe"><view>SettingSupplierResourceUpdExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>
-		<command name="SettingSupplierResourceDelLoad"><view>SettingSupplierResourceDelLoad</view></command>
-		<command name="SettingSupplierResourceDelExe"><view>SettingSupplierResourceDelExe</view><status value="CMD_OK"><forward>SettingSupplierResource</forward></status></command>		
 				
-								
-		<!-- ============================================================================== -->
-		<!-- SETTING.INFO		 															-->
-		<!-- ============================================================================== -->		
-		<command name="SettingInfoPasswdLoad"><view>SettingInfoPasswdLoad</view></command>
-		<command name="SettingInfoPasswdExe"><view>SettingInfoPasswdExe</view><status value="CMD_OK"><forward>SignoutExe</forward></status></command>		
-												
-		<!-- ============================================================================== -->
-		<!-- IMPORT				 															-->
-		<!-- ============================================================================== -->
-		<command name="ImportSupplierInsLoad"><view>ImportSupplierInsLoad</view></command>		
-		<command name="ImportSupplierInsExe"><view>ImportSupplierInsExe</view><status value="CMD_OK"><forward>Import</forward></status></command>
-		<command name="ImportSupplierUpdLoad"><view>ImportSupplierUpdLoad</view></command>
-		<command name="ImportSupplierUpdExe"><view>ImportSupplierUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		<command name="ImportSupplierDelLoad"><view>ImportSupplierDelLoad</view></command>
-		<command name="ImportSupplierDelExe"><view>ImportSupplierDelExe</view><status value="CMD_OK"><forward>Import</forward></status></command>
-		
-		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
-		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
-		<command name="ImportSupplierOrderInsLoad"><view>ImportSupplierOrderInsLoad</view></command>
-		<command name="ImportSupplierOrderInsExe"><view>ImportSupplierOrderInsExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		<command name="ImportSupplierOrderUpdLoad"><view>ImportSupplierOrderUpdLoad</view></command>
-		<command name="ImportSupplierOrderUpdExe"><view>ImportSupplierOrderUpdExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		<command name="ImportSupplierOrderDelLoad"><view>ImportSupplierOrderDelLoad</view></command>
-		<command name="ImportSupplierOrderDelExe"><view>ImportSupplierOrderDelExe</view><status value="CMD_OK"><forward>ImportSupplierOrder</forward></status></command>
-		
 	</control>
 </options>
