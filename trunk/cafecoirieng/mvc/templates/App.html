@@ -14,8 +14,7 @@
 						<div class="menu">
 							<ul class="nav nav-list" tal:condition="php:@\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 								<li class="nav-header">CHỨC NĂNG</li>
-								<li><a tal:attributes="href '/selling'"><i class="icon-shopping-cart"/> BÁN HÀNG</a></li>
-								<li><a tal:attributes="href '/import'"><i class="icon-truck"/> NHẬP HÀNG</a></li>
+								<li><a tal:attributes="href '/selling'"><i class="icon-shopping-cart"/> BÁN HÀNG</a></li>								
 								<li><a tal:attributes="href '/payroll'"><i class="icon-edit"/> CHẤM CÔNG</a></li>
 								<li><a tal:attributes="href '/report'"><i class="icon-book"/> BÁO CÁO</a></li>
 								<li><a tal:attributes="href '/setting'"><i class="icon-gear"/> THIẾT LẬP</a></li>

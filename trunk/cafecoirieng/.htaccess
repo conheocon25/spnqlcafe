@@ -120,13 +120,15 @@ RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^payroll$ 												?cmd=PayRoll [L]
 RewriteRule ^payroll/([0-9]+)$ 										?cmd=PayRoll&IdTrack=$1 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)$ 							?cmd=PayRollWork&IdTrack=$1&Date=$2 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/yes$ 				?cmd=PayRollWorkDetail&IdTrack=$1&Date=$2&IdEmployee=$3&State=yes [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/no$ 				?cmd=PayRollWorkDetail&IdTrack=$1&Date=$2&IdEmployee=$3&State=no [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/no/([0-9]+)$ 		?cmd=PayRollWorkDetail&IdTrack=$1&Date=$2&IdEmployee=$3&State=no&Minute=$4 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/yes/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$2&IdEmployee=$3&State=yes&Minute=$4 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/yes/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$2&IdEmployee=$3&State=yes&Minute=$4&Extra=$5 [L]
-RewriteRule ^payroll/([0-9]+)/([0-9_-]+)/([0-9]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$2&IdEmployee=$3&State=no&Minute=$4&Extra=$5 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)$ 							?cmd=PayRollWork&IdTrack=$1&IdEmployee=$2 [L]
+
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/all/yes$ 							?cmd=PayRollWorkDetail&IdTrack=$1&Date=all&IdEmployee=$2&State=yes [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)$ 				?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)$ 			?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4&Extra=$5 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4&Extra=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # PAID.GENERAL
@@ -147,11 +149,10 @@ RewriteRule ^paid/general/([0-9]+)/([0-9]+)/del/exe$	?cmd=PaidGeneralDelExe&IdTe
 RewriteRule ^paid/payroll$ 										?cmd=PaidPayRoll [L]
 RewriteRule ^paid/payroll/([0-9]+)/ins/load$					?cmd=PaidPayRollInsLoad&IdEmployee=$1 [L]
 RewriteRule ^paid/payroll/([0-9]+)/ins/exe$ 					?cmd=PaidPayRollInsExe&IdEmployee=$1 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/upd/load$		?cmd=PaidPayRollUpdLoad&IdEmployee=$1&IdPaid=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/upd/exe$		?cmd=PaidPayRollUpdExe&IdEmployee=$1&IdPaid=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/del/load$		?cmd=PaidPayRollDelLoad&IdEmployee=$1&IdPaid=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/del/exe$		?cmd=PaidPayRollDelExe&IdEmployee=$1&IdPaid=$2 [L]
-
+RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/upd/load$			?cmd=PaidPayRollUpdLoad&IdEmployee=$1&IdPaid=$2 [L]
+RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/upd/exe$			?cmd=PaidPayRollUpdExe&IdEmployee=$1&IdPaid=$2 [L]
+RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/del/load$			?cmd=PaidPayRollDelLoad&IdEmployee=$1&IdPaid=$2 [L]
+RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/del/exe$			?cmd=PaidPayRollDelExe&IdEmployee=$1&IdPaid=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # PAID.SUPPLIER

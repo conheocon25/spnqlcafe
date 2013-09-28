@@ -28,18 +28,20 @@
 							<table class="table table-striped table-hover">								
 								<thead>
 									<tr>										
-										<th>NGÀY</th>										
-										<th width="120">NHÂN VIÊN</th>										
+										<th width="32">STT</th>
+										<th>NHÂN VIÊN</th>
+										<th width="120">CHẤM</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Day Track/getURLDayAll">
-										<td><span tal:content="php:Day[0]"/></td>
+									<tr tal:repeat="Employee EmployeeAll">
+										<td><div class="text-center" tal:content="repeat/Employee/number"/></td>
+										<td><span tal:content="Employee/getName"/></td>
 										<td>
-											<a class="btn" tal:attributes="href php:Day[2]" ><span class="icon-edit"/></a>
+											<a class="btn" tal:attributes="href php: Track->getURLPayRollEmployee( Employee )" ><span class="icon-edit"/></a>
 										</td>
 									</tr>
-								</tbody>								
+								</tbody>
 							</table>
 						</div>
 					</div>

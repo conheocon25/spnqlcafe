@@ -28,6 +28,39 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			if ($Date=="all"){
+				$Track = $mTracking->find($IdTrack);
+				foreach ($Track->getURLDayAll() as $D1){
+					$Date = $D1[5];
+					$IdPR = $mPayRoll->check(array($IdEmployee, $Date));
+					if (!isset($IdPR) || $IdPR==null){
+						$PR = new \MVC\Domain\PayRoll(
+							null,
+							$IdEmployee, 
+							$Date, 
+							$State=='yes'?1:0,
+							0,
+							0
+						);
+						$mPayRoll->insert($PR);
+						
+					}else{
+						$PR = $mPayRoll->find($IdPR);								
+						$PR->setState($State=='yes'?1:0);
+						if (isset($Minute) && $Minute < 100){ 
+							$PR->setLate($Minute);					
+						}
+						if ($State=='no'){
+							$PR->setLate(0);
+							$PR->setExtra(0);
+						}
+						if (isset($Extra)) $PR->setExtra($Extra);
+						$mPayRoll->update($PR);
+					}	
+				}												
+				return self::statuses('CMD_OK');
+			}
+			
 			$IdPR = $mPayRoll->check(array($IdEmployee, $Date));
 			if (!isset($IdPR) || $IdPR==null){
 				$PR = new \MVC\Domain\PayRoll(
