@@ -10,93 +10,157 @@
 			<span metal:use-macro="mAdmin.xhtml/Header"/>
 			<div class="row-fluid">
 				<div class="row-fluid">
-					<div class="span3">
-						
+					<div class="span3">						
+						<table width="100%" border="0" cellpadding="2">
+							<tr>
+								<td align="right" width="40%">NHÂN VIÊN</td>
+								<td align="left" width="60%"> _ <B tal:content="Employee/getName"/></td>
+							</tr>
+							<tr>
+								<td align="right" width="40%">LƯƠNG CB</td>
+								<td align="left" width="60%"> _ <B tal:content="Employee/getSalaryBasePrint"/> Đ</td>
+							</tr>
+							<tr>
+								<td align="right" width="40%">NGÀY LƯƠNG</td>
+								<td align="left" width="60%"> _ <B tal:content="Employee/getSalaryBaseDPrint"/> Đ</td>
+							</tr>
+							<tr>
+								<td align="right" width="40%">TĂNG CA</td>
+								<td align="left" width="60%"> _ <B tal:content="Employee/getSalaryBaseHPrint"/> Đ/GIỜ</td>
+							</tr>
+							<tr>
+								<td align="right" width="40%">PHẠT TRỄ</td>
+								<td align="left" width="60%"> _ <B tal:content="Config5Minutes"/> Đ/5 PHÚT</td>
+							</tr>
+							<tr>
+								<td align="right">------------------------</td>
+								<td align="left">-----------------------</td>
+							</tr>
+							<tr>
+								<td align="right">NGÀY CÔNG</td>
+								<td align="left"> + <B tal:content="YesValue"/> (<span tal:content="Yes"/> CA)</td>
+							</tr>
+							<tr>
+								<td align="right">LÀM THÊM</td>
+								<td align="left"> + <B tal:content="ExtraValue"/> Đ (<span tal:content="Extra"/> GIỜ)</td>
+							</tr>
+							<tr>
+								<td align="right">NGHỈ </td>
+								<td align="left"> - <B tal:content="AbsentValue"/> Đ (<span tal:content="Absent"/> CA)</td>
+							</tr>		
+							<tr>
+								<td align="right">PHẠT TRỄ</td>
+								<td align="left"> - <B tal:content="LateValue"/> Đ (<span tal:content="Late"/> PHÚT)</td>
+							</tr>
+							<tr>
+								<td align="right">------------------------</td>
+								<td align="left">-----------------------</td>
+							</tr>
+							<tr>
+								<td align="right"><b>TỔNG LƯƠNG</b></td>
+								<td align="left"> + <B tal:content="Salary"/> ĐỒNG</td>
+							</tr>
+						</table>
+						<br/>
+						<a class="btn btn-primary" tal:attributes="href php: URLBase . '/all/yes'">Chấm tất cả </a>
 					</div>
 					<div class="span9">
 						<div class="content">
 							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-							<table class="table table-striped table-hover">								
+							<table class="table table-striped table-hover">
 								<thead>
-									<tr>
-										<th width="30"><div class="text-center">STT</div></th>
-										<th>NHÂN VIÊN</th>
+									<tr>										
+										<th>NGÀY</th>
 										<th width="60"><div class="text-center">CÓ LÀM</div></th>
-										<th width="60"><div class="text-center">TĂNG CA</div></th>
-										<th width="120"><div class="text-center">LÀM TRỄ</div></th>
-										<th width="90"><div class="text-left">THỜI GIAN</div></th>
+										<th width="90"><div class="text-center">TĂNG CA</div></th>
+										<th width="50"><div class="text-left">GIỜ</div></th>
+										<th width="90"><div class="text-center">LÀM TRỄ</div></th>
+										<th width="50"><div class="text-left">PHÚT</div></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Employee EmployeeAll">
-										<td><div class="text-center" tal:content="repeat/Employee/number"/></td>
-										<td><span tal:content="Employee/getName"/></td>
+									<tr tal:repeat="Day Track/getURLDayAll">
+										<td><div class="text-left" tal:content="php: Day[0]"/></td>
 										<td>
 											<div class="text-center">
-												<a tal:condition="php: Employee->getPayRoll(Date)" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/no'">
-													<div tal:condition="php: Employee->getPayRoll(Date)->getState()==1" >
-														<i class="icon-check icon-2x"/>
+												<a tal:condition="php: Employee->getPayRoll(Day[5])" tal:attributes="href php: URLBase . '/' . Day[5] . '/no'">
+													<div tal:condition="php: Employee->getPayRoll(Day[5])->getState()==1" >
+														<i class="icon-check"/>
 													</div>													
 												</a>
-												<a tal:condition="php: Employee->getPayRoll(Date)" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes'">
-													<div tal:condition="php: Employee->getPayRoll(Date)->getState()==0" >
-														<i class="icon-unchecked icon-2x"/>
+												<a tal:condition="php: Employee->getPayRoll(Day[5])" tal:attributes="href php: URLBase . '/' . Day[5] . '/yes'">
+													<div tal:condition="php: Employee->getPayRoll(Day[5])->getState()==0" >
+														<i class="icon-unchecked"/>
 													</div>
 												</a>
-												<a tal:condition="not: php: Employee->getPayRoll(Date)" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes'">
-													<i class="icon-unchecked icon-2x"/>
+												<a tal:condition="not: php: Employee->getPayRoll(Day[5])" tal:attributes="href php: URLBase . '/' . Day[5] . '/yes'">
+													<i class="icon-unchecked"/>
 												</a>
 											</div>
 										</td>
 										<td>
-											<div class="text-center" tal:condition="php: Employee->getPayRoll(Date)">
-												<a tal:condition="php: Employee->getPayRoll(Date)->getExtra()==1" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/100/0'">
-													<div><i class="icon-check icon-2x"/></div>
-												</a>												
-												<a tal:condition="php: Employee->getPayRoll(Date)->getState()==1 && Employee->getPayRoll(Date)->getExtra()==0" tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/100/1'">
-													<div><i class="icon-unchecked icon-2x"/></div>
-												</a>
-												
-											</div>
-										</td>
-										<td>
-											<div class="text-center" tal:condition="php: Employee->getPayRoll(Date)">
-												<div class="btn-group" tal:condition="php: Employee->getPayRoll(Date)->getState()==1">
-													<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-														Thời gian trễ <span class="caret"/>
+											<div class="text-center" tal:condition="php: Employee->getPayRoll(Day[5])">
+												<div class="btn-group">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+														<span class="caret"/>Thêm
 													</a>
 													<ul class="dropdown-menu">
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/0';class php: Employee->getPayRoll(Date)->getLate()==0?'btn btn-primary':'btn'">Không trễ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/5';class php: Employee->getPayRoll(Date)->getLate()==5?'btn btn-primary':'btn'">5 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/10';class php: Employee->getPayRoll(Date)->getLate()==10?'btn btn-primary':'btn'">10 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/15';class php: Employee->getPayRoll(Date)->getLate()==15?'btn btn-primary':'btn'">15 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/20';class php: Employee->getPayRoll(Date)->getLate()==20?'btn btn-primary':'btn'">20 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/25';class php: Employee->getPayRoll(Date)->getLate()==25?'btn btn-primary':'btn'">25 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/30';class php: Employee->getPayRoll(Date)->getLate()==30?'btn btn-primary':'btn'">30 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/35';class php: Employee->getPayRoll(Date)->getLate()==35?'btn btn-primary':'btn'">35 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/40';class php: Employee->getPayRoll(Date)->getLate()==40?'btn btn-primary':'btn'">40 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/45';class php: Employee->getPayRoll(Date)->getLate()==45?'btn btn-primary':'btn'">45 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/50';class php: Employee->getPayRoll(Date)->getLate()==50?'btn btn-primary':'btn'">50 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/55';class php: Employee->getPayRoll(Date)->getLate()==55?'btn btn-primary':'btn'">55 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/60';class php: Employee->getPayRoll(Date)->getLate()==60?'btn btn-primary':'btn'">60 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/65';class php: Employee->getPayRoll(Date)->getLate()==65?'btn btn-primary':'btn'">65 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/70';class php: Employee->getPayRoll(Date)->getLate()==70?'btn btn-primary':'btn'">70 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/75';class php: Employee->getPayRoll(Date)->getLate()==75?'btn btn-primary':'btn'">75 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/80';class php: Employee->getPayRoll(Date)->getLate()==80?'btn btn-primary':'btn'">80 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/85';class php: Employee->getPayRoll(Date)->getLate()==85?'btn btn-primary':'btn'">85 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Employee->getId() . '/yes/90';class php: Employee->getPayRoll(Date)->getLate()==90?'btn btn-primary':'btn'">90 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/0';class php: Employee->getPayRoll(Day[5])->getExtra()==0?'btn btn-primary':'btn'">0 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/1';class php: Employee->getPayRoll(Day[5])->getExtra()==1?'btn btn-primary':'btn'">1 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/2';class php: Employee->getPayRoll(Day[5])->getExtra()==2?'btn btn-primary':'btn'">2 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/3';class php: Employee->getPayRoll(Day[5])->getExtra()==3?'btn btn-primary':'btn'">3 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/4';class php: Employee->getPayRoll(Day[5])->getExtra()==4?'btn btn-primary':'btn'">4 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/5';class php: Employee->getPayRoll(Day[5])->getExtra()==5?'btn btn-primary':'btn'">5 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/6';class php: Employee->getPayRoll(Day[5])->getExtra()==6?'btn btn-primary':'btn'">6 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/7';class php: Employee->getPayRoll(Day[5])->getExtra()==7?'btn btn-primary':'btn'">7 giờ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/8';class php: Employee->getPayRoll(Day[5])->getExtra()==8?'btn btn-primary':'btn'">8 giờ</a></li>
+													</ul>
+												</div>	
+											</div>
+										</td>
+										<td>
+											<div tal:condition="php: Employee->getPayRoll(Day[5])">
+												<div class="text-left" tal:content="php: Employee->getPayRoll(Day[5])->getExtra()"/>
+											</div>
+										</td>
+										<td>
+											<div class="text-center" tal:condition="php: Employee->getPayRoll(Day[5])">
+												<div class="btn-group" tal:condition="php: Employee->getPayRoll(Day[5])->getState()==1">
+													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+														Trễ <span class="caret"/>
+													</a>
+													<ul class="dropdown-menu">
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/0';class php: Employee->getPayRoll(Day[5])->getLate()==0?'btn btn-primary':'btn'">Không trễ</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/5';class php: Employee->getPayRoll(Day[5])->getLate()==5?'btn btn-primary':'btn'">5 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/10';class php: Employee->getPayRoll(Day[5])->getLate()==10?'btn btn-primary':'btn'">10 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/15';class php: Employee->getPayRoll(Day[5])->getLate()==15?'btn btn-primary':'btn'">15 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/20';class php: Employee->getPayRoll(Day[5])->getLate()==20?'btn btn-primary':'btn'">20 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/25';class php: Employee->getPayRoll(Day[5])->getLate()==25?'btn btn-primary':'btn'">25 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/30';class php: Employee->getPayRoll(Day[5])->getLate()==30?'btn btn-primary':'btn'">30 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/35';class php: Employee->getPayRoll(Day[5])->getLate()==35?'btn btn-primary':'btn'">35 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/40';class php: Employee->getPayRoll(Day[5])->getLate()==40?'btn btn-primary':'btn'">40 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/45';class php: Employee->getPayRoll(Day[5])->getLate()==45?'btn btn-primary':'btn'">45 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/50';class php: Employee->getPayRoll(Day[5])->getLate()==50?'btn btn-primary':'btn'">50 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/55';class php: Employee->getPayRoll(Day[5])->getLate()==55?'btn btn-primary':'btn'">55 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/60';class php: Employee->getPayRoll(Day[5])->getLate()==60?'btn btn-primary':'btn'">60 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/65';class php: Employee->getPayRoll(Day[5])->getLate()==65?'btn btn-primary':'btn'">65 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/70';class php: Employee->getPayRoll(Day[5])->getLate()==70?'btn btn-primary':'btn'">70 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/75';class php: Employee->getPayRoll(Day[5])->getLate()==75?'btn btn-primary':'btn'">75 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/80';class php: Employee->getPayRoll(Day[5])->getLate()==80?'btn btn-primary':'btn'">80 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/85';class php: Employee->getPayRoll(Day[5])->getLate()==85?'btn btn-primary':'btn'">85 phút"</a></li>
+														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/90';class php: Employee->getPayRoll(Day[5])->getLate()==90?'btn btn-primary':'btn'">90 phút"</a></li>
 													</ul>
 												</div>												
 											</div>
 										</td>
 										<td>
-											<div tal:condition="php: Employee->getPayRoll(Date)">
-												<div class="text-left" tal:content="php: Employee->getPayRoll(Date)->getLate()"/>
+											<div tal:condition="php: Employee->getPayRoll(Day[5])">
+												<div class="text-left" tal:content="php: Employee->getPayRoll(Day[5])->getLate()"/>
 											</div>
 										</td>
 									</tr>
 								</tbody>								
-							</table>
+							</table>							
 						</div>
 					</div>
 				</div>

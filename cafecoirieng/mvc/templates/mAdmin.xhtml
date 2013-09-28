@@ -89,18 +89,22 @@
 			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
 				<a tal:attributes="href '/setting/category'"><i class="icon-food"/> DANH MỤC MÓN<span class="badge badge-info pull-right" tal:content="CategoryAll/count"/></a>
 			</li>
+			<!--
 			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
 				<a tal:attributes="href '/setting/supplier'"><i class="icon-truck"/> NHÀ CUNG CẤP<span class="badge badge-info pull-right" tal:content="SupplierAll/count"/></a>
 			</li>
+			!-->
 			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 				<a tal:attributes="href '/setting/user'"><i class="icon-user"/> NGƯỜI DÙNG<span class="badge badge-info pull-right" tal:content="UserAll/count"/></a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
 				<a tal:attributes="href '/setting/employee'"><i class="icon-user"/> NHÂN VIÊN<span class="badge badge-info pull-right" tal:content="EmployeeAll/count"/></a>
 			</li>
+			<!--
 			<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
 				<a tal:attributes="href '/setting/customer'"><i class="icon-user"/> KHÁCH HÀNG<span class="badge badge-info pull-right" tal:content="CustomerAll/count"/></a>
 			</li>
+			!-->
 			<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
 				<a tal:attributes="href '/setting/unit'"><i class="icon-tag"/> ĐƠN VỊ TÍNH<span class="badge badge-info pull-right" tal:content="UnitAll/count"/></a>
 			</li>			
