@@ -17,8 +17,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------							
 			$DomainAll = $mDomain->findAll();
-			$CategoryAll = $mCategory->findAll();
-			$SupplierAll = $mSupplier->findAll();			
+			$CategoryAll = $mCategory->findAll();			
 			$UnitAll = $mUnit->findAll();			
 			$CustomerAll = $mCustomer->findAll();			
 			$UserAll = $mUser->findAll();
@@ -41,8 +40,7 @@
 			$request->setObject("Navigation", $Navigation);
 						
 			$request->setObject('DomainAll', $DomainAll);
-			$request->setObject('CategoryAll', $CategoryAll);
-			$request->setObject('SupplierAll', $SupplierAll);
+			$request->setObject('CategoryAll', $CategoryAll);			
 			$request->setObject('UnitAll', $UnitAll);			
 			$request->setObject('CustomerAll', $CustomerAll);			
 			$request->setObject('UserAll', $UserAll);
