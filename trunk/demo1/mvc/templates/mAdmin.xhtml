@@ -25,13 +25,10 @@
 	<span metal:define-macro="IncludeCSS">	
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/fullcalendar.css"/>	
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.grey.css" class="skin-color"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/font-awesome.min.css"/>
-		<!--[if IE 7]>
-			<link rel="stylesheet" href="/mvc/templates/theme/bootstrap/css/font-awesome-ie7.min.css">
-		<![endif]-->
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -61,7 +58,7 @@
 		</div>
 		<div id="user-nav">
             <ul class="btn-group">
-                <li class="btn"><a title="" href="/signout/load"><i class="icon-user icon-large"/> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+                <li class="btn"><a title="" href="/signout/load"><i class="glyphicons-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
             </ul>
         </div>
 	</div>
@@ -220,6 +217,9 @@
 		</div>
 	</div>
 	
+	<!-- ======================================================================== -->
+	<!-- STYLE SWITCHER															  -->
+	<!-- ======================================================================== -->
 	<div metal:define-macro="StyleTools" id="style-switcher">
 		<i class="glyphicon glyphicon-arrow-left"></i>
 		<span>Giao diện:</span>
