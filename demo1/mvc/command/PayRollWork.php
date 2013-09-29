@@ -27,10 +27,9 @@
 			$EmployeeAll  = $mEmployee->findAll();
 			
 			$NDate = new \MVC\Library\Date($Date);
-			$Title = $NDate->getDateFormat();
+			$Title = "Ngày " . $NDate->getDateFormat();
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("CHẤM CÔNG", $Track->getURLPayRoll() )
+				array("Chấm Công", $Track->getURLPayRoll() )
 			);
 			$URLBase = "/payroll/".$Track->getId()."/".$Date;
 			

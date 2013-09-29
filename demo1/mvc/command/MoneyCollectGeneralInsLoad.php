@@ -23,11 +23,10 @@
 			//-------------------------------------------------------------						
 			$Term = $mTerm->find($IdTerm);
 			
-			$Title = "THÊM MỚI";			
+			$Title = "Thêm Mới";			
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("THU / CHI", "/money"),
-				array("KHOẢN CHI", "/money/collect/general")
+				array("Thu / Chi", "/money"),
+				array("Khoản Chi", "/money/collect/general")
 			);
 			
 			//-------------------------------------------------------------

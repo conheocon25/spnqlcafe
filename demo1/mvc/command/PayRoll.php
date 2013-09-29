@@ -29,10 +29,8 @@
 				$Track = $mTracking->find($IdTrack);
 			}
 			
-			$Title = "CHẤM CÔNG";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app")
-			);
+			$Title = "Chấm Công";
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

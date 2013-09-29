@@ -29,10 +29,9 @@
 				$IdDomain = $Domain->getId();
 			}
 			
-			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
+			$Title = $Domain->getName();
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
-				array("BÁN HÀNG", "/selling")				
+				array("Bán Hàng", "/selling")				
 			);
 			
 			//-------------------------------------------------------------
