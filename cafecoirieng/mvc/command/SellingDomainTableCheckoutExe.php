@@ -35,6 +35,7 @@
 				
 				$Log = new \MVC\Domain\TableLog(
 					null,
+					@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 					$IdTable,
 					date('Y-m-d H:i:s'),
 					"Khách tính tiền"
