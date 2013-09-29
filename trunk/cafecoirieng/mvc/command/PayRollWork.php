@@ -72,7 +72,7 @@
 			$NAbsentValue = new \MVC\Library\Number($AbsentValue);
 			
 			//Tổng lương
-			$Salary = $YesValue + $ExtraValue - $AbsentValue - $LateValue;
+			$Salary = $YesValue + $ExtraValue - $LateValue;
 			$NSalary = new \MVC\Library\Number($Salary);
 			
 			//-------------------------------------------------------------

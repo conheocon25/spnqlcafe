@@ -20,8 +20,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
 			$Title = "THÊM MỚI";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("BÁO CÁO", "/report")
 			);
 						

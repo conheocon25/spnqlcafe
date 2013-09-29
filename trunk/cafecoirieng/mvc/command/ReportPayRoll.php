@@ -58,7 +58,7 @@
 				$NAbsentValue = new \MVC\Library\Number($AbsentValue);
 				
 				//Tổng lương
-				$Salary = $Employee->getSalaryBase() + $ExtraValue - $AbsentValue - $LateValue;
+				$Salary = $Employee->getSalaryBase() + $ExtraValue - $LateValue;
 				$NSalary = new \MVC\Library\Number($Salary);
 				
 				//Thêm vào danh sách tạm

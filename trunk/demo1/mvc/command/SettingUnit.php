@@ -52,8 +52,7 @@
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('UnitAll1', $UnitAll1);
 			
-			$request->setObject('CategoryAll', $CategoryAll);
-			$request->setObject('SupplierAll', $SupplierAll);
+			$request->setObject('CategoryAll', $CategoryAll);			
 			$request->setObject('DomainAll', $DomainAll);
 			$request->setObject('EmployeeAll', $EmployeeAll);
 			$request->setObject('CustomerAll', $CustomerAll);

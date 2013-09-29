@@ -30,7 +30,11 @@
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/datepicker.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
+		
+		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
+		<!--
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.grey.css" class="skin-color"/>
+		!-->
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -65,7 +69,7 @@
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="LocationBar" id="breadcrumb">
-		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chính"><i class="glyphicon glyphicon-cog"></i> Ứng Dụng</a>
+		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chủ"><i class="glyphicons-shop"></i> TRANG CHỦ</a>
 		<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
 		<a tal:content="Title" class="current"/>
 	</div>
@@ -157,14 +161,7 @@
 					<a tal:attributes="href '/setting/domain'">
 						<i class="icon-map-marker" />KHU VỰC
 					</a>
-				</li>
-				<!--
-				<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-					<a tal:attributes="href '/setting/supplier'">
-						<i class="icon-truck" />NHÀ CUNG CẤP
-					</a>
-				</li>
-				!-->
+				</li>				
 				<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
 					<a tal:attributes="href '/setting/user'">
 						<i class="icon-user" />NGƯỜI DÙNG 
@@ -209,7 +206,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2012 - 2013 &copy; Cafe Management App by <a href="https://www.spn-soft.com">SPN Group</a>
+			2011 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
 		</div>
 	</div>
 	
@@ -219,11 +216,11 @@
 	<div metal:define-macro="StyleTools" id="style-switcher">
 		<i class="glyphicon glyphicon-arrow-left"></i>
 		<span>Giao diện:</span>
-		<a alt="#grey" style="background-color:#555555;border-color:#aaaaaa;cursor:pointer;"></a>
-		<a alt="#light-blue" style="background-color:#8399b0;cursor:pointer;"></a>
-		<a alt="#blue" style="background-color:#2D2F57;cursor:pointer;"></a>
-		<a alt="#red" style="background-color:#673232;cursor:pointer;"></a>
-		<a alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
+		<a href="/setting/theme/grey" alt="#grey" style="background-color:#555555;border-color:#aaaaaa;cursor:pointer;"></a>
+		<a href="/setting/theme/light-blue" alt="#light-blue" style="background-color:#8399b0;cursor:pointer;"></a>
+		<a href="/setting/theme/blue" alt="#blue" style="background-color:#2D2F57;cursor:pointer;"></a>
+		<a href="/setting/theme/red" alt="#red" style="background-color:#673232;cursor:pointer;"></a>
+		<a href="/setting/theme/red-green" alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
 	</div>
 	
 </body>

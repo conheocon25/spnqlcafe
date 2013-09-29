@@ -29,7 +29,7 @@
 				$Track = $mTracking->find($IdTrack);
 			}
 			
-			$Title = "Chấm Công";
+			$Title = "CHẤM CÔNG";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
