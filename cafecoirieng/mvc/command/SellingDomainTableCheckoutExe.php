@@ -16,10 +16,11 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable = new \MVC\Mapper\Table();			
+			$mTable = new \MVC\Mapper\Table();
+			$mTableLog = new \MVC\Mapper\TableLog();
 			$mCourse = new \MVC\Mapper\Course();
 			$mSession = new \MVC\Mapper\Session();
-									
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -31,6 +32,14 @@
 				$Session->setStatus(1);
 				$Session->setValue( $Session->getReValue() );
 				$mSession->update($Session);
+				
+				$Log = new \MVC\Domain\TableLog(
+					null,
+					$IdTable,
+					date('Y-m-d H:i:s'),
+					"Khách tính tiền"
+				);
+				$mTableLog->insert($Log);
 			}
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

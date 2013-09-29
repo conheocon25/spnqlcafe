@@ -20,6 +20,7 @@
 			//-------------------------------------------------------------
 			$mDomain = new \MVC\Mapper\Domain();
 			$mTable = new \MVC\Mapper\Table();
+			$mTableLog = new \MVC\Mapper\TableLog();
 			$mSession = new \MVC\Mapper\Session();
 						
 			//-------------------------------------------------------------
@@ -32,6 +33,14 @@
 			$Session->setNote("In phieu");
 			$Session->setValue( $Session->getReValue() );
 			$mSession->update($Session);
+			
+			$Log = new \MVC\Domain\TableLog(
+				null,
+				$Session->getIdTable(),
+				date('Y-m-d H:i:s'),
+				"In phiếu"
+			);
+			$mTableLog->insert($Log);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
