@@ -8,6 +8,8 @@ $(document).ready(function(){
 	
 	$('.data-table').dataTable({
 		"bJQueryUI": true,
+		"bAutoWidth": true,
+		"bSort": false,
 		"sPaginationType": "full_numbers",
 		"sDom": '<""l>t<"F"fp>'
 	});

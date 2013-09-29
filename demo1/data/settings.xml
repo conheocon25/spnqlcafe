@@ -10,7 +10,7 @@
 		<command name="SigninExe" type="public">
 			<view>SigninExe</view>
 			<status value="CMD_OK"><forward>App</forward></status>
-			<status value="CMD_NO_AUTHOR"><forward>Home</forward></status>
+			<status value="CMD_NO_AUTHOR"><forward>SigninLoad</forward></status>
 		</command>		
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
