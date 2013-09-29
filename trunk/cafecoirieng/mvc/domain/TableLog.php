@@ -4,6 +4,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class TableLog extends Object{
 
     private $Id;
+	private $IdUser;
 	private $IdTable;
 	private $DateTime;
 	private $Note;
@@ -11,8 +12,9 @@ class TableLog extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------		
-    function __construct( $Id=null, $IdTable=null, $DateTime=null, $Note=null){
+    function __construct( $Id=null, $IdUser=null, $IdTable=null, $DateTime=null, $Note=null){
         $this->Id = $Id;
+		$this->IdUser = $IdUser;
 		$this->IdTable = $IdTable;
 		$this->DateTime = $DateTime;
 		$this->Note = $Note;
@@ -20,6 +22,14 @@ class TableLog extends Object{
     }
 	
     function getId( ) {return $this->Id;}
+	
+	function getIdUser( ) {return $this->IdUser;}	
+	function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}
+	function getUser(){
+		$mUser = new \MVC\Mapper\User();
+		$User = $mUser->find($this->IdUser);
+		return $User;
+	}
 	
 	function getIdTable( ) {return $this->IdTable;}	
 	function setIdTable( $IdTable ) {$this->IdTable = $IdTable;$this->markDirty();}

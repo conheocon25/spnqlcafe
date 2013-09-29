@@ -28,6 +28,7 @@
 							
 			$Log = new \MVC\Domain\TableLog(
 				null,
+				@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 				$Session->getIdTable(),
 				date('Y-m-d H:i:s'),
 				"Xóa nhật kí ".$Session->getDateTime()
