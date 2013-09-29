@@ -24,7 +24,6 @@
 			$Tracking = $mTracking->find($IdTrack);
 			$Title = mb_strtoupper($Tracking->getName(), 'UTF8');
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("BÁO CÁO", "/report")
 			);
 			

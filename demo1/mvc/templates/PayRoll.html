@@ -23,35 +23,27 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">
-					<div class="widget-box">
-						<div class="widget-title">
-							<span class="icon">
-								<i class="glyphicon glyphicon-edit"></i>
-							</span>
-							<h5 tal:content="Title"/>
-						</div>
-						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover data-table">
-								<thead>
-									<tr>
-										<th width="100">CHẤM</th>
-										<th class="left">NGÀY</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr tal:repeat="Day Track/getURLDayAll">
-										<td class="center">
-											<a tal:attributes="href php:Day[2]" >
-												<span class="glyphicons-edit"/>
-											</a>
-										</td>
-										<td><span tal:content="php:Day[0]"/></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
+				<div class="col-12">					
+					<div class="widget-content nopadding">
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>
+									<th width="100">CHẤM</th>
+									<th class="left">NGÀY</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr tal:repeat="Day Track/getURLDayAll">
+									<td class="center">
+										<a tal:attributes="href php:Day[2]" >
+											<span class="glyphicons-edit"/>
+										</a>
+									</td>
+									<td><span tal:content="php:Day[0]"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
 				</div>
 			</div>
 		</div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 28, 2013 at 01:02 PM
+-- Generation Time: Sep 29, 2013 at 10:58 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `demo1_config` (
   `param` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `demo1_config`
@@ -128,7 +128,8 @@ INSERT INTO `demo1_config` (`id`, `param`, `value`) VALUES
 (1, 'ROW_PER_PAGE', '12'),
 (5, 'DISCOUNT', '0'),
 (6, 'EVERY_5_MINUTES', '2000'),
-(7, 'GUEST_VISIT', '917');
+(7, 'GUEST_VISIT', '970'),
+(8, 'THEME', 'red-green');
 
 -- --------------------------------------------------------
 
@@ -340,14 +341,14 @@ CREATE TABLE IF NOT EXISTS `demo1_guest` (
   `exit_time` varchar(32) CHARACTER SET latin1 NOT NULL,
   `agent` varchar(16) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `demo1_guest`
 --
 
 INSERT INTO `demo1_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
-(20, '192.168.1.3', '1380366077', '1380369677', '192.168.1.3');
+(22, '192.168.1.3', '1380486388', '1380489988', '192.168.1.3');
 
 -- --------------------------------------------------------
 
@@ -1984,7 +1985,7 @@ INSERT INTO `demo1_session` (`id`, `idtable`, `iduser`, `idcustomer`, `datetime`
 (1433, 1, 1, 1, '2013-09-14 14:32:13', '2013-09-14 14:32:13', 'In phieu', 1, 0, 0, 0, 0, 78000),
 (1434, 28, 1, 1, '2013-09-14 14:35:18', '2013-09-14 14:35:18', 'In phieu', 1, 0, 0, 0, 0, 36000),
 (1435, 4, 1, 1, '2013-09-14 14:35:39', '2013-09-14 14:35:39', 'In phieu', 1, 0, 0, 0, 0, 23000),
-(1436, 3, 1, 1, '2013-09-26 01:40:02', '2013-09-26 01:40:02', '', 0, 0, 0, 0, 0, 0),
+(1436, 3, 1, 1, '2013-09-26 01:40:02', '2013-09-26 01:40:02', 'In phieu', 0, 0, 0, 0, 0, 88000),
 (1437, 4, 1, 1, '2013-09-28 00:56:47', '2013-09-28 00:56:47', '', 0, 0, 0, 0, 0, 39000),
 (1438, 1, 1, 1, '2013-09-28 01:26:25', '2013-09-28 01:26:25', '', 0, 0, 0, 0, 0, 0);
 

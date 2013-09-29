@@ -31,7 +31,7 @@
 			
 			$Title = $Domain->getName();
 			$Navigation = array(
-				array("Bán Hàng", "/selling")				
+				array("BÁN HÀNG", "/selling")
 			);
 			
 			//-------------------------------------------------------------
