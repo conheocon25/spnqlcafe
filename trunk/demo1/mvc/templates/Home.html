@@ -8,54 +8,18 @@
 	<body>
 		<div id="header">
 			<h1><a>Cafe Management App</a></h1>
-			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"></i></a>
 		</div>
 		<div id="user-nav">
             <ul class="btn-group">
-                <li class="btn"><a title="" href="/signin/load"><i class="glyphicons-log_in"></i> <span class="text">Đăng nhập</span></a></li>
+                <li class="btn"><a title="" href="/signin/load"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Đăng nhập</span></a></li>
             </ul>
         </div>
 
-		<div id="sidebar">
-			<ul>
-				<li class="active"><a href="index.html"><i class="glyphicon glyphicon-home"></i> <span>Dashboard</span></a></li>
-				<li class="submenu">
-					<a href="#"><i class="glyphicon glyphicon-th-list"></i> <span>Form elements</span> <span class="label">3</span></a>
-					<ul>
-						<li><a href="form-common.html">Common elements</a></li>
-						<li><a href="form-validation.html">Validation</a></li>
-						<li><a href="form-wizard.html">Wizard</a></li>
-					</ul>
-				</li>
-				<li><a href="buttons.html"><i class="glyphicon glyphicon-tint"></i> <span>Buttons &amp; icons</span></a></li>
-				<li><a href="interface.html"><i class="glyphicon glyphicon-pencil"></i> <span>Interface elements</span></a></li>
-				<li><a href="tables.html"><i class="glyphicon glyphicon-th"></i> <span>Tables</span></a></li>
-				<li><a href="grid.html"><i class="glyphicon glyphicon-th-list"></i> <span>Grid Layout</span></a></li>
-				<li class="submenu">
-					<a href="#"><i class="glyphicon glyphicon-file"></i> <span>Sample pages</span> <span class="label">4</span></a>
-					<ul>
-						<li><a href="invoice.html">Invoice</a></li>
-						<li><a href="chat.html">Support chat</a></li>
-						<li><a href="calendar.html">Calendar</a></li>
-						<li><a href="gallery.html">Gallery</a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="charts.html"><i class="glyphicon glyphicon-signal"></i> <span>Charts &amp; graphs</span></a>
-				</li>
-				<li>
-					<a href="widgets.html"><i class="glyphicon glyphicon-inbox"></i> <span>Widgets</span></a>
-				</li>
-			</ul>
-		
-		</div>
-
-		
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div id="content-header"><span metal:use-macro="mAdmin.xhtml/ProjectName"/></div>
 			<div id="breadcrumb">
-				<i class="icon-gear icon-large"/><a tal:content="Title" class="current"/>
+				<a class="current"><i class="glyphicon glyphicon-cog"></i> Ứng dụng</a>
 			</div>
 			
 			<div class="container-fluid">
@@ -126,5 +90,10 @@
 
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.dashboard.js"></script>
 	</body>
 </html>

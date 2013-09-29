@@ -139,7 +139,7 @@ $(document).ready(function(){
 	
 	$('#style-switcher a').click(function()
 	{
-		var style = $(this).attr('href').replace('#','');
+		var style = $(this).attr('alt').replace('#','');
 		$('.skin-color').attr('href','/mvc/templates/theme/cms/css/unicorn.'+style+'.css');
 		$(this).siblings('a').css({'border-color':'transparent'});
 		$(this).css({'border-color':'#aaaaaa'});

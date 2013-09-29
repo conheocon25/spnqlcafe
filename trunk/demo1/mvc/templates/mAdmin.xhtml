@@ -1,6 +1,11 @@
 <html lang="en" xml:lang="en">
 <body>
 	<!-- ======================================================================== -->
+	<!-- PROJECT NAME															  -->
+	<!-- ======================================================================== -->
+	<h1 metal:define-macro="ProjectName">[TÊN QUÁN CAFE CỦA BẠN]</h1>
+	
+	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
@@ -26,7 +31,7 @@
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/fullcalendar.css"/>	
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery-ui.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.grey.css" class="skin-color"/>
 	</span>
@@ -35,17 +40,11 @@
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeJS">						
-		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery-ui.custom.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/fullcalendar.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.jpanelmenu.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/unicorn.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.dashboard.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.jpanelmenu.min.js"></script>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -58,23 +57,18 @@
 		</div>
 		<div id="user-nav">
             <ul class="btn-group">
-                <li class="btn"><a title="" href="/signout/load"><i class="glyphicons-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+                <li class="btn"><a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/load">
+					<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
+				</a></li>
             </ul>
         </div>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- CONTENT HEADER															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header">
-		<h1>[TÊN QUÁN CAFE CỦA BẠN]</h1>
-	</div>
-	
+
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="LocationBar" id="breadcrumb">
-		<i class="icon-gear icon-large"/>
+		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chính"><i class="glyphicon glyphicon-cog"></i> Ứng Dụng</a>
 		<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
 		<a tal:content="Title" class="current"/>
 	</div>
@@ -91,59 +85,57 @@
 	<!-- ======================================================================== -->
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="MenuApp" class="menu">
-		<div id="sidebar">					
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">				
-				<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-					<a tal:attributes="href '/selling'"><i class="icon-shopping-cart" />BÁN HÀNG</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
-					<a tal:attributes="href '/payroll'"><i class="icon-check" />CHẤM CÔNG</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
-					<a tal:attributes="href '/money'"><i class="icon-dollar" />THU / CHI</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-					<a tal:attributes="href '/report'"><i class="icon-book" />BÁO CÁO</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
-					<a tal:attributes="href '/setting'"><i class="icon-gear" />THIẾT LẬP</a>
-				</li>
-			</ul>
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
-				<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-					<a tal:attributes="href '/selling'"><i class="icon-shopping-cart" />BÁN HÀNG</a>
-				</li>
-				<li>
-					<a tal:attributes="href '/change/pass/load'"><i class="icon-key" />ĐỔI MẬT KHẨU</a>
-				</li>
-			</ul>
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
-				<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-					<a tal:attributes="href '/selling'"><i class="icon-shopping-cart" />BÁN HÀNG</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
-					<a tal:attributes="href '/import'"><i class="icon-truck" />NHẬP HÀNG</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-					<a tal:attributes="href '/paid'"><i class="icon-dollar" />KHOẢN CHI</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-					<a tal:attributes="href '/collect'"><i class="icon-dollar" />KHOẢN THU</a>
-				</li>
-				<li>
-					<a tal:attributes="href '/change/pass/load'"><i class="icon-key" />ĐỔI MẬT KHẨU</a>
-				</li>
-			</ul>
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isViewer()">
-				<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-					<a tal:attributes="href '/report'"><i class="icon-book" />BÁO CÁO</a>
-				</li>
-				<li>
-					<a tal:attributes="href '/change/pass/load'"><i class="icon-key" />ĐỔI MẬT KHẨU</a>
-				</li>
-			</ul>
-		</div>	
+	<div metal:define-macro="MenuApp" id="sidebar">
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='PayRoll'?'active':'disable'">
+				<a tal:attributes="href '/payroll'"><i class="glyphicons-check" />CHẤM CÔNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Money'?'active':'disable'">
+				<a tal:attributes="href '/money'"><i class="glyphicons-transfer" />THU / CHI</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Setting'?'active':'disable'">
+				<a tal:attributes="href '/setting'"><i class="glyphicons-cogwheels" />THIẾT LẬP</a>
+			</li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+					<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>
+			<li>
+				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
+			</li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+					<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
+				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
+				<a tal:attributes="href '/paid'"><i class="glyphicons-money" />KHOẢN CHI</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
+				<a tal:attributes="href '/collect'"><i class="glyphicons-money" />KHOẢN THU</a>
+			</li>
+			<li>
+				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
+			</li>
+		</ul>
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isViewer()">
+			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
+				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
+			</li>
+			<li>
+				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
+			</li>
+		</ul>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -223,11 +215,11 @@
 	<div metal:define-macro="StyleTools" id="style-switcher">
 		<i class="glyphicon glyphicon-arrow-left"></i>
 		<span>Giao diện:</span>
-		<a href="#grey" style="background-color: #555555;border-color: #aaaaaa;"></a>
-		<a href="#light-blue" style="background-color: #8399b0;"></a>
-		<a href="#blue" style="background-color: #2D2F57;"></a>
-		<a href="#red" style="background-color: #673232;"></a>
-		<a href="#red-green" style="background-image: url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat: no-repeat;"></a>
+		<a alt="#grey" style="background-color:#555555;border-color:#aaaaaa;cursor:pointer;"></a>
+		<a alt="#light-blue" style="background-color:#8399b0;cursor:pointer;"></a>
+		<a alt="#blue" style="background-color:#2D2F57;cursor:pointer;"></a>
+		<a alt="#red" style="background-color:#673232;cursor:pointer;"></a>
+		<a alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
 	</div>
 	
 </body>
