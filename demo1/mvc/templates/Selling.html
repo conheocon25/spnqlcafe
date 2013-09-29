@@ -12,14 +12,7 @@
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
-			<div id="content-header">
-				<span metal:use-macro="mAdmin.xhtml/ProjectName"/>
-				<div class="btn-group">
-					<a class="btn tip-left" data-original-title="Click để thêm mới" href="/selling/ins/load">
-						<i class="glyphicon glyphicon-plus"/> Thêm mới
-					</a>
-				</div>
-			</div>
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
@@ -49,6 +42,7 @@
 							</table>  
 						</div>
 					</div>
+					<a class="btn btn-success" href="/selling/ins/load"><i class="glyphicon glyphicon-plus"/> Thêm mới</a>
 				</div>
 			</div>
 		</div>

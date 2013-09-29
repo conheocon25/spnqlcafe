@@ -1,11 +1,6 @@
 <html lang="en" xml:lang="en">
 <body>
 	<!-- ======================================================================== -->
-	<!-- PROJECT NAME															  -->
-	<!-- ======================================================================== -->
-	<h1 metal:define-macro="ProjectName">[TÊN QUÁN CAFE CỦA BẠN]</h1>
-	
-	<!-- ======================================================================== -->
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
@@ -74,6 +69,13 @@
 	</div>
 	
 	<!-- ======================================================================== -->
+	<!-- CONTENT HEADER															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="ContentHeader" id="content-header">
+		<h1>[TÊN QUÁN CAFE CỦA BẠN]</h1>
+	</div>
+	
+	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="PageBar" class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers">
@@ -81,7 +83,7 @@
 		</a><a tal:repeat="P PN/getPages" tal:attributes="href P/getURL; class php:Page==P->getId()?'fg-button ui-button ui-state-default':'fg-button ui-button ui-state-default ui-state-disabled'" tal:content="P/getName">
 		</a><a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default"><i class="icon-angle-right"/></a>
 	</div>
-	
+
 	<!-- ======================================================================== -->
 	<!-- MENU.APP															  	  -->
 	<!-- ======================================================================== -->
