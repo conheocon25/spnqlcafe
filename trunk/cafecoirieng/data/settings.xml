@@ -56,13 +56,7 @@
 				
 		<command name="ReportSellingGeneral"><view>ReportSellingGeneral</view></command>
 		<command name="ReportSellingDetail"><view>ReportSellingDetail</view></command>
-		<command name="ReportSellingRefresh"><view>ReportSellingRefresh</view></command>
-		
-		<command name="ReportCourse"><view>ReportCourse</view></command>
-		<command name="ReportGeneral"><view>ReportGeneral</view></command>
-		
-		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
-		<command name="ReportPayRollDetail"><view>ReportPayRollDetail</view></command>
+		<command name="ReportLog"><view>ReportLog</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->

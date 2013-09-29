@@ -17,6 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			$mTableLog = new \MVC\Mapper\TableLog();
 			$mSession = new \MVC\Mapper\Session();
 			$mSD = new \MVC\Mapper\SessionDetail();
 			
@@ -25,13 +26,22 @@
 			//-------------------------------------------------------------
 			if (!isset($Count)||!isset($Price))
 				return self::statuses('CMD_OK');
-				
+
 			$SD = $mSD->find($IdSessionDetail);
-			$SD->setCount($Count);
-			$SD->setPrice($Price);
-			$mSD->update($SD);
-			
 			$Session = $SD->getSession();
+			
+			$Log = new \MVC\Domain\TableLog(
+				null,
+				$Session->getIdTable(),
+				date('Y-m-d H:i:s'),
+				"Cập nhật chi tiết ".$SD->getCourse()->getName()." số lượng ".$SD->getCount()." thành ".$Count
+			);
+			$mTableLog->insert($Log);
+						
+			$SD->setCount($Count);
+			$SD->setPrice($Price);								
+			$mSD->update($SD);
+						
 			$Session->setValue( $Session->getReValue() );
 			$mSession->update($Session);
 			

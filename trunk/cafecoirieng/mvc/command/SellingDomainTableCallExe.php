@@ -21,6 +21,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mTable = new \MVC\Mapper\Table();
+			$mTableLog = new \MVC\Mapper\TableLog();
 			$mCategory = new \MVC\Mapper\Category();
 			$mCourse = new \MVC\Mapper\Course();
 			$mSession = new \MVC\Mapper\Session();
@@ -69,9 +70,17 @@
 					$Price
 				);
 				$mSD->insert($SD);
+				
+				$Log = new \MVC\Domain\TableLog(
+					null,
+					$IdTable,
+					date('Y-m-d H:i:s'),
+					"Thêm 1 ".$Course->getName()
+				);
+				$mTableLog->insert($Log);
+				
 			}else{
 				$SD = $mSD->find($IdSD);
-				
 				//Thủ thuật dồn 2 lệnh cập nhật lại làm 1
 				if ($Count<1){
 					$SD->setCount(1);
@@ -83,6 +92,14 @@
 				}				
 				$SD->setPrice($Price);
 				$mSD->update($SD);
+				
+				$Log = new \MVC\Domain\TableLog(
+					null,
+					$IdTable,
+					date('Y-m-d H:i:s'),
+					"Cập nhật ".$Course->getName()." có ".$SD->getCount()
+				);
+				$mTableLog->insert($Log);
 			}			
 			$Session->setValue( $Session->getReValue() );
 			$mSession->update($Session);

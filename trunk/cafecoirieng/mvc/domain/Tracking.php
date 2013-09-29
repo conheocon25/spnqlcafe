@@ -242,7 +242,7 @@ class Tracking extends Object{
 			$Data[] = array(
 						\date("d/m", strtotime($Date)),
 						"/report/selling/".$Date."/detail",
-						"/payroll/".$this->getId()."/".$Date,
+						"/report/log/".$Date,
 						"/payroll/".$this->getId()."/absent/".$Date,
 						"/payroll/".$this->getId()."/late/".$Date,
 						$Date

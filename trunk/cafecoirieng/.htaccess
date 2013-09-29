@@ -61,9 +61,10 @@ RewriteRule ^report$ 									?cmd=Report [L]
 RewriteRule ^report/recipe/print$ 						?cmd=ReportStoreRecipePrint [L]
 
 RewriteRule ^report/selling/([0-9]+)$ 					?cmd=ReportSelling&Type=$1 [L]
-RewriteRule ^report/selling/([0-9]+)/refresh$ 			?cmd=ReportSellingRefresh&IdTrack=$1 [L]
 RewriteRule ^report/selling/([0-9]+)/general$ 			?cmd=ReportSellingGeneral&IdTrack=$1 [L]
 RewriteRule ^report/selling/([a-z0-9_-]+)/detail$ 		?cmd=ReportSellingDetail&Type=$1 [L]
+
+RewriteRule ^report/log/([a-z0-9_-]+)$ 					?cmd=ReportLog&Date=$1 [L]
 
 RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
 RewriteRule ^report/ins/load$ 							?cmd=ReportDetailInsLoad [L]
@@ -73,8 +74,6 @@ RewriteRule ^report/([0-9]+)/upd/exe$ 					?cmd=ReportDetailUpdExe&IdTrack=$1 [L
 RewriteRule ^report/([0-9]+)/del/load$ 					?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/del/exe$ 					?cmd=ReportDetailDelExe&IdTrack=$1 [L]
 
-RewriteRule ^report/([0-9]+)/payroll/general$ 			?cmd=ReportPayRoll&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/payroll/([0-9]+)$ 			?cmd=ReportPayRollDetail&IdTrack=$1&IdEmployee=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # PAYROLL

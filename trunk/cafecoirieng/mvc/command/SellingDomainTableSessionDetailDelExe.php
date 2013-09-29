@@ -15,6 +15,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
+			$mTableLog = new \MVC\Mapper\TableLog();
 			$mSession = new \MVC\Mapper\Session();
 			$mSD = new \MVC\Mapper\SessionDetail();
 						
@@ -23,6 +24,16 @@
 			//-------------------------------------------------------------							
 			$SD = $mSD->find($IdSessionDetail);										
 			$Session = $SD->getSession();
+			
+			$Log = new \MVC\Domain\TableLog(
+				null,
+				$Session->getIdTable(),
+				date('Y-m-d H:i:s'),
+				"Xóa chi tiết ".$SD->getCourse()->getName()." số lượng ".$SD->getCount()
+			);
+			$mTableLog->insert($Log);
+			
+			
 			$mSD->delete(array($IdSessionDetail));
 			
 			$Session->setValue( $Session->getReValue() );

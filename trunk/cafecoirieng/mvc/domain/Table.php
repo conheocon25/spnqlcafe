@@ -78,26 +78,10 @@ class Table extends Object{
 		return true;
     }
 			
-	function getType( ) {
-        return $this->Type;
-    }
-	
-	function getTypePrint() {
-		if ($this->Type==1)
-			return "VIP";
-        return "Thường";
-    }
-	
-	function setType( $Type ) {
-        $this->Type = $Type;
-        $this->markDirty();
-    }
-			
-	function getDomain(){
-		$mDomain = new \MVC\Mapper\Domain();
-		$Domain = $mDomain->find($this->IdDomain);
-		return $Domain;
-	}
+	function getType( ) {return $this->Type;}	
+	function getTypePrint() {if ($this->Type==1)return "VIP"; return "Thường";}	
+	function setType( $Type ) {$this->Type = $Type;$this->markDirty();}			
+	function getDomain(){$mDomain = new \MVC\Mapper\Domain(); $Domain = $mDomain->find($this->IdDomain); return $Domain;}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -107,13 +91,7 @@ class Table extends Object{
 		$Session = $mSession->findLast(array($this->getId()));
 		return $Session;
 	}
-	
-	function getSessionsTop20(){		
-		$mSession = new	\MVC\Mapper\Session();		
-		$Sessions = $mSession->findByTableTop20(array($this->getId()));		
-		return $Sessions;
-	}
-	
+			
 	function getSessions(){
 		if (!isset($this->Sessions)){
 			$mSession = new	\MVC\Mapper\Session();		
@@ -171,6 +149,11 @@ class Table extends Object{
 	function getTrackingCount($DateStart, $DateEnd){
 		$mSession = new \MVC\Mapper\Session();
 		return $mSession->trackingCount(array($this->getId(), $DateStart, $DateEnd));
+	}
+	
+	function getLog($Date){
+		$mTableLog = new \MVC\Mapper\TableLog();
+		return $mTableLog->findBy(array($this->getId(), $Date));
 	}
 	
 	//-------------------------------------------------------------------------------

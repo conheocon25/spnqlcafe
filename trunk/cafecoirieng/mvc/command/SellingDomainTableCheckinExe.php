@@ -16,7 +16,8 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable = new \MVC\Mapper\Table();			
+			$mTable = new \MVC\Mapper\Table();
+			$mTableLog = new \MVC\Mapper\TableLog();
 			$mCourse = new \MVC\Mapper\Course();
 			$mSession = new \MVC\Mapper\Session();
 									
@@ -45,6 +46,14 @@
 					0						//Value
 				);
 				$IdSession = $mSession->insert($dSession);
+				
+				$Log = new \MVC\Domain\TableLog(
+					null,
+					$IdTable,
+					date('Y-m-d H:i:s'),
+					"Có khách vào"
+				);
+				$mTableLog->insert($Log);
 			}
 			
 			//-------------------------------------------------------------
