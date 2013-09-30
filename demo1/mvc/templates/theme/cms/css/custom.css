@@ -2,6 +2,10 @@
 	th { font-size: 12px !important; }
 	th.left, td.left { text-align: left !important; }
 	th.center, td.center { text-align: center !important; }
-	th.right, td.right { text-align: right !important }
+	th.right, td.right { text-align: right !important; }
 	
 	.btn-ins { margin-bottom: 20px; }
+	
+	.blue-item { color: #294B76 !important; }
+	.red-item { color: #C40003; }
+	.green-item { color: #7DBA38; }

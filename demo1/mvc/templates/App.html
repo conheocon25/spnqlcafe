@@ -11,44 +11,10 @@
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div id="breadcrumb">
+				<a class="current"><i class="glyphicons-shop"></i> Trang Chủ</a>
+			</div>
 			<div class="container-fluid">
-				<!--
-				<div class="row">
-					<div class="col-12 center" style="text-align: center;">					
-						<ul class="stat-boxes">
-							<li class="popover-visits">
-								<div class="left sparkline_bar_good"><span>2,4,9,7,12,10,12</span>+10%</div>
-								<div class="right">
-									<strong>36094</strong>
-									Truy cập
-								</div>
-							</li>
-							<li class="popover-users">
-								<div class="left sparkline_bar_neutral"><span>20,15,18,14,10,9,9,9</span>0%</div>
-								<div class="right">
-									<strong>1433</strong>
-									Users
-								</div>
-							</li>
-							<li class="popover-orders">
-								<div class="left sparkline_bar_bad"><span>3,5,9,7,12,20,10</span>-50%</div>
-								<div class="right">
-									<strong>8650</strong>
-									Đơn hàng
-								</div>
-							</li>
-							<li class="popover-tickets">
-								<div class="left sparkline_line_good"><span>12,6,9,23,14,10,17</span>+70%</div>
-								<div class="right">
-									<strong>2968</strong>
-									Phiếu
-								</div>
-							</li>
-						</ul>
-					</div>	
-				</div>
-				!-->
 				<div class="row">
 					<div class="col-12">
 						<div class="widget-box">
@@ -56,7 +22,7 @@
 							<div class="widget-content">
 								<div class="row">
 									<div class="col-12 col-sm-4">
-										<ul class="site-stats">
+										<ul class="site-stats blue-item">
 											<li><div class="cc"><i class="glyphicons-tags"></i> <strong tal:content="CategoryAll/count"/> <small> danh mục</small></div></li>
 											<li><div class="cc"><i class="glyphicons-drink"></i> <strong tal:content="CourseAll/count"/> <small> món</small></div></li>
 											<li><div class="cc"><i class="glyphicons-show_big_thumbnails"></i> <strong tal:content="DomainAll/count"/> <small>Khu vực</small></div></li>
@@ -65,14 +31,14 @@
 										</ul>
 									</div>
 									<div class="col-12 col-sm-4">
-										<ul class="site-stats">
+										<ul class="site-stats red-item">
 											<li><div class="cc"><i class="glyphicons-user"></i> <strong tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <small> trực tuyến</small></div></li>
 											<li><div class="cc"><i class="glyphicons-parents"></i> <strong tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <small>Lượt xem</small></div></li>
 											<li><div class="cc"><i class="glyphicons-table"></i> <strong tal:content="SessionAll/count"/> <small>Phiếu</small></div></li>
 										</ul>
 									</div>	
 									<div class="col-12 col-sm-4">
-										<ul class="site-stats">
+										<ul class="site-stats green-item">
 											<li><div class="cc"><i class="glyphicons-charts"></i> <strong tal:content="SessionLastAll/count"/> <small> đang có khách</small></div></li>
 											<li><div class="cc"><i class="glyphicons-charts"></i> <strong tal:content="SessionNowAll/count"/> <small>phiếu hôm nay</small></div></li>
 										</ul>
