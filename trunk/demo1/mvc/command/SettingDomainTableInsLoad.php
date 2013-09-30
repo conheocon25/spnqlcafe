@@ -26,8 +26,7 @@
 			$Domain = $mDomain->find($IdDomain);			
 			
 			$Title = "THÊM MỚI";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("KHU VỰC", "/setting/domain"),
 				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLTable())

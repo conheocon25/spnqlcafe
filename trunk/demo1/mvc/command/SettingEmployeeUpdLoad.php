@@ -24,7 +24,6 @@
 			$Employee = $mEmployee->find($IdEmployee);
 			$Title = mb_strtoupper($Employee->getName(), 'UTF8');			
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("NHÂN VIÊN", "/setting/employee")
 			);

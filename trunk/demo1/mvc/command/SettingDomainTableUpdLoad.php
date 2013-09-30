@@ -28,7 +28,6 @@
 			
 			$Title = mb_strtoupper($Table->getName(), 'UTF8');			
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("KHU VỰC", "/setting/domain"),
 				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLTable())

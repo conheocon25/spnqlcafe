@@ -32,8 +32,7 @@
 			$ConfigAll = $mConfig->findAll();
 			
 			$Title = "KHU VỰC";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
 			if (!isset($Page)) $Page=1;

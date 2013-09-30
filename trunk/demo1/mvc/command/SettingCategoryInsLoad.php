@@ -21,8 +21,7 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------										
 			$Title = "THÊM MỚI";			
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("DANH MỤC MÓN", "/setting/category")
 			);

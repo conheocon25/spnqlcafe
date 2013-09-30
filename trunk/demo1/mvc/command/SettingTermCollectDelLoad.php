@@ -24,7 +24,6 @@
 			$Term = $mTerm->find($IdTerm);
 			$Title = mb_strtoupper($Term->getName(), 'UTF8');
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("DANH MỤC THU", "/setting/termcollect")
 			);

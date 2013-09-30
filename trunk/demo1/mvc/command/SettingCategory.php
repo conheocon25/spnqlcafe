@@ -31,8 +31,7 @@
 			$ConfigAll = $mConfig->findAll();
 			
 			$Title = "DANH MỤC MÓN";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
 			

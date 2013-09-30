@@ -24,8 +24,7 @@
 			$Config = $mConfig->find($IdConfig);
 			
 			$Title = mb_strtoupper($Config->getParam(), 'UTF8');
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("CẤU HÌNH", "/setting/config")
 			);

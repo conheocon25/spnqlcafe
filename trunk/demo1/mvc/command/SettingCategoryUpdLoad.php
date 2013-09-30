@@ -25,7 +25,6 @@
 			
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("DANH MỤC MÓN", "/setting/category")
 			);

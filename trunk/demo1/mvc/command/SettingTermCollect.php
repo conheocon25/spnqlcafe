@@ -33,7 +33,6 @@
 			
 			$Title = "DANH MỤC THU";
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting")
 			);
 			
