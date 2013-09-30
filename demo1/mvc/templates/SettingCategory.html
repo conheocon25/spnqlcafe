@@ -35,7 +35,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Category CategoryAll" class="gradeA odd">
+									<tr tal:repeat="Category CategoryAll">
 										<td class="center" tal:content="repeat/Category/number"/>
 										<td><a tal:attributes="href Category/getURLUpdLoad" tal:content="Category/getName"/></td>
 										<td class="center"><a tal:attributes="href Category/getURLCourse"> <span tal:content="Category/getCourseAll/count" /> món</a></td>
