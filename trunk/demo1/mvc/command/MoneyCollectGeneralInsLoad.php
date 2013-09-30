@@ -26,7 +26,7 @@
 			$Title = "Thêm Mới";			
 			$Navigation = array(
 				array("Thu / Chi", "/money"),
-				array("Khoản Chi", "/money/collect/general")
+				array("Khoản Thu", "/money/collect/general")
 			);
 			
 			//-------------------------------------------------------------

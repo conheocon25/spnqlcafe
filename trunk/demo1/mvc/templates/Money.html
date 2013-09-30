@@ -2,8 +2,6 @@
 <html lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
@@ -16,35 +14,23 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<div class="widget-box">						
+					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="100"><i class="glyphicons-transfer"/></th>
-										<th class="left">TÊN</th>
+										<th width="40"><i class="glyphicons-transfer"/></th>
+										<th class="left">CÁC KHOẢN</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td class="center">
-											<a tal:attributes="href '/money/collect/general'">
-												<i class="glyphicons-money"/>
-											</a>
-										</td>
-										<td>
-											<a tal:attributes="href '/money/collect/general'" >KHOẢN THU</a>
-										</td>
+										<td class="center">1</td>
+										<td><a tal:attributes="href '/money/collect/general'" >KHOẢN THU</a></td>
 									</tr>
 									<tr>
-										<td class="center">
-											<a tal:attributes="href '/money/paid/general'">
-												<i class="glyphicons-money"/>
-											</a>
-										</td>
-										<td>
-											<a tal:attributes="href '/money/paid/general'" >KHOẢN CHI</a>
-										</td>
+										<td class="center">2</td>
+										<td><a tal:attributes="href '/money/paid/general'" >KHOẢN CHI</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -55,9 +41,5 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
 	</body>
 </html>

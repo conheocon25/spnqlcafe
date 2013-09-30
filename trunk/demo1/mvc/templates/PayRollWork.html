@@ -2,8 +2,6 @@
 <html lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
@@ -15,12 +13,12 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<div class="widget-box">						
+					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="30">STT</th>
+										<th width="40"><i class="glyphicons-user"/></th>
 										<th>NHÂN VIÊN</th>
 										<th width="100">CÓ LÀM</th>
 										<th width="100">TĂNG CA</th>
@@ -91,7 +89,7 @@
 											<span tal:condition="php: Employee->getPayRoll(Date)" tal:content="php: Employee->getPayRoll(Date)->getLate()"/>
 										</td>
 									</tr>
-								</tbody>								
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -100,9 +98,5 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
 	</body>
 </html>
