@@ -17,10 +17,12 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mTracking = new \MVC\Mapper\Tracking();
+			$mEmployee = new \MVC\Mapper\Employee();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$EmployeeAll = $mEmployee->findAll();
 			$TrackAll = $mTracking->findAll();
 			if (!isset($IdTrack)){
 				$Track = $TrackAll->current();
@@ -37,6 +39,7 @@
 			//-------------------------------------------------------------						
 			$request->setProperty('Title', $Title);						
 			$request->setObject('TrackAll', $TrackAll);
+			$request->setObject('EmployeeAll', $EmployeeAll);
 			$request->setObject('Track', $Track);
 			$request->setObject('Navigation', $Navigation);
 		}

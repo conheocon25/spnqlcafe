@@ -32,6 +32,8 @@
 			$UserAll 		= $mUser->findAll();
 			$ConfigAll 		= $mConfig->findAll();
 			$SessionAll 	= $mSession->findAll();
+			$SessionLastAll = $mSession->findLastAll(array());
+			$SessionNowAll = $mSession->findNowAll(array());
 			
 			$Title = "";
 			$Navigation = array();
@@ -55,7 +57,8 @@
 			$request->setObject('UserAll'		, $UserAll);
 			$request->setObject('ConfigAll'		, $ConfigAll);
 			$request->setObject('SessionAll'	, $SessionAll);
-			
+			$request->setObject('SessionLastAll', $SessionLastAll);
+			$request->setObject('SessionNowAll'	, $SessionNowAll);
 		}
 	}
 ?>

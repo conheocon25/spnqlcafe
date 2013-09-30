@@ -248,9 +248,10 @@ class Tracking extends Object{
 			$Data[] = array(
 						\date("d/m", strtotime($Date)),
 						"/report/selling/".$Date."/detail",
-						"/payroll/".$this->getId()."/".$Date,
+						"/report/log/".$Date,
 						"/payroll/".$this->getId()."/absent/".$Date,
-						"/payroll/".$this->getId()."/late/".$Date
+						"/payroll/".$this->getId()."/late/".$Date,
+						$Date
 					);
 			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 		}
@@ -281,7 +282,10 @@ class Tracking extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
+	
 	function getURLPayRoll(){return "/payroll/".$this->getId();}
+	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
+	
 	function getURLCustomer(){return "/report/customer/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	function getURLPaidPayRoll(){return "/report/paid/payroll/".$this->getId();}	

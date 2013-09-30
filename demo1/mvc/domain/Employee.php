@@ -66,11 +66,19 @@
 		$N = new \MVC\Library\Number($this->SalaryBase);
 		return $N->formatCurrency();
 	}
-	function getSalaryBaseH( ) {return $this->SalaryBase/24/30;}
+	
+	function getSalaryBaseH( ) {return $this->SalaryBase/30/8;}
 	function getSalaryBaseHPrint( ) {
 		$N = new \MVC\Library\Number($this->getSalaryBaseH() );
 		return $N->formatCurrency();
-	}		
+	}
+	
+	function getSalaryBaseD( ) {return $this->SalaryBase/30;}
+	function getSalaryBaseDPrint( ) {
+		$N = new \MVC\Library\Number($this->getSalaryBaseD() );
+		return $N->formatCurrency();
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------						
