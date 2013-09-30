@@ -27,8 +27,7 @@
 			$Category = $mCategory->find($IdCategory);
 			
 			$Title = "THÊM MỚI";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("DANH MỤC MÓN", "/setting/category"),
 				array(mb_strtoupper($Category->getName(), 'UTF8'), $Category->getURLCourse())

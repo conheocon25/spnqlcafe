@@ -21,7 +21,6 @@
 			//-------------------------------------------------------------
 			$Title = "THÊM MỚI";
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("THIẾT LẬP", "/setting"),
 				array("ĐƠN VỊ TÍNH", "/setting/unit")
 			);

@@ -22,8 +22,7 @@
 			//-------------------------------------------------------------													
 			$Domains = $mDomain->findAll();
 			$Title = "THÊM MỚI";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("KHU VỰC", "/setting/domain")
 			);
