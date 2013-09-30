@@ -149,56 +149,54 @@
 	<!-- ======================================================================== -->
 	<!-- MENU.SETTING															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="MenuSetting" class="menu">
-		<div id="sidebar">					
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">		
-				<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-					<a tal:attributes="href '/setting/category'" >
-						<i class="icon-beer" />DANH MỤC MÓN
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
-					<a tal:attributes="href '/setting/domain'">
-						<i class="icon-map-marker" />KHU VỰC
-					</a>
-				</li>				
-				<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-					<a tal:attributes="href '/setting/user'">
-						<i class="icon-user" />NGƯỜI DÙNG 
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
-					<a tal:attributes="href '/setting/customer'">
-						<i class="icon-user" />KHÁCH HÀNG 
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
-					<a tal:attributes="href '/setting/unit'">
-						<i class="icon-tag" />ĐƠN VỊ TÍNH 
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
-					<a tal:attributes="href '/setting/employee'">
-						<i class="icon-user" />NHÂN VIÊN
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-					<a tal:attributes="href '/setting/termcollect'">
-						<i class="icon-tag" />DANH MỤC THU
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-					<a tal:attributes="href '/setting/termpaid'">
-						<i class="icon-tag" />DANH MỤC CHI
-					</a>
-				</li>
-				<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-					<a tal:attributes="href '/setting/config'">
-						<i class="icon-gear" />CẤU HÌNH
-					</a>
-				</li>
-			</ul>
-		</div>	
+	<div metal:define-macro="MenuSetting" id="sidebar">				
+		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">		
+			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
+				<a tal:attributes="href '/setting/category'" >
+					<i class="glyphicons-fast_food" />DANH MỤC MÓN
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
+				<a tal:attributes="href '/setting/domain'">
+					<i class="glyphicons-show_big_thumbnails" />KHU VỰC
+				</a>
+			</li>				
+			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
+				<a tal:attributes="href '/setting/user'">
+					<i class="glyphicons-user" />NGƯỜI DÙNG 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
+				<a tal:attributes="href '/setting/customer'">
+					<i class="glyphicons-parents" />KHÁCH HÀNG 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
+				<a tal:attributes="href '/setting/unit'">
+					<i class="glyphicons-coins" />ĐƠN VỊ TÍNH 
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
+				<a tal:attributes="href '/setting/employee'">
+					<i class="glyphicons-group" />NHÂN VIÊN
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
+				<a tal:attributes="href '/setting/termcollect'">
+					<i class="glyphicons-disk_save" />DANH MỤC THU
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
+				<a tal:attributes="href '/setting/termpaid'">
+					<i class="glyphicons-disk_open" />DANH MỤC CHI
+				</a>
+			</li>
+			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
+				<a tal:attributes="href '/setting/config'">
+					<i class="glyphicons-cogwheel" />CẤU HÌNH
+				</a>
+			</li>
+		</ul>	
 	</div>
 	
 	<!-- ======================================================================== -->
