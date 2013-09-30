@@ -27,7 +27,7 @@
 					<div class="widget-box">
 						<div class="widget-title">
 							<span class="icon">
-								<i class="glyphicon glyphicon-edit"></i>
+								<i class="glyphicon glyphicon-usd"/>
 							</span>
 							<h5 tal:content="Title"/>
 						</div>
@@ -48,13 +48,32 @@
 										<td class="center"><a tal:attributes="href Collect/getURLUpdLoad" tal:content="Collect/getDatePrint"/></td>
 										<td tal:content="Collect/getNote"/>
 										<td class="right" tal:content="Collect/getValuePrint"/>
-										<td class="center"><a tal:attributes="href Collect/getURLDelLoad"><i class="glyphicon glyphicon-remove"/></a></td>
+										<td class="center"><a class="remove-item" href="#myAlert" data-toggle="modal" tal:attributes="alt Collect/getURLDelExe"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<a class="btn btn-success" tal:attributes="href Term/getURLCollectInsLoad"><i class="glyphicon glyphicon-plus"/> Thêm mới</a>
+					<a class="btn btn-success btn-ins" tal:attributes="href Term/getURLCollectInsLoad">
+						<i class="glyphicon glyphicon-plus"/> Thêm mới
+					</a>
+					
+					<div id="myAlert" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3>Cảnh báo: Việc xóa sẽ làm mất dữ liệu và không thể phục hồi</h3>
+								</div>
+								<div class="modal-body">
+									<p>Bạn có chắc muốn xóa mục này ?</p>
+								</div>
+								<div class="modal-footer">
+									<a class="btn btn-primary btn-small" id="remove-link" href="">Xóa</a>
+									<a data-dismiss="modal" class="btn btn-default btn-small">Không</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -64,5 +83,10 @@
 		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+			$('.remove-item').click(function(){
+				$('#remove-link').attr('href', $(this).attr('alt'));
+			});
+		/*]]>*/</script>
 	</body>
 </html>
