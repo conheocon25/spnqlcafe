@@ -14,7 +14,7 @@
 			<ul style="display: block;">
 				<li tal:repeat="Category1 CategoryAll" tal:attributes="class php:Category1->getId()==Category->getId()?'active':'disable'">
 					<a tal:attributes="href Category1/getURLCourse">
-						<i class="glyphicons-fast_food"/> <span tal:content="Category1/getName"/>							
+						<i class="glyphicons-fast_food"/><span tal:content="Category1/getName"/>							
 					</a>
 				</li>
 			</ul>
