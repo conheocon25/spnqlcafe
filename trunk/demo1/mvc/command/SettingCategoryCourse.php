@@ -11,7 +11,6 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Page = $request->getProperty("Page");
 			$IdCategory = $request->getProperty("IdCategory");
 			
 			//-------------------------------------------------------------
@@ -33,10 +32,7 @@
 				array("THIẾT LẬP", "/setting"),
 				array("DANH MỤC MÓN", "/setting/category")
 			);
-			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$CourseAll = $mCourse->findByPage(array($IdCategory, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($Category->getCourseAll()->count(), $Config->getValue(), $Category->getURLCourse());
+			$CourseAll = $mCourse->findByCategory(array($IdCategory));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -46,9 +42,7 @@
 			$request->setObject("CourseAll", $CourseAll);
 						
 			$request->setProperty("Title", $Title);
-			$request->setProperty("Page", $Page);
 			$request->setObject("Navigation", $Navigation);
-			$request->setObject("PN", $PN);
 		}
 	}
 ?>
