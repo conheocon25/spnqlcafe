@@ -9,10 +9,10 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div id="sidebar">
-			<ul style="display: block;">
+			<ul style="display: block;">				
 				<li tal:repeat="Track1 TrackAll" tal:attributes="class php:Track1->getId()==Track->getId()?'active':'disable'">
 					<a tal:attributes="href Track1/getURLPayRoll">
-						<i class="glyphicons-calendar"/> <span tal:content="Track1/getName"/>
+						<i class="glyphicons-calendar"/>  <span tal:content="Track1/getName" />
 					</a>
 				</li>
 			</ul>
@@ -23,22 +23,28 @@
 			<div class="row">
 				<div class="col-12">					
 					<div class="widget-box">
-						<div class="widget-content nopadding">
+						<div class="widget-content nopadding">							
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
-									<tr>
-										<th width="50">CHẤM</th>
-										<th class="left">NGÀY</th>
+									<tr>										
+										<th width="32">STT</th>
+										<th><div class="text-left">NHÂN VIÊN</div></th>
+										<th width="60">CHẤM</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Day Track/getURLDayAll">
-										<td class="center">
-											<a tal:attributes="href php:Day[2]" >
-												<span class="glyphicons-edit"/>
+									<tr tal:repeat="Employee EmployeeAll">
+										<td><div class="text-center" tal:content="repeat/Employee/number"/></td>
+										<td>
+											<a tal:attributes="href php: Track->getURLPayRollEmployee( Employee )" >
+												<span tal:content="Employee/getName"/>
 											</a>
 										</td>
-										<td><span tal:content="php:Day[0]"/></td>
+										<td>
+											<div class="text-center">
+												<a tal:attributes="href php: Track->getURLPayRollEmployee( Employee )" ><span class="glyphicons-edit"/></a>
+											</div>	
+										</td>
 									</tr>
 								</tbody>
 							</table>
