@@ -2,8 +2,6 @@
 <html lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
@@ -21,9 +19,9 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="30">STT</th>
+										<th width="40"><i class="glyphicons-show_big_thumbnails"/></th>
 										<th class="left">TÊN</th>
-										<th width="100"><i class="glyphicons-drink"/></th>
+										<th width="40"><i class="glyphicons-drink"/></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -35,15 +33,11 @@
 								</tbody>
 							</table>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
 	</body>
 </html>
