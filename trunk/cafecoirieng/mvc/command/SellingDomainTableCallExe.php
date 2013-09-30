@@ -73,6 +73,7 @@
 				
 				$Log = new \MVC\Domain\TableLog(
 					null,
+					@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 					$IdTable,
 					date('Y-m-d H:i:s'),
 					"Thêm 1 ".$Course->getName()
