@@ -2,8 +2,6 @@
 <html lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
@@ -24,34 +22,32 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">					
-					<div class="widget-content nopadding">
-						<table class="table table-bordered table-striped table-hover">
-							<thead>
-								<tr>
-									<th width="100">CHẤM</th>
-									<th class="left">NGÀY</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr tal:repeat="Day Track/getURLDayAll">
-									<td class="center">
-										<a tal:attributes="href php:Day[2]" >
-											<span class="glyphicons-edit"/>
-										</a>
-									</td>
-									<td><span tal:content="php:Day[0]"/></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>					
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover">
+								<thead>
+									<tr>
+										<th width="100">CHẤM</th>
+										<th class="left">NGÀY</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Day Track/getURLDayAll">
+										<td class="center">
+											<a tal:attributes="href php:Day[2]" >
+												<span class="glyphicons-edit"/>
+											</a>
+										</td>
+										<td><span tal:content="php:Day[0]"/></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cms/js/jquery.icheck.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/select2.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.dataTables.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
 	</body>
 </html>
