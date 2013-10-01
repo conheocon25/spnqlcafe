@@ -14,7 +14,7 @@ RewriteRule ^change/pass/exe$ 		?cmd=ChangePassExe [L]
 #---------------------------------------------------------------------------------------------------------------------------
 # JSON LOAD
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^load/([a-z0-9_-]+)/([0-9]+)$ 							?cmd=Load&Data=$1&Id=$2 [L]
+RewriteRule ^load/o2j/([A-Za-z0-9]+)/([0-9]+)$ 						?cmd=LoadO2J&ObjectName=$1&Id=$2 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
@@ -100,26 +100,14 @@ RewriteRule ^report/([0-9]+)/upd/exe$ 					?cmd=ReportDetailUpdExe&IdTrack=$1 [L
 RewriteRule ^report/([0-9]+)/del/load$ 					?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/del/exe$ 					?cmd=ReportDetailDelExe&IdTrack=$1 [L]
 
-RewriteRule ^report/([0-9]+)/payroll/general$ 			?cmd=ReportPayRoll&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/payroll/([0-9]+)$ 			?cmd=ReportPayRollDetail&IdTrack=$1&IdEmployee=$2 [L]
-
 RewriteRule ^report/paid/([0-9]+)$ 						?cmd=ReportPaidGeneral&IdTrack=$1 [L]
 RewriteRule ^report/paid/([0-9]+)/([0-9]+)$ 			?cmd=ReportPaidDetail&IdTrack=$1&IdTerm=$2 [L]
-
-RewriteRule ^report/customer/([0-9]+)$ 					?cmd=ReportCustomerGeneral&IdTrack=$1 [L]
-RewriteRule ^report/customer/([0-9]+)/([0-9]+)$ 		?cmd=ReportCustomerDetail&IdTrack=$1&IdCustomer=$2 [L]
 
 RewriteRule ^report/collect/([0-9]+)$ 					?cmd=ReportCollectGeneral&IdTrack=$1 [L]
 RewriteRule ^report/collect/([0-9]+)/([0-9]+)$ 			?cmd=ReportCollectDetail&IdTrack=$1&IdTerm=$2 [L]
 
-RewriteRule ^report/import/([0-9]+)/general$ 			?cmd=ReportImportGeneral&IdTrack=$1 [L]
-RewriteRule ^report/import/([0-9]+)/([0-9]+)$ 			?cmd=ReportImportDetail&IdTrack=$1&IdSupplier=$2 [L]
-RewriteRule ^report/store/([0-9]+)$ 					?cmd=ReportStore&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/eval$ 				?cmd=ReportEvalStore&IdTrack=$1 [L]
 RewriteRule ^report/course/([0-9]+)$ 					?cmd=ReportCourse&IdTrack=$1 [L]
 RewriteRule ^report/general/([0-9]+)$ 					?cmd=ReportGeneral&IdTrack=$1 [L]
-
-RewriteRule ^report/form/store/print$ 					?cmd=ReportFormStorePrint [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # MONEY
@@ -194,23 +182,9 @@ RewriteRule ^setting/category/([0-9]+)/del/exe$ 					?cmd=SettingCategoryDelExe&
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/category/([0-9]+)$ 						?cmd=SettingCategoryCourse&IdCategory=$1 [L]
 RewriteRule ^setting/category/([0-9]+)/page/([0-9]+)$ 			?cmd=SettingCategoryCourse&IdCategory=$1&Page=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/ins/load$ 				?cmd=SettingCategoryCourseInsLoad&IdCategory=$1 [L]
 RewriteRule ^setting/category/([0-9]+)/ins/exe$ 				?cmd=SettingCategoryCourseInsExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/upd/load$ 		?cmd=SettingCategoryCourseUpdLoad&IdCategory=$1&IdCourse=$2 [L]
 RewriteRule ^setting/category/([0-9]+)/([0-9]+)/upd/exe$ 		?cmd=SettingCategoryCourseUpdExe&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/del/load$ 		?cmd=SettingCategoryCourseDelLoad&IdCategory=$1&IdCourse=$2 [L]
 RewriteRule ^setting/category/([0-9]+)/([0-9]+)/del/exe$ 		?cmd=SettingCategoryCourseDelExe&IdCategory=$1&IdCourse=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.COURSE.RECIPE
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe$ 						?cmd=SettingCategoryCourseRecipe&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/ins/load$ 				?cmd=SettingCategoryCourseRecipeInsLoad&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/ins/exe$ 				?cmd=SettingCategoryCourseRecipeInsExe&IdCategory=$1&IdCourse=$2 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/upd/load$ 	?cmd=SettingCategoryCourseRecipeUpdLoad&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/upd/exe$ 	?cmd=SettingCategoryCourseRecipeUpdExe&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/del/load$ 	?cmd=SettingCategoryCourseRecipeDelLoad&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
-RewriteRule ^setting/category/([0-9]+)/([0-9]+)/recipe/([0-9]+)/del/exe$ 	?cmd=SettingCategoryCourseRecipeDelExe&IdCategory=$1&IdCourse=$2&IdRecipe=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING.DOMAIN
