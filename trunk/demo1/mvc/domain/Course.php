@@ -84,8 +84,23 @@ class Course extends Object{
 	function setRate( $Rate ) {$this->Rate = $Rate;$this->markDirty();}	
 	function getRate( ) {return $this->Rate;}
 	
-	//----------------------------------------------------------------------------------
-		
+	public function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdCategory'	=> $this->getIdCategory(),
+		 	'Name'			=> $this->getName(),
+		 	'ShortName'		=> $this->getShortName(),
+		 	'Unit'			=> $this->getUnit(),
+		 	'Price1'		=> $this->getPrice1(),
+		 	'Price2'		=> $this->getPrice2(),
+		 	'Price3'		=> $this->getPrice3(),
+		 	'Price4'		=> $this->getPrice4(),
+		 	'Picture'		=> $this->getPicture(),
+		 	'Rate'			=> $this->getRate()
+		);
+		return json_encode($json);
+	}
+				
 	//-------------------------------------------------------------------------------
 	//DEFINE URL SETTING.COURSE
 	//-------------------------------------------------------------------------------		

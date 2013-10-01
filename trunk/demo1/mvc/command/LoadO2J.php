@@ -1,8 +1,9 @@
 <?php
 	namespace MVC\Command;	
-	class Load extends Command {
+	class LoadO2J extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");			
+			require_once("mvc/base/domain/HelperFactory.php");	
+			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
@@ -11,30 +12,24 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Data = $request->getProperty('Data');
+			$ObjectName = $request->getProperty('ObjectName');
 			$Id = $request->getProperty('Id');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			require_once("mvc/base/mapper/MapperDefault.php");
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			switch ($Data) {
-				case "category":
-					$Category 	= $mCategory->find($Id);
-					$data = array('Name' => $Category->getName());
-					break;
-				default:
-					$data = array('Name' => "Không tìm thấy");
-			}
+			//-------------------------------------------------------------
+			$mMapper 	= \MVC\Domain\HelperFactory::getFinder($ObjectName);
+			$Obj 		= $mMapper->find($Id);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			echo json_encode($data);
+			echo $Obj->toJSON();
 		}
 	}
 ?>

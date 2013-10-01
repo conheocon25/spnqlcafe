@@ -14,12 +14,9 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<a href="#InsDialog" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
 						<i class="glyphicon glyphicon-plus"/> Thêm mới
-					</a>
-					<a href="#InsDialog" data-toggle="modal" class="btn btn-danger btn-multi-delete btn-small">
-						<i class="glyphicon glyphicon-remove"/> Xóa <span>12</span> mục vừa chọn
-					</a>
+					</a>					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">
@@ -34,19 +31,16 @@
 								</thead>
 								<tbody>
 									<tr tal:repeat="Category CategoryAll">
-										<td class="center"><input type="checkbox"/></td>
-										<!--
-										<td class="center" tal:content="repeat/Category/number"/>
-										-->
-										<td><a class="update-item" href="#EdiDialog" data-toggle="modal" data-name="category" tal:attributes="alt Category/getURLUpdExe; data-id Category/getId" tal:content="Category/getName"/></td>
+										<td class="center"><input type="checkbox"/></td>										
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Category" tal:attributes="alt Category/getURLUpdExe; data-id Category/getId" tal:content="Category/getName"/></td>
 										<td class="center"><a tal:attributes="href Category/getURLCourse"> <span tal:content="Category/getCourseAll/count" /> món</a></td>
 										<td class="center">
-											<a class="update-item" href="#EdiDialog" data-toggle="modal" data-name="category" tal:attributes="alt Category/getURLUpdExe; data-id Category/getId">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Category" tal:attributes="alt Category/getURLUpdExe; data-id Category/getId">
 												<i class="glyphicon glyphicon-pencil"/>
 											</a>
 										</td>
 										<td class="center">
-											<a class="remove-item" href="#DelDialog" data-toggle="modal" tal:attributes="alt Category/getURLDelExe">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="alt Category/getURLDelExe">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -57,7 +51,7 @@
 					</div>
 
 					<!-- INSERT DIALOG  -->
-					<div id="InsDialog" class="modal fade">
+					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -83,7 +77,7 @@
 					<!-- END INSERT DIALOG  -->
 					
 					<!-- UPDATE DIALOG  -->
-					<div id="EdiDialog" class="modal fade">
+					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -95,7 +89,7 @@
 										<div class="controls">
 											<input id="inputName" name="Name" type="text" class="form-control input-small"/>
 										</div>
-									</div>
+									</div>									
 									<div class="modal-footer">
 										<button class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -107,7 +101,7 @@
 					<!-- END UPDATE DIALOG  -->
 
 					<!-- DELETE DIALOG  -->
-					<div id="DelDialog" class="modal fade">
+					<div id="DialogDel" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -135,7 +129,10 @@
 				$('#remove-link').attr('href', $(this).attr('alt'));
 			});
 			$('.update-item').click(function(){
-				var url = "/load/" + $(this).attr('data-name') + "/" + $(this).attr('data-id');
+				//Load dữ liệu JSON về
+				var url = "/load/o2j/" + $(this).attr('data-name') + "/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
 				$('#update-link').attr('action', $(this).attr('alt'));
 				$.getJSON(url, function(data) {
 					$('#inputName').attr('value', data.Name);

@@ -17,12 +17,8 @@ class Config extends Object{
 		$this->Value = $Value;			
         parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }	
-	function getIdPrint(){
-        return "c" . $this->getId();
-    }	
+    function getId() {return $this->Id;}	
+	
 	
     function setParam( $Param ) {
         $this->Param = $Param;

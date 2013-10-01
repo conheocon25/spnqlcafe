@@ -10,16 +10,16 @@
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------			
 			$IdCategory = $request->getProperty('IdCategory');
-			$Name = $request->getProperty('Name');
-			$ShortName = $request->getProperty('ShortName');
-			$Unit = $request->getProperty('Unit');
-			$Price1 = $request->getProperty('Price1');
-			$Price2 = $request->getProperty('Price2');
-			$Price3 = $request->getProperty('Price3');
-			$Price4 = $request->getProperty('Price4');
-			$Rate = $request->getProperty('Rate');
+			$Name = $request->getProperty('Name1');
+			$ShortName = $request->getProperty('ShortName1');
+			$Unit = $request->getProperty('Unit1');
+			$Price1 = $request->getProperty('Price1_1');
+			$Price2 = $request->getProperty('Price2_1');
+			$Price3 = $request->getProperty('Price3_1');
+			$Price4 = $request->getProperty('Price4_1');
+			$Rate = $request->getProperty('Rate1');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU

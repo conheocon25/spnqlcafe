@@ -17,14 +17,22 @@ class Category extends Object{
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
-	function getIdPrint() {return "c".$this->Id;}
-		
+			
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
 	
 	function setPicture( $Picture ) {$this->Picture = $Picture;$this->markDirty();}   
 	function getPicture( ) {return $this->Picture;}
 	
+	public function toJSON(){
+		$json = array(
+			'Id' 		=> $this->getId(),
+			'Name' 		=> $this->getName(),			
+			'Picture' 	=> $this->getPicture()
+		);
+		return json_encode($json);
+	}
+
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------

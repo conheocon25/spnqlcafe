@@ -3,6 +3,7 @@
 	class Setting extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
+			//require_once("mvc/factory/Mapper.php");
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------			
@@ -30,10 +31,15 @@
 			$UserAll = $mUser->findAll();
 			$ConfigAll = $mConfig->findAll();
 			
+			//$A = \MVC\Factory\Mapper::build("Category");
+			//$C = $A->findAll()->current();
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$Title = "THIẾT LẬP";
+			//$Title = $C->getName();
+			
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
@@ -42,8 +48,8 @@
 			$request->setProperty('Title', $Title);
 			$request->setProperty('ActiveAdmin', 'Setting');
 			$request->setObject('Navigation', $Navigation);
-			
-			$request->setObject('CategoryAll', $CategoryAll);			
+						
+			$request->setObject('CategoryAll', $CategoryAll);
 			$request->setObject('DomainAll', $DomainAll);
 			$request->setObject('EmployeeAll', $EmployeeAll);
 			$request->setObject('UnitAll', $UnitAll);			

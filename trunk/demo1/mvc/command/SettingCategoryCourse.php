@@ -19,12 +19,14 @@
 			$mCategory = new \MVC\Mapper\Category();
 			$mCourse = new \MVC\Mapper\Course();
 			$mConfig = new \MVC\Mapper\Config();
+			$mUnit = new \MVC\Mapper\Unit();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$CategoryAll = $mCategory->findAll();
-			$Category = $mCategory->find($IdCategory);
+			$CategoryAll 	= $mCategory->findAll();
+			$UnitAll 		= $mUnit->findAll();
+			$Category 		= $mCategory->find($IdCategory);
 			
 			$Title = mb_strtoupper($Category->getName(), 'UTF8');
 			$Navigation = array(				
@@ -39,6 +41,7 @@
 			$request->setObject("Category", $Category);
 			$request->setObject("CategoryAll", $CategoryAll);
 			$request->setObject("CourseAll", $CourseAll);
+			$request->setObject("UnitAll", $UnitAll);
 						
 			$request->setProperty("Title", $Title);
 			$request->setObject("Navigation", $Navigation);
