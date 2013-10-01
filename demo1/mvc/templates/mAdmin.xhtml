@@ -240,8 +240,6 @@
 	<!-- ALERT TOOLS															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="AlertTools">
-		<script src="/mvc/templates/theme/cms/js/unicorn.interface.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
 		<script tal:condition="Insert||string:false" type="text/javascript">/*<![CDATA[*/$.gritter.add({title: 'Thêm mới hoàn tất', text: 'Đã thêm mới dữ liệu', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/</script>
 		<script tal:condition="Update||string:false" type="text/javascript">/*<![CDATA[*/$.gritter.add({title: 'Chỉnh sửa hoàn tất', text: 'Đã cập nhật dữ liệu mới nhất', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/</script>
