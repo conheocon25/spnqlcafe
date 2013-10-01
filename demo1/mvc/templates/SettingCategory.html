@@ -14,15 +14,18 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					<a href="#InsDialog" data-toggle="modal" class="btn btn-success btn-ins pull-right btn-small">
+					<a href="#InsDialog" data-toggle="modal" class="btn btn-success btn-ins btn-small">
 						<i class="glyphicon glyphicon-plus"/> Thêm mới
+					</a>
+					<a href="#InsDialog" data-toggle="modal" class="btn btn-danger btn-multi-delete btn-small">
+						<i class="glyphicon glyphicon-remove"/> Xóa <span>12</span> mục vừa chọn
 					</a>
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover">
+							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
-										<th width="40"><i class="glyphicons-fast_food"/></th>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN DANH MỤC</th>
 										<th width="100"><i class="glyphicons-drink"/></th>
 										<th width="40"><i class="glyphicons-edit"/></th>
@@ -31,7 +34,10 @@
 								</thead>
 								<tbody>
 									<tr tal:repeat="Category CategoryAll">
+										<td class="center"><input type="checkbox"/></td>
+										<!--
 										<td class="center" tal:content="repeat/Category/number"/>
+										-->
 										<td><a class="update-item" href="#EdiDialog" data-toggle="modal" data-name="category" tal:attributes="alt Category/getURLUpdExe; data-id Category/getId" tal:content="Category/getName"/></td>
 										<td class="center"><a tal:attributes="href Category/getURLCourse"> <span tal:content="Category/getCourseAll/count" /> món</a></td>
 										<td class="center">
