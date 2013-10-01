@@ -185,11 +185,8 @@ RewriteRule ^setting/customer/([0-9]+)/barcode$ 					?cmd=SettingCustomerBarcode
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting/category$ 										?cmd=SettingCategory [L]
 RewriteRule ^setting/category/page/([0-9]+)$ 						?cmd=SettingCategory&Page=$1 [L]
-RewriteRule ^setting/category/ins/load$ 							?cmd=SettingCategoryInsLoad [L]
 RewriteRule ^setting/category/ins/exe$ 								?cmd=SettingCategoryInsExe [L]
-RewriteRule ^setting/category/([0-9]+)/upd/load$ 					?cmd=SettingCategoryUpdLoad&IdCategory=$1 [L]
 RewriteRule ^setting/category/([0-9]+)/upd/exe$ 					?cmd=SettingCategoryUpdExe&IdCategory=$1 [L]
-RewriteRule ^setting/category/([0-9]+)/del/load$ 					?cmd=SettingCategoryDelLoad&IdCategory=$1 [L]
 RewriteRule ^setting/category/([0-9]+)/del/exe$ 					?cmd=SettingCategoryDelExe&IdCategory=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
