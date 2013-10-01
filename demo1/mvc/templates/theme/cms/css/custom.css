@@ -4,8 +4,10 @@
 	th.center, td.center { text-align: center !important; }
 	th.right, td.right { text-align: right !important; }
 	
-	.btn-ins { margin-bottom: 20px; }
+	.btn-ins { margin-top: 10px; margin-bottom: 5px; box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1); border: 1px solid #249624; }
 	
 	.blue-item { color: #294B76 !important; }
 	.red-item { color: #C40003; }
 	.green-item { color: #7DBA38; }
+	
+	.modal-icon { margin-top: -10px; font-size: 20px; margin-right: 7px; }

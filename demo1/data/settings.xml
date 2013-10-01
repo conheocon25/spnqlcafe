@@ -14,7 +14,12 @@
 		</command>		
 		<command name="SignoutLoad"><view>SignoutLoad</view></command>
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>				
-		<command name="App"><view>App</view></command>		
+		<command name="App"><view>App</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- JSON LOAD			 															-->
+		<!-- ============================================================================== -->
+		<command name="Load" type="public"><view>Load</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
