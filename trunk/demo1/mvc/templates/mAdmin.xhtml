@@ -30,11 +30,8 @@
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/datepicker.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
-		
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery.gritter.css"/>
 		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
-		<!--
-		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.grey.css" class="skin-color"/>
-		!-->
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -239,5 +236,16 @@
 		</table>
 	</div>
 	
+	<!-- ======================================================================== -->
+	<!-- ALERT TOOLS															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="AlertTools">
+		<script src="/mvc/templates/theme/cms/js/unicorn.interface.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
+		<script tal:condition="Insert||string:false" type="text/javascript">/*<![CDATA[*/$.gritter.add({title: 'Thêm mới hoàn tất', text: 'Đã thêm mới dữ liệu', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/</script>
+		<script tal:condition="Update||string:false" type="text/javascript">/*<![CDATA[*/$.gritter.add({title: 'Chỉnh sửa hoàn tất', text: 'Đã cập nhật dữ liệu mới nhất', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/</script>
+		<script tal:condition="Delete||string:false" type="text/javascript">/*<![CDATA[*/$.gritter.add({title: 'Gỡ bỏ hoàn tất', text: 'Đã xóa dữ liệu vừa chọn', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/</script>
+	</div>
 </body>
 </html>
