@@ -42,7 +42,6 @@
 		
 		<command name="SettingThemeChangeExe">
 			<view>SettingThemeChangeExe</view>
-			<status value="CMD_OK"><forward>App</forward></status>
 		</command>
 		
 		<!-- ============================================================================== -->
