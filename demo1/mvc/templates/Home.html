@@ -11,7 +11,7 @@
 		</div>
 		<div id="user-nav">
             <ul class="btn-group">
-                <li class="btn"><a title="" href="/signin/load"><i class="glyphicon glyphicon-share-alt"></i> <span class="text">Đăng nhập</span></a></li>
+                <li class="btn"><a title="" href="/signin/load"><i class="glyphicon glyphicon-share-alt"/> <span class="text">Đăng nhập</span></a></li>
             </ul>
         </div>
 
@@ -31,80 +31,25 @@
 					<a class="reg" alt="/setting/theme/red-green"/>
 				</div>
 			</div>
-			
-			
+
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-12 center" style="text-align: center;">					
-						<ul class="stat-boxes">
-							<li class="popover-visits">
-								<div class="left sparkline_bar_good"><span>2,4,9,7,12,10,12</span>+10%</div>
-								<div class="right">
-									<strong>36094</strong>
-									Visits
-								</div>
-							</li>
-							<li class="popover-users">
-								<div class="left sparkline_bar_neutral"><span>20,15,18,14,10,9,9,9</span>0%</div>
-								<div class="right">
-									<strong>1433</strong>
-									Users
-								</div>
-							</li>
-							<li class="popover-orders">
-								<div class="left sparkline_bar_bad"><span>3,5,9,7,12,20,10</span>-50%</div>
-								<div class="right">
-									<strong>8650</strong>
-									Orders
-								</div>
-							</li>
-							<li class="popover-tickets">
-								<div class="left sparkline_line_good"><span>12,6,9,23,14,10,17</span>+70%</div>
-								<div class="right">
-									<strong>2968</strong>
-									Tickets
-								</div>
-							</li>
-						</ul>
-					</div>	
-				</div>
-				<div class="row">
-					<div class="col-12">
-						<div class="alert alert-info">
-							Xin chào! Đừng quên xem lại <strong>thống kê</strong> của quán! Mời <strong><a href="/signin/load">đăng nhập</a></strong> để quản lý
-							<a href="#" data-dismiss="alert" class="close">×</a>
+					<div class="col-12">					
+						<div style="text-align:center;">
+							<h3>Hệ thống quản lý quán Cafe</h3>
+							<a class="btn btn-success"><i class="glyphicon glyphicon-share-alt"/> Đăng nhập</a><br/><br/><br/><br/><br/><br/><br/>
+							<p><img src="/mvc/templates/theme/cms/img/spn-soft.png"/></p>
+							<p><small>Thiết kế & Phát triển</small></p><br/><br/>
+							<p><i style="margin-top:-5px;" class="glyphicons-home"/> Địa chỉ: 258/15 Đường 14/9 – P.5 – TP.Vĩnh Long
+							<i style="margin-top:-5px;" class="glyphicons-phone_alt"/> Điện thoại: (0703).502.849 <i style="margin-top:-5px;" class="glyphicons-iphone"/> Di động: 09xx xxx xxx
+							<i style="margin-top:-5px;" class="glyphicons-envelope"/> Email: spn-soft@gmail.com <i style="margin-top:-5px;" class="glyphicons-globe_af"/> Website: <a href="http://www.spn-soft.com">www.spn-soft.com</a></p>
 						</div>
-						<div class="widget-box">
-							<div class="widget-title"><span class="icon"><i class="glyphicon glyphicon-signal"></i></span><h5>Thống kê hiện tại</h5><div class="buttons"><a href="#" class="btn"><i class="glyphicon glyphicon-refresh"></i> Cập nhật ngay</a></div></div>
-							<div class="widget-content">
-								<div class="row">
-									<div class="col-12 col-sm-4">
-										<ul class="site-stats">
-											<li><div class="cc"><i class="glyphicons-drink"></i> <strong>12</strong> <small>Bàn đang có khách</small></div></li>
-											<li><div class="cc"><i class="glyphicons-vector_path_all"></i> <strong>5</strong> <small>Khu vực</small></div></li>
-											<li><div class="cc"><i class="glyphicons-macbook"></i> <strong>32</strong> <small>Bàn</small></div></li>
-											<li class="divider"></li>
-											<li><div class="cc"><i class="glyphicons-user"></i> <strong>3</strong> <small>Đang trực tuyến</small></div></li>
-											<li><div class="cc"><i class="glyphicons-parents"></i> <strong>14683</strong> <small>Lượt truy cập</small></div></li>
-										</ul>
-									</div>
-									<div class="col-12 col-sm-8">
-										<div class="chart"></div>
-									</div>	
-								</div>							
-							</div>
-						</div>					
-					</div>
+					</div>	
 				</div>
 			</div>
 		</div>
 
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
-		<script src="/mvc/templates/theme/cms/js/unicorn.dashboard.js"></script>
 	</body>
 </html>
