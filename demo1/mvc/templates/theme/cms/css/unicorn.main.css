@@ -393,6 +393,7 @@ a {
 #breadcrumb a.current {
 	font-weight: bold;
 	color: #444444;
+	cursor: pointer;
 }
 #breadcrumb a i {
 	margin-top: -5px;
@@ -400,8 +401,7 @@ a {
 	opacity: .6;
 	vertical-align: middle;
 }
-#breadcrumb a:hover i {
-	margin-right: 5px;
+#breadcrumb a:hover i, #breadcrumb a.current i {
 	opacity: .8;
 }
 
@@ -413,13 +413,13 @@ a {
 	background-color: #000000;
 	z-index: 10;
 	right: -220px;
-	top: 121px;
+	top: 2px;
 	border-radius: 5px 0 0 5px;
 }
 #style-switcher i {
 	display: block;
 	float: left;
-	margin: 6px 10px 0 10px;
+	padding: 6px 10px 4px 10px;
 	color: #ffffff;
 }
 #style-switcher i:hover {

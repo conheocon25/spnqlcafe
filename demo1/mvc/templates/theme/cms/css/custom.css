@@ -14,3 +14,10 @@
 	.modal-icon { margin-top: -10px; font-size: 20px; margin-right: 7px; }
 
 	.icheckbox_flat-blue { top: -4px !important; margin-bottom: -10px !important; }
+	
+	#style-switcher a { cursor: pointer; }
+		#style-switcher a.gre { background-color: #555555; }
+		#style-switcher a.lib { background-color: #8399b0; }
+		#style-switcher a.blu { background-color: #2D2F57; }
+		#style-switcher a.red { background-color: #673232; }
+		#style-switcher a.reg { background-image: url('/mvc/templates/theme/cms/img/demo/red-green.png'); background-repeat: no-repeat; }

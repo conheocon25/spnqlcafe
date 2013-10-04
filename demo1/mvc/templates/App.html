@@ -7,12 +7,22 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div id="breadcrumb">
-				<a class="current"><i class="glyphicons-shop"></i> Trang Chủ</a>
+			<div style="position:relative"> 
+				<div id="breadcrumb">
+					<a class="current"><i class="glyphicons-shop"/> Trang Chủ</a>
+				</div>
+				<div id="style-switcher">
+					<i class="glyphicon glyphicon-chevron-left"></i>
+					<span>Giao diện:</span>
+					<a class="gre" alt="/setting/theme/grey"/>
+					<a class="lib" alt="/setting/theme/light-blue"/>
+					<a class="blu" alt="/setting/theme/blue"/>
+					<a class="red" alt="/setting/theme/red"/>
+					<a class="reg" alt="/setting/theme/red-green"/>
+				</div>
 			</div>
 			<div class="container-fluid">
 				<div class="row">

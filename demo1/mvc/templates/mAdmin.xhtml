@@ -64,20 +64,47 @@
 				<li class="btn open"><a>
 					<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getName()"/>
 				</a></li>
-				<li class="btn"><a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/load">
+				<li class="btn"><a class="tip-bottom signout-item" data-original-title="Click để đăng xuất" href="#SinoutDialog" data-toggle="modal" alt="/signout/exe">
 					<i class="glyphicon glyphicon-share-alt"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()">Thoát</span>
 				</a></li>
             </ul>
         </div>
+		<div id="SinoutDialog" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3>Đăng xuất: Thoát tài khoản hiện tại của bạn</h3>
+					</div>
+					<div class="modal-body">
+						<p>Bạn có chắc muốn thoát khỏi hệ thống ?</p>
+					</div>
+					<div class="modal-footer">
+						<a class="btn btn-primary btn-small" id="signout-link" href="">Thoát</a>
+						<a data-dismiss="modal" class="btn btn-default btn-small">Không</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- ======================================================================== -->
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar" id="breadcrumb">
-		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chủ"><i class="glyphicons-shop"></i> Trang Chủ</a>
-		<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
-		<a tal:content="Title" class="current"/>
+	<div metal:define-macro="LocationBar" style="position:relative">
+		<div id="breadcrumb">
+			<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chủ"><i class="glyphicons-shop"/> Trang Chủ</a>
+			<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
+			<a tal:content="Title" class="current"/>
+		</div>
+		<div id="style-switcher">
+			<i class="glyphicon glyphicon-chevron-left"></i>
+			<span>Giao diện:</span>
+			<a class="gre" alt="/setting/theme/grey"/>
+			<a class="lib" alt="/setting/theme/light-blue"/>
+			<a class="blu" alt="/setting/theme/blue"/>
+			<a class="red" alt="/setting/theme/red"/>
+			<a class="reg" alt="/setting/theme/red-green"/>
+		</div>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -207,19 +234,6 @@
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
 			2011 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
 		</div>
-	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- STYLE SWITCHER															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="StyleTools" id="style-switcher">
-		<i class="glyphicon glyphicon-arrow-left"></i>
-		<span>Giao diện:</span>
-		<a href="/setting/theme/grey" alt="#grey" style="background-color:#555555;border-color:#aaaaaa;cursor:pointer;"></a>
-		<a href="/setting/theme/light-blue" alt="#light-blue" style="background-color:#8399b0;cursor:pointer;"></a>
-		<a href="/setting/theme/blue" alt="#blue" style="background-color:#2D2F57;cursor:pointer;"></a>
-		<a href="/setting/theme/red" alt="#red" style="background-color:#673232;cursor:pointer;"></a>
-		<a href="/setting/theme/red-green" alt="#red-green" style="background-image:url('/mvc/templates/theme/cms/img/demo/red-green.png');background-repeat:no-repeat;cursor:pointer;"></a>
 	</div>
 	
 	<!-- ======================================================================== -->
