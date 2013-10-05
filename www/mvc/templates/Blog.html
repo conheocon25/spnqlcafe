@@ -1,247 +1,485 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<span metal:use-macro="base.xhtml/IncludeMETA"/>
-		<span metal:use-macro="base.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="base.xhtml/IncludeJS"/>		
-	</head>
-<body>
-	<a href="http://www.quanly-karaoke.com/#" class="scrolltop" style="display: none;"><span>&#8593;</span></a>
-	<div metal:use-macro="base.xhtml/HeaderBlog"/>
-    <div id="hero">
-        <div class="container">
-            <!-- starts carousel -->
-            <div class="row animated fadeInDown">
-                <div class="span12">
-                    <div id="myCarousel" class="carousel slide">
-                        <!-- carousel items -->
-                        <div class="carousel-inner">
-                            <!-- slide -->
-                            <div class="item slide1 active">
-                                <div class="row">
-                                    <div class="span6">
-                                        <img src="/data/images/slide/slide1.png" alt="slide1"/>
-                                    </div>
-                                    <div class="span4">
-                                        <h1>Tương thích trên mọi thiết bị</h1>
-                                        <p>Ứng dụng có thể hoạt động trên Desktop, Tablet, Smartphone. Hay trên bất kỳ thiết bị nào có sử dụng Web Browser.</p>
-                                        <a href="#" class="btn btn-success btn-large">
-                                            Dùng thử ngay bây giờ !
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- slide -->
-                            <div class="item slide2">
-                                <div class="row">
-                                    <div class="span4 animated fadeInUpBig">
-                                        <h1>Thuận tiện để theo dõi công việc, quản lý từ xa</h1>
-                                        <p>Hệ thống giúp bạn theo dõi, quản lý công việc bất cứ lúc nào, tại bất cứ nơi đâu.</p>                                        
-                                    </div>
-                                    <div class="span6 animated fadeInDownBig">
-                                        <img src="/data/images/slide/slide2.png" alt="slide2"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- slide -->
-                            <div class="item slide3 animated fadeInUpBig">
-                                <img src="/data/images/slide/slide3.png" alt="slide3"/>
-                            </div>
-                        </div>
-                        <!-- Carousel nav -->
-                        <a class="carousel-control left" href="http://wbpreview.com/previews/WB0D95984/#myCarousel" data-slide="prev">‹</a>
-                        <a class="carousel-control right" href="http://wbpreview.com/previews/WB0D95984/#myCarousel" data-slide="next">›</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="intro">
-        <div class="container">
-            <h1>Giải pháp cho công việc quản lý quán Cafe của bạn một cách chuyên nghiệp nhất</h1>
-        </div>
-    </div>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+<meta name="viewport" content="width=device-width" />
+<title>SuperNova - Html Template by Brankic1979</title>
 
-		<!-- features -->
-		<div id="features">
-			<div class="container">
-				<!-- header -->
-				<h2 class="section_header">
-					<hr class="left visible-desktop" />
-						<span>Tính năng</span>
-					<hr class="right visible-desktop" />
-				</h2>
+<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/style.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/blog.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/responsive.css" media="screen" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700italic,700,800,800italic,300italic,300' rel='stylesheet' type='text/css'/>
 
-            <!-- feature list -->
-            <div class="row">
-                <div class="span4 feature">
-                    <img src="/data/images/slide/feature1.jpg" alt="feature1" class="thumb"/>
-                    <h3>
-                        <i class="i_cloud"></i> Điện toán đám mây
-                    </h3>
-                    <p class="description">
-                        Các dữ liệu được sao lưu dự phòng hàng ngày trên các máy chủ. Đảm bảo an toàn 
-						và bảo mật. Duy trì thông suốt liên tục cho hoạt động kinh doanh của doanh nghiệp ...
-                    </p>
-                    <a href="#" class="btn btn-default">Chi tiết</a>
-                </div>
-                <div class="span4 feature">
-                    <img src="/data/images/slide/feature2.jpg" alt="feature2" class="thumb"/>
-                    <h3>
-                        <i class="i_chart"></i>Báo cáo thống kê
-                    </h3>
-                    <p class="description">
-                        Có thể theo dõi và quản lý doanh số hàng ngày và hàng giờ chỉ với một cú click chuột. 
-						Các báo biểu thân thiện, tùy chỉnh theo phù hợp theo từng doanh nghiệp ...
-                    </p>
-                    <a href="#" class="btn btn-default">Chi tiết</a>
-                </div>
-                <div class="span4 feature">
-                    <img src="/data/images/slide/feature3.jpg" alt="feature3" class="thumb"/>
-                    <h3>
-                        <i class="i_movil"></i> Bán hàng chuyên nghiệp
-                    </h3>
-                    <p class="description">
-                        Các hoạt động bán hàng được tin học hóa từ khâu nhập hàng, bán hàng và tính tồn kho hàng tháng.
-						Tất cả sẽ được xử lí tự động hoặc bán tự động tiết kiệm nhiều thời gian và công sức ...
-                    </p>
-                    <a href="#" class="btn btn-default">Chi tiết</a>
-                </div>
-            </div>
-        </div>
-    </div>
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/custom.js"></script>
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/header.js"></script>
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/bra_twitter_plugin.js"></script>
 
-		<!-- starts pricing -->
-		<div id="pricing">
-			<div class="container">
-				<!-- header -->
-				<h2 class="section_header">
-					<hr class="left visible-desktop" />
-					<span>Phí dịch vụ</span>
-					<hr class="right visible-desktop" />
-				</h2>
+<!-- PrettyPhoto --> 
+<link rel="stylesheet" href="/mvc/templates/theme/blog/css/prettyPhoto.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/prettyPhoto.js"></script>	
 
-            <!-- pricing charts -->
-            <div class="row">
-                <div class="span4">
-                    <div class="price_wrapper lite regular">
-                        <div class="header">
-                            <span>Không giới hạn</span>
-                            <div class="price">
-                                <span>$499</span>
-                            </div>
-                        </div>
-                        <div class="section">
-                            <h3>Không giới hạn các chức năng và thời gian sử dụng hệ thống.</h3>
-                            <ul class="perks">
-                                <li><i class="icon-star" />Tư vấn giải pháp</li>
-                                <li><i class="icon-star" />Huấn luyện sử dụng</li>
-								<li><i class="icon-star" />Hỗ trợ nhập liệu</li>
-								<li><i class="icon-star" />Cập nhật chức năng theo yêu cầu</li>
-								<li><i class="icon-star" />Hỗ trợ chạy Offline</li>
-								<li><i class="icon-star" />Hỗ trợ kỹ thuật 24/7</li>
-                            </ul>
-                            <a href="#" data-section="#footer" class="btn scroller">Liên hệ bán hàng</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="span4">
-                    <div class="price_wrapper pro">
-                        <div class="header">
-                            <span>Trọn gói 1 năm</span>
-                            <div class="price"><span>$199</span></div>
-                        </div>
-                        <div class="section">
-                            <h3>Sử dụng được đầy đủ các chức năng cơ bản và nâng cao. 
-							Giới hạn thời gian sử dụng trong 1 năm</h3>
-                            <ul class="perks">
-                                <li><i class="icon-star" />Tư vấn giải pháp</li>
-                                <li><i class="icon-star" />Huấn luyện sử dụng</li>
-								<li><i class="icon-star" />Hỗ trợ nhập liệu</li>
-								<li><i class="icon-star" />Cập nhật theo yêu cầu</li>
-								<li><i class="icon-star" />Hỗ trợ kỹ thuật 24/7</li>
-                            </ul>
-                            <a href="#" data-section="#footer" class="btn scroller">Liên hệ bán hàng</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="span4">
-                    <div class="price_wrapper standard regular">
-                        <div class="header">
-                            <span>Dùng thử 1 tháng</span>
-                            <div class="price">
-                                <span>$ 0</span>
-                                Miễn phí
-                            </div>
-                        </div>
-                        <div class="section">
-                            <h3>Sử dụng được đầy đủ các chức năng cơ bản và nâng cao. 
-							Giới hạn thời gian sử dụng trong 30 ngày.</h3>
-                            <ul class="perks">
-                                <li><i class="icon-star" />Tư vấn giải pháp</li>
-                                <li><i class="icon-star" />Huấn luyện sử dụng</li>
-								<li><i class="icon-star" />Hỗ trợ nhập liệu</li>
-                            </ul>
-                            <a href="#" data-section="#footer" class="btn scroller">Liên hệ bán hàng</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Photostream Javascript --> 
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/bra_photostream_plugin.js"></script>
 
-    <!-- starts testimonial -->
-    <div id="testimonials">
-        <div class="container">
-            <div class="controls">
-                <hr/>
-            </div>
-            <div class="phrases_wrapper">
-                <div class="phrase">
-                    <div class="row">
-                        <div class="span7">
-                            <p class="testimony">
-								Công nghệ thông tin đang dần thay đổi thế giới, thay đổi thói quen trong làm việc và suy nghĩ mọi người. Nhiệm vụ của chúng tôi là tạo ra sản phẩm dịch vụ tốt với chi phí hợp lí !.
-                                <span>"</span>
-                            </p>
-                        </div>
-                        <div class="span3 offset1">
-                            <div class="pic">
-                                <img src="/data/images/slide/pic1.jpg" alt="author" class="img-circle"/>
-                                <span class="name">Tuan B.T</span>
-                                <span class="position">, Trưởng nhóm phát triển hệ thống</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!-- Masonry Javascript File --> 
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/jquery.isotope.min.js"></script>	
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/toucheffects.js"></script>
 
-		<!-- starts footer -->
-		<div id="footer">
-			<div class="container">
-				<div class="row">
-					<div class="span8">
-												
+<!-- Flexslider JavaScript Files -->	
+<link rel="stylesheet" href="/mvc/templates/theme/blog/css/flexslider.css" type="text/css" media="screen" />
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#index-slider').flexslider({
+		animation: "fade",  
+		slideDirection: "",       
+		slideshowSpeed: 3500,      
+		animationDuration: 500,	       
+		pauseOnHover: true,		
+        smoothHeight: true
+	});	
+});
+</script>		
+
+<!-- bxSlider Javascript file -->
+<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/bxslider.css"/>
+<script src="/mvc/templates/theme/blog/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){    
+	$('#testimonials').bxSlider({
+	  controls: true,
+/*    video: true,*/
+	  auto: false,
+	  pause: 2000,
+	  adaptiveHeight: true,
+	  mode: 'fade'
+	});
+});
+</script>
+
+</head>
+
+<body id="top">
+
+<div id="wrapper">	
+
+<!-- START HEADER -->
+
+<div id="header-wrapper">
+
+	<div class="header clear">
+		
+		<div id="logo">	
+			<a href="#"><img src="/mvc/templates/theme/blog/images/logo.png" alt="" /></a>		
+		</div><!--END LOGO-->
+	
+		<div id="primary-menu">
+			
+			<ul class="menu">
+				<li><a href="#" class="current">Trang Chủ</a></li>
+				<li><a href="#">Tin Tức</a>		
+					<ul>
+						<li><a href="#">Tin Tức 1</a></li>	
+						<li><a href="#">Tin Tức 2</a></li>	
+						<li><a href="#">Tin Tức 3</a></li>	
+						<li><a href="#">Tin Tức 4</a></li>	
+					</ul>
+			    </li>
+				<li><a href="#">Album</a>		
+					<ul>
+						<li><a href="portfolio-column-2.html">Album 1</a></li>
+						<li><a href="portfolio-column-2.html">Album 2</a></li>
+						<li><a href="portfolio-column-2.html">Album 3</a></li>
+						<li><a href="#">Thư Viện</a>		
+							<ul>
+								<li><a href="gallery-2.html">Thư Viện 1</a></li>		
+								<li><a href="gallery-2.html">Thư Viện 2</a></li>		
+								<li><a href="gallery-2.html">Thư Viện 3</a></li>		
+							</ul>
+						</li>				
+					</ul>
+			    </li>
+				<li><a href="#">Blog</a>	
+					<ul>
+						<li><a href="blog.html">Blog 1</a></li>
+						<li><a href="blog2.html">Blog 2</a></li>
+						<li><a href="blog3.html">Blog 3</a></li>
+						<li><a href="blog4.html">Blog 4</a></li>
+						<li><a href="#">Blog grid - masonry</a>		
+							<ul>
+								<li><a href="blog5.html">Two Columns</a></li>
+								<li><a href="blog7.html">Two Columns with sidebar</a></li>
+								<li><a href="blog6.html">Three Columns</a></li>		
+							</ul>
+						</li>
+						<li><a href="#">Blog - timeline style</a>		
+							<ul>
+								<li><a href="blog9.html">Timeline with sidebar</a></li>
+								<li><a href="blog8.html">Fullwidth</a>		
+							<ul>
+								<li><a href="blog9.html">Timeline with sidebar</a></li>
+								<li><a href="blog8.html">Fullwidth</a></li>
+							</ul>
+						</li>
+							</ul>
+						</li>
+						<li><a href="blog-single.html">Blog single</a></li>	
+						<li><a href="blog-single2.html">Blog single - no sidebar</a></li>	
+						<li><a href="archive.html">Archive</a></li>		
+						<li><a href="archive2.html">Archive 2</a></li>							
+					</ul>
+			    </li>
+				<li><a href="#">Thông Tin</a></li>
+			</ul><!--END UL-->
+			
+		</div><!--END PRIMARY MENU-->    
+		
+	</div><!--END HEADER-->	
+	
+</div><!--END HEADER-WRAPPER-->		
+
+<!-- END HEADER -->
+			
+
+
+
+<!-- START HOME -->
+
+<div id="content-wrapper">
+
+	<div class="fullwidth">
+
+		<div class="flexslider" id="index-slider">
+			
+			<ul class="slides">
+				
+				<li>
+					<a href="#"><img src="/mvc/templates/theme/blog/images/slider3.jpg" alt="" /></a>
+					<div class="flex-caption transparent light-font center">
+						<div>
+							<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
+							<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
+							<p><a href="#" class="button medium white">Xem tiếp</a></p>
+						</div>
 					</div>
-					<div class="span4 contact_us">
-												
+			  </li>
+					
+				<li>
+					<a href="#"><img src="/mvc/templates/theme/blog/images/slider2.jpg" alt="" /></a>
+					<div class="flex-caption transparent dark-font">
+						<div>
+							<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
+							<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
+							<p><a href="#" class="button medium white">Xem tiếp</a></p>
+						</div>
 					</div>
-				</div>
-				<hr/>
-				<div class="row copyright">
-					<div class="span5">
-						<h3>Kết nối với chúng tôi</h3>
-						<a href="#" class="social fb"><i class="i_facebook" /></a>
-						<a href="#" class="social tw"><i class="i_twitter"></i></a>
-						<a href="#" class="social yt"><i class="i_youtube"></i></a>
+			  </li>
+					
+				<li>
+					<a href="#"><img src="/mvc/templates/theme/blog/images/slider1.jpg" alt="" /></a>
+					<div class="flex-caption dark center">
+						<div>
+							<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
+							<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
+							<p><a href="#" class="button medium white">Xem tiếp</a></p>
+						</div>
 					</div>
-					<div class="span3 offset4 copy">
-						<p>&#0169; 2012 <img src="data/images/logo/spn_2013.png"/></p>
+			  </li>
+					
+				<li>
+					<a href="#"><img src="/mvc/templates/theme/blog/images/slider4.jpg" alt="" /></a>
+					<div class="flex-caption light">
+						<div>
+							<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
+							<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
+							<p><a href="#" class="button medium white">Xem tiếp</a></p>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+			  </li>
+					
+			</ul><!--END UL SLIDES-->
+			
+		</div><!--END FLEXSLIDER-->
+		
+	</div><!--END FULLWIDTH-->
+	
+
+	<div class="page-header text-align-center">
+		
+		<h1 class="title uppercase">Xin chào ! Thay mặt các thành viên <a href="http://spn-soft.com">SPN Group</a> gữi lời cảm ơn bạn ghé thăm</h1>
+		<h2 class="subtitle">Rất mong nhận được sự đóng góp ý kiến từ phía các bạn để sản phẩm ngày càng hoàn thiện hơn.</h2>	
+							
+	</div><!--END PAGE-HEADER-->
+	
+	
+	<div class="content">
+	
+		<div class="section">	
+				
+			<div class="portfolio-grid">
+		
+				<ul id="thumbs" class="col4">
+						
+					<li class="item web">
+						<img src="/mvc/templates/theme/blog/images/portfolio-item-1.jpg" alt="" />
+						<div class="col4 item-info">
+							<h3 class="title"><a href="portfolio-single.html">Enter title here</a></h3>
+						</div><!--END ITEM-INFO--> 	
+						<div class="item-info-overlay">
+						<div>
+							<h4>Web design</h4>	
+							<p>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae explicabo.</p>
+							 <a href="portfolio-single.html" class="button small rounded white">details</a>
+							<a href="images/portfolio-item-1.jpg" class="button small rounded orange" data-rel="prettyPhoto[web]">preview</a>
+						</div>					
+						</div><!--END ITEM-INFO-OVERLAY--> 
+					</li>								
+										
+					<li class="item web">
+						<img src="/mvc/templates/theme/blog/images/portfolio-item-2.jpg" alt="" />
+						<div class="col4 item-info">
+							<h3 class="title"><a href="portfolio-single.html">Enter title here</a></h3>
+						</div><!--END ITEM-INFO--> 	
+						<div class="item-info-overlay">
+						<div>
+							<h4>Web design</h4>	
+							<p>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae explicabo.</p>
+							<a href="portfolio-single.html" class="button small rounded white">details</a>
+							<a href="images/portfolio-item-2.jpg" class="button small rounded orange" data-rel="prettyPhoto[web]">preview</a>
+						</div>						
+						</div><!--END ITEM-INFO-OVERLAY--> 
+					</li>
+														
+					<li class="item web">
+						<img src="/mvc/templates/theme/blog/images/portfolio-item-3.jpg" alt="" />
+						<div class="col4 item-info">
+							<h3 class="title"><a href="portfolio-single.html">Enter title here</a></h3>
+						</div><!--END ITEM-INFO--> 	
+						<div class="item-info-overlay">
+						<div>
+							<h4>Web design</h4>	
+							<p>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae explicabo.</p>
+							<a href="portfolio-single.html" class="button small rounded white">details</a>
+							<a href="images/portfolio-item-3.jpg" class="button small rounded orange" data-rel="prettyPhoto[web]">preview</a>
+						</div>						
+						</div><!--END ITEM-INFO-OVERLAY--> 
+					</li>
+														
+					<li class="item web">
+						<img src="/mvc/templates/theme/blog/images/portfolio-item-4.jpg" alt="" />
+						<div class="col4 item-info">
+							<h3 class="title"><a href="portfolio-single.html">Enter title here</a></h3>
+						</div><!--END ITEM-INFO--> 	
+						<div class="item-info-overlay">
+						<div>
+							<h4>Web design</h4>	
+							<p>Etiam eget mi enim, non ultricies nisi voluptatem, illo inventore veritatis et quasi architecto beatae vitae explicabo.</p>
+							<a href="portfolio-single.html" class="button small rounded white">details</a>
+							<a href="images/portfolio-item-3.jpg" class="button small rounded orange" data-rel="prettyPhoto[web]">preview</a>
+						</div>						
+						</div><!--END ITEM-INFO-OVERLAY--> 
+					</li>
+					
+				</ul><!--END UL THUMBS--> <br/>
+				
+				<p class="one text-align-center"><a href="#" class="button large orange">Xem sản phẩm</a></p>          
+					
+			</div><!--END PORTFOLIO-GRID-->
+		
+		</div><!--END SECTION-->	
+							
+							
+		<div class="section alternate">
+		
+			<div class="holder text-align-center">			
+			
+				<h3 class="title uppercase">Nhận Xét Của Khách Hàng</h3>
+			
+				<ul class="bxslider" id="testimonials">
+				
+					<li>
+						<img src="/mvc/templates/theme/blog/images/member2.jpg" class="aligncenter radius-200" alt="" height="80" />	
+						<h4><b>Dễ sử dụng:</b> Các chức năng rõ ràng, tập trung trên một màn hình duy nhất, chỉ cần 10 phút tìm hiểu là tự sử dụng được.</h4>
+					  <small class="uppercase"><b>Nguyễn Ng.Anh, Cafe Đam Mê, F4-TP.Vĩnh Long</b></small>					
+					 </li>
+						
+					<li>
+						<img src="/mvc/templates/theme/blog/images/member3.jpg" class="aligncenter radius-200" alt="" height="80" />
+						<h4><b>Giao diện đẹp:</b> Được thiết kế theo phong cách của quán café, Cách phối màu sắc ấn tượng, hài hòa không gây tác dụng xấu cho mắt khi sử dụng lâu trên phần mềm.</h4>
+						<small class="uppercase"><b>Lâm Qu.Tuấn, Cafe Cõi Riêng, F4-TP.Vĩnh Long</b></small>					
+					</li>
+						
+					<li> 
+						<img src="/mvc/templates/theme/blog/images/member1.jpg" class="aligncenter radius-200" alt="" height="80" />
+						<h4>Aliquam tortor lorem, fringilla tempor dignissim at, pretium et arcu. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</h4>
+						<small class="uppercase"><b>Jane Doe, Another happy customer</b></small>					
+					</li>
+						
+					<li>
+						<img src="/mvc/templates/theme/blog/images/member3.jpg" class="aligncenter radius-200" alt="" height="80" />
+						<h4>Eaque ipsa quae ab illo inventore veritatis unde omnis iste natus.</h4>
+						<small class="uppercase"><b>Jane McDoe, Yet another one</b></small>					
+					</li>
+						
+					<li>
+						<h4>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo, nemo enim ipsam voluptatem quia voluptas sit asperna. Saque ipsa quae ab illo inventore veritatis et quasi architecto beatae.</h4>
+						<small class="uppercase"><b>Jane Doe Junior, The Boss</b></small>					
+					</li>
+					
+				</ul><!--END BXSLIDER TESTIMONIALS--> 
+				
+			</div><!--END HOLDER-->
+		
+		</div><!--END SECTION ALTERNATE--> 	
+		
+		
+							
+		<div class="section parallax-background dark" id="index">
+	
+			<div class="holder text-align-center">
+				<h2 class="uppercase">Sản phẩm được tạo ra là để phục vụ</h2>
+				<h3>Phần mềm chúng tôi tạo ra là để phục vụ cho khách hàng tốt nhất, tiện lợi nhất, dễ dàng nhất</h3><br/>
+				<p><a href="#" class="button large rounded outline white">Xem sản phẩm</a></p>	
+			</div><!--END HOLDER-->		
+			
+		</div><!--END SECTION--> 
+		
+							
+							
+		<div class="section">				
+								
+			<div class="one-fourth text-align-center">
+				<h1><i class="icon-plane"></i></h1>
+				<h3>Tiện lợi</h3>
+				<p>Dùng được trên bất cứ thiết bị nào có sử dụng trình duyệt web tại bất cứ nơi đâu, rất thuận tiện theo dõi công việc từ xa</p>
+			</div><!--END ONE-FOURTH-->		
+									
+			<div class="one-fourth text-align-center">
+				<h1><i class="icon-laptop"></i></h1>
+				<h3>Không cần cài đặt</h3>
+				<p>Không chiếm dung lượng bộ nhớ lưu trữ trên máy tính của bạn mà vẫn đảm bảo an toàn dữ liệu và đạt tốc độ tốt nhất</p>
+			</div><!--END ONE-FOURTH-->		
+										
+			<div class="one-fourth text-align-center">
+				<h1><i class="icon-thumbs-up-alt"></i></h1>
+				<h3>Dùng thử miễn phí</h3>
+				<p>Miễn phí nhưng vẫn có đầy đủ chức năng để bạn có thể yên tâm lựa chọn dùng sản phẩm của chúng tôi</p>
+			</div><!--END ONE-FOURTH-->			
+									
+			<div class="one-fourth text-align-center last">
+				<h1><i class="icon-smile"></i></h1>
+				<h3>Phục vụ chu đáo</h3>
+				<p>Nhân viên của chúng tôi sẽ có mặt trực tiếp ngay khi bạn cần để giúp bạn khắc phục sự cố phần mềm không mong muốn</p>
+			</div><!--END ONE-FOURTH LAST-->
+			
+			
+			<div class="divider-border"></div>	
+			<div class="clear"></div>					
+				
+				
+            <div class="one text-align-center">			
+				<h3 class="title uppercase">Hợp tác để cùng phát triển</h3>
+				<h4>Có một dự án thú vị đang chờ bạn tham gia cùng chúng tôi</h4>	
+							
+            	<div class="one-half button-group aligncenter">	
+					<a href="#" class="button grey"><span class="title">Liên hệ</span><span class="subtitle">Để được dùng thử bây giờ</span></a>	 					
+					<span class="or radius-200">hay</span>
+					<a href="#" class="button green"><span class="title">Xem sản phẩm</span><span class="subtitle">Để biết thêm chi tiết</span></a>					
+				</div><!--END ONE-HALF BUTTON-GROUP-->	
+				
+			</div><!--END ONE-->						   
+		
+		</div><!--END SECTION-->  	
+			
+	</div><!--END CONTENT-->
+
+</div><!--END CONTENT-WRAPPER--> 
+
+<!-- END HOME -->
+
+</div><!-- END WRAPPER --> 
+
+
+
+
+
+<!-- START FOOTER -->
+
+<div id="footer">
+
+	<div class="section">								
+						
+		<div class="one text-align-center">	
+			<div class="twitter-feed extended">	
+				<h1><i class="icon-twitter"></i></h1>
+				<script type="text/javascript">
+				jQuery(document).ready(function () {
+					$("#twitter-feed-footer").bra_twitter({username: 'brankic1979', count: 1});	
+				})
+				</script>
+				<div class="bra_tweets" id="twitter-feed-footer"><ul></ul></div>				
+				<p><a href="#" class="button small grey">Follow us</a></p>					
+			</div><!--END TWITTER-FEED-->				
+		</div><!--END ONE-->		
+		
+		<div class="divider-border"></div>			
+				
+		<div class="one text-align-center">	
+			<ul class="social-bookmarks rounded">		
+				<li><a href="#" class="social-twitter"></a></li>
+				<li><a href="#" class="social-facebook"></a></li>
+				<li><a href="#" class="social-dribbble"></a></li>
+				<li><a href="#" class="social-pinterest"></a></li>	
+				<li><a href="#" class="social-instagram"></a></li>
+			</ul><!--END SOCIAL-BOOKMARKS-->
+			
+			<p class="copyright">Bản quyền &copy; 2013 SPN Group</p>						
+		</div><!--END ONE-->	
+			
+	</div><!--END SECTION-->	
+		
+</div><!--END FOOTER-->
+
+<!-- END FOOTER -->		         
+
+<a href="#" id="back-top">Top</a> 
+
+<!-- Theme Option --> 
+<script type="text/javascript" src="/mvc/templates/theme/blog/js/theme-option.js"></script>
+
+<div id="panel" style="margin-left:-170px;">
+		
+	<div id="panel-admin">
+		
+		<strong>Colors</strong> <br />
+		<select id="colors">		  
+		  <option value="orange" selected="selected">Orange</option>
+          <option value="blue">Blue</option>
+		  <option value="navyblue">Navyblue</option>
+		  <option value="yellow">Yellow</option>
+		  <option value="green">Green</option>
+		  <option value="tealgreen">Tealgreen</option>
+		  <option value="red">Red</option>
+		  <option value="pink">Pink</option>
+		  <option value="purple">Purple</option>
+		  <option value="magenta">Magenta</option>
+		  <option value="cream">Cream</option>
+		</select>
+		
+		<strong>Layout style</strong> <br />
+		<select id="layout">
+		  <option value="stretched" selected="selected">Stretched</option>
+		  <option value="boxed">Boxed</option>
+		</select>
+<br /><br /><br />
+
+	</div><!--PANEL-ADMIN-->	
+	
+	<a class="open" href="#"></a>
+
+</div><!--PANEL-->
+
+</body>
 </html>
