@@ -1,0 +1,68 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
+RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
+RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
+RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
+RewriteRule ^change/pass/load$ 		?cmd=ChangePassLoad [L]
+RewriteRule ^change/pass/exe$ 		?cmd=ChangePassExe [L]
+
+RewriteRule ^home$ 					?cmd=Home [L]
+RewriteRule ^video/([0-9])$ 		?cmd=Video&IdCategoryVideo=$1 [L]
+RewriteRule ^contact/ins/exe$ 		?cmd=ContactInsExe [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting$ 										?cmd=Setting [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SETTING.CATEGORY.NEWS
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^setting/config$ 								?cmd=SettingConfig [L]
+RewriteRule ^setting/config/page/([0-9])$ 					?cmd=SettingConfig&Page=$1 [L]
+
+RewriteRule ^setting/config/ins/load$ 						?cmd=SettingConfigInsLoad [L]
+RewriteRule ^setting/config/ins/exe$ 						?cmd=SettingConfigInsExe [L]
+RewriteRule ^setting/config/([0-9])/upd/load$ 				?cmd=SettingConfigUpdLoad&IdConfig=$1 [L]
+RewriteRule ^setting/config/([0-9])/upd/exe$ 				?cmd=SettingConfigUpdExe&IdConfig=$1 [L]
+RewriteRule ^setting/config/([0-9])/del/load$ 				?cmd=SettingConfigDelLoad&IdConfig=$1 [L]
+RewriteRule ^setting/config/([0-9])/del/exe$ 				?cmd=SettingConfigDelExe&IdConfig=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# SYSTEM.BLOG
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^([a-z0-9_-]+)$ 								?cmd=Blog&IdKey=$1 [L]
+RewriteRule ^([a-z0-9_-]+)/signin/load$ 					?cmd=BlogSigninLoad&IdKey=$1 [L]
+RewriteRule ^([a-z0-9_-]+)/signin/exe$ 						?cmd=BlogSigninExe&IdKey=$1 [L]
+RewriteRule ^([a-z0-9_-]+)/setting$ 						?cmd=Setting&IdKey=$1 [L]
+
+RewriteRule ^blog/([a-z0-9_-]+)/setting/info/upd/load$ 				?cmd=SettingInfoUpdLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/info/upd/exe$ 				?cmd=SettingInfoUpdExe&IdKey=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# BLOG.ALBUM
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album$ 						?cmd=SettingBAlbum&IdKey=$1 [L]
+
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/ins/load$ 			?cmd=SettingBAlbumInsLoad&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/ins/exe$ 				?cmd=SettingBAlbumInsExe&IdKey=$1 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/upd/load$ 	?cmd=SettingBAlbumUpdLoad&IdKey=$1&IdAlbum=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/upd/exe$ 		?cmd=SettingBAlbumUpdExe&IdKey=$1&IdAlbum=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/del/load$ 	?cmd=SettingBAlbumDelLoad&IdKey=$1&IdAlbum=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/del/exe$ 		?cmd=SettingBAlbumDelExe&IdKey=$1&IdAlbum=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# BLOG.IMAGE
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])$ 						?cmd=SettingBImage&IdKey=$1&IdAlbum=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/ins/load$ 			?cmd=SettingBImageInsLoad&IdKey=$1&IdAlbum=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/ins/exe$ 				?cmd=SettingBImageInsExe&IdKey=$1&IdAlbum=$2 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/([0-9])/upd/load$ 	?cmd=SettingBImageUpdLoad&IdKey=$1&IdAlbum=$2&IdImage=$3 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/([0-9])/upd/exe$ 		?cmd=SettingBImageUpdExe&IdKey=$1&IdAlbum=$2&IdImage=$3 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/([0-9])/del/load$ 	?cmd=SettingBImageDelLoad&IdKey=$1&IdAlbum=$2&IdImage=$3 [L]
+RewriteRule ^blog/([a-z0-9_-]+)/setting/album/([0-9])/([0-9])/del/exe$ 		?cmd=SettingBImageDelExe&IdKey=$1&IdAlbum=$2&IdImage=$3 [L]

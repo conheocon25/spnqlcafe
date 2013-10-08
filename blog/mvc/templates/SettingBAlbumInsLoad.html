@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mBlog.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mBlog.xhtml/Header"/>
+		<div metal:use-macro="mBlog.xhtml/Menu"/>
+		<div id="content">
+			<div metal:use-macro="mBlog.xhtml/ContentHeader"/>
+			<div metal:use-macro="mBlog.xhtml/LocationBar"/>
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="widget-box">
+							<div class="widget-title">
+								<span class="icon"><i class="icon-align-justify"></i></span>
+								<h5>THÊM MỚI</h5>
+							</div>
+							<div class="widget-content nopadding">								
+								<form class="form-horizontal" tal:attributes="action Customer/getURLSettingBAlbumInsExe" method="post">
+									<div class="form-group">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="Name" name="Name" type="text" class="form-control input-sm"/>
+										</div>
+									</div>
+									<div class="form-actions">
+										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Lưu</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mBlog.xhtml/Footer"/>
+		<div metal:use-macro="mBlog.xhtml/IncludeJS"/>
+	</body>
+</html>
