@@ -26,8 +26,8 @@
 								<thead>
 									<tr>
 										<th width="40"><i class="glyphicons-macbook"/></th>
-										<th>TÊN BÀN</th>
-										<th width="120">PHIẾU</th>
+										<th><div class="text-left">TÊN</div></th>
+										<th width="120"><div class="text-right">PHIẾU</div></th>
 										<th width="60">IN</th>
 										<th width="60">VÀO</th>
 										<th width="60">RA</th>
@@ -54,9 +54,9 @@
 												<i class="glyphicons-disk_import"/>
 											</a>
 										</td>
-										<td class="center">
+										<td class="center">											
 											<span tal:condition="Table/getSessionActive">
-												<a tal:condition="Table/getSessionActive/getNote" tal:attributes="href Table/getSessionActive/getURLCheckoutExe">
+												<a tal:attributes="href Table/getSessionActive/getURLCheckoutExe">
 													<i class="glyphicons-disk_export"/>
 												</a>
 											</span>

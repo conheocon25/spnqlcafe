@@ -1,19 +1,18 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
 class Session extends Mapper implements \MVC\Domain\SessionFinder {
 
     function __construct() {
         parent::__construct();
-        $tblSession = "demo1_session";		
-		$tblSessionDetail = "demo1_session_detail";
-		$tblTable = "demo1_table";
+        $tblSession = "tbl_session";		
+		$tblSessionDetail = "tbl_session_detail";
+		$tblTable = "tbl_table";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
-		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=?, value=? where id=?", $tblSession);
-		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment, value) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
+		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=? where id=?", $tblSession);
+		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSession);
 			
 		$findByTableStmt = sprintf("select * from %s where idtable=?  order by datetime desc", $tblSession);
@@ -49,8 +48,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 								S.datetime DESC
 							"
 		, $tblTable, $tblSession);
-	
-				
+					
 		$findLastStmt = sprintf("select * from %s where idtable=? and status<1 order by datetime desc limit 1", $tblSession);
 		$findLastAllStmt = sprintf("select * from %s where status<1 order by datetime desc", $tblSession);
 		$findNowAllStmt = sprintf("select * from %s where date(datetime) = date(now())", $tblSession);
@@ -85,8 +83,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$array['discount_value'],
 			$array['discount_percent'],
 			$array['surtax'],
-			$array['payment'],
-			$array['value']
+			$array['payment']			
 		);
         return $obj;
     }
@@ -107,8 +104,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment(),
-			$object->getValue()
+			$object->getPayment()			
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -127,8 +123,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment(),
-			$object->getValue(),
+			$object->getPayment(),			
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

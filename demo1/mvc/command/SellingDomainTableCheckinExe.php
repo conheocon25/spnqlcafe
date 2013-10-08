@@ -16,10 +16,11 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable = new \MVC\Mapper\Table();			
-			$mCourse = new \MVC\Mapper\Course();
-			$mSession = new \MVC\Mapper\Session();
-									
+			$mTable 	= new \MVC\Mapper\Table();
+			$mCourse 	= new \MVC\Mapper\Course();
+			$mSession 	= new \MVC\Mapper\Session();
+			$mConfig 	= new \MVC\Mapper\Config();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -27,19 +28,21 @@
 									
 			//Nếu chưa có Session thì tạo
 			$SessionTable = $Table->getSessionActive();	
-			$IdUser = $Session->getCurrentIdUser();			
-			if (!isset($SessionTable)){
+			$IdUser = $Session->getCurrentIdUser();
+			$Config = $mConfig->findByName("DISCOUNT");
+			
+			if (!isset($SessionTable)){				
 				$dSession = new \MVC\Domain\Session(
 					null,					//Id
 					$IdTable,				//IdTable
-					$IdUser ,				//IdUser đổi lại User hiện hành
+					$IdUser ,				//IdUser
 					1,						//IdCustomer
 					\date("Y-m-d H:i:s"), 	//DateTime
 					null, 					//DateTimeEnd
 					"",						//Note
 					0,						//Status
 					0,						//Discount Value
-					0,						//Discount Percent
+					isset($Config)?$Config->getValue():0,		//Discount Percent
 					0,						//Surtax
 					0,						//Payment
 					0						//Value

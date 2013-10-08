@@ -32,7 +32,7 @@
 			$ConfigAll = $mConfig->findAll();
 			
 			$Title = "DANH MỤC CHI";
-			$Navigation = array(				
+			$Navigation = array(
 				array("THIẾT LẬP", "/setting")
 			);
 			

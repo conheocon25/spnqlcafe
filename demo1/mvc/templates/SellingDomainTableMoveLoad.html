@@ -11,34 +11,30 @@
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
-			<div class="container-fluid">							
+			<div class="container-fluid">
 				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-12">
 						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon"><i class="icon-align-justify"></i></span>
-								<h5 tal:content="Title"/>
-							</div>
 							<div class="widget-content nopadding">
-								<form class="form-horizontal" tal:attributes="action Table/getURLMoveExe" method="post">
+								<form class="form-horizontal" tal:attributes="action Table/getURLMoveExe" method="post">																											
 									<div class="control-group">
-										<label class="control-label" for="IdTableMove">Chuyển đến bàn</label>
+										<label class="control-label">Chuyển đến bàn</label>
 										<div class="controls">
-											<select name="IdTableMove" id="IdTableMove" class="form-control input-sm">
+											<select name="IdTableMove" id="IdTableMove">
 												<option tal:repeat="Table TableAll" tal:attributes="value Table/getId">
 													<span tal:content="Table/getDomain/getName" /> / <span tal:content="Table/getName" />
 												</option>
 											</select>
 										</div>
-									</div>
+									</div>									
 									<div class="form-actions">
-										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-check"/> Đồng ý</button>
+										<button class="btn btn-primary btn-sm" type="submit"><i class="icon-download-alt"/> Thực hiện</button>
 									</div>
-								</form>
+								</form>							
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>

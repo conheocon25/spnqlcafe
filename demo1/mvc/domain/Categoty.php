@@ -32,6 +32,12 @@ class Category extends Object{
 		);
 		return json_encode($json);
 	}
+	
+	function setArray( $Data ){
+        $this->Id = $Data[0];	
+		$this->Name = $Data[1];
+		$this->Picture = $Data[2];		
+    }
 
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -44,18 +50,8 @@ class Category extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	
-	function getURLUpdLoad(){return "/setting/category/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/category/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/category/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/category/".$this->getId()."/del/exe";}
-					
+	//-------------------------------------------------------------------------------						
 	function getURLCourse(){return "/setting/category/".$this->getId();}
-	
-	function getURLCourseInsLoad(){return "/setting/category/".$this->getId()."/ins/load";}
-	function getURLCourseInsExe(){return "/setting/category/".$this->getId()."/ins/exe";}
 	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

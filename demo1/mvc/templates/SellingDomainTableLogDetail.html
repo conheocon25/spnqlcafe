@@ -6,70 +6,327 @@
 	</head>
 	
 	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-12">
+			<div class="container-fluid">							
+				<div class="row" id="IdSession" tal:attributes="alt Session/getId">
+					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-title">
-								<span class="icon"><i class="icon-table"/></span>
-								<h5 tal:content="Title"/> 
+								<span class="icon"><i class="glyphicons-table"/></span>
+								<a data-toggle="modal" tal:attributes="href '#DialogSessionEdit'"><h5>Click để cập nhật</h5></a>
 							</div>
 							<div class="widget-content nopadding">
-								<div role="grid" class="dataTables_wrapper">
-									<table class="table table-bordered table-striped table-hover data-table">
+								<div role="grid" class="dataTables_wrapper">																		
+									<table cellpadding="10" border="0" width="100%">
+										<tr>
+											<td width="120"><div class="text-right">BẮT ĐẦU : </div></td>
+											<td><div  class="text-left" tal:content="Session/getDateTimePrint"/></td>
+										</tr>
+										<tr>									
+											<td><div class="text-right">KẾT THÚC : </div></td>
+											<td><div  class="text-left" tal:content="Session/getDateTimeEndPrint"/></td>
+										</tr>										
+									</table>
+									<table class="table table-bordered table-striped table-hover">
 										<thead>
-											<tr>
-												<th width="32">#</th>
+											<tr>										
+												<th width="30">STT</th>
 												<th><div class="text-left">TÊN MÓN</div></th>
-												<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
-												<th width="120"><div class="text-right">S.LƯỢNG</div></th>
+												<th width="120"><div class="text-right">SỐ LƯỢNG</div></th>
 												<th width="120"><div class="text-right">ĐƠN GIÁ</div></th>
-												<th width="120"><div class="text-right">T.TIỀN</div></th>
-												<th width="30" />
+												<th width="120"><div class="text-right">THÀNH TIỀN</div></th>
+												<th width="30"><i class="glyphicons-bin"/></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr tal:repeat="Detail Session/getDetails">
-												<td align="center" tal:content="repeat/Detail/number" />
-												<td>
-													<a tal:attributes="href Detail/getURLUpdLoad">
-														<span tal:content="Detail/getCourse/getName"/>
-													</a>
-												</td>
-												<td tal:content="Detail/getCourse/getUnit" />
-												<td align="right" tal:content="Detail/getCount" />
-												<td align="right" tal:content="Detail/getPricePrint" />
-												<td align="right" tal:content="Detail/getValuePrint" />
-												<td>
-													<a tal:attributes="href Detail/getURLDelLoad">
-														<span class="icon-remove"/>
+												<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+												<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getCourse/getName"/></td>
+												<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+												<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+												<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>												
+												<td class="center">
+													<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId">
+														<i class="glyphicon glyphicon-remove"/>
 													</a>
 												</td>
 											</tr>
 										</tbody>
 										<tfoot>
 											<tr>
-												<th colspan="5"><div class="text-right">TỔNG CỘNG</div></th>
-												<th><div class="text-right" tal:content="Session/getValuePrint"/></th>
-												<th />
+												<td colspan="4"><div class="text-right">GIẢM GIÁ</div></td>
+												<td><div class="text-right" tal:content="Session/getDiscountPercentPrint"/></td>
+												<td />
+											</tr>
+											<tr>
+												<td colspan="4"><div class="text-right">TỔNG CỘNG</div></td>
+												<td><div class="text-right" tal:content="Session/getValuePrint"/></td>
+												<td />
 											</tr>
 										</tfoot>
-									</table>
-									<a class="btn"  tal:attributes="href Session/getURLUpdLoad">GIẢM GIÁ</a>
-									<a target="blank" class="btn"  tal:attributes="href Session/getURLPrint">IN PHIẾU</a>
-									
+									</table>									
 								</div>  
 							</div>
 						</div>
+						<!-- DELETE DIALOG  -->
+						<div id="DialogDel" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3>XÓA CHI TIẾT</h3>
+									</div>
+									<div class="modal-body">
+										<p>Bạn có chắc muốn xóa mục này ?</p>
+									</div>
+									<div class="modal-footer">
+										<button id="URLDelButton" class="btn btn-primary btn-small">Xóa</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small">Không</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END DELETE DIALOG  -->
+					
+						<!-- DIALOG EDIT	-->
+						<div id="DialogEdit" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT MÓN</h3>
+									</div>
+									<div class="form-horizontal">
+										<div class="form-group">
+											<label class="control-label">Id</label>
+											<div class="controls">
+												<input readonly="true" id="IdCourse1" name="IdCourse1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input readonly="true" id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Số lượng</label>
+											<div class="controls">
+												<input id="Count1" name="Count1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Đơn giá</label>
+											<div class="controls">
+												<input id="Price1" name="Price1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+											<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END DIALOG EDIT -->
+										
+						<!-- UPDATE SESSION DIALOG  -->
+						<div id="DialogSessionEdit" class="modal fade">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT GIAO DỊCH</h3>
+									</div>
+									<div class="form-horizontal">										
+										<div class="control-group">
+											<label class="control-label">Bắt đầu</label>
+											<div class="controls">								
+												<input type="text" name="DateTime2" id="DateTime2" tal:attributes="value Session/getDateTime" data-date-format="yyyy-mm-dd hh:ii" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Kết thúc</label>
+											<div class="controls">								
+												<input type="text" name="DateTimeEnd2" id="DateTimeEnd2" tal:attributes="value Session/getDateTimeEnd" data-date-format="yyyy-mm-dd hh:ii" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Khách hàng</label>
+											<div class="controls">
+												<select name="IdCustomer2" id="IdCustomer2">
+													<option tal:repeat="Customer CustomerAll" tal:attributes="value Customer/getId; selected php:Session->getIdCustomer()==Customer->getId()">
+														<span tal:content="Customer/getName"/>
+													</option>
+												</select>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">								
+												<input type="text" name="Note2" id="Note2" tal:attributes="value Session/getNote" class="form-control input-small"/>
+											</div>
+										</div>										
+										<div class="control-group">
+											<label class="control-label" >Giảm giá (%)</label>
+											<div class="controls">
+												<input type="text" name="DiscountPercent2" id="DiscountPercent2" tal:attributes="value Session/getDiscountPercent" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Phụ thu</label>
+											<div class="controls">								
+												<input type="text" name="Surtax2" id="Surtax2" tal:attributes="value Session/getSurtax" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Tính Tiền</label>
+											<div class="controls">								
+												<select name="Status2" id="Status2">
+													<option value="0" tal:attributes="selected php:Session->getStatus()==0?true:false">CHƯA TÍNH</option>
+													<option value="1" tal:attributes="selected php:Session->getStatus()==1?true:false">THANH TOÁN ĐỦ</option>
+													<option value="2" tal:attributes="selected php:Session->getStatus()==2?true:false">NỢ PHIẾU</option>
+												</select>
+											</div>
+										</div>	
+										<div class="control-group">
+											<label class="control-label">Tiền khách đưa</label>
+											<div class="controls">								
+												<input type="text" name="Payment2" id="Payment2" tal:attributes="value Session/getPayment" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button id="URLUpdSessionButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+											<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- END UPDATE SESSION DIALOG  -->
 					</div>
 				</div>
 			</div>
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
+		
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#DateTime2').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+			
+			$('#DateTimeEnd2').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+				
+			//-----------------------------------------------------------------------------------
+			//Delete 1 CATEGORY			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){
+				var URL = "/object/del/SessionDetail/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+								
+			//-----------------------------------------------------------------------------------
+			//Load 1 SESSION DETAIL
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/SessionDetail/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#IdCourse1').attr('value', data.IdCourse);
+					$('#Name1').attr('value', data.Name);
+					$('#Count1').attr('value', data.Count);
+					$('#Price1').attr('value', data.Price);
+				});
+			});
+			//-----------------------------------------------------------------------------------
+			//Update 1 SESSION DETAIL
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');				
+				Data[1] = $('#IdSession').attr('alt')				
+				Data[2] = $('#IdCourse1').val();
+				Data[3] = $('#Count1').val();
+				Data[4] = $('#Price1').val();
+																											
+				var URL = "/object/upd/SessionDetail";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});			
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 CATEGORY
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdSessionButton').click(function(){
+				var Data = [];
+				Data[0] 	= $('#IdSession').attr('alt');
+				Data[1] 	= $('#IdTable').attr('alt');
+				Data[2] 	= $('#IdUser').attr('alt');
+				Data[3] 	= $('#IdCustomer2').val();
+				Data[4] 	= $('#DateTime2').val();
+				Data[5] 	= $('#DateTimeEnd2').val();
+				Data[6] 	= $('#Note2').val();
+				Data[7] 	= $('#Status2').val();
+				//Data[8] 	= $('#DiscountValue2').val();
+				Data[8] 	= 0;
+				Data[9] 	= $('#DiscountPercent2').val();
+				Data[10] 	= $('#Surtax2').val();
+				Data[11] 	= $('#Payment2').val();
+																											
+				var URL = "/object/upd/Session";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});			
+		/*]]>*/
+		</script>
+		<div id="IdTable" tal:attributes="alt Session/getTable/getId" />
+		<div id="IdUser" tal:attributes="alt Session/getIdUser" />
 	</body>
 </html>

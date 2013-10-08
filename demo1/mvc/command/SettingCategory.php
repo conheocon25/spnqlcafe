@@ -11,6 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
+			$Page = $request->getProperty('Page');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -34,14 +35,21 @@
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
+			if (!isset($Page)) $Page=1;
+			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$CategoryAll1 = $mCategory->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($CategoryAll->count(), $Config->getValue(), "/setting/category" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
+			$request->setProperty('Page', $Page);
 			$request->setProperty('ActiveAdmin', 'Category');
 			$request->setObject('Navigation', $Navigation);
+			$request->setObject('PN', $PN);
 			
+			$request->setObject('CategoryAll1', $CategoryAll1);
 			$request->setObject('CategoryAll', $CategoryAll);			
 			$request->setObject('DomainAll', $DomainAll);
 			$request->setObject('EmployeeAll', $EmployeeAll);

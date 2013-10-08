@@ -7,31 +7,19 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div style="position:relative"> 
-				<div id="breadcrumb">
-					<a class="current"><i class="glyphicons-shop"/> Trang Chủ</a>
-				</div>
-				<div id="style-switcher">
-					<i class="glyphicon glyphicon-chevron-left"></i>
-					<span>Giao diện:</span>
-					<a class="gre" alt="/setting/theme/grey"/>
-					<a class="lib" alt="/setting/theme/light-blue"/>
-					<a class="blu" alt="/setting/theme/blue"/>
-					<a class="red" alt="/setting/theme/red"/>
-					<a class="reg" alt="/setting/theme/red-green"/>
-				</div>
-			</div>
-			<div class="container-fluid">
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="container-fluid">				
 				<div class="row">
 					<div class="col-12">
 						<div class="widget-box">							
 							<div class="widget-content">
 								<div class="row">
 									<div class="col-12 col-sm-4">
-										<ul class="site-stats blue-item">
+										<ul class="site-stats">
 											<li><div class="cc"><i class="glyphicons-tags"></i> <strong tal:content="CategoryAll/count"/> <small> danh mục</small></div></li>
 											<li><div class="cc"><i class="glyphicons-drink"></i> <strong tal:content="CourseAll/count"/> <small> món</small></div></li>
 											<li><div class="cc"><i class="glyphicons-show_big_thumbnails"></i> <strong tal:content="DomainAll/count"/> <small>Khu vực</small></div></li>
@@ -40,14 +28,14 @@
 										</ul>
 									</div>
 									<div class="col-12 col-sm-4">
-										<ul class="site-stats red-item">
+										<ul class="site-stats">
 											<li><div class="cc"><i class="glyphicons-user"></i> <strong tal:content="php:@\MVC\Library\Statistic::getOnlinePrint()"/> <small> trực tuyến</small></div></li>
 											<li><div class="cc"><i class="glyphicons-parents"></i> <strong tal:content="php:@\MVC\Library\Statistic::getCountPrint()"/> <small>Lượt xem</small></div></li>
 											<li><div class="cc"><i class="glyphicons-table"></i> <strong tal:content="SessionAll/count"/> <small>Phiếu</small></div></li>
 										</ul>
 									</div>	
 									<div class="col-12 col-sm-4">
-										<ul class="site-stats green-item">
+										<ul class="site-stats">
 											<li><div class="cc"><i class="glyphicons-charts"></i> <strong tal:content="SessionLastAll/count"/> <small> đang có khách</small></div></li>
 											<li><div class="cc"><i class="glyphicons-charts"></i> <strong tal:content="SessionNowAll/count"/> <small>phiếu hôm nay</small></div></li>
 										</ul>

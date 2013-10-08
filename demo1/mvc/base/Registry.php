@@ -15,8 +15,7 @@
 		
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
 		private function __construct() { 
-			require_once 'mvc/domain/User.php';
-			//require_once 'mvc/domain/User.php';
+			require_once 'mvc/domain/User.php';			
 			session_start();
 		}
 		
@@ -66,6 +65,12 @@
 		}
 		function getCurrentIdUser() {
 			return self::instance()->get('cafe_current_Iduser');
+		}
+		
+		function setCurrentAction( $Action ) {return self::instance()->set('cafe_current_action', $Action);}		
+		function getCurrentAction() {
+			$result = self::instance()->get('cafe_current_action');			
+			return $result;
 		}
 	}
 	/*--------------------------------------------------------------------------------*/
