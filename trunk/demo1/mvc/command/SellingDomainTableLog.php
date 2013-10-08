@@ -33,24 +33,23 @@
 						
 			$SessionAll = $mSession->findByTablePage(array($IdTable, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Table->getSessions()->count(), $Config->getValue(), $Table->getURLLog());
-			
-			$Title = mb_strtoupper($Table->getName(), 'UTF8');
+						
+			$Title = "SỔ";
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("BÁN HÀNG", "/selling"),
-				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling())
+				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling()),
+				array(mb_strtoupper($Table->getName(), 'UTF8'), $Domain->getURLSelling())
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLHeader", $Domain->getURLSelling());
+			$request->setObject("Navigation", $Navigation);
+			
 			$request->setObject("Domain", $Domain);
 			$request->setObject("Table", $Table);
 			$request->setObject("SessionAll", $SessionAll);
-			
-			$request->setObject("Navigation", $Navigation);
 			$request->setObject("PN", $PN);
 			$request->setProperty("Page", $Page);
 		}

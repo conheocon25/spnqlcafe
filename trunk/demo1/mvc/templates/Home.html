@@ -1,58 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="overflow-y:hidden;" lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
-	<body>
-		<div id="header">
-			<h1><a>Cafe Management App</a></h1>
-		</div>
-		<div id="user-nav">
-            <ul class="btn-group">
-                <li class="btn"><a title="" href="/signin/load"><i class="glyphicon glyphicon-share-alt"/> <span class="text">Đăng nhập</span></a></li>
-            </ul>
-        </div>
-
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
 		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div style="position:relative"> 
-				<div id="breadcrumb">
-					<a class="current"><i class="glyphicons-shop"/> Trang Chủ</a>
-				</div>
-				<div id="style-switcher">
-					<i class="glyphicon glyphicon-chevron-left"></i>
-					<span>Giao diện:</span>
-					<a class="gre" alt="/setting/theme/grey"/>
-					<a class="lib" alt="/setting/theme/light-blue"/>
-					<a class="blu" alt="/setting/theme/blue"/>
-					<a class="red" alt="/setting/theme/red"/>
-					<a class="reg" alt="/setting/theme/red-green"/>
-				</div>
-			</div>
-
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
 			<div class="container-fluid">
-				<div class="row">
-					<div class="col-12">					
-						<div style="text-align:center;">
-							<h3>Hệ thống quản lý quán Cafe</h3>
-							<a class="btn btn-success" href="/signin/load"><i class="glyphicon glyphicon-share-alt"/> Đăng nhập</a>
-							<p style="margin-top:190px;margin-bottom:10px;"><img src="/mvc/templates/theme/cms/img/spn-soft.png"/></p>
-							<p style="margin-bottom:30px;"><small>Thiết kế & Phát triển</small></p>
-							<p><small>
-								<i style="margin-top:-5px;" class="glyphicons-home"/> Địa chỉ: 258/15 Đường 14/9 – P.5 – TP.Vĩnh Long
-								<i style="margin-top:-5px;margin-left:10px;" class="glyphicons-phone_alt"/> Điện thoại: (0703).502.849
-								<i style="margin-top:-5px;margin-left:10px;" class="glyphicons-iphone"/> Di động: 09xx xxx xxx
-								<i style="margin-top:-5px;margin-left:10px;" class="glyphicons-envelope"/> Email: spn-soft@gmail.com
-								<i style="margin-top:-5px;margin-left:10px;" class="glyphicons-globe_af"/> Website: <a href="http://www.spn-soft.com">www.spn-soft.com</a>
-							</small></p>
-						</div>
-					</div>	
-				</div>
+				<center>					
+					<a class="btn btn-primary" href="/signin/load">Click vào đây</a>
+				</center>
 			</div>
 		</div>
-
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>

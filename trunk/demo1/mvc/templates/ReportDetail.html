@@ -9,9 +9,8 @@
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div id="sidebar">
-			<ul>
-				<li><a target="blank" tal:attributes="href Tracking/getURLCourse"><i class="icon-beer" /> CÁC MÓN</a></li>
-				<li><a target="blank" tal:attributes="href Tracking/getURLSellingGeneral"><i class="icon-book" /> TỔNG KẾT</a></li>
+			<ul>				
+				<li><a target="blank" tal:attributes="href Tracking/getURLSellingGeneral"><i class="glyphicons-print" /> TỔNG KẾT THÁNG</a></li>
 			</ul>
 		</div>
 		<div id="content">
@@ -25,13 +24,17 @@
 								<thead>
 									<tr>												
 										<th class="left"><i class="glyphicons-calendar"/></th>
-										<th width="40">IN</th>
+										<th width="120">DOANH SỐ</th>
+										<th width="120">THU</th>
+										<th width="120">CHI</th>
 									</tr>
 								</thead>
 								<tbody>											
 									<tr tal:repeat="Day Tracking/getURLDayAll">
-										<td><a tal:attributes="href php:Day[1]" target="blank" tal:content="php:Day[0]"/></td>
+										<td><div tal:content="php:Day[0]"/></td>
 										<td class="center"><a tal:attributes="href php:Day[1]" target="blank"><i class="glyphicons-print"/></a></td>
+										<td class="center"><i class="glyphicons-print"/></td>
+										<td class="center"><i class="glyphicons-print"/></td>
 									</tr>											
 								</tbody>
 							</table>

@@ -36,9 +36,9 @@
 			$PaidAll = $mPaidGeneral->findByPage(array($IdTerm, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Term->getPaids()->count(), $Config->getValue(), $Term->getURLDetail());
 			
-			$Title = "Khoản Chi";
+			$Title = "KHOẢN CHI";
 			$Navigation = array(
-				array("Thu / Chi", "/money")			
+				array("THU / CHI", "/money")			
 			);
 			
 			//-------------------------------------------------------------

@@ -7,6 +7,7 @@
 	
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
@@ -14,21 +15,21 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="widget-box">
-						<div class="widget-content nopadding">
+						<div class="widget-content nopadding">							
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
-									<tr>
-										<th width="40"><i class="glyphicons-show_big_thumbnails"/></th>
-										<th class="left">TÊN KHU VỰC</th>
-										<th width="40"><i class="glyphicons-drink"/></th>
+									<tr role="row">
+										<th width="35">STT</th>
+										<th><div class="text-left">TÊN</div></th>
+										<th width="32"><i class="glyphicons-fast_food"/></th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr class="gradeX" tal:repeat="Domain DomainAll">
-										<td class="center" tal:content="repeat/Domain/number"/>
+								<tbody role="alert" aria-live="polite" aria-relevant="all">
+									<tr class="gradeA odd" tal:repeat="Domain DomainAll">
+										<td align="center" tal:content="repeat/Domain/number"/>
 										<td><a tal:attributes="href Domain/getURLSelling" ><span tal:content="Domain/getName"/></a></td>
-										<td class="center"><a tal:attributes="href Domain/getURLSelling"><i class="glyphicons-log_in"/></a></td>
-									</tr>
+										<td align="center"><a tal:attributes="href Domain/getURLSelling"><i class="glyphicons-fast_food"/></a></td>
+									</tr>											
 								</tbody>
 							</table>
 						</div>

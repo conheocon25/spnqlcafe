@@ -7,18 +7,18 @@
 		</tr>		
 	</table>
 <br/>
-<font size="10pt">	
+<font size="10pt">
 	<table style="padding-top:0px;" width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
 		<tr>
-			<td width="70%" align="left">				
-				<span tal:content="php:mb_strtoupper(Session->getTable()->getDomain()->getName(),'UTF8') . '/' . mb_strtoupper(Session->getTable()->getName(),'UTF8')"/>
+			<td width="50%" align="left">				
+				<span tal:content="php:mb_strtoupper(Session->getTable()->getName(),'UTF8')"/>				
 			</td>
-			<td width="30%" align="right">
-				<span tal:content="Session/getDateTimePrint" />
+			<td width="50%" align="right">
+				<span tal:content="Session/getTimeRangePrint" />
 			</td>
 		</tr>
 		<tr>
-			<td width="50%" align="left">
+			<td width="50%" align="left">				
 				ID: <span tal:content="Session/getId"/>
 			</td>
 			<td width="50%" align="right">
@@ -28,7 +28,7 @@
 	</table>
 </font>
 <br/>
-<font size="10pt">
+<font size="9pt">
 	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
 		<thead>
 			<tr>
@@ -49,28 +49,24 @@
 	</table>
 	<table style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
 		<tbody>
-			<tr  tal:condition="Session/getDiscountPercent">
-				<td align='right' width="65%">
-					<font align='right' size="10pt">Tiền phiếu</font>
-				</td>
-				<td align='right' width="35%">
-					<font align='right' size="10pt"><span tal:content="Session/getPreValuePrint"/></font>
+			<tr tal:condition="Session/getDiscountValue">
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="10pt">Chiết khấu: <span tal:content="Session/getDiscountValuePrint" /></font>
 				</td>
 			</tr>
 			<tr  tal:condition="Session/getDiscountPercent">
-				<td align='right' width="65%">
+				<td align='right' colspan="5" width="100%">
 					<font align='right' size="10pt">Giảm giá: <span tal:content="Session/getDiscountPercent" /> %</font>
 				</td>
-				<td align='right' width="35%">
-					<font align='right' size="10pt"><span tal:content="Session/getDiscountPercentValuePrint" /></font>
+			</tr>
+			<tr  tal:condition="Session/getSurtax">
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="10pt">Phụ thu: <span tal:content="Session/getSurtaxPrint" /></font>
 				</td>
 			</tr>
-			<tr>								
-				<td align='right' width="65%">
-					<font align='right' size="12pt">TỔNG TIỀN:</font>
-				</td>
-				<td align='right' width="35%">
-					<font size="12pt"><b tal:content="Session/getValuePrint"/></font>
+			<tr>
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="12pt">TỔNG TIỀN: <b tal:content="Session/getValuePrint"/></font>
 				</td>
 			</tr>
 			<tr>
@@ -96,7 +92,7 @@
 			<tr><td colspan="5"/></tr>
 			<tr>
 				<td align='center' colspan="5" width="100%">
-					<font align='center' size="10pt">TRÂN TRỌNG CẢM ƠN QUÝ KHÁCH.</font>
+					<font align='center' size="8pt">CÁM ƠN QUÝ KHÁCH, HẸN GẶP LẠI LẦN SAU.</font>
 				</td>
 			</tr>
 		</tbody>

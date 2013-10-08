@@ -37,8 +37,8 @@
 			$Sum6 = 0;
 			
 			while (strtotime($Date) <= strtotime($EndDate)){
-				$Date1 = \date("Y-m-d", strtotime($Date))." 06:00:00";
-				$Date2 = \date("Y-m-d", strtotime($Date))." 22:59:59";				
+				$Date1 = \date("Y-m-d", strtotime($Date))." 00:00:00";
+				$Date2 = \date("Y-m-d", strtotime($Date))." 23:59:59";				
 				$Value1 = 0;
 				$Value2 = 0;
 				$Value3 = 0;

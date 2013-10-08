@@ -40,8 +40,7 @@
 				$mSessionDetail->update($SD);
 				$SDA->next();
 			}			
-			$mSession->delete(array($SessionA->getId()));
-			$SessionB->setValue( $SessionB->getReValue() );
+			$mSession->delete(array($SessionA->getId()));			
 			$mSession->update($SessionB);
 			
 			//-------------------------------------------------------------

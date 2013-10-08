@@ -21,6 +21,7 @@
 			$mSession = new \MVC\Mapper\Session();
 			$mDomain = new \MVC\Mapper\Domain();
 			$mTable = new \MVC\Mapper\Table();
+			$mCustomer = new \MVC\Mapper\Customer();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -28,19 +29,21 @@
 			$Session = $mSession->find($IdSession);
 			$Domain = $mDomain->find($IdDomain);
 			$Table = $mTable->find($IdTable);
-												
-			$Title = mb_strtoupper($Table->getName(), 'UTF8')." ".$Session->getDateTimePrint();
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$CustomerAll = $mCustomer->findAll();
+			
+			$Title = $Session->getDateTimePrint();
+			$Navigation = array(				
 				array("BÁN HÀNG", "/selling"),
 				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling()),
-				
+				array(mb_strtoupper($Table->getName(), 'UTF8'), $Domain->getURLSelling()),
+				array("SỔ", $Table->getURLLog())
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setObject("Session", $Session);
+			$request->setObject("Session", $Session);			
+			$request->setObject("CustomerAll", $CustomerAll);
 			$request->setProperty('Title', $Title);
 			$request->setObject("Navigation", $Navigation);
 		}

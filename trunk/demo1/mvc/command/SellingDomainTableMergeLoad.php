@@ -19,17 +19,17 @@
 			//-------------------------------------------------------------			
 			$mDomain = new \MVC\Mapper\Domain();
 			$mTable = new \MVC\Mapper\Table();
-						
+			$mSession = new \MVC\Mapper\Session();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------									
-			$TableAll = $mTable->findAll();
+			//-------------------------------------------------------------												
+			$SessionAll = $mSession->findLastAll(array());			
 			$Table = $mTable->find($IdTable);
 			$Domain = $mDomain->find($IdDomain);
 									
 			$Title = mb_strtoupper($Table->getName(), 'UTF8')." GOM ĐẾN";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("BÁN HÀNG", "/selling"),
 				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling())
 			);
@@ -37,7 +37,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('TableAll', $TableAll);
+			$request->setObject('SessionAll', $SessionAll);
 			$request->setObject('Table', $Table);
 			$request->setObject('Navigation', $Navigation);
 			$request->setProperty('Title', $Title);

@@ -17,19 +17,20 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mDomain = new \MVC\Mapper\Domain();
-			$mTable = new \MVC\Mapper\Table();
-						
+			$mDomain 	= new \MVC\Mapper\Domain();
+			$mTable 	= new \MVC\Mapper\Table();
+			$mSession 	= new \MVC\Mapper\Session();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$Domain = $mDomain->find($IdDomain);
 			$Table = $mTable->find($IdTable);
-			$TableAll = $mTable->findAll();
+						
+			$TableAll = $mTable->findAllNonGuest(array());
 									
 			$Title = mb_strtoupper($Table->getName(), 'UTF8')." DI CHUYỂN ĐẾN";
 			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
 				array("BÁN HÀNG", "/selling"),
 				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling())
 			);
@@ -37,11 +38,10 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setObject('Table', $Table);
-			$request->setObject('TableAll', $TableAll);
-			$request->setObject('Navigation', $Navigation);						
-			$request->setProperty('Title', $Title);
-			
+			$request->setObject('Table'		, $Table);
+			$request->setObject('TableAll'	, $TableAll);
+			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title'	, $Title);
 		}
 	}
 ?>

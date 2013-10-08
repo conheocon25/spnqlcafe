@@ -29,7 +29,6 @@
 			$Domain = $mDomain->find($IdDomain);
 			$Session = $mSession->find($IdSession);
 			
-			$Session->setNote("In phieu");
 			$mSession->update($Session);
 			
 			//-------------------------------------------------------------

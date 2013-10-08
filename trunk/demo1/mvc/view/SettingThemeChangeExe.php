@@ -1,3 +1,0 @@
-<?php
-	//THEME LOADED
-?>
