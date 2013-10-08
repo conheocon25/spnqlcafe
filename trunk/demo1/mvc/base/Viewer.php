@@ -46,7 +46,7 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 10);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("report_muoi_ot_xanh.pdf", 'I');
+		$Out = $pdf->Output("report_demo_cafe.pdf", 'I');
 		unset($pdf);
 		return $Out;
 	}
@@ -60,16 +60,17 @@ class Viewer {
 		$pdf->reFormat("custom", 'P');
 		
 		// set default header data		
-		$pdf->setHeaderFont(Array('arial', '', '10'));
+		//$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);
+		$pdf->SetMargins(1, 1, 1);
 		
 		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
 				
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('phieu_muoi_ot_xanh.pdf', 'I');
+		$Out = $pdf->Output('phieu_demo_cafe.pdf', 'I');
 		unset($Out);
 		return $Out;
 	}			
