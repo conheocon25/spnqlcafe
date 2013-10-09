@@ -1,72 +1,267 @@
 <!DOCTYPE html>
-<html style="overflow-y:hidden;" lang="en">
+<html lang="en">
 	<head>
-		<div metal:use-macro="mBlog.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mBlog.xhtml/IncludeCSS"/>
-	</head>
-	
-	<body data-menu-position="closed">
-		<div metal:use-macro="mBlog.xhtml/Header"/>
-		<div class="menu">
-			<div id="sidebar">
-				<ul style="display: block;">
-					<li tal:repeat="Album1 AlbumAll" tal:attributes="class php: Album->getId()==Album1->getId()?'active':''">
-						<a tal:attributes="href Album1/getURLImage">
-							<i class="icon-tags"></i> <span tal:content="Album1/getName"/>
-						</a>
-					</li>					
-				</ul>
-			</div>
-		</div>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul style="display: block;">
+				<li tal:repeat="Album1 AlbumAll" tal:attributes="class php: Album->getId()==Album1->getId()?'active':''">
+					<a tal:attributes="href Album1/getURLImage">
+						<i class="icon-tags"></i> <span tal:content="Album1/getName"/>
+					</a>
+				</li>
+			</ul>
+		</div>				
 		<div id="content">
-			<div metal:use-macro="mBlog.xhtml/ContentHeader"/>			
-			<div metal:use-macro="mBlog.xhtml/LocationBar"/>
-			<div class="container-fluid">							
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon"><i class="icon-table"/></span>
-								<h5 tal:content="Title"/> 
-							</div>
-							<div class="widget-content nopadding">
-								<div role="grid" class="dataTables_wrapper">
-									<table class="table table-bordered table-striped table-hover data-table">
-										<thead>
-											<tr role="row">
-												<th width="35">STT</th>
-												<th><div class="text-left">TÊN</div></th>												
-												<th width="32"><i class="icon-refresh my-ico"/></th>
-												<th width="32"><i class="icon-trash my-ico"/></th>
-											</tr>
-										</thead>
-										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Image ImageAll1" class="gradeA odd">
-												<td align="center" tal:content="repeat/Image/number"/>
-												<td><a tal:attributes="href Image/getURLUpdLoad" tal:content="Image/getName"/></td>
-												<td align="center"><a tal:attributes="href Image/getURLUpdLoad"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Image/getURLDelLoad"><i class="icon-remove"/></a></td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-										<div class="dataTables_filter">
-											<label style="margin-top:5px;">
-												<a tal:attributes="href Album/getURLImageInsLoad">
-													<span class="icon-plus"/> Thêm mới
-												</a>
-											</label>
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>			
+			<div class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">								
+								<thead>
+									<tr>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th class="left">TÊN</th>										
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr tal:repeat="Image ImageAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Image/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Image/getId" tal:content="Image/getName"/></td>
+										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Image/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Image/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI ẢNH</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+										</div>									
+										<div class="form-group">
+											<label class="control-label">Thời gian</label>
+											<div class="controls">
+												<input id="Time1" name="Time1" type="text" class="form-control input-small"/>
+											</div>
 										</div>
-										<div metal:use-macro="mBlog.xhtml/Pagebar"/>
+										<div class="form-group">
+											<label class="control-label">URL</label>
+											<div class="controls">
+												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">
+												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Bí danh</label>
+											<div class="controls">
+												<input id="Key1" name="Key1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>
-								</div>  
+									<div class="modal-footer">
+										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ALBUM</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<label class="control-label">Tên</label>
+										<div class="controls">
+											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+										</div>									
+										<div class="form-group">
+											<label class="control-label">Thời gian</label>
+											<div class="controls">
+												<input id="Time2" name="Time2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">URL</label>
+											<div class="controls">
+												<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Ghi chú</label>
+											<div class="controls">
+												<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Bí danh</label>
+											<div class="controls">
+												<input id="Key2" name="Key2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+									</div>									
+									<div class="modal-footer">
+										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mBlog.xhtml/Footer"/>
-		<div metal:use-macro="mBlog.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div id="IdAlbum" tal:attributes="alt Album/getId" />
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/BImage/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Delete 1 BIMAGE			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/BImage/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 BIMAGE
+			$('#URLInsButton').click(function(){
+				var Data = [];
+				Data[0] = 'null';				
+				Data[1] = $('#IdAlbum').attr('alt');
+				Data[2] = $('#Name1').val();
+				Data[3] = $('#Time1').val();
+				Data[4] = $('#URL1').val();
+				Data[5] = $('#Note1').val();
+				Data[6] = $('#Key1').val();
+				
+				var URL = "/object/ins/BImage";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 IMAGE
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/BImage/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#Time2').attr('value', data.Time);
+					$('#URL2').attr('value', data.URL);
+					$('#Note2').attr('value', data.Note);
+					$('#Key2').attr('value', data.Key);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 IMAGE
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');
+				Data[1] = $('#IdAlbum').attr('alt');
+				Data[2] = $('#Name2').val();
+				Data[3] = $('#Time2').val();
+				Data[4] = $('#URL2').val();
+				Data[5] = $('#Note2').val();
+				Data[6] = $('#Key2').val();
+				
+				var URL = "/object/upd/BImage";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		/*]]>*/
+		</script>
+		
 	</body>
 </html>
