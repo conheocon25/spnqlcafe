@@ -69,16 +69,8 @@ class BAlbum extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLImage(){				return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId();}
-	function getURLImageInsLoad(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/ins/load";}
-	function getURLImageInsExe(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/ins/exe";}
-	
-	function getURLUpdLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/exe";}
+	function getURLImage(){	return "/".$this->getCustomer()->getKey()."/setting/album/".$this->getId();}
 			
-	function getURLDelLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/del/exe";}
-		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

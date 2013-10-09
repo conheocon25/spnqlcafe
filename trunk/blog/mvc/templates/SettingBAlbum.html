@@ -36,7 +36,7 @@
 									<tr tal:repeat="Album AlbumAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Album/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Album" tal:attributes="data-id Album/getId" tal:content="Album/getName"/></td>
-										<td class="center"><a tal:attributes="href Album/getURLUpdLoad"> <span tal:content="string:0"/> ảnh</a></td>
+										<td class="center"><a tal:attributes="href Album/getURLImage"> <span tal:content="Album/getImageAll/count"/> ảnh</a></td>
 										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Album/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Album/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>

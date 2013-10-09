@@ -24,8 +24,7 @@
 			$Title = "ALBUM";
 			$Customer = $mCustomer->findByKey($IdKey);			
 			$Navigation = array(
-				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
-				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting")
+				array("THIẾT LẬP", "/".$Customer->getKey()."/setting")
 			);
 			
 			if (!isset($Page)) $Page=1;

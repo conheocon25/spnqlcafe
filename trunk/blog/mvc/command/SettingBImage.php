@@ -33,8 +33,7 @@
 			$Title = mb_strtoupper($Album->getName(), 'UTF8');
 			$Customer = $mCustomer->findByKey($IdKey);
 			$Navigation = array(
-				array("TRANG CHỦ", "/blog/".$Customer->getKey()),
-				array("THIẾT LẬP", "/blog/".$Customer->getKey()."/setting"),
+				array("THIẾT LẬP", "/".$Customer->getKey()."/setting"),
 				array("ALBUM", $Customer->getURLSettingBAlbum())
 			);
 			
