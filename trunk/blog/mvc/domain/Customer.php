@@ -55,19 +55,19 @@ class Customer extends Object{
 	}
 	
 	//=================================================================================		
-	function getURLSigninExe(){	return "/blog/".$this->getKey()."/signin/exe";}
+	function getURLSigninExe(){	return "/".$this->getKey()."/signin/exe";}
 		
-	function getURLUpdLoad(){	return "/blog/".$this->getKey()."/setting/info/upd/load";}
-	function getURLUpdExe(){	return "/blog/".$this->getKey()."/setting/info/upd/exe";}
+	function getURLUpdLoad(){	return "/".$this->getKey()."/setting/info/upd/load";}
+	function getURLUpdExe(){	return "/".$this->getKey()."/setting/info/upd/exe";}
 			
-	function getURLSettingCategoryNews(){	return "/blog/".$this->getKey()."/setting/category/news";}
+	function getURLSettingCategoryNews(){	return "/".$this->getKey()."/setting/category/news";}
 		
-	function getURLSettingBAlbum(){			return "/blog/".$this->getKey()."/setting/album";}
-	function getURLSettingBAlbumInsLoad(){	return "/blog/".$this->getKey()."/setting/album/ins/load";}
-	function getURLSettingBAlbumInsExe(){	return "/blog/".$this->getKey()."/setting/album/ins/exe";}
+	function getURLSettingBAlbum(){			return "/".$this->getKey()."/setting/album";}
+	function getURLSettingBAlbumInsLoad(){	return "/".$this->getKey()."/setting/album/ins/load";}
+	function getURLSettingBAlbumInsExe(){	return "/".$this->getKey()."/setting/album/ins/exe";}
 	
-	function getURLSetingCategoryVideo(){	return "/blog/".$this->getKey()."/setting/category/video";}
-	function getURLSetingConfig(){			return "/blog/".$this->getKey()."/setting/config";}
+	function getURLSetingCategoryVideo(){	return "/".$this->getKey()."/setting/category/video";}
+	function getURLSetingConfig(){			return "/".$this->getKey()."/setting/config";}
 				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

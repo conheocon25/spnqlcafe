@@ -38,6 +38,25 @@ class BAlbum extends Object{
 		$this->Key = $Str->converturl();
 	}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdCustomer'	=> $this->getIdCustomer(),
+			'Name'			=> $this->getName(),
+			'Order'			=> $this->getOrder(),
+			'Key'			=> $this->getKey()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){        
+		$this->Id			= $Data[0];;
+		$this->IdCustomer	= $Data[1];;
+		$this->Name			= $Data[2];;
+		$this->Order		= $Data[3];;
+		$this->Key			= $Data[4];;
+    }
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
