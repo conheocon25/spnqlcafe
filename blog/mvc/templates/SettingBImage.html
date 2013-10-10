@@ -57,22 +57,18 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI ẢNH</h3>
 								</div>
-								<form class="form-horizontal" action="/uploading/image" method="post" enctype="multipart/form-data">
+								<form class="form-horizontal" action="/image/uploading" method="post" enctype="multipart/form-data">
 									<div class="modal-body">
-										<label class="control-label">Tên</label>
-										<div class="controls">
-											<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
-										</div>									
 										<div class="form-group">
-											<label class="control-label">Thời gian</label>
+											<label class="control-label">IdAlbum</label>
 											<div class="controls">
-												<input id="Time1" name="Time1" type="text" class="form-control input-small"/>
+												<input readonly="true" id="IdAlbum" name="IdAlbum" type="text" class="form-control input-small" tal:attributes="value Album/getId"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">URL</label>
+											<label class="control-label">Tên</label>
 											<div class="controls">
-												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
+												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -80,13 +76,7 @@
 											<div class="controls">
 												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Bí danh</label>
-											<div class="controls">
-												<input id="Key1" name="Key1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
+										</div>										
 										<div class="form-group">
 											<label class="control-label">Chọn tập tin</label>
 											<div class="controls">
@@ -153,6 +143,7 @@
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					
 				</div>
 			</div>
 		</div>
@@ -191,8 +182,8 @@
 			});
 			
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
-			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/BImage/" + $(this).attr('alt');
+			$('#URLDelButton').click(function(){
+				var URL = "/image/deleting/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -222,8 +213,7 @@
 					success: function(msg){
 						//location.reload();
 					}
-				});
-				
+				});				
 			});
 			
 			//-----------------------------------------------------------------------------------
