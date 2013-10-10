@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class UploadingImage extends Command {
+	class ImageDeleting extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");	
 			
@@ -12,34 +12,29 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-									
+			$IdAlbum = $request->getProperty('IdAlbum');
+			$IdImage = $request->getProperty('IdImage');
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-									
+			$mBAlbum = new \MVC\Mapper\BAlbum();
+			$mBImage = new \MVC\Mapper\BImage();
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			if ($_FILES["FileUpload1"]["error"] <= 0){
-				//echo "ten ne ".$_FILES["FileUpload1"]["name"];
-				
-				$file = "data/tmp/".$_FILES["FileUpload1"]["name"];
-				move_uploaded_file($_FILES["FileUpload1"]["tmp_name"], $file );
-				$P = new \MVC\Library\Picasa();
-				$P->login('picasavinhlong@gmail.com', 'admin123456789');
-				$Id = $P->addAlbum("Cafe Van Xuan");
-				$P->setAlbumId($Id);
-				$Arr = $P->upload($file);
-				unlink($file);
-				print_r($Arr);
-			}
+			$P = new \MVC\Library\Picasa();
+			$Image = $mBImage->find($IdImage);						
+			$P->login('picasavinhlong@gmail.com', 'admin123456789');
+			$Id = "5933065650085126945";			
+			$P->deletePhoto($Id, $Image->getKey() );			
+			$mBImage->delete(array($IdImage));
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 						
-			$json = array('result' => "OK");
-			echo json_encode($json);
 		}
 	}
 ?>

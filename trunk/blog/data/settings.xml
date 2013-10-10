@@ -33,11 +33,18 @@
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
-		<command name="UploadingImage"><view>UploadingImage</view></command>
+		<command name="ImageUploading">
+			<view>ImageUploading</view>
+			<status value="CMD_OK"><forward>SettingBImage</forward></status>
+		</command>		
+		<command name="ImageDeleting">
+			<view>ImageDeleting</view>
+			<status value="CMD_OK"><forward>SettingBImage</forward></status>
+		</command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING			 															-->
-		<!-- ============================================================================== -->				
+		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>
 		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
 		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
