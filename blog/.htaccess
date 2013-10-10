@@ -23,30 +23,22 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 RewriteRule ^image/uploading$ 										?cmd=ImageUploading [L]
 RewriteRule ^image/deleting/([0-9]+)$ 								?cmd=ImageDeleting&IdImage=$1 [L]
 
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting$ 										?cmd=Setting [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.CATEGORY.NEWS
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^setting/config$ 								?cmd=SettingConfig [L]
-RewriteRule ^setting/config/page/([0-9])$ 					?cmd=SettingConfig&Page=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SYSTEM.BLOG
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^([a-z0-9_-]+)$ 								?cmd=Blog&IdKey=$1 [L]
+RewriteRule ^([a-z0-9_-]+)/album/([0-9]+)$ 					?cmd=BlogAlbum&IdKey=$1&IdAlbum=$2 [L]
 RewriteRule ^([a-z0-9_-]+)/signin/load$ 					?cmd=BlogSigninLoad&IdKey=$1 [L]
 RewriteRule ^([a-z0-9_-]+)/signin/exe$ 						?cmd=BlogSigninExe&IdKey=$1 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# BLOG.SETTING
+#---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^([a-z0-9_-]+)/setting$ 						?cmd=Setting&IdKey=$1 [L]
 
 RewriteRule ^([a-z0-9_-]+)/setting/info/upd/load$ 			?cmd=SettingInfoUpdLoad&IdKey=$1 [L]
 RewriteRule ^([a-z0-9_-]+)/setting/info/upd/exe$ 			?cmd=SettingInfoUpdExe&IdKey=$1 [L]
 
-#---------------------------------------------------------------------------------------------------------------------------
-# BLOG.ALBUM
-#---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^([a-z0-9_-]+)/setting/album$ 					?cmd=SettingBAlbum&IdKey=$1 [L]
 RewriteRule ^([a-z0-9_-]+)/setting/album/([0-9])$ 			?cmd=SettingBImage&IdKey=$1&IdAlbum=$2 [L]

@@ -7,14 +7,14 @@ class BImage extends Mapper implements \MVC\Domain\BImageFinder {
         parent::__construct();
 		$tblBImage = "www_blog_image";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY time DESC", $tblBImage);
+		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblBImage);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblBImage);
 		$updateStmt = sprintf("update %s set id_album=?, name=?, url=?, note=?, time=?, `key`=? where id=?", $tblBImage);
 		$insertStmt = sprintf("insert into %s ( id_album, name, url, note, `key`) values(?, ?, ?, ?, ?)", $tblBImage);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblBImage);
 		$findByStmt = sprintf("select *  from %s where id_album=?", $tblBImage);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblBImage);
-		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_album = :id_album LIMIT :start,:max", $tblBImage);
+		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_album = :id_album ORDER BY name LIMIT :start,:max", $tblBImage);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -27,7 +27,7 @@ class BImage extends Mapper implements \MVC\Domain\BImageFinder {
     } 
     function getCollection( array $raw ) {return new BImageCollection( $raw, $this );}
 
-    protected function doCreateObject( array $array ) {
+    protected function doCreateObject( array $array ){
         $obj = new \MVC\Domain\BImage(
 			$array['id'],
 			$array['id_album'],
