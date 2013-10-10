@@ -33,6 +33,8 @@
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
+		<command name="UploadingImage"><view>UploadingImage</view></command>
+		
 		<!-- ============================================================================== -->
 		<!-- SETTING			 															-->
 		<!-- ============================================================================== -->				

@@ -19,6 +19,7 @@ RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectLoad&ObjectNam
 RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
+RewriteRule ^uploading/image$ 										?cmd=UploadingImage [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
