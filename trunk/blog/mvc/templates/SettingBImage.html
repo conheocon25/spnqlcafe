@@ -57,7 +57,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI ẢNH</h3>
 								</div>
-								<div class="form-horizontal">
+								<form class="form-horizontal" action="/uploading/image" method="post" enctype="multipart/form-data">
 									<div class="modal-body">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -87,12 +87,18 @@
 												<input id="Key1" name="Key1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label">Chọn tập tin</label>
+											<div class="controls">
+												<input id="FileUpload1" name="FileUpload1" type="file" />
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button type="submit" id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -103,7 +109,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ALBUM</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ẢNH</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -207,16 +213,17 @@
 				Data[4] = $('#URL1').val();
 				Data[5] = $('#Note1').val();
 				Data[6] = $('#Key1').val();
-				
-				var URL = "/object/ins/BImage";
+												
+				var URL = "/uploading/image";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
-						location.reload();
+						//location.reload();
 					}
 				});
+				
 			});
 			
 			//-----------------------------------------------------------------------------------
