@@ -5,8 +5,10 @@
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand" type="public"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<command name="Blog"><view>Blog</view></command>
+		<command name="BlogAlbum"><view>BlogAlbum</view></command>
+		
 		<command name="Home"><view>Home</view></command>
-		<command name="Video"><view>Video</view></command>
+		
 		<command name="SigninLoad"><view>SigninLoad</view></command>		
 		<command name="SigninExe">
 			<view>SigninExe</view>
@@ -37,10 +39,7 @@
 			<view>ImageUploading</view>
 			<status value="CMD_OK"><forward>SettingBImage</forward></status>
 		</command>		
-		<command name="ImageDeleting">
-			<view>ImageDeleting</view>
-			<status value="CMD_OK"><forward>SettingBImage</forward></status>
-		</command>
+		<command name="ImageDeleting"><view>ImageDeleting</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SETTING			 															-->

@@ -33,7 +33,8 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>										
+										<th class="left">TÊN</th>
+										<th width="150" class="left">THỜI GIAN</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -42,6 +43,7 @@
 									<tr tal:repeat="Image ImageAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Image/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Image/getId" tal:content="Image/getName"/></td>
+										<td> <div tal:content="Image/getTime"/></td>
 										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Image/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Image/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
@@ -103,20 +105,28 @@
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
-										<label class="control-label">Tên</label>
-										<div class="controls">
-											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-										</div>									
+										<div class="form-group">
+											<label class="control-label">Id Album</label>
+											<div class="controls">
+												<input readonly="true" id="IdAlbum2" name="IdAlbum2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Tên</label>
+											<div class="controls">
+												<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 										<div class="form-group">
 											<label class="control-label">Thời gian</label>
 											<div class="controls">
-												<input id="Time2" name="Time2" type="text" class="form-control input-small"/>
+												<input readonly="true" id="Time2" name="Time2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">URL</label>
 											<div class="controls">
-												<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
+												<input readonly="true" id="URL2" name="URL2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -128,7 +138,7 @@
 										<div class="form-group">
 											<label class="control-label">Bí danh</label>
 											<div class="controls">
-												<input id="Key2" name="Key2" type="text" class="form-control input-small"/>
+												<input readonly="true" id="Key2" name="Key2" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>									
@@ -147,9 +157,9 @@
 				</div>
 			</div>
 		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<div id="IdAlbum" tal:attributes="alt Album/getId" />
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>		
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			$('#URLDelSelectedButton').click(function(){
@@ -211,7 +221,7 @@
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
-						//location.reload();
+						location.reload();
 					}
 				});				
 			});
@@ -226,6 +236,7 @@
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
+					$('#IdAlbum2').attr('value', data.IdAlbum);
 					$('#Name2').attr('value', data.Name);
 					$('#Time2').attr('value', data.Time);
 					$('#URL2').attr('value', data.URL);
@@ -240,7 +251,7 @@
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdAlbum').attr('alt');
+				Data[1] = $('#IdAlbum2').val();
 				Data[2] = $('#Name2').val();
 				Data[3] = $('#Time2').val();
 				Data[4] = $('#URL2').val();
