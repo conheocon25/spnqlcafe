@@ -8,12 +8,15 @@ RewriteRule ^signin/load$ 			?cmd=SigninLoad [L]
 RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
-RewriteRule ^change/pass/load$ 		?cmd=ChangePassLoad [L]
-RewriteRule ^change/pass/exe$ 		?cmd=ChangePassExe [L]
 
 RewriteRule ^home$ 					?cmd=Home [L]
 RewriteRule ^video/([0-9])$ 		?cmd=Video&IdCategoryVideo=$1 [L]
 RewriteRule ^contact/ins/exe$ 		?cmd=ContactInsExe [L]
+
+RewriteRule ^object/load/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectLoad&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=$1&Id=$2 [L]
+RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
+RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
@@ -23,8 +26,8 @@ RewriteRule ^setting$ 										?cmd=Setting [L]
 RewriteRule ^setting/config$ 								?cmd=SettingConfig [L]
 RewriteRule ^setting/config/page/([0-9])$ 					?cmd=SettingConfig&Page=$1 [L]
 
-RewriteRule ^setting/vtag$ 									?cmd=SettingVTag [L]
-RewriteRule ^setting/vtag/page/([0-9])$ 					?cmd=SettingVTag&Page=$1 [L]
+RewriteRule ^setting/tag$ 									?cmd=SettingTag [L]
+RewriteRule ^setting/tag/page/([0-9])$ 						?cmd=SettingTag&Page=$1 [L]
 
 RewriteRule ^setting/video$ 								?cmd=SettingVideo [L]
 RewriteRule ^setting/video/page/([0-9])$ 					?cmd=SettingVideo&Page=$1 [L]

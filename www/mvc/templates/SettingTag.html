@@ -31,16 +31,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Video VideoAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Video/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Video/getId" tal:content="Video/getName"/></td>
+									<tr tal:repeat="Tag TagAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Tag/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Tag/getId" tal:content="Tag/getName"/></td>
 										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Video/getId">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Tag/getId">
 												<i class="glyphicon glyphicon-pencil"/>
 											</a>
 										</td>
 										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Video/getId">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Tag/getId">
 												<i class="glyphicon glyphicon-remove"/>
 											</a>
 										</td>
@@ -55,7 +55,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới Video</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới Tag</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -65,24 +65,6 @@
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
 										</div>										
-										<div class="form-group">
-											<label class="control-label">URL</label>
-											<div class="controls">
-												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Ghi chú</label>
-											<div class="controls">
-												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Truy cập</label>
-											<div class="controls">
-												<input id="Count1" name="Count1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -99,7 +81,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Cập nhật Video</h3>
+									<h3><i class="glyphicons-tag modal-icon"/>Cập nhật Thẻ</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="form-group">
@@ -107,25 +89,7 @@
 										<div class="controls">
 											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">URL</label>
-										<div class="controls">
-											<input id="URL2" name="URL2" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Ghi chú</label>
-										<div class="controls">
-											<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Truy cập</label>
-										<div class="controls">
-											<input id="Count2" name="Count2" type="text" class="form-control input-small"/>
-										</div>
-									</div>					
+									</div>									
 									<div class="modal-footer">
 										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -144,11 +108,11 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
+						
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Video/0";
-				
+				var URL = "/object/del/Tag/0";								
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
 						count += 1;
@@ -167,14 +131,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 VIDEO			
+			//Delete 1 TAG			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){
-				var URL = "/object/del/Video/" + $(this).attr('alt');
+				var URL = "/object/del/Tag/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -185,55 +149,51 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 VIDEO
+			//Insert 1 TAG
 			$('#URLInsButton').click(function(){
 				var Data = [];
 				Data[0] = 'null';				
 				Data[1] = $('#Name1').val();
-				Data[2] = $('#URL1').val();
-				Data[3] = $('#Note1').val();
-				Data[4] = $('#Count1').val();
-				
-				var URL = "/object/ins/Video";
+								
+				var URL = "/object/ins/Tag";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
-						//location.reload();
+						location.reload();
 					}
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 VIDEO
+			//Load 1 TAG
 			//-----------------------------------------------------------------------------------
+			$('#DialogUpd').on('shown.bs.modal', function () {
+				alert("c");
+				$('#Name2').focus();
+			});
+			
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Video/" + $(this).attr('data-id');
+				var url = "/object/load/Tag/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt'	, data.Id);
-					$('#Name2').attr('value'		, data.Name);					
-					$('#URL2').attr('value'			, data.URL);
-					$('#Note2').attr('value'		, data.Note);
-					$('#Count2').attr('value'		, data.Count);										
-				});
+					$('#Name2').attr('value'		, data.Name);
+				});				
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 CATEGORY
+			//Update 1 TAG
 			//-----------------------------------------------------------------------------------
 			$('#URLUpdButton').click(function(){
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#Name2').val();				
-				Data[2] = $('#URL2').val();
-				Data[3] = $('#Note2').val();
-				Data[4] = $('#Count2').val();
-				
-				var URL = "/object/upd/Video";
+								
+				var URL = "/object/upd/Tag";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

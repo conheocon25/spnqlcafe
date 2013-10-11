@@ -8,11 +8,11 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
         parent::__construct();
 				
 		$tblVideo = "www_video";
-		
+							
 		$selectAllStmt = sprintf("select * from %s order by `count` desc", $tblVideo);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblVideo);
-		$updateStmt = sprintf("update %s set `id_category`=?, `name`=?, `url`=?, `note`=?, `count`=?, `time`=?, `key`=? where id=?", $tblVideo);
-		$insertStmt = sprintf("insert into %s ( `id_category`,`name`, `url`, `note`, `count`, `key`) values(?, ?, ?, ?, ?, ?)", $tblVideo);
+		$updateStmt = sprintf("update %s set `name`=?, `time`=?, `url`=?, `note`=?, `count`=?, `key`=? where id=?", $tblVideo);
+		$insertStmt = sprintf("insert into %s ( `name`, `time`, `url`, `note`, `count`, `key`) values(?, ?, ?, ?, ?, ?)", $tblVideo);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblVideo);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblVideo);
 		$findByCategoryStmt = sprintf("select *  from %s where id_category=?", $tblVideo);
@@ -53,6 +53,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(			
 			$object->getName(),
+			$object->getTime(),
 			$object->getURL(),
 			$object->getNote(),
 			$object->getCount(),
@@ -66,10 +67,10 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 					
 			$object->getName(),
+			$object->getTime(),
 			$object->getURL(),
 			$object->getNote(),
-			$object->getCount(),
-			$object->getTime(),
+			$object->getCount(),			
 			$object->getKey(),
 			$object->getId()
 		);
@@ -107,7 +108,6 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new VideoCollection( $this->findByPageStmt->fetchAll(), $this);
-    }
-	
+    }	
 }
 ?>

@@ -10,20 +10,15 @@ interface Finder {
     //function delete();
 }
 
-interface AppFinder  extends Finder {}
 interface UserFinder  extends Finder {}
 interface ConfigFinder  extends Finder {}
 
 interface BAlbumFinder  extends Finder {}
 interface BImageFinder  extends Finder {}
 
-interface CategoryNewsFinder  extends Finder {}
 interface NewsFinder  extends Finder {}
-
-interface CategoryVideoFinder  extends Finder {}
 interface VideoFinder  extends Finder {}
-
-interface CategoryPackageFinder  extends Finder {}
+interface TagFinder  extends Finder {}
 interface CustomerFinder extends Finder {}
 
 interface GuestFinder extends Finder {}
