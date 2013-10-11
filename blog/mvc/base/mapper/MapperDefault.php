@@ -1,12 +1,8 @@
-<?php	
-	$mUser 					= new \MVC\Mapper\User();
-	$mCategoryNews 			= new \MVC\Mapper\CategoryNews();
-	$mNews 					= new \MVC\Mapper\News();
-	$mConfig				= new \MVC\Mapper\Config();
+<?php		
+	$mBTag 					= new \MVC\Mapper\BTag();
+	$mBNews 				= new \MVC\Mapper\BNews();
+	$mBConfig				= new \MVC\Mapper\BConfig();
 	$mBAlbum				= new \MVC\Mapper\BAlbum();
-	$mBImage				= new \MVC\Mapper\BImage();
-	$mCategoryVideo			= new \MVC\Mapper\CategoryVideo();
-	$mVideo					= new \MVC\Mapper\Video();
-	$mCategoryPackage		= new \MVC\Mapper\CategoryPackage();
+	$mBImage				= new \MVC\Mapper\BImage();	
 	$mCustomer				= new \MVC\Mapper\Customer();
 ?>

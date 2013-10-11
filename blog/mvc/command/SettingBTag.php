@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingInfoUpdLoad extends Command {
+	class SettingBTag extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -16,24 +16,33 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCustomer = new \MVC\Mapper\Customer();
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Title = "THÔNG TIN";
+			$Title = "THẺ";
 			$Customer = $mCustomer->findByKey($IdKey);			
 			$Navigation = array(
-				array("TRANG CHỦ", "/blog/".$Customer->getKey())				
+				array("THIẾT LẬP", "/".$Customer->getKey()."/setting")
 			);
+			
+			if (!isset($Page)) $Page=1;
+			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$CategoryAll = $mCategoryNews->findAll();
+			$PN = new \MVC\Domain\PageNavigation($CategoryAll->count(), $Config->getValue(), "/setting/category/news" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);
-			$request->setProperty("ActiveAdmin", "Info");
+			$request->setProperty("Page", $Page);
+			$request->setProperty("ActiveAdmin", "CategoryNews");
 			$request->setObject("Navigation", $Navigation);
+			$request->setObject("PN", $PN);
+			
 			$request->setObject("Customer", $Customer);
+			$request->setObject("CategoryAll", $CategoryAll);
 		}
 	}
 ?>

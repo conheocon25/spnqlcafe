@@ -2,30 +2,30 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class News extends Mapper implements \MVC\Domain\NewsFinder {
+class BNews extends Mapper implements \MVC\Domain\BNewsFinder {
 
     function __construct() {
         parent::__construct();
 				
-		$tblNews = "www_news";
+		$tblBNews = "www_news";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY type DESC, date DESC", $tblNews);
-		$selectStmt = sprintf("select *  from %s where id=?", $tblNews);
-		$updateStmt = sprintf("update %s set id_category=?, author=?, date=?, content=?, title=?, type=?, `key`=? where id=?", $tblNews);
-		$insertStmt = sprintf("insert into %s ( id_category, author, date, content, title, type, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblNews);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblNews);
-		$findByStmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC", $tblNews);		
-		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblNews);
-		$findByLimitStmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC limit 5", $tblNews);
-		$findByLimit1Stmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC limit 6", $tblNews);
-		$findByLimit2Stmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC limit 12", $tblNews);
+		$selectAllStmt = sprintf("select * from %s ORDER BY type DESC, date DESC", $tblBNews);
+		$selectStmt = sprintf("select *  from %s where id=?", $tblBNews);
+		$updateStmt = sprintf("update %s set id_category=?, author=?, date=?, content=?, title=?, type=?, `key`=? where id=?", $tblBNews);
+		$insertStmt = sprintf("insert into %s ( id_category, author, date, content, title, type, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblBNews);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblBNews);
+		$findByStmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC", $tblBNews);		
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblBNews);
+		$findByLimitStmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC limit 5", $tblBNews);
+		$findByLimit1Stmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC limit 6", $tblBNews);
+		$findByLimit2Stmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC limit 12", $tblBNews);
 		
 		$findByCategoryDateStmt = sprintf(
 			"select *  
 			from %s 
 			where id_category=? AND date<=?
 			ORDER BY type DESC, date DESC LIMIT 10"
-		, $tblNews);
+		, $tblBNews);
 			
 		$findByCategoryPageStmt = sprintf(
 			"SELECT 
@@ -35,9 +35,9 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
 			WHERE id_category=:id_category
 			ORDER BY date desc			
 			LIMIT :start,:max"
-		, $tblNews);
+		, $tblBNews);
 		
-		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY date desc LIMIT :start,:max" , $tblNews);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY date desc LIMIT :start,:max" , $tblBNews);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -56,11 +56,11 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
 
     } 
     function getCollection( array $raw ) {
-        return new NewsCollection( $raw, $this );
+        return new BNewsCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\News( 
+        $obj = new \MVC\Domain\BNews( 
 			$array['id'],
 			$array['id_category'],
 			$array['author'],
@@ -74,7 +74,7 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
     }
 
     protected function targetClass() {        
-		return "News";
+		return "BNews";
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
@@ -119,39 +119,39 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
 	
 	function findBy( $values ){
         $this->findByStmt->execute( $values );
-        return new NewsCollection( $this->findByStmt->fetchAll(), $this);
+        return new BNewsCollection( $this->findByStmt->fetchAll(), $this);
     }
 		
 	function findByLimit( $values ){
         $this->findByLimitStmt->execute( $values );
-        return new NewsCollection( $this->findByLimitStmt->fetchAll(), $this);
+        return new BNewsCollection( $this->findByLimitStmt->fetchAll(), $this);
     }
 	function findByLimit1( $values ){
         $this->findByLimit1Stmt->execute( $values );
-        return new NewsCollection( $this->findByLimit1Stmt->fetchAll(), $this);
+        return new BNewsCollection( $this->findByLimit1Stmt->fetchAll(), $this);
     }
 	function findByLimit2( $values ){
         $this->findByLimit2Stmt->execute( $values );
-        return new NewsCollection( $this->findByLimit2Stmt->fetchAll(), $this);
+        return new BNewsCollection( $this->findByLimit2Stmt->fetchAll(), $this);
     }
 	
 	function findByCategoryDate( $values ){
         $this->findByCategoryDateStmt->execute( $values );
-        return new NewsCollection( $this->findByCategoryDateStmt->fetchAll(), $this);
+        return new BNewsCollection( $this->findByCategoryDateStmt->fetchAll(), $this);
     }
 	
 	function findByPage( $values ) {		
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new NewsCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new BNewsCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 	function findByCategoryPage( $values ) {
 		$this->findByCategoryPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByCategoryPageStmt->execute();
-        return new NewsCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
+        return new BNewsCollection( $this->findByCategoryPageStmt->fetchAll(), $this );
     }
 	function findByKey( $values ) {	
 		$this->findByKeyStmt->execute( array($values) );

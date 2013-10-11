@@ -5,6 +5,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 class CategoryNews extends Object{
 
     private $Id;
+	private $IdCustomer;
 	private $Name;
 	private $Order;
 	private $Key;
@@ -12,11 +13,13 @@ class CategoryNews extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null , $Order=Null, $Key=Null) {$this->Id = $Id;$this->Name = $Name;$this->Order = $Order;$this->Key = $Key;parent::__construct( $Id );}
-    function getId() {return $this->Id;}	
-	function getIdPrint(){return "c" . $this->getId();}	
+    function __construct( $Id=null, $IdCustomer=null, $Name=null , $Order=Null, $Key=Null) {$this->Id = $Id; $this->IdCustomer = $IdCustomer; $this->Name = $Name;$this->Order = $Order;$this->Key = $Key;parent::__construct( $Id );}
+    function getId() {return $this->Id;}
 	
-    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer; $this->markDirty();}
+	function getIdCustomer( ) {return $this->IdCustomer;}
+	
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 	function getName( ) {return $this->Name;}
 	
 	function setOrder( $Order ) {$this->Order = $Order;$this->markDirty();}   

@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class News extends Object{
+class BNews extends Object{
 
     private $Id;
 	private $IdCategory;

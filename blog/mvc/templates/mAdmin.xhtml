@@ -100,24 +100,33 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul>
-			<li tal:attributes="class php: ActiveAdmin=='CategoryNews'?'active':''">
-				<a tal:attributes="href Customer/getURLSettingCategoryNews">
+			<li tal:attributes="class php: ActiveAdmin=='BTag'?'active':''">
+				<a tal:attributes="href Customer/getURLSettingTag">
+					<i class="glyphicons-cogwheels" /> <span>Thẻ tin</span>
+				</a>
+			</li>
+			<li tal:attributes="class php: ActiveAdmin=='BNews'?'active':''">
+				<a tal:attributes="href Customer/getURLSettingNews">
 					<i class="glyphicons-cogwheels" /> <span>Tin tức</span>
 				</a>
 			</li>
-			<li tal:attributes="class php: ActiveAdmin=='BAlbum'?'active':''">
-				<a tal:attributes="href Customer/getURLSettingBAlbum">
+			<li tal:attributes="class php: ActiveAdmin=='BMusic'?'active':''">
+				<a tal:attributes="href Customer/getURLSettingMusic">
+					<i class="glyphicons-cogwheels" /> <span>Nhạc nền</span>
+				</a>
+			</li>
+			<li tal:attributes="class php: ActiveAdmin=='Album'?'active':''">
+				<a tal:attributes="href Customer/getURLSettingAlbum">
 					<i class="glyphicons-cogwheels" /> <span>Album</span>
 				</a>
 			</li>
 			<li tal:attributes="class php: ActiveAdmin=='Info'?'active':''">
-				<a tal:attributes="href Customer/getURLUpdLoad">
-					<i class="glyphicons-cogwheels" /> Thông tin
+				<a tal:attributes="href Customer/getURLSettingConfig">
+					<i class="glyphicons-cogwheels" /> Cấu hình
 				</a>
 			</li>
 		</ul>
-	</div>
-		
+	</div>		
 	
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->

@@ -28,7 +28,7 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$Config = $mBConfig->findByName("ROW_PER_PAGE");
 			$AlbumAll = $mBAlbum->findBy(array($Customer->getId()));
 			$AlbumAll1 = $mBAlbum->findByPage(array($Customer->getId(), $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($AlbumAll->count(), $Config->getValue(), "/setting/album/news" );
