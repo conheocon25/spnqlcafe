@@ -4,8 +4,7 @@
 	$mNews 					= new \MVC\Mapper\News();
 	$mConfig				= new \MVC\Mapper\Config();
 	$mBAlbum				= new \MVC\Mapper\BAlbum();
-	$mBImage				= new \MVC\Mapper\BImage();
-	$mCategoryVideo			= new \MVC\Mapper\CategoryVideo();
+	$mBImage				= new \MVC\Mapper\BImage();	
 	$mVideo					= new \MVC\Mapper\Video();
 	$mCategoryPackage		= new \MVC\Mapper\CategoryPackage();
 	$mCustomer				= new \MVC\Mapper\Customer();

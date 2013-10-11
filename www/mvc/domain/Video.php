@@ -5,8 +5,7 @@ require_once( "mvc/base/domain/DomainObject.php" );
 
 class Video extends Object{
 
-    private $Id;
-	private $IdCategory;
+    private $Id;	
 	private $Name;
     private $Time;
     private $URL;
@@ -17,9 +16,8 @@ class Video extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null, $Name=null, $Time=null, $URL=null, $Note=null, $Count=null, $Key=null) {
-        $this->Id = $Id;
-		$this->IdCategory = $IdCategory;
+    function __construct( $Id=null, $Name=null, $Time=null, $URL=null, $Note=null, $Count=null, $Key=null) {
+        $this->Id = $Id;		
 		$this->Name = $Name;
 		$this->Time = $Time;
 		$this->URL = $URL;
@@ -75,12 +73,6 @@ class Video extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------		
 	function getURLView(){return "/library/video/".$this->getId();}
-		
-	function getURLUpdLoad(){	return "/setting/category/video/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "/setting/category/video/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){	return "/setting/category/video/".$this->getIdCategory()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "/setting/category/video/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
 			
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

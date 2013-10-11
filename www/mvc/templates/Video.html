@@ -88,56 +88,7 @@
 		<div id="footer">
 			<div class="container">
 				<div class="row">
-					<div class="span8">
-						
-					</div>
-					<div class="span4 contact_us">
-						<h3>Liên hệ</h3>
-						<form class="form-horizontal" onsubmit="return validateFormContactLoad()" action="contact/ins/exe" method="post">
-							<input type="text" id="CaptchaSecurity" tal:attributes="value CaptchaSecurity" />
-							<div class="field">
-								<div class="label_field">
-									<label for="inputName">Họ tên</label>
-								</div>
-								<input type="text" id="inputName" name="inputName"/>
-							</div>
-
-							<div class="field">
-								<div class="label_field">
-									<label for="inputEmail">Email</label>
-								</div>
-								<input type="text" id="inputEmail" name="inputEmail"/>
-							</div>
-
-							<div class="field">
-								<div class="label_field">
-									<label for="inputCity">Địa chỉ</label>
-								</div>
-								<input type="text" id="inputCity" name="inputCity"/>
-							</div>
-							<div class="field">
-								<div class="label_field" >
-									<label for="PicCaptcha" >Mã xác nhận</label>																												
-								</div>
-									<img src="/data/captcha.jpg" />									
-								<br />
-							</div>
-							<div class="field">
-								<div class="label_field" >
-									<label for="CodeCaptcha" >Nhập mã xác nhận</label>																												
-								</div>									
-									<input name="CodeCaptcha" type="text" id="CodeCaptcha"/>
-								<label id="Mesenge" tal:attributes="text MsgCaptcha" />	
-							</div>							
-							<div class="field">
-								<div class="label_field">
-									<label for="inputComment">Ghi chú</label>
-								</div>
-								<textarea name="comments"></textarea>
-							</div>
-							<button type="submit" class="btn">Gửi thư</button>
-						</form>
-					</div>
+					
 				</div>
 				<hr/>
 				<div class="row copyright">
