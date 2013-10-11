@@ -2,20 +2,20 @@
 namespace MVC\Mapper;
 
 require_once( "mvc/base/Mapper.php" );
-class CategoryPackage extends Mapper implements \MVC\Domain\CategoryPackageFinder {
+class Tag extends Mapper implements \MVC\Domain\TagFinder {
 
     function __construct() {
         parent::__construct();
 				
-		$tblCategory = "www_category_package";
+		$tblTag = "www_tag";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY `order`", $tblCategory);
-		$selectStmt = sprintf("select *  from %s where id=?", $tblCategory);
-		$updateStmt = sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblCategory);
-		$insertStmt = sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblCategory);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblCategory);		
-		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblCategory);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCategory);
+		$selectAllStmt = sprintf("select * from %s", $tblTag);
+		$selectStmt = sprintf("select *  from %s where id=?", $tblTag);
+		$updateStmt = sprintf("update %s set name=?, `key`=? where id=?", $tblTag);
+		$insertStmt = sprintf("insert into %s ( name, `key`) values(?, ?)", $tblTag);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblTag);		
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblTag);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblTag);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -27,27 +27,25 @@ class CategoryPackage extends Mapper implements \MVC\Domain\CategoryPackageFinde
 		
     } 
     function getCollection( array $raw ) {
-        return new CategoryPackageCollection( $raw, $this );
+        return new TagCollection( $raw, $this );
     }
 
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\CategoryPackage( 
+        $obj = new \MVC\Domain\Tag( 
 			$array['id'],
-			$array['name'],
-			$array['order'],
+			$array['name'],			
 			$array['key']
 		);
         return $obj;
     }
 
     protected function targetClass() {        
-		return "CategoryPackage";
+		return "Tag";
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),
-			$object->getOrder(),
+			$object->getName(),			
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -57,8 +55,7 @@ class CategoryPackage extends Mapper implements \MVC\Domain\CategoryPackageFinde
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array( 
-			$object->getName(),
-			$object->getOrder(),
+			$object->getName(),			
 			$object->getKey(),
 			$object->getId()
 		);
@@ -81,7 +78,7 @@ class CategoryPackage extends Mapper implements \MVC\Domain\CategoryPackageFinde
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new CategoryPackageCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new TagCollection( $this->findByPageStmt->fetchAll(), $this );
     }
 }
 ?>

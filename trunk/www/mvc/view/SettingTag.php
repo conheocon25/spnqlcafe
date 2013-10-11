@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/ChangePassLoad.html");
+	$Viewer = new Viewer("mvc/templates/SettingTag.html");
 	echo $Viewer->html();
 ?>

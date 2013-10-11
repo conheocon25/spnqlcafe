@@ -69,6 +69,29 @@ class Video extends Object{
 	}
 	function getKey( ) {return $this->Key;}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'Name' 			=> $this->getName(),
+			'Time' 			=> $this->getTime(),
+			'URL' 			=> $this->getURL(),
+			'Note' 			=> $this->getNote(),
+			'Count' 		=> $this->getCount(),
+			'Key'			=> $this->getKey()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){        
+		$this->Id 		= $Data[0];
+		$this->Name 	= $Data[1];
+		$this->Time 	= date('Y-m-d H:i:s');
+		$this->URL 		= $Data[2];
+		$this->Note 	= $Data[3];
+		$this->Count 	= $Data[4];
+		$this->reKey();
+    }
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------		
