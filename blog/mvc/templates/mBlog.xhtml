@@ -1,0 +1,109 @@
+<html lang="en" xml:lang="en">
+<body>
+	<!-- ======================================================================== -->
+	<!-- META TAG INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeMETA">
+		<title tal:content="string:Cafe | blog"/>
+		<base href="http://blog.quanly-cafe.com"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="-1"/>
+		<meta http-equiv="Cache-Control" content="no-cache"/>
+		<meta name="keywords" content="Cafe | blog"/>
+		<meta name="description" content="Cafe | blog"/>
+		<meta name="page-topic" content="Cafe | blog"/>
+		<meta name="Abstract" content="Cafe | blog"/>
+		<meta name="classification" content="Cafe | blog"/>
+		<link rel="shortcut icon" type="image/ico" href="/mvc/templates/theme/blog/images/favicon.ico" />
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/style.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/blog.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/responsive.css" media="screen" />
+		<link rel='stylesheet' type='text/css' href='/mvc/templates/theme/blog/css/fonts.googleapis.com.css'/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/prettyPhoto.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/flexslider.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/blog/css/bxslider.css"/>
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- JAVASCRIPT INCLUDE														  -->
+	<!-- ======================================================================== -->
+	<span metal:define-macro="IncludeJS">						
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/custom.js"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/header.js"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/bra_twitter_plugin.js"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/prettyPhoto.js"></script>	
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/bra_photostream_plugin.js"></script> 
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/jquery.isotope.min.js"></script>	
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/toucheffects.js"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/jquery.flexslider.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#index-slider').flexslider({
+				animation: "fade",  
+				slideDirection: "",       
+				slideshowSpeed: 3500,      
+				animationDuration: 500,	       
+				pauseOnHover: true,		
+				smoothHeight: true
+			});	
+		});
+		</script>
+		<script src="/mvc/templates/theme/blog/js/jquery.bxslider.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){    
+			$('#testimonials').bxSlider({
+			  controls: true,
+			  auto: false,
+			  pause: 2000,
+			  adaptiveHeight: true,
+			  mode: 'fade'
+			});
+		});
+		</script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/theme-option.js"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/bra_google_map_plugin.js"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="/mvc/templates/theme/blog/js/contact-form-validate.js"></script>	
+	</span>
+	
+	<!-- ======================================================================== -->
+	<!-- HEADER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Header">
+		
+	</div>
+
+	<!-- ======================================================================== -->
+	<!-- MENU																  	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="MenuApp">
+		
+	</div>
+		
+	
+	<!-- ======================================================================== -->
+	<!-- FOOTER																	  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="Footer">
+		
+	</div>
+	
+	<!-- ======================================================================== -->
+	<!-- STYLE SWITCHER															  -->
+	<!-- ======================================================================== -->
+	<div metal:define-macro="StyleTools">
+
+	</div>
+		
+		
+</body>
+</html>

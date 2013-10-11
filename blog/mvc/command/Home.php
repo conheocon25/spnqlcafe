@@ -18,13 +18,14 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mCategoryVideo = new \MVC\Mapper\CategoryVideo();
-			
+			/*
 			$mCaptcha = new Captcha();
 			$mCaptcha->createImage();
 			$CaptchaSecurited = $mCaptcha->getSecurityCode();
 			$Session->setCurrentCaptcha($CaptchaSecurited);
 			
 			$CaptchaSecurity = $Session->getCurrentCaptcha();
+			*/
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
@@ -34,8 +35,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("CaptchaSecurity", $CaptchaSecurited);		
-			$request->setProperty("MsgCaptcha", $MsgCaptcha);
+			//$request->setProperty("CaptchaSecurity", $CaptchaSecurited);		
+			//$request->setProperty("MsgCaptcha", $MsgCaptcha);
 			
 			$request->setProperty("Title", $Title);
 			$request->setProperty("URLHeader", '/signin/load');
