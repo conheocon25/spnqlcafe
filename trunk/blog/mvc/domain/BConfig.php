@@ -2,7 +2,7 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class Config extends Object{
+class BConfig extends Object{
 
     private $Id;
 	private $Param;
@@ -48,19 +48,11 @@ class Config extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 		
-	function getURLUpdLoad(){
-		return "/setting/config/".$this->getId()."/upd/load";
-	}
-	function getURLUpdExe(){		
-		return "/setting/config/".$this->getId()."/upd/exe";
-	}
+	function getURLUpdLoad(){return "/setting/config/".$this->getId()."/upd/load";}
+	function getURLUpdExe(){return "/setting/config/".$this->getId()."/upd/exe";}
 	
-	function getURLDelLoad(){
-		return "/setting/config/".$this->getId()."/del/load";
-	}
-	function getURLDelExe(){
-		return "/setting/config/".$this->getId()."/del/exe";
-	}
+	function getURLDelLoad(){return "/setting/config/".$this->getId()."/del/load";}
+	function getURLDelExe(){return "/setting/config/".$this->getId()."/del/exe";}
 		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

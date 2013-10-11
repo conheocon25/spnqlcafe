@@ -45,15 +45,13 @@
 		<!-- SETTING			 															-->
 		<!-- ============================================================================== -->
 		<command name="Setting"><view>Setting</view></command>
-		<command name="SettingInfoUpdLoad"><view>SettingInfoUpdLoad</view></command>
-		<command name="SettingInfoUpdExe"><view>SettingInfoUpdExe</view><status value="CMD_OK"><forward>Setting</forward></status></command>
-		
-		<!-- ============================================================================== -->
-		<!-- SETTING.CONFIG 																-->
-		<!-- ============================================================================== -->		
-		<command name="SettingConfig"><view>SettingConfig</view></command>		
+		<command name="SettingInfo"><view>SettingInfo</view></command>
+		<command name="SettingConfig"><view>SettingConfig</view></command>
 		<command name="SettingBAlbum"><view>SettingBAlbum</view></command>		
-		<command name="SettingBImage"><view>SettingBImage</view></command>						
+		<command name="SettingBImage"><view>SettingBImage</view></command>
+		<command name="SettingBTag"><view>SettingBTag</view></command>
+		<command name="SettingNews"><view>SettingNews</view></command>
+		<command name="SettingMusic"><view>SettingMusic</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- BLOG			 																-->

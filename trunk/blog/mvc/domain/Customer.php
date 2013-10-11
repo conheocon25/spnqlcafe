@@ -1,9 +1,7 @@
 <?php
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
-
 class Customer extends Object{
-
     private $Id;
 	private $Name;
 	private $Email;
@@ -57,21 +55,15 @@ class Customer extends Object{
 	//=================================================================================		
 	function getURLSigninExe(){	return "/".$this->getKey()."/signin/exe";}
 		
-	function getURLUpdLoad(){	return "/".$this->getKey()."/setting/info/upd/load";}
-	function getURLUpdExe(){	return "/".$this->getKey()."/setting/info/upd/exe";}
-			
-	function getURLSettingCategoryNews(){	return "/".$this->getKey()."/setting/category/news";}
-		
-	function getURLSettingBAlbum(){			return "/".$this->getKey()."/setting/album";}
-	function getURLSettingBAlbumInsLoad(){	return "/".$this->getKey()."/setting/album/ins/load";}
-	function getURLSettingBAlbumInsExe(){	return "/".$this->getKey()."/setting/album/ins/exe";}
-	
-	function getURLSetingCategoryVideo(){	return "/".$this->getKey()."/setting/category/video";}
-	function getURLSetingConfig(){			return "/".$this->getKey()."/setting/config";}
+	function getURLSettingInfo(){	return "/".$this->getKey()."/setting/info";}				
+	function getURLSettingTag(){	return "/".$this->getKey()."/setting/tag";}		
+	function getURLSettingNews(){	return "/".$this->getKey()."/setting/news";}		
+	function getURLSettingAlbum(){	return "/".$this->getKey()."/setting/album";}			
+	function getURLSettingMusic(){	return "/".$this->getKey()."/setting/music";}
+	function getURLSettingConfig(){	return "/".$this->getKey()."/setting/config";}
 				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
-    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
 	
 }
-
 ?>

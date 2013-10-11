@@ -1,17 +1,14 @@
 <?php
 namespace MVC\Domain;
-if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
-	require_once( "mvc/mapper/App.php" );
-	require_once( "mvc/mapper/User.php" );
-	require_once( "mvc/mapper/Config.php" );	
+if ( ! isset( $EG_DISABLE_INCLUDES ) ) {	
+		
+	require_once( "mvc/mapper/BConfig.php" );
 	require_once( "mvc/mapper/BAlbum.php" );
 	require_once( "mvc/mapper/BImage.php" );
-	require_once( "mvc/mapper/CategoryNews.php" );
-	require_once( "mvc/mapper/News.php" );
-	require_once( "mvc/mapper/CategoryVideo.php" );
-	require_once( "mvc/mapper/Video.php" );
-	require_once( "mvc/mapper/Guest.php");
-	require_once( "mvc/mapper/CategoryPackage.php" );
+	require_once( "mvc/mapper/BTag.php" );
+	require_once( "mvc/mapper/BNews.php" );
+	
+	require_once( "mvc/mapper/Guest.php");	
 	require_once( "mvc/mapper/Customer.php");
 }
 

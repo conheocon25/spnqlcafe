@@ -14,8 +14,7 @@
 		private static $instance; 
 		
 		//Sử dụng App và User lưu trữ như là một  Object trong Session
-		private function __construct() { 
-			require_once 'mvc/domain/User.php';			
+		private function __construct() { 			
 			session_start();
 		}
 		
@@ -49,7 +48,7 @@
 		function getCurrentTheme(){
 			$Theme = self::instance()->get('cafe_current_theme');
 			if (!isset($Theme)){
-				$mConfig = new \MVC\Mapper\Config();
+				$mConfig = new \MVC\Mapper\BConfig();
 				$Config = $mConfig->findByName("THEME");
 				if (!isset($Config))
 					return "grey";
