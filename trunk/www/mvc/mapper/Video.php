@@ -16,7 +16,8 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 		$deleteStmt = sprintf("delete from %s where id=?", $tblVideo);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblVideo);
 		$findByCategoryStmt = sprintf("select *  from %s where id_category=?", $tblVideo);
-		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_category=:id_category LIMIT :start,:max", $tblVideo);
+		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblVideo);
+		$findByPage1Stmt = sprintf("SELECT * FROM  %s WHERE id_category=:id_category LIMIT :start,:max", $tblVideo);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -26,6 +27,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
 		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);		
 		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByPage1Stmt = self::$PDO->prepare($findByPage1Stmt);
     } 
     function getCollection( array $raw ) {
         return new VideoCollection( $raw, $this );
@@ -34,7 +36,6 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Video(
 			$array['id'],	
-			$array['id_category'],
 			$array['name'],
 			$array['time'],
 			$array['url'],
@@ -50,8 +51,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array(
-			$object->getIdCategory(),
+        $values = array(			
 			$object->getName(),
 			$object->getURL(),
 			$object->getNote(),
@@ -64,8 +64,7 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array( 		
-			$object->getIdCategory(),
+        $values = array( 					
 			$object->getName(),
 			$object->getURL(),
 			$object->getNote(),
@@ -95,7 +94,14 @@ class Video extends Mapper implements \MVC\Domain\VideoFinder {
         return new VideoCollection( $this->findByCategoryStmt->fetchAll(), $this);
     }
 	
-	function findByPage( $values ){
+	function findByPage( $values ){		
+		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
+		$this->findByPageStmt->execute();
+        return new VideoCollection( $this->findByPageStmt->fetchAll(), $this);
+    }
+	
+	function findByPage1( $values ){
 		$this->findByPageStmt->bindValue(':id_category', $values[0], \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
