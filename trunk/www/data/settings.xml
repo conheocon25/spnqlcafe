@@ -34,6 +34,7 @@
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>
 		<command name="SettingAlbum"><view>SettingAlbum</view></command>
+		<command name="SettingImage"><view>SettingImage</view></command>
 		<command name="SettingTag"><view>SettingTag</view></command>
 		
 	</control>

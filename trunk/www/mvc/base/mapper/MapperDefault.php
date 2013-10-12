@@ -3,8 +3,8 @@
 	$mTag 					= new \MVC\Mapper\Tag();
 	$mNews 					= new \MVC\Mapper\News();
 	$mConfig				= new \MVC\Mapper\Config();
-	$mBAlbum				= new \MVC\Mapper\BAlbum();
-	$mBImage				= new \MVC\Mapper\BImage();	
+	$mAlbum					= new \MVC\Mapper\Album();
+	$mImage					= new \MVC\Mapper\Image();	
 	$mVideo					= new \MVC\Mapper\Video();
 	$mCustomer				= new \MVC\Mapper\Customer();
 ?>

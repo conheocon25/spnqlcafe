@@ -13,8 +13,8 @@ interface Finder {
 interface UserFinder  extends Finder {}
 interface ConfigFinder  extends Finder {}
 
-interface BAlbumFinder  extends Finder {}
-interface BImageFinder  extends Finder {}
+interface AlbumFinder  extends Finder {}
+interface ImageFinder  extends Finder {}
 
 interface NewsFinder  extends Finder {}
 interface VideoFinder  extends Finder {}
@@ -22,5 +22,4 @@ interface TagFinder  extends Finder {}
 interface CustomerFinder extends Finder {}
 
 interface GuestFinder extends Finder {}
-
 ?>

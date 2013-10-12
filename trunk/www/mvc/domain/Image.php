@@ -1,9 +1,8 @@
 <?php
 namespace MVC\Domain;
-use MVC\Library\Number;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class BImage extends Object{
+class Image extends Object{
 
     private $Id;
 	private $IdAlbum;
@@ -17,7 +16,8 @@ class BImage extends Object{
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( $Id=null, $IdAlbum=null, $Name=null, $Time=null, $URL=null, $Note=null, $Key=null){$this->Id = $Id; $this->IdAlbum = $IdAlbum; $this->Name = $Name;$this->Time = $Time;$this->URL = $URL;$this->Note = $Note; $this->Key = $Key; parent::__construct( $Id );}
-    function getId( ) {return $this->Id;}
+    function setId( $Id ) {return $this->Id = $Id;}
+	function getId( ) {return $this->Id;}
 	
 	function setIdAlbum( $IdAlbum ){$this->IdAlbum = $IdAlbum;$this->markDirty();}
     function getIdAlbum( ) {return $this->IdAlbum;}
@@ -47,14 +47,31 @@ class BImage extends Object{
 		$this->Key = $Str->converturl();
 	}
 	
+	function toJSON(){		
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdAlbum' 		=> $this->getIdAlbum(),
+			'Name' 			=> $this->getName(),
+			'Time' 			=> $this->getTime(),
+			'URL' 			=> $this->getURL(),
+			'Note' 			=> $this->getNote(),
+			'Key'			=> $this->getKey()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){        
+		$this->Id 		= $Data[0];
+		$this->IdAlbum 	= $Data[1];
+		$this->Name 	= $Data[2];		
+		$this->URL 		= $Data[3];
+		$this->Note 	= $Data[4];
+		$this->Time 	= date('Y-m-d H:i:s');
+		$this->reKey();
+    }
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "blog/".$this->getAlbum()->getCustomer()->getKey()."/setting/album/".$this->getIdAlbum()."/".$this->getId()."/del/exe";}
 			
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

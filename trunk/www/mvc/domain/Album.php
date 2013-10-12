@@ -2,10 +2,9 @@
 Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
-class BAlbum extends Object{
+class Album extends Object{
 
     private $Id;
-	private $IdCustomer;
 	private $Name;
 	private $Order;
 	private $Key;
@@ -13,18 +12,10 @@ class BAlbum extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCustomer=null, $Name=null , $Order=Null, $Key=Null) {$this->Id = $Id; $this->IdCustomer = $IdCustomer; $this->Name = $Name;$this->Order = $Order;$this->Key = $Key;parent::__construct( $Id );}
+    function __construct( $Id=null, $Name=null , $Order=Null, $Key=Null) {$this->Id = $Id; $this->Name = $Name;$this->Order = $Order;$this->Key = $Key;parent::__construct( $Id );}
+	function setId($Id) {return $this->Id = $Id;}
     function getId() {return $this->Id;}
-
-	function setIdCustomer( $IdCustomer ) {$this->IdCustomer = $IdCustomer;$this->markDirty();}
-	function getIdCustomer( ) {return $this->IdCustomer;}
-	
-	function getCustomer( ){
-		$mCustomer = new \MVC\Mapper\Customer();
-		$Customer = $mCustomer->find($this->IdCustomer);
-		return $Customer;
-	}
-	
+		
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
 	
@@ -38,28 +29,37 @@ class BAlbum extends Object{
 		$this->Key = $Str->converturl();
 	}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'Name' 			=> $this->getName(),			
+			'Order' 			=> $this->getOrder(),
+			'Key'			=> $this->getKey()
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){        
+		$this->Id 		= $Data[0];
+		$this->Name 	= $Data[1];
+		$this->Order 	= $Data[2];
+		$this->reKey();
+    }
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
 	function getImageAll(){
-		$mBImage = new \MVC\Mapper\BImage();
-		$ImageAll = $mBImage->findBy(array($this->getId()));
+		$mImage = new \MVC\Mapper\Image();
+		$ImageAll = $mImage->findBy(array($this->getId()));
 		return $ImageAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLImage(){				return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId();}
-	function getURLImageInsLoad(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/ins/load";}
-	function getURLImageInsExe(){		return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/ins/exe";}
+	function getURLImage(){	return "/setting/album/".$this->getId();}
 	
-	function getURLUpdLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/upd/exe";}
-			
-	function getURLDelLoad(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/del/load";}
-	function getURLDelExe(){	return "blog/".$this->getCustomer()->getKey()."/setting/album/".$this->getId()."/del/exe";}
-		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
