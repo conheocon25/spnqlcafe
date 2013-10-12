@@ -64,14 +64,31 @@ class News extends Object{
 	function reKey( ){
 		$Str = new \MVC\Library\String($this->Title." ".$this->getId());
 		$this->Key = $Str->converturl();
+	}		
+	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
+	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'Author' 		=> $this->getAuthor(),
+			'Date' 			=> $this->getDate(),
+			'Content' 		=> $this->getContent(),
+			'Title' 		=> $this->getTitle(),
+			'Type' 			=> $this->getType(),
+			'Key'			=> $this->getKey()
+		);
+		return json_encode($json);
 	}
 	
-	
-	function getContentReduce(){$S = new \MVC\Library\String($this->Content);return $S->reduceHTML(320);}
-	//-------------------------------------------------------------------------------
-	//GET LISTs
-	//-------------------------------------------------------------------------------
-		
+	function setArray( $Data ){        
+		$this->Id 		= $Data[0];
+		$this->Author 	= $Data[1];
+		$this->Date 	= date('Y-m-d H:i:s');
+		$this->Content	= $Data[2];
+		$this->Title 	= $Data[3];
+		$this->Type 	= $Data[4];
+		$this->reKey();		
+    }			
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
