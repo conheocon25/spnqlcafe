@@ -1,20 +1,20 @@
 <?php
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
-class BImage extends Mapper implements \MVC\Domain\BImageFinder {
+class Image extends Mapper implements \MVC\Domain\ImageFinder {
 
     function __construct() {
         parent::__construct();
-		$tblBImage = "www_blog_image";
+		$tblImage = "www_image";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY time DESC", $tblBImage);
-		$selectStmt = sprintf("select *  from %s where id=?", $tblBImage);
-		$updateStmt = sprintf("update %s set id_album=?, name=?, url=?, note=?, time=?, `key`=? where id=?", $tblBImage);
-		$insertStmt = sprintf("insert into %s ( id_album, name, url, note, `key`) values(?, ?, ?, ?, ?)", $tblBImage);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblBImage);
-		$findByStmt = sprintf("select *  from %s where id_album=?", $tblBImage);
-		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblBImage);
-		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_album = :id_album LIMIT :start,:max", $tblBImage);
+		$selectAllStmt = sprintf("select * from %s ORDER BY time DESC", $tblImage);
+		$selectStmt = sprintf("select *  from %s where id=?", $tblImage);
+		$updateStmt = sprintf("update %s set id_album=?, name=?, url=?, note=?, time=?, `key`=? where id=?", $tblImage);
+		$insertStmt = sprintf("insert into %s ( id_album, name, url, note, `key`) values(?, ?, ?, ?, ?)", $tblImage);
+		$deleteStmt = sprintf("delete from %s where id=?", $tblImage);
+		$findByStmt = sprintf("select *  from %s where id_album=?", $tblImage);
+		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblImage);
+		$findByPageStmt = sprintf("SELECT * FROM  %s WHERE id_album = :id_album LIMIT :start,:max", $tblImage);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -25,10 +25,10 @@ class BImage extends Mapper implements \MVC\Domain\BImageFinder {
 		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
     } 
-    function getCollection( array $raw ) {return new BImageCollection( $raw, $this );}
+    function getCollection( array $raw ) {return new ImageCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {
-        $obj = new \MVC\Domain\BImage(
+        $obj = new \MVC\Domain\Image(
 			$array['id'],
 			$array['id_album'],
 			$array['name'],
@@ -40,7 +40,7 @@ class BImage extends Mapper implements \MVC\Domain\BImageFinder {
         return $obj;
     }
 
-    protected function targetClass(){return "BImage";}
+    protected function targetClass(){return "Image";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
@@ -86,12 +86,12 @@ class BImage extends Mapper implements \MVC\Domain\BImageFinder {
 		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
-        return new BImageCollection( $this->findByPageStmt->fetchAll(), $this );
+        return new ImageCollection( $this->findByPageStmt->fetchAll(), $this );
     }	
 	
 	function findBy( $values ){
         $this->findByStmt->execute( $values );
-        return new BImageCollection( $this->findByStmt->fetchAll(), $this);
+        return new ImageCollection( $this->findByStmt->fetchAll(), $this);
     }
 	
 }

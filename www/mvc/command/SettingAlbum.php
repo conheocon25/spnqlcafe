@@ -1,7 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	use MVC\Library\Captcha;
-	class Home extends Command {
+	class SettingAlbum extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -12,33 +11,35 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			
-			$MsgCaptcha = $request->getProperty('MsgCaptcha');			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-						
-			$mCaptcha = new Captcha();
-			$mCaptcha->createImage();
-			$CaptchaSecurited = $mCaptcha->getSecurityCode();
-			$Session->setCurrentCaptcha($CaptchaSecurited);
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
-			$CaptchaSecurity = $Session->getCurrentCaptcha();
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Title = "HỆ THỐNG QUẢN LÝ CAFE";
-									
+			//-------------------------------------------------------------						
+			$Title = "ALBUM";			
+			$Navigation = array(
+				array("THIẾT LẬP", "/setting")
+			);
+			
+			if (!isset($Page)) $Page=1;
+			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$AlbumAll = $mAlbum->findAll();
+			$AlbumAll1 = $mAlbum->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($AlbumAll->count(), $Config->getValue(), "/setting/album" );
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setProperty("CaptchaSecurity", $CaptchaSecurited);		
-			$request->setProperty("MsgCaptcha", $MsgCaptcha);
-			
+			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);
-			$request->setProperty("URLHeader", '/signin/load');
-						
-			return self::statuses('CMD_DEFAULT');
+			$request->setProperty("Page", $Page);
+			$request->setProperty("ActiveAdmin", "Album");
+			$request->setObject("Navigation", $Navigation);
+			$request->setObject("PN", $PN);						
+			$request->setObject("AlbumAll1", $AlbumAll1);
 		}
 	}
 ?>
