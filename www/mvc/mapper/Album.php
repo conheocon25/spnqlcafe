@@ -7,7 +7,7 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblAlbum = "www_album";
+		$tblAlbum = "tbl_album";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY `order`", $tblAlbum);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblAlbum);

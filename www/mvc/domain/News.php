@@ -3,9 +3,7 @@ Namespace MVC\Domain;
 require_once( "mvc/base/domain/DomainObject.php" );
 
 class News extends Object{
-
-    private $Id;
-	private $IdCategory;
+    private $Id;	
 	private $Author;
 	private $Date;
 	private $Content;
@@ -16,9 +14,8 @@ class News extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdCategory=null , $Author=Null, $Date=Null, $Content=null, $Title=null, $Type=null, $Key=null){
-        $this->Id = $Id;
-		$this->IdCategory = $IdCategory;
+    function __construct( $Id=null, $Author=Null, $Date=Null, $Content=null, $Title=null, $Type=null, $Key=null){
+        $this->Id = $Id;		
 		$this->Author = $Author;
 		$this->Date = $Date;
 		$this->Content = $Content;
@@ -30,11 +27,7 @@ class News extends Object{
     }
     function getId() {return $this->Id;}	
 	function getIdPrint(){return "n" . $this->getId();}	
-	
-    function setIdCategory( $IdCategory ) {$this->IdCategory = $IdCategory;$this->markDirty();}   
-	function getIdCategory( ) {return $this->IdCategory;}
-	function getCategory(){$mCategory = new \MVC\Mapper\CategoryNews();$Category = $mCategory->find($this->getIdCategory());return $Category;}
-	
+
 	function setAuthor( $Author ){$this->Author = $Author;$this->markDirty();}   
 	function getAuthor( ) {return $this->Author;}
 	
@@ -82,13 +75,7 @@ class News extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLRead(){return "/tin-tuc/".$this->getCategory()->getKey()."/".$this->getKey();}
-	function getURLUpdLoad(){return "/app/news/".$this->getIdCategory()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/app/news/".$this->getIdCategory()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/app/news/".$this->getIdCategory()."/".$this->getId()."/del/load";}	
-	function getURLDelExe(){return "/app/news/".$this->getIdCategory()."/".$this->getId()."/del/exe";}
-			
+				
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

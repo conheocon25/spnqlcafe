@@ -35,8 +35,9 @@ RewriteRule ^setting/video/page/([0-9])$ 					?cmd=SettingVideo&Page=$1 [L]
 RewriteRule ^setting/album$ 								?cmd=SettingAlbum [L]
 RewriteRule ^setting/album/page/([0-9])$ 					?cmd=SettingAlbum&Page=$1 [L]
 
-RewriteRule ^setting/image/([0-9])$ 						?cmd=SettingImage&IdAlbum=$1 [L]
-RewriteRule ^setting/image/([0-9])/page/([0-9])$ 			?cmd=SettingImage&IdAlbum=$1&Page=$2 [L]
+RewriteRule ^setting/album/([0-9])$ 						?cmd=SettingImage&IdAlbum=$1 [L]
+RewriteRule ^setting/album/([0-9])/page/([0-9])$ 			?cmd=SettingImage&IdAlbum=$1&Page=$2 [L]
+RewriteRule ^image/uploading$ 								?cmd=ImageUploading [L]
 
-RewriteRule ^setting/customer$ 								?cmd=SettingCustomer [L]
-RewriteRule ^setting/customer/page/([0-9])$ 				?cmd=SettingCustomer&Page=$1 [L]
+RewriteRule ^setting/store$ 								?cmd=SettingStore [L]
+RewriteRule ^setting/store/page/([0-9])$ 					?cmd=SettingStore&Page=$1 [L]
