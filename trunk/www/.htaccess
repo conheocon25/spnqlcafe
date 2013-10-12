@@ -22,6 +22,10 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 # SETTING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting$ 										?cmd=Setting [L]
+RewriteRule ^setting/theme/([a-z0-9_-]+)$ 					?cmd=SettingThemeChangeExe&Theme=$1 [L]
+
+RewriteRule ^setting/news$ 									?cmd=SettingNews [L]
+RewriteRule ^setting/news/page/([0-9])$ 					?cmd=SettingNews&Page=$1 [L]
 
 RewriteRule ^setting/config$ 								?cmd=SettingConfig [L]
 RewriteRule ^setting/config/page/([0-9])$ 					?cmd=SettingConfig&Page=$1 [L]

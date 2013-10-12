@@ -17,6 +17,11 @@
 		<command name="SignoutExe"><view>SignoutExe</view><status value="CMD_OK"><forward>Home</forward></status></command>										
 		<command name="ContactInsExe"><view>ContactInsExe</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		
+		<command name="SettingThemeChangeExe">
+			<view>SettingThemeChangeExe</view>
+			<status value="CMD_OK"><forward>Setting</forward></status>
+		</command>
+		
 		<!-- ============================================================================== -->
 		<!-- JSON LOAD			 															-->
 		<!-- ============================================================================== -->		
@@ -30,8 +35,7 @@
 		<!-- ============================================================================== -->
 		<!-- SETTING			 															-->
 		<!-- ============================================================================== -->				
-		<command name="Setting"><view>Setting</view></command>
-				
+		<command name="Setting"><view>Setting</view></command>				
 		<command name="SettingConfig"><view>SettingConfig</view></command>
 		<command name="SettingStore"><view>SettingStore</view></command>
 		<command name="SettingVideo"><view>SettingVideo</view></command>
