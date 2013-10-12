@@ -6,5 +6,5 @@
 	$mAlbum					= new \MVC\Mapper\Album();
 	$mImage					= new \MVC\Mapper\Image();	
 	$mVideo					= new \MVC\Mapper\Video();
-	$mCustomer				= new \MVC\Mapper\Customer();
+	$mStore					= new \MVC\Mapper\Store();
 ?>

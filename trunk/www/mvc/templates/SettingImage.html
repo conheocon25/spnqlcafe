@@ -59,7 +59,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI ẢNH</h3>
 								</div>
-								<form class="form-horizontal" action="/image/uploading" method="post" enctype="multipart/form-data">
+								<form class="form-horizontal" enctype="multipart/form-data">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">IdAlbum</label>
@@ -165,7 +165,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/BImage/0";
+				var URL = "/object/del/Image/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -209,21 +209,18 @@
 				var Data = [];
 				Data[0] = 'null';				
 				Data[1] = $('#IdAlbum').attr('alt');
-				Data[2] = $('#Name1').val();
-				Data[3] = $('#Time1').val();
-				Data[4] = $('#URL1').val();
-				Data[5] = $('#Note1').val();
-				Data[6] = $('#Key1').val();
-												
-				var URL = "/uploading/image";
+				Data[2] = $('#Name1').val();								
+				Data[3] = $('#Note1').val();
+																
+				var URL = "/image/uploading";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
-						location.reload();
+						//location.reload();
 					}
-				});				
+				});
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -231,7 +228,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/BImage/" + $(this).attr('data-id');
+				var url = "/object/load/Image/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){

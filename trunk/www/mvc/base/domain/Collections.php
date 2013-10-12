@@ -5,7 +5,7 @@ interface UserCollection extends \Iterator {function add( Object $user );}
 interface ConfigCollection extends \Iterator {function add( Object $Config );}
 
 interface TagCollection extends \Iterator {function add( Object $Tag );}
-interface CustomerCollection extends \Iterator {function add( Object $Customer);}
+interface StoreCollection extends \Iterator {function add( Object $Store);}
 
 interface AlbumCollection extends \Iterator {function add( Object $Album );}
 interface ImageCollection extends \Iterator {function add( Object $Image );}

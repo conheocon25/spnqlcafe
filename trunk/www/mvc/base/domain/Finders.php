@@ -19,7 +19,7 @@ interface ImageFinder  extends Finder {}
 interface NewsFinder  extends Finder {}
 interface VideoFinder  extends Finder {}
 interface TagFinder  extends Finder {}
-interface CustomerFinder extends Finder {}
+interface StoreFinder extends Finder {}
 
 interface GuestFinder extends Finder {}
 ?>

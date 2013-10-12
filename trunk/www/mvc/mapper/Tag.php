@@ -7,7 +7,7 @@ class Tag extends Mapper implements \MVC\Domain\TagFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblTag = "www_tag";
+		$tblTag = "tbl_tag";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblTag);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTag);

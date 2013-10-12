@@ -7,12 +7,12 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblNews = "www_news";
+		$tblNews = "tbl_news";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY type DESC, date DESC", $tblNews);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblNews);
-		$updateStmt = sprintf("update %s set id_category=?, author=?, date=?, content=?, title=?, type=?, `key`=? where id=?", $tblNews);
-		$insertStmt = sprintf("insert into %s ( id_category, author, date, content, title, type, `key`) values(?, ?, ?, ?, ?, ?, ?)", $tblNews);
+		$updateStmt = sprintf("update %s set author=?, date=?, content=?, title=?, type=?, `key`=? where id=?", $tblNews);
+		$insertStmt = sprintf("insert into %s ( author, date, content, title, type, `key`) values(?, ?, ?, ?, ?, ?)", $tblNews);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblNews);
 		$findByStmt = sprintf("select *  from %s where id_category=? ORDER BY type DESC, date DESC", $tblNews);		
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblNews);
@@ -62,7 +62,6 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\News( 
 			$array['id'],
-			$array['id_category'],
 			$array['author'],
 			$array['date'],
 			$array['content'],
@@ -78,8 +77,7 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array( 
-			$object->getIdCategory(),
+        $values = array( 			
 			$object->getAuthor(),
 			$object->getDate(),
 			$object->getContent(),
@@ -93,8 +91,7 @@ class News extends Mapper implements \MVC\Domain\NewsFinder {
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array( 
-			$object->getIdCategory(),
+        $values = array( 			
 			$object->getAuthor(),
 			$object->getDate(),
 			$object->getContent(),

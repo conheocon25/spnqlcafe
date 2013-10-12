@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingImage extends Command{
+	class SettingStore extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,9 +11,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdKey = $request->getProperty('IdKey');
-			$IdAlbum = $request->getProperty('IdAlbum');
-			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
@@ -21,35 +19,27 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------												
+			//-------------------------------------------------------------						
+			$Title = "QUÁN";			
+			$Navigation = array(
+				array("THIẾT LẬP", "/setting")
+			);
+			
 			if (!isset($Page)) $Page=1;
 			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$Album = $mAlbum->find($IdAlbum);
-			$AlbumAll = $mAlbum->findAll();
-			$ImageAll = $mImage->findBy(array($IdAlbum));
-			$ImageAll1 = $mImage->findByPage(array($IdAlbum, $Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($ImageAll->count(), $Config->getValue(), "/setting/album".$Album->getId() );
-			
-			$Title = mb_strtoupper($Album->getName(), 'UTF8');
-			$Customer = $mCustomer->findByKey($IdKey);
-			$Navigation = array(
-				array("THIẾT LẬP"	, "/setting"),
-				array("ALBUM"		, "/setting/album")
-			);
+			$StoreAll = $mStore->findAll();
+			$StoreAll1 = $mStore->findByPage(array($Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($StoreAll->count(), $Config->getValue(), "/setting/store" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);
 			$request->setProperty("Page", $Page);
-			$request->setProperty("ActiveAdmin", "BAlbum");
+			$request->setProperty("ActiveAdmin", "Store");
 			$request->setObject("Navigation", $Navigation);
-			$request->setObject("PN", $PN);
-			
-			$request->setObject("Customer", $Customer);
-			$request->setObject("Album", $Album);
-			$request->setObject("AlbumAll", $AlbumAll);
-			$request->setObject("ImageAll1", $ImageAll1);
+			$request->setObject("PN", $PN);						
+			$request->setObject("StoreAll1", $StoreAll1);
 		}
 	}
 ?>

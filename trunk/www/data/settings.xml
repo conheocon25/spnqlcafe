@@ -24,13 +24,16 @@
 		<command name="ObjectDel"><view>ObjectDel</view></command>
 		<command name="ObjectIns"><view>ObjectIns</view></command>
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
-				
+		
+		<command name="ImageUploading"><view>ImageUploading</view></command>
+		
 		<!-- ============================================================================== -->
-		<!-- SETTING			 														-->
+		<!-- SETTING			 															-->
 		<!-- ============================================================================== -->				
 		<command name="Setting"><view>Setting</view></command>
 				
 		<command name="SettingConfig"><view>SettingConfig</view></command>
+		<command name="SettingStore"><view>SettingStore</view></command>
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>
 		<command name="SettingAlbum"><view>SettingAlbum</view></command>
