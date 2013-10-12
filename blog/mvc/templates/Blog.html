@@ -3,6 +3,8 @@
 	<head>
 		<div metal:use-macro="mBlog.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mBlog.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</head>
 
 	<body id="top">
@@ -74,49 +76,21 @@
 			</div>
 			<div id="content-wrapper">
 				<div class="fullwidth">
-					<div class="flexslider" id="index-slider">
-						<ul class="slides">
-							<li>
-								<a href="#"><img src="/mvc/templates/theme/blog/images/slider3.jpg" alt="" /></a>
-								<div class="flex-caption transparent light-font center">
-									<div>
-										<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
-										<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
-										<p><a href="#" class="button medium white">Xem tiếp</a></p>
-									</div>
-								</div>
-						  </li>
-							<li>
-								<a href="#"><img src="/mvc/templates/theme/blog/images/slider2.jpg" alt="" /></a>
-								<div class="flex-caption transparent dark-font">
-									<div>
-										<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
-										<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
-										<p><a href="#" class="button medium white">Xem tiếp</a></p>
-									</div>
-								</div>
-						  </li>
-							<li>
-								<a href="#"><img src="/mvc/templates/theme/blog/images/slider1.jpg" alt="" /></a>
-								<div class="flex-caption dark center">
-									<div>
-										<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
-										<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
-										<p><a href="#" class="button medium white">Xem tiếp</a></p>
-									</div>
-								</div>
-						  </li>
-							<li>
-								<a href="#"><img src="/mvc/templates/theme/blog/images/slider4.jpg" alt="" /></a>
-								<div class="flex-caption light">
-									<div>
-										<h2><span class="uppercase">Cafe sớm mùa thu</span></h2>
-										<p><span class="lowercase">Cafe sớm đầu thu gió lạnh<br/>Ước một điều mà chưa thể gọi tên.<br/>Gió heo may, nhủ lòng mình chợt quên.<br/>Lại một mùa đi qua trong nhung nhớ.</span></p>
-										<p><a href="#" class="button medium white">Xem tiếp</a></p>
-									</div>
-								</div>
-							</li>
-						</ul>
+					<div id="myCarousel" class="carousel slide">						
+						<!-- Carousel items -->
+						<div class="carousel-inner">
+							<div class="active item">
+								<span tal:content="Album/getImageAll/current/getName"/>
+								<img width="480px" tal:attributes="src Album/getImageAll/current/getURL"/>
+							</div>
+							<div tal:repeat="Image Album/getImageAll" class="item">
+								<span tal:content="Image/getName"/>
+								<img width="480px" tal:attributes="src Image/getURL"/>
+							</div>							
+						</div>
+						<!-- Carousel nav -->
+						<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+						<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 					</div>
 				</div>
 				<div class="page-header text-align-center">
