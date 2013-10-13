@@ -37,6 +37,7 @@
 		<!-- ============================================================================== -->				
 		<command name="Setting"><view>Setting</view></command>				
 		<command name="SettingConfig"><view>SettingConfig</view></command>
+		<command name="SettingProvince"><view>SettingProvince</view></command>
 		<command name="SettingStore"><view>SettingStore</view></command>
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>

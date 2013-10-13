@@ -21,5 +21,8 @@ interface VideoFinder  extends Finder {}
 interface TagFinder  extends Finder {}
 interface StoreFinder extends Finder {}
 
+interface ProvinceFinder extends Finder {}
+interface DistrictFinder extends Finder {}
+
 interface GuestFinder extends Finder {}
 ?>

@@ -13,6 +13,9 @@ interface ImageCollection extends \Iterator {function add( Object $Image );}
 interface NewsCollection extends \Iterator {function add( Object $News );}
 interface VideoCollection extends \Iterator {function add( Object $Video );	}
 
+interface ProvinceCollection extends \Iterator {function add( Object $Province );}
+interface DistrictCollection extends \Iterator {function add( Object $District );}
+
 interface GuestCollection extends \Iterator {function add( Object $Guest);}
 interface PageCollection extends \Iterator {function add( Object $Page);}
 ?>
