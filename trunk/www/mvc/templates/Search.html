@@ -3,24 +3,25 @@
 	<head>
 		<span metal:use-macro="base.xhtml/IncludeMETA"/>
 		<span metal:use-macro="base.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="base.xhtml/IncludeJS"/>
-		<script>
-		/*<![CDATA[*/
-			$(document).ready(function() {				
-				
-			});						
-		/*]]>*/
-		</script>
+		<span metal:use-macro="base.xhtml/IncludeJS"/>		
 	</head>
 	<body>
 		<a href="http://www.quanly-cafe.com/#" class="scrolltop" style="display: none;"><span>&#8593;</span></a>
 		<div metal:use-macro="base.xhtml/Header"/>
-		<h1>THỬ NGHIỆM TRANG CHỦ </h1>
+		<h1>KẾT QUẢ TÌM KIẾM</h1>
 		<form method = "post" action="/tien-ich/tim-kiem" class = "pull-down  navbar-search">
 			<div class="input-append">
 				<input class="search-query input-medium"  name="SearchNameStore" type="text" placeholder="Gõ tên quán" />
 				<button type = "submit" class="btn btn-large"><i class="icon-search" /></button>
 			</div>
 		</form>
+		<BR/>
+		<div tal:repeat="Store StoreAll">
+			<a tal:attributes="href Store/getURLView">
+				<B tal:content="Store/getName" />
+			</a>
+			, <span tal:content="Store/getAddress" />
+			<br/>
+		</div>
 	</body>
 </html>

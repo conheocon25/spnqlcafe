@@ -45,7 +45,7 @@ class Store extends Object{
 	function getKey(){return $this->Key;}
 	function reKey( ) {
 		$Str = new \MVC\Library\String($this->Name);
-		$this->Key = $Str->converturl();
+		$this->Key = $Str->converturl().$this->getId();
 	}
 	
 	function toJSON(){
@@ -70,7 +70,7 @@ class Store extends Object{
 		$this->Address 	= $Data[5];
 		$this->reKey();
     }
-	
+	function getURLView(){ return "/quan/".$this->getKey();}
 	//=================================================================================		
 				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

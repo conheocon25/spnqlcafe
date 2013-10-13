@@ -11,6 +11,10 @@ RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
 
 RewriteRule ^trang-chu$ 			?cmd=Home [L]
 RewriteRule ^giai-phap$ 			?cmd=Solution [L]
+RewriteRule ^tien-ich/tim-kiem$ 	?cmd=Search [L]
+RewriteRule ^tien-ich/de-xuat$ 		?cmd=Recommend [L]
+RewriteRule ^quan/([A-Za-z0-9_-]+)$ 	?cmd=Store&IdKey=$1 [L]
+
 RewriteRule ^video/([0-9])$ 		?cmd=Video&IdCategoryVideo=$1 [L]
 RewriteRule ^contact/ins/exe$ 		?cmd=ContactInsExe [L]
 
