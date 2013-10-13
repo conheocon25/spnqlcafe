@@ -6,15 +6,16 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
 
     function __construct() {
         parent::__construct();
-        $this->selectAllStmt = self::$PDO->prepare( "select * from tbl_store");
+        $this->selectAllStmt = self::$PDO->prepare( "select * from tbl_store ORDER BY name");
         $this->selectStmt = self::$PDO->prepare( "select * from tbl_store where id=?");
         $this->updateStmt = self::$PDO->prepare( "update tbl_store set name=?, email =?, phone=?, type=?, address=?, `key`=? where id=?");
         $this->insertStmt = self::$PDO->prepare( "insert into tbl_store (name, email, phone, type, address, `key`)
 							values( ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( "delete from tbl_store where id=?");
+		$this->searchByNameStmt = self::$PDO->prepare("SELECT * FROM tbl_store WHERE name like ?");
 		$this->findByKeyStmt = self::$PDO->prepare("SELECT * FROM tbl_store WHERE `key`=?");
 		$this->findByCardStmt = self::$PDO->prepare("SELECT * from tbl_store where card=?");
-		$this->findByPageStmt = self::$PDO->prepare("SELECT * FROM  tbl_store LIMIT :start,:max");
+		$this->findByPageStmt = self::$PDO->prepare("SELECT * FROM  tbl_store ORDER BY name LIMIT :start,:max");
     }
 	
     function getCollection( array $raw ) {return new StoreCollection( $raw, $this );}
@@ -96,5 +97,11 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
 		$this->findByPageStmt->execute();
         return new StoreCollection( $this->findByPageStmt->fetchAll(), $this );
     }
+	
+	function searchByName( $values ){
+        $this->searchByNameStmt->execute( $values );
+        return new StoreCollection( $this->searchByNameStmt->fetchAll(), $this);
+    }
+	
 }
 ?>
