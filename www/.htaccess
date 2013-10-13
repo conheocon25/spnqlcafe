@@ -9,7 +9,8 @@ RewriteRule ^signin/exe$ 			?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 			?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 			?cmd=SignoutExe [L]
 
-RewriteRule ^home$ 					?cmd=Home [L]
+RewriteRule ^trang-chu$ 			?cmd=Home [L]
+RewriteRule ^giai-phap$ 			?cmd=Solution [L]
 RewriteRule ^video/([0-9])$ 		?cmd=Video&IdCategoryVideo=$1 [L]
 RewriteRule ^contact/ins/exe$ 		?cmd=ContactInsExe [L]
 
