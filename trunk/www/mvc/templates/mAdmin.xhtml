@@ -107,32 +107,37 @@
 			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 				<li tal:attributes="class php: ActiveAdmin=='Tag'?'active':''">
 					<a tal:attributes="href 'setting/tag'">
-						<i class="icon-tags"></i> <span>Thẻ</span>
+						<i class="icon-tags"></i> <span>THẺ TAG</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='News'?'active':''">
 					<a tal:attributes="href 'setting/news'">
-						<i class="icon-tags"></i> <span>Tin tức</span>
+						<i class="icon-tags"></i> <span>TIN TỨC</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Album'?'active':''">
 					<a tal:attributes="href 'setting/album'">
-						<i class="icon-tags"></i> <span>Album</span>
+						<i class="icon-tags"></i> <span>ALBUM</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Video'?'active':''">
 					<a tal:attributes="href 'setting/video'">
-						<i class="icon-tags"></i> <span>Video</span>
+						<i class="icon-tags"></i> <span>VIDEO</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Store'?'active':''">
 					<a tal:attributes="href 'setting/store'">
-						<i class="icon-user"></i> <span>Quán</span>
+						<i class="icon-user"></i> <span>QUÁN</span>
+					</a>
+				</li>
+				<li tal:attributes="class php: ActiveAdmin=='Province'?'active':''">
+					<a tal:attributes="href 'setting/province'">
+						<i class="icon-user"></i> <span>TỈNH THÀNH</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Config'?'active':''">
 					<a tal:attributes="href '/setting/config'">
-						<i class="icon-gear"></i> <span>Cấu hình</span>
+						<i class="icon-gear"></i> <span>CẤU HÌNH</span>
 					</a>
 				</li>
 			</ul>

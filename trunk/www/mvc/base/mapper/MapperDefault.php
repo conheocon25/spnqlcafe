@@ -7,4 +7,6 @@
 	$mImage					= new \MVC\Mapper\Image();	
 	$mVideo					= new \MVC\Mapper\Video();
 	$mStore					= new \MVC\Mapper\Store();
+	$mProvince				= new \MVC\Mapper\Province();
+	$mDistrict				= new \MVC\Mapper\District();
 ?>
