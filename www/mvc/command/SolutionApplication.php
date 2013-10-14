@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;		
-	class Solution extends Command {
+	class SolutionApplication extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------

@@ -8,43 +8,33 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">					
-					<div class="widget-box">
-						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check data-table">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">						
+						<div class="widget-content nopadding">							
+							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>
-										<th width="120" class="left">QUẬN/HUYỆN</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
+										<th class="left">TÊN</th>										
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Province ProvinceAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Province/getId"/></td>
-										<td><span tal:content="Province/getName"/></td>
-										<td>
-											<a tal:attributes="href Province/getURLSettingDistrict">
-												Xem <span tal:content="Province/getDistrictAll/count"/>
-											</a>
-										</td>
-										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Province/getId">
-												<i class="glyphicon glyphicon-pencil"/>
-											</a>
-										</td>
-										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Province/getId">
-												<i class="glyphicon glyphicon-remove"/>
-											</a>
-										</td>
+									<tr tal:repeat="StoreLocation District/getStoreAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id StoreLocation/getIdStore"/></td>										
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Store" tal:attributes="data-id StoreLocation/getIdStore" tal:content="StoreLocation/getStore/getName"/></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id StoreLocation/getIdStore"><i class="glyphicons-remove_2"/></a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -56,7 +46,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới Province</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới StoreLocation</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -65,23 +55,41 @@
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
+										</div>	
+										<div class="form-group">
+											<label class="control-label">Email</label>
+											<div class="controls">
+												<input id="Email1" name="Email1" type="text" class="form-control input-small"/>
+											</div>
 										</div>										
 										<div class="form-group">
-											<label class="control-label">URL</label>
+											<label class="control-label">Điện thoại</label>
 											<div class="controls">
-												<input id="URL1" name="URL1" type="text" class="form-control input-small"/>
+												<input id="Phone1" name="Phone1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Ghi chú</label>
+											<label class="control-label">Loại</label>
 											<div class="controls">
-												<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+												<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">Truy cập</label>
+											<label class="control-label">Địa chỉ</label>
 											<div class="controls">
-												<input id="Count1" name="Count1" type="text" class="form-control input-small"/>
+												<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">X</label>
+											<div class="controls">
+												<input id="X1" name="X1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Y</label>
+											<div class="controls">
+												<input id="Y1" name="Y1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 									</div>
@@ -100,7 +108,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Cập nhật Province</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>Cập nhật StoreLocation</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="form-group">
@@ -135,6 +143,7 @@
 							</div>
 						</div>
 					</div>
+					<div id="IdDistrict" tal:attributes="alt District/getId" />
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
@@ -148,7 +157,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Province/0";
+				var URL = "/object/del/Store/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -175,7 +184,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){
-				var URL = "/object/del/Province/" + $(this).attr('alt');
+				var URL = "/object/del/Store/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -189,21 +198,43 @@
 			//Insert 1 VIDEO
 			$('#URLInsButton').click(function(){
 				var Data = [];
-				Data[0] = 'null';				
+				Data[0] = 'null';								
 				Data[1] = $('#Name1').val();
-				Data[2] = $('#URL1').val();
-				Data[3] = $('#Note1').val();
-				Data[4] = $('#Count1').val();
+				Data[2] = $('#Email1').val();								
+				Data[3] = $('#Phone1').val();
+				Data[4] = $('#Type1').val();
+				Data[5] = $('#Address1').val();
+												
+				var URL = "/object/ins/Store";
+				var IdStore = 0;
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					async: false,
+					url: URL,
+					success: function(data){						
+						IdStore  = data;
+						//alert("co em" + data);
+					}
+				});
 				
-				var URL = "/object/ins/Province";
+				//Chèn vào quận/huyện hiện tại
+				URL = "/object/ins/StoreLocation";
+				Data[0] = 'null';								
+				Data[1] = $('#IdDistrict').attr('alt');
+				Data[2] = IdStore;
+				Data[3] = $('#X1').val();
+				Data[4] = $('#Y1').val();
+				
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
 					url: URL,
-					success: function(msg){
-						//location.reload();
+					success: function(data){
+						location.reload();
 					}
 				});
+				
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -211,7 +242,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Province/" + $(this).attr('data-id');
+				var url = "/object/load/StoreLocation/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -234,7 +265,7 @@
 				Data[3] = $('#Note2').val();
 				Data[4] = $('#Count2').val();
 				
-				var URL = "/object/upd/Province";
+				var URL = "/object/upd/StoreLocation";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

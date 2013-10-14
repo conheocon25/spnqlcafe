@@ -5,10 +5,10 @@
 		<!-- ============================================================================== -->		
 		<command name="DefaultCommand"><view>DefaultCommand</view><status value="CMD_OK"><forward>Home</forward></status></command>
 		<command name="Home"><view>Home</view></command>
-		<command name="Search"><view>Search</view></command>
-		<command name="Solution"><view>Solution</view></command>
+		<command name="Search"><view>Search</view></command>		
 		<command name="Store"><view>Store</view></command>
 		<command name="Video"><view>Video</view></command>
+		<command name="SolutionApplication"><view>SolutionApplication</view></command>
 		
 		<command name="SigninLoad"><view>SigninLoad</view></command>		
 		<command name="SigninExe">
@@ -40,7 +40,11 @@
 		<!-- ============================================================================== -->				
 		<command name="Setting"><view>Setting</view></command>				
 		<command name="SettingConfig"><view>SettingConfig</view></command>
+		
 		<command name="SettingProvince"><view>SettingProvince</view></command>
+		<command name="SettingDistrict"><view>SettingDistrict</view></command>
+		<command name="SettingDistrictStore"><view>SettingDistrictStore</view></command>
+		
 		<command name="SettingStore"><view>SettingStore</view></command>
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>

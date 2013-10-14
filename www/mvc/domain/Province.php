@@ -39,16 +39,17 @@ class Province extends Object{
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	function getDistricts(){
+	function getDistrictAll(){
 		$mDistrict = new \MVC\Mapper\District();
-		$Districts = $mDistrict->findBy(array($this->getId()));
-		return $Districts;
+		$DistrictAll = $mDistrict->findBy(array($this->getId()));
+		return $DistrictAll;
 	}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-				
+	function getURLSettingDistrict(){ return "/setting/province/".$this->getId();}
+	
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

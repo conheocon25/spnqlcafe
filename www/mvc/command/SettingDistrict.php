@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;	
-	class SettingProvince extends Command{
+	class SettingDistrict extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,31 +11,30 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-						
+			$IdProvince = $request->getProperty('IdProvince');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mProvince = new \MVC\Mapper\Province();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Title = "TỈNH THÀNH";			
+			$Title = "QUẬN HUYỆN";
 			$Navigation = array(
-				array("THIẾT LẬP", "/setting")
-			);
+				array("THIẾT LẬP", "/setting"),
+				array("TỈNH THÀNH", "/setting/province")
+			);						
+			$Province = $mProvince->find($IdProvince);
 			
-			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$ProvinceAll = $mProvince->findAll();
-						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);						
 			$request->setProperty("ActiveAdmin", "Province");
 			$request->setObject("Navigation", $Navigation);
-			$request->setObject("ProvinceAll", $ProvinceAll);
+			$request->setObject("Province", $Province);
 		}
 	}
 ?>

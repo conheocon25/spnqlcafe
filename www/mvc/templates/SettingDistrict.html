@@ -16,35 +16,24 @@
 				<div class="col-12">					
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check data-table">
+							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr>
-										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="40">STT</th>
 										<th class="left">TÊN</th>
-										<th width="120" class="left">QUẬN/HUYỆN</th>
-										<th width="40"><i class="glyphicons-edit"/></th>
-										<th width="40"><i class="glyphicons-bin"/></th>
+										<th width="60" class="left">QUÁN</th>										
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Province ProvinceAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Province/getId"/></td>
-										<td><span tal:content="Province/getName"/></td>
+									<tr tal:repeat="District Province/getDistrictAll">
+										<td class="center"><span tal:content="repeat/District/number"/></td>
+										<td><span tal:content="District/getName"/></td>
 										<td>
-											<a tal:attributes="href Province/getURLSettingDistrict">
-												Xem <span tal:content="Province/getDistrictAll/count"/>
+											<a tal:attributes="href District/getURLSettingStore">
+												<span tal:content="District/getStoreAll/count"/>
+												<i class="glyphicons-kiosk"/>
 											</a>
-										</td>
-										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Province/getId">
-												<i class="glyphicon glyphicon-pencil"/>
-											</a>
-										</td>
-										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Province/getId">
-												<i class="glyphicon glyphicon-remove"/>
-											</a>
-										</td>
+										</td>															
 									</tr>
 								</tbody>
 							</table>
@@ -56,7 +45,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới Province</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới District</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -100,7 +89,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Cập nhật Province</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>Cập nhật District</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="form-group">
@@ -148,7 +137,7 @@
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Province/0";
+				var URL = "/object/del/District/0";
 				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
@@ -175,7 +164,7 @@
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){
-				var URL = "/object/del/Province/" + $(this).attr('alt');
+				var URL = "/object/del/District/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -195,7 +184,7 @@
 				Data[3] = $('#Note1').val();
 				Data[4] = $('#Count1').val();
 				
-				var URL = "/object/ins/Province";
+				var URL = "/object/ins/District";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -211,7 +200,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Province/" + $(this).attr('data-id');
+				var url = "/object/load/District/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
@@ -234,7 +223,7 @@
 				Data[3] = $('#Note2').val();
 				Data[4] = $('#Count2').val();
 				
-				var URL = "/object/upd/Province";
+				var URL = "/object/upd/District";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
