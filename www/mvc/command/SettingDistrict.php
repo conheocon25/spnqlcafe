@@ -20,13 +20,13 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Title = "QUẬN HUYỆN";
+			//-------------------------------------------------------------									
+			$Province = $mProvince->find($IdProvince);
+			$Title = mb_strtoupper($Province->getName(), 'UTF8');
 			$Navigation = array(
 				array("THIẾT LẬP", "/setting"),
 				array("TỈNH THÀNH", "/setting/province")
 			);						
-			$Province = $mProvince->find($IdProvince);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
