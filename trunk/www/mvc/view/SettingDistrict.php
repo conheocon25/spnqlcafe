@@ -1,5 +1,5 @@
 <?php
 	require_once("mvc/base/Viewer.php");
-	$Viewer = new Viewer("mvc/templates/Solution.html");
+	$Viewer = new Viewer("mvc/templates/SettingDistrict.html");
 	echo $Viewer->html();
 ?>

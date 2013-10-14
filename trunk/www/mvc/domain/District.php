@@ -21,52 +21,34 @@ class District extends Object{
 		
         parent::__construct( $Id );
     }
-    function getId() {
-        return $this->Id;
-    }		
-	function setIdProvince( $IdProvince ) {
-        $this->IdProvince = $IdProvince;
-        $this->markDirty();
-    }   
-	function getIdProvince( ) {
-        return $this->IdProvince;
-    }
+    function getId() {return $this->Id;}		
+	function setIdProvince( $IdProvince ) {$this->IdProvince = $IdProvince;$this->markDirty();}   
+	function getIdProvince( ) {return $this->IdProvince;}
 	
-    function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }   
-	function getName( ) {
-        return $this->Name;
-    }
+    function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
+	function getName( ) {return $this->Name;}
 	
-	function setX( $X ) {
-        $this->X = $X;
-        $this->markDirty();
-    }   
-	function getX( ) {
-        return $this->X;
-    }
+	function setX( $X ) {$this->X = $X;$this->markDirty();}   
+	function getX( ) {return $this->X;}
 	
-	function setY( $Y ) {
-        $this->Y = $Y;
-        $this->markDirty();
-    }   
-	function getY( ) {
-        return $this->Y;
-    }	
-	function getPositionStr(){
-		return $this->getX().", ".$this->getY();
-	}
+	function setY( $Y ) {$this->Y = $Y;$this->markDirty();}   
+	function getY( ) {return $this->Y;}	
+	function getPositionStr(){return $this->getX().", ".$this->getY();}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------
-	
+	function getStoreAll(){
+		$mStoreLocation = new \MVC\Mapper\StoreLocation();
+		$StoreAll = $mStoreLocation->findBy(array( $this->getId() ));
+		return $StoreAll;
+	}
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-				
+	function getURLSettingStore(){
+		return "/setting/province/".$this->getIdProvince()."/".$this->getId();
+	}
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	

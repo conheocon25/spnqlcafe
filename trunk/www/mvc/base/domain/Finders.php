@@ -19,7 +19,9 @@ interface ImageFinder  extends Finder {}
 interface NewsFinder  extends Finder {}
 interface VideoFinder  extends Finder {}
 interface TagFinder  extends Finder {}
+
 interface StoreFinder extends Finder {}
+interface StoreLocationFinder extends Finder {}
 
 interface ProvinceFinder extends Finder {}
 interface DistrictFinder extends Finder {}

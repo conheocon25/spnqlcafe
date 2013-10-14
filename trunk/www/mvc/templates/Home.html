@@ -3,19 +3,13 @@
 	<head>
 		<span metal:use-macro="base.xhtml/IncludeMETA"/>
 		<span metal:use-macro="base.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="base.xhtml/IncludeJS"/>
-		<script>
-		/*<![CDATA[*/
-			$(document).ready(function() {				
-				
-			});						
-		/*]]>*/
-		</script>
+		<span metal:use-macro="base.xhtml/IncludeJS"/>				
 	</head>
 	<body>
 		<a href="http://www.quanly-cafe.com/#" class="scrolltop" style="display: none;"><span>&#8593;</span></a>
 		<div metal:use-macro="base.xhtml/Header"/>
-		<h1>THỬ NGHIỆM TRANG CHỦ </h1>
+		<h1>TRANG CHỦ </h1>
+		<h4>Bạn đang ở Vĩnh Long <a href="/doi-vi-tri">Đổi vị trí</a></h4>
 		<form method = "post" action="/tien-ich/tim-kiem" class = "pull-down  navbar-search">
 			<div class="input-append">
 				<input class="search-query input-medium"  name="SearchNameStore" type="text" placeholder="Gõ tên quán" />
