@@ -44,9 +44,13 @@
 		
 		<command name="SettingProvince"><view>SettingProvince</view></command>
 		<command name="SettingDistrict"><view>SettingDistrict</view></command>
-		<command name="SettingDistrictStore"><view>SettingDistrictStore</view></command>
+		<command name="SettingDistrictStore"><view>SettingDistrictStore</view></command>			
 		
 		<command name="SettingStore"><view>SettingStore</view></command>
+		<command name="SettingStoreAlbum"><view>SettingStoreAlbum</view></command>
+		<command name="SettingStorePost"><view>SettingStorePost</view></command>
+		<command name="SettingStoreRate"><view>SettingStoreRate</view></command>
+		
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>
 		<command name="SettingAlbum"><view>SettingAlbum</view></command>

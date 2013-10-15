@@ -27,6 +27,9 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>										
+										<th width="60" class="left">POST</th>
+										<th width="60" class="left">ALBUM</th>
+										<th width="60" class="left">RATING</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
@@ -34,6 +37,9 @@
 									<tr tal:repeat="StoreLocation District/getStoreAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id StoreLocation/getIdStore"/></td>										
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Store" tal:attributes="data-id StoreLocation/getIdStore" tal:content="StoreLocation/getStore/getName"/></td>
+										<td><a href="#DialogEdit">Xem</a></td>
+										<td><a tal:attributes="href StoreLocation/getURLSettingAlbum">Xem</a></td>
+										<td><a href="#DialogEdit">Xem</a></td>
 										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id StoreLocation/getIdStore"><i class="glyphicons-remove_2"/></a></td>
 									</tr>
 								</tbody>

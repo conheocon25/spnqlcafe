@@ -25,7 +25,7 @@ class StoreLocation extends Object{
     function setIdDistrict( $IdDistrict ) {$this->IdDistrict = $IdDistrict;$this->markDirty();}
 	function getDistrict( ) {
 		$mDistrict = new \MVC\Mapper\District();
-		$District = $mDistrict->find($IdDistrict);
+		$District = $mDistrict->find($this->IdDistrict);
 		return $District;
 	}
 	
@@ -61,6 +61,10 @@ class StoreLocation extends Object{
 		$this->X 			= $Data[3];
 		$this->Y 			= $Data[4];
     }
+	
+	function getURLSettingAlbum(){				
+		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/album";
+	}
 	
 	//=================================================================================						
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}

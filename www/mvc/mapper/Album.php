@@ -11,10 +11,10 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY `order`", $tblAlbum);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblAlbum);
-		$updateStmt = sprintf("update %s set name=?, `order`=?, `key`=? where id=?", $tblAlbum);
-		$insertStmt = sprintf("insert into %s ( name, `order`, `key`) values(?, ?, ?)", $tblAlbum);
+		$updateStmt = sprintf("update %s set id_store=?, name=?, `order`=?, `key`=? where id=?", $tblAlbum);
+		$insertStmt = sprintf("insert into %s ( id_store, name, `order`, `key`) values(?, ?, ?, ?)", $tblAlbum);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblAlbum);
-		
+		$findByStmt = sprintf("SELECT * FROM  %s order by name", $tblAlbum);
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblAlbum);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblAlbum);
 				
@@ -24,15 +24,17 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		
-		$this->findByKeyStmt = self::$PDO->prepare($findByKeyStmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByKeyStmt 	= self::$PDO->prepare($findByKeyStmt);
+		$this->findByStmt 		= self::$PDO->prepare($findByStmt);
+		$this->findByPageStmt 	= self::$PDO->prepare($findByPageStmt);
 		
     } 
     function getCollection( array $raw ) {return new AlbumCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Album( 
-			$array['id'],		
+			$array['id'],	
+			$array['id_store'],
 			$array['name'],
 			$array['order'],
 			$array['key']
@@ -41,7 +43,8 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
     }
     protected function targetClass() {return "Album";}
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array( 			
+        $values = array(
+			$object->getIdStore(),
 			$object->getName(),
 			$object->getOrder(),
 			$object->getKey()
@@ -52,7 +55,8 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
     }
     
     protected function doUpdate( \MVC\Domain\Object $object ) {
-        $values = array( 			
+        $values = array( 
+			$object->getIdStore(),
 			$object->getName(),
 			$object->getOrder(),
 			$object->getKey(),
@@ -73,11 +77,15 @@ class Album extends Mapper implements \MVC\Domain\AlbumFinder {
         $object = $this->doCreateObject( $array );
         return $object;		
     }
+	function findBy( $values ) {						
+		$this->findByStmt->execute();
+        return new AlbumCollection( $this->findByStmt->fetchAll(), $this );
+    }
 	function findByPage( $values ) {				
 		$this->findByPageStmt->bindValue(':start', ((int)($values[0])-1)*(int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new AlbumCollection( $this->findByPageStmt->fetchAll(), $this );
-    }	
+    }
 }
 ?>
