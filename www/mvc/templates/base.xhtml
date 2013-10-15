@@ -143,63 +143,7 @@
 			</li>
 		</ul>
 	</div>
-							
-	<div metal:define-macro="Menu" class="menu">
-		<ul class="nav nav-list">
-			<li class="nav-header">THIẾT LẬP</li>																																						
-			<li tal:attributes="class php:ActiveAdmin=='Category'?'active':'disable'">
-				<a tal:attributes="href '/setting/category'" >
-					<i class="icon-beer" />DANH MỤC MÓN<span class="badge badge-info pull-right" tal:content="CategoryAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Domain'?'active':'disable'">
-				<a tal:attributes="href '/setting/domain'">
-					<i class="icon-map-marker" />KHU VỰC QUÁN<span class="badge badge-info pull-right" tal:content="DomainAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Supplier'?'active':'disable'">
-				<a tal:attributes="href '/setting/supplier'">
-					<i class="icon-truck" />NHÀ CUNG CẤP <span class="badge badge-info pull-right" tal:content="SupplierAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='User'?'active':'disable'">
-				<a tal:attributes="href '/setting/user'">
-					<i class="icon-user" />NGƯỜI DÙNG <span class="badge badge-info pull-right" tal:content="UserAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Customer'?'active':'disable'">
-				<a tal:attributes="href '/setting/customer'">
-					<i class="icon-user" />KHÁCH HÀNG <span class="badge badge-info pull-right" tal:content="CustomerAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Unit'?'active':'disable'">
-				<a tal:attributes="href '/setting/unit'">
-					<i class="icon-tag" />ĐƠN VỊ TÍNH <span class="badge badge-info pull-right" tal:content="UnitAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Employee'?'active':'disable'">
-				<a tal:attributes="href '/setting/employee'">
-					<i class="icon-user" />NHÂN VIÊN<span class="badge badge-info pull-right" tal:content="EmployeeAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermCollect'?'active':'disable'">
-				<a tal:attributes="href '/setting/termcollect'">
-					<i class="icon-tag" />DANH MỤC THU<span class="badge badge-info pull-right" tal:content="TermCollectAll/count"/>
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='TermPaid'?'active':'disable'">
-				<a tal:attributes="href '/setting/termpaid'">
-					<i class="icon-tag" />DANH MỤC CHI<span class="badge badge-info pull-right" tal:content="TermPaidAll/count"/> 
-				</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Config'?'active':'disable'">
-				<a tal:attributes="href '/setting/config'">
-					<i class="icon-gear" />CẤU HÌNH <span class="badge badge-info pull-right" tal:content="ConfigAll/count"/>
-				</a>
-			</li>			
-		</ul>
-	</div>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- FOOTER																	  -->
 	<!-- ======================================================================== -->

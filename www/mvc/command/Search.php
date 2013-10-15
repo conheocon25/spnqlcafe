@@ -17,7 +17,8 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mStore = new \MVC\Mapper\Store();
+			$mStore 	= new \MVC\Mapper\Store();
+			$mProvince 	= new \MVC\Mapper\Province();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -26,13 +27,15 @@
 			if (!isset($SearchNameStore)) $SearchNameStore="";
 			
 			$StoreAll = $mStore->searchByName(array("%".$SearchNameStore."%"));
+			$ProvinceAll = $mProvince->findAll();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------								
 			$request->setProperty("Title", $Title);
 			$request->setObject("StoreAll", $StoreAll);
-						
+			$request->setObject("ProvinceAll", $ProvinceAll);			
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
