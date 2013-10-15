@@ -72,7 +72,10 @@ class Image extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------	
-			
+	function getURLMove2Picasa(){
+		return "/setting/album/".$this->getIdAlbum()."/".$this->getId()."/picasa";
+	}
+	
 	//-------------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

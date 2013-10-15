@@ -48,13 +48,19 @@
 		
 		<command name="SettingStore"><view>SettingStore</view></command>
 		<command name="SettingStoreAlbum"><view>SettingStoreAlbum</view></command>
+		<command name="SettingAlbumImage"><view>SettingAlbumImage</view></command>
+		<command name="SettingAlbumImage2Picasa">
+			<view>SettingAlbumImage2Picasa</view>
+			<status value="CMD_OK"><forward>SettingAlbumImage</forward></status>
+		</command>
+		
 		<command name="SettingStorePost"><view>SettingStorePost</view></command>
 		<command name="SettingStoreRate"><view>SettingStoreRate</view></command>
 		
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>
 		<command name="SettingAlbum"><view>SettingAlbum</view></command>
-		<command name="SettingImage"><view>SettingImage</view></command>
+		
 		<command name="SettingTag"><view>SettingTag</view></command>
 		
 	</control>
