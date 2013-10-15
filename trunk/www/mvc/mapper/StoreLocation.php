@@ -15,7 +15,7 @@ class StoreLocation extends Mapper implements \MVC\Domain\StoreLocationFinder {
 		$insertStmt = sprintf("insert into %s ( id_district, id_store, X, Y) values(?, ?, ?, ?)", $tblStoreLocation);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblStoreLocation);
 		$findByStmt = sprintf("select *  from %s where id_district=?", $tblStoreLocation);
-		
+				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
@@ -68,6 +68,16 @@ class StoreLocation extends Mapper implements \MVC\Domain\StoreLocationFinder {
 
 	protected function doDelete(array $values) {
         return $this->deleteStmt->execute( $values );
+    }
+	
+	function findByStore( $values ) {	
+		$this->findByStoreStmt->execute( array($values) );
+        $array = $this->findByStoreStmt->fetch();
+        $this->findByStoreStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;		
     }
 	
 	function findBy( $values ){

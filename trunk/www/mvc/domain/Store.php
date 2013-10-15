@@ -48,6 +48,11 @@ class Store extends Object{
 		$Str = new \MVC\Library\String($this->Name);
 		$this->Key = $Str->converturl().$this->getId();
 	}
+	function getAlbumAll(){
+		$mAlbum = new \MVC\Mapper\Album();
+		$AlbumAll = $mAlbum->findBy(array($this->getId()));
+		return $AlbumAll;
+	}
 	
 	function toJSON(){
 		$json = array(
@@ -71,7 +76,7 @@ class Store extends Object{
 		$this->Address 	= $Data[5];
 		$this->reKey();
     }
-	function getURLView(){ return "/quan/".$this->getKey();}
+	function getURLView(){ return "/quan/".$this->getKey();}	
 	//=================================================================================		
 				
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
