@@ -3,25 +3,88 @@
 	<head>
 		<span metal:use-macro="base.xhtml/IncludeMETA"/>
 		<span metal:use-macro="base.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="base.xhtml/IncludeJS"/>		
+		<span metal:use-macro="base.xhtml/IncludeJS"/>
+		<style>
+			.search-nav {
+				background-color: #DDD;
+				padding: 20px;
+			}
+			
+			.search-nav form {
+				margin: 0 !important;
+			}
+			
+			.content-nav {
+				background-color: #FAFAFA;
+				width: 85%;
+				margin: 20px auto;
+			}
+				.content-nav .content { padding: 20px; }
+				
+			.section-result { border-bottom: 1px solid #333; margin-left: 0 !important; margin-top: 20px; padding-bottom: 20px; }
+		</style>
 	</head>
 	<body>
 		<a href="http://www.quanly-cafe.com/#" class="scrolltop" style="display: none;"><span>&#8593;</span></a>
 		<div metal:use-macro="base.xhtml/Header"/>
-		<h1>KẾT QUẢ TÌM KIẾM</h1>
-		<form method = "post" action="/tien-ich/tim-kiem" class = "pull-down  navbar-search">
-			<div class="input-append">
-				<input class="search-query input-medium"  name="SearchNameStore" type="text" placeholder="Gõ tên quán" />
-				<button type = "submit" class="btn btn-large"><i class="icon-search" /></button>
-			</div>
-		</form>
-		<BR/>
-		<div tal:repeat="Store StoreAll">
-			<a tal:attributes="href Store/getURLView">
-				<B tal:content="Store/getName" />
-			</a>
-			, <span tal:content="Store/getAddress" />
-			<br/>
+		<div class="search-nav">
+			<form method="post" action="/tien-ich/tim-kiem">
+				<input class="input-medium" name="SearchNameStore" type="text" placeholder="Gõ tên quán" style="width:50%"/>
+				<button type="submit" class="btn"><i class="icon-search" /></button>
+			</form>
 		</div>
+		
+		<div class="content-nav">
+			<div class="content">
+				<p>Bạn đang ở Vĩnh Long <a href="/doi-vi-tri">Đổi vị trí</a></p>
+				
+				<div class="row">
+					<div class="span8">
+					
+						<div tal:repeat="Store StoreAll" class="row section-result">
+							<div class="span2">
+								<img src="/data/images/slide/slide3.png" width="200"/>
+							</div>
+							<div class="span4">
+								<a tal:attributes="href Store/getURLView"><h3><span tal:content="Store/getName"/></h3></a>
+								<p tal:content="Store/getAddress"/>
+							</div>
+							<div class="span1">
+								<div class="star" data-score="1"></div>
+								<a tal:attributes="href Store/getURLView" class="btn btn-success">Xem</a>
+							</div>
+						</div>
+						<!--
+						<div class="pagination pull-right">
+							<ul>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+							</ul>
+						</div>
+						!-->
+					</div>					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+				$('.star').raty({
+					iconRange: [
+						{ range: 1, on: '/data/images/rate/star-on.png', off: '/data/images/rate/star-off.png' },
+						{ range: 2, on: '/data/images/rate/star-on.png', off: '/data/images/rate/star-off.png' },
+						{ range: 3, on: '/data/images/rate/star-on.png', off: '/data/images/rate/star-off.png' },
+						{ range: 4, on: '/data/images/rate/star-on.png', off: '/data/images/rate/star-off.png' },
+						{ range: 5, on: '/data/images/rate/star-on.png', off: '/data/images/rate/star-off.png' }
+					],
+					half: true,
+					starHalf: '/data/images/rate/star-half.png',
+					score: function() {
+						return $(this).attr('data-score');
+					}
+				});
+		/*]]>*/
+		</script>
 	</body>
 </html>
