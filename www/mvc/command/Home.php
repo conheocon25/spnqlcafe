@@ -12,32 +12,21 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			
-			$MsgCaptcha = $request->getProperty('MsgCaptcha');			
+						
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
+			$mProvince = new \MVC\Mapper\Province();
 						
-			$mCaptcha = new Captcha();
-			$mCaptcha->createImage();
-			$CaptchaSecurited = $mCaptcha->getSecurityCode();
-			//$Session->setCurrentCaptcha($CaptchaSecurited);
-			
-			//$CaptchaSecurity = $Session->getCurrentCaptcha();
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$Title = "HỆ THỐNG QUẢN LÝ CAFE";
-									
+			//-------------------------------------------------------------						
+			$ProvinceAll = $mProvince->findAll();	
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setProperty("CaptchaSecurity", $CaptchaSecurited);		
-			$request->setProperty("MsgCaptcha", $MsgCaptcha);
-			
-			$request->setProperty("Title", $Title);
-			$request->setProperty("URLHeader", '/signin/load');
-						
+			//-------------------------------------------------------------												
+			$request->setObject("ProvinceAll", $ProvinceAll);			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
