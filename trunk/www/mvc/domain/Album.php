@@ -21,7 +21,7 @@ class Album extends Object{
     function getIdStore() {return $this->IdStore;}
 	function getStore(){
 		$mStore = new \MVC\Mapper\Store();
-		$Store = $mStore->find($this->getId());
+		$Store = $mStore->find($this->getIdStore());
 		return $Store;
 	}
 	
@@ -69,8 +69,10 @@ class Album extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLImage(){	return "/setting/album/".$this->getId();}
-	
+	function getURLImage(){			
+		return "/setting/album/".$this->getId();
+	}
+
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}

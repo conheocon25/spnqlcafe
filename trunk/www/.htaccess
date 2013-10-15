@@ -36,6 +36,9 @@ RewriteRule ^setting/province/([0-9]+)$ 					?cmd=SettingDistrict&IdProvince=$1 
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)$ 			?cmd=SettingDistrictStore&IdProvince=$1&IdDistrict=$2 [L]
 
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/album$ 	?cmd=SettingStoreAlbum&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
+RewriteRule ^setting/album/([0-9]+)$ 								?cmd=SettingAlbumImage&IdAlbum=$1 [L]
+RewriteRule ^setting/album/([0-9]+)/([0-9]+)/picasa$ 				?cmd=SettingAlbumImage2Picasa&IdAlbum=$1&IdImage=$2 [L]
+
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/post$ 		?cmd=SettingStorePost&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/rate$ 		?cmd=SettingStoreRate&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
 
@@ -53,9 +56,4 @@ RewriteRule ^setting/tag/page/([0-9])$ 						?cmd=SettingTag&Page=$1 [L]
 RewriteRule ^setting/video$ 								?cmd=SettingVideo [L]
 RewriteRule ^setting/video/page/([0-9])$ 					?cmd=SettingVideo&Page=$1 [L]
 
-RewriteRule ^setting/album$ 								?cmd=SettingAlbum [L]
-RewriteRule ^setting/album/page/([0-9])$ 					?cmd=SettingAlbum&Page=$1 [L]
-
-RewriteRule ^setting/album/([0-9])$ 						?cmd=SettingImage&IdAlbum=$1 [L]
-RewriteRule ^setting/album/([0-9])/page/([0-9])$ 			?cmd=SettingImage&IdAlbum=$1&Page=$2 [L]
 RewriteRule ^image/uploading$ 								?cmd=ImageUploading [L]

@@ -119,13 +119,13 @@ class Picasa{
 	public function setAlbumId($albumIds){$this->_AlbumId = is_array($albumIds) ? $albumIds[array_rand($albumIds, 1)] : $albumIds;}
     	
 	public function upload($filePath){
-        if (!$realFilePath = realpath($filePath)) {
+		if (!$realFilePath = realpath($filePath)) {
 			echo "Tập tin này không tồn tại";
         }
         if (getimagesize($realFilePath) === FALSE) {
             echo "Tập tin này không phải là tập tin ảnh";
         }
-        $this->_ImagePath = $realFilePath;
+        $this->_ImagePath = $realFilePath;		
         return $this->_doUpload();
     }
     protected function _doUpload(){	
