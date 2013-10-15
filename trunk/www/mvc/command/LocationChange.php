@@ -1,33 +1,32 @@
 <?php
 	namespace MVC\Command;	
-	use MVC\Library\Captcha;
-	class Home extends Command {
+	class LocationChange extends Command {
 		function doExecute( \MVC\Controller\Request $request ) {
-			require_once("mvc/base/domain/HelperFactory.php");			
+			require_once("mvc/base/domain/HelperFactory.php");	
+			
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
 			$Session = \MVC\Base\SessionRegistry::instance();
-									
+
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-						
+			//-------------------------------------------------------------			
+			$Name = $request->getProperty('Name');
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mProvince = new \MVC\Mapper\Province();
-						
+			//-------------------------------------------------------------
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$ProvinceAll = $mProvince->findAll();	
-			//echo "o tai".$Session->getCurrentLocation();
+			//-------------------------------------------------------------
+			$Session->setCurrentLocation($Name);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------												
-			$request->setObject("ProvinceAll", $ProvinceAll);			
-			return self::statuses('CMD_DEFAULT');
+			//-------------------------------------------------------------						
+			echo "OK";
 		}
 	}
 ?>

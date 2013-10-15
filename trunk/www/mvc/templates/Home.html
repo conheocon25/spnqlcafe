@@ -35,60 +35,11 @@
 		</div>		
 		<div class="content-nav">
 			<div class="content">
-				<p>Bạn đang ở <B><span id="LocationName">Vĩnh Long</span></B> <a href="#LocationChange" data-toggle="modal">Đổi vị trí</a></p>
+				<p>Bạn đang ở <B><span id="LocationName" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentLocation()"/></B> <a href="#LocationChange" data-toggle="modal">Đổi vị trí</a></p>
 			</div>
 		</div>
 		
-		<!-- LOCATION CHANGE  -->
-		<div id="LocationChange" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3><i class="glyphicons-star modal-icon"/>Đổi vị trí</h3>
-					</div>
-					<div class="form-horizontal">
-						<div class="modal-body">							
-							<div class="form-group">
-								<label class="control-label">Tỉnh</label>
-								<div class="controls">
-									<select name="IdProvince" id="IdProvince" style="width:80%;">
-										<option tal:repeat="Province ProvinceAll" tal:attributes="value Province/getName">
-											<span tal:content="Province/getName" />
-										</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button id="URLLocationChange" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- LOCATION CHANGE  -->
-		<script type="text/javascript">
-		/*<![CDATA[*/					
-			//-----------------------------------------------------------------------------------
-			//LOCATION CHANGE
-			$('#URLLocationChange').click(function(){								
-				$("#LocationName").html($("#IdProvince").val());				
-				 $('#LocationChange').modal('hide');
-				/*
-				var URL = "/object/ins/Category";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});
-				*/
-			});
-											
-		/*]]>*/
-		</script>
+		<span metal:use-macro="mDialog.xhtml/DialogLocationChange"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/LocationChange.js"/>
 	</body>
 </html>

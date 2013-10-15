@@ -1,5 +1,34 @@
 <html lang="en" xml:lang="en">
-<body>		
+<body>
+	<!-- LOCATION CHANGE  -->
+		<div metal:define-macro="DialogLocationChange" id="LocationChange" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h3><i class="glyphicons-star modal-icon"/>Đổi vị trí</h3>
+					</div>
+					<div>
+						<div class="modal-body">							
+							<div class="form-group">
+								<label class="control-label">Tỉnh</label>
+								<div class="controls">
+									<select name="IdProvince" id="IdProvince" style="width:80%;">
+										<option tal:repeat="Province ProvinceAll" tal:attributes="value Province/getName">
+											<span tal:content="Province/getName" />
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button id="URLLocationChange" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- LOCATION CHANGE  -->
 	<!-- DELETE SELECTED DIALOG  -->
 	<div metal:define-macro="DialogDelSelected" id="DialogDelSelected" class="modal fade">
 		<div class="modal-dialog">

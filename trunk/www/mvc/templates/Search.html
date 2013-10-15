@@ -36,7 +36,9 @@
 		
 		<div class="content-nav">
 			<div class="content">
-				<p>Bạn đang ở Vĩnh Long <a href="/doi-vi-tri">Đổi vị trí</a></p>
+				<div class="content">
+					<p>Bạn đang ở <B><span id="LocationName" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentLocation()"/></B> <a href="#LocationChange" data-toggle="modal">Đổi vị trí</a></p>
+				</div>
 				
 				<div class="row">
 					<div class="span8">
@@ -68,6 +70,8 @@
 				</div>
 			</div>
 		</div>
+		<span metal:use-macro="mDialog.xhtml/DialogLocationChange"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/LocationChange.js"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
 				$('.star').raty({
