@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
@@ -8,7 +8,7 @@
 	<body>
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
-		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		
 		<div id="content">
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
@@ -22,7 +22,7 @@
 					</a>
 					<div class="widget-box">
 						<div class="widget-content nopadding">
-							<table class="table table-bordered table-striped table-hover with-check">
+							<table class="table table-bordered table-striped table-hover with-check">								
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
@@ -32,31 +32,23 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Feature FeatureAll1">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Feature/getId"/></td>
-										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Feature/getId" tal:content="Feature/getName"/></td>
-										<td class="center">
-											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Feature/getId">
-												<i class="glyphicon glyphicon-pencil"/>
-											</a>
-										</td>
-										<td class="center">
-											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Feature/getId">
-												<i class="glyphicon glyphicon-remove"/>
-											</a>
-										</td>
+									<tr tal:repeat="SFeature Store/getFeatureAll">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id SFeature/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="SFeature" tal:attributes="data-id SFeature/getId" tal:content="SFeature/getFeature/getName"/></td>
+										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id SFeature/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
+										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id SFeature/getId"><i class="glyphicon glyphicon-remove"/></a></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
-					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+					
 					<!-- INSERT DIALOG  -->
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>Thêm mới Feature</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI CHỨC NĂNG</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -65,16 +57,16 @@
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
+										</div>									
 										<div class="form-group">
-											<label class="control-label">Icon</label>
+											<label class="control-label">Thứ tự</label>
 											<div class="controls">
-												<input id="Icon1" name="Icon1" type="text" class="form-control input-small"/>
+												<input id="Order1" name="Order1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
+										</div>										
 									</div>
 									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button  id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</div>
@@ -88,23 +80,23 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-tag modal-icon"/>Cập nhật Thẻ</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT CHỨC NĂNG</h3>
 								</div>
 								<div class="form-horizontal">
-									<div class="form-group">
+									<div class="modal-body">
 										<label class="control-label">Tên</label>
 										<div class="controls">
 											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Icon</label>
-										<div class="controls">
-											<input id="Icon2" name="Icon2" type="text" class="form-control input-small"/>
-										</div>
-									</div>
+										</div>									
+										<div class="form-group">
+											<label class="control-label">Thứ tự</label>
+											<div class="controls">
+												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+											</div>
+										</div>										
+									</div>									
 									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 								</div>
@@ -114,6 +106,7 @@
 					<!-- END UPDATE DIALOG  -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
 					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>
+					<div id="IdStore" tal:attributes="alt Store/getId"/>
 				</div>
 			</div>
 		</div>
@@ -121,11 +114,11 @@
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
 		/*<![CDATA[*/
-						
 			$('#URLDelSelectedButton').click(function(){
 				var count = 0;
 				var Data = [];
-				var URL = "/object/del/Feature/0";								
+				var URL = "/object/del/SFeature/0";
+				
 				$(".CheckedDel").each(function( i, obj){
 					if ( $(this).is(':checked')==true ){
 						count += 1;
@@ -144,14 +137,14 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Delete 1 TAG			
+			//Delete 1 DOMAIN			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
-			$('#URLDelButton').click(function(){
-				var URL = "/object/del/Feature/" + $(this).attr('alt');
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/SFeature/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -162,14 +155,15 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 TAG
+			//Insert 1 CHỨC NĂNG
 			$('#URLInsButton').click(function(){
 				var Data = [];
-				Data[0] = 'null';				
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Icon1').val();
+				Data[0] = 'null';
+				Data[1] = $('#IdStore').attr('alt');
+				Data[2] = $('#Name1').val();
+				Data[3] = $('#Order1').val();
 								
-				var URL = "/object/ins/Feature";
+				var URL = "/object/ins/SFeature";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -181,30 +175,32 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 TAG
-			//-----------------------------------------------------------------------------------						
+			//Load 1 CHỨC NĂNG
+			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Feature/" + $(this).attr('data-id');
+				var url = "/object/load/SFeature/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt'	, data.Id);
-					$('#Name2').attr('value'		, data.Name);
-					$('#Icon2').attr('value'		, data.Icon);
+					$('#URLUpdButton').attr('alt', data.Id);
+					$('#Name2').attr('value', data.Name);
+					$('#Order2').attr('value', data.Order);
+					$('#Key2').attr('value', data.Key);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 TAG
+			//Update 1 CHỨC NĂNG
 			//-----------------------------------------------------------------------------------
 			$('#URLUpdButton').click(function(){
 				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
-				Data[2] = $('#Icon2').val();
+				Data[0] = $('#URLUpdButton').attr('alt');				
+				Data[1] = $('#IdStore').attr('alt');
+				Data[2] = $('#Name2').val();
+				Data[3] = $('#Order2').val();
 								
-				var URL = "/object/upd/Feature";
+				var URL = "/object/upd/SFeature";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},

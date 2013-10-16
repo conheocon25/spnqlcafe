@@ -37,7 +37,7 @@
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
 			$request->setProperty('Page', $Page);
-			$request->setProperty('ActiveAdmin', 'Tag');
+			$request->setProperty('ActiveAdmin', 'Feature');
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('PN', $PN);
 			

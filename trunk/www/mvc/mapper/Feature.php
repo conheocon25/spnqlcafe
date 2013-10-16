@@ -10,8 +10,8 @@ class Feature extends Mapper implements \MVC\Domain\FeatureFinder {
 		
 		$selectAllStmt = sprintf("select * from %s", $tblFeature);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblFeature);
-		$updateStmt = sprintf("update %s set name=?, `key`=? where id=?", $tblFeature);
-		$insertStmt = sprintf("insert into %s ( name, `key`) values(?, ?)", $tblFeature);
+		$updateStmt = sprintf("update %s set name=?, icon=?, `key`=? where id=?", $tblFeature);
+		$insertStmt = sprintf("insert into %s ( name, icon, `key`) values(?, ?, ?)", $tblFeature);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblFeature);		
 		$findByKeyStmt = sprintf("select *  from %s where `key`=?", $tblFeature);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblFeature);
@@ -39,10 +39,7 @@ class Feature extends Mapper implements \MVC\Domain\FeatureFinder {
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "Feature";
-    }
-
+    protected function targetClass() { return "Feature";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getName(),

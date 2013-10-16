@@ -41,6 +41,7 @@ RewriteRule ^setting/album/([0-9]+)/([0-9]+)/picasa$ 				?cmd=SettingAlbumImage2
 
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/post$ 		?cmd=SettingStorePost&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/rate$ 		?cmd=SettingStoreRate&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
+RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/feature$ 	?cmd=SettingStoreFeature&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
 
 RewriteRule ^setting/feature$ 								?cmd=SettingFeature [L]
 RewriteRule ^setting/feature/page/([0-9])$ 					?cmd=SettingFeature&Page=$1 [L]

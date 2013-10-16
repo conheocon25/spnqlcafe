@@ -41,7 +41,7 @@ class Feature extends Object{
 	function setArray( $Data ){
 		$this->Id 		= $Data[0];
 		$this->Name 	= $Data[1];
-		$this->Key 		= $Data[2];
+		$this->Icon 	= $Data[2];
 		$this->reKey();
     }
 	
