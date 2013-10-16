@@ -6,6 +6,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Config.php" );	
 	require_once( "mvc/mapper/Album.php" );
 	require_once( "mvc/mapper/Image.php" );	
+	
+	require_once( "mvc/mapper/Feature.php");
+	
 	require_once( "mvc/mapper/News.php" );	
 	require_once( "mvc/mapper/Video.php" );
 	require_once( "mvc/mapper/Guest.php");	
