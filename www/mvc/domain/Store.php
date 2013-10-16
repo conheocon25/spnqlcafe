@@ -59,6 +59,11 @@ class Store extends Object{
 		$FeatureAll = $mStoreFeature->findBy(array($this->getId()));
 		return $FeatureAll;
 	}
+	function checkFeature($IdFeature){
+		$mStoreFeature = new \MVC\Mapper\StoreFeature();
+		$SFeature = $mStoreFeature->check(array($this->getId(), $IdFeature));		
+		return $SFeature->count();
+	}
 	
 	function toJSON(){
 		$json = array(

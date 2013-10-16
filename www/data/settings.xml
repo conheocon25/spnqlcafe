@@ -57,6 +57,10 @@
 		<command name="SettingStorePost"><view>SettingStorePost</view></command>
 		<command name="SettingStoreRate"><view>SettingStoreRate</view></command>
 		<command name="SettingStoreFeature"><view>SettingStoreFeature</view></command>
+		<command name="SettingStoreFeatureUpdate">
+			<view>SettingStoreFeatureUpdate</view>
+			<status value="CMD_OK"><forward>SettingStoreFeature</forward></status>
+		</command>
 		
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>
