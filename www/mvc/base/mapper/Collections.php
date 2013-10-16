@@ -17,6 +17,8 @@ class GuestCollection extends Collection implements \MVC\Domain\GuestCollection{
 class StoreCollection extends Collection implements \MVC\Domain\StoreCollection{function targetClass(){return "\MVC\Domain\Store";}}
 class StoreLocationCollection extends Collection implements \MVC\Domain\StoreLocationCollection{function targetClass(){return "\MVC\Domain\StoreLocation";}}
 
+class FeatureCollection extends Collection implements \MVC\Domain\FeatureCollection {function targetClass( ) {return "\MVC\Domain\Feature";}}
+
 class ProvinceCollection extends Collection implements \MVC\Domain\ProvinceCollection{function targetClass(){return "\MVC\Domain\Province";}}
 class DistrictCollection extends Collection implements \MVC\Domain\DistrictCollection{function targetClass(){return "\MVC\Domain\District";}}
 

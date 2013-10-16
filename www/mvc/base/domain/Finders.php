@@ -16,6 +16,8 @@ interface ConfigFinder  extends Finder {}
 interface AlbumFinder  extends Finder {}
 interface ImageFinder  extends Finder {}
 
+interface FeatureFinder  extends Finder {}
+
 interface NewsFinder  extends Finder {}
 interface VideoFinder  extends Finder {}
 interface TagFinder  extends Finder {}

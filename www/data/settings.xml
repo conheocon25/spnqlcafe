@@ -62,6 +62,7 @@
 		<command name="SettingAlbum"><view>SettingAlbum</view></command>
 		
 		<command name="SettingTag"><view>SettingTag</view></command>
+		<command name="SettingFeature"><view>SettingFeature</view></command>
 		
 	</control>
 </options>

@@ -8,6 +8,8 @@ interface TagCollection extends \Iterator {function add( Object $Tag );}
 interface StoreCollection extends \Iterator {function add( Object $Store);}
 interface StoreLocationCollection extends \Iterator {function add( Object $StoreLocation);}
 
+interface FeatureCollection extends \Iterator {function add( Object $Feature );}
+
 interface AlbumCollection extends \Iterator {function add( Object $Album );}
 interface ImageCollection extends \Iterator {function add( Object $Image );}
 
