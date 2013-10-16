@@ -62,13 +62,16 @@ class StoreLocation extends Object{
 		$this->Y 			= $Data[4];
     }
 	
-	function getURLSettingAlbum(){				
+	function getURLSettingAlbum(){
 		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/album";
 	}
 	
-	//=================================================================================						
-    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
-    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
+	function getURLSettingFeature(){
+		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/feature";
+	}
 	
+	//=================================================================================
+    static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
+    static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}		
 }
 ?>

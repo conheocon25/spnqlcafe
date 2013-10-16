@@ -24,6 +24,7 @@ interface TagFinder  extends Finder {}
 
 interface StoreFinder extends Finder {}
 interface StoreLocationFinder extends Finder {}
+interface StoreFeatureFinder extends Finder {}
 
 interface ProvinceFinder extends Finder {}
 interface DistrictFinder extends Finder {}

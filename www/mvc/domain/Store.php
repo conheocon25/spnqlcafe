@@ -54,6 +54,12 @@ class Store extends Object{
 		return $AlbumAll;
 	}
 	
+	function getFeatureAll(){
+		$mStoreFeature = new \MVC\Mapper\StoreFeature();
+		$FeatureAll = $mStoreFeature->findBy(array($this->getId()));
+		return $FeatureAll;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
