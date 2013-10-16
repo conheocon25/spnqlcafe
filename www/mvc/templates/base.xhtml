@@ -29,6 +29,13 @@
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/css.css"/>
 	</span>
 	
+	<span metal:define-macro="IncludeCSS-Search">	
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/bootstrap.css"/>
+		<style>body { padding-top:43px; padding-bottom:40px; }</style>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/bootstrap-responsive.css"/>
+		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/style.css"/>
+	</span>
+	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
@@ -36,7 +43,22 @@
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/jquery-1.7.1.min.js"/>		
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap.js"/>
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/theme.js"/>
+	</span>
+	
+	<span metal:define-macro="IncludeJS-Search">
+		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/jquery.min.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/jquery-1.7.1.min.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/plugins.js"/>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/script.js"/>
 		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.raty.min.js"/>
+		<script>
+			var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script>
+		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/modernizr-2.5.3.min.js"/>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -96,6 +118,53 @@
 			</div>
 		</div>
 	</div>
+	
+	<header metal:define-macro="Header-Search" class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#">
+					<img src="/data/images/logo/spn-cafe.png" width="100" alt="logo"/>
+				</a>
+				<nav class="nav-collapse pull-right">
+					<ul class="nav">
+						<li><a href="/trang-chu">Trang Chủ</a></li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tư Vấn<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/tu-van/mo-quan-moi">Tư Vấn Mở Quán</a></li>
+								<li><a href="/tu-van/chon-cafe-ngon">Chọn Cafe Ngon</a></li>
+								<li><a href="/tu-van/phan-mem-quan-ly">Ứng Dụng Quản Lý</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Tra Cứu<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/tim-kiem/quan-dep">Quán Đẹp</a></li>
+								<li><a href="/tim-kiem/quan-cao-cap">Quán Cao Cấp</a></li>
+								<li><a href="/tim-kiem/quan-gan-nhat">Quán Gần Nhất</a></li>
+								<li><a href="/tim-kiem/danh-muc-mon">Danh Mục Món</a></li>
+								<li><a href="/tim-kiem/nha-cung-cap">Nhà Cung Cấp</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">Bạn Cần Biết<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/ban-can-biet/thu-thuat">Thủ Thuật Sử Dụng</a></li>
+								<li><a href="/ban-can-biet/cau-hoi-thuong-gap">Câu Hỏi Thường Gặp</a></li>
+							</ul>
+						</li>
+						<li><a href="/lien-he">Liên Hệ</a></li>
+						<li><a href="/dang-nhap">Đăng Nhập</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
 			
 	<div metal:define-macro="HeaderVideo">
 		<div class="navbar navbar-fixed-top">
