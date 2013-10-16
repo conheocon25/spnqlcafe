@@ -12,6 +12,7 @@ class StoreFeature extends Mapper implements \MVC\Domain\StoreFeatureFinder {
 		$insertStmt = sprintf("insert into %s ( id_feature, id_store) values(?, ?)", $tblStoreFeature);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblStoreFeature);
 		$findByStmt = sprintf("select *  from %s where id_store=?", $tblStoreFeature);
+		$checkStmt = sprintf("select *  from %s where id_store=? AND id_feature=?", $tblStoreFeature);
 	
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -19,6 +20,7 @@ class StoreFeature extends Mapper implements \MVC\Domain\StoreFeatureFinder {
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);		
+		$this->checkStmt = self::$PDO->prepare($checkStmt);
     } 
     function getCollection( array $raw ) {
         return new StoreFeatureCollection( $raw, $this );
@@ -38,7 +40,7 @@ class StoreFeature extends Mapper implements \MVC\Domain\StoreFeatureFinder {
     }
 
     protected function doInsert( \MVC\Domain\Object $object ) {
-        $values = array( 
+        $values = array( 			
 			$object->getIdFeature(),
 			$object->getIdStore()
 		); 
@@ -73,6 +75,11 @@ class StoreFeature extends Mapper implements \MVC\Domain\StoreFeatureFinder {
 	function findBy( $values ){
         $this->findByStmt->execute( $values );
         return new StoreFeatureCollection( $this->findByStmt->fetchAll(), $this);
+    }
+	
+	function check( $values ){
+        $this->checkStmt->execute( $values );
+        return new StoreFeatureCollection( $this->checkStmt->fetchAll(), $this);
     }
 	
     function selectStmt() {return $this->selectStmt;}

@@ -108,27 +108,12 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuSetting" class="menu">
 		<div id="sidebar">
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-				<li tal:attributes="class php: ActiveAdmin=='Tag'?'active':''">
-					<a tal:attributes="href 'setting/tag'">
-						<i class="icon-tags"></i> <span>THẺ TAG</span>
-					</a>
-				</li>
+			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">				
 				<li tal:attributes="class php: ActiveAdmin=='News'?'active':''">
 					<a tal:attributes="href 'setting/news'">
 						<i class="icon-tags"></i> <span>TIN TỨC</span>
 					</a>
 				</li>
-				<li tal:attributes="class php: ActiveAdmin=='Album'?'active':''">
-					<a tal:attributes="href 'setting/album'">
-						<i class="icon-tags"></i> <span>ALBUM</span>
-					</a>
-				</li>
-				<li tal:attributes="class php: ActiveAdmin=='Video'?'active':''">
-					<a tal:attributes="href 'setting/video'">
-						<i class="icon-tags"></i> <span>VIDEO</span>
-					</a>
-				</li>				
 				<li tal:attributes="class php: ActiveAdmin=='Province'?'active':''">
 					<a tal:attributes="href 'setting/province'">
 						<i class="icon-user"></i> <span>TỈNH THÀNH</span>
