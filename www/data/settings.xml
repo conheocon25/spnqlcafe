@@ -69,5 +69,9 @@
 		<command name="SettingTag"><view>SettingTag</view></command>
 		<command name="SettingFeature"><view>SettingFeature</view></command>
 		
+		<command name="PicasaAlbumInsert"><view>PicasaAlbumInsert</view></command>
+		<command name="PicasaAlbumUpdate"><view>PicasaAlbumUpdate</view></command>
+		<command name="PicasaAlbumDelete"><view>PicasaAlbumDelete</view></command>
+		
 	</control>
 </options>

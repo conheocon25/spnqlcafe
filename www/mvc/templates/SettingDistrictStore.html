@@ -25,7 +25,7 @@
 							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
-										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="40">STT</th>
 										<th class="left">TÊN</th>										
 										<th width="60" class="left">POST</th>
 										<th width="60" class="left">ALBUM</th>
@@ -36,7 +36,7 @@
 								</thead>
 								<tbody>
 									<tr tal:repeat="StoreLocation District/getStoreAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id StoreLocation/getIdStore"/></td>										
+										<td class="center"><span tal:content="repeat/StoreLocation/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Store" tal:attributes="data-id StoreLocation/getIdStore" tal:content="StoreLocation/getStore/getName"/></td>
 										<td><a href="#DialogEdit">Xem</a></td>
 										<td><a tal:attributes="href StoreLocation/getURLSettingAlbum">Xem</a></td>
@@ -87,19 +87,7 @@
 											<div class="controls">
 												<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
 											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">X</label>
-											<div class="controls">
-												<input id="X1" name="X1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label">Y</label>
-											<div class="controls">
-												<input id="Y1" name="Y1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
+										</div>										
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -149,6 +137,12 @@
 											<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
 										</div>
 									</div>
+									<div class="form-group">
+										<label class="control-label">Album Picasa</label>
+										<div class="controls">
+											<input readonly="true" id="IdPicasaAlbum2" name="IdPicasaAlbum2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
 									<div class="modal-footer">
 										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -167,37 +161,28 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/
-			$('#URLDelSelectedButton').click(function(){
-				var count = 0;
-				var Data = [];
-				var URL = "/object/del/Store/0";
-				
-				$(".CheckedDel").each(function( i, obj){
-					if ( $(this).is(':checked')==true ){
-						count += 1;
-						Data[count] = $(this).attr('data-id');
-					}
-				});
-				
-				$.ajax({
-					type: "POST",
-					data: {ListId:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});
-			});
-			
+		/*<![CDATA[*/						
 			//-----------------------------------------------------------------------------------
-			//Delete 1 VIDEO			
+			//Delete 1 STORE			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){
+				//Xóa 1 Album Picasa trước
+				URL = "/picasa/album/delete";				
+				$.ajax({
+					type: "POST",
+					data: {IdStore:$(this).attr('alt')},
+					async: false,
+					url: URL,
+					success: function(data){						
+						
+					}
+				});
+				
+				//Xóa Store và Album trên CSDL
 				var URL = "/object/del/Store/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
@@ -209,40 +194,58 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 VIDEO
+			//Insert 1 STORE
 			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';								
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Email1').val();								
-				Data[3] = $('#Phone1').val();
-				Data[4] = $('#Type1').val();
-				Data[5] = $('#Address1').val();
+				var Data1 = [], Data2 = [];
+				var URL, IdPicasaAlbum;
 												
-				var URL = "/object/ins/Store";
+				//Thêm mới 1 Album Picasa
+				URL = "/picasa/album/insert";
+				IdPicasaAlbum = "";
+				$.ajax({
+					type: "POST",
+					data: {Name:$('#Name1').val()},
+					async: false,
+					url: URL,
+					success: function(data){						
+						IdPicasaAlbum  = data;
+					}
+				});
+				
+				Data1[0] = 'null';								
+				Data1[1] = $('#Name1').val();
+				Data1[2] = $('#Email1').val();								
+				Data1[3] = $('#Phone1').val();
+				Data1[4] = $('#Type1').val();
+				Data1[5] = $('#Address1').val();
+				Data1[6] = IdPicasaAlbum;
+				
+				//Chèn thông tin 1 STORE
+				
+				URL = "/object/ins/Store";
 				var IdStore = 0;
 				$.ajax({
 					type: "POST",
-					data: {Data:Data},
+					data: {Data:Data1},
 					async: false,
 					url: URL,
 					success: function(data){						
 						IdStore  = data;
-						//alert("co em" + data);
 					}
 				});
-				
+								
 				//Chèn vào quận/huyện hiện tại
+				
 				URL = "/object/ins/StoreLocation";
-				Data[0] = 'null';								
-				Data[1] = $('#IdDistrict').attr('alt');
-				Data[2] = IdStore;
-				Data[3] = $('#X1').val();
-				Data[4] = $('#Y1').val();
+				Data2[0] = 'null';
+				Data2[1] = $('#IdDistrict').attr('alt');
+				Data2[2] = IdStore;
+				Data2[3] = 0;
+				Data2[4] = 0;
 				
 				$.ajax({
 					type: "POST",
-					data: {Data:Data},
+					data: {Data:Data2},
 					url: URL,
 					success: function(data){
 						location.reload();
@@ -260,12 +263,13 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt'	, data.Id);
-					$('#Name2').attr('value'		, data.Name);
-					$('#Email2').attr('value'		, data.Email);
-					$('#Phone2').attr('value'		, data.Phone);
-					$('#Type2').attr('value'		, data.Type);
-					$('#Address2').attr('value'		, data.Address);
+					$('#URLUpdButton').attr('alt'		, data.Id);
+					$('#Name2').attr('value'			, data.Name);
+					$('#Email2').attr('value'			, data.Email);
+					$('#Phone2').attr('value'			, data.Phone);
+					$('#Type2').attr('value'			, data.Type);
+					$('#Address2').attr('value'			, data.Address);
+					$('#IdPicasaAlbum2').attr('value'	, data.IdPicasaAlbum);
 				});
 			});
 			
@@ -280,6 +284,7 @@
 				Data[3] = $('#Phone2').val();
 				Data[4] = $('#Type2').val();
 				Data[5] = $('#Address2').val();
+				Data[6] = $('#IdPicasaAlbum2').val();
 				
 				var URL = "/object/upd/Store";
 				$.ajax({

@@ -62,3 +62,7 @@ RewriteRule ^setting/video$ 								?cmd=SettingVideo [L]
 RewriteRule ^setting/video/page/([0-9])$ 					?cmd=SettingVideo&Page=$1 [L]
 
 RewriteRule ^image/uploading$ 								?cmd=ImageUploading [L]
+
+RewriteRule ^picasa/album/insert$ 							?cmd=PicasaAlbumInsert [L]
+RewriteRule ^picasa/album/delete$ 							?cmd=PicasaAlbumDelete [L]
+RewriteRule ^picasa/album/update$ 							?cmd=PicasaAlbumUpdate [L]
