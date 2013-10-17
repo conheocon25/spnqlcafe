@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 17, 2013 at 05:28 AM
+-- Generation Time: Oct 17, 2013 at 05:21 PM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -16,32 +16,35 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `qlcafe_www`
+-- Database: `spngroup_cafe_www`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_album`
+-- Table structure for table `tbl_album_image`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_album` (
-  `id` int(25) NOT NULL AUTO_INCREMENT,
-  `id_store` int(11) NOT NULL,
-  `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_album_image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_album` int(11) NOT NULL,
+  `name` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `url` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
+  `note` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
   `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_store` (`id_store`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+  KEY `id_album` (`id_album`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=43 ;
 
 --
--- Dumping data for table `tbl_album`
+-- Dumping data for table `tbl_album_image`
 --
 
-INSERT INTO `tbl_album` (`id`, `id_store`, `name`, `key`, `order`) VALUES
-(6, 71, 'AVC', 'avc', 1),
-(8, 71, 'ABC', 'abc', 1);
+INSERT INTO `tbl_album_image` (`id`, `id_album`, `name`, `time`, `url`, `note`, `key`) VALUES
+(37, 10, 'Chrysanthemum.jpg', '2013-10-17 19:22:35', 'https://lh4.googleusercontent.com/-8Hs_wTz47ww/Ul_Wq27JbmI/AAAAAAAAAQk/BuxzH1md4sw/s1024/Chrysanthemum.jpg', 'Picasa', '5935698865684049506'),
+(39, 10, 'Hydrangeas.jpg', '2013-10-17 19:22:41', 'https://lh5.googleusercontent.com/-FI9QqKvIFEA/Ul_W78MuIsI/AAAAAAAAAQ8/e7Dp6Bnh_v8/s1024/Hydrangeas.jpg', 'Picasa', '5935699159157711554'),
+(42, 10, 'Tulips.jpg', '2013-10-17 19:46:10', 'https://lh6.googleusercontent.com/-9_qIB9AXfbo/Ul_cICrWw0I/AAAAAAAAARg/kKxbVajG2s8/s1024/Tulips.jpg', 'Picasa', '5935704864613385026');
 
 -- --------------------------------------------------------
 
@@ -54,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tbl_config` (
   `param` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
   `value` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `tbl_config`
@@ -63,7 +66,9 @@ CREATE TABLE IF NOT EXISTS `tbl_config` (
 INSERT INTO `tbl_config` (`id`, `param`, `value`) VALUES
 (6, 'ROW_PER_PAGE', '12'),
 (7, 'GUEST_VISIT', '1112'),
-(8, 'THEME', 'blue');
+(8, 'THEME', 'blue'),
+(9, 'PICASA_USER', 'picasavinhlong@gmail.com'),
+(10, 'PICASA_PASSWORD', 'admin123456789');
 
 -- --------------------------------------------------------
 
@@ -838,31 +843,6 @@ INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_image`
---
-
-CREATE TABLE IF NOT EXISTS `tbl_image` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_album` int(11) NOT NULL,
-  `name` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `url` varchar(256) COLLATE utf8_unicode_ci NOT NULL,
-  `note` varchar(125) COLLATE utf8_unicode_ci NOT NULL,
-  `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_album` (`id_album`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=31 ;
-
---
--- Dumping data for table `tbl_image`
---
-
-INSERT INTO `tbl_image` (`id`, `id_album`, `name`, `time`, `url`, `note`, `key`) VALUES
-(30, 8, 'Jellyfish.jpg', '2013-10-16 05:42:55', 'https://lh5.googleusercontent.com/-h3niEgBhWrk/Ul3FEFPXDlI/AAAAAAAAANI/qm2UxqjWGFc/s1024/Jellyfish.jpg', 'Picasa', '5935116557860933202');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_news`
 --
 
@@ -982,56 +962,84 @@ CREATE TABLE IF NOT EXISTS `tbl_store` (
   `phone` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `type` int(11) NOT NULL,
   `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `id_picasa_album` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=112 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=116 ;
 
 --
 -- Dumping data for table `tbl_store`
 --
 
-INSERT INTO `tbl_store` (`id`, `name`, `email`, `phone`, `type`, `address`, `key`) VALUES
-(71, 'Cafe Hồng Anh', '2', '0703 828 817', 4, '79/5, đường Pho Co Dieu, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'cafe-hong-anh71'),
-(72, 'Cà Phê Sao Đêm', '', '0703 830 182 ', 0, '2, đường Lê Văn Tám, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-sao-demnull'),
-(73, 'Cà Phê Nghị', '', '090 734 97 99', 0, '184, đường Phạm Hùng, phường 9, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-nghinull'),
-(74, 'Cà Phê Ngọc Trâm', '', '0702 471 249 ', 0, '116, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-ngoc-tramnull'),
-(75, 'Cà Phê Thiên Đường', '', '0703 838 725 ', 0, '81, đường Trưng Nữ Vương, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-thien-duongnull'),
-(76, 'Cà Phê Triều Dương', '', '0703 831 346 ', 0, '105, đường 2 Tháng 9, phường , Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-trieu-duongnull'),
-(77, 'Cà Phê Hiếu Thảo', '', '0703 827 903', 0, '66, đường Trưng Nữ Vương, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-hieu-thaonull'),
-(78, 'Cà Phê Tây Nguyên', '', '0703 522 527 ‎', 0, '76, đường 2 Tháng 9, phường 2, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-tay-nguyennull'),
-(79, 'Cà Phê H3', '', '097 722 32 69 ‎', 0, '9, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-h3null'),
-(80, 'Cà Phê Ngọc Bích', '', '0703 826 307', 0, '80, đường Nguyễn Thị Út, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-ngoc-bichnull'),
-(81, 'Cà Phê Cây Mai', '', '0703 822 293', 0, '1, đường Tô Thị Huỳnh, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-cay-mainull'),
-(82, 'Cà Phê Hồng Ngọc', '', '0703 877 146 ', 0, '7, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-hong-ngocnull'),
-(83, 'Cà Phê 66@', '', '0703 878 005', 0, '66, đường Nguyễn Văn Lâu, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-66null'),
-(84, 'Cà Phê Hương Điều', '', '0705 481 806 ', 0, '23, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-huong-dieunull'),
-(85, 'Cà Phê Điểm Hẹn', '', '0703 820 852', 0, '192, đường Lê Thái Tổ, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-diem-hennull'),
-(86, 'Cà Phê Minh Hoàng', '', '0703 825 270', 0, '34, đường Lưu Văn Liệt, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-minh-hoangnull'),
-(87, 'Cafe Trung Tâm', '', '0702 470 467', 0, '61, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'cafe-trung-tamnull'),
-(88, 'Cafe Sân Thượng', '', '0913 74 79 4', 0, 'Đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'cafe-san-thuongnull'),
-(89, 'Cà Phê Lý Tưởng', '', '0703 842 704', 0, '61, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-ly-tuongnull'),
-(90, 'Cà Phê Thiên Phúc', '', '0702 470 992 ‎', 0, '55., đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-thien-phucnull'),
-(91, 'Cà Phê Thủy', '', '0702 210 845 ', 0, 'Đường Phạm Thái Bường, phường 4, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-thuynull'),
-(92, 'Cà Phê Vườn Xoài', '', '0703 815 629', 0, '278, đường 1A, phường Tân Ngãi, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-vuon-xoainull'),
-(93, 'Cà phê Hương Việt', '', '97 245 46 45', 0, '30, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-huong-vietnull'),
-(94, 'Cà Phê Music Vạn Xuân', '', '0703 866 388 ', 0, '30, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-music-van-xuannull'),
-(95, 'Cà Phê Thiên Chung', '', '0703 827 119', 0, '172, đường Nguyễn Huệ, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-thien-chungnull'),
-(96, 'Cafe 99', '', '0703 824 638 ', 0, '2., đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'cafe-99null'),
-(97, 'Cà Phê Thanh Bình', '', '0703 822 051 ', 0, '2, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-thanh-binhnull'),
-(98, 'Cà Phê Ba Phi', '', '0703 878 176 ‎', 0, '8, đường Đinh Tiên Hoàng, phường 6, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-ba-phinull'),
-(99, 'Cà Phê Nguyên Thảo', '', '0703 824 484 ', 0, '1, đường Cao Thắng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-nguyen-thaonull'),
-(100, 'Cà Phê Cây Da', '', '91 838 50 25', 0, '78, đường Lê Văn Tám, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-cay-danull'),
-(101, 'Cà Phê 911', '', '98 229 29 11', 0, '50, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-911null'),
-(102, 'Cà Phê Thủy Trúc', '', '', 0, 'Đường Phó Cơ Điều, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-thuy-trucnull'),
-(103, 'Cà Phê 25', '', '0703 815 218 ', 0, '25, đường 1A, phường Tân Ngãi, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-25null'),
-(104, 'Cà Phê Vườn Trúc', '', '0703 833 047', 0, '67, đường Phó Cơ Điều, phường 4, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-vuon-trucnull'),
-(105, 'Cafe Lý Tưởng', '', '0703 842 704 ', 0, '61/20C, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'cafe-ly-tuongnull'),
-(106, 'Cà Phê Dạ Hương', '', '0702 210 424', 0, '55, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', 'ca-phe-da-huongnull'),
-(107, 'Quán Cafe Võng', '', '', 0, 'Đường Phó Cơ Điều, phường Phước Hậu, Long Hồ, Vĩnh Long, Việt Nam', 'quan-cafe-vongnull'),
-(108, 'Trúc Hoa Viên', '', '', 0, 'Đường 1A, phường Phú Quới, Long Hồ, Vĩnh Long, Việt Nam', 'truc-hoa-viennull'),
-(109, 'Cafe Ciao', '', '0703 878 724', 0, '13/7, đường quốc lộ 53, phường Tân Hạnh, Long Hồ, Vĩnh Long, Việt Nam', 'cafe-ciaonull'),
-(110, 'Cafe Nguyễn Trúc', '', '', 0, 'Đối diện chợ phước yên A, phú quới, long hồ, Vĩnh Long, Việt Nam', 'cafe-nguyen-trucnull'),
-(111, 'Cafe Lê Vy', '', '', 0, 'Phú quới, Long Hồ, Vĩnh Long, Việt Nam', 'cafe-le-vynull');
+INSERT INTO `tbl_store` (`id`, `name`, `email`, `phone`, `type`, `address`, `id_picasa_album`, `key`) VALUES
+(71, 'Cafe Hồng Anh', '2', '0703 828 817', 4, '79/5, đường Pho Co Dieu, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-hong-anh71'),
+(72, 'Cà Phê Sao Đêm', '', '0703 830 182 ', 0, '2, đường Lê Văn Tám, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-sao-demnull'),
+(73, 'Cà Phê Nghị', '', '090 734 97 99', 0, '184, đường Phạm Hùng, phường 9, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-nghinull'),
+(74, 'Cà Phê Ngọc Trâm', '', '0702 471 249 ', 0, '116, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-ngoc-tramnull'),
+(75, 'Cà Phê Thiên Đường', '', '0703 838 725 ', 0, '81, đường Trưng Nữ Vương, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thien-duongnull'),
+(76, 'Cà Phê Triều Dương', '', '0703 831 346 ', 0, '105, đường 2 Tháng 9, phường , Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-trieu-duongnull'),
+(77, 'Cà Phê Hiếu Thảo', '', '0703 827 903', 0, '66, đường Trưng Nữ Vương, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-hieu-thaonull'),
+(78, 'Cà Phê Tây Nguyên', '', '0703 522 527 ‎', 0, '76, đường 2 Tháng 9, phường 2, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-tay-nguyennull'),
+(79, 'Cà Phê H3', '', '097 722 32 69 ‎', 0, '9, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-h3null'),
+(80, 'Cà Phê Ngọc Bích', '', '0703 826 307', 0, '80, đường Nguyễn Thị Út, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-ngoc-bichnull'),
+(81, 'Cà Phê Cây Mai', '', '0703 822 293', 0, '1, đường Tô Thị Huỳnh, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-cay-mainull'),
+(82, 'Cà Phê Hồng Ngọc', '', '0703 877 146 ', 0, '7, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-hong-ngocnull'),
+(83, 'Cà Phê 66@', '', '0703 878 005', 0, '66, đường Nguyễn Văn Lâu, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-66null'),
+(84, 'Cà Phê Hương Điều', '', '0705 481 806 ', 0, '23, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-huong-dieunull'),
+(85, 'Cà Phê Điểm Hẹn', '', '0703 820 852', 0, '192, đường Lê Thái Tổ, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-diem-hennull'),
+(86, 'Cà Phê Minh Hoàng', '', '0703 825 270', 0, '34, đường Lưu Văn Liệt, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-minh-hoangnull'),
+(87, 'Cafe Trung Tâm', '', '0702 470 467', 0, '61, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-trung-tamnull'),
+(88, 'Cafe Sân Thượng', '', '0913 74 79 4', 0, 'Đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-san-thuongnull'),
+(89, 'Cà Phê Lý Tưởng', '', '0703 842 704', 0, '61, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-ly-tuongnull'),
+(90, 'Cà Phê Thiên Phúc', '', '0702 470 992 ‎', 0, '55., đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thien-phucnull'),
+(91, 'Cà Phê Thủy', '', '0702 210 845 ', 0, 'Đường Phạm Thái Bường, phường 4, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thuynull'),
+(92, 'Cà Phê Vườn Xoài', '', '0703 815 629', 0, '278, đường 1A, phường Tân Ngãi, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-vuon-xoainull'),
+(93, 'Cà phê Hương Việt', '', '97 245 46 45', 0, '30, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-huong-vietnull'),
+(94, 'Cà Phê Music Vạn Xuân', '', '0703 866 388 ', 0, '30, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-music-van-xuannull'),
+(95, 'Cà Phê Thiên Chung', '', '0703 827 119', 0, '172, đường Nguyễn Huệ, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thien-chungnull'),
+(96, 'Cafe 99', '', '0703 824 638 ', 0, '2., đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-99null'),
+(97, 'Cà Phê Thanh Bình', '', '0703 822 051 ', 0, '2, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thanh-binhnull'),
+(98, 'Cà Phê Ba Phi', '', '0703 878 176 ‎', 0, '8, đường Đinh Tiên Hoàng, phường 6, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-ba-phinull'),
+(99, 'Cà Phê Nguyên Thảo', '', '0703 824 484 ', 0, '1, đường Cao Thắng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-nguyen-thaonull'),
+(100, 'Cà Phê Cây Da', '', '91 838 50 25', 0, '78, đường Lê Văn Tám, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-cay-danull'),
+(101, 'Cà Phê 911', '', '98 229 29 11', 0, '50, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-911null'),
+(102, 'Cà Phê Thủy Trúc', '', '', 0, 'Đường Phó Cơ Điều, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thuy-trucnull'),
+(103, 'Cà Phê 25', '', '0703 815 218 ', 0, '25, đường 1A, phường Tân Ngãi, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-25null'),
+(104, 'Cà Phê Vườn Trúc', '', '0703 833 047', 0, '67, đường Phó Cơ Điều, phường 4, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-vuon-trucnull'),
+(105, 'Cafe Lý Tưởng', '', '0703 842 704 ', 0, '61/20C, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-ly-tuongnull'),
+(106, 'Cà Phê Dạ Hương', '', '0702 210 424', 0, '55, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-da-huongnull'),
+(107, 'Quán Cafe Võng', '', '', 0, 'Đường Phó Cơ Điều, phường Phước Hậu, Long Hồ, Vĩnh Long, Việt Nam', '', 'quan-cafe-vongnull'),
+(108, 'Trúc Hoa Viên', '', '', 0, 'Đường 1A, phường Phú Quới, Long Hồ, Vĩnh Long, Việt Nam', '', 'truc-hoa-viennull'),
+(109, 'Cafe Ciao', '', '0703 878 724', 0, '13/7, đường quốc lộ 53, phường Tân Hạnh, Long Hồ, Vĩnh Long, Việt Nam', '', 'cafe-ciaonull'),
+(110, 'Cafe Nguyễn Trúc', '', '', 0, 'Đối diện chợ phước yên A, phú quới, long hồ, Vĩnh Long, Việt Nam', '', 'cafe-nguyen-trucnull'),
+(111, 'Cafe Lê Vy', '', '', 0, 'Phú quới, Long Hồ, Vĩnh Long, Việt Nam', '', 'cafe-le-vynull'),
+(115, 'Quán Cóc Ổi', '1', '2', 3, '4', '5935670244266979009', 'quan-coc-oi-115');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_store_album`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_store_album` (
+  `id` int(25) NOT NULL AUTO_INCREMENT,
+  `id_store` int(11) NOT NULL,
+  `name` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `order` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_store` (`id_store`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
+
+--
+-- Dumping data for table `tbl_store_album`
+--
+
+INSERT INTO `tbl_store_album` (`id`, `id_store`, `name`, `key`, `order`) VALUES
+(8, 71, 'ABC', 'abc', 1),
+(9, 71, 'Các món', 'cac-mon', 0),
+(10, 115, 'Món ăn', 'mon-an', 0),
+(11, 115, 'Khai trương', 'khai-truong', 0);
 
 -- --------------------------------------------------------
 
@@ -1073,7 +1081,7 @@ CREATE TABLE IF NOT EXISTS `tbl_store_location` (
   PRIMARY KEY (`id`),
   KEY `id_district` (`id_district`),
   KEY `id_location` (`id_store`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
 -- Dumping data for table `tbl_store_location`
@@ -1120,7 +1128,8 @@ INSERT INTO `tbl_store_location` (`id`, `id_district`, `id_store`, `x`, `y`) VAL
 (62, 653, 108, 0, 0),
 (63, 653, 109, 0, 0),
 (64, 653, 110, 0, 0),
-(65, 653, 111, 0, 0);
+(65, 653, 111, 0, 0),
+(69, 654, 115, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1207,10 +1216,10 @@ INSERT INTO `tbl_video` (`id`, `id_category`, `name`, `time`, `url`, `note`, `co
 --
 
 --
--- Constraints for table `tbl_album`
+-- Constraints for table `tbl_store_album`
 --
-ALTER TABLE `tbl_album`
-  ADD CONSTRAINT `tbl_album_ibfk_1` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_store_album`
+  ADD CONSTRAINT `tbl_store_album_ibfk_1` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_store_feature`
