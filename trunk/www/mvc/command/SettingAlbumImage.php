@@ -10,9 +10,11 @@
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
-			//-------------------------------------------------------------
-			$IdKey = $request->getProperty('IdKey');
+			//-------------------------------------------------------------			
 			$IdAlbum = $request->getProperty('IdAlbum');
+			$IdProvince = $request->getProperty('IdProvince');
+			$IdDistrict = $request->getProperty('IdDistrict');
+			$IdStore = $request->getProperty('IdStore');
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
@@ -25,15 +27,22 @@
 			if (!isset($Page)) $Page=1;
 			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
 			$Album 		= $mAlbum->find($IdAlbum);
-			$AlbumAll 	= $mAlbum->findAll();
+			$AlbumAll 	= $mAlbum->findBy(array($IdStore));
 			$ImageAll 	= $mImage->findBy(array($IdAlbum));
 			$ImageAll1 	= $mImage->findByPage(array($IdAlbum, $Page, $Config->getValue() ));
 			$PN 		= new \MVC\Domain\PageNavigation($ImageAll->count(), $Config->getValue(), "/setting/album".$Album->getId() );
-									
+			
+			$Province 	= $mProvince->find($IdProvince);
+			$District 	= $mDistrict->find($IdDistrict);
+			$Store 		= $mStore->find($IdStore);
+						
 			$Title = mb_strtoupper($Album->getName(), 'UTF8');
 			$Navigation = array(
-				array("THIẾT LẬP"	, "/setting"),
-				array("ALBUM"		, "/setting" )
+				array("THIẾT LẬP", "/setting"),
+				array("TỈNH THÀNH", "/setting/province"),
+				array(mb_strtoupper($Province->getName(), 'UTF8'), 	$Province->getURLSettingDistrict() ),
+				array(mb_strtoupper($District->getName(), 'UTF8'), 	$District->getURLSettingStore() ),
+				array(mb_strtoupper($Store->getName(), 'UTF8'),		$District->getURLSettingStore()."/".$Store->getId()."/album" )
 			);
 						
 			//-------------------------------------------------------------
