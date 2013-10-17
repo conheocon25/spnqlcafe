@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 16, 2013 at 12:44 AM
+-- Generation Time: Oct 17, 2013 at 05:28 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -787,6 +787,35 @@ INSERT INTO `tbl_district` (`id`, `id_province`, `name`, `X`, `Y`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_feature`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_feature` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `icon` varchar(50) NOT NULL,
+  `key` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tbl_feature`
+--
+
+INSERT INTO `tbl_feature` (`id`, `name`, `icon`, `key`) VALUES
+(1, 'Internet Wifi', '<i class=''glyphicons-download_alt'' />', 'internet-wifi'),
+(2, 'Giữ xe miễn phí', '<i class=''glyphicons-download_alt''/>', 'giu-xe-mien-phi'),
+(3, 'Chụp hình', '<i class="" />', 'chup-hinh'),
+(4, 'Máy lạnh', '', 'may-lanh'),
+(5, 'Sân vườn', '', 'san-vuon'),
+(6, 'Nhạc sống', '', 'nhac-song'),
+(7, 'Chỗ chơi cho trẻ em', '', 'cho-choi-cho-tre-em'),
+(8, 'Xuất hóa đơn đỏ', '', 'xuat-hoa-don-do'),
+(9, 'Chỗ đậu xe hơi', '', 'cho-dau-xe-hoi');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_guest`
 --
 
@@ -1007,6 +1036,31 @@ INSERT INTO `tbl_store` (`id`, `name`, `email`, `phone`, `type`, `address`, `key
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_store_feature`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_store_feature` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_feature` int(11) NOT NULL,
+  `id_store` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_feature` (`id_feature`),
+  KEY `id_store` (`id_store`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `tbl_store_feature`
+--
+
+INSERT INTO `tbl_store_feature` (`id`, `id_feature`, `id_store`) VALUES
+(1, 1, 71),
+(7, 6, 71),
+(8, 4, 71),
+(9, 3, 71);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_store_location`
 --
 
@@ -1157,6 +1211,13 @@ INSERT INTO `tbl_video` (`id`, `id_category`, `name`, `time`, `url`, `note`, `co
 --
 ALTER TABLE `tbl_album`
   ADD CONSTRAINT `tbl_album_ibfk_1` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_store_feature`
+--
+ALTER TABLE `tbl_store_feature`
+  ADD CONSTRAINT `tbl_store_feature_ibfk_2` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_store_feature_ibfk_1` FOREIGN KEY (`id_feature`) REFERENCES `tbl_feature` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_store_location`
