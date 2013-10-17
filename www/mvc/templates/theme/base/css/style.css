@@ -1,7 +1,12 @@
 /* ===== Primary Styles ========================================================
    Author: 
    ========================================================================== */
-
-
-
-
+	@font-face{font-family:'UTM TPTA';src:url('../font/utmtpta.ttf');}
+	
+	.frame {
+		border: 5px solid #F5F7F7;
+	}
+	
+	.tpta { font-family:'UTM TPTA' !important; }
+	
+	
