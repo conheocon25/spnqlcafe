@@ -33,6 +33,9 @@
 							<p><i><b>PS:</b> Thêm class="tpta" đổi thành font Thư Pháp</i></p>
 							<p><b>ĐC:</b> <span tal:content="Store/getAddress"/></p>
 						</div>
+						<div class="frame">
+							<div tal:repeat="SF Store/getFeatureAll" tal:content="SF/getFeature/getName"/>
+						</div>
 					</div>
 					<div class="span7">
 						<div class="frame">
