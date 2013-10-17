@@ -10,17 +10,19 @@ class Store extends Object{
 	private $Phone;
     private $Type;        
     private $Address;
+	private $IdPicasaAlbum;
 	private $Key;
 	
 	/*Hàm khởi tạo và thiết lập các thuộc tính*/
-    function __construct( $Id=null, $Name=null, $Email=null, $Phone=null, $Type=null, $Address=null, $Key=null ){
-        $this->Id = $Id;
-		$this->Name = $Name;
-		$this->Email = $Email;
-		$this->Phone = $Phone;
-		$this->Type = $Type;
-		$this->Address = $Address;
-		$this->Key = $Key;
+    function __construct( $Id=null, $Name=null, $Email=null, $Phone=null, $Type=null, $Address=null, $IdPicasaAlbum=null, $Key=null ){
+        $this->Id 				= $Id;
+		$this->Name 			= $Name;
+		$this->Email 			= $Email;
+		$this->Phone 			= $Phone;
+		$this->Type 			= $Type;
+		$this->Address 			= $Address;
+		$this->IdPicasaAlbum 	= $IdPicasaAlbum;
+		$this->Key 				= $Key;
 		
         parent::__construct( $Id );
     }
@@ -41,12 +43,15 @@ class Store extends Object{
 			
     function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress(){return $this->Address;}
-		
+	
+	function setIdPicasaAlbum( $IdPicasaAlbum ) {$this->IdPicasaAlbum = $IdPicasaAlbum;$this->markDirty();}
+	function getIdPicasaAlbum(){return $this->IdPicasaAlbum;}
+	
 	function setKey( $Key ) {$this->Key = $Key;$this->markDirty();}
 	function getKey(){return $this->Key;}
-	function reKey( ) {
+	function reKey( ){
 		$Str = new \MVC\Library\String($this->Name);
-		$this->Key = $Str->converturl().$this->getId();
+		$this->Key = $Str->converturl()."-".$this->getId();
 	}
 	function getAlbumAll(){
 		$mAlbum = new \MVC\Mapper\Album();
@@ -73,26 +78,27 @@ class Store extends Object{
 			'Phone' 		=> $this->getPhone(),
 			'Type' 			=> $this->getType(),			
 			'Address' 		=> $this->getAddress(),
+			'IdPicasaAlbum'	=> $this->getIdPicasaAlbum(),
 			'Key'			=> $this->getKey()
 		);
 		return json_encode($json);
 	}
 	
 	function setArray( $Data ){        
-		$this->Id 		= $Data[0];
-		$this->Name 	= $Data[1];		
-		$this->Email 	= $Data[2];
-		$this->Phone 	= $Data[3];
-		$this->Type 	= $Data[4];
-		$this->Address 	= $Data[5];
+		$this->Id 				= $Data[0];
+		$this->Name 			= $Data[1];		
+		$this->Email 			= $Data[2];
+		$this->Phone 			= $Data[3];
+		$this->Type 			= $Data[4];
+		$this->Address 			= $Data[5];
+		$this->IdPicasaAlbum 	= $Data[6];
 		$this->reKey();
     }
-	function getURLView(){ return "/quan/".$this->getKey();}	
-	//=================================================================================		
-				
+	function getURLView(){ return "/quan/".$this->getKey();}
+	
+	//=================================================================================						
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}	
 	
 }
-
 ?>

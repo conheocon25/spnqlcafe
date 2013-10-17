@@ -8,9 +8,9 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( "select * from tbl_store ORDER BY name");
         $this->selectStmt = self::$PDO->prepare( "select * from tbl_store where id=?");
-        $this->updateStmt = self::$PDO->prepare( "update tbl_store set name=?, email =?, phone=?, type=?, address=?, `key`=? where id=?");
-        $this->insertStmt = self::$PDO->prepare( "insert into tbl_store (name, email, phone, type, address, `key`)
-							values( ?, ?, ?, ?, ?, ?)");
+        $this->updateStmt = self::$PDO->prepare( "update tbl_store set name=?, email =?, phone=?, type=?, address=?, id_picasa_album=?, `key`=? where id=?");
+        $this->insertStmt = self::$PDO->prepare( "insert into tbl_store (name, email, phone, type, address, id_picasa_album, `key`)
+							values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( "delete from tbl_store where id=?");
 		$this->searchByNameStmt = self::$PDO->prepare("SELECT * FROM tbl_store WHERE name like ?");
 		$this->findByKeyStmt = self::$PDO->prepare("SELECT * FROM tbl_store WHERE `key`=?");
@@ -27,6 +27,7 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
 			$array['phone'],
 			$array['type'],
 			$array['address'],
+			$array['id_picasa_album'],
 			$array['key']
 		);
         return $obj;
@@ -40,6 +41,7 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
 			$object->getPhone(),
 			$object->getType(),
 			$object->getAddress(),
+			$object->getIdPicasaAlbum(),
 			$object->getKey()
 		); 
         $this->insertStmt->execute( $values );
@@ -54,6 +56,7 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder {
 			$object->getPhone(),
 			$object->getType(),
 			$object->getAddress(),
+			$object->getIdPicasaAlbum(),
 			$object->getKey(),
 			$object->getId()
 		);		
