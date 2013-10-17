@@ -21,6 +21,7 @@
 			$mProvince 	= new \MVC\Mapper\Province();
 			$mDistrict 	= new \MVC\Mapper\District();
 			$mStore 	= new \MVC\Mapper\Store();
+			$mAlbum 	= new \MVC\Mapper\Album();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -35,15 +36,17 @@
 				array("TỈNH THÀNH", "/setting/province"),
 				array(mb_strtoupper($Province->getName(), 'UTF8'), $Province->getURLSettingDistrict() ),
 				array(mb_strtoupper($District->getName(), 'UTF8'), $District->getURLSettingStore() )
-			);						
-						
+			);				
+			$AlbumAll = $mAlbum->findBy(array($IdStore));
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);
 			$request->setObject("Navigation", $Navigation);
-			
-			$request->setObject("Store", $Store);
+						
+			$request->setObject("Store"		, $Store);
+			$request->setObject("AlbumAll"	, $AlbumAll);
 		}
 	}
 ?>

@@ -14,23 +14,28 @@
 			//-------------------------------------------------------------
 			$IdAlbum = $request->getProperty('IdAlbum');
 			$IdImage = $request->getProperty('IdImage');
-						
+			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mAlbum = new \MVC\Mapper\Album();
 			$mImage = new \MVC\Mapper\Image();
+			$mConfig = new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$PUser 		= $mConfig->findByName("PICASA_USER");
+			$PPassword 	= $mConfig->findByName("PICASA_PASSWORD");
+			
 			$Album = $mAlbum->find($IdAlbum);
 			$Image = $mImage->find($IdImage);
 						
 			$P = new \MVC\Library\Picasa();
-			$P->login('picasavinhlong@gmail.com', 'admin123456789');
-			$Id = "5933065650085126945";
-			$P->setAlbumId($Id);			         
+			$P->login( $PUser->getValue(), $PPassword->getValue() );			
+			
+			$IdAbum = $Album->getStore()->getIdPicasaAlbum();			
+			$P->setAlbumId($IdAbum);
 			
 			$file = "mvc/library/image/upload/".$Image->getName();			
 			$Arr = $P->upload($file);
@@ -44,7 +49,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			return self::statuses('CMD_OK');
+			$json = array('result' => "OK");
+			echo json_encode($json);
 		}
 	}
 ?>

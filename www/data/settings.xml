@@ -73,5 +73,6 @@
 		<command name="PicasaAlbumUpdate"><view>PicasaAlbumUpdate</view></command>
 		<command name="PicasaAlbumDelete"><view>PicasaAlbumDelete</view></command>
 		
+		<command name="PicasaImageDelete"><view>PicasaImageDelete</view></command>
 	</control>
 </options>

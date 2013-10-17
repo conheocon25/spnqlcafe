@@ -16,16 +16,13 @@
 				<div class="col-12">
 					<a href="#DialogIns" data-toggle="modal" class="btn btn-success btn-ins btn-small">
 						<i class="glyphicons-plus"/> Thêm mới
-					</a>
-					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-success btn-ins btn-small">
-						<i class="glyphicons-remove_2"/> Xóa chọn
-					</a>
-					<div class="widget-box">
+					</a>					
+					<div class="widget-box">						
 						<div class="widget-content nopadding">
 							<table class="table table-bordered table-striped table-hover with-check">								
 								<thead>
 									<tr>
-										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="40">STT</th>
 										<th class="left">TÊN</th>
 										<th width="80"><i class="glyphicons-macbook"/></th>
 										<th width="40"><i class="glyphicons-edit"/></th>
@@ -33,8 +30,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Album Store/getAlbumAll">
-										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Album/getId"/></td>
+									<tr tal:repeat="Album AlbumAll">
+										<td class="center"><span tal:content="repeat/Album/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Album" tal:attributes="data-id Album/getId" tal:content="Album/getName"/></td>
 										<td class="center"><a tal:attributes="href Album/getURLImage"> <span tal:content="Album/getImageAll/count"/> ảnh</a></td>
 										<td class="center"><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Album/getId"><i class="glyphicon glyphicon-pencil"/></a></td>
@@ -42,7 +39,7 @@
 									</tr>
 								</tbody>
 							</table>
-						</div>
+						</div>						
 					</div>
 					
 					<!-- INSERT DIALOG  -->
@@ -115,29 +112,7 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/
-			$('#URLDelSelectedButton').click(function(){
-				var count = 0;
-				var Data = [];
-				var URL = "/object/del/Album/0";
-				
-				$(".CheckedDel").each(function( i, obj){
-					if ( $(this).is(':checked')==true ){
-						count += 1;
-						Data[count] = $(this).attr('data-id');
-					}
-				});
-				
-				$.ajax({
-					type: "POST",
-					data: {ListId:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});
-			});
-			
+		/*<![CDATA[*/					
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DOMAIN			
 			//-----------------------------------------------------------------------------------

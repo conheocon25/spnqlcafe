@@ -22,8 +22,8 @@ class Image extends Object{
 	function setIdAlbum( $IdAlbum ){$this->IdAlbum = $IdAlbum;$this->markDirty();}
     function getIdAlbum( ) {return $this->IdAlbum;}
 	function getAlbum( ) {	
-		$mAlbum = new \MVC\Mapper\BAlbum();
-		$Album = $mAlbum->find($this->IdAlbum);		
+		$mAlbum = new \MVC\Mapper\Album();
+		$Album = $mAlbum->find($this->IdAlbum);
 		return $Album;
 	}
 	
