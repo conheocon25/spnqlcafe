@@ -15,14 +15,15 @@ class StoreLocation extends Mapper implements \MVC\Domain\StoreLocationFinder {
 		$insertStmt = sprintf("insert into %s ( id_district, id_store, X, Y) values(?, ?, ?, ?)", $tblStoreLocation);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblStoreLocation);
 		$findByStmt = sprintf("select *  from %s where id_district=?", $tblStoreLocation);
-				
+		$findByStoreStmt = sprintf("select *  from %s where id_store=?", $tblStoreLocation);
+		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
-		
+		$this->findByStoreStmt = self::$PDO->prepare($findByStoreStmt);
     } 
     function getCollection( array $raw ) {
         return new StoreLocationCollection( $raw, $this );

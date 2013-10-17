@@ -69,8 +69,13 @@ class Album extends Object{
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLImage(){			
-		return "/setting/album/".$this->getId();
+	function getURLImage(){
+		$Store = $this->getStore();	
+		$mStoreLocation = new \MVC\Mapper\StoreLocation();
+		$SL = $mStoreLocation->findByStore($Store->getId());
+		$IdDistrict = $SL->getIdDistrict();
+		$IdProvince = $SL->getDistrict()->getIdProvince();		
+		return "/setting/province/".$IdProvince."/".$IdDistrict."/".$Store->getId()."/album/".$this->getId();
 	}
 
 	//--------------------------------------------------------------------------
