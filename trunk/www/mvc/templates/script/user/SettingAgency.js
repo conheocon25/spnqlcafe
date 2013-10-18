@@ -144,7 +144,7 @@ function showMaker() {
 	var center = new GLatLng(parseFloat(latitude),parseFloat(longitude));
 	map.setCenter(center, 16);
 	//map.setMapType(G_SATELLITE_MAP);
-	map.setMapType(G_HYBRID_MAP);
+	//map.setMapType(G_HYBRID_MAP);
 	var marker = new GMarker(center, {draggable: true}); 	
 	marker.openInfoWindowHtml(document.getElementById("cafename").value);
 	map.addOverlay(marker);
