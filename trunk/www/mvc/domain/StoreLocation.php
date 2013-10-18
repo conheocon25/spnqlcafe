@@ -70,6 +70,9 @@ class StoreLocation extends Object{
 		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/feature";
 	}
 	
+	function getURLSettingPost(){
+		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/post";
+	}
 	//=================================================================================
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}		
