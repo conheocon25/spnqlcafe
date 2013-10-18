@@ -4,14 +4,14 @@ function changeMap(){
 	var toado = $('#Position option[selected]="selected"').attr('title');
 	var arrayToado = toado.split(',');				
 	var center = new GLatLng(parseFloat(arrayToado[0]),parseFloat(arrayToado[1]));
-	map.setCenter(center, 15);
+	map.setCenter(center, 16);
 }
 
 function SetNewMap(){	
 	var latitude = $("#lat").val();
 	var longitude = $("#lng").val();				
 	var center = new GLatLng(parseFloat(latitude),parseFloat(longitude));
-	map.setCenter(center, 15);
+	map.setCenter(center, 16);
 }
 
 function disableMovement(disable) {
@@ -48,7 +48,7 @@ function load(){
 		map.addControl (new GSmallMapControl());
 		map.addControl(new GMapTypeControl());
 		var center = new GLatLng(document.getElementById("lat").value,document.getElementById("lng").value);
-		map.setCenter(center, 15);
+		map.setCenter(center, 16);
 		//map.setMapType(G_SATELLITE_MAP);
 		map.setMapType(G_HYBRID_MAP);
 		map.enableScrollWheelZoom();
@@ -104,7 +104,7 @@ function showAddress(address) {
 					document.getElementById("lat").value = point.lat();
 					document.getElementById("lng").value = point.lng();
 					map.clearOverlays()
-					map.setCenter(point, 14);
+					map.setCenter(point, 16);
 					var marker = new GMarker(point, {draggable: false}); 
 					map.addOverlay(marker);
 
@@ -142,7 +142,7 @@ function showMaker() {
 	var latitude = $("#lat").val();
 	var longitude = $("#lng").val();				
 	var center = new GLatLng(parseFloat(latitude),parseFloat(longitude));
-	map.setCenter(center, 14);
+	map.setCenter(center, 16);
 	//map.setMapType(G_SATELLITE_MAP);
 	map.setMapType(G_HYBRID_MAP);
 	var marker = new GMarker(center, {draggable: true}); 	
