@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 17, 2013 at 05:21 PM
+-- Generation Time: Oct 18, 2013 at 11:38 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -843,27 +843,29 @@ INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_news`
+-- Table structure for table `tbl_post`
 --
 
-CREATE TABLE IF NOT EXISTS `tbl_news` (
+CREATE TABLE IF NOT EXISTS `tbl_post` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_store` int(11) NOT NULL,
   `author` varchar(50) CHARACTER SET utf8 NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content` longtext CHARACTER SET utf8 NOT NULL,
   `title` text CHARACTER SET utf8 NOT NULL,
   `type` int(11) NOT NULL DEFAULT '0',
   `key` varchar(250) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `id_store` (`id_store`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `tbl_news`
+-- Dumping data for table `tbl_post`
 --
 
-INSERT INTO `tbl_news` (`id`, `author`, `date`, `content`, `title`, `type`, `key`) VALUES
-(1, 'Bùi Thanh tuấn1', '2013-10-13 03:26:57', 'Chúng tôi là ai !?1', 'Who are you ?1', 1, 'who-are-you-1-1'),
-(2, 'a1', '2013-10-13 03:27:15', 'v1', '11', 21, '11-2');
+INSERT INTO `tbl_post` (`id`, `id_store`, `author`, `date`, `content`, `title`, `type`, `key`) VALUES
+(1, 115, 'Bùi Thanh tuấn1', '2013-10-13 03:26:57', 'Chúng tôi là ai !?1', 'Who are you ?1', 1, 'who-are-you-1-1'),
+(2, 115, 'a1', '2013-10-13 03:27:15', 'v1', '11', 21, '11-2');
 
 -- --------------------------------------------------------
 
@@ -1054,7 +1056,7 @@ CREATE TABLE IF NOT EXISTS `tbl_store_feature` (
   PRIMARY KEY (`id`),
   KEY `id_feature` (`id_feature`),
   KEY `id_store` (`id_store`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `tbl_store_feature`
@@ -1064,7 +1066,9 @@ INSERT INTO `tbl_store_feature` (`id`, `id_feature`, `id_store`) VALUES
 (1, 1, 71),
 (7, 6, 71),
 (8, 4, 71),
-(9, 3, 71);
+(9, 3, 71),
+(10, 1, 115),
+(11, 2, 115);
 
 -- --------------------------------------------------------
 
@@ -1214,6 +1218,12 @@ INSERT INTO `tbl_video` (`id`, `id_category`, `name`, `time`, `url`, `note`, `co
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `tbl_post`
+--
+ALTER TABLE `tbl_post`
+  ADD CONSTRAINT `tbl_post_ibfk_1` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_store_album`
