@@ -8,6 +8,13 @@
 		<span metal:use-macro="base.xhtml/IncludeMETA"/>
 		<span metal:use-macro="base.xhtml/IncludeCSS-Search"/>
 		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingAgency.js" />
+		<script type="text/javascript">
+			/*<![CDATA[*/
+			$(function() {				
+				
+			});
+			/*]]>*/
+		</script>
 	</head>
 	
 	<body  onload="showMaker()" onunload="GUnload()" id="index"><!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="javascript:if(confirm(%27http://browsehappy.com/  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://browsehappy.com/%27" tppabs="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="javascript:if(confirm(%27http://www.google.com/chromeframe/?redirect=true  \n\nThis file was not retrieved by Teleport Pro, because it is addressed on a domain or path outside the boundaries set for its Starting Address.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.google.com/chromeframe/?redirect=true%27" tppabs="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -34,6 +41,10 @@
 							<br/>
 							<p><i><b>PS:</b> Thêm class="tpta" đổi thành font Thư Pháp</i></p>
 							<p><b>ĐC:</b> <span tal:content="Store/getAddress"/></p>
+							<input type="text" size="70" name="cafename" tal:attributes="Value Store/getAddress" id="cafename" />
+							<br />
+							<input type="text" size="34" name="latitude" value="10.233774" id="lat" />
+							<input type="text" size="34" name="longitude" value="105.985986" id="lng" />
 						</div>
 						<div class="frame">
 							<div tal:repeat="SF Store/getFeatureAll" tal:content="SF/getFeature/getName"/>
@@ -41,9 +52,8 @@
 					</div>
 					<div class="span7">
 						<div class="frame">
-							<h1>Bản đồ</h1>
-							<input type="text" hidden="true" size="34" name="latitude" value="10.233774" id="lat" />
-							<input type="text" hidden="true" size="34" name="longitude" value="105.985986" id="lng" />
+							<h1>Bản đồ</h1>							
+							
 							<div align="center" id="map" style="width: 100%; height: 320px" />
 							<!-- <img src="/data/images/tmp/map.gif" width="100%"/> -->
 						</div>

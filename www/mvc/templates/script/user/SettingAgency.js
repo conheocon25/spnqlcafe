@@ -50,15 +50,17 @@ function load(){
 		var center = new GLatLng(document.getElementById("lat").value,document.getElementById("lng").value);
 		map.setCenter(center, 15);
 		//map.setMapType(G_SATELLITE_MAP);
-		//map.setMapType(G_HYBRID_MAP);
+		map.setMapType(G_HYBRID_MAP);
 		map.enableScrollWheelZoom();
 		geocoder = new GClientGeocoder();
 
-		var marker = new GMarker(center, {draggable: true}); 
+		var marker = new GMarker(center, {draggable: true}); 		
 		map.addOverlay(marker);
 		document.getElementById("lat").value = center.lat();
 		document.getElementById("lng").value = center.lng ();
-
+		
+		marker.openInfoWindowHtml(document.getElementById("cafename").value);
+		
 		geocoder = new GClientGeocoder();
 
 		GEvent.addListener(marker, "dragend", function() {
@@ -83,6 +85,7 @@ function load(){
 				document.getElementById("lng").value = point.lng();
 			});
 		});
+		
 	}
 }
 
@@ -102,7 +105,7 @@ function showAddress(address) {
 					document.getElementById("lng").value = point.lng();
 					map.clearOverlays()
 					map.setCenter(point, 14);
-					var marker = new GMarker(point, {draggable: true}); 
+					var marker = new GMarker(point, {draggable: false}); 
 					map.addOverlay(marker);
 
 					GEvent.addListener(marker, "dragend", function() {
@@ -139,11 +142,12 @@ function showMaker() {
 	var latitude = $("#lat").val();
 	var longitude = $("#lng").val();				
 	var center = new GLatLng(parseFloat(latitude),parseFloat(longitude));
-	map.setCenter(center, 15);
+	map.setCenter(center, 14);
 	//map.setMapType(G_SATELLITE_MAP);
 	map.setMapType(G_HYBRID_MAP);
-	var marker = new GMarker(center, {draggable: true}); 
+	var marker = new GMarker(center, {draggable: true}); 	
+	marker.openInfoWindowHtml(document.getElementById("cafename").value);
 	map.addOverlay(marker);
-	map.enableScrollWheelZoom();	
+	map.enableScrollWheelZoom();		
 }
 /*]]>*/
