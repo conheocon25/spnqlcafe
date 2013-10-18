@@ -10,7 +10,7 @@ class AlbumCollection extends Collection implements \MVC\Domain\AlbumCollection 
 class ImageCollection extends Collection implements \MVC\Domain\ImageCollection {function targetClass( ) {return "\MVC\Domain\Image";}}
 
 class TagCollection extends Collection implements \MVC\Domain\TagCollection {function targetClass( ) {return "\MVC\Domain\Tag";}}
-class NewsCollection extends Collection implements \MVC\Domain\NewsCollection {function targetClass( ) {return "\MVC\Domain\News";}}
+class PostCollection extends Collection implements \MVC\Domain\PostCollection {function targetClass( ) {return "\MVC\Domain\Post";}}
 class VideoCollection extends Collection implements \MVC\Domain\VideoCollection {function targetClass( ) {return "\MVC\Domain\Video";}}
 
 class GuestCollection extends Collection implements \MVC\Domain\GuestCollection{function targetClass(){return "\MVC\Domain\Guest";}}

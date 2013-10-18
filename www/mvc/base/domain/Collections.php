@@ -14,7 +14,7 @@ interface FeatureCollection extends \Iterator {function add( Object $Feature );}
 interface AlbumCollection extends \Iterator {function add( Object $Album );}
 interface ImageCollection extends \Iterator {function add( Object $Image );}
 
-interface NewsCollection extends \Iterator {function add( Object $News );}
+interface PostCollection extends \Iterator {function add( Object $Post );}
 interface VideoCollection extends \Iterator {function add( Object $Video );	}
 
 interface ProvinceCollection extends \Iterator {function add( Object $Province );}
