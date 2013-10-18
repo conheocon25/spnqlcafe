@@ -77,6 +77,12 @@ class Store extends Object{
 		return $SFeature->count();
 	}
 	
+	function getLocation(){
+		$mStoreLocation = new \MVC\Mapper\StoreLocation();
+		$SL = $mStoreLocation->findByStore($this->getId());
+		return $SL;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),

@@ -139,14 +139,14 @@ function showMaker() {
 	map.addControl(new GSmallMapControl());
 	map.addControl(new GMapTypeControl());
 	map.clearOverlays()
-	var latitude = $("#lat").val();
-	var longitude = $("#lng").val();				
+	var latitude = $("#lat").attr('alt');
+	var longitude = $("#lng").attr('alt');
 	var center = new GLatLng(parseFloat(latitude),parseFloat(longitude));
 	map.setCenter(center, 16);
 	//map.setMapType(G_SATELLITE_MAP);
 	//map.setMapType(G_HYBRID_MAP);
 	var marker = new GMarker(center, {draggable: true}); 	
-	marker.openInfoWindowHtml(document.getElementById("cafename").value);
+	marker.openInfoWindowHtml( $("#MarkerName").attr('alt') );
 	map.addOverlay(marker);
 	map.enableScrollWheelZoom();		
 }
