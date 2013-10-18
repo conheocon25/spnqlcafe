@@ -1,7 +1,6 @@
 <?php	
 	$mUser 					= new \MVC\Mapper\User();
-	$mTag 					= new \MVC\Mapper\Tag();
-	$mNews 					= new \MVC\Mapper\News();
+	$mTag 					= new \MVC\Mapper\Tag();	
 	$mConfig				= new \MVC\Mapper\Config();
 	$mAlbum					= new \MVC\Mapper\Album();
 	$mImage					= new \MVC\Mapper\Image();	

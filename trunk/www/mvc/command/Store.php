@@ -25,14 +25,15 @@
 			$Navigation = array(
 				array("TRANG CHỦ", "/")
 			);
-						
-			$Store = $mStore->findByKey($IdKey);
 			
+			$Store = $mStore->findByKey($IdKey);
+			$Album = $Store->getAlbumAll()->current();
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												
 			$request->setProperty("Title", $Title);					
 			$request->setObject("Store", $Store);
+			$request->setObject("Album", $Album);
 		}
 	}
 ?>
