@@ -12,8 +12,8 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
-		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=?, value=? where id=?", $tblSession);
-		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment, value) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
+		$updateStmt = sprintf("update %s set idtable=?, iduser=?, idcustomer=?, datetime=?, datetimeend=?, note=?, status=?, discount_value=?, discount_percent=?, surtax=?, payment=? where id=?", $tblSession);
+		$insertStmt = sprintf("insert into %s (idtable, iduser, idcustomer, datetime, datetimeend, note, status, discount_value, discount_percent, surtax, payment) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblSession);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSession);
 		
 		$trackingCountStmt = sprintf(		
@@ -156,8 +156,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$array['discount_value'],
 			$array['discount_percent'],
 			$array['surtax'],
-			$array['payment'],
-			$array['value']
+			$array['payment']
 		);
         return $obj;
     }
@@ -178,8 +177,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment(),
-			$object->getValue()
+			$object->getPayment()			
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -198,8 +196,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountValue(),
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
-			$object->getPayment(),
-			$object->getValue(),
+			$object->getPayment(),			
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );

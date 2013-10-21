@@ -41,9 +41,7 @@
 				$SDA->next();
 			}			
 			$mSession->delete(array($SessionA->getId()));
-			$SessionB->setValue( $SessionB->getReValue() );
-			$mSession->update($SessionB);
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------

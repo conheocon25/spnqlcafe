@@ -43,9 +43,6 @@
 			$SD->setPrice($Price);								
 			$mSD->update($SD);
 						
-			$Session->setValue( $Session->getReValue() );
-			$mSession->update($Session);
-			
 			$IdTable = $Session->getIdTable();
 			$IdSession = $Session->getId();
 			//-------------------------------------------------------------

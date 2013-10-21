@@ -42,8 +42,7 @@
 			//$Session->setIdCustomer($IdCustomer);
 			//$Session->setStatus($Status);
 			//$Session->setPayment($Payment);
-			$Session->setValue( $Session->getReValue() );
-			
+						
 			$mSession->update($Session);
 			
 			//-------------------------------------------------------------
