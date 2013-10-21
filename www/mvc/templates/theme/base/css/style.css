@@ -9,4 +9,26 @@
 	
 	.tpta { font-family:'UTM TPTA' !important; }
 	
+	.comment_div {
+		background-color: #F4F4F4;
+		position: relative;
+		width: 100%;
+		margin: 15px 0;
+		border-radius: 10px;
+	}
+	
+	.comment_div:after {
+		content: '';
+		position: absolute;
+		height: 0;
+		width: 0;
+		border: 10px solid transparent;
+		border-top-color: #F4F4F4;
+		top: 100%;
+		left: 20px;
+	}
+	
+	.padding-content-10 { padding: 10px; }
+	.padding-content-20 { padding: 20px; }
+	
 	
