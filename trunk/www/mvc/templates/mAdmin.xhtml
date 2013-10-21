@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Cộng đồng Cafe Việt"/>
+		<title tal:content="string:Danh bạ quán Cafe Việt"/>
 		<base href="http://www.quanly-cafe.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Cộng đồng Cafe Việt"/>
-		<meta name="description" content="Cộng đồng Cafe Việt"/>
-		<meta name="page-topic" content="Cộng đồng Cafe Việt"/>
-		<meta name="Abstract" content="Cộng đồng Cafe Việt"/>
-		<meta name="classification" content="Cộng đồng Cafe Việt"/>
+		<meta name="keywords" content="Danh bạ quán Cafe Việt"/>
+		<meta name="description" content="Danh bạ quán Cafe Việt"/>
+		<meta name="page-topic" content="Danh bạ quán Cafe Việt"/>
+		<meta name="Abstract" content="Danh bạ quán Cafe Việt"/>
+		<meta name="classification" content="Danh bạ quán Cafe Việt"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
 	</span>
 	
@@ -80,7 +80,7 @@
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="ContentHeader" id="content-header">
-		<h1>Cộng đồng Cafe Việt</h1>
+		<h1>Danh bạ quán Cafe Việt</h1>
 	</div>
 	
 	<!-- ======================================================================== -->
@@ -108,10 +108,10 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuSetting" class="menu">
 		<div id="sidebar">
-			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">				
-				<li tal:attributes="class php: ActiveAdmin=='News'?'active':''">
-					<a tal:attributes="href 'setting/news'">
-						<i class="icon-tags"></i> <span>TIN TỨC</span>
+			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+				<li tal:attributes="class php: ActiveAdmin=='Member'?'active':''">
+					<a tal:attributes="href 'setting/member'">
+						<i class="icon-tags"></i> <span>THÀNH VIÊN</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Province'?'active':''">

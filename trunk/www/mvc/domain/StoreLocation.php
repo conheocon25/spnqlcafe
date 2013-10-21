@@ -62,17 +62,11 @@ class StoreLocation extends Object{
 		$this->Y 			= $Data[4];
     }
 	
-	function getURLSettingAlbum(){
-		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/album";
-	}
-	
-	function getURLSettingFeature(){
-		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/feature";
-	}
-	
-	function getURLSettingPost(){
-		return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/post";
-	}
+	function getURLSettingLocation(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/location";}
+	function getURLSettingLocationUpdate(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/location/update";}
+	function getURLSettingAlbum(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/album";}
+	function getURLSettingFeature(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/feature";}
+	function getURLSettingPost(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/post";}
 	//=================================================================================
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}		

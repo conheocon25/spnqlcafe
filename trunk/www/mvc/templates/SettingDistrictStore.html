@@ -23,7 +23,8 @@
 								<thead>
 									<tr>
 										<th width="40">STT</th>
-										<th class="left">TÊN</th>										
+										<th class="left">TÊN</th>
+										<th width="80" class="left">VỊ TRÍ</th>	
 										<th width="80" class="left">BÀI VIẾT</th>
 										<th width="80" class="left">ALBUM</th>
 										<th width="80" class="left">MÔ TẢ</th>
@@ -35,6 +36,7 @@
 									<tr tal:repeat="StoreLocation District/getStoreAll">
 										<td class="center"><span tal:content="repeat/StoreLocation/number"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Store" tal:attributes="data-id StoreLocation/getIdStore" tal:content="StoreLocation/getStore/getName"/></td>
+										<td><a tal:attributes="href StoreLocation/getURLSettingLocation">Xem</a></td>
 										<td><a tal:attributes="href StoreLocation/getURLSettingPost">Xem</a></td>
 										<td><a tal:attributes="href StoreLocation/getURLSettingAlbum">Xem</a></td>
 										<td><a tal:attributes="href StoreLocation/getURLSettingFeature">Xem</a></td>
