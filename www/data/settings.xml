@@ -54,6 +54,12 @@
 			<status value="CMD_OK"><forward>SettingAlbumImage</forward></status>
 		</command>
 		
+		<command name="SettingStoreLocation"><view>SettingStoreLocation</view></command>
+		<command name="SettingStoreLocationUpdate">
+			<view>SettingStoreLocationUpdate</view>
+			<status value="CMD_OK"><forward>SettingStore</forward></status>
+		</command>
+		
 		<command name="SettingStorePost"><view>SettingStorePost</view></command>
 		<command name="SettingStoreRate"><view>SettingStoreRate</view></command>
 		<command name="SettingStoreFeature"><view>SettingStoreFeature</view></command>
