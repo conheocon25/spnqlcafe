@@ -102,10 +102,8 @@
 					"Cập nhật ".$Course->getName()." có ".$SD->getCount()
 				);
 				$mTableLog->insert($Log);
-			}			
-			$Session->setValue( $Session->getReValue() );
-			$mSession->update($Session);
-			
+			}
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------												

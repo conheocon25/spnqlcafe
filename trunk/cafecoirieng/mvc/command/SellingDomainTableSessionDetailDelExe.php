@@ -32,14 +32,9 @@
 				date('Y-m-d H:i:s'),
 				"Xóa chi tiết ".$SD->getCourse()->getName()." số lượng ".$SD->getCount()
 			);
-			$mTableLog->insert($Log);
-			
-			
+			$mTableLog->insert($Log);			
 			$mSD->delete(array($IdSessionDetail));
-			
-			$Session->setValue( $Session->getReValue() );
-			$mSession->update($Session);
-			
+									
 			$IdSession = $Session->getId();
 			$IdTable = $Session->getIdTable();
 			

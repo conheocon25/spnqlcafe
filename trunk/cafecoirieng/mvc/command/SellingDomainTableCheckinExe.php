@@ -42,8 +42,7 @@
 					0,						//Discount Value
 					0,						//Discount Percent
 					0,						//Surtax
-					0,						//Payment
-					0						//Value
+					0						//Payment
 				);
 				$IdSession = $mSession->insert($dSession);
 				

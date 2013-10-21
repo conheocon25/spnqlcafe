@@ -30,8 +30,7 @@
 			$Domain = $mDomain->find($IdDomain);
 			$Session = $mSession->find($IdSession);
 			
-			$Session->setNote("In phieu");
-			$Session->setValue( $Session->getReValue() );
+			$Session->setNote("In phieu");			
 			$mSession->update($Session);
 			
 			$Log = new \MVC\Domain\TableLog(

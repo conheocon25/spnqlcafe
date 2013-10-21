@@ -18,15 +18,14 @@ class Session extends Object{
 	private $DiscountPercent;
 	private $Surtax;
 	private $Payment;
-	private $Value;
-	
+		
 	private $Table;
 	private $Employee;
 
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdTable=null, $IdUser=null, $IdCustomer=null, $DateTime=null, $DateTimeEnd=null, $Note=null, $Status=null, $DiscountValue=null, $DiscountPercent=null, $Surtax=null, $Payment=null, $Value=null ) {
+    function __construct( $Id=null, $IdTable=null, $IdUser=null, $IdCustomer=null, $DateTime=null, $DateTimeEnd=null, $Note=null, $Status=null, $DiscountValue=null, $DiscountPercent=null, $Surtax=null, $Payment=null) {
         $this->Id = $Id;
 		$this->IdTable = $IdTable;
 		$this->IdUser = $IdUser;
@@ -39,8 +38,7 @@ class Session extends Object{
 		$this->DiscountPercent = $DiscountPercent;
 		$this->Surtax = $Surtax;
 		$this->Payment = $Payment;
-		$this->Value = $Value;
-		
+			
         parent::__construct( $Id );
     }
 	
@@ -204,27 +202,13 @@ class Session extends Object{
 		$SDs = $mSD->findBySession(array($this->getId()));
 		return $SDs;
 	}
-	
-	function setValue($Value){
-		$this->Value = $Value;
-		$this->markDirty();
-	}
-	
+			
 	function getValue(){
-		if ($this->Value <= 0 || $this->Value == null){
-			$mSD = new \MVC\Mapper\SessionDetail();
-			$Value = $this->getSurtax() + (int)(($mSD->evaluate(array($this->getId())) + 500 + $this->getValueHours() - $this->getDiscountValue())*(1.0 - $this->getDiscountPercent()/100.0)/1000)*1000;
-			return $Value;
-		}
-		return $this->Value;
-	}
-	
-	function getReValue(){
 		$mSD = new \MVC\Mapper\SessionDetail();
 		$Value = $this->getSurtax() + (int)(($mSD->evaluate(array($this->getId())) + 500 + $this->getValueHours() - $this->getDiscountValue())*(1.0 - $this->getDiscountPercent()/100.0)/1000)*1000;
-		return $Value;
+		return $Value;		
 	}
-	
+		
 	function getValuePrint(){
 		$num = new Number($this->getValue());
 		return $num->formatCurrency()." đ";

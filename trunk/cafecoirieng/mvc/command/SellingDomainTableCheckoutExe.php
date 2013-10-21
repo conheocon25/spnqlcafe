@@ -29,8 +29,7 @@
 			
 			//Thanh toán đủ
 			if (isset($Session)){
-				$Session->setStatus(1);
-				$Session->setValue( $Session->getReValue() );
+				$Session->setStatus(1);				
 				$mSession->update($Session);
 				
 				$Log = new \MVC\Domain\TableLog(
