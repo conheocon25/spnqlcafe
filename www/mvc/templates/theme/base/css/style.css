@@ -30,6 +30,8 @@
 		left: 20px;
 	}
 	
+	.comment-input { margin-bottom: 5px !important; }
+	
 	.padding-content-10 { padding: 10px; }
 	.padding-content-20 { padding: 20px; }
 	
