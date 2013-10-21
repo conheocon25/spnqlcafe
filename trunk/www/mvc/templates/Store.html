@@ -25,35 +25,41 @@
 				<div class="row">
 					<div class="span5">
 						<div class="frame">
-							<p class="star" data-score="3.5"/>
-							<h1 class="tpta" tal:content="Store/getName"/>
-							<br/>							
-							<p><b>ĐC:</b> <span tal:content="Store/getAddress"/></p>
-							<p tal:repeat="SF Store/getFeatureAll" tal:content="SF/getFeature/getName"/>
+							<div class="padding-content-10">
+								<p class="star" data-score="3.5"/>
+								<h1 class="tpta" tal:content="Store/getName"/>
+								<br/>							
+								<p><b>ĐC:</b> <span tal:content="Store/getAddress"/></p>
+								<p tal:repeat="SF Store/getFeatureAll" tal:content="SF/getFeature/getName"/>
+							</div>
 						</div>
 					</div>
 					<div class="span7">
 						<div class="frame">
-							<h1>Bản đồ</h1>														
-							<div align="center" id="map" style="width: 100%; height: 320px" />							
+							<div class="padding-content-10">
+								<h1>Bản đồ</h1>														
+								<div align="center" id="map" style="width: 100%; height: 320px"/>							
+							</div>
 						</div>
 					</div>
 				</div><br/>
 				<div class="row">
 					<div class="span12">
 						<div class="frame">
+							<div class="padding-content-10">
 							<h1>Hình ảnh </h1>
-							<div id="myCarousel" class="carousel slide">
-								<div class="carousel-inner">
-									<div class="active item">
-										<img tal:attributes="src Album/getImageAll/current/getURL" width="100%"/>
+								<div id="myCarousel" class="carousel slide">
+									<div class="carousel-inner">
+										<div class="active item">
+											<img tal:attributes="src Album/getImageAll/current/getURL" width="100%"/>
+										</div>
+										<div class="item" tal:repeat="Image Album/getImageAll">
+											<img tal:attributes="src Image/getURL" width="100%"/>
+										</div>
 									</div>
-									<div class="item" tal:repeat="Image Album/getImageAll">
-										<img tal:attributes="src Image/getURL" width="100%"/>
-									</div>
+									<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+									<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 								</div>
-								<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-								<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 							</div>
 						</div>						
 					</div>
@@ -61,7 +67,56 @@
 				<div class="row">
 					<div class="span12">
 						<div class="frame">
-							<h1>Bình luận</h1>
+							<div class="padding-content-10">
+								<h1>Bình luận</h1>
+								<!-- Comment Box -->
+								<div class="comment_div">
+									<div class="padding-content-10">
+										<p>Bình luận thử xem nào</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="span1">
+										<img src="/data/images/slide/pic1.jpg"/>
+									</div>
+									<div class="span3" style="margin-left:10px;">
+										<h3>Tuấn.B.T</h3>
+										<p><i>Đã viết vào 21/10/2013 9:15:32</i></p>
+									</div>
+								</div>
+								<!-- End Comment Box -->
+								
+								<div class="comment_div">
+									<div class="padding-content-10">
+										<p>Ha ha ha !</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="span1">
+										<img src="/data/images/slide/user.png"/>
+									</div>
+									<div class="span3" style="margin-left:10px;">
+										<h3>Ng.T.Bảo</h3>
+										<p><i>Đã viết vào 21/10/2013 9:14:53</i></p>
+									</div>
+								</div>
+								
+								<div class="comment_div">
+									<div class="padding-content-10">
+										<p>Chào tất cả mọi người !</p>
+										<p>Hello !</p>
+									</div>
+								</div>
+								<div class="row">
+									<div class="span1">
+										<img src="/data/images/slide/user.png"/>
+									</div>
+									<div class="span3" style="margin-left:10px;">
+										<h3>L.C.Toàn</h3>
+										<p><i>Đã viết vào 21/10/2013 9:13:00</i></p>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
