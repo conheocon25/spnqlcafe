@@ -2,26 +2,27 @@
 Namespace MVC\Library;
 	class Encrypted
 	{
-		// Thuộc tính				
-		private $DNS;		
-		private $DBUser;
-		private $DBName;
-		private $DBPass;
-		private $key;
-		private $fullpath;
+		// Thuộc tính
+		private $Value;	
+		private $Key;		
+		
 		//---------------------------------------		
 		//Nhóm hàm khởi tạo
 		//---------------------------------------
 		
-		function __construct()
-		{				
-			
-			$this->key = "123appspncompanynumberone";
-			$this->fullpath = "data/key.dat";
+		function __construct($Value=null, $Key=Null)
+		{					
+			$this->Key = $Key;		
+			$this->Value = $Value;						
 		}
 		//---------------------------------------		
 		//Nhóm hàm xử lí cho dữ liệu thường
 		//---------------------------------------
+		function setKeyDefault($value)
+		{
+			$this->Key = "068368spncompanynumberone068368";		
+		}
+		
 		function setData($value)
 		{
 			return $this->Encrypted($value);
@@ -127,10 +128,10 @@ Namespace MVC\Library;
 			fclose($file); 
 			return $systemsize;
 		}
-		function readFromFile($systemsize)
+		function readFromFile($Path)
 		{
 			$result = "";
-			$file = fopen($this->fullpath,"r");
+			$file = fopen($Path,"r");
 			for($i=0; $i < sizeof($systemsize); $i++)
 			{
 				$result[] = fread( $file ,$systemsize[$i]);
