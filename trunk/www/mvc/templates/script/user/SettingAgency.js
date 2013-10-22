@@ -47,10 +47,20 @@ function load(){
 		map = new GMap2(document.getElementById("map"));
 		map.addControl (new GSmallMapControl());
 		map.addControl(new GMapTypeControl());
-		var center = new GLatLng(document.getElementById("lat").value,document.getElementById("lng").value);
+		var X = 10.246724;
+		var Y = 105.976732;
+		
+		if ((document.getElementById("lat").value != 0) && (document.getElementById("lng").value != 0)) {
+			X = document.getElementById("lat").value;
+			Y = document.getElementById("lng").value;
+		} else {
+			document.getElementById("lat").value = X;
+			document.getElementById("lng").value = Y;
+		}
+		var center = new GLatLng(X,Y);
 		map.setCenter(center, 16);
 		//map.setMapType(G_SATELLITE_MAP);
-		map.setMapType(G_HYBRID_MAP);
+		//map.setMapType(G_HYBRID_MAP);
 		map.enableScrollWheelZoom();
 		geocoder = new GClientGeocoder();
 
@@ -58,8 +68,6 @@ function load(){
 		map.addOverlay(marker);
 		document.getElementById("lat").value = center.lat();
 		document.getElementById("lng").value = center.lng ();
-		
-		marker.openInfoWindowHtml(document.getElementById("cafename").value);
 		
 		geocoder = new GClientGeocoder();
 
@@ -85,7 +93,7 @@ function load(){
 				document.getElementById("lng").value = point.lng();
 			});
 		});
-		
+		marker.openInfoWindowHtml("Nắm kéo thả tới vị trí Quán của bạn");
 	}
 }
 

@@ -57,7 +57,7 @@
 		<command name="SettingStoreLocation"><view>SettingStoreLocation</view></command>
 		<command name="SettingStoreLocationUpdate">
 			<view>SettingStoreLocationUpdate</view>
-			<status value="CMD_OK"><forward>SettingStore</forward></status>
+			<status value="CMD_OK"><forward>SettingStoreLocation</forward></status>
 		</command>
 		
 		<command name="SettingStorePost"><view>SettingStorePost</view></command>
