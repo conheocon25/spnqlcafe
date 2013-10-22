@@ -2,10 +2,10 @@
 -- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 19, 2013 at 12:28 AM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Serveur: localhost
+-- Généré le : Mar 22 Octobre 2013 à 11:19
+-- Version du serveur: 5.5.8
+-- Version de PHP: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,13 +16,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `spngroup_cafe_www`
+-- Base de données: `spngroup_cafe_www`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_album_image`
+-- Structure de la table `tbl_album_image`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_album_image` (
@@ -35,25 +35,21 @@ CREATE TABLE IF NOT EXISTS `tbl_album_image` (
   `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_album` (`id_album`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=47 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=43 ;
 
 --
--- Dumping data for table `tbl_album_image`
+-- Contenu de la table `tbl_album_image`
 --
 
 INSERT INTO `tbl_album_image` (`id`, `id_album`, `name`, `time`, `url`, `note`, `key`) VALUES
 (37, 10, 'Chrysanthemum.jpg', '2013-10-17 19:22:35', 'https://lh4.googleusercontent.com/-8Hs_wTz47ww/Ul_Wq27JbmI/AAAAAAAAAQk/BuxzH1md4sw/s1024/Chrysanthemum.jpg', 'Picasa', '5935698865684049506'),
 (39, 10, 'Hydrangeas.jpg', '2013-10-17 19:22:41', 'https://lh5.googleusercontent.com/-FI9QqKvIFEA/Ul_W78MuIsI/AAAAAAAAAQ8/e7Dp6Bnh_v8/s1024/Hydrangeas.jpg', 'Picasa', '5935699159157711554'),
-(42, 10, 'Tulips.jpg', '2013-10-17 19:46:10', 'https://lh6.googleusercontent.com/-9_qIB9AXfbo/Ul_cICrWw0I/AAAAAAAAARg/kKxbVajG2s8/s1024/Tulips.jpg', 'Picasa', '5935704864613385026'),
-(43, 12, 'Tulips.jpg', '2013-10-19 04:42:40', 'https://lh3.googleusercontent.com/-n62dsW4YTf4/UmGrelSnBAI/AAAAAAAAAR8/qt_4yWCu9Ik/s1024/Tulips.jpg', 'Picasa', '5936214325745615874'),
-(44, 12, 'Penguins.jpg', '2013-10-19 04:42:44', 'https://lh6.googleusercontent.com/-jRVeiNipaGQ/UmGrj2-RlMI/AAAAAAAAASE/twNy4ZkYkEA/s1024/Penguins.jpg', 'Picasa', '5936214416391509186'),
-(45, 12, 'Lighthouse.jpg', '2013-10-19 04:42:47', 'https://lh4.googleusercontent.com/-g86eK0lm9rA/UmGrnFGGyLI/AAAAAAAAASM/9UzDh-XC3tU/s1024/Lighthouse.jpg', 'Picasa', '5936214471722059954'),
-(46, 12, 'Koala.jpg', '2013-10-19 04:42:53', 'https://lh6.googleusercontent.com/-1ZdkxB9Mr7Q/UmGrazH5YWI/AAAAAAAAAR0/c8f6TOOIHoc/s1024/Koala.jpg', 'Picasa', '5936214260739301730');
+(42, 10, 'Tulips.jpg', '2013-10-17 19:46:10', 'https://lh6.googleusercontent.com/-9_qIB9AXfbo/Ul_cICrWw0I/AAAAAAAAARg/kKxbVajG2s8/s1024/Tulips.jpg', 'Picasa', '5935704864613385026');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_config`
+-- Structure de la table `tbl_config`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_config` (
@@ -64,20 +60,20 @@ CREATE TABLE IF NOT EXISTS `tbl_config` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `tbl_config`
+-- Contenu de la table `tbl_config`
 --
 
 INSERT INTO `tbl_config` (`id`, `param`, `value`) VALUES
 (6, 'ROW_PER_PAGE', '12'),
 (7, 'GUEST_VISIT', '1112'),
-(8, 'THEME', 'light-blue'),
+(8, 'THEME', 'blue'),
 (9, 'PICASA_USER', 'picasavinhlong@gmail.com'),
 (10, 'PICASA_PASSWORD', 'admin123456789');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_district`
+-- Structure de la table `tbl_district`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_district` (
@@ -90,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `tbl_district` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=702 ;
 
 --
--- Dumping data for table `tbl_district`
+-- Contenu de la table `tbl_district`
 --
 
 INSERT INTO `tbl_district` (`id`, `id_province`, `name`, `X`, `Y`) VALUES
@@ -796,7 +792,7 @@ INSERT INTO `tbl_district` (`id`, `id_province`, `name`, `X`, `Y`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_feature`
+-- Structure de la table `tbl_feature`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_feature` (
@@ -808,7 +804,7 @@ CREATE TABLE IF NOT EXISTS `tbl_feature` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Dumping data for table `tbl_feature`
+-- Contenu de la table `tbl_feature`
 --
 
 INSERT INTO `tbl_feature` (`id`, `name`, `icon`, `key`) VALUES
@@ -825,7 +821,7 @@ INSERT INTO `tbl_feature` (`id`, `name`, `icon`, `key`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_guest`
+-- Structure de la table `tbl_guest`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_guest` (
@@ -838,7 +834,7 @@ CREATE TABLE IF NOT EXISTS `tbl_guest` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `tbl_guest`
+-- Contenu de la table `tbl_guest`
 --
 
 INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
@@ -847,7 +843,7 @@ INSERT INTO `tbl_guest` (`id`, `ip`, `entry_time`, `exit_time`, `agent`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_post`
+-- Structure de la table `tbl_post`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_post` (
@@ -864,7 +860,7 @@ CREATE TABLE IF NOT EXISTS `tbl_post` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `tbl_post`
+-- Contenu de la table `tbl_post`
 --
 
 INSERT INTO `tbl_post` (`id`, `id_store`, `author`, `date`, `content`, `title`, `type`, `key`) VALUES
@@ -874,7 +870,7 @@ INSERT INTO `tbl_post` (`id`, `id_store`, `author`, `date`, `content`, `title`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_province`
+-- Structure de la table `tbl_province`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_province` (
@@ -887,7 +883,7 @@ CREATE TABLE IF NOT EXISTS `tbl_province` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
 
 --
--- Dumping data for table `tbl_province`
+-- Contenu de la table `tbl_province`
 --
 
 INSERT INTO `tbl_province` (`id`, `name`, `X`, `Y`, `order`) VALUES
@@ -958,7 +954,7 @@ INSERT INTO `tbl_province` (`id`, `name`, `X`, `Y`, `order`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_store`
+-- Structure de la table `tbl_store`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_store` (
@@ -971,22 +967,27 @@ CREATE TABLE IF NOT EXISTS `tbl_store` (
   `id_picasa_album` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=117 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=116 ;
 
 --
--- Dumping data for table `tbl_store`
+-- Contenu de la table `tbl_store`
 --
 
 INSERT INTO `tbl_store` (`id`, `name`, `email`, `phone`, `type`, `address`, `id_picasa_album`, `key`) VALUES
 (71, 'Cafe Hồng Anh', '2', '0703 828 817', 4, '79/5, đường Pho Co Dieu, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-hong-anh71'),
+(72, 'Cà Phê Sao Đêm', '', '0703 830 182 ', 0, '2, đường Lê Văn Tám, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-sao-demnull'),
 (73, 'Cà Phê Nghị', '', '090 734 97 99', 0, '184, đường Phạm Hùng, phường 9, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-nghinull'),
+(74, 'Cà Phê Ngọc Trâm', '', '0702 471 249 ', 0, '116, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-ngoc-tramnull'),
+(75, 'Cà Phê Thiên Đường', '', '0703 838 725 ', 0, '81, đường Trưng Nữ Vương, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thien-duongnull'),
 (76, 'Cà Phê Triều Dương', '', '0703 831 346 ', 0, '105, đường 2 Tháng 9, phường , Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-trieu-duongnull'),
 (77, 'Cà Phê Hiếu Thảo', '', '0703 827 903', 0, '66, đường Trưng Nữ Vương, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-hieu-thaonull'),
 (78, 'Cà Phê Tây Nguyên', '', '0703 522 527 ‎', 0, '76, đường 2 Tháng 9, phường 2, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-tay-nguyennull'),
 (79, 'Cà Phê H3', '', '097 722 32 69 ‎', 0, '9, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-h3null'),
+(80, 'Cà Phê Ngọc Bích', '', '0703 826 307', 0, '80, đường Nguyễn Thị Út, phường 1, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-ngoc-bichnull'),
 (81, 'Cà Phê Cây Mai', '', '0703 822 293', 0, '1, đường Tô Thị Huỳnh, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-cay-mainull'),
 (82, 'Cà Phê Hồng Ngọc', '', '0703 877 146 ', 0, '7, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-hong-ngocnull'),
 (83, 'Cà Phê 66@', '', '0703 878 005', 0, '66, đường Nguyễn Văn Lâu, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-66null'),
+(84, 'Cà Phê Hương Điều', '', '0705 481 806 ', 0, '23, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-huong-dieunull'),
 (85, 'Cà Phê Điểm Hẹn', '', '0703 820 852', 0, '192, đường Lê Thái Tổ, phường ., Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-diem-hennull'),
 (86, 'Cà Phê Minh Hoàng', '', '0703 825 270', 0, '34, đường Lưu Văn Liệt, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-minh-hoangnull'),
 (87, 'Cafe Trung Tâm', '', '0702 470 467', 0, '61, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-trung-tamnull'),
@@ -996,6 +997,7 @@ INSERT INTO `tbl_store` (`id`, `name`, `email`, `phone`, `type`, `address`, `id_
 (91, 'Cà Phê Thủy', '', '0702 210 845 ', 0, 'Đường Phạm Thái Bường, phường 4, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thuynull'),
 (92, 'Cà Phê Vườn Xoài', '', '0703 815 629', 0, '278, đường 1A, phường Tân Ngãi, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-vuon-xoainull'),
 (93, 'Cà phê Hương Việt', '', '97 245 46 45', 0, '30, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-huong-vietnull'),
+(94, 'Cà Phê Music Vạn Xuân', '', '0703 866 388 ', 0, '30, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-music-van-xuannull'),
 (95, 'Cà Phê Thiên Chung', '', '0703 827 119', 0, '172, đường Nguyễn Huệ, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thien-chungnull'),
 (96, 'Cafe 99', '', '0703 824 638 ', 0, '2., đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-99null'),
 (97, 'Cà Phê Thanh Bình', '', '0703 822 051 ', 0, '2, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thanh-binhnull'),
@@ -1005,18 +1007,20 @@ INSERT INTO `tbl_store` (`id`, `name`, `email`, `phone`, `type`, `address`, `id_
 (101, 'Cà Phê 911', '', '98 229 29 11', 0, '50, đường Đinh Tiên Hoàng, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-911null'),
 (102, 'Cà Phê Thủy Trúc', '', '', 0, 'Đường Phó Cơ Điều, phường 8, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-thuy-trucnull'),
 (103, 'Cà Phê 25', '', '0703 815 218 ', 0, '25, đường 1A, phường Tân Ngãi, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-25null'),
+(104, 'Cà Phê Vườn Trúc', '', '0703 833 047', 0, '67, đường Phó Cơ Điều, phường 4, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-vuon-trucnull'),
+(105, 'Cafe Lý Tưởng', '', '0703 842 704 ', 0, '61/20C, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'cafe-ly-tuongnull'),
+(106, 'Cà Phê Dạ Hương', '', '0702 210 424', 0, '55, đường Mậu Thân, phường 3, Tp. Vĩnh Long, Vĩnh Long, Việt Nam', '', 'ca-phe-da-huongnull'),
 (107, 'Quán Cafe Võng', '', '', 0, 'Đường Phó Cơ Điều, phường Phước Hậu, Long Hồ, Vĩnh Long, Việt Nam', '', 'quan-cafe-vongnull'),
 (108, 'Trúc Hoa Viên', '', '', 0, 'Đường 1A, phường Phú Quới, Long Hồ, Vĩnh Long, Việt Nam', '', 'truc-hoa-viennull'),
 (109, 'Cafe Ciao', '', '0703 878 724', 0, '13/7, đường quốc lộ 53, phường Tân Hạnh, Long Hồ, Vĩnh Long, Việt Nam', '', 'cafe-ciaonull'),
 (110, 'Cafe Nguyễn Trúc', '', '', 0, 'Đối diện chợ phước yên A, phú quới, long hồ, Vĩnh Long, Việt Nam', '', 'cafe-nguyen-trucnull'),
 (111, 'Cafe Lê Vy', '', '', 0, 'Phú quới, Long Hồ, Vĩnh Long, Việt Nam', '', 'cafe-le-vynull'),
-(115, 'Quán Cóc Ổi', '1', '2', 3, '4', '5935670244266979009', 'quan-coc-oi-115'),
-(116, 'Cà phê Vạn Xuân', '', '', 0, '12 P4 Phạm Thái Bường, TP Vĩnh Long', '5936213823583578753', 'ca-phe-van-xuan-116');
+(115, 'Quán Cóc Ổi', '1', '2', 3, '4', '5935670244266979009', 'quan-coc-oi-115');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_store_album`
+-- Structure de la table `tbl_store_album`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_store_album` (
@@ -1027,23 +1031,22 @@ CREATE TABLE IF NOT EXISTS `tbl_store_album` (
   `order` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_store` (`id_store`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `tbl_store_album`
+-- Contenu de la table `tbl_store_album`
 --
 
 INSERT INTO `tbl_store_album` (`id`, `id_store`, `name`, `key`, `order`) VALUES
 (8, 71, 'ABC', 'abc', 1),
 (9, 71, 'Các món', 'cac-mon', 0),
 (10, 115, 'Món ăn', 'mon-an', 0),
-(11, 115, 'Khai trương', 'khai-truong', 0),
-(12, 116, 'Album 1', 'album-1', 0);
+(11, 115, 'Khai trương', 'khai-truong', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_store_feature`
+-- Structure de la table `tbl_store_feature`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_store_feature` (
@@ -1053,10 +1056,10 @@ CREATE TABLE IF NOT EXISTS `tbl_store_feature` (
   PRIMARY KEY (`id`),
   KEY `id_feature` (`id_feature`),
   KEY `id_store` (`id_store`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `tbl_store_feature`
+-- Contenu de la table `tbl_store_feature`
 --
 
 INSERT INTO `tbl_store_feature` (`id`, `id_feature`, `id_store`) VALUES
@@ -1065,43 +1068,44 @@ INSERT INTO `tbl_store_feature` (`id`, `id_feature`, `id_store`) VALUES
 (8, 4, 71),
 (9, 3, 71),
 (10, 1, 115),
-(11, 2, 115),
-(12, 1, 116),
-(13, 2, 116),
-(14, 7, 116),
-(15, 8, 116);
+(11, 2, 115);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_store_location`
+-- Structure de la table `tbl_store_location`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_store_location` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_district` int(11) NOT NULL,
   `id_store` int(11) NOT NULL,
-  `x` float NOT NULL,
-  `y` float NOT NULL,
+  `x` double NOT NULL,
+  `y` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_district` (`id_district`),
   KEY `id_location` (`id_store`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
--- Dumping data for table `tbl_store_location`
+-- Contenu de la table `tbl_store_location`
 --
 
 INSERT INTO `tbl_store_location` (`id`, `id_district`, `id_store`, `x`, `y`) VALUES
-(25, 653, 71, 6, 7),
+(25, 653, 71, 10.251627788408305, 105.9727531671524),
+(26, 653, 72, 0, 0),
 (27, 653, 73, 0, 0),
+(28, 653, 74, 0, 0),
+(29, 653, 75, 0, 0),
 (30, 653, 76, 0, 0),
 (31, 653, 77, 0, 0),
-(32, 653, 78, 0, 0),
+(32, 653, 78, 10.244506636142377, 105.97021579742432),
 (33, 653, 79, 0, 0),
+(34, 653, 80, 0, 0),
 (35, 653, 81, 0, 0),
 (36, 653, 82, 0, 0),
 (37, 653, 83, 0, 0),
+(38, 653, 84, 0, 0),
 (39, 653, 85, 0, 0),
 (40, 653, 86, 0, 0),
 (41, 653, 87, 0, 0),
@@ -1111,6 +1115,7 @@ INSERT INTO `tbl_store_location` (`id`, `id_district`, `id_store`, `x`, `y`) VAL
 (45, 653, 91, 0, 0),
 (46, 653, 92, 0, 0),
 (47, 653, 93, 0, 0),
+(48, 653, 94, 0, 0),
 (49, 653, 95, 0, 0),
 (50, 653, 96, 0, 0),
 (51, 653, 97, 0, 0),
@@ -1120,18 +1125,20 @@ INSERT INTO `tbl_store_location` (`id`, `id_district`, `id_store`, `x`, `y`) VAL
 (55, 653, 101, 0, 0),
 (56, 653, 102, 0, 0),
 (57, 653, 103, 0, 0),
+(58, 653, 104, 0, 0),
+(59, 653, 105, 0, 0),
+(60, 653, 106, 0, 0),
 (61, 653, 107, 0, 0),
 (62, 653, 108, 0, 0),
 (63, 653, 109, 0, 0),
 (64, 653, 110, 0, 0),
 (65, 653, 111, 0, 0),
-(69, 654, 115, 0, 0),
-(70, 653, 116, 10.2338, 105.986);
+(69, 654, 115, 10.024977, 105.842836);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_tag`
+-- Structure de la table `tbl_tag`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_tag` (
@@ -1142,7 +1149,7 @@ CREATE TABLE IF NOT EXISTS `tbl_tag` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `tbl_tag`
+-- Contenu de la table `tbl_tag`
 --
 
 INSERT INTO `tbl_tag` (`id`, `name`, `key`) VALUES
@@ -1153,7 +1160,7 @@ INSERT INTO `tbl_tag` (`id`, `name`, `key`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_user`
+-- Structure de la table `tbl_user`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_user` (
@@ -1172,7 +1179,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `tbl_user`
+-- Contenu de la table `tbl_user`
 --
 
 INSERT INTO `tbl_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecreate`, `dateupdate`, `dateactivity`, `type`, `code`) VALUES
@@ -1185,7 +1192,7 @@ INSERT INTO `tbl_user` (`id`, `name`, `email`, `pass`, `gender`, `note`, `datecr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_video`
+-- Structure de la table `tbl_video`
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_video` (
@@ -1198,10 +1205,10 @@ CREATE TABLE IF NOT EXISTS `tbl_video` (
   `count` int(11) NOT NULL,
   `key` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `tbl_video`
+-- Contenu de la table `tbl_video`
 --
 
 INSERT INTO `tbl_video` (`id`, `id_category`, `name`, `time`, `url`, `note`, `count`, `key`) VALUES
@@ -1209,36 +1216,30 @@ INSERT INTO `tbl_video` (`id`, `id_category`, `name`, `time`, `url`, `note`, `co
 (3, 2, 'Hướng dẫn 2', '2013-09-16 05:12:09', 'http://www.youtube.com/embed/sgRmFIWAeRA', 'Thử nghiệm', 1, 'abc-');
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables exportées
 --
 
 --
--- Constraints for table `tbl_album_image`
---
-ALTER TABLE `tbl_album_image`
-  ADD CONSTRAINT `tbl_album_image_ibfk_1` FOREIGN KEY (`id_album`) REFERENCES `tbl_store_album` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tbl_post`
+-- Contraintes pour la table `tbl_post`
 --
 ALTER TABLE `tbl_post`
   ADD CONSTRAINT `tbl_post_ibfk_1` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_store_album`
+-- Contraintes pour la table `tbl_store_album`
 --
 ALTER TABLE `tbl_store_album`
   ADD CONSTRAINT `tbl_store_album_ibfk_1` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_store_feature`
+-- Contraintes pour la table `tbl_store_feature`
 --
 ALTER TABLE `tbl_store_feature`
-  ADD CONSTRAINT `tbl_store_feature_ibfk_2` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_store_feature_ibfk_1` FOREIGN KEY (`id_feature`) REFERENCES `tbl_feature` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_store_feature_ibfk_1` FOREIGN KEY (`id_feature`) REFERENCES `tbl_feature` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_store_feature_ibfk_2` FOREIGN KEY (`id_store`) REFERENCES `tbl_store` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_store_location`
+-- Contraintes pour la table `tbl_store_location`
 --
 ALTER TABLE `tbl_store_location`
   ADD CONSTRAINT `tbl_store_location_ibfk_1` FOREIGN KEY (`id_district`) REFERENCES `tbl_district` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,

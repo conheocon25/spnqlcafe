@@ -1,11 +1,12 @@
 	<!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyC68TCFkTWKY1s8PXW8nR-D0infpzfrayc"/>  
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	
-	<body>
+	<body onload="load()" onunload="GUnload()">
 		<div metal:use-macro="mAdmin.xhtml/Header"/>
 		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
 		
@@ -14,17 +15,19 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
+					<h2>Xác định vị trí Quán trên Bản đồ</h2>														
+					<div align="center" id="map" style="width: 100%; height: 320px"/>	
 					<form class="form-horizontal" tal:attributes="action SL/getURLSettingLocationUpdate" method="post">
 						<div class="control-group">
 							<label class="control-label" for="Name">Tọa độ X</label>
 							<div class="controls">
-								<input id="X" name="X" type="text" tal:attributes="value SL/getX"/>
+								<input id="lat" name="X" type="text" tal:attributes="value SL/getX"/>								
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="Name">Tọa độ Y</label>
 							<div class="controls">
-								<input id="Y" name="Y" type="text" tal:attributes="value SL/getX"/>
+								<input id="lng" name="Y" type="text" tal:attributes="value SL/getY"/>
 							</div>
 						</div>
 						<div class="control-group">
@@ -38,6 +41,8 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		
+		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingAgency.js" />
 		<script type="text/javascript">
 		/*<![CDATA[*/
 			
