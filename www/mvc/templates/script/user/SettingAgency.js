@@ -1,5 +1,20 @@
 ﻿/*<![CDATA[*/
 var map;
+
+	var new_icon = new GIcon();	
+	new_icon.image = "http://www.quanly-cafe.com/data/images/logo/Cafe_Red.png"; 
+	new_icon.size = new GSize(8,8);
+	new_icon.iconAnchor = new GPoint(8,9); 
+	new_icon.infoWindowAnchor = new GPoint(7,7);
+	  
+	var opt; 
+	opt = {};	  
+	opt.icon = new_icon; 
+	opt.draggable = true;  
+	opt.clickable = false; 
+	opt.dragCrossMove = true;		
+	
+	
 function changeMap(){
 	var toado = $('#Position option[selected]="selected"').attr('title');
 	var arrayToado = toado.split(',');				
@@ -57,20 +72,23 @@ function load(){
 			document.getElementById("lat").value = X;
 			document.getElementById("lng").value = Y;
 		}
+		
 		var center = new GLatLng(X,Y);
 		map.setCenter(center, 16);
 		//map.setMapType(G_SATELLITE_MAP);
 		//map.setMapType(G_HYBRID_MAP);
 		map.enableScrollWheelZoom();
 		geocoder = new GClientGeocoder();
-
-		var marker = new GMarker(center, {draggable: true}); 		
-		map.addOverlay(marker);
-		document.getElementById("lat").value = center.lat();
-		document.getElementById("lng").value = center.lng ();
 		
-		geocoder = new GClientGeocoder();
+		
+		//var marker = map_create_marker(center,"My Popup",map_icon_red);
 
+		var marker = new GMarker(center, opt); 		
+		map.addOverlay(marker);
+		
+		//document.getElementById("lat").value = center.lat();
+		//document.getElementById("lng").value = center.lng ();
+		
 		GEvent.addListener(marker, "dragend", function() {
 			var point = marker.getPoint();
 			map.panTo(point);
@@ -81,10 +99,10 @@ function load(){
 		GEvent.addListener(map, "moveend", function(){
 			map.clearOverlays();
 			var center = map.getCenter();
-			var marker = new GMarker(center, {draggable: true});
+			var marker = new GMarker(center, opt);
 			map.addOverlay(marker);
-			document.getElementById ("lat").value = center.lat();
-			document.getElementById("lng").value = center.lng();
+			//document.getElementById ("lat").value = center.lat();
+			//document.getElementById("lng").value = center.lng();
 
 			GEvent.addListener(marker, "dragend", function() {
 				var point =marker.getPoint();
@@ -93,7 +111,7 @@ function load(){
 				document.getElementById("lng").value = point.lng();
 			});
 		});
-		marker.openInfoWindowHtml("Nắm kéo thả tới vị trí Quán của bạn");
+		//marker.openInfoWindowHtml("Nắm kéo thả tới vị trí Quán của bạn");
 	}
 }
 
@@ -158,4 +176,15 @@ function showMaker() {
 	map.addOverlay(marker);
 	map.enableScrollWheelZoom();		
 }
+
+function resize() {
+        var map_obj = document.getElementById("map_canvas");
+
+      /*  map_obj.style.width = "500px";
+        map_obj.style.height = "225px";*/
+        if (map) {
+            map.checkResize();
+            map.panTo(new GLatLng(lat,lon));
+        }
+    }
 /*]]>*/
