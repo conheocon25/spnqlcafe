@@ -109,9 +109,9 @@
 	<div metal:define-macro="MenuSetting" class="menu">
 		<div id="sidebar">
 			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-				<li tal:attributes="class php: ActiveAdmin=='Member'?'active':''">
-					<a tal:attributes="href 'setting/member'">
-						<i class="icon-tags"></i> <span>THÀNH VIÊN</span>
+				<li tal:attributes="class php: ActiveAdmin=='User'?'active':''">
+					<a tal:attributes="href 'setting/user'">
+						<i class="icon-tags"></i> <span>NGƯỜI DÙNG</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Province'?'active':''">

@@ -1,11 +1,12 @@
 <?php
 namespace MVC\Domain;
-if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
-	require_once( "mvc/mapper/Tag.php" );
-	require_once( "mvc/mapper/User.php" );
-	require_once( "mvc/mapper/Config.php" );	
-	require_once( "mvc/mapper/Album.php" );
-	require_once( "mvc/mapper/Image.php" );	
+if ( ! isset( $EG_DISABLE_INCLUDES ) ){
+	require_once( "mvc/mapper/Tag.php");
+	require_once( "mvc/mapper/User.php");
+	require_once( "mvc/mapper/UserRole.php");
+	require_once( "mvc/mapper/Config.php");
+	require_once( "mvc/mapper/Album.php");
+	require_once( "mvc/mapper/Image.php");
 	
 	require_once( "mvc/mapper/Feature.php");
 	
@@ -43,11 +44,10 @@ class HelperFactory {
 	static function getModel( $model ) {
         $model = preg_replace( "/^.*_/", "", $model );
         $model = "\\MVC\\Domain\\{$model}";
-        if ( class_exists( $model ) ) {
+        if ( class_exists( $model ) ){
             return new $model();
         }
         throw new \MVC\Base\AppException( "Không biết: $model" );
     }
-	
 }
 ?>

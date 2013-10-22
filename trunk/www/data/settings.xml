@@ -67,7 +67,7 @@
 			<view>SettingStoreFeatureUpdate</view>
 			<status value="CMD_OK"><forward>SettingStoreFeature</forward></status>
 		</command>
-		
+		<command name="SettingUser"><view>SettingUser</view></command>
 		<command name="SettingVideo"><view>SettingVideo</view></command>
 		<command name="SettingNews"><view>SettingNews</view></command>
 		<command name="SettingAlbum"><view>SettingAlbum</view></command>

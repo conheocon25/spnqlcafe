@@ -3,7 +3,17 @@
 	<head>
 		<script src=" http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyC68TCFkTWKY1s8PXW8nR-D0infpzfrayc"/>  
 		<span metal:use-macro="base.xhtml/IncludeMETA"/>
-		<span metal:use-macro="base.xhtml/IncludeCSS-Search"/>		
+		<span metal:use-macro="base.xhtml/IncludeCSS-Search"/>
+		<div id="fb-root"></div>
+		<script>
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/vi_VN/all.js#xfbml=1&appId=525611617524479";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 	</head>
 	
 	<body  onload="showMaker()" onunload="GUnload()" id="index">
@@ -75,48 +85,9 @@
 										<p>Đây là phần đánh giá của khách hàng, những nội dung phản cảm, thiếu tôn trọng sẽ được lọc bỏ</p>
 									</div>
 								</div>
-								<div class="row">
-									<div class="span1">
-										<img src="/data/images/slide/pic1.jpg"/>
-									</div>
-									<div class="span3" style="margin-left:10px;">
-										<h3>Tuấn.B.T</h3>
-										<p><i>Đã viết vào 21/10/2013 9:15:32</i></p>
-									</div>
-								</div>
-								<!-- End Comment Box -->
+								<div class="fb-comments" data-href="http://www.quanly-cafe.com" data-colorscheme="The color scheme used in the plugin" data-numposts="6" data-width="320">
 								
-								<div class="comment_div">
-									<div class="padding-content-10">
-										<p>Ha ha ha !</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="span1">
-										<img src="/data/images/slide/user.png"/>
-									</div>
-									<div class="span3" style="margin-left:10px;">
-										<h3>Ng.T.Bảo</h3>
-										<p><i>Đã viết vào 21/10/2013 9:14:53</i></p>
-									</div>
-								</div>
-								
-								<div class="comment_div">
-									<div class="padding-content-10">
-										<p>Chào tất cả mọi người !</p>
-										<p>Hello !</p>
-									</div>
-								</div>
-								<div class="row">
-									<div class="span1">
-										<img src="/data/images/slide/user.png"/>
-									</div>
-									<div class="span3" style="margin-left:10px;">
-										<h3>L.C.Toàn</h3>
-										<p><i>Đã viết vào 21/10/2013 9:13:00</i></p>
-									</div>
-								</div>
-								
+								</div>								
 								<form class="well form-inline" action="#" method="post" style="margin-top:20px;">
 									<div class="container">
 										<h3>Giới thiệu bạn bè</h3><br/>
@@ -150,7 +121,7 @@
 		<script type="text/javascript" language="javascript" src="/mvc/templates/script/user/SettingAgency.js" />
 		<span metal:use-macro="base.xhtml/IncludeJS-Search"/>
 		<script type="text/javascript">
-		/*<![CDATA[*/				
+		/*<![CDATA[*/			
 			$('#myCarousel').carousel({
 				interval: 5000
 			});
@@ -169,6 +140,7 @@
 					return $(this).attr('data-score');
 				}
 			});
+						
 		/*]]>*/
 		</script>
 	</body>
