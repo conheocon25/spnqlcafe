@@ -9,6 +9,12 @@ RewriteRule ^signin/exe$ 					?cmd=SigninExe [L]
 RewriteRule ^signout/load$ 					?cmd=SignoutLoad [L]
 RewriteRule ^signout/exe$ 					?cmd=SignoutExe [L]
 
+RewriteRule ^dang-ky$ 					    ?cmd=Register [L]
+RewriteRule ^dang-ky/exe$ 					?cmd=RegisterExe [L]
+RewriteRule ^thong-bao-dang-ky$ 			?cmd=ShowRegister [L]
+
+RewriteRule ^xac-nhan/([A-Za-z0-9_-]+)$ 	?cmd=ConfirmRegister&EmailRegister=$1 [L]
+
 RewriteRule ^trang-chu$ 					?cmd=Home [L]
 RewriteRule ^tu-van/phan-mem-quan-ly$ 		?cmd=SolutionApplication [L]
 
