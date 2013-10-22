@@ -45,7 +45,7 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI ALBUM</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MỚI BÀI VIẾT</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
@@ -77,20 +77,26 @@
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT ALBUM</h3>
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT BÀI VIẾT</h3>
 								</div>
 								<div class="form-horizontal">
 									<div class="modal-body">
-										<label class="control-label">Tên</label>
+										<label class="control-label">Tác giả</label>
 										<div class="controls">
-											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+											<input id="Author2" name="Author2" type="text" class="form-control input-small"/>
 										</div>									
 										<div class="form-group">
-											<label class="control-label">Thứ tự</label>
+											<label class="control-label">Tiêu đề</label>
 											<div class="controls">
-												<input id="Order2" name="Order2" type="text" class="form-control input-small"/>
+												<input id="Title2" name="Title2" type="text" class="form-control input-small"/>
 											</div>
-										</div>										
+										</div>
+										<div class="form-group">
+											<label class="control-label">Nội dung</label>
+											<div class="controls">
+												<input id="Content2" name="Content2" type="text" class="form-control input-small"/>
+											</div>
+										</div>
 									</div>									
 									<div class="modal-footer">
 										<button  id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -112,14 +118,14 @@
 		<script type="text/javascript">
 		/*<![CDATA[*/					
 			//-----------------------------------------------------------------------------------
-			//Delete 1 DOMAIN			
+			//Delete 1  BÀI VIẾT			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
 			});
 			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
 			$('#URLDelButton').click(function(){			
-				var URL = "/object/del/Album/" + $(this).attr('alt');
+				var URL = "/object/del/Post/" + $(this).attr('alt');
 				$.ajax({
 					type: "POST",					
 					url: URL,
@@ -130,7 +136,7 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 ALBUM
+			//Insert 1  BÀI VIẾT
 			$('#URLInsButton').click(function(){
 				var Data = [];
 				Data[0] = 'null';
@@ -138,7 +144,7 @@
 				Data[2] = $('#Name1').val();
 				Data[3] = $('#Order1').val();
 								
-				var URL = "/object/ins/Album";
+				var URL = "/object/ins/Post";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
@@ -150,23 +156,23 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Load 1 ALBUM
+			//Load 1  BÀI VIẾT
 			//-----------------------------------------------------------------------------------
 			$('.update-item').click(function(){
 				//Load dữ liệu JSON về
-				var url = "/object/load/Album/" + $(this).attr('data-id');
+				var url = "/object/load/Post/" + $(this).attr('data-id');
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#Order2').attr('value', data.Order);
-					$('#Key2').attr('value', data.Key);
+					$('#Title2').attr('value', data.Title);
+					$('#Content2').attr('value', data.Content);
+					$('#Author2').attr('value', data.Author);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 ALBUM
+			//Update 1  BÀI VIẾT
 			//-----------------------------------------------------------------------------------
 			$('#URLUpdButton').click(function(){
 				var Data = [];
@@ -175,7 +181,7 @@
 				Data[2] = $('#Name2').val();
 				Data[3] = $('#Order2').val();
 								
-				var URL = "/object/upd/Album";
+				var URL = "/object/upd/Post";
 				$.ajax({
 					type: "POST",
 					data: {Data:Data},
