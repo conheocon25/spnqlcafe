@@ -9,7 +9,8 @@
 		<command name="Register"><view>Register</view></command>
 		<command name="RegisterExe"><view>RegisterExe</view><status value="CMD_OK"><forward>ShowRegister</forward></status></command>
 		<command name="ShowRegister"><view>ShowRegister</view></command>
-		<command name="ConfirmRegister"><view>ConfirmRegister</view><status value="CMD_OK"><forward>ShowRegister</forward></status></command>
+		<command name="ConfirmRegister"><view>ConfirmRegister</view><status value="CMD_OK"><forward>ConfirmRegisterExe</forward></status></command>
+		<command name="ConfirmRegisterExe"><view>ConfirmRegisterExe</view><status value="CMD_OK"><forward>ShowRegister</forward></status></command>
 		
 		<command name="Search"><view>Search</view></command>		
 		<command name="Store"><view>Store</view></command>
