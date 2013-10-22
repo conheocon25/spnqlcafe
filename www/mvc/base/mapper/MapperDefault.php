@@ -1,5 +1,6 @@
 <?php	
 	$mUser 					= new \MVC\Mapper\User();
+	$mUserRole				= new \MVC\Mapper\UserRole();
 	$mTag 					= new \MVC\Mapper\Tag();	
 	$mConfig				= new \MVC\Mapper\Config();
 	$mAlbum					= new \MVC\Mapper\Album();

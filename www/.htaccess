@@ -63,6 +63,9 @@ RewriteRule ^setting/tag/page/([0-9])$ 										?cmd=SettingTag&Page=$1 [L]
 RewriteRule ^setting/video$ 								?cmd=SettingVideo [L]
 RewriteRule ^setting/video/page/([0-9])$ 					?cmd=SettingVideo&Page=$1 [L]
 
+RewriteRule ^setting/user$ 									?cmd=SettingUser [L]
+RewriteRule ^setting/user/page/([0-9])$ 					?cmd=SettingUser&Page=$1 [L]
+
 RewriteRule ^picasa/album/insert$ 							?cmd=PicasaAlbumInsert [L]
 RewriteRule ^picasa/album/delete$ 							?cmd=PicasaAlbumDelete [L]
 RewriteRule ^picasa/album/update$ 							?cmd=PicasaAlbumUpdate [L]
