@@ -2,9 +2,9 @@
 var map;
 
 	var new_icon = new GIcon();	
-	new_icon.image = "http://www.quanly-cafe.com/data/images/logo/Cafe_Red.png"; 
-	new_icon.size = new GSize(8,8);
-	new_icon.iconAnchor = new GPoint(8,9); 
+	new_icon.image = "http://www.quanly-cafe.com/data/images/logo/cafe_marker.png"; 	
+	new_icon.size = new GSize(15,30);
+	new_icon.iconAnchor = new GPoint(15,30); 
 	new_icon.infoWindowAnchor = new GPoint(7,7);
 	  
 	var opt; 
