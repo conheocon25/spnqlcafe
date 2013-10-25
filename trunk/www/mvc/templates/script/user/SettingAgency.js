@@ -12,8 +12,14 @@ var map;
 	opt.icon = new_icon; 
 	opt.draggable = true;  
 	opt.clickable = false; 
-	opt.dragCrossMove = true;		
+	opt.dragCrossMove = true;	
 	
+	var opt_Fit; 
+	opt_Fit = {};	  
+	opt_Fit.icon = new_icon; 
+	opt_Fit.draggable = false;  
+	opt_Fit.clickable = false; 
+	opt_Fit.dragCrossMove = true;
 	
 function changeMap(){
 	var toado = $('#Position option[selected]="selected"').attr('title');
@@ -171,7 +177,7 @@ function showMaker() {
 	map.setCenter(center, 16);
 	//map.setMapType(G_SATELLITE_MAP);
 	//map.setMapType(G_HYBRID_MAP);
-	var marker = new GMarker(center, {draggable: true}); 	
+	var marker = new GMarker(center, opt_Fit); 	
 	marker.openInfoWindowHtml( $("#MarkerName").attr('alt') );
 	map.addOverlay(marker);
 	map.enableScrollWheelZoom();		
