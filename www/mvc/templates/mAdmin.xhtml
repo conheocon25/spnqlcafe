@@ -23,6 +23,14 @@
 	<!-- CASCADING STYLE SHEETS INCLUDE											  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeCSS">	
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap-glyphicons.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/glyphicons-regular.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/fullcalendar.css"/>	
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.main.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/unicorn.grey.css" class="skin-color"/>
+		
+		<!--
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/icheck/flat/blue.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/select2.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/bootstrap.min.css"/>
@@ -40,12 +48,25 @@
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery.fileupload-ui-noscript.css"/>
 		
 		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>		
+		-->
 	</span>
 	
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeJS">
+		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery-ui.custom.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.sparkline.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/fullcalendar.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.jpanelmenu.min.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.js"></script>
+		<script src="/mvc/templates/theme/cms/js/unicorn.dashboard.js"></script>
+		<!--
 		<script src="/mvc/templates/theme/cms/js/jquery.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery-ui.custom.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap.min.js"></script>
@@ -58,7 +79,7 @@
 		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>
-		
+		-->
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -67,11 +88,11 @@
 	<div metal:define-macro="Header">
 		<div id="header">
 			<h1><a href="/setting"></a></h1>	
-			<a id="menu-trigger" href="#"><i class="icon-align-justify"></i></a>	
+			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"></i></a>	
 		</div>
 		<div id="user-nav">
             <ul style="width: auto; margin: 0px;" class="btn-group">
-                <li class="btn"><a href="/signout/load"><i class="icon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
+                <li class="btn"><a href="/signout/load"><i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/></a></li>
             </ul>
         </div>
 	</div>
@@ -111,22 +132,22 @@
 			<ul style="display: block;" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
 				<li tal:attributes="class php: ActiveAdmin=='User'?'active':''">
 					<a tal:attributes="href 'setting/user'">
-						<i class="icon-tags"></i> <span>NGƯỜI DÙNG</span>
+						<i class="glyphicons-tags"></i> <span>NGƯỜI DÙNG</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Province'?'active':''">
 					<a tal:attributes="href 'setting/province'">
-						<i class="icon-user"></i> <span>TỈNH THÀNH</span>
+						<i class="glyphicons-user"></i> <span>TỈNH THÀNH</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Feature'?'active':''">
 					<a tal:attributes="href 'setting/feature'">
-						<i class="icon-tags"></i> <span>THẺ ĐẶC ĐIỂM</span>
+						<i class="glyphicons-tags"></i> <span>THẺ ĐẶC ĐIỂM</span>
 					</a>
 				</li>
 				<li tal:attributes="class php: ActiveAdmin=='Config'?'active':''">
 					<a tal:attributes="href '/setting/config'">
-						<i class="icon-gear"></i> <span>CẤU HÌNH</span>
+						<i class="glyphicons-tags"></i> <span>CẤU HÌNH</span>
 					</a>
 				</li>
 			</ul>
