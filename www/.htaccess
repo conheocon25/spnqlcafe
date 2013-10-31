@@ -53,6 +53,8 @@ RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/feature/([0-9]+)$ 	?cmd
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/location$ 			?cmd=SettingStoreLocation&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
 RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/location/update$ 	?cmd=SettingStoreLocationUpdate&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
 
+RewriteRule ^setting/province/([0-9]+)/([0-9]+)/([0-9]+)/user$ 				?cmd=SettingStoreUser&IdProvince=$1&IdDistrict=$2&IdStore=$3 [L]
+
 RewriteRule ^setting/feature$ 												?cmd=SettingFeature [L]
 RewriteRule ^setting/feature/page/([0-9])$ 									?cmd=SettingFeature&Page=$1 [L]
 

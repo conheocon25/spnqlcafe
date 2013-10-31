@@ -61,7 +61,7 @@ class StoreLocation extends Object{
 		$this->X 			= $Data[3];
 		$this->Y 			= $Data[4];
     }
-	
+	function getURLSettingUser(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/user";}
 	function getURLSettingLocation(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/location";}
 	function getURLSettingLocationUpdate(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/location/update";}
 	function getURLSettingAlbum(){return "/setting/province/".$this->getDistrict()->getIdProvince()."/".$this->getIdDistrict()."/".$this->getIdStore()."/album";}

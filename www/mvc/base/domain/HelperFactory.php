@@ -17,6 +17,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ){
 	require_once( "mvc/mapper/Store.php");
 	require_once( "mvc/mapper/StoreLocation.php");
 	require_once( "mvc/mapper/StoreFeature.php");
+	require_once( "mvc/mapper/StoreUser.php");
 	
 	require_once( "mvc/mapper/Province.php");
 	require_once( "mvc/mapper/District.php");

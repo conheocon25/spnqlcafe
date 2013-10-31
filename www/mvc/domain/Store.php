@@ -83,6 +83,12 @@ class Store extends Object{
 		return $SL;
 	}
 	
+	function getUserAll(){
+		$mStoreUser = new \MVC\Mapper\StoreUser();
+		$SU 		= $mStoreUser->findBy(array($this->getId()));
+		return $SU;
+	}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),

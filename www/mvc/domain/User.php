@@ -88,13 +88,18 @@ class User extends Object{
 	function getType(){return $this->Type;}	
 	function getTypePrint(){$Arr = array("", "Bán hàng", "Quản lý", "Quan sát", "Quản trị");return $Arr[$this->Type];}	
 	
-	function isAdmin(){if ($this->getType()==4)return true;return false;}	
-	function isViewer(){if ($this->getType()==3)return true;return false;}	
+	function isAdmin(){if ($this->getType()==1)return true;return false;}	
 	function isManager(){if ($this->getType()==2)return true;return false;}	
-	function isSeller(){	if ($this->getType()==1)return true;return false;}
-	
+	function isBoss(){if ($this->getType()==3)return true;return false;}	
+		
 	function setCode( $Code){	$this->Code= $Code;$this->markDirty();}
 	function getCode(){	return $this->Code;}
+	
+	function getStoreAll(){
+		$mStoreUser = new \MVC\Mapper\StoreUser();
+		$SU 		= $mStoreUser->findByUser(array($this->getId()));
+		return $SU;
+	}
 	
 	function toJSON(){
 		$json = array(
