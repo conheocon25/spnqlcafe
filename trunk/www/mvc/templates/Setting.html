@@ -14,7 +14,20 @@
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
 				<div class="col-12">
-					
+					<table class="table table-bordered table-striped table-hover with-check" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
+						<thead>
+							<tr>
+								<th width="40">STT</th>
+								<th><div class="text-left">TÊN</div></th>								
+							</tr>
+						</thead>
+						<tbody>
+							<tr tal:repeat="SU User/getStoreAll">
+								<td class="center"><span tal:content="repeat/SU/number"/></td>
+								<td><span tal:content="SU/getStore/getName"/></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
