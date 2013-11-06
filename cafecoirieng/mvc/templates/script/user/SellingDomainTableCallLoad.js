@@ -2,8 +2,9 @@
 	$('.Plus').click(function(){
 		var URL = $(".Table").attr('alt');
 		var IdCourse = $(this).attr('alt');
-		var Count = $(this.parentNode.parentNode.childNodes[7]).html();
-						
+		var Count = $(this.parentNode.parentNode.childNodes[9]).html();
+		var Value = $(this.parentNode.parentNode.childNodes[13]).html();
+				
 		URL = URL+"/"+IdCourse+"/plus";
 		
 		$.ajax({
@@ -12,18 +13,21 @@
 			url: URL,
 			dataType: 'json',
 			success: function(data){
-				Count = data.Count;				
+				Count = data.Count;
+				Value = data.Value;
 			}
 		});		
-		$(this.parentNode.parentNode.childNodes[7]).html( Count);
+		$(this.parentNode.parentNode.childNodes[9]).html( Count );
+		$(this.parentNode.parentNode.childNodes[13]).html( Value );
 		
 	});	
 	
 	$('.Minus').live('click', function(){
 		var URL = $(".Table").attr('alt');
 		var IdCourse = $(this).attr('alt');
-		var Count = $(this.parentNode.parentNode.childNodes[7]).html();
-						
+		var Count = $(this.parentNode.parentNode.childNodes[9]).html();
+		var Value = $(this.parentNode.parentNode.childNodes[13]).html();
+		
 		URL = URL+"/"+IdCourse+"/minus";
 		
 		$.ajax({
@@ -32,10 +36,12 @@
 			url: URL,
 			dataType: 'json',
 			success: function(data){
-				Count = data.Count;				
+				Count = data.Count;
+				Value = data.Value;
 			}
 		});		
-		$(this.parentNode.parentNode.childNodes[7]).html( Count);
+		$(this.parentNode.parentNode.childNodes[9]).html( Count);
+		$(this.parentNode.parentNode.childNodes[13]).html( Value );
 	});	
 	
 });
