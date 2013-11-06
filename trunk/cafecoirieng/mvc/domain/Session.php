@@ -196,7 +196,13 @@ class Session extends Object{
 		return $num->formatCurrency()." đ";
 	}
 	
-	//---------------------------------------------------------										
+	//---------------------------------------------------------
+	function findItem($IdCourse){
+		$mSD = new \MVC\Mapper\SessionDetail();
+		$SD = $mSD->findItem( array($this->getId(), $IdCourse) );
+		return $SD;
+	}
+	
 	function getDetails(){
 		$mSD = new \MVC\Mapper\SessionDetail();
 		$SDs = $mSD->findBySession(array($this->getId()));

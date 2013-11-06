@@ -6,7 +6,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			$Session = \MVC\Base\SessionRegistry::instance();
+			//$Session = \MVC\Base\SessionRegistry::instance();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
@@ -36,8 +36,9 @@
 			$Domain = $Table->getDomain();
 			$URLCallLoad = $Table->getURLCallLoad();
 			$URLCall = $Table->getURLCallExe();
-						
-			$Title = mb_strtoupper($Category->getName(), 'UTF8')." GỌI";
+			$Session = $Table->getSessionActive();
+			
+			$Title = mb_strtoupper($Table->getName()." GỌI ".$Category->getName(), 'UTF8');
 			$Navigation = array(
 				array("ỨNG DỤNG", "/app"),
 				array("BÁN HÀNG", "/selling"),
@@ -54,6 +55,7 @@
 			$request->setObject("Category", $Category);
 			$request->setObject("CategoryAll", $CategoryAll);			
 			$request->setObject('Table', $Table);
+			$request->setObject('Session', $Session);
 		}
 	}
 ?>

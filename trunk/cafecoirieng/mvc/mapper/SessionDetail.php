@@ -68,6 +68,12 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 			where idsession=? and idcourse=?
 		", $tblSessionDetail);
 		
+		$findItemStmt = sprintf("
+			select * 
+			from %s 
+			where idsession=? and idcourse=?
+		", $tblSessionDetail);
+		
 		$trackByCountStmt = sprintf("
 			select 
 				sum(count)
@@ -133,6 +139,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 		$this->findBySessionStmt = self::$PDO->prepare($findBySessionStmt);		
 		$this->evaluateStmt = self::$PDO->prepare( $evaluateStmt );		
 		$this->checkStmt = self::$PDO->prepare( $checkStmt);
+		$this->findItemStmt = self::$PDO->prepare( $findItemStmt);
 		$this->trackByCountStmt = self::$PDO->prepare( $trackByCountStmt);
 		$this->trackByCategoryStmt = self::$PDO->prepare( $trackByCategoryStmt);
 		$this->trackByCourseStmt = self::$PDO->prepare( $trackByCourseStmt);
@@ -209,6 +216,16 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 		if (!isset($result) || $result==null)
 			return null;        
         return $result[0][0];
+    }
+	
+	function findItem( $values ) {	
+        $this->findItemStmt->execute( $values );
+        $array = $this->findItemStmt->fetch();
+        $this->findItemStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
     }
 			
 	function evaluate( $values ) {	
