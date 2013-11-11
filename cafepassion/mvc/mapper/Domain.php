@@ -6,7 +6,7 @@ class Domain extends Mapper implements \MVC\Domain\DomainFinder {
     function __construct() {
         parent::__construct();
 		
-		$tblDomain = "k3d_domain";
+		$tblDomain = "tbl_domain";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblDomain);
 		$selectStmt = sprintf("select * from %s where id=?", $tblDomain);

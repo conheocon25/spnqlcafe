@@ -7,7 +7,7 @@ class CollectCustomer extends Mapper implements \MVC\Domain\CollectCustomerFinde
     function __construct() {
         parent::__construct();
 				
-		$tblCollectCustomer = "k3d_collect_customer";
+		$tblCollectCustomer = "tbl_collect_customer";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblCollectCustomer);
 		$selectStmt = sprintf("select * from %s where id=?", $tblCollectCustomer);
