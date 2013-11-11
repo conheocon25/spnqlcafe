@@ -4,18 +4,18 @@
 	<!-- META TAG INCLUDE														  -->
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
-		<title tal:content="string:Hệ thống quản lý Karaoke"/>
-		<base href="http://baduc.quanly-karaoke.com"/>
+		<title tal:content="string:Hệ thống quản lý Cafe"/>
+		<base href="http://cafepassion.quanly-cafe.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
 		<meta http-equiv="Expires" content="-1"/>
 		<meta http-equiv="Cache-Control" content="no-cache"/>
-		<meta name="keywords" content="Hệ thống quản lý Karaoke"/>
-		<meta name="description" content="Hệ thống quản lý Karaoke"/>
-		<meta name="page-topic" content="Hệ thống quản lý Karaoke"/>
-		<meta name="Abstract" content="Hệ thống quản lý Karaoke"/>
-		<meta name="classification" content="Hệ thống quản lý Karaoke"/>
+		<meta name="keywords" content="Hệ thống quản lý Cafe"/>
+		<meta name="description" content="Hệ thống quản lý Cafe"/>
+		<meta name="page-topic" content="Hệ thống quản lý Cafe"/>
+		<meta name="Abstract" content="Hệ thống quản lý Cafe"/>
+		<meta name="classification" content="Hệ thống quản lý Cafe"/>
 		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
 	</span>
 	
@@ -60,7 +60,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Header">
 		<div id="header">
-			<h1><a>Karaoke Management App</a></h1>
+			<h1><a>Cafe Management App</a></h1>
 			<a id="menu-trigger" href="#"><i class="glyphicon glyphicon-align-justify"/></a>	
 		</div>
 		<div id="user-nav">			
@@ -87,7 +87,7 @@
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ KARAOKE BA ĐỨC</h1></div>
+	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CAFE PASSION</h1></div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
@@ -253,23 +253,6 @@
 			</tr>
 		</table>
 	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- ALERT TOOLS															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="AlertTools">		
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Insert'?true:false" type="text/javascript">
-			/*<![CDATA[*/$.gritter.add({title: 'Thêm mới hoàn tất', text: 'Đã thêm mới dữ liệu', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/
-		</script>
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Update'?true:false" type="text/javascript">
-			/*<![CDATA[*/$.gritter.add({title: 'Chỉnh sửa hoàn tất', text: 'Đã cập nhật dữ liệu mới nhất', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});/*]]>*/
-		</script>
-		<script tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentAction()=='Delete'?true:false" type="text/javascript">
-			/*<![CDATA[*/
-				$.gritter.add({title: 'Gỡ bỏ hoàn tất', text: 'Đã xóa dữ liệu vừa chọn', image: '/mvc/templates/theme/cms/img/demo/success.png',sticky: false});
-			/*]]>*/
-		</script>
-	</div>
-	
+		
 </body>
 </html>

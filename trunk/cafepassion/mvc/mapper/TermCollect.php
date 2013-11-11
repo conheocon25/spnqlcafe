@@ -7,7 +7,7 @@ class TermCollect extends Mapper implements \MVC\Domain\TermCollectFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTerm = "k3d_term_collect";
+		$tblTerm = "tbl_term_collect";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblTerm);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTerm);

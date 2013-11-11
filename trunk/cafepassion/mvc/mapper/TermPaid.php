@@ -7,7 +7,7 @@ class TermPaid extends Mapper implements \MVC\Domain\TermPaidFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTermPaid = "k3d_term";
+		$tblTermPaid = "tbl_term";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblTermPaid);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTermPaid);
