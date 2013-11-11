@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">			
+			<div id="sidebar">
+				<ul style="display: block;">																				
+					<li tal:repeat="Tracking1 TrackingAll" tal:attributes="class php:Tracking1->getId()==Tracking->getId()?'active':'disable'">
+						<a tal:attributes="href Tracking1/getURLView">
+							<i class="icon-book" /><span tal:content="Tracking1/getName"/>							
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">
+				<div class="container-fluid">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="60"><i class="glyphicons-macbook"/></th>
+											<th><div class="text-left">TÊN</div></th>											
+										</tr>
+									</thead>
+									<tbody>											
+										<tr>
+											<td class="center"><a target="blank" tal:attributes="href Tracking/getURLCollectGeneralSave"><i class="glyphicons-disk_save"/></a></td>
+											<td><a target="blank" tal:attributes="href Tracking/getURLCollectGeneral">(1) TỔNG HỢP THU</a></td>
+										</tr>
+										<tr>
+											<td class="center"><a target="blank" tal:attributes="href Tracking/getURLPaidGeneralSave"><i class="glyphicons-disk_save"/></a></td>
+											<td><a target="blank" tal:attributes="href Tracking/getURLPaidGeneral">(2) TỔNG HỢP CHI</a></td>
+										</tr>
+										<tr>
+											<td class="center"><a tal:attributes="href Tracking/getURLStoreSave"><i class="glyphicons-disk_save"/></a></td>
+											<td><a tal:attributes="href Tracking/getURLStore">(3) TỔNG HỢP TỒN KHO</a></td>
+										</tr>
+										<tr>
+											<td class="center"></td>
+											<td><a target="blank" tal:attributes="href Tracking/getURLGeneral">(4) TỔNG HỢP</a></td>
+										</tr>
+										<tr>
+											<td class="center"></td>
+											<td><a tal:attributes="href Tracking/getURLCustomer">CHI TIẾT CÔNG NỢ CỦA KHÁCH HÀNG</a></td>
+										</tr>
+										<tr>
+											<td class="center"></td>
+											<td><a target="blank" tal:attributes="href Tracking/getURLCourse">THỐNG KÊ CÁC MÓN</a></td>
+										</tr>
+										<tr>
+											<td class="center"></td>
+											<td><a target="blank" tal:attributes="href Tracking/getURLResource">THỐNG KÊ NHẬP HÀNG</a></td>
+										</tr>
+										<tr>
+											<td class="center"></td>
+											<td><a target="blank" tal:attributes="href Tracking/getURLHours">THỐNG KÊ GIỜ HÁT</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

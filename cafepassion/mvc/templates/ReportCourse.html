@@ -1,0 +1,41 @@
+<body>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B>KARAOKE BA ĐỨC</B></td>
+			<td width="50%" align="right"><B tal:content="Title"/></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐC: 67/26B Phó Cơ Điều, P.4, TP.VL</td>
+			<td width="50%" align="right">Lưu hành nội bộ</td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐT: (0703) 828 555</td>
+			<td width="50%" align="left" />
+		</tr>
+	</table>
+	<span tal:repeat="Category CategoryAll">
+		<BR/>
+		<table width="100%" border="1" cellpadding="2" >
+			<tr>
+				<th width="100%" align="left"><B tal:content="Category/getName"/></th>
+			</tr>
+			<tr>
+				<th width="5%" align="center"><B>STT</B></th>
+				<th width="45%" align="left"><B>MẶT HÀNG</B></th>
+				<th width="20%" align="left"><B>ĐƠN VỊ</B></th>
+				<th width="10%" align="right"><B>THỰC</B></th>
+				<th width="10%" align="right"><B>NỢ</B></th>
+				<th width="10%" align="right"><B>TỔNG</B></th>
+			</tr>
+			<tr tal:repeat="Course Category/getCourseAll">
+				<td align="center" tal:content="repeat/Course/number" />
+				<td align="left" tal:content="Course/getName" />
+				<td align="left" tal:content="Course/getUnit" />
+				<td align="right" tal:content="php: Tracking->getCountCourse1Print( Course->getId() )"/>
+				<td align="right" tal:content="php: Tracking->getCountCourse2Print( Course->getId() )"/>
+				<td align="right" tal:content="php: Tracking->getCountCoursePrint( Course->getId() )"/>
+			</tr>
+		</table>
+	</span>
+</body>
