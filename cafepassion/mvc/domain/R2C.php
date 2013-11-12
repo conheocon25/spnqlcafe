@@ -45,6 +45,7 @@ class R2C extends Object{
 	function getValue2( ) {return $this->Value2;}
 	
 	function getRate(){return ($this->getValue1()*$this->getValue2());}
+	function getRate1(){return ($this->getValue1()/$this->getValue2());}
 	
 	function toJSON(){
 		$json = array(

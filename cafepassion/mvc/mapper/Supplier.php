@@ -14,7 +14,7 @@ class Supplier extends Mapper implements \MVC\Domain\SupplierFinder {
 		$insertStmt = sprintf("insert into %s ( name, phone, address, note, debt ) 
 							values( ?, ?, ?, ?, ?)", $tblSupplier);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSupplier);
-		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblSupplier);
+		$findByPageStmt = sprintf("SELECT * FROM  %s ORDER BY name LIMIT :start,:max", $tblSupplier);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);

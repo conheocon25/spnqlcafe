@@ -258,7 +258,13 @@ class Session extends Object{
 		}
 		return $Value;
 	}
-		
+	
+	function findItem($IdCourse){
+		$mSD = new \MVC\Mapper\SessionDetail();
+		$SD = $mSD->findItem( array($this->getId(), $IdCourse) );
+		return $SD;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
@@ -271,27 +277,7 @@ class Session extends Object{
 		$Domain = $this->getTable()->getDomain();
 		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/checkout/exe";
     }
-	
-	function getURLUpdLoad(){
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/upd/load";
-    }
-	
-	function getURLUpdExe(){		
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/upd/exe";
-    }
-	
-	function getURLDelLoad(){		
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/del/load";
-    }
-	
-	function getURLDelExe(){		
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/del/exe";
-    }
-	
+			
 	function getURLDetail(){		
 		$Domain = $this->getTable()->getDomain();
 		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/detail";
