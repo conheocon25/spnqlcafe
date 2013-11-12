@@ -32,13 +32,14 @@
 			else
 				$Category = $mCategory->find($IdCategory);
 						
-			$Table = $mTable->find($IdTable);			
-			$Domain = $Table->getDomain();
-			$URLCallLoad = $Table->getURLCallLoad();
-			$URLCall = $Table->getURLCallExe();
+			$Table 			= $mTable->find($IdTable);			
+			$Domain 		= $Table->getDomain();
+			$URLCallLoad 	= $Table->getURLCallLoad();
+			$URLCall 		= $Table->getURLCallExe();
+			$Session 		= $Table->getSessionActive();
 						
-			$Title = mb_strtoupper($Category->getName(), 'UTF8')." GỌI";
-			$Navigation = array(				
+			$Title = mb_strtoupper($Table->getName()." CHỌN [".$Category->getName()."]", 'UTF8');
+			$Navigation = array(
 				array("BÁN HÀNG", "/selling"),
 				array(mb_strtoupper($Domain->getName(), 'UTF8'), $Domain->getURLSelling())
 			);
@@ -46,13 +47,14 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty("URLCall", $URLCall);
-			$request->setProperty("URLCallLoad", $URLCallLoad);
-			$request->setProperty("Title", $Title);
-			$request->setObject("Navigation", $Navigation);
-			$request->setObject("Category", $Category);
-			$request->setObject("CategoryAll", $CategoryAll);			
-			$request->setObject('Table', $Table);
+			$request->setProperty("URLCall"		, $URLCall);
+			$request->setProperty("URLCallLoad"	, $URLCallLoad);
+			$request->setProperty("Title"		, $Title);
+			$request->setObject("Navigation"	, $Navigation);
+			$request->setObject("Session"		, $Session);
+			$request->setObject("Category"		, $Category);
+			$request->setObject("CategoryAll"	, $CategoryAll);			
+			$request->setObject('Table'			, $Table);
 		}
 	}
 ?>

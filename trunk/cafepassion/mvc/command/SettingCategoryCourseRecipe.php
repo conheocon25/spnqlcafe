@@ -32,7 +32,7 @@
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("DANH MỤC MÓN", "/setting/category"),
-				array(mb_strtoupper($Category->getName()), $Category->getURLCourse())
+				array(mb_strtoupper($Category->getName(), "UTF8"), $Category->getURLCourse())
 			);
 			
 			//-------------------------------------------------------------

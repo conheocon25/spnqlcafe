@@ -47,11 +47,11 @@
 					while ($R2CAll->valid()){
 						$R2C = $R2CAll->current();
 						$PriceAverage += $R2C->getResource()->getPriceAverage();						
-						$ImportCount  += $Tracking->getResourceImport( $R2C->getIdResource() );
+						$ImportCount  += $Tracking->getResourceImport( $R2C->getIdResource() )*$R2C->getRate();
 						$R2CAll->next();
 					}
 					$OldCount  	  += $Tracking->getCourseOld( $Course->getId() );
-					$PriceAverage = $PriceAverage/$R2CAll->count();
+					$PriceAverage = $PriceAverage/$R2CAll->count()/$R2C->getRate();
 																			
 					//Bán hàng thực tế
 					$ExportCount  	= $Tracking->getCountCourse( $Course->getId() );

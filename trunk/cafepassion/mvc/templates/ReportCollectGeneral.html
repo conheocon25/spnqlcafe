@@ -1,20 +1,5 @@
 <body>
-	<BR/>
-	<table width="100%" border="0" cellpadding="2" >
-		<tr>			
-			<td width="50%" align="left"><B>KARAOKE BA ĐỨC</B></td>
-			<td width="50%" align="right"><B tal:content="Title"/></td>
-		</tr>
-		<tr>			
-			<td width="50%" align="left">ĐC: 67/26B Phó Cơ Điều, P.4, TP.VL</td>
-			<td width="50%" align="right">Lưu hành nội bộ</td>
-		</tr>
-		<tr>			
-			<td width="50%" align="left">ĐT: (0703) 828 555</td>
-			<td width="50%" align="left" />
-		</tr>
-	</table>
-	<BR />
+	<div metal:use-macro="mAdmin.xhtml/ReportHeader"/>
 	<h2>1. THU KHÁC</h2>
 	<table width="100%" border="1" cellpadding="2" >
 		<tr>			
@@ -36,31 +21,8 @@
 			<th align="right"><b tal:content="Tracking/getCollectAllSumValuePrint" /></th>
 		</tr>
 	</table>
-	<BR/>
-	<h2>2. THU KHÁCH HÀNG</h2>
-	<table width="100%" border="1" cellpadding="2" >
-		<tr>
-			<th width="4%"><B>STT</B></th>
-			<th width="10%" align="left"><B>NGÀY</B></th>
-			<th width="18%" align="left"><B>KHÁCH HÀNG</B></th>
-			<th width="56%" align="left" ><B>GHI CHÚ</B></th>
-			<th width="12%" align="right"><B>SỐ TIỀN</B></th>
-		</tr>
-		<tr tal:repeat="Collect Tracking/getCustomerCollectGeneral">
-			<td align="center" 	tal:content="repeat/Collect/number" />
-			<td align="left" 	tal:content="Collect/getDatePrint" />
-			<td align="left" 	tal:content="Collect/getCustomer/getName" />
-			<td align="left" 	tal:content="Collect/getNote" />			
-			<td align="right" 	tal:content="Collect/getValuePrint" />
-		</tr>
-		<tr>
-			<th align="right" colspan="4" width="88%"><b>TỔNG (2)</b></th>
-			<th align="right" colspan="1" width="12%"><B tal:content="Tracking/getCustomerCollectGeneralValuePrint"/></th>
-		</tr>
-	</table>
-	
-	<BR/>
-	<h2>3. THU DOANH SỐ</h2>
+	<BR/>		
+	<h2>2. THU DOANH SỐ</h2>
 	<table width="100%" border="1" cellpadding="2" >	
 		<tr>
 			<th width="4%" align="center"><B>STT</B></th>
@@ -81,7 +43,7 @@
 			<td align="right" 	tal:content="php: Session->getStatus()==1?Session->getValuePrint():0" />
 		</tr>
 		<tr>
-			<th align="right" colspan="5" width="76%"><b>TỔNG (3)</b></th>
+			<th align="right" colspan="5" width="76%"><b>TỔNG (2)</b></th>
 			<th align="right" width="12%"><B tal:content="Tracking/getSessionAllValue2Print"/></th>
 			<th align="right" width="12%"><B tal:content="Tracking/getSessionAllValue1Print"/></th>
 		</tr>		
@@ -94,7 +56,7 @@
 		</tr>
 		<tr>
 			<td width="85%" align="right">
-				<h3>TỔNG HỢP THU = TỔNG (1) + TỔNG (2) + TỔNG (3) = </h3>
+				<h3>TỔNG HỢP THU = TỔNG (1) + TỔNG (2) = </h3>
 			</td>
 			<td width="15%" align="right">
 				<font color="blue" size="12">
@@ -113,7 +75,7 @@
 		<tr>
 			<td width="35%" align="center">NGƯỜI LẬP BẢNG</td>
 			<td width="30%" align="center" />
-			<td width="35%" align="center">P.GIÁM ĐỐC</td>
+			<td width="35%" align="center">QUẢN LÝ</td>
 		</tr>
 		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
 		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
@@ -121,7 +83,7 @@
 		<tr>
 			<td width="35%" align="center" />
 			<td width="30%" align="center" />
-			<td width="35%" align="center">Lê Nguyễn Đông Khoa</td>
+			<td width="35%" align="center" />
 		</tr>
 	</table>
 </body>

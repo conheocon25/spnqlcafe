@@ -6,7 +6,8 @@
 		"Result" => "OK",
 		"Name"=>$SD->getCourse()->getName(),
 		"Unit"=>$SD->getCourse()->getUnit(),
-		"Count"=>$SD->getCount()
+		"Count"=>$SD->getCount(),
+		"Value"=>$SD->getValuePrint()
 	);
 	echo json_encode($Data);
 ?>

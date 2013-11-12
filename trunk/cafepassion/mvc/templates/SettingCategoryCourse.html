@@ -35,7 +35,7 @@
 							<table class="table table-bordered table-striped table-hover">
 								<thead>
 									<tr role="row">
-										<th width="35">STT</th>
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th><div class="text-left">TÊN</div></th>
 										<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
 										<th width="120"><div class="text-right">GIÁ BÁN</div></th>
@@ -45,7 +45,7 @@
 								</thead>
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
 									<tr tal:repeat="Course CourseAll" class="gradeA odd">
-										<td align="center" tal:content="repeat/Course/number"/>
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Course/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
 										<td><div tal:content="Course/getUnit"/></td>
 										<td align="right"><div tal:content="Course/getPrice1Print"/></td>

@@ -53,33 +53,7 @@
 		</tbody>
 	</table>
 	<table style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
-		<tbody>			
-			<tr  tal:condition="Session/getDiscountValuePrint">
-				<td align='right' colspan="5" width="100%">
-					<font size="10">Tiền Karaoke: <span tal:content="Session/getValueHoursPrint" /></font>
-				</td>
-			</tr>
-			
-			<tr tal:condition="Session/getDiscountValue">
-				<td align='right' colspan="5" width="100%">
-					<font align='right' size="10pt">Chiết khấu: <span tal:content="Session/getDiscountValuePrint" /></font>
-				</td>
-			</tr>
-			<tr  tal:condition="Session/getDiscountPercent">
-				<td align='right' colspan="5" width="100%">
-					<font align='right' size="10pt">Giảm giá: <span tal:content="Session/getDiscountPercent" /> %</font>
-				</td>
-			</tr>
-			<tr  tal:condition="Session/getSurtax">
-				<td align='right' colspan="5" width="100%">
-					<font align='right' size="10pt">Phụ thu: <span tal:content="Session/getSurtaxPrint" /></font>
-				</td>
-			</tr>			
-			<tr>
-				<td align='right' colspan="5" width="100%">
-					------------------------
-				</td>
-			</tr>
+		<tbody>						
 			<tr>
 				<td align='right' colspan="5" width="100%">
 					<font align='right' size="12pt">TỔNG TIỀN: <b tal:content="Session/getValuePrint"/></font>
@@ -88,27 +62,6 @@
 			<tr>
 				<td align='right' colspan="5" width="100%">
 					<p>( Bằng chữ: <span tal:content="Session/getValueStrPrint" /> )</p>
-				</td>
-			</tr>
-			<tr tal:condition="Session/getPayment">
-				<td align='right' colspan="5" width="100%">
-					<font align='right' size="12pt">KHÁCH TRẢ: <span tal:content="Session/getPaymentPrint"/></font>
-				</td>
-			</tr>
-			<tr tal:condition="Session/getPayment">
-				<td align='right' colspan="5" width="100%">
-					<font align='right' size="12pt">CÒN LẠI: <span tal:content="Session/getRemainPrint"/></font>
-				</td>
-			</tr>			
-			<tr tal:condition="Session/getNote">
-				<td width="100%" align="left">
-					<i><u>Ghi Chú:</u> <span tal:content="Session/getNote" /></i>
-				</td>
-			</tr>			
-			<tr><td colspan="5"/></tr>
-			<tr>
-				<td align='center' colspan="5" width="100%">
-					<font align='center' size="8pt">LƯU Ý: giá trên chưa bao gồm VAT. Quí khách đổi HĐ VAT vui lòng đổi trong tháng.</font>
 				</td>
 			</tr>
 		</tbody>
