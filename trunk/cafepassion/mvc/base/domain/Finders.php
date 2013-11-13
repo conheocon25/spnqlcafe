@@ -23,6 +23,8 @@ interface SupplierFinder extends Finder {}
 interface PaidSupplierFinder extends Finder {}
 interface PaidPayRollFinder extends Finder {}
 interface PaidGeneralFinder extends Finder {}
+interface PaidEmployeeFinder extends Finder {}
+interface PayRollFinder extends Finder {}
 
 interface TermPaidFinder extends Finder {}
 interface TermCollectFinder extends Finder {}

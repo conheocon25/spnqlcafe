@@ -14,7 +14,9 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/PaidSupplier.php");
 	require_once( "mvc/mapper/PaidPayRoll.php");	
 	require_once( "mvc/mapper/PaidGeneral.php");
-		
+	require_once( "mvc/mapper/PaidEmployee.php");
+	require_once( "mvc/mapper/PayRoll.php");
+	
 	require_once( "mvc/mapper/TermPaid.php");
 	require_once( "mvc/mapper/TermCollect.php");
 	

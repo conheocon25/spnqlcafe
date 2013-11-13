@@ -41,7 +41,7 @@
 		<command name="ReportDetail"><view>ReportDetail</view></command>				
 		<command name="ReportCustomer"><view>ReportCustomer</view></command>
 		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
-						
+		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
 		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>		
 		<command name="ReportImportGeneral"><view>ReportImportGeneral</view></command>		
 		<command name="ReportCollectGeneral"><view>ReportCollectGeneral</view></command>				
@@ -86,13 +86,25 @@
 		<command name="SellingDomainTableCheckoutExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckoutExe</view></command>
 		
 		<!-- ============================================================================== -->
+		<!-- PAYROLL			 															-->
+		<!-- ============================================================================== -->		
+		<command name="PayRoll"><view>PayRoll</view></command>
+		<command name="PayRollWork"><view>PayRollWork</view></command>
+		<command name="PayRollWorkDetail">
+			<status value="CMD_OK">
+				<forward>PayRollWork</forward>
+			</status>
+			<view>PayRollWorkDetail</view>
+		</command>
+		
+		<!-- ============================================================================== -->
 		<!-- MONEY		 																	-->
 		<!-- ============================================================================== -->
 		<command name="Money"><view>Money</view></command>		
 		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
 		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
 		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
-		<command name="MoneyPaidPayRoll"><view>MoneyPaidPayRoll</view></command>
+		<command name="MoneyPaidEmployee"><view>MoneyPaidEmployee</view></command>
 							
 		<!-- ============================================================================== -->
 		<!-- SETTING	 															-->
@@ -120,7 +132,6 @@
 		<command name="ImportSupplier"><view>ImportSupplier</view></command>
 		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
 		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
-		<command name="ImportSupplierOrderPrint1"><view>ImportSupplierOrderPrint1</view></command>
-		
+				
 	</control>
 </options>
