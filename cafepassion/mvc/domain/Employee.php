@@ -118,6 +118,12 @@
 		$PR = $mPR->find($IdPR);
 		return $PR;
 	}
+	
+	function getPaidAll(){
+		$mPE 	= new \MVC\Mapper\PaidEmployee();
+		$PEAll 	= $mPE->findBy(array($this->getId()));
+		return $PEAll;
+	}
 		
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
@@ -125,7 +131,7 @@
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLPaid(){return "/money/paid/payroll/".$this->getId();}
+	function getURLPaid(){return "/money/paid/employee/".$this->getId();}
 		
 }
 ?>

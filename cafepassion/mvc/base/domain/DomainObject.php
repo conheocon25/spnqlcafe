@@ -17,49 +17,21 @@ abstract class Object {
         }
     }
 
-    function markNew() {
-        ObjectWatcher::addNew( $this );
-    }
-
-    function markDeleted() {
-        ObjectWatcher::addDelete( $this );
-    }
-
-    function markDirty() {
-        ObjectWatcher::addDirty( $this );
-    }
-
-    function markClean() {
-        ObjectWatcher::addClean( $this );
-    }
+    function markNew() {ObjectWatcher::addNew( $this );}
+    function markDeleted() {ObjectWatcher::addDelete( $this );}
+    function markDirty() {ObjectWatcher::addDirty( $this );}
+    function markClean() {ObjectWatcher::addClean( $this );}
 
 
-    function getId( ) {
-        return $this->id;
-    }
+    function getId( ) {return $this->id;}
 
-    static function getCollection( $type ) {
-        return HelperFactory::getCollection( $type ); 
-    }
- 
-    function collection() {
-        return self::getCollection( get_class( $this ) );
-    }
+    static function getCollection( $type ) {return HelperFactory::getCollection( $type ); } 
+    function collection() {return self::getCollection( get_class( $this ) );}
+    function finder() {return self::getFinder( get_class( $this ) );}
+    static function getFinder( $type ) {return HelperFactory::getFinder( $type ); }
 
-    function finder() {
-        return self::getFinder( get_class( $this ) );
-    }
-
-    static function getFinder( $type ) {
-        return HelperFactory::getFinder( $type ); 
-    }
-
-    function setId( $id ) {
-        $this->id = $id;
-    }
-
-    function __clone() {
-        $this->id = -1;
-    }
+    function setId( $id ) {$this->id = $id;}
+    function __clone() {$this->id = -1;}
+	
 }
 ?>

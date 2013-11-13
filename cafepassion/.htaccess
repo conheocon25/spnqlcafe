@@ -82,9 +82,24 @@ RewriteRule ^money/paid/general$ 									?cmd=MoneyPaidGeneral [L]
 RewriteRule ^money/paid/general/([0-9]+)$ 							?cmd=MoneyPaidGeneral&IdTerm=$1 [L]
 RewriteRule ^money/paid/general/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidGeneral&IdTerm=$1&Page=$2 [L]
 
-RewriteRule ^money/paid/payroll$ 									?cmd=MoneyPaidPayRoll [L]
-RewriteRule ^money/paid/payroll/([0-9]+)$ 							?cmd=MoneyPaidPayRoll&IdEmployee=$1 [L]
-RewriteRule ^money/paid/payroll/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidPayRoll&IdEmployee=$1&Page=$2 [L]
+RewriteRule ^money/paid/employee$ 									?cmd=MoneyPaidEmployee [L]
+RewriteRule ^money/paid/employee/([0-9]+)$ 							?cmd=MoneyPaidEmployee&IdEmployee=$1 [L]
+RewriteRule ^money/paid/employee/([0-9]+)/page/([0-9]+)$ 			?cmd=MoneyPaidEmployee&IdEmployee=$1&Page=$2 [L]
+
+#---------------------------------------------------------------------------------------------------------------------------
+# PAYROLL
+#---------------------------------------------------------------------------------------------------------------------------
+RewriteRule ^payroll$ 												?cmd=PayRoll [L]
+RewriteRule ^payroll/([0-9]+)$ 										?cmd=PayRoll&IdTrack=$1 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)$ 							?cmd=PayRollWork&IdTrack=$1&IdEmployee=$2 [L]
+
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/all/yes$ 							?cmd=PayRollWorkDetail&IdTrack=$1&Date=all&IdEmployee=$2&State=yes [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no$ 						?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)$ 				?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)$ 			?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/yes/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=yes&Minute=$4&Extra=$5 [L]
+RewriteRule ^payroll/([0-9]+)/([0-9]+)/([0-9_-]+)/no/([0-9]+)/([0-9]+)$ 	?cmd=PayRollWorkDetail&IdTrack=$1&Date=$3&IdEmployee=$2&State=no&Minute=$4&Extra=$5 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # IMPORT
@@ -96,24 +111,21 @@ RewriteRule ^import/([0-9]+)/page/([0-9]+)$ 		?cmd=ImportSupplier&IdSupplier=$1&
 
 RewriteRule ^import/([0-9]+)/([0-9]+)$				?cmd=ImportSupplierOrder&IdSupplier=$1&IdOrder=$2 [L]
 RewriteRule ^import/([0-9]+)/([0-9]+)/print$		?cmd=ImportSupplierOrderPrint&IdSupplier=$1&IdOrder=$2 [L]
-RewriteRule ^import/([0-9]+)/([0-9]+)/print/1$		?cmd=ImportSupplierOrderPrint1&IdSupplier=$1&IdOrder=$2 [L]
 RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSupplierOrderExe&IdSupplier=$1&IdOrder=$2&IdResource=$3&Count=$4&Price=$5 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^report$ 									?cmd=Report [L]
 RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
-RewriteRule ^report/ins/load$ 							?cmd=ReportDetailInsLoad [L]
-RewriteRule ^report/ins/exe$ 							?cmd=ReportDetailInsExe [L]
-RewriteRule ^report/([0-9]+)/upd/load$ 					?cmd=ReportDetailUpdLoad&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/upd/exe$ 					?cmd=ReportDetailUpdExe&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/del/load$ 					?cmd=ReportDetailDelLoad&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/del/exe$ 					?cmd=ReportDetailDelExe&IdTrack=$1 [L]
 
-RewriteRule ^report/import/([a-z0-9]+)/general$ 		?cmd=ReportImportGeneral&IdTrack=$1 [L]
+RewriteRule ^report/import/([0-9]+)/general$ 			?cmd=ReportImportGeneral&IdTrack=$1 [L]
 
 RewriteRule ^report/paid/([0-9]+)$ 						?cmd=ReportPaidGeneral&IdTrack=$1 [L]
 RewriteRule ^report/paid/([0-9]+)/save$ 				?cmd=ReportPaidGeneral&IdTrack=$1&Save=yes [L]
+
+RewriteRule ^report/payroll/([0-9]+)$ 					?cmd=ReportPayRoll&IdTrack=$1 [L]
+RewriteRule ^report/payroll/([0-9]+)/save$ 				?cmd=ReportPayRoll&IdTrack=$1&Save=yes [L]
 
 RewriteRule ^report/collect/([0-9]+)$ 					?cmd=ReportCollectGeneral&IdTrack=$1 [L]
 RewriteRule ^report/collect/([0-9]+)/save$ 				?cmd=ReportCollectGeneral&IdTrack=$1&Save=yes [L]
@@ -135,75 +147,7 @@ RewriteRule ^report/hours/([0-9]+)$ 					?cmd=ReportHours&IdTrack=$1 [L]
 RewriteRule ^report/general/([0-9]+)$ 					?cmd=ReportGeneral&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
-# PAID.GENERAL
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^paid$ 										?cmd=Paid [L]
-
-RewriteRule ^paid/general$ 								?cmd=PaidGeneral [L]
-RewriteRule ^paid/general/([0-9]+)$ 					?cmd=PaidGeneral&IdTerm=$1 [L]
-RewriteRule ^paid/general/([0-9]+)/page/([0-9]+)$ 		?cmd=PaidGeneral&IdTerm=$1&Page=$2 [L]
-
-RewriteRule ^paid/general/([0-9]+)/ins/load$			?cmd=PaidGeneralInsLoad&IdTerm=$1 [L]
-RewriteRule ^paid/general/([0-9]+)/ins/exe$ 			?cmd=PaidGeneralInsExe&IdTerm=$1 [L]
-RewriteRule ^paid/general/([0-9]+)/([0-9]+)/upd/load$	?cmd=PaidGeneralUpdLoad&IdTerm=$1&IdPaid=$2 [L]
-RewriteRule ^paid/general/([0-9]+)/([0-9]+)/upd/exe$	?cmd=PaidGeneralUpdExe&IdTerm=$1&IdPaid=$2 [L]
-RewriteRule ^paid/general/([0-9]+)/([0-9]+)/del/load$	?cmd=PaidGeneralDelLoad&IdTerm=$1&IdPaid=$2 [L]
-RewriteRule ^paid/general/([0-9]+)/([0-9]+)/del/exe$	?cmd=PaidGeneralDelExe&IdTerm=$1&IdPaid=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# PAID.PAYROLL
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^paid/payroll$ 									?cmd=PaidPayRoll [L]
-RewriteRule ^paid/payroll/([0-9]+)$							?cmd=PaidPayRoll&IdEmployee=$1 [L]
-RewriteRule ^paid/payroll/([0-9]+)/page/([0-9]+)$			?cmd=PaidPayRoll&IdEmployee=$1&Page=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/ins/load$				?cmd=PaidPayRollInsLoad&IdEmployee=$1 [L]
-RewriteRule ^paid/payroll/([0-9]+)/ins/exe$ 				?cmd=PaidPayRollInsExe&IdEmployee=$1 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/upd/load$		?cmd=PaidPayRollUpdLoad&IdEmployee=$1&IdPaid=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/upd/exe$		?cmd=PaidPayRollUpdExe&IdEmployee=$1&IdPaid=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/del/load$		?cmd=PaidPayRollDelLoad&IdEmployee=$1&IdPaid=$2 [L]
-RewriteRule ^paid/payroll/([0-9]+)/([0-9]+)/del/exe$		?cmd=PaidPayRollDelExe&IdEmployee=$1&IdPaid=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# PAID.SUPPLIER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^paid/supplier$ 								?cmd=PaidSupplier [L]
-RewriteRule ^paid/supplier/([0-9]+)$ 						?cmd=PaidSupplier&IdSupplier=$1 [L]
-RewriteRule ^paid/supplier/([0-9]+)/page/([0-9]+)$ 			?cmd=PaidSupplier&IdSupplier=$1&Page=$2 [L]
-RewriteRule ^paid/supplier/([0-9]+)/ins/load$				?cmd=PaidSupplierInsLoad&IdSupplier=$1 [L]
-RewriteRule ^paid/supplier/([0-9]+)/ins/exe$ 				?cmd=PaidSupplierInsExe&IdSupplier=$1 [L]
-RewriteRule ^paid/supplier/([0-9]+)/([0-9]+)/upd/load$		?cmd=PaidSupplierUpdLoad&IdSupplier=$1&IdPaidSupplier=$2 [L]
-RewriteRule ^paid/supplier/([0-9]+)/([0-9]+)/upd/exe$		?cmd=PaidSupplierUpdExe&IdSupplier=$1&IdPaidSupplier=$2 [L]
-RewriteRule ^paid/supplier/([0-9]+)/([0-9]+)/del/load$		?cmd=PaidSupplierDelLoad&IdSupplier=$1&IdPaidSupplier=$2 [L]
-RewriteRule ^paid/supplier/([0-9]+)/([0-9]+)/del/exe$		?cmd=PaidSupplierDelExe&IdSupplier=$1&IdPaidSupplier=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# COLLECT.CUSTOMER
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^collect/customer$ 									?cmd=CollectCustomer [L]
-RewriteRule ^collect/customer/([0-9]+)$ 						?cmd=CollectCustomer&IdCustomer=$1 [L]
-RewriteRule ^collect/customer/([0-9]+)/ins/load$				?cmd=CollectCustomerInsLoad&IdCustomer=$1 [L]
-RewriteRule ^collect/customer/([0-9]+)/ins/exe$ 				?cmd=CollectCustomerInsExe&IdCustomer=$1 [L]
-RewriteRule ^collect/customer/([0-9]+)/([0-9]+)/upd/load$		?cmd=CollectCustomerUpdLoad&IdCustomer=$1&IdCollect=$2 [L]
-RewriteRule ^collect/customer/([0-9]+)/([0-9]+)/upd/exe$		?cmd=CollectCustomerUpdExe&IdCustomer=$1&IdCollect=$2 [L]
-RewriteRule ^collect/customer/([0-9]+)/([0-9]+)/del/load$		?cmd=CollectCustomerDelLoad&IdCustomer=$1&IdCollect=$2 [L]
-RewriteRule ^collect/customer/([0-9]+)/([0-9]+)/del/exe$		?cmd=CollectCustomerDelExe&IdCustomer=$1&IdCollect=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# COLLECT.GENERAL
-#---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^collect$ 										?cmd=Collect [L]
-RewriteRule ^collect/general$ 								?cmd=CollectGeneral [L]
-RewriteRule ^collect/general/([0-9]+)$ 						?cmd=CollectGeneral&IdTerm=$1 [L]
-RewriteRule ^collect/general/([0-9]+)/page/([0-9]+)$ 		?cmd=CollectGeneral&IdTerm=$1&Page=$2 [L]
-RewriteRule ^collect/general/([0-9]+)/ins/load$				?cmd=CollectGeneralInsLoad&IdTerm=$1 [L]
-RewriteRule ^collect/general/([0-9]+)/ins/exe$ 				?cmd=CollectGeneralInsExe&IdTerm=$1 [L]
-RewriteRule ^collect/general/([0-9]+)/([0-9]+)/upd/load$	?cmd=CollectGeneralUpdLoad&IdTerm=$1&IdCollect=$2 [L]
-RewriteRule ^collect/general/([0-9]+)/([0-9]+)/upd/exe$		?cmd=CollectGeneralUpdExe&IdTerm=$1&IdCollect=$2 [L]
-RewriteRule ^collect/general/([0-9]+)/([0-9]+)/del/load$	?cmd=CollectGeneralDelLoad&IdTerm=$1&IdCollect=$2 [L]
-RewriteRule ^collect/general/([0-9]+)/([0-9]+)/del/exe$		?cmd=CollectGeneralDelExe&IdTerm=$1&IdCollect=$2 [L]
-
-#---------------------------------------------------------------------------------------------------------------------------
-# SETTING.INFO
+# SETTING
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^setting$ 												?cmd=Setting [L]
 RewriteRule ^setting/theme/([a-z0-9_-]+)$ 							?cmd=SettingThemeChangeExe&Theme=$1 [L]

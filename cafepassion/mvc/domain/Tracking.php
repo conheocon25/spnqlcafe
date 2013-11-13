@@ -301,6 +301,92 @@ class Tracking extends Object{
 	function getTrackingStoreValuePrint(){ $N = new \MVC\Library\Number( $this->getTrackingStoreValue() ); return $N->formatCurrency();}
 	
 	//-------------------------------------------------------------------------------------
+	//THEO DÕI SỐ TIỀN NHÂN VIÊN ỨNG
+	//-------------------------------------------------------------------------------------
+	function getPaidEmployee($IdEmployee){
+		$mPE 	= new \MVC\Mapper\PaidEmployee();	
+		$PEAll 	= $mPE->findByTracking1(array($IdEmployee, $this->getDateStart(), $this->getDateEnd()));
+		return $PEAll;
+	}
+	function getPaidEmployeeValue($IdEmployee){
+		$PEAll = $this->getPaidEmployee($IdEmployee);
+		$Value = 0;
+		while ($PEAll->valid()){
+			$PE = $PEAll->current();
+			$Value += $PE->getValue();
+			$PEAll->next();
+		}
+		return $Value;
+	}
+	function getPaidEmployeeValuePrint($IdEmployee){
+		$Value = $this->getPaidEmployeeValue($IdEmployee);
+		$N = new \MVC\Library\Number($Value);
+		return $N->formatCurrency();
+	}
+	
+	function getPayRoll($IdEmployee){
+		$mPR = new \MVC\Mapper\PayRoll(); 
+		$PRAll = $mPR->findByTracking( array( $IdEmployee, $this->getDateStart(), $this->getDateEnd() )); 
+		return $PRAll;
+	}
+	function getPayRollValue($IdEmployee){
+		$mConfig 		= new \MVC\Mapper\Config();
+		$mEmployee 		= new \MVC\Mapper\Employee();
+		
+		$diff = strtotime($this->getDateEnd()) - strtotime($this->getDateStart());
+		$nDay = round($diff/3600/24, 0)+1;
+		
+		$Employee		= $mEmployee->find($IdEmployee);
+		$PRAll 			= $this->getPayRoll($IdEmployee);
+		$Config5Minutes = $mConfig->findByName('EVERY_5_MINUTES');
+		$Value = 0;
+		$Extra = 0;
+		$Late = 0;
+		$Absent = 0;
+		$Yes = 0;		
+		while ($PRAll->valid()){
+			$PR 	 = $PRAll->current();
+			$Extra 	+= $PR->getExtra();
+			$Absent += $PR->getState()==0?1:0;
+			$Yes 	+= $PR->getState()==1?1:0;
+			$Late 	+= $PR->getLate();
+			$PRAll->next();
+		}
+		//Tính thời gian trễ
+		$LateValue = ($Late/5)*$Config5Minutes->getValue();
+					
+		//Tính làm thêm
+		$ExtraValue = $Extra*$Employee->getSalaryBase()/($nDay*8);
+					
+		//Làm chính thức
+		$YesValue = $Yes*$Employee->getSalaryBase()/$nDay;
+					
+		//Tính nghỉ ca
+		$AbsentValue = $Absent*$Employee->getSalaryBase()/$nDay;
+					
+		//Tổng lương
+		$Salary = $YesValue + $ExtraValue - $LateValue;
+					
+		//return $Employee->getSalaryBase();
+		return $Salary;
+	}
+	function getPayRollValuePrint($IdEmployee){
+		$Value = $this->getPayRollValue($IdEmployee);
+		$N = new \MVC\Library\Number($Value);
+		return $N->formatCurrency();
+	}
+	
+	function getPayRollReal($IdEmployee){
+		$Value = $this->getPayRollValue($IdEmployee) - $this->getPaidEmployeeValue($IdEmployee);
+		return $Value;
+	}
+	function getPayRollRealPrint($IdEmployee){
+		$Value = $this->getPayRollReal($IdEmployee);
+		$N = new \MVC\Library\Number($Value);
+		return $N->formatCurrency();
+	}
+	
+	//-------------------------------------------------------------------------------------
 	//THEO DÕI SỐ MÓN ĐÃ GỌI
 	//-------------------------------------------------------------------------------------
 	function getCountCategory($IdCategory){$mSD = new \MVC\Mapper\SessionDetail();$Count = $mSD->trackByCategory( array($IdCategory, $this->getDateStart(), $this->getDateEnd()) );return $Count;}
@@ -406,21 +492,23 @@ class Tracking extends Object{
 		return $SessionAll;
 	}
 	
-	//CÁC LIÊN KẾT CỦA CÁC NGÀY TRONG THÁNG
 	function getURLDayAll(){
 		$Data = array();
 		$Date = $this->getDateStart();
 		$EndDate = $this->getDateEnd();
 		while (strtotime($Date) <= strtotime($EndDate)){
 			$Data[] = array(
-					\date("d/m", strtotime($Date)),
-					"/report/selling/".$Date."/detail",
-					"/report/import/".$Date."/detail",
-					"/report/paid/".$Date."/detail",
-					"/report/collect/".$Date."/detail"
-			);
-			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));}return $Data;
+						\date("d/m", strtotime($Date)),
+						"/report/selling/".$Date."/detail",
+						"/report/log/".$Date,
+						"/payroll/".$this->getId()."/absent/".$Date,
+						"/payroll/".$this->getId()."/late/".$Date,
+						$Date
+					);
+			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 		}
+		return $Data;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//LƯƠNG NHÂN VIÊN
@@ -447,6 +535,12 @@ class Tracking extends Object{
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
 	
+	function getURLPayRoll(){return "/payroll/".$this->getId();}	
+	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
+	
+	function getURLReportPayRoll(){return "/report/payroll/".$this->getId();}
+	function getURLReportPayRollSave(){return "/report/payroll/".$this->getId()."/save";}
+	
 	function getURLCustomer(){return "/report/customer/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
 	
@@ -467,11 +561,7 @@ class Tracking extends Object{
 	function getURLResource(){return "/report/resource/".$this->getId();}
 	function getURLHours(){return "/report/hours/".$this->getId();}
 	function getURLGeneral(){return "/report/general/".$this->getId();}		
-	
-	function getURLUpdLoad(){return "/report/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/report/".$this->getId()."/upd/exe";}	
-	function getURLDelLoad(){return "/report/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/report/".$this->getId()."/del/exe";}
+		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $Id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $Id );}
