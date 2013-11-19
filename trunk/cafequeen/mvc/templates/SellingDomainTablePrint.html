@@ -1,0 +1,69 @@
+
+	<table width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+		<tr>			
+			<td width="100%" align="center">
+				<font size="13pt"><b>PHIẾU TÍNH TIỀN</b></font>
+			</td>
+		</tr>
+		<tr>			
+			<td width="100%" align="center">
+				<font size="10pt"><span tal:content="Session/getDatePrint" /></font>
+			</td>
+		</tr>
+	</table>
+<br/>
+<font size="10pt">	
+	<table style="padding-top:0px;" width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+		<tr>
+			<td width="50%" align="left">				
+				<span tal:content="php:mb_strtoupper(Session->getTable()->getName(),'UTF8')"/>				
+			</td>
+			<td width="50%" align="right">
+				<span tal:content="Session/getTimeRangePrint" />
+			</td>
+		</tr>
+		<tr>
+			<td width="50%" align="left">				
+				
+			</td>
+			<td width="50%" align="right">
+				NV: <span tal:content="Session/getUser/getName" />
+			</td>
+		</tr>		
+	</table>
+</font>
+<br/>
+<font size="9pt">
+	<table style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
+		<thead>
+			<tr>
+				<th width="42%"><b>TÊN HÀNG</b></th>
+				<th width="11%" align="right"><b>SL</b></th>
+				<th width="21%" align="right"><b>Đ.GIÁ</b></th>			
+				<th width="26%" align="right"><b>T.TIỀN</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="Detail Session/getDetails">
+				<td width="42%" align='left' tal:content="Detail/getCourse/getName" />
+				<td width="11%" align='right' tal:content="Detail/getCount" />
+				<td width="21%" align='right' tal:content="Detail/getPricePrint" />
+				<td width="26%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+			</tr>		
+		</tbody>
+	</table>
+	<table style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tbody>						
+			<tr>
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="12pt">TỔNG TIỀN: <b tal:content="Session/getValuePrint"/></font>
+				</td>
+			</tr>
+			<tr>
+				<td align='right' colspan="5" width="100%">
+					<p>( Bằng chữ: <span tal:content="Session/getValueStrPrint" /> )</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>	
+</font>
