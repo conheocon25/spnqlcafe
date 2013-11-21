@@ -13,25 +13,31 @@
 				</div>
 			</div>
 			<div class="widget-content">
-				<div class="invoice-content" tal:condition="Table/getSessionActive">
+				<div class="invoice-content" tal:condition="not:Table/getSessionActive">
 					<div class="invoice-head">
 						<div class="invoice-meta">
 							<center><h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/></center>
 						</div>
-						<p>Nhân viên: Anh Thuy</p>
+					</div>
+				</div>
+				<div class="invoice-content" tal:condition="Table/getSessionActive">
+					<div class="invoice-head">
+						<div class="invoice-meta">
+							<center><h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/></center>
+						</div>						
 						<div class="invoice-to">
 							<ul>
 								<li>
-									<span><strong>Bắt đầu</strong></span>
-									<span tal:content="Table/getSessionActive/getDateTimePrint"/>
+									<span><strong>Nhân viên</strong></span>
+									<span tal:content="Table/getSessionActive/getUser/getName"/>
 								</li>
 							</ul>
 						</div>
 						<div class="invoice-from">
 							<ul>
 								<li>
-									<span><strong>Kết thúc</strong></span>
-									<span tal:content="Table/getSessionActive/getDateTimeEndPrint"/>
+									<span><strong>Thời gian</strong></span>
+									<span tal:content="Table/getSessionActive/getDateTimePrint"/>
 								</li>
 							</ul>
 						</div>
@@ -74,17 +80,24 @@
 					
 				</div>
 			</div>
-		</div>
-		
-        <script>								
+		</div>		
+        <script>
 			$('.Course').click(function(e){
 				var IdCourse = $(this).attr('alt');
-				var IdTable = $("#CurrentTable").attr('alt');
-				alert("gọi món bàn " + IdTable + " món " +IdCourse );
-				//$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
+				var IdTable = $("#CurrentTable").attr('alt');				
+				URL = "/sellingbeta/call/table/"+IdTable+"/"+IdCourse+"/plus";
 				//e.preventDefault();
-				//$("#Session").load("/sellingbeta/load/table/"+IdTable);				
-			});								
+				e.stopImmediatePropagation();
+				$.ajax({
+					type: "POST", 
+					async: false,
+					url: URL,
+					dataType: 'json',
+					success: function(data){						
+						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+					}
+				});	
+			});
         </script>
 	</body>
 </html>
