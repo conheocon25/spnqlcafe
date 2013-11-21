@@ -8,7 +8,7 @@
 			</div>
 			<div class="widget-content">
 				<div class="gallery-masonry">
-					<div tal:repeat="Table Domain/getTableAll" tal:attributes="alt Table/getId;class php:Table->getSessionActive()==null? 'Table item':'Table item active'">
+					<div tal:repeat="Table Domain/getTableAll" tal:attributes="alt Table/getId;class php:Table->getSessionActive()==null? 'Table item':'Table item actived'">
 						<a class="thumbnail"><img src="data/images/table.png" /></a>
 						<div class="title"><span tal:content="Table/getName"/></div>						
 					</div>
