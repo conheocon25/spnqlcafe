@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">	
+	<body>				
+		<div id="Session" class="widget-box">
+			<span id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
+			<div role="grid" class="dataTables_wrapper" tal:condition="Table/getSessionActive">
+				<table cellpadding="10" border="0" width="100%">
+					<tr>
+						<td width="120"><div class="text-right">BẮT ĐẦU : </div></td>
+						<td><div  class="text-left" tal:content="Table/getSessionActive/getDateTimePrint"/></td>
+					</tr>
+					<tr>									
+						<td><div class="text-right">KẾT THÚC : </div></td>
+						<td><div  class="text-left" tal:content="Table/getSessionActive/getDateTimeEndPrint"/></td>
+					</tr>
+				</table>
+				<table class="table table-bordered table-striped table-hover">
+					<thead>
+						<tr>										
+							<th width="30">STT</th>
+							<th><div class="text-left">TÊN</div></th>
+							<th width="120"><div class="text-right">SL</div></th>
+							<th width="120"><div class="text-right">ĐƠN GIÁ</div></th>
+							<th width="120"><div class="text-right">T.TIỀN</div></th>
+							<th width="30"><i class="glyphicons-bin"/></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr tal:repeat="Detail Table/getSessionActive/getDetails">
+							<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+							<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getCourse/getName"/></td>
+							<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+							<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+							<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>												
+							<td class="center">
+								<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId">
+									<i class="glyphicon glyphicon-remove"/>
+								</a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4"><div class="text-right">GIẢM GIÁ</div></td>
+							<td><div class="text-right" tal:content="Table/getSessionActive/getDiscountPercentPrint"/></td>
+							<td />
+						</tr>
+						<tr>
+							<td colspan="4"><div class="text-right">TỔNG CỘNG</div></td>
+							<td><div class="text-right" tal:content="Table/getSessionActive/getValuePrint"/></td>
+							<td />
+						</tr>
+					</tfoot>
+				</table>									
+			</div>
+		</div>
+        <script>								
+			$('.Course').click(function(e){
+				var IdCourse = $(this).attr('alt');
+				var IdTable = $("#CurrentTable").attr('alt');
+				alert("gọi món bàn " + IdTable + " món " +IdCourse );
+				//$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
+				//e.preventDefault();
+				//$("#Session").load("/sellingbeta/load/table/"+IdTable);				
+			});								
+        </script>
+	</body>
+</html>

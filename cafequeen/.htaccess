@@ -38,6 +38,10 @@ RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^app$ 													?cmd=App [L]
 
+RewriteRule ^sellingbeta$ 											?cmd=SellingBeta [L]
+RewriteRule ^sellingbeta/load/domain/([0-9]+)$ 						?cmd=SellingBetaLoadDomain&IdDomain=$1 [L]
+RewriteRule ^sellingbeta/load/table/([0-9]+)$ 						?cmd=SellingBetaLoadTable&IdTable=$1 [L]
+
 RewriteRule ^selling$ 												?cmd=Selling [L]
 RewriteRule ^selling/([0-9]+)$ 										?cmd=SellingDomain&IdDomain=$1 [L]
 RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingDomainTable&IdDomain=$1&IdTable=$2 [L]
