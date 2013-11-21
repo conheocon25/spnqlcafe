@@ -10,10 +10,10 @@
 		<div id="sidebar">
 			<ul>
 				<li tal:repeat="Domain DomainAll" class="Domain" tal:attributes="alt Domain/getId">
-					<div class="btn btn-primary">
+					<a>
 						<i class="glyphicons-show_big_thumbnails" />
 						<span tal:content="Domain/getName"/>
-					</div>
+					</a>
 				</li>				
 			</ul>
 		</div>
@@ -22,22 +22,22 @@
 			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
 			<div class="row">
 				<div class="col-4">
-					<div id="TableAll" class="widget-box" />
+					<div id="TableAll"/>
 				</div>
 				<div class="col-5">
-					<div id="Session" class="widget-box" />
+					<div id="Session"/>
 				</div>
 				<div class="col-3">
 					<div class="accordion widget-box" id="collapse-group">
 						<div class="accordion-group widget-box" tal:repeat="Category CategoryAll">
 							<div class="accordion-heading">
 								<div class="widget-title">
-									<a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse">
-										<span class="icon"><i class="glyphicon glyphicon-magnet"></i></span><h5 tal:content="Category/getName"/>
+									<a data-parent="#collapse-group" tal:attributes="href php:'#'.Category->getIdString();" data-toggle="collapse">
+										<span class="icon"><i class="glyphicon glyphicon-glass"></i></span><h5 tal:content="Category/getName"/>
 									</a>
 								</div>
 							</div>
-							<div class="collapse in accordion-body" id="collapseGOne">
+							<div class="collapse accordion-body" tal:attributes="id Category/getIdString">
 								<div class="widget-content">
 									<div tal:repeat="Course Category/getCourseAll" class="Course" tal:attributes="alt Course/getId">
 										<span tal:content="Course/getName"/>
@@ -55,12 +55,7 @@
 			$('.Domain').click(function(){
 				var IdDomain = $(this).attr('alt');				
 				$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
-			});
-													
-			$('.gallery-masonry').masonry({
-				itemSelector: '.item',
-				isAnimated: true,
-				isFitWidth: true
+				$(this).toggleClass('active').siblings().removeClass('active');
 			});
         </script>
 	</body>
