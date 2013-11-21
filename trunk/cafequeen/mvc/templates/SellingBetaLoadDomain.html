@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+	</head>
+	<body>		
+		<div id="TableAll" class="widget-box">
+			<div class="widget-title">
+				<span class="icon"><i class="glyphicon glyphicon-picture"></i></span>
+				<h5>DANH SÁCH BÀN <span tal:content="Domain/getName"/></h5>
+			</div>
+			<div class="widget-content">
+				<div class="gallery-masonry">
+					<div class="Table item" tal:repeat="Table Domain/getTableAll" tal:attributes="alt Table/getId">
+						<a class="thumbnail"><img src="data/images/table.png" /></a>
+						<div class="title"><span tal:content="Table/getName"/></div>						
+					</div>
+				</div>
+			</div>					
+		</div>						
+        <script>
+			$(".Table").click(function(){
+				var IdTable = $(this).attr('alt');
+				$("#Session").load("/sellingbeta/load/table/"+IdTable);
+			});
+											
+			$('.gallery-masonry').masonry({
+				itemSelector: '.item',
+				isAnimated: true,
+				isFitWidth: true
+			});
+        </script>
+	</body>
+</html>
