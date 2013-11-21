@@ -41,6 +41,8 @@ RewriteRule ^app$ 													?cmd=App [L]
 RewriteRule ^sellingbeta$ 											?cmd=SellingBeta [L]
 RewriteRule ^sellingbeta/load/domain/([0-9]+)$ 						?cmd=SellingBetaLoadDomain&IdDomain=$1 [L]
 RewriteRule ^sellingbeta/load/table/([0-9]+)$ 						?cmd=SellingBetaLoadTable&IdTable=$1 [L]
+RewriteRule ^sellingbeta/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingBetaCallTable&IdTable=$1&IdCourse=$2&Delta=1 [L]
+RewriteRule ^sellingbeta/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingBetaCallTable&IdTable=$1&IdCourse=$2&Delta=-1 [L]
 
 RewriteRule ^selling$ 												?cmd=Selling [L]
 RewriteRule ^selling/([0-9]+)$ 										?cmd=SellingDomain&IdDomain=$1 [L]
