@@ -2,58 +2,80 @@
 <html lang="en">	
 	<body>				
 		<div id="Session" class="widget-box">
-			<span id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
-			<div role="grid" class="dataTables_wrapper" tal:condition="Table/getSessionActive">
-				<table cellpadding="10" border="0" width="100%">
-					<tr>
-						<td width="120"><div class="text-right">BẮT ĐẦU : </div></td>
-						<td><div  class="text-left" tal:content="Table/getSessionActive/getDateTimePrint"/></td>
-					</tr>
-					<tr>									
-						<td><div class="text-right">KẾT THÚC : </div></td>
-						<td><div  class="text-left" tal:content="Table/getSessionActive/getDateTimeEndPrint"/></td>
-					</tr>
-				</table>
-				<table class="table table-bordered table-striped table-hover">
-					<thead>
-						<tr>										
-							<th width="30">STT</th>
-							<th><div class="text-left">TÊN</div></th>
-							<th width="120"><div class="text-right">SL</div></th>
-							<th width="120"><div class="text-right">ĐƠN GIÁ</div></th>
-							<th width="120"><div class="text-right">T.TIỀN</div></th>
-							<th width="30"><i class="glyphicons-bin"/></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr tal:repeat="Detail Table/getSessionActive/getDetails">
-							<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
-							<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getCourse/getName"/></td>
-							<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
-							<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
-							<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>												
-							<td class="center">
-								<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId">
-									<i class="glyphicon glyphicon-remove"/>
-								</a>
-							</td>
-						</tr>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="4"><div class="text-right">GIẢM GIÁ</div></td>
-							<td><div class="text-right" tal:content="Table/getSessionActive/getDiscountPercentPrint"/></td>
-							<td />
-						</tr>
-						<tr>
-							<td colspan="4"><div class="text-right">TỔNG CỘNG</div></td>
-							<td><div class="text-right" tal:content="Table/getSessionActive/getValuePrint"/></td>
-							<td />
-						</tr>
-					</tfoot>
-				</table>									
+			<div class="widget-title">
+				<span class="icon">
+					<i class="glyphicon glyphicon-th-list"></i>
+				</span>
+				<h5>Hóa đơn tạm tính</h5>
+				<div class="buttons" tal:condition="Table/getSessionActive">
+					<a title="Icon Title" class="btn" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="text">Tính tiền</span></a>
+					<a title="Icon Title" class="btn" href="#"><i class="glyphicon glyphicon-print"></i> <span class="text">In phiếu</span></a>
+				</div>
+			</div>
+			<div class="widget-content">
+				<div class="invoice-content" tal:condition="Table/getSessionActive">
+					<div class="invoice-head">
+						<div class="invoice-meta">
+							<center><h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/></center>
+						</div>
+						<p>Nhân viên: Anh Thuy</p>
+						<div class="invoice-to">
+							<ul>
+								<li>
+									<span><strong>Bắt đầu</strong></span>
+									<span tal:content="Table/getSessionActive/getDateTimePrint"/>
+								</li>
+							</ul>
+						</div>
+						<div class="invoice-from">
+							<ul>
+								<li>
+									<span><strong>Kết thúc</strong></span>
+									<span tal:content="Table/getSessionActive/getDateTimeEndPrint"/>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div>
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>										
+									<th width="30">STT</th>
+									<th><div class="text-left">TÊN</div></th>
+									<th width="30"><div class="text-right">SL</div></th>
+									<th width="70"><div class="text-right">Đ.GIÁ</div></th>
+									<th width="70"><div class="text-right">T.TIỀN</div></th>
+									<th width="30"><i class="glyphicons-bin"/></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr tal:repeat="Detail Table/getSessionActive/getDetails">
+									<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
+									<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getCourse/getName"/></td>
+									<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+									<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
+									<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>												
+									<td class="center">
+										<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Detail/getId">
+											<i class="glyphicon glyphicon-remove"/>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<table width="100%"><tr>
+						<td style="text-align:right;">Giảm giá:</td>
+						<td tal:content="Table/getSessionActive/getDiscountPercentPrint" style="color:#5476A6;text-align:right;"/>
+					</tr><tr>
+						<td style="text-align:right;">Tổng cộng:</td>
+						<td tal:content="Table/getSessionActive/getValuePrint" style="color:#5476A6;text-align:right;"/>
+					</tr></table>
+					
+				</div>
 			</div>
 		</div>
+		
         <script>								
 			$('.Course').click(function(e){
 				var IdCourse = $(this).attr('alt');

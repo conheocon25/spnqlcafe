@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-	</head>
 	<body>		
 		<div id="TableAll" class="widget-box">
 			<div class="widget-title">
@@ -23,8 +19,9 @@
 			$(".Table").click(function(){
 				var IdTable = $(this).attr('alt');
 				$("#Session").load("/sellingbeta/load/table/"+IdTable);
+				$(this).toggleClass('active').siblings().removeClass('active');
 			});
-											
+			
 			$('.gallery-masonry').masonry({
 				itemSelector: '.item',
 				isAnimated: true,

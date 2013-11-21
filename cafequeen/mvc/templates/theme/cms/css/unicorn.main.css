@@ -1029,7 +1029,7 @@ ul#icons li {
 }
 
 .invoice-content {
-	padding: 20px;
+	padding: 5px;
 }
 .invoice-action {
     margin-bottom: 30px;
@@ -1042,7 +1042,8 @@ ul#icons li {
 }
 .invoice-meta {
     font-size: 18px;
-    margin-bottom: 40px;
+    margin-top: -10px;
+    margin-bottom: 0;
 }
 .invoice-date {
     float: right;
