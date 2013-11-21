@@ -21,8 +21,9 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$DomainAll 	= $mDomain->findAll();
+			$DomainAll 		= $mDomain->findAll();
 			$CategoryAll 	= $mCategory->findAll();			
+			$Domain			= $DomainAll->current();
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -35,6 +36,7 @@
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);
 			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('Domain'		, $Domain);
 			$request->setObject('DomainAll'		, $DomainAll);
 			$request->setObject('CategoryAll'	, $CategoryAll);
 			
