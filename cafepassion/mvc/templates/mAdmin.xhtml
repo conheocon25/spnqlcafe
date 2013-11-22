@@ -33,8 +33,9 @@
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/datepicker.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/datetimepicker.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/custom.css"/>
+		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/grid-menu.css"/>
 		<link rel="stylesheet" href="/mvc/templates/theme/cms/css/jquery.gritter.css"/>
-		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>
+		<link rel="stylesheet" tal:attributes="href php:'/mvc/templates/theme/cms/css/unicorn.' . @\MVC\Base\SessionRegistry::instance()->getCurrentTheme() . '.css'" class="skin-color"/>										
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -52,7 +53,9 @@
 		<script src="/mvc/templates/theme/cms/js/unicorn.tables.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.gritter.min.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
-		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>		
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>				                                   
+        <script src="/mvc/templates/theme/cms/js/jquery.masonry.min.js"></script>
+		
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -79,7 +82,7 @@
 	<!-- LOCATION BAR															  -->
 	<!-- ======================================================================== -->
 	<div metal:define-macro="LocationBar" id="breadcrumb">
-		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chủ"><i class="glyphicons-shop"></i> Hệ thống</a>
+		<a class="tip-bottom" title="" href="/app" data-original-title="Về trang chủ"><i class="glyphicons-shop"></i> HỆ THỐNG</a>
 		<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
 		<a tal:content="Title" class="current"/>
 	</div>
@@ -103,6 +106,9 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
+			<li tal:attributes="class php:ActiveAdmin=='SellingBeta'?'active':'disable'">
+				<a tal:attributes="href '/sellingbeta'"><i class="glyphicons-drink" />BÁN HÀNG (N)</a>
+			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
 			</li>

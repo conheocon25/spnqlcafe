@@ -75,10 +75,10 @@ class Table extends Object{
 		return $Session;
 	}
 	
-	function getSessionsTop20(){		
+	function getSessionRecent(){		
 		$mSession = new	\MVC\Mapper\Session();		
-		$Sessions = $mSession->findByTableTop20(array($this->getId()));		
-		return $Sessions;
+		$SessionAll = $mSession->findByTablePage(array($this->getId(), 1, 5));
+		return $SessionAll;
 	}
 	
 	function getSessions(){
