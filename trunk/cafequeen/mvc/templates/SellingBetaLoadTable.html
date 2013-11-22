@@ -49,9 +49,9 @@
 								<tr>										
 									<th width="30">STT</th>
 									<th><div class="text-left">TÊN</div></th>
-									<th width="30"><div class="text-right">SL</div></th>
-									<th width="70"><div class="text-right">Đ.GIÁ</div></th>
-									<th width="75"><div class="text-right">T.TIỀN</div></th>
+									<th width="30">SL</th>
+									<th width="80"><div class="text-right">Đ.GIÁ</div></th>
+									<th width="80"><div class="text-right">T.TIỀN</div></th>
 									<th width="30"><i class="glyphicons-bin"/></th>
 								</tr>
 							</thead>
@@ -59,7 +59,7 @@
 								<tr tal:repeat="Detail Table/getSessionActive/getDetails">
 									<td><div class="text-center" tal:content="repeat/Detail/number" /></td>
 									<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Detail/getId" tal:content="Detail/getCourse/getName"/></td>
-									<td><div class="text-right" tal:content="Detail/getCountPrint"/></td>
+									<td><div class="text-center" tal:content="Detail/getCountPrint"/></td>
 									<td><div class="text-right" tal:content="Detail/getPricePrint"/></td>
 									<td><div class="text-right" tal:content="Detail/getValuePrint"/></td>
 									<td class="center">
@@ -123,7 +123,35 @@
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>	
 				</div>
 			</div>
-		</div>		
+		</div>
+		
+		<div id="Session" class="widget-box">
+			<div class="widget-title">
+				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
+				<h5>LỊCH SỬ GIAO DỊCH</h5>
+			</div>
+			<div class="widget-content">
+					<div>
+						<table class="table table-bordered table-striped table-hover">
+							<thead>
+								<tr>										
+									<th width="30">STT</th>
+									<th><div class="text-left">Ngày</div></th>
+									<th><div class="text-right">Giá trị</div></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr tal:repeat="Session Table/getSessions">
+									<td><div class="text-center" tal:content="repeat/Session/number"/></td>
+									<td><div class="text-left" tal:content="Session/getDateTimePrint"/></td>
+									<td><div class="text-right" tal:content="Session/getValuePrint"/></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			</div>
+		</div>
+		
         <script>
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DETAIL			
