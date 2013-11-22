@@ -17,6 +17,7 @@ class Category extends Object{
         parent::__construct( $Id );
     }
     function getId() {return $this->Id;}	
+    function getIdString() {return 'Category'.$this->Id;}	
 			
     function setName( $Name ) {$this->Name = $Name;$this->markDirty();}   
 	function getName( ) {return $this->Name;}
