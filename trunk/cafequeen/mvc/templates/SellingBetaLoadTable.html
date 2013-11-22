@@ -6,10 +6,10 @@
 				<span class="icon">
 					<i class="glyphicon glyphicon-th-list"></i>
 				</span>
-				<h5>Hóa đơn tạm tính</h5>
+				<h5>PHIẾU TÍNH TIỀN</h5>
 				<div class="buttons" tal:condition="Table/getSessionActive">
-					<a title="Icon Title" class="btn" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="text">Tính tiền</span></a>
-					<a title="Icon Title" class="btn" href="#"><i class="glyphicon glyphicon-print"></i> <span class="text">In phiếu</span></a>
+					<a title="Icon Title" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="text">Tính tiền</span></a>
+					<a title="Icon Title" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i> <span class="text">In phiếu</span></a>
 				</div>
 			</div>
 			<div class="widget-content">
@@ -159,8 +159,12 @@
 					async: false,
 					url: URL,
 					dataType: 'json',
-					success: function(data){						
+					success: function(data){
+						var TableActive = "#" + $("#TableActive").attr('alt');
 						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						
+						//Đánh dấu Table có khách
+						$(TableActive).toggleClass('actived');
 					}
 				});	
 			});
@@ -179,6 +183,25 @@
 					$('#Name1').attr('value', data.Name);
 					$('#Count1').attr('value', data.Count);
 					$('#Price1').attr('value', data.Price);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 SESSION DETAIL
+			//-----------------------------------------------------------------------------------
+			$('.Checkout').click(function(e){
+				var URL = $(this).attr('alt');
+				var IdTable = $("#CurrentTable").attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						var TableActive = "#" + $("#TableActive").attr('alt');
+						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+																		
+						//Đánh dấu Table có khách
+						$(TableActive).toggleClass('actived');
+					}
 				});
 			});
 			
@@ -205,6 +228,7 @@
 					url: URL,
 					success: function(msg){
 						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						
 					}
 				});
 			});		

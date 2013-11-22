@@ -19,14 +19,6 @@
 				<span tal:content="php:mb_strtoupper(Session->getTable()->getName(),'UTF8')"/>				
 			</td>
 			<td width="50%" align="right">
-				<span tal:content="Session/getTimeRangePrint" />
-			</td>
-		</tr>
-		<tr>
-			<td width="50%" align="left">				
-				
-			</td>
-			<td width="50%" align="right">
 				NV: <span tal:content="Session/getUser/getName" />
 			</td>
 		</tr>		
@@ -61,9 +53,10 @@
 			</tr>
 			<tr>
 				<td align='right' colspan="5" width="100%">
-					<p>( Bằng chữ: <span tal:content="Session/getValueStrPrint" /> )</p>
+					<p>( <span tal:content="Session/getValueStrPrint" /> )</p>
 				</td>
 			</tr>
 		</tbody>
-	</table>	
+	</table>
+	<p align="center"><B>CÁM ƠN QUÍ KHÁCH, HẸN GẶP LẠI !</B></p>
 </font>
