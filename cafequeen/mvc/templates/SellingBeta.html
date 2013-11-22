@@ -46,9 +46,10 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>				
 			</div>			
 		</div>
+		<div id="TableActive" />
 		<div id="DomainActive" tal:attributes="alt Domain/getId"/>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
@@ -58,7 +59,7 @@
 				var IdDomain = $(this).attr('alt');				
 				$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
 				$(this).toggleClass('active').siblings().removeClass('active');
-			});			
+			});
         </script>
 	</body>
 </html>
