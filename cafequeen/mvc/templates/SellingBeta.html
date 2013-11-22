@@ -38,11 +38,15 @@
 								</div>
 							</div>
 							<div class="collapse accordion-body" tal:attributes="id Category/getIdString">
-								<div class="widget-content">
-									<div tal:repeat="Course Category/getCourseAll" class="Course" tal:attributes="alt Course/getId">
-										<span tal:content="Course/getName"/>
-									</div>
-								</div>
+								<div class="widget-content nopadding">
+                                    <ul class="activity-list">
+                                        <li tal:repeat="Course Category/getCourseAll" class="Course" tal:attributes="alt Course/getId"><a>
+                                            <button class="pull-left"><i class="ui-icon ui-icon-plus"></i></button>
+                                            <strong tal:content="Course/getName"/>
+											<button class="pull-right"><i class="ui-icon ui-icon-minus"></i></button>
+                                        </a></li>
+                                    </ul>
+                                </div>
 							</div>
 						</div>
 					</div>
