@@ -11,36 +11,24 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$Alias = $request->getProperty('IdApp');
-						
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTermCollect = new \MVC\Mapper\TermCollect();
-			$mTermPaid = new \MVC\Mapper\TermPaid();			
-			$mDomain = new \MVC\Mapper\Domain();
-			$mCustomer = new \MVC\Mapper\Customer();
-			
+						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$TermCollectAll = $mTermCollect->findAll();
-			$TermPaidAll = $mTermPaid->findAll();			
-			$DomainAll = $mDomain->findAll();
-			$CustomerAll = $mCustomer->findAll();
-			
-			$Title = "ỨNG DỤNG";
+			//-------------------------------------------------------------					
+			$Title = "";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------
+			//-------------------------------------------------------------									
+			
 			$request->setProperty("Title", $Title);
+			$request->setProperty("ActiveAdmin", 'Admin');
 			$request->setObject("Navigation", $Navigation);
-			$request->setObject("DomainAll", $DomainAll);
-			$request->setObject("TermCollectAll", $TermCollectAll);
-			$request->setObject("TermPaidAll", $TermPaidAll);			
-			$request->setObject("CustomerAll", $CustomerAll);
 		}
 	}
 ?>

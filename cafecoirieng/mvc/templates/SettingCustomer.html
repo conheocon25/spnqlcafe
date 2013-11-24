@@ -1,58 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
 	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-						<span metal:use-macro="mAdmin.xhtml/Menu"/>
-					</div>
-					<div class="span9">
-						<div class="content">
-							<span metal:use-macro="mAdmin.xhtml/LocationBar"/>
-							<table class="table table-striped table-hover">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuSetting"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
+			<div class="row">
+				<div class="col-12">
+					<a href="#DialogIns" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-plus"/> Thêm mới
+					</a>
+					<a href="#DialogDelSelected" data-toggle="modal" class="btn btn-primary btn-ins">
+						<i class="glyphicons-remove_2"/> Xóa chọn
+					</a>
+					<div class="widget-box">
+						<div class="widget-content nopadding">
+							<table class="table table-bordered table-striped table-hover with-check">
 								<thead>
 									<tr>
-										<th width="32"><div class="text-center">STT</div></th>
-										<th>TÊN</th>										
-										<th width="32" />
+										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th class="left">TÊN</th>										
+										<th width="40"><i class="glyphicons-edit"/></th>
+										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Customer CustomerAll">
-										<td width="32"><div class="text-center" tal:content="repeat/Customer/number" /></td>
-										<td>
-											<a tal:attributes="href Customer/getURLUpdLoad">
-												<span tal:content="Customer/getName"/>
+									<tr tal:repeat="Customer CustomerAll1">
+										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
+										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
+										<td class="center">
+											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
+												<i class="glyphicon glyphicon-pencil"/>
 											</a>
 										</td>
-										<td width="32"><a class="btn" tal:attributes="href Customer/getURLDelLoad"><span class="icon-remove"/></a></td>
+										<td class="center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Customer/getId">
+												<i class="glyphicon glyphicon-remove"/>
+											</a>
+										</td>
 									</tr>
 								</tbody>
-								<tfoot>
-									<tr>
-										<td colspan="3" align="center">
-											<a class="btn btn-primary" href="/setting/customer/ins/load">
-												<span class="icon-plus"/>Thêm mới
-											</a>
-										</td>
-									</tr>
-								</tfoot>
-							</table>
-							<!--
-							<span metal:use-macro="mAdmin.xhtml/PageBar"/>
-							!-->
+							</table>							
+						</div>
+					</div>					
+					<div metal:use-macro="mAdmin.xhtml/PageBar"/>
+
+					<!-- INSERT DIALOG  -->
+					<div id="DialogIns" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="modal-body">
+										<div class="form-group">
+											<div class="control-group">
+												<label class="control-label">Tên</label>
+												<div class="controls">
+													<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+												</div>
+											</div>																															
+											<div class="control-group">
+												<label class="control-label">Điện thoại</label>
+												<div class="controls">								
+													<input id="Phone1" name="Phone1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Loại</label>
+												<div class="controls">								
+													<input id="Type1" name="Type1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">CMND</label>
+												<div class="controls">								
+													<input id="Card1" name="Card1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Ghi chú</label>
+												<div class="controls">
+													<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Địa chỉ</label>
+												<div class="controls">
+													<input id="Address1" name="Address1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Giảm giá</label>
+												<div class="controls">
+													<input id="Discount1" name="Discount1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>								
+							</div>
 						</div>
 					</div>
+					<!-- END INSERT DIALOG  -->
+					
+					<!-- UPDATE DIALOG  -->
+					<div id="DialogEdit" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3>
+								</div>
+								<div class="form-horizontal" id="update-link">
+									<div class="modal-body">
+										<div class="form-group">
+											<div class="control-group">
+												<label class="control-label">Tên</label>
+												<div class="controls">
+													<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+												</div>
+											</div>																															
+											<div class="control-group">
+												<label class="control-label">Điện thoại</label>
+												<div class="controls">								
+													<input id="Phone2" name="Phone2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Loại</label>
+												<div class="controls">								
+													<input id="Type2" name="Type2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">CMND</label>
+												<div class="controls">								
+													<input id="Card2" name="Card2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Ghi chú</label>
+												<div class="controls">
+													<input id="Note2" name="Note2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Địa chỉ</label>
+												<div class="controls">
+													<input id="Address2" name="Address2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="control-group">
+												<label class="control-label">Giảm giá</label>
+												<div class="controls">
+													<input id="Discount2" name="Discount2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
+									</div>									
+									<div class="modal-footer">
+										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END UPDATE DIALOG  -->
+					<div metal:use-macro="mDialog.xhtml/DialogDel"/>
+					<div metal:use-macro="mDialog.xhtml/DialogDelSelected"/>					
 				</div>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			$('#URLDelSelectedButton').click(function(){
+				var count = 0;
+				var Data = [];
+				var URL = "/object/del/Customer/0";
+				
+				$(".CheckedDel").each(function( i, obj){
+					if ( $(this).is(':checked')==true ){
+						count += 1;
+						Data[count] = $(this).attr('data-id');
+					}
+				});
+				
+				$.ajax({
+					type: "POST",
+					data: {ListId:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			//-----------------------------------------------------------------------------------
+			//Delete 1 EMPLOYEEE			
+			//-----------------------------------------------------------------------------------
+			$('.remove-item').click(function(){
+				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
+			});
+			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			$('#URLDelButton').click(function(){			
+				var URL = "/object/del/Customer/" + $(this).attr('alt');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+		
+			//-----------------------------------------------------------------------------------
+			//Insert 1 EMPLOYEEE
+			$('#URLInsButton').click(function(){
+				var Data = [];
+				Data[0] = 'null';				
+				Data[1] = $('#Name1').val();
+				Data[2] = $('#Type1').val();
+				Data[3] = $('#Card1').val();
+				Data[4] = $('#Phone1').val();
+				Data[5] = $('#Address1').val();
+				Data[6] = $('#Note1').val();
+				Data[7] = $('#Discount1').val();
+														
+				var URL = "/object/ins/Customer";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Load 1 Customer
+			//-----------------------------------------------------------------------------------
+			$('.update-item').click(function(){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Customer/" + $(this).attr('data-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$('#update-link').attr('action', $(this).attr('alt'));
+				$.getJSON(url, function(data) {
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#Name2').attr('value', 		data.Name);										
+					$('#Type2').attr('value', 		data.Type);
+					$('#Card2').attr('value', 		data.Card);
+					$('#Phone2').attr('value', 		data.Phone);
+					$('#Address2').attr('value', 	data.Address);
+					$('#Note2').attr('value', 		data.Note);
+					$('#Discount2').attr('value', 	data.Discount);
+				});
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 EMPLOYEEE
+			//-----------------------------------------------------------------------------------
+			$('#URLUpdButton').click(function(){
+				var Data = [];
+				Data[0] = $('#URLUpdButton').attr('alt');				
+				Data[1] = $('#Name2').val();
+				Data[2] = $('#Type2').val();
+				Data[3] = $('#Card2').val();
+				Data[4] = $('#Phone2').val();
+				Data[5] = $('#Address2').val();
+				Data[6] = $('#Note2').val();
+				Data[7] = $('#Discount2').val();
+														
+				var URL = "/object/upd/Customer";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						location.reload();
+					}
+				});
+			});
+			
+		/*]]>*/</script>		
 	</body>
 </html>

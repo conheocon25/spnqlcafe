@@ -9,36 +9,45 @@
 			$Session = \MVC\Base\SessionRegistry::instance();
 			
 			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
+			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdDomain = $request->getProperty('IdDomain');
+			$Page = $request->getProperty("Page");
+			$IdDomain = $request->getProperty("IdDomain");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
 			$mDomain = new \MVC\Mapper\Domain();
+			$mTable = new \MVC\Mapper\Table();
+			$mConfig = new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------							
-			$Domain = $mDomain->find($IdDomain);
+			//-------------------------------------------------------------			
 			$DomainAll = $mDomain->findAll();
+			$Domain = $mDomain->find($IdDomain);
 			
 			$Title = mb_strtoupper($Domain->getName(), 'UTF8');
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("THIẾT LẬP", "/setting"),
 				array("KHU VỰC", "/setting/domain")
 			);
+			if (!isset($Page)) $Page=1;
+			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$TableAll = $mTable->findByPage(array($IdDomain, $Page, $Config->getValue() ));
+			$PN = new \MVC\Domain\PageNavigation($Domain->getTableAll()->count(), $Config->getValue(), $Domain->getURLTable());
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setProperty("Title", $Title);
-			
-			$request->setObject("Navigation", $Navigation);
 			$request->setObject("Domain", $Domain);
 			$request->setObject("DomainAll", $DomainAll);
+			$request->setObject("TableAll", $TableAll);
+						
+			$request->setProperty("Title", $Title);
+			$request->setProperty("Page", $Page);
+			$request->setObject("Navigation", $Navigation);
+			$request->setObject("PN", $PN);
 		}
 	}
 ?>

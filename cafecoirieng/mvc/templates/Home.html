@@ -1,31 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html style="overflow-y:hidden;" lang="en">
 	<head>
-		<span metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<span metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
-		<span metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
 	</head>
-	<body>
-		<div class="container-fluid">
-			<span metal:use-macro="mAdmin.xhtml/Header"/>
-			<div class="row-fluid">
-				<div class="row-fluid">
-					<div class="span3">
-						<div class="menu">
-							<ul class="nav nav-list">
-								<li class="nav-header">CHỨC NĂNG</li>
-								<li><a tal:attributes="href '/signin/load'">ĐĂNG NHẬP</a></li>								
-							</ul>
-						</div>
-					</div>
-					<div class="span9">
-						<div class="content">
-							<center><img src="/data/images/bg_manager.png" width="50%" style="opacity:.25;"/></center>
-						</div>
-					</div>
-				</div>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div class="container-fluid">
+				<center>
+					<h2>Chào mừng bạn đến với hệ thống</h2>
+					<br/>
+					<a class="btn btn-primary" href="/signin/load">Click vào đây</a>
+				</center>
 			</div>
-			<span metal:use-macro="mAdmin.xhtml/Footer"/>
 		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
 	</body>
 </html>

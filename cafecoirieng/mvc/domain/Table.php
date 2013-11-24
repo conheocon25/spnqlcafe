@@ -25,45 +25,19 @@ class Table extends Object{
         parent::__construct( $Id );
     }
 	
-    function getId( ) {
-        return $this->Id;
-    }
-	function getIdPrint( ) {
-        return "t".$this->Id;
-    }
+    function getId( ) {return $this->Id;}
+	function getIdPrint( ) {return "t".$this->Id;}
 		
-	function getIdDomain( ) {
-        return $this->IdDomain;
-    }
-	
-	function setIdDomain( $IdDomain ) {
-        $this->IdDomain = $IdDomain;
-        $this->markDirty();
-    }
+	function getIdDomain( ) {return $this->IdDomain;}	
+	function setIdDomain( $IdDomain ) {$this->IdDomain = $IdDomain;$this->markDirty();}
 
-	function getName( ) {
-        return $this->Name;
-    }
+	function getName( ) {return $this->Name;}
+	function setName( $Name ) {$this->Name = $Name;$this->markDirty();}
 
-	function setName( $Name ) {
-        $this->Name = $Name;
-        $this->markDirty();
-    }
-
-	function getIdUser( ) {
-        return $this->IdUser;
-    }
+	function getIdUser( ) {return $this->IdUser;}	
+    function setIdUser( $IdUser ) {$this->IdUser = $IdUser;$this->markDirty();}
 	
-    function setIdUser( $IdUser ) {
-        $this->IdUser = $IdUser;
-        $this->markDirty();
-    }
-	
-	function getUser( ){
-		$mUser = new \MVC\Mapper\User();
-		$User = $mUser->find($this->IdUser);
-		return $User;
-    }
+	function getUser( ){$mUser = new \MVC\Mapper\User();$User = $mUser->find($this->IdUser);return $User;}
 
 	//True: có khách, false: không có khách
     function getState() {
@@ -79,9 +53,18 @@ class Table extends Object{
     }
 			
 	function getType( ) {return $this->Type;}	
-	function getTypePrint() {if ($this->Type==1)return "VIP"; return "Thường";}	
-	function setType( $Type ) {$this->Type = $Type;$this->markDirty();}			
-	function getDomain(){$mDomain = new \MVC\Mapper\Domain(); $Domain = $mDomain->find($this->IdDomain); return $Domain;}
+	function getTypePrint() {
+		if ($this->Type==1)
+			return "VIP";
+        return "Thường";
+    }
+	
+	function setType( $Type ){$this->Type = $Type; $this->markDirty();}			
+	function getDomain(){
+		$mDomain = new \MVC\Mapper\Domain();
+		$Domain = $mDomain->find($this->IdDomain);
+		return $Domain;
+	}
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
@@ -91,7 +74,13 @@ class Table extends Object{
 		$Session = $mSession->findLast(array($this->getId()));
 		return $Session;
 	}
-			
+	
+	function getSessionRecent(){		
+		$mSession = new	\MVC\Mapper\Session();		
+		$SessionAll = $mSession->findByTablePage(array($this->getId(), 1, 5));
+		return $SessionAll;
+	}
+	
 	function getSessions(){
 		if (!isset($this->Sessions)){
 			$mSession = new	\MVC\Mapper\Session();		
@@ -151,20 +140,25 @@ class Table extends Object{
 		return $mSession->trackingCount(array($this->getId(), $DateStart, $DateEnd));
 	}
 	
-	function getLog($Date){
-		$mTableLog = new \MVC\Mapper\TableLog();
-		return $mTableLog->findBy(array($this->getId(), $Date));
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'IdDomain'		=> $this->getIdDomain(),
+			'Name'			=> $this->getName(),
+			'IdUser'		=> $this->getIdUser(),			
+			'Type'			=> $this->getType()
+		);
+		return json_encode($json);
 	}
 	
-	//-------------------------------------------------------------------------------
-	//DEFINE SETTING URL
-	//-------------------------------------------------------------------------------	
-	function getURLUpdLoad(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/load";}
-	function getURLDelExe(){return "/setting/domain/".$this->getIdDomain()."/".$this->getId()."/del/exe";}
-	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->IdDomain 	= $Data[1];
+		$this->Name 		= $Data[2];
+		$this->IdUser 		= $Data[3];
+		$this->Type 		= $Data[4];
+    }
+			
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	
@@ -173,20 +167,12 @@ class Table extends Object{
 	
 	function getURLCheckoutExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/checkout/exe";}	
 	function getURLCallLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/load";}
-	function getURLCallExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/exe";}
-	
-	function getURLEvalLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/eval/load";}
-	function getURLEvalExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/eval/exe";}
-	
+	function getURLCallExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/call/exe";}		
+	function getURLEvalExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/eval/exe";}	
 	function getURLMoveLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/load";}
-	function getURLMoveExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/exe";}
-	
+	function getURLMoveExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/move/exe";}	
 	function getURLMergeLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/load";}
-	function getURLMergeExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/exe";}
-	
-	function getURLCancelLoad(){return "/selling/".$this->IdDomain."/".$this->getId()."/del/load";}
-	function getURLCancelExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/del/exe";}
-	
+	function getURLMergeExe(){return "/selling/".$this->IdDomain."/".$this->getId()."/merge/exe";}		
 	function getURLLog(){return "/selling/".$this->IdDomain."/".$this->getId()."/log";}
 
 	//---------------------------------------------------------	

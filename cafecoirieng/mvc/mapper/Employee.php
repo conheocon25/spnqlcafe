@@ -38,7 +38,10 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
         return $obj;
     }
 	
-    protected function targetClass() {return "Employee";}
+    protected function targetClass() {        
+		return "Employee";
+    }
+
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 			
 			$object->getName(),

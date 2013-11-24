@@ -1,6 +1,8 @@
 <?php		
 	$mDomain	 		= new \MVC\Mapper\Domain();	
-	$mTable		 		= new \MVC\Mapper\Table();	
+	$mTable		 		= new \MVC\Mapper\Table();
+	$mSupplier		 	= new \MVC\Mapper\Supplier();
+	$mResource		 	= new \MVC\Mapper\Resource();
 	$mSession		 	= new \MVC\Mapper\Session();
 	$mSessionDetail	 	= new \MVC\Mapper\SessionDetail();	
 	$mEmployee 			= new \MVC\Mapper\Employee();

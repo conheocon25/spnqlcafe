@@ -26,7 +26,7 @@
 	private $Phone;
 	private $Address;
 	private $SalaryBase;
-	
+			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
@@ -41,6 +41,17 @@
 		
         parent::__construct( $Id );
     }
+	
+	function setArray( $Data ){
+        $this->Id = $Data[0];
+		$this->Name = $Data[1];
+		$this->Gender = $Data[2];
+		$this->Job = $Data[3];
+		$this->Phone = $Data[4];
+		$this->Address = $Data[5];
+		$this->SalaryBase = $Data[6];
+    }
+	
     function getId( ) {return $this->Id;}
 	function getIdPrint( ) {return "e".$this->Id;}
 		
@@ -79,9 +90,22 @@
 		return $N->formatCurrency();
 	}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 			=> $this->getId(),
+			'Name'			=> $this->getName(),
+			'Gender'		=> $this->getGender(),
+			'Job'			=> $this->getJob(),
+			'Phone'			=> $this->getPhone(),
+			'Address'		=> $this->getAddress(),
+			'SalaryBase'	=> $this->getSalaryBase()
+		);
+		return json_encode($json);
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
-	//-------------------------------------------------------------------------------						
+	//-------------------------------------------------------------------------------								
 	function getPayRollAll(){
 		$mPPR = new \MVC\Mapper\PaidPayRoll();
 		$PRRAll = $mPPR->findBy(array($this->getId()));
@@ -95,28 +119,19 @@
 		return $PR;
 	}
 	
+	function getPaidAll(){
+		$mPE 	= new \MVC\Mapper\PaidEmployee();
+		$PEAll 	= $mPE->findBy(array($this->getId()));
+		return $PEAll;
+	}
+		
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
     static function find( $id ) {$finder = self::getFinder( __CLASS__ ); return $finder->find( $id );}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------				
-	function getURLUpdLoad(){return "/setting/employee/".$this->getId()."/upd/load";}
-	function getURLUpdExe(){return "/setting/employee/".$this->getId()."/upd/exe";}
-	
-	function getURLDelLoad(){return "/setting/employee/".$this->getId()."/del/load";						}
-	function getURLDelExe(){return "/setting/employee/".$this->getId()."/del/exe";}
-	
 	//-------------------------------------------------------------------------------
-	//DEFINE URL PAID.SUPPLIER
-	//-------------------------------------------------------------------------------
-	
-	
-	//-------------------------------------------------------------------------------
-	//DEFINE URL PAID.PAY.ROLL
-	//-------------------------------------------------------------------------------
-	function getURLPPR(){return "/paid/payroll/".$this->getIdPrint();}
-	function getURLPPRInsLoad(){return "/paid/payroll/".$this->getId()."/ins/load";}
-	function getURLPPRInsExe(){return "/paid/payroll/".$this->getId()."/ins/exe";}
+	function getURLPaid(){return "/money/paid/employee/".$this->getId();}
+		
 }
 ?>

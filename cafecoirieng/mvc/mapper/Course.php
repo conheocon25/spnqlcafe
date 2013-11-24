@@ -6,8 +6,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 
     function __construct() {
         parent::__construct();
-		$tblCourse = "cafecoirieng_course";
-		$tblSessionDetail = "cafecoirieng_session_detail";
+		$tblCourse 			= "cafecoirieng_course";
+		$tblSessionDetail 	= "cafecoirieng_session_detail";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblCourse);								
 		$selectStmt = sprintf("select * from %s where id=?", $tblCourse);
@@ -15,6 +15,13 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 		$insertStmt = sprintf("insert into %s (idcategory, name, shortname, unit, price1, price2, price3, price4, picture) 
 							values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblCourse);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCourse);
+		$findByPageStmt = sprintf("
+							SELECT *
+							FROM %s
+							WHERE idcategory=:idcategory
+							LIMIT :start,:max
+				", $tblCourse);
+				
 		$findByCategoryStmt = sprintf("select * from %s where idcategory=? ORDER BY name", $tblCourse);
 		$findTop20Stmt = sprintf("SELECT
 								C.id, 
@@ -43,6 +50,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
 		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);		
 		$this->findTop20Stmt = self::$PDO->prepare($findTop20Stmt);
+		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
         
     } 
     function getCollection( array $raw ) {
@@ -61,7 +69,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$array['price3'],
 			$array['price4'],
 			$array['picture']			
-			 );
+		);
         return $obj;
     }
 
@@ -119,6 +127,14 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 	function findTop20($values ){
         $this->findTop20Stmt->execute( $values );
         return new CourseCollection( $this->findTop20Stmt->fetchAll(), $this );
-    }	
+    }
+	
+	function findByPage( $values ) {		
+		$this->findByPageStmt->bindValue(':idcategory', $values[0], \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':start', ((int)($values[1])-1)*(int)($values[2]), \PDO::PARAM_INT);
+		$this->findByPageStmt->bindValue(':max', (int)($values[2]), \PDO::PARAM_INT);		
+		$this->findByPageStmt->execute();
+        return new CourseCollection( $this->findByPageStmt->fetchAll(), $this );
+    }
 }
 ?>
