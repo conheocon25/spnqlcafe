@@ -32,9 +32,7 @@
 			}
 			
 			$Title = "CHẤM CÔNG";
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app")
-			);
+			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

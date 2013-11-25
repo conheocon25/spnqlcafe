@@ -75,6 +75,12 @@ class Table extends Object{
 		return $Session;
 	}
 	
+	function getLog($Date){
+		$mLog 	= new \MVC\Mapper\TableLog();
+		$LogAll = $mLog->findBy(array($this->getId(), $Date));
+		return $LogAll;
+	}
+	
 	function getSessionRecent(){		
 		$mSession = new	\MVC\Mapper\Session();		
 		$SessionAll = $mSession->findByTablePage(array($this->getId(), 1, 5));

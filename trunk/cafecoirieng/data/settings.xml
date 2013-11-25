@@ -67,30 +67,10 @@
 		<command name="SellingBetaLoadDomain"><view>SellingBetaLoadDomain</view></command>
 		<command name="SellingBetaLoadTable"><view>SellingBetaLoadTable</view></command>
 		<command name="SellingBetaCallTable"><view>SellingBetaCallTable</view></command>
-		
-		<command name="SellingDomainTable"><view>SellingDomainTable</view></command>
-		<command name="SellingDomainTableLog"><view>SellingDomainTableLog</view></command>
-		<command name="SellingDomainTableCallLoad"><view>SellingDomainTableCallLoad</view></command>
-		<command name="SellingDomainTableCallExe"><status value="CMD_OK"><forward>SellingDomainTableCallLoad</forward></status><view>SellingDomainTableCallExe</view></command>		
-		<command name="SellingDomainTableSessionDetailUpdLoad"><view>SellingDomainTableSessionDetailUpdLoad</view></command>
-		<command name="SellingDomainTableSessionDetailUpdExe"><status value="CMD_OK"><forward>SellingDomainTableLogDetail</forward></status><view>SellingDomainTableSessionDetailUpdExe</view></command>		
-		<command name="SellingDomainTableSessionDetailDelLoad"><view>SellingDomainTableSessionDetailDelLoad</view></command>
-		<command name="SellingDomainTableSessionDetailDelExe"><status value="CMD_OK"><forward>SellingDomainTableLogDetail</forward></status><view>SellingDomainTableSessionDetailDelExe</view></command>						
-		<command name="SellingDomainTableMoveLoad"><view>SellingDomainTableMoveLoad</view></command>
-		<command name="SellingDomainTableMoveExe"><view>SellingDomainTableMoveExe</view><status value="CMD_OK"><forward>SellingDomain</forward></status></command>
-		<command name="SellingDomainTableMergeLoad"><view>SellingDomainTableMergeLoad</view></command>
-		<command name="SellingDomainTableMergeExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableMergeExe</view></command>		
-		<command name="SellingDomainTableDelLoad"><view>SellingDomainTableDelLoad</view></command>
-		<command name="SellingDomainTableDelExe"><view>SellingDomainTableDelExe</view><status value="CMD_OK"><forward>SellingDomainTableLog</forward></status></command>		
-		<command name="SellingDomainTableLogDelLoad"><view>SellingDomainTableLogDelLoad</view></command>
-		<command name="SellingDomainTableLogDelExe"><view>SellingDomainTableLogDelExe</view><status value="CMD_OK"><forward>SellingDomain</forward></status></command>
-		<command name="SellingDomainTableLogUpdLoad"><view>SellingDomainTableLogUpdLoad</view></command>
-		<command name="SellingDomainTableLogUpdExe"><view>SellingDomainTableLogUpdExe</view><status value="CMD_OK"><forward>SellingDomain</forward></status></command>
-		<command name="SellingDomainTableLogDetail"><view>SellingDomainTableLogDetail</view></command>
-		
+						
 		<command name="SellingDomainTablePrint"><view>SellingDomainTablePrint</view></command>
 		<command name="SellingDomainTableCheckinExe"><status value="CMD_OK"><forward>SellingDomainTableCallLoad</forward></status><view>SellingDomainTableCheckinExe</view></command>
-		<command name="SellingDomainTableCheckoutExe"><status value="CMD_OK"><forward>SellingDomain</forward></status><view>SellingDomainTableCheckoutExe</view></command>
+		<command name="SellingDomainTableCheckoutExe"><view>SellingDomainTableCheckoutExe</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->

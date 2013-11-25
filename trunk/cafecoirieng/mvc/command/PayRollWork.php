@@ -29,8 +29,7 @@
 			$Employee  = $mEmployee->find($IdEmployee);
 						
 			$Title = mb_strtoupper($Employee->getName(), 'UTF8');
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("CHẤM CÔNG", $Track->getURLPayRoll() )
 			);
 			$URLBase = $Track->getURLPayRoll()."/".$Employee->getId();
