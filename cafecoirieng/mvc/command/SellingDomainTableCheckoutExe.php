@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;
-	class SellingDomainTablePrint extends Command {
+	class SellingDomainTableCheckoutExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -11,43 +11,40 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdDomain = $request->getProperty("IdDomain");
 			$IdTable = $request->getProperty("IdTable");
 			$IdSession = $request->getProperty("IdSession");
-			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mDomain = new \MVC\Mapper\Domain();
-			$mTable = new \MVC\Mapper\Table();
-			$mTableLog = new \MVC\Mapper\TableLog();
-			$mSession = new \MVC\Mapper\Session();
+			$mTable 	= new \MVC\Mapper\Table();
+			$mTableLog 	= new \MVC\Mapper\TableLog();
+			$mCourse 	= new \MVC\Mapper\Course();
+			$mSession 	= new \MVC\Mapper\Session();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------
-			$Table = $mTable->find($IdTable);
-			$Domain = $mDomain->find($IdDomain);
-			$Session = $mSession->find($IdSession);
+			//-------------------------------------------------------------			
+			$Table 		= $mTable->find($IdTable);
+			$Session 	= $mSession->find($IdSession);
 			
-			$Session->setNote("In phieu");			
+			//Thanh toán đủ
+			$Session->setStatus(1);
 			$mSession->update($Session);
 			
-			$Log = new \MVC\Domain\TableLog(
+			$TableLog	= new \MVC\Domain\TableLog(
 				null,
-				@\MVC\Base\SessionRegistry::getCurrentIdUser(),
-				$Session->getIdTable(),
-				date('Y-m-d H:i:s'),
-				"In phiếu ".$Session->getValuePrint()
+				$Table->getIdUser(),
+				$Table->getId(),
+				\date('Y-m-d H:i:s'),
+				"tính tiền ".$Session->getValuePrint()
 			);
-			$mTableLog->insert($Log);
+			$mTableLog->insert($TableLog);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setObject("Table", $Table);
-			$request->setObject("Domain", $Domain);
-			$request->setObject("Session", $Session);
+			//-------------------------------------------------------------
+			
+			return self::statuses('CMD_OK');
 		}
 	}
 ?>

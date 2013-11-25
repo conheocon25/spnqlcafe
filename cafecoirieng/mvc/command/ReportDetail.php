@@ -35,8 +35,7 @@
 			$DateCurrent = 'THÁNG '.\date("m/Y", strtotime($Tracking->getDateStart()));
 			
 			$Title = \mb_strtoupper($Tracking->getName(), 'UTF8');
-			$Navigation = array(
-				array("ỨNG DỤNG", "/app"),
+			$Navigation = array(				
 				array("BÁO CÁO", "/report")
 			);
 			

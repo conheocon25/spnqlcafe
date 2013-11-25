@@ -17,7 +17,7 @@
 	<br/>
 	<div tal:repeat="Domain DomainAll">
 		<h1 tal:content="Domain/getName"/>
-		<div tal:repeat="Table Domain/getTables">
+		<div tal:repeat="Table Domain/getTableAll">
 			<h2 tal:content="Table/getName"/>
 			<ul tal:condition="php:Table->getLog(Date)">
 				<li tal:repeat="Log php:Table->getLog(Date)">

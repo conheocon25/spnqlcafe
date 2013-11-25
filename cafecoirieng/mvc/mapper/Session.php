@@ -6,9 +6,9 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 
     function __construct() {
         parent::__construct();
-        $tblSession = "cafecoirieng_session";		
-		$tblSessionDetail = "cafecoirieng_session_detail";
-		$tblTable = "cafecoirieng_table";
+        $tblSession 		= "cafecoirieng_session";		
+		$tblSessionDetail 	= "cafecoirieng_session_detail";
+		$tblTable 			= "cafecoirieng_table";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblSession);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSession);
@@ -34,6 +34,19 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 							ORDER BY datetime desc										
 							LIMIT :start,:max
 				", $tblSession);
+		$findByTableTrackingStmt = sprintf(
+							"select
+								*
+							from 
+								%s S
+							where
+								idtable = ? AND
+								S.datetime >= ? AND 
+								S.datetime <= ?
+							order by 
+								S.datetime DESC
+							"
+		, $tblSession);
 		
 		$findByTrackingStmt = sprintf(
 							"select
@@ -128,6 +141,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 		$this->trackingCountStmt = self::$PDO->prepare($trackingCountStmt);
 		$this->findByTableStmt = self::$PDO->prepare($findByTableStmt);
 		$this->findByTablePageStmt = self::$PDO->prepare($findByTablePageStmt);
+		$this->findByTableTrackingStmt = self::$PDO->prepare($findByTableTrackingStmt);
 		
 		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
 		$this->findByTracking1Stmt = self::$PDO->prepare($findByTracking1Stmt);
@@ -156,7 +170,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$array['discount_value'],
 			$array['discount_percent'],
 			$array['surtax'],
-			$array['payment']
+			$array['payment']			
 		);
         return $obj;
     }
@@ -235,6 +249,10 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 	function findByTable($values ) {	
         $this->findByTableStmt->execute( $values );
         return new SessionCollection( $this->findByTableStmt->fetchAll(), $this );
+    }
+	function findByTableTracking($values ) {	
+        $this->findByTableTrackingStmt->execute( $values );
+        return new SessionCollection( $this->findByTableTrackingStmt->fetchAll(), $this );
     }
 		
 	function findByTracking($values ){

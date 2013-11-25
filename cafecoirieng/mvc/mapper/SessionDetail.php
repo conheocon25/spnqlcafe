@@ -51,25 +51,16 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 		
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSessionDetail);
 		
-		$findBySessionStmt = sprintf("
-			select
-				*
-			from %s
-			where idsession=?
-		", $tblSessionDetail);
-						
-		$evaluateStmt = sprintf("
-			select sum(sd.count * price ) from %s sd where idsession=?
-		", $tblSessionDetail);
-		
-		$checkStmt = sprintf("
-			select distinct id 
+		$findBySessionStmt = sprintf("select * from %s where idsession=?", $tblSessionDetail);
+		$findItemStmt = sprintf("
+			select * 
 			from %s 
 			where idsession=? and idcourse=?
 		", $tblSessionDetail);
+		$evaluateStmt = sprintf("select sum(sd.count * price ) from %s sd where idsession=?", $tblSessionDetail);
 		
-		$findItemStmt = sprintf("
-			select * 
+		$checkStmt = sprintf("
+			select distinct id 
 			from %s 
 			where idsession=? and idcourse=?
 		", $tblSessionDetail);
@@ -80,6 +71,20 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 			from 
 				%s S inner join %s SD on S.id = SD.idsession			
 			where idcourse=? and date(datetime) >= ? and date(datetime) <= ?
+		", $tblSession, $tblSessionDetail);		
+		$trackByCount1Stmt = sprintf("
+			select 
+				sum(count)
+			from 
+				%s S inner join %s SD on S.id = SD.idsession			
+			where idcourse=? and date(datetime) >= ? and date(datetime) <= ? and status=1
+		", $tblSession, $tblSessionDetail);
+		$trackByCount2Stmt = sprintf("
+			select 
+				sum(count)
+			from 
+				%s S inner join %s SD on S.id = SD.idsession			
+			where idcourse=? and date(datetime) >= ? and date(datetime) <= ? and status=2
 		", $tblSession, $tblSessionDetail);
 		
 		$trackByCategoryStmt = sprintf("
@@ -137,10 +142,12 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
                             
 		$this->findBySessionStmt = self::$PDO->prepare($findBySessionStmt);		
+		$this->findItemStmt = self::$PDO->prepare($findItemStmt);		
 		$this->evaluateStmt = self::$PDO->prepare( $evaluateStmt );		
 		$this->checkStmt = self::$PDO->prepare( $checkStmt);
-		$this->findItemStmt = self::$PDO->prepare( $findItemStmt);
 		$this->trackByCountStmt = self::$PDO->prepare( $trackByCountStmt);
+		$this->trackByCount1Stmt = self::$PDO->prepare( $trackByCount1Stmt);
+		$this->trackByCount2Stmt = self::$PDO->prepare( $trackByCount2Stmt);
 		$this->trackByCategoryStmt = self::$PDO->prepare( $trackByCategoryStmt);
 		$this->trackByCourseStmt = self::$PDO->prepare( $trackByCourseStmt);
 		$this->trackByExportStmt = self::$PDO->prepare( $trackByExportStmt);
@@ -217,16 +224,6 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 			return null;        
         return $result[0][0];
     }
-	
-	function findItem( $values ) {	
-        $this->findItemStmt->execute( $values );
-        $array = $this->findItemStmt->fetch();
-        $this->findItemStmt->closeCursor();
-        if ( ! is_array( $array ) ) { return null; }
-        if ( ! isset( $array['id'] ) ) { return null; }
-        $object = $this->doCreateObject( $array );
-        return $object;
-    }
 			
 	function evaluate( $values ) {	
         $this->evaluateStmt->execute( $values );
@@ -237,6 +234,22 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 	function trackByCount( $values ){
         $this->trackByCountStmt->execute( $values );
 		$result = $this->trackByCountStmt->fetchAll();		
+		if (!isset($result) || $result==null)
+			return null;
+        return $result[0][0];
+    }
+	
+	function trackByCount1( $values ){
+        $this->trackByCount1Stmt->execute( $values );
+		$result = $this->trackByCount1Stmt->fetchAll();		
+		if (!isset($result) || $result==null)
+			return null;
+        return $result[0][0];
+    }
+	
+	function trackByCount2( $values ){
+        $this->trackByCount2Stmt->execute( $values );
+		$result = $this->trackByCount2Stmt->fetchAll();		
 		if (!isset($result) || $result==null)
 			return null;
         return $result[0][0];
@@ -258,6 +271,16 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 	function trackByExport( $values ) {	
         $this->trackByExportStmt->execute( $values );
         return new SessionDetailCollection( $this->trackByExportStmt->fetchAll(), $this );
+    }
+	
+	function findItem( $values ) {	
+        $this->findItemStmt->execute( $values );
+        $array = $this->findItemStmt->fetch();
+        $this->findItemStmt->closeCursor();
+        if ( ! is_array( $array ) ) { return null; }
+        if ( ! isset( $array['id'] ) ) { return null; }
+        $object = $this->doCreateObject( $array );
+        return $object;
     }
 }
 ?>

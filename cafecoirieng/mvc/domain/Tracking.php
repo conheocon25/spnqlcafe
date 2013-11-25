@@ -272,11 +272,25 @@ class Tracking extends Object{
 	function getPaidPayRollAllValue(){$Value = $this->getPaidPayRollAllValueBase() + $this->getPaidPayRollAllValueSub();return $Value;}	
 	function getPaidPayRollAllValuePrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValue() );return $N->formatCurrency()." đ";}
 	
+	function toJSON(){
+		$json = array(
+			'Id' 					=> $this->getId(),			
+			'DateStart'				=> $this->getDateStart(),
+			'DateEnd'				=> $this->getDateEnd()			
+		);
+		return json_encode($json);
+	}
+	
+	function setArray( $Data ){        
+		$this->Id 					= $Data[0];
+		$this->DateStart 			= $Data[1];
+		$this->DateEnd 				= $Data[2];		
+    }
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
-	function getURLView(){return "/report/".$this->getId();}
-	
+	function getURLView(){return "/report/".$this->getId();}	
 	function getURLPayRoll(){return "/payroll/".$this->getId();}
 	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}
 	
