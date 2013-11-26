@@ -1,0 +1,105 @@
+<body>
+	<BR/>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>			
+			<td width="50%" align="left"><B>KARAOKE BA ĐỨC</B></td>
+			<td width="50%" align="right"><B tal:content="Title"/></td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">67/26B Phó Cơ Điều, P.4, TP.VL</td>
+			<td width="50%" align="right">Lưu hành nội bộ</td>
+		</tr>
+		<tr>			
+			<td width="50%" align="left">ĐT: (0703) 828 555</td>
+			<td width="50%" align="left" />
+		</tr>
+	</table>	
+	<BR />
+	<table width="100%" border="0" cellpadding="2">
+		<tr>
+			<th width="70%" align="left"></th>
+			<th width="30%" align="right"></th>
+		</tr>
+		<tr><td/><td/></tr>
+		<tr>
+			<td align="left"><B>1. TỔNG HỢP THU</B></td>
+			<td align="right" ><B tal:content="Tracking/getCollectValuePrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>1.1 TỔNG HỢP THU / THU KHÁC</B></td>
+			<td align="right" ><span tal:content="Tracking/getCollectGeneralPrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>1.2 TỔNG HỢP THU / THU ĐỦ</B></td>
+			<td align="right" ><span tal:content="Tracking/getCollectSellingNoDebtPrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>1.3 TỔNG HỢP THU / NỢ PHIẾU</B></td>
+			<td align="right" ><span tal:content="Tracking/getCollectSellingDebtPrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>1.4 TỔNG HỢP THU / THU KHÁCH HÀNG</B></td>
+			<td align="right" ><span tal:content="Tracking/getCollectCustomerPrint" /> đ</td>
+		</tr>
+		<tr><td/><td/></tr>
+		<tr>
+			<td align="left"><B>2. TỔNG HỢP CHI</B></td>
+			<td align="right" ><B tal:content="Tracking/getPaidValuePrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>2.1 TỔNG HỢP CHI / CHI KHÁC</B></td>
+			<td align="right"><span tal:content="Tracking/getPaidGeneralPrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>2.2 TỔNG HỢP CHI / CHI LƯƠNG</B></td>
+			<td align="right"><span tal:content="Tracking/getPaidPayRollPrint" /> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>2.3 TỔNG HỢP CHI / CHI NHẬP HÀNG</B></td>
+			<td align="right"><span tal:content="Tracking/getPaidImportPrint" /> đ</td>
+		</tr>
+		<tr><td/><td/></tr>
+		<tr>
+			<td align="left"><B>3. TỔNG HỢP TỒN KHO</B></td>
+			<td align="right"><B tal:content="Tracking/getStoreValuePrint" /> đ</td>
+		</tr>		
+		<tr><td/><td/></tr>
+		<tr>
+			<td align="left"><B>4. KHẤU HAO TÀI SẢN</B></td>
+			<td align="right"><B tal:content="Tracking/getEstateRatePrint"/> đ</td>
+		</tr>
+		<tr><td/><td/></tr>
+		<tr>
+			<td align="left"><B>5. SỐ DƯ CUỐI</B></td>
+			<td align="right" />
+		</tr>
+		<tr>
+			<td align="left"><B>5.1 SỐ DƯ CUỐI / KHÔNG TÍNH C.NỢ</B></td>
+			<td align="right" ><B tal:content="Tracking/getValueNoDebtPrint"/> đ</td>
+		</tr>
+		<tr>
+			<td align="left"><B>5.2 SỐ DƯ CUỐI / TÍNH CÔNG NỢ</B></td>
+			<td align="right" ><B tal:content="Tracking/getValueDebtPrint"/> đ</td>
+		</tr>
+	</table>
+	<table width="100%" border="0" cellpadding="2" >
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center" tal:content="DateCurrent" />
+		</tr>
+		<tr>
+			<td width="35%" align="center">NGƯỜI LẬP BẢNG</td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center">GIÁM ĐỐC</td>
+		</tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr><td width="35%" /><td width="30%" /><td width="35%" /></tr>
+		<tr>
+			<td width="35%" align="center"></td>
+			<td width="30%" align="center" />
+			<td width="35%" align="center"></td>
+		</tr>
+	</table>
+</body>
