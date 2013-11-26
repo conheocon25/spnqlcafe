@@ -1,0 +1,74 @@
+<body>
+	<div metal:use-macro="mAdmin.xhtml/ReportHeader"/>
+	<h2>1. PHÒNG THƯỜNG</h2>
+	<table width="100%" border="1" cellpadding="2" >		
+		<tr>			
+			<th width="40%" align="left"><B>TÊN PHÒNG</B></th>
+			<th width="20%" align="right"><B>SỐ PHIẾU</B></th>
+			<th width="20%" align="right"><B>SỐ GIỜ</B></th>
+			<th width="20%" align="right"><B>GIÁ TRỊ</B></th>
+		</tr>
+		<tr tal:repeat="D NormalData">
+			<td align="left"><span tal:content="php:D[0]"/></td>
+			<td align="right"><span tal:content="php:D[1]"/></td>
+			<td align="right"><span tal:content="php:D[2]"/></td>
+			<td align="right"><span tal:content="php:D[3]"/></td>
+		</tr>
+		<tr>
+			<td align="left"><B>TỔNG</B></td>
+			<td align="right"><font color="blue"><B tal:content="NormalCountTicket"/></font></td>
+			<td align="right"><font color="blue"><B tal:content="NormalCountHour"/></font></td>
+			<td align="right"><font color="blue"><B tal:content="NormalValue"/></font></td>
+		</tr>
+	</table>
+	<BR/>
+	<h2>2. PHÒNG VIP</h2>
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>			
+			<th width="40%" align="left"><B>TÊN PHÒNG</B></th>
+			<th width="20%" align="right"><B>SỐ PHIẾU</B></th>
+			<th width="20%" align="right"><B>SỐ GIỜ</B></th>
+			<th width="20%" align="right"><B>GIÁ TRỊ</B></th>
+		</tr>
+		<tr tal:repeat="D VIPData">
+			<td align="left"><span tal:content="php:D[0]"/></td>
+			<td align="right"><span tal:content="php:D[1]"/></td>
+			<td align="right"><span tal:content="php:D[2]"/></td>
+			<td align="right"><span tal:content="php:D[3]"/></td>
+		</tr>
+		<tr>
+			<td align="left"><B>TỔNG</B></td>
+			<td align="right"><font color="blue"><b tal:content="VIPCountTicket"/></font></td>
+			<td align="right"><font color="blue"><b tal:content="VIPCountHour"/></font></td>
+			<td align="right"><font color="blue"><b tal:content="VIPValue"/></font></td>
+		</tr>
+	</table>
+	<BR/>
+	<h2>3. TẦN SUẤT </h2>
+	<table width="100%" border="1" cellpadding="2" >
+		<tr>			
+			<th width="40%" align="left"><B>LOẠI</B></th>
+			<th width="20%" align="right"><B>SỐ PHIẾU</B></th>
+			<th width="20%" align="right"><B>SỐ GIỜ</B></th>
+			<th width="20%" align="right"><B>GIÁ TRỊ</B></th>
+		</tr>
+		<tr>
+			<td align="left">THƯỜNG</td>
+			<td align="right"><font color="blue"><B tal:content="NormalCountTicket"/></font> (<font color="red"><span tal:content="NormalRateTicket"/></font>%)</td>
+			<td align="right"><font color="blue"><B tal:content="NormalCountHour"/></font> (<font color="red"><span tal:content="NormalRateHour"/></font>%)</td>
+			<td align="right"><font color="blue"><B tal:content="NormalValue"/></font> (<font color="red"><span tal:content="NormalRateValue"/></font>%)</td>
+		</tr>
+		<tr>
+			<td align="left">VIP</td>
+			<td align="right"><font color="blue"><B tal:content="VIPCountTicket"/></font> (<font color="red"><span tal:content="VIPRateTicket"/></font>%)</td>
+			<td align="right"><font color="blue"><B tal:content="VIPCountHour"/></font> (<font color="red"><span tal:content="VIPRateHour"/></font>%)</td>
+			<td align="right"><font color="blue"><B tal:content="VIPValue"/></font> (<font color="red"><span tal:content="VIPRateValue"/></font>%)</td>
+		</tr>
+		<tr>
+			<td align="left"><B>TỔNG</B></td>
+			<td align="right"><span tal:content="SUMCountTicket"/> (100%)</td>
+			<td align="right"><span tal:content="SUMCountHour"/> (100%)</td>
+			<td align="right"><span tal:content="SUMValue"/> (100%)</td>
+		</tr>
+	</table>
+</body>

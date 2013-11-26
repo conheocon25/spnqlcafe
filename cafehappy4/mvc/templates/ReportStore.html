@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<span tal:condition="Tracking/getTrackingStore/count">
+									<div role="grid" class="dataTables_wrapper">
+										<table class="table table-bordered table-striped table-hover">
+											<thead>
+												<tr role="row">
+													<th width="35">STT</th>											
+													<th><div class="text-left">TÊN HÀNG</div></th>
+													<th width="120"><div class="text-left">ĐƠN VỊ</div></th>	
+													<th width="80"><div class="text-right">TỒN CŨ</div></th>
+													<th width="80"><div class="text-right">TRONG KÌ</div></th>
+													<th width="80"><div class="text-right">BÁN</div></th>
+													<th width="80"><div class="text-right">GIÁ</div></th>
+													<th width="80"><div class="text-right">TỒN MỚI</div></th>
+													<th width="90"><div class="text-right">GIÁ TRỊ</div></th>
+												</tr>
+											</thead>
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+												<tr tal:repeat="TS Tracking/getTrackingStore" class="gradeA odd">
+													<td align="center" tal:content="repeat/TS/number"/>
+													<td><span tal:content="TS/getCourse/getName"/></td>
+													<td><span tal:content="TS/getCourse/getUnit"/></td>
+													<td align="right"><span tal:content="TS/getCountOldPrint"/></td>
+													<td align="right"><span tal:content="TS/getCountImportPrint"/></td>
+													<td align="right"><span tal:content="TS/getCountExportPrint"/></td>
+													<td align="right"><span tal:content="TS/getPricePrint"/></td>
+													<td align="right"><span tal:content="TS/getCountRemainPrint"/></td>
+													<td align="right"><span tal:content="TS/getCountRemainValuePrint"/></td>
+												</tr>										
+												<tr>
+													<td colspan="8" align="right"><B>TỔNG CỘNG</B></td>
+													<td align="right"><span tal:content="Tracking/getTrackingStoreValuePrint"/></td>
+												</tr>										
+											</tbody>
+										</table>								
+									</div>
+									<a tal:attributes="href Tracking/getURLStoreEmpty" class="btn btn-primary">Xóa dữ liệu cũ</a>
+									<a tal:attributes="href Tracking/getURLStorePrint" target="blank" class="btn btn-primary">In</a>
+								</span>
+								<span tal:condition="not: Tracking/getTrackingStore/count">							
+									<div role="grid" class="dataTables_wrapper">
+										<table class="table table-bordered table-striped table-hover">
+											<thead>
+												<tr role="row">
+													<th width="35">STT</th>											
+													<th><div class="text-left">TÊN HÀNG</div></th>
+													<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
+													<th width="80"><div class="text-right">TỒN CŨ</div></th>
+													<th width="80"><div class="text-right">TRONG KÌ</div></th>
+													<th width="80"><div class="text-right">BÁN</div></th>
+													<th width="80"><div class="text-right">GIÁ</div></th>
+													<th width="80"><div class="text-right">TỒN MỚI</div></th>											
+													<th width="90"><div class="text-right">GIÁ TRỊ</div></th>
+												</tr>
+											</thead>									
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+												<tr tal:repeat="D Data" class="gradeA odd">
+													<td align="center" />
+													<td align="left"><span tal:content="php:D[1]"/></td>
+													<td align="left"><span tal:content="php:D[2]"/></td>
+													<td align="right"><span tal:content="php:D[3]"/></td>
+													<td align="right"><span tal:content="php:D[4]"/></td>
+													<td align="right"><span tal:content="php:D[5]"/></td>
+													<td align="right"><span tal:content="php:D[6]"/></td>
+													<td align="right"><span tal:content="php:D[7]"/></td>
+													<td align="right"><span tal:content="php:D[8]"/></td>
+												</tr>										
+												<tr>
+													<td colspan="8" align="right"><B>TỔNG CỘNG</B></td>
+													<td align="right"><span tal:content="Sum"/></td>
+												</tr>										
+											</tbody>
+										</table>
+									</div>							
+									<a tal:attributes="href Tracking/getURLStoreEvaluate" class="btn btn-primary">Lưu xuống DB</a>
+									<a tal:attributes="href Tracking/getURLStoreInit" class="btn btn-second">Khởi tạo mới</a>
+								</span>
+							</div>	
+						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

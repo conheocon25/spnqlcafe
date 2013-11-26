@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html style="overflow-y:hidden;" lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div class="menu">
+			
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">																								
+												<th><div class="text-left">HỌ TÊN</div></th>
+												<th width="120"><div class="text-right">NỢ CŨ</div></th>
+												<th width="120"><div class="text-right">PHÁT SINH</div></th>
+												<th width="120"><div class="text-right">ĐÃ TRẢ</div></th>
+												<th width="120"><div class="text-right">NỢ MỚI</div></th>												
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">											
+											<tr tal:repeat="D Data" class="gradeA odd">
+												<td><span tal:content="php: D[0]"/></td>
+												<td align="right"><span tal:content="php: D[2]"/></td>
+												<td align="right"><span tal:content="php: D[3]"/></td>
+												<td align="right"><span tal:content="php: D[4]"/></td>
+												<td align="right"><a tal:attributes="href php: D[1]" target="blank"><span tal:content="php: D[5]"/></a></td>
+											</tr>
+											<tr>
+												<td align="right"><B>TỔNG</B></td>
+												<td align="right"><span tal:content="SDebtOld"/> đ</td>
+												<td align="right"><span tal:content="SDebtCurrent"/> đ</td>
+												<td align="right"><span tal:content="SCollectCurrent"/> đ</td>
+												<td align="right">
+													<font color="red">
+														<b tal:content="SDebtNew"/> đ
+													</font>
+												</td>
+											</tr>
+										</tbody>
+									</table>									
+								</div>  
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

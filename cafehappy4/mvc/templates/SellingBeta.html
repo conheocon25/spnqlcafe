@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>		
+	</head>	
+	<body>
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		            
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div id="sidebar">
+			<ul>
+				<li tal:repeat="Domain DomainAll" class="Domain" tal:attributes="alt Domain/getId">
+					<a>
+						<i class="glyphicons-show_big_thumbnails" />
+						<span tal:content="Domain/getName"/>
+					</a>
+				</li>				
+			</ul>
+		</div>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="row">
+				<div class="col-4">
+					<div id="TableAll"/>
+				</div>
+				<div class="col-5">
+					<div id="Session"/>
+				</div>
+				<div class="col-3">
+					<div class="accordion widget-box" id="collapse-group">
+						<div class="accordion-group widget-box" tal:repeat="Category CategoryAll">
+							<div class="accordion-heading">
+								<div class="widget-title">
+									<a data-parent="#collapse-group" tal:attributes="href php:'#'.Category->getIdString();" data-toggle="collapse">
+										<span class="icon"><i class="glyphicon glyphicon-glass"></i></span><h5 tal:content="Category/getName"/>
+									</a>
+								</div>
+							</div>
+							<div class="collapse accordion-body" tal:attributes="id Category/getIdString">
+								<div class="widget-content nopadding">
+                                    <ul class="activity-list">
+                                        <li tal:repeat="Course Category/getCourseAll">
+											<a>
+												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' "><i class="glyphicons-circle_plus"/></button>
+												<strong tal:content="Course/getName"/>
+												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' "><i class="glyphicons-circle_minus"></i></button>
+											</a>
+										</li>
+                                    </ul>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>			
+		</div>
+		<div id="TableActive" />
+		<div id="DomainActive" tal:attributes="alt Domain/getId"/>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+        <script>
+			$("#TableAll").load("/sellingbeta/load/domain/"+$("#DomainActive").attr('alt'));
+			$('.Domain').click(function(){
+				var IdDomain = $(this).attr('alt');				
+				$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
+				$(this).toggleClass('active').siblings().removeClass('active');
+			});
+        </script>
+	</body>
+</html>
