@@ -12,7 +12,7 @@
 					<a title="Icon Title" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i> <span class="text">In phiếu</span></a>
 				</div>
 			</div>
-			<div class="widget-content">
+			<div class="widget-content nopadding size-12">
 				<div class="invoice-content" tal:condition="not:Table/getSessionActive">
 					<div class="invoice-head">
 						<div class="invoice-meta">
@@ -143,11 +143,7 @@
 						<tbody>
 							<tr tal:repeat="Session Table/getSessionRecent">
 								<td><div class="text-center" tal:content="repeat/Session/number"/></td>
-								<td>
-									<a target="blank" tal:attributes="href Session/getURLPrint">
-										<span class="text" tal:content="Session/getDateTimePrint"/>
-									</a>
-								</td>
+								<td><div class="text-left" tal:content="Session/getDateTimePrint"/></td>
 								<td><div class="text-right" tal:content="Session/getValuePrint"/></td>
 								<td class="center">
 									<a class="remove-session-item" href="#DialogSessionDel" data-toggle="modal" tal:attributes="data-id Session/getId">
