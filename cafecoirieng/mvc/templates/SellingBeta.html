@@ -38,10 +38,10 @@
 								</div>
 							</div>
 							<div class="collapse accordion-body" tal:attributes="id Category/getIdString">
-								<div class="widget-content nopadding">
+								<div class="widget-content nopadding size-12">
                                     <ul class="activity-list">
                                         <li tal:repeat="Course Category/getCourseAll">
-											<a>
+											<a class="course-item">
 												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' "><i class="glyphicons-circle_plus"/></button>
 												<strong tal:content="Course/getName"/>
 												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' "><i class="glyphicons-circle_minus"></i></button>
@@ -54,28 +54,18 @@
 					</div>
 				</div>				
 			</div>			
-		</div>		
+		</div>
 		<div id="TableActive" />
 		<div id="DomainActive" tal:attributes="alt Domain/getId"/>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
         <script>
 			$("#TableAll").load("/sellingbeta/load/domain/"+$("#DomainActive").attr('alt'));
-										
 			$('.Domain').click(function(){
-				var IdDomain = $(this).attr('alt');
-				/*
-				$.gritter.add({
-					title	:'Thông tin',
-					text	:'Đã chọn',
-					time	:5000,
-					sticky: false
-				});
-				*/
+				var IdDomain = $(this).attr('alt');				
 				$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
-				$(this).toggleClass('active').siblings().removeClass('active');												
+				$(this).toggleClass('active').siblings().removeClass('active');
 			});
-						
         </script>
 	</body>
 </html>
