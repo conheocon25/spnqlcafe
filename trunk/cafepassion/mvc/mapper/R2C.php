@@ -15,6 +15,7 @@ class R2C extends Mapper implements \MVC\Domain\R2CFinder{
 		$insertStmt = sprintf("insert into %s (id_course, id_resource, value1, value2) values( ?, ?, ?, ?)", $tblR2C);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblR2C);
 		$findByStmt = sprintf("select * from %s where id_course=?", $tblR2C);
+		$findByResourceStmt = sprintf("select * from %s where id_resource=?", $tblR2C);
 								
 		$this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -22,12 +23,10 @@ class R2C extends Mapper implements \MVC\Domain\R2CFinder{
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
+		$this->findByResourceStmt = self::$PDO->prepare($findByResourceStmt);
 		
     } 
-    function getCollection( array $raw ) {
-        return new R2CCollection( $raw, $this );
-    }
-
+    function getCollection( array $raw ) {return new R2CCollection( $raw, $this );}
     protected function doCreateObject( array $array ){
         $obj = new \MVC\Domain\R2C(
 			$array['id'],
@@ -39,9 +38,7 @@ class R2C extends Mapper implements \MVC\Domain\R2CFinder{
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "R2C";
-    }
+    protected function targetClass() {return "R2C";}
 
     protected function doInsert( \MVC\Domain\Object $object ){
         $values = array(
@@ -66,20 +63,18 @@ class R2C extends Mapper implements \MVC\Domain\R2CFinder{
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-	
-	function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
+	function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function findBy( $values ) {
         $this->findByStmt->execute( $values );
 		return new R2CCollection( $this->findByStmt->fetchAll(), $this );
-    }		
+    }
+	
+	function findByResource( $values ) {
+        $this->findByResourceStmt->execute( $values );
+		return new R2CCollection( $this->findByResourceStmt->fetchAll(), $this );
+    }
 }
 ?>

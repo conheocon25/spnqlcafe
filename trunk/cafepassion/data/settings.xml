@@ -37,33 +37,14 @@
 		<!-- ============================================================================== -->
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
-		<command name="Report"><view>Report</view></command>
-		<command name="ReportDetail"><view>ReportDetail</view></command>				
-		<command name="ReportCustomer"><view>ReportCustomer</view></command>
-		<command name="ReportCustomerDetail"><view>ReportCustomerDetail</view></command>
-		<command name="ReportPayRoll"><view>ReportPayRoll</view></command>
-		<command name="ReportPaidGeneral"><view>ReportPaidGeneral</view></command>		
-		<command name="ReportImportGeneral"><view>ReportImportGeneral</view></command>		
-		<command name="ReportCollectGeneral"><view>ReportCollectGeneral</view></command>				
-		<command name="ReportCourse"><view>ReportCourse</view></command>
-		<command name="ReportResource"><view>ReportResource</view></command>
-		<command name="ReportHours"><view>ReportHours</view></command>
-		<command name="ReportGeneral"><view>ReportGeneral</view></command>
-				
-		<command name="ReportStore"><view>ReportStore</view></command>
-		<command name="ReportStoreInit">
-			<view>ReportStoreInit</view>
-			<status value="CMD_OK"><forward>ReportStore</forward></status>					
-		</command>
-		<command name="ReportStoreEvaluate">
-			<view>ReportStoreEvaluate</view>
-			<status value="CMD_OK"><forward>ReportStore</forward></status>
-		</command>
-		<command name="ReportStoreEmpty">
-			<view>ReportStoreEmpty</view>
-			<status value="CMD_OK"><forward>ReportStore</forward></status>
-		</command>
-		<command name="ReportStorePrint"><view>ReportStorePrint</view></command>
+		<command name="Report">				<view>Report</view>				</command>
+		<command name="ReportDetail">		<view>ReportDetail</view>		</command>		
+		<command name="ReportSellingDaily">	<view>ReportSellingDaily</view>	</command>
+		<command name="ReportImportDaily">	<view>ReportImportDaily</view>	</command>
+		<command name="ReportStoreDaily">	<view>ReportStoreDaily</view>	</command>
+		<command name="ReportPaidDaily">	<view>ReportPaidDaily</view>	</command>
+		<command name="ReportCollectDaily">	<view>ReportCollectDaily</view>	</command>
+		<command name="ReportGeneral">		<view>ReportGeneral</view>		</command>
 		
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
