@@ -49,24 +49,7 @@ class Viewer {
 		return $Out;
 	}
 	
-	function pdfBD(){
-		
-		$html = $this->html();		
-		$pdf = new \CUSTOMPDFBDC(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$pdf-> getPageSizeFromFormat("A4");
-		$pdf->reFormat("custom", 'P');		
-		$pdf->SetMargins(12, 2, 5);
-		$pdf->setPrintHeader(false);
-			
-		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);		
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);			
-		$pdf->AddPage();
-		$pdf->SetFont('arial', 'N', 10);					
-		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("print_BDC.pdf", 'I');
-		unset($pdf);
-		return $Out;
-	}
+	
 			
 	function custompdf(){
 		
