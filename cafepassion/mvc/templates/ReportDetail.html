@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="overflow-y:hidden;" lang="en">
+<html lang="en">
 	<head>
 		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
@@ -25,45 +25,62 @@
 				<div class="container-fluid">
 					<div class="col-12">
 						<div class="widget-box">
-							<div class="widget-content nopadding">
+							<div class="widget-content nopadding">								
 								<table class="table table-bordered table-striped table-hover">
 									<thead>
-										<tr>
-											<th width="60"><i class="glyphicons-macbook"/></th>
-											<th><div class="text-left">TÊN</div></th>											
+										<tr>										
+											<th><div class="text-left">NGÀY</div></th>
+											<th width="90"><div class="text-right">BÁN HÀNG</div></th>
+											<th width="90"><div class="text-right">NHẬP HÀNG</div></th>
+											<th width="90"><div class="text-right">KHO HÀNG</div></th>
+											<th width="90"><div class="text-right">TIỀN CHI</div></th>
+											<th width="90"><div class="text-right">TIỀN THU</div></th>
+											<th width="90"><div class="text-right">QUỸ</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td class="center"><a tal:attributes="href Tracking/getURLReportPayRollSave"><i class="glyphicons-disk_save"/></a></td>
-											<td><a tal:attributes="href Tracking/getURLReportPayRoll">(0) BẢNG LƯƠNG</a></td>
+										<tr tal:repeat="TD Tracking/getDailyAll">
+											<td><span tal:content="TD/getDatePrint"/></td>
+											<td align="right">
+												<a tal:attributes="href TD/getURLReportSelling">
+													<span tal:content="TD/getSellingPrint"/>
+												</a>
+											</td>
+											<td align="right">
+												<a tal:attributes="href TD/getURLReportImport">
+													<span tal:content="TD/getImportPrint"/>
+												</a>
+											</td>
+											<td align="right">												
+												<a tal:attributes="href TD/getURLReportStore">
+													<span tal:content="TD/getStorePrint"/>
+												</a>
+											</td>
+											<td align="right">												
+												<a tal:attributes="href TD/getURLReportPaid">
+													<span tal:content="TD/getPaidPrint"/>
+												</a>
+											</td>
+											<td align="right">
+												<a tal:attributes="href TD/getURLReportCollect">
+													<span tal:content="TD/getCollectPrint"/>
+												</a>
+											</td>
+											<td align="right">												
+												<b tal:content="TD/getValuePrint"/>
+											</td>
 										</tr>
 										<tr>
-											<td class="center"><a target="blank" tal:attributes="href Tracking/getURLCollectGeneralSave"><i class="glyphicons-disk_save"/></a></td>
-											<td><a target="blank" tal:attributes="href Tracking/getURLCollectGeneral">(1) TỔNG HỢP THU</a></td>
+											<td align="right"><B>TỔNG CỘNG</B></td>
+											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueImport/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueStore/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValuePaid/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueCollect/formatCurrency"/></td>
+											<td align="right"><B tal:content="ValueNew/formatCurrency"/></td>
 										</tr>
-										<tr>
-											<td class="center"><a target="blank" tal:attributes="href Tracking/getURLPaidGeneralSave"><i class="glyphicons-disk_save"/></a></td>
-											<td><a target="blank" tal:attributes="href Tracking/getURLPaidGeneral">(2) TỔNG HỢP CHI</a></td>
-										</tr>
-										<tr>
-											<td class="center"><a tal:attributes="href Tracking/getURLStoreSave"><i class="glyphicons-disk_save"/></a></td>
-											<td><a tal:attributes="href Tracking/getURLStore">(3) TỔNG HỢP TỒN KHO</a></td>
-										</tr>
-										<tr>
-											<td class="center"></td>
-											<td><a target="blank" tal:attributes="href Tracking/getURLGeneral">(4) TỔNG HỢP</a></td>
-										</tr>										
-										<tr>
-											<td class="center"></td>
-											<td><a tal:attributes="href Tracking/getURLCourse">THỐNG KÊ CÁC MÓN</a></td>
-										</tr>
-										<tr>
-											<td class="center"></td>
-											<td><a target="blank" tal:attributes="href Tracking/getURLResource">THỐNG KÊ NHẬP HÀNG</a></td>
-										</tr>										
 									</tbody>
-								</table>
+								</table>								
 							</div>
 						</div>
 					</div>
