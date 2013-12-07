@@ -17,8 +17,7 @@ class Tracking extends Object{
 	){
 			$this->Id 					= $Id; 
 			$this->DateStart 			= $DateStart; 
-			$this->DateEnd 				= $DateEnd;						
-									
+			$this->DateEnd 				= $DateEnd;															
 			parent::__construct( $Id );
 	}
     
@@ -226,7 +225,7 @@ class Tracking extends Object{
 	//DEFINE URL
 	//-------------------------------------------------------------------------------
 	function getURLView(){return "/report/".$this->getId();}
-		
+	function getURLReportCourse()	{return "/report/".$this->getId()."/course";}
 	
 	function getURLPayRoll(){return "/payroll/".$this->getId();}	
 	function getURLPayRollEmployee( $Employee ){return "/payroll/".$this->getId()."/".$Employee->getId();}

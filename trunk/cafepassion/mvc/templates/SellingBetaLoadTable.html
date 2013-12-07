@@ -8,8 +8,9 @@
 				</span>
 				<h5>PHIẾU TÍNH TIỀN</h5>
 				<div class="buttons" tal:condition="Table/getSessionActive">
-					<a title="Icon Title" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicon glyphicon-shopping-cart"></i> <span class="text">Tính tiền</span></a>
-					<a title="Icon Title" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i> <span class="text">In phiếu</span></a>
+					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
+					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
+					<a title="In phiếu" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">
@@ -68,9 +69,13 @@
 								</tr>
 							</tbody>
 						</table>
-						<table width="100%">							
+						<table width="100%">
 							<tr>
-								<td style="text-align:right;">Tổng cộng:</td>
+								<td style="text-align:right;">GIẢM GIÁ:</td>
+								<td tal:content="Table/getSessionActive/getDiscountPercentPrint" style="color:#5476A6;text-align:right;"/>
+							</tr>
+							<tr>
+								<td style="text-align:right;">TỔNG CỘNG:</td>
 								<td tal:content="Table/getSessionActive/getValuePrint" style="color:#5476A6;text-align:right;"/>
 							</tr>
 						</table>
@@ -112,6 +117,55 @@
 										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
+					
+					<!-- DIALOG SESSION EDIT	-->
+					<div id="DialogSession" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT GIAO DỊCH</h3>
+								</div>
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="control-label">Id</label>
+										<div class="controls">
+											<input readonly="true" id="IdCourse1" name="IdCourse1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Bắt đầu</label>
+										<div class="controls">
+											<input id="DateTime1" name="DateTime1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Kết thúc</label>
+										<div class="controls">
+											<input id="DateTimeEnd1" name="DateTimeEnd1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giảm giá</label>
+										<div class="controls">
+											<input id="DiscountPercent1" name="DiscountPercent1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLSessionUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>
+									<div id="IdUser1"/>
+									<div id="IdCustomer1"/>
+									<div id="Note1"/>
+									<div id="Status1"/>
+									<div id="DiscountValue1"/>
+									<div id="Surtax1"/>
+									<div id="Payment1"/>
 								</div>
 							</div>
 						</div>
@@ -213,6 +267,30 @@
 					}
 				});
 			});
+			//-----------------------------------------------------------------------------------
+			//Click cập nhật giao dịch			
+			//-----------------------------------------------------------------------------------
+			$('.SessionUpdate').click(function(e){
+				//Load dữ liệu JSON về
+				var url = "/object/load/Session/" + $(this).attr('data-session-id');
+				
+				//Load dữ liệu JSON lên FORM
+				$.getJSON(url, function(data){					
+					$('#URLSessionUpdButton').attr('alt', data.Id);
+					$('#DateTime1').attr('value'		, data.DateTime);
+					$('#DateTimeEnd1').attr('value'		, data.DateTimeEnd);
+					$('#DiscountPercent1').attr('value'	, data.DiscountPercent);
+					
+					$('#IdUser1').attr('alt'			, data.IdUser);
+					$('#IdCustomer1').attr('alt'		, data.IdCustomer);
+					$('#Note1').attr('alt'				, data.Note);
+					$('#Status1').attr('alt'			, data.Status);
+					$('#DiscountValue1').attr('alt'		, data.DiscountValue);
+					$('#Surtax1').attr('alt'			, data.Surtax);
+					$('#Payment1').attr('alt'			, data.Payment);
+				});
+			});
+			
 			
 			//-----------------------------------------------------------------------------------
 			//click gọi món			
@@ -274,6 +352,39 @@
 					}
 				});
 			});
+			//-----------------------------------------------------------------------------------
+			//Update 1 SESSION
+			//-----------------------------------------------------------------------------------
+			$('#URLSessionUpdButton').click(function(e){
+				//alert("co");
+				var IdTable = $("#CurrentTable").attr('alt');
+				var Data = [];
+				Data[0] 	= $('#URLSessionUpdButton').attr('alt');
+				Data[1] 	= IdTable;
+				Data[2] 	= $('#IdUser1').attr('alt');				
+				Data[3] 	= $('#IdCustomer1').attr('alt');				
+				Data[4] 	= $('#DateTime1').val();
+				Data[5] 	= $('#DateTimeEnd1').val();
+				Data[6] 	= "";//$('#Note1').attr('alt');
+				Data[7] 	= $('#Status1').attr('alt');
+				Data[8] 	= $('#DiscountValue1').attr('alt');
+				Data[9] 	= $('#DiscountPercent1').val();
+				Data[10] 	= $('#Surtax1').val();
+				Data[11] 	= "0";//$('#Payment1').val();
+				
+				$("#DialogSession").modal('hide');
+				e.stopImmediatePropagation();
+				
+				var URL = "/object/upd/Session";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+					}
+				});				
+			});	
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 SESSION DETAIL

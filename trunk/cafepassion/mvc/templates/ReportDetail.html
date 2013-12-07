@@ -36,6 +36,7 @@
 											<th width="90"><div class="text-right">TIỀN CHI</div></th>
 											<th width="90"><div class="text-right">TIỀN THU</div></th>
 											<th width="90"><div class="text-right">QUỸ</div></th>
+											<th width="90"><div class="text-center">TK.MÓN</div></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -69,6 +70,7 @@
 											<td align="right">												
 												<b tal:content="TD/getValuePrint"/>
 											</td>
+											<td align="center"><a tal:attributes="href TD/getURLReportCourse">Xem</a></td>
 										</tr>
 										<tr>
 											<td align="right"><B>TỔNG CỘNG</B></td>
@@ -78,6 +80,7 @@
 											<td align="right"><B tal:content="ValuePaid/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueCollect/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueNew/formatCurrency"/></td>
+											<td align="center"><a tal:attributes="href Tracking/getURLReportCourse">Xem</a></td>
 										</tr>
 									</tbody>
 								</table>								
