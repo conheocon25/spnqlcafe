@@ -241,8 +241,20 @@ class Session extends Object{
 	}
 			
 	function getValue(){		
-		$mSD = new \MVC\Mapper\SessionDetail();
-		$Value = $this->getSurtax() + (int)(($mSD->evaluate(array($this->getId())) + 500 + $this->getValueHours() - $this->getDiscountValue())*(1.0 - $this->getDiscountPercent()/100.0)/1000)*1000;
+		$SDAll = $this->getDetails();
+		$Sum1 = 0;
+		$Sum2 = 0;
+		
+		while ($SDAll->valid()){
+			$SD = $SDAll->current();
+			if ($SD->getCourse()->getIsDiscount()==0){
+				$Sum1 += $SD->getValue();	
+			}else{
+				$Sum2 += $SD->getValue();
+			}
+			$SDAll->next();
+		}		
+		$Value = $this->getSurtax() + (int)( ($Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1) /1000)*1000;
 		return $Value;
 	}
 	

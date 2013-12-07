@@ -38,12 +38,14 @@
 		<!-- REPORT.DETAIL			 														-->
 		<!-- ============================================================================== -->
 		<command name="Report">				<view>Report</view>				</command>
-		<command name="ReportDetail">		<view>ReportDetail</view>		</command>		
+		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
+		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
 		<command name="ReportSellingDaily">	<view>ReportSellingDaily</view>	</command>
 		<command name="ReportImportDaily">	<view>ReportImportDaily</view>	</command>
 		<command name="ReportStoreDaily">	<view>ReportStoreDaily</view>	</command>
 		<command name="ReportPaidDaily">	<view>ReportPaidDaily</view>	</command>
 		<command name="ReportCollectDaily">	<view>ReportCollectDaily</view>	</command>
+		<command name="ReportCourseDaily">	<view>ReportCourseDaily</view>	</command>
 		<command name="ReportGeneral">		<view>ReportGeneral</view>		</command>
 		
 		<!-- ============================================================================== -->

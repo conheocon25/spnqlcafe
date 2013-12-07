@@ -11,9 +11,9 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblCourse);								
 		$selectStmt = sprintf("select * from %s where id=?", $tblCourse);
-		$updateStmt = sprintf("update %s set idcategory=?, name=?, shortname=?, unit=?, price1=?, price2=?, price3=?, price4=?, picture=? where id=?", $tblCourse);
-		$insertStmt = sprintf("insert into %s (idcategory, name, shortname, unit, price1, price2, price3, price4, picture) 
-							values(?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblCourse);
+		$updateStmt = sprintf("update %s set idcategory=?, name=?, shortname=?, unit=?, price1=?, price2=?, price3=?, price4=?, picture=?, is_discount=? where id=?", $tblCourse);
+		$insertStmt = sprintf("insert into %s (idcategory, name, shortname, unit, price1, price2, price3, price4, picture, is_discount) 
+							values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblCourse);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCourse);
 		$findByPageStmt = sprintf("
 							SELECT *
@@ -34,7 +34,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 								C.price3, 
 								C.price4,
 								C.picture, 
-								sum(SD.count) as count
+								sum(SD.count) as count,
+								C.is_discount 
 							FROM 
 								 %s C LEFT JOIN %s SD
 								 ON C.id = SD.idcourse
@@ -48,15 +49,12 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
 		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
-		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);		
+		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);
 		$this->findTop20Stmt = self::$PDO->prepare($findTop20Stmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
-        
-    } 
-    function getCollection( array $raw ) {
-        return new CourseCollection( $raw, $this );
     }
-
+	
+    function getCollection( array $raw ) {return new CourseCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {
         $obj = new \MVC\Domain\Course( 
 			$array['id'],
@@ -68,15 +66,13 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$array['price2'],
 			$array['price3'],
 			$array['price4'],
-			$array['picture']			
+			$array['picture'],
+			$array['is_discount']
 		);
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "Course";
-    }
-
+    protected function targetClass() {return "Course";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdCategory(),
@@ -87,7 +83,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$object->getPrice2(),
 			$object->getPrice3(),
 			$object->getPrice4(),
-			$object->getPicture()
+			$object->getPicture(),
+			$object->getIsDiscount()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -105,21 +102,16 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$object->getPrice3(),
 			$object->getPrice4(),
 			$object->getPicture(),
+			$object->getIsDiscount(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
     }
 
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
+	function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
-	function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
 	function findByCategory( $values ) {
         $this->findByCategoryStmt->execute( $values );
 		return new CourseCollection( $this->findByCategoryStmt->fetchAll(), $this );
