@@ -99,6 +99,15 @@
 												</select>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label">Giảm giá</label>
+											<div class="controls">
+												<select name="IsDiscount1" id="IsDiscount1" style="width:80%;">
+													<option value="0">Không giảm</option>
+													<option value="1">Giảm giá</option>
+												</select>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -227,7 +236,8 @@
 				Data[6] = $('#Price1').val();
 				Data[7] = $('#Price1').val();
 				Data[8] = $('#Price1').val();
-				Data[9] = "1";
+				Data[9] = "";
+				Data[10] = $('#IsDiscount1').val();
 				
 				var URL = "/object/ins/Course";
 				$.ajax({
@@ -272,7 +282,8 @@
 				Data[6] = $('#Price2').val();
 				Data[7] = $('#Price2').val();
 				Data[8] = $('#Price2').val();				
-				Data[9] = $('#IsDiscount2').val();
+				Data[9] = "";
+				Data[10] = $('#IsDiscount2').val();
 				var URL = "/object/upd/Course";
 				$.ajax({
 					type: "POST",
