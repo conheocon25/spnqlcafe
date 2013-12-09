@@ -134,25 +134,27 @@
 									<div class="form-group">
 										<label class="control-label">Bắt đầu</label>
 										<div class="controls">
-											<input id="DateTime1" name="DateTime1" type="text" class="form-control input-small"/>
+											<input id="DateTime1" name="DateTime1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Kết thúc</label>
 										<div class="controls">
-											<input id="DateTimeEnd1" name="DateTimeEnd1" type="text" class="form-control input-small"/>
+											<input id="DateTimeEnd1" name="DateTimeEnd1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Khách hàng</label>
+										<label class="control-label">Gõ/quét mã thẻ</label>
 										<div class="controls">
-											<select name="IdCustomer1" id="IdCustomer1" style="width:80%;">
-												<option tal:repeat="Customer CustomerAll" tal:attributes="value Customer/getId;data-discount Customer/getDiscount">
-													<span tal:content="Customer/getName" />
-												</option>
-											</select>
+											<input id="SearchIdCustomer" name="SearchIdCustomer" type="text" class="form-control input-small" />
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tên KH</label>
+										<div class="controls">
+											<input id="CustomerName" name="CustomerName" readonly="true" type="text" class="form-control input-small" />
+										</div>
+									</div>
 									<div class="form-group">
 										<label class="control-label">Giảm giá</label>
 										<div class="controls">
@@ -169,7 +171,7 @@
 									<div id="Status1"/>
 									<div id="DiscountValue1"/>
 									<div id="Surtax1"/>
-									<div id="Payment1"/>
+									<div id="Payment1"/>									
 								</div>
 							</div>
 						</div>
@@ -226,10 +228,38 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
-        <script>
-		
+		</div>		
+        <script>						
+			$('#DateTime1').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+			$('#DateTimeEnd1').datetimepicker({
+				language:  'vi',
+				weekStart: 1,
+				todayBtn:  1,
+				autoclose: 1,
+				todayHighlight: 1,
+				startView: 2,
+				forceParse: 0,
+				showMeridian: 1
+			});
+			
+			$("#SearchIdCustomer").change(function(){				
+				URL = "/search/customer/"+$(this).val();
+				$.getJSON(URL, function(data){
+					$("#IdCustomer1").attr('alt', data.Id);					
+					$("#DiscountPercent1").val(data.Discount);
+					$("#CustomerName").val(data.Name);
+				});				
+			});
+			
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DETAIL			
 			//-----------------------------------------------------------------------------------
@@ -284,7 +314,8 @@
 					$('#DateTime1').attr('value'		, data.DateTime);
 					$('#DateTimeEnd1').attr('value'		, data.DateTimeEnd);
 					$('#DiscountPercent1').attr('value'	, data.DiscountPercent);
-					
+					$('#CustomerName').attr('value'		, data.CustomerName);
+															
 					$('#IdUser1').attr('alt'			, data.IdUser);
 					$('#IdCustomer1').attr('alt'		, data.IdCustomer);
 					$('#Note1').attr('alt'				, data.Note);
