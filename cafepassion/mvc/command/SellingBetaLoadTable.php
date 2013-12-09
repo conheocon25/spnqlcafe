@@ -17,20 +17,20 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mTable 	= new \MVC\Mapper\Table();
+			$mCustomer 	= new \MVC\Mapper\Customer();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Table = $mTable->find($IdTable);
-						
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-									
+			$Table 			= $mTable->find($IdTable);
+			$CustomerAll 	= $mCustomer->findAll();
+												
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setObject('Table', $Table);
+			$request->setObject('Table'			, $Table);
+			$request->setObject('CustomerAll'	, $CustomerAll);
+						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

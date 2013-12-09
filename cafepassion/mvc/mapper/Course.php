@@ -19,6 +19,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 							SELECT *
 							FROM %s
 							WHERE idcategory=:idcategory
+							ORDER BY name
 							LIMIT :start,:max
 				", $tblCourse);
 				
