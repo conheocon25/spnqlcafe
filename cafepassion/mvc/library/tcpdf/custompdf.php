@@ -378,15 +378,12 @@ class CUSTOMPDF extends TCPDF {
 	
 	//Page header
     public function Header() {
-        // Logo	
-        //$image_file = K_PATH_IMAGES.'logo.png';
-        //$this->Image($image_file, 4, 0, 15, '', 'PNG', '', 'T', false, 300, '', false, false, 0, false, false, false);
-        // Set font
-        $this->SetFont('arial', 'B', 14);
+        
+        $this->SetFont('arial', 'B', 12);
         // Title
 		$this->Ln(6);		
         $this->Cell(0, 5, 'CAFE PASSION', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-		$this->SetFont('arial', '', 11);
+		$this->SetFont('arial', '', 10);
 		$this->Ln(5);			 
         $this->Cell(0, 0, 'Phạm Thái Bường, P.4, TP.VL', 0, false, 'C', 0, '', 0, false, 'M', 'M');
 		$this->Ln(5);		

@@ -44,6 +44,7 @@ class Session extends Object{
 			'IdTable'			=> $this->getIdTable(),			
 			'IdUser'			=> $this->getIdUser(),						
 			'IdCustomer'		=> $this->getIdCustomer(),
+			'CustomerName'		=> $this->getCustomer()->getName(),
 			'DateTime'			=> $this->getDateTime(),
 			'DateTimeEnd'		=> $this->getDateTimeEnd(),
 			'Note'				=> $this->getNote(),
