@@ -54,7 +54,7 @@
 				}
 				$CourseAll->next();
 			}
-			$TCAll = $mTC->findBy(array($IdTrack));
+			$TCAll = $mTC->findBy(array($IdTD));
 			
 			$Title 		= "THỐNG KÊ ".$TD->getDatePrint();
 			$Navigation = array(

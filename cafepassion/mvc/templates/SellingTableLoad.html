@@ -8,6 +8,8 @@
 				</span>
 				<h5>PHIẾU TÍNH TIỀN</h5>
 				<div class="buttons" tal:condition="Table/getSessionActive">
+					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
+					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
 					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
 					<a title="In phiếu" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
@@ -17,14 +19,14 @@
 				<div class="invoice-content" tal:condition="not:Table/getSessionActive">
 					<div class="invoice-head">
 						<div class="invoice-meta">
-							<center><h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/></center>
+							<h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
 						</div>
 					</div>
 				</div>
 				<div class="invoice-content" tal:condition="Table/getSessionActive">
 					<div>
 						<div class="invoice-meta">
-							<h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
+							<h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="php:Table->getName() . '/' . Table->getSessionActive()->getCustomer()->getName()"/>
 							<div id="IdSession" tal:attributes="alt Table/getSessionActive/getId" />
 						</div>
 						<div class="invoice-to">
@@ -177,6 +179,61 @@
 						</div>
 					</div>
 					<!-- END DIALOG EDIT -->
+					<!-- DIALOG MOVE	-->
+					<div id="DialogMove" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-move modal-icon"/>CHUYỂN BÀN</h3>
+								</div>
+								<form class="form-horizontal" tal:attributes="action Table/getURLMoveExe" method="post">
+									<div class="form-group">
+										<label class="control-label" for="IdTableMove">Chuyển đến bàn</label>
+										<div class="controls">
+											<select name="IdTableMove" id="IdTableMove" class="form-control input-sm">
+												<option tal:repeat="Table TableAll" tal:attributes="value Table/getId">
+													<span tal:content="Table/getDomain/getName" /> / <span tal:content="Table/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLSessionMoveButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>									
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
+					
+					<!-- DIALOG MERGE	-->
+					<div id="DialogMerge" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3><i class="glyphicons-resize_small modal-icon"/>GOM BÀN</h3>
+								</div>
+								<form class="form-horizontal" tal:attributes="action Table/getURLMergeExe" method="post">
+									<div class="control-group">
+										<label class="control-label" for="IdTableMerge">Gom với bàn</label>
+										<div class="controls">
+											<select name="IdTableMerge" id="IdTableMerge" class="form-control input-sm">
+												<option tal:repeat="Table TableAll" tal:attributes="value Table/getId">
+													<span tal:content="Table/getDomain/getName" /> / <span tal:content="Table/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button id="URLSessionMergeButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+									</div>									
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG EDIT -->
 					<div metal:use-macro="mDialog.xhtml/DialogDel"/>	
 				</div>
 			</div>
@@ -276,7 +333,7 @@
 					type: "POST",					
 					url: URL,
 					success: function(msg){
-						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						$("#Session").load("/selling/load/table/"+IdTable);
 					}
 				});
 			});
@@ -297,7 +354,7 @@
 					type: "POST",					
 					url: URL,
 					success: function(msg){
-						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						$("#Session").load("/selling/load/table/"+IdTable);
 					}
 				});
 			});
@@ -332,10 +389,9 @@
 			//-----------------------------------------------------------------------------------
 			$('.Course').click(function(e){
 				var IdCourse 	= $(this).attr('alt');
-				var Delta 		= $(this).attr('data-delta');
-				
+				var Delta 		= $(this).attr('data-delta');				
 				var IdTable = $("#CurrentTable").attr('alt');				
-				URL = "/sellingbeta/call/table/"+IdTable+"/"+IdCourse+"/"+Delta;
+				URL = "/selling/call/table/"+IdTable+"/"+IdCourse+"/"+Delta;				
 				e.stopImmediatePropagation();
 				$.ajax({
 					type: "POST", 
@@ -344,7 +400,7 @@
 					dataType: 'json',
 					success: function(data){
 						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						$("#Session").load("/selling/load/table/"+IdTable);
 						
 						//Đánh dấu Table có khách
 						$(TableActive).toggleClass('actived');
@@ -380,7 +436,7 @@
 					url: URL,
 					success: function(msg){
 						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						$("#Session").load("/selling/load/table/"+IdTable);
 																		
 						//Đánh dấu Table có khách
 						$(TableActive).toggleClass('actived');
@@ -416,7 +472,7 @@
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
-						$("#Session").load("/sellingbeta/load/table/"+IdTable);
+						$("#Session").load("/selling/load/table/"+IdTable);
 					}
 				});				
 			});	
@@ -443,8 +499,7 @@
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
-						$("#Session").load("/sellingbeta/load/table/"+IdTable);
-						
+						$("#Session").load("/selling/load/table/"+IdTable);
 					}
 				});
 			});		

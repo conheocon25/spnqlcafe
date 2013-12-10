@@ -107,8 +107,8 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='SellingBeta'?'active':'disable'">
-				<a tal:attributes="href '/sellingbeta'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
 			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
@@ -128,7 +128,7 @@
 		</ul>
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/sellingbeta'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
 			</li>
 			<li>
 				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
@@ -136,7 +136,7 @@
 		</ul>
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-				<a tal:attributes="href '/sellingbeta'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>

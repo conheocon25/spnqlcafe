@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingBetaLoadTable extends Command {
+	class SellingDomainLoad extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,25 +11,28 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdTable = $request->getProperty("IdTable");
+			$IdDomain = $request->getProperty("IdDomain");
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable 	= new \MVC\Mapper\Table();
-			$mCustomer 	= new \MVC\Mapper\Customer();
-						
+			$mDomain = new \MVC\Mapper\Domain();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Table 			= $mTable->find($IdTable);
-			$CustomerAll 	= $mCustomer->findAll();
-												
+			$Domain = $mDomain->find($IdDomain);
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------			
-			$request->setObject('Table'			, $Table);
-			$request->setObject('CustomerAll'	, $CustomerAll);
+			//-------------------------------------------------------------									
+			$Title = "BÁN HÀNG BETA";
+						
+			//-------------------------------------------------------------
+			//THAM SỐ GỬI ĐI
+			//-------------------------------------------------------------
+			$request->setProperty('Title', $Title);
+			$request->setObject('Domain', $Domain);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

@@ -14,7 +14,7 @@ class TrackingCourse extends Mapper implements \MVC\Domain\TrackingCourseFinder{
 		$insertStmt 				= sprintf("insert into %s (id_tracking, id_td, id_course, count, price, value) values(?, ?, ?, ?, ?, ?)", $tblTrackingCourse);
 		$deleteStmt 				= sprintf("delete from %s where id=?", $tblTrackingCourse);
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=? AND id_td=?", $tblTrackingCourse);
-		$findByStmt 				= sprintf("select *  from %s where id_tracking=? ORDER BY count DESC", $tblTrackingCourse);
+		$findByStmt 				= sprintf("select id, 0 as id_tracking, id_td, id_course, sum(count) as count, avg(price) as price, sum(value) as value from %s where id_td=? GROUP BY id_course ORDER BY count DESC", $tblTrackingCourse);
 		$findBy1Stmt 				= sprintf("select id, id_tracking, 0 as id_td, id_course, sum(count) as count, avg(price) as price, sum(value) as value from %s where id_tracking=? GROUP BY id_course ORDER BY count DESC", $tblTrackingCourse);
 		
 		$findByDailyStmt			= sprintf("select *  from %s where id_tracking=? AND id_td=? ORDER BY count DESC", $tblTrackingCourse);
