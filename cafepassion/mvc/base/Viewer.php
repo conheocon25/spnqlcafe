@@ -57,14 +57,14 @@ class Viewer {
 		//$width = 73; //76 mm 
 		//$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
 		$width 	= 59;
-		$height = 297;
+		$height = 150;
 		$pdf->addFormat("custom", $width, $height);  
 		$pdf->reFormat("custom", 'P');
 		
 		// set default header data		
 		$pdf->setHeaderFont(Array('arial', '', '10'));
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);
+		$pdf->SetMargins(0, 14, 0);
 		
 		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
 				

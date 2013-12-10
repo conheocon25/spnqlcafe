@@ -19,14 +19,14 @@
 				<div class="invoice-content" tal:condition="not:Table/getSessionActive">
 					<div class="invoice-head">
 						<div class="invoice-meta">
-							<h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
+							<h5 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="Table/getName"/>
 						</div>
 					</div>
 				</div>
 				<div class="invoice-content" tal:condition="Table/getSessionActive">
 					<div>
 						<div class="invoice-meta">
-							<h3 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="php:Table->getName() . '/' . Table->getSessionActive()->getCustomer()->getName()"/>
+							<h5 id="CurrentTable" tal:attributes="alt Table/getId" tal:content="php:Table->getName() . '/' . Table->getSessionActive()->getCustomer()->getName()"/>
 							<div id="IdSession" tal:attributes="alt Table/getSessionActive/getId" />
 						</div>
 						<div class="invoice-to">
