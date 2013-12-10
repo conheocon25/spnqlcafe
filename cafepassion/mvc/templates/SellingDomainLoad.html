@@ -2,7 +2,7 @@
 <html lang="en">
 	<body>		
 		<div id="TableAll" class="widget-box">			
-			<div class="widget-content">
+			<div class="widget-content nopadding">
 				<div class="gallery-masonry">
 					<div tal:repeat="Table Domain/getTableAll" tal:attributes="id php:'Table' . Table->getId();alt Table/getId;class php:Table->getSessionActive()==null? 'Table item':'Table item actived'">
 						<a class="thumbnail" tal:content="Table/getName"/>						
