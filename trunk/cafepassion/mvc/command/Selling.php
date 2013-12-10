@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class SellingBetaLoadDomain extends Command {
+	class Selling extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -11,29 +11,37 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
-			$IdDomain = $request->getProperty("IdDomain");
-			
+									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			$mDomain = new \MVC\Mapper\Domain();
+			//-------------------------------------------------------------			
+			$mDomain 	= new \MVC\Mapper\Domain();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mSD 		= new \MVC\Mapper\SessionDetail();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Domain = $mDomain->find($IdDomain);
-						
+			$DomainAll 		= $mDomain->findAll();
+			$CategoryAll 	= $mCategory->findAll();			
+			$Domain			= $DomainAll->current();
+			$Top10			= $mSD->findByTop10(array());
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = "BÁN HÀNG BETA";
-						
+			$Title = "BÁN HÀNG";
+			$Navigation = array();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);
-			$request->setObject('Domain', $Domain);
-						
+			$request->setProperty('Title'		, $Title);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('Domain'		, $Domain);
+			$request->setObject('DomainAll'		, $DomainAll);
+			$request->setObject('CategoryAll'	, $CategoryAll);
+			$request->setObject('Top10'			, $Top10);
+			
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

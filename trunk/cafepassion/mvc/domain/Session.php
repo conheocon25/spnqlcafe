@@ -280,21 +280,11 @@ class Session extends Object{
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
-	//-------------------------------------------------------------------------------
-	function getURLCheckoutLoad(){
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/checkout/load";
-    }
-	
+	//-------------------------------------------------------------------------------		
 	function getURLCheckoutExe(){
 		$Domain = $this->getTable()->getDomain();
 		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/".$this->getId()."/checkout/exe";
-    }
-			
-	function getURLDetail(){		
-		$Domain = $this->getTable()->getDomain();
-		return "/selling/".$Domain->getId()."/".$this->getIdTable()."/log/".$this->getId()."/detail";
-    }
+    }				
 	
 	function getURLPrint(){
 		$Domain = $this->getTable()->getDomain();

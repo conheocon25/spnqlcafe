@@ -82,10 +82,10 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
         <script>
-			$("#TableAll").load("/sellingbeta/load/domain/"+$("#DomainActive").attr('alt'));
+			$("#TableAll").load("/selling/load/domain/"+$("#DomainActive").attr('alt'));
 			$('.Domain').click(function(){
 				var IdDomain = $(this).attr('alt');				
-				$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
+				$("#TableAll").load("/selling/load/domain/"+IdDomain);
 				$(this).toggleClass('active').siblings().removeClass('active');
 			});
         </script>

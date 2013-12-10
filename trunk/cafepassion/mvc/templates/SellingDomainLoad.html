@@ -14,7 +14,7 @@
 			$(".Table").click(function(){
 				var IdTable = $(this).attr('alt');
 				
-				$("#Session").load("/sellingbeta/load/table/"+IdTable);
+				$("#Session").load("/selling/load/table/"+IdTable);
 				$(this).toggleClass('active').siblings().removeClass('active');
 				
 				//Nhớ lại Table đang được chọn.
