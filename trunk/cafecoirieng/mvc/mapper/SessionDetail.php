@@ -1,70 +1,35 @@
 <?php
-/** 
- * PHP version 5.3
- *
- * LICENSE: Lưu hành nội bộ
- *
- * @category   Database
- * @package    Mapper
- * @author     Bùi Thanh Tuấn <tuanbuithanh@gmail.com>
- * @author     Nguyễn Thanh Bảo <thanhbao2007vl@gmail.com>
- * @copyright  2010-2012 SPN Group
- * @license    Bản quyền nhóm
- * @version    SVN: ?
- * @link       mvc/mapper/SessionDetail.php
- * @see        SessionDetail
- * @note       Định danh các khoản chi tiết của một giao dịch
- */
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
 class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 
     function __construct() {
         parent::__construct();
-		
-		/*
-        * Cac qui trình thực hiện tổng quát hóa CSDL
-		* (1) Lấy về tiền tố của bảng dữ liệu từ App
-        * (2) format định dạng các Stmt có sử dụng tiền tố
-        * (3) prepare các Stmt 
-        */
+			
 		$tblCourse = "cafecoirieng_course";
 		$tblSession = "cafecoirieng_session";
 		$tblSessionDetail = "cafecoirieng_session_detail";
 		$tblR2C = "cafecoirieng_r2c";
-						
+		
 		$selectAllStmt = sprintf("select * from %s", $tblSessionDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSessionDetail);
-		$updateStmt = sprintf("
-			update %s set 
-				idsession=?, 
-				idcourse=?, 
-				count=?, 
-				price=? 
-			where id=?
-		", $tblSessionDetail);
-		$insertStmt = sprintf("
-			insert into 
-				%s (idsession, idcourse, count, price) 
-				values(?, ?, ?, ?)
-		", $tblSessionDetail);
-		
+		$updateStmt = sprintf("update %s set idsession=?, idcourse=?, count=?, price=? where id=?", $tblSessionDetail);
+		$insertStmt = sprintf("insert into %s (idsession, idcourse, count, price) values(?, ?, ?, ?)", $tblSessionDetail);		
 		$deleteStmt = sprintf("delete from %s where id=?", $tblSessionDetail);
+
+		$findByTop10Stmt = sprintf("
+			SELECT 1 as id, 2 as idsession, idcourse, sum(count) as count, 3 as price 
+				FROM `cafecoirieng_session_detail`
+			GROUP BY idcourse
+			ORDER BY count DESC
+			LIMIT 10
+		", $tblSessionDetail);
 		
 		$findBySessionStmt = sprintf("select * from %s where idsession=?", $tblSessionDetail);
-		$findItemStmt = sprintf("
-			select * 
-			from %s 
-			where idsession=? and idcourse=?
-		", $tblSessionDetail);
+		$findItemStmt = sprintf("select * from %s where idsession=? and idcourse=?", $tblSessionDetail);
 		$evaluateStmt = sprintf("select sum(sd.count * price ) from %s sd where idsession=?", $tblSessionDetail);
 		
-		$checkStmt = sprintf("
-			select distinct id 
-			from %s 
-			where idsession=? and idcourse=?
-		", $tblSessionDetail);
-		
+		$checkStmt = sprintf("select distinct id from %s where idsession=? and idcourse=?", $tblSessionDetail);		
 		$trackByCountStmt = sprintf("
 			select 
 				sum(count)
@@ -141,34 +106,31 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
         $this->insertStmt = self::$PDO->prepare( $insertStmt );
 		$this->deleteStmt = self::$PDO->prepare( $deleteStmt );
                             
-		$this->findBySessionStmt = self::$PDO->prepare($findBySessionStmt);		
-		$this->findItemStmt = self::$PDO->prepare($findItemStmt);		
-		$this->evaluateStmt = self::$PDO->prepare( $evaluateStmt );		
-		$this->checkStmt = self::$PDO->prepare( $checkStmt);
-		$this->trackByCountStmt = self::$PDO->prepare( $trackByCountStmt);
-		$this->trackByCount1Stmt = self::$PDO->prepare( $trackByCount1Stmt);
-		$this->trackByCount2Stmt = self::$PDO->prepare( $trackByCount2Stmt);
-		$this->trackByCategoryStmt = self::$PDO->prepare( $trackByCategoryStmt);
-		$this->trackByCourseStmt = self::$PDO->prepare( $trackByCourseStmt);
-		$this->trackByExportStmt = self::$PDO->prepare( $trackByExportStmt);
+		$this->findBySessionStmt 	= self::$PDO->prepare($findBySessionStmt);		
+		$this->findByTop10Stmt 		= self::$PDO->prepare($findByTop10Stmt);		
+		$this->findItemStmt 		= self::$PDO->prepare($findItemStmt);		
+		$this->evaluateStmt 		= self::$PDO->prepare( $evaluateStmt );		
+		$this->checkStmt 			= self::$PDO->prepare( $checkStmt);
+		$this->trackByCountStmt 	= self::$PDO->prepare( $trackByCountStmt);
+		$this->trackByCount1Stmt 	= self::$PDO->prepare( $trackByCount1Stmt);
+		$this->trackByCount2Stmt 	= self::$PDO->prepare( $trackByCount2Stmt);
+		$this->trackByCategoryStmt 	= self::$PDO->prepare( $trackByCategoryStmt);
+		$this->trackByCourseStmt 	= self::$PDO->prepare( $trackByCourseStmt);
+		$this->trackByExportStmt 	= self::$PDO->prepare( $trackByExportStmt);
 		
     } 
-    function getCollection( array $raw ) {
-        return new SessionDetailCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new SessionDetailCollection( $raw, $this );}
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\SessionDetail( 
 			$array['id'],
-			$array['idsession'], 
+			$array['idsession'],
 			$array['idcourse'], 
 			$array['count'], 			
 			$array['price']
 		);
         return $obj;
     }
-    protected function targetClass() {        
-		return "SessionDetail";
-    }
+    protected function targetClass() {return "SessionDetail";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdSession(),
@@ -190,33 +152,19 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 		);		
         $this->updateStmt->execute( $values );
     }
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-    function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
+    function selectStmt() {return $this->selectStmt;}
+    function selectAllStmt() {return $this->selectAllStmt;}
 	
-	/*
-    * Command	: findBySession	
-	* Input		: array($IdTable)
-	* Output	: list of SessionDetail
-	* Note		: Tìm về các chi tiết gọi món của bàn
-    */
 	function findBySession( $values ) {	
         $this->findBySessionStmt->execute( $values );
         return new SessionDetailCollection( $this->findBySessionStmt->fetchAll(), $this );
     }
-			
-	/*
-    * Command	: check	
-	* Input		: array($IdSession, $IdCourse)
-	* Output	: Id/null
-	* Note		: Xác định xem món (IdCourse) đã có được gọi trong giao dịch (IdSession)
-    */	
+	function findByTop10( $values ) {	
+        $this->findByTop10Stmt->execute( $values );
+        return new SessionDetailCollection( $this->findByTop10Stmt->fetchAll(), $this );
+    }
+	
 	function check( $values ) {	
         $this->checkStmt->execute( $values );
 		$result = $this->checkStmt->fetchAll();		

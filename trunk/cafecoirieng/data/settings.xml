@@ -19,8 +19,7 @@
 		
 		<!-- ============================================================================== -->
 		<!-- GLOBAL			 																-->
-		<!-- ============================================================================== -->
-		<command name="SellingDomain"><view>SellingDomain</view></command>
+		<!-- ============================================================================== -->		
 		<command name="Import"><view>Import</view></command>
 		<command name="Paid"><view>Paid</view></command>
 		<command name="Report"><view>Report</view></command>
@@ -63,14 +62,17 @@
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->
-		<command name="SellingBeta"><view>SellingBeta</view></command>
-		<command name="SellingBetaLoadDomain"><view>SellingBetaLoadDomain</view></command>
-		<command name="SellingBetaLoadTable"><view>SellingBetaLoadTable</view></command>
-		<command name="SellingBetaCallTable"><view>SellingBetaCallTable</view></command>
-						
-		<command name="SellingDomainTablePrint"><view>SellingDomainTablePrint</view></command>
-		<command name="SellingDomainTableCheckinExe"><status value="CMD_OK"><forward>SellingDomainTableCallLoad</forward></status><view>SellingDomainTableCheckinExe</view></command>
-		<command name="SellingDomainTableCheckoutExe"><view>SellingDomainTableCheckoutExe</view></command>
+		<command name="Selling"><view>Selling</view></command>
+		<command name="SellingDomainLoad"><view>SellingDomainLoad</view></command>
+		<command name="SellingTableLoad"><view>SellingTableLoad</view></command>
+		<command name="SellingTableCallExe"><view>SellingTableCallExe</view></command>										
+		<command name="SellingTableMoveExe"><view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
+		<command name="SellingTableMergeExe">
+			<view>SellingTableMergeExe</view>
+			<status value="CMD_OK"><forward>Selling</forward></status>
+		</command>				
+		<command name="SellingTablePrint"><view>SellingTablePrint</view></command>
+		<command name="SellingTableCheckoutExe"><view>SellingTableCheckoutExe</view></command>
 				
 		<!-- ============================================================================== -->
 		<!-- SETTING	 																	-->
