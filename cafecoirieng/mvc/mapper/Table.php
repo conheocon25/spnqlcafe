@@ -39,14 +39,20 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 				*	 
 			FROM %s T
 			WHERE 				
-			(
-				SELECT S.status
-				from %s S
-				where T.id = S.idtable
-				order by datetime DESC
-				LIMIT 1
-			) <> 0
-		", $tblTable, $tblSession);
+				(
+					SELECT count(S.id)
+					FROM cafecoirieng_session S
+					WHERE T.id = S.idtable	
+				)=0 OR
+				(
+					SELECT S1.status
+					FROM cafecoirieng_session S1
+					WHERE T.id = S1.idtable
+					order by datetime DESC
+					LIMIT 1
+				)=1
+			ORDER BY iddomain, name
+		", $tblTable, $tblSession, $tblSession);
 		
 		$findGuestStmt = sprintf("
 							SELECT
@@ -68,13 +74,15 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 				*	 
 			FROM %s T
 			WHERE
+			T.id <>? AND
 			(
 				SELECT S.status
 				FROM %s S
 				WHERE T.id = S.idtable
 				GROUP BY S.datetime DESC
 				LIMIT 1
-			) = 0
+			)=0
+			ORDER BY iddomain, name
 		", $tblTable,  $tblSession);
 		$findByPageStmt = sprintf("
 							SELECT *

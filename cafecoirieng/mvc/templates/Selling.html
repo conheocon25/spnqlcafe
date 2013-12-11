@@ -29,11 +29,33 @@
 				</div>
 				<div class="col-3">
 					<div class="accordion widget-box" id="collapse-group">
+						<div class="accordion-group widget-box">
+							<div class="accordion-heading">
+								<div class="widget-title">
+									<a data-parent="#collapse-group" tal:attributes="href php:'#Top10'" data-toggle="collapse">
+										<span class="icon"><i class="glyphicons-fast_food"></i></span><h5 tal:content="string:Top10"/>
+									</a>
+								</div>
+							</div>
+							<div class="collapse accordion-body" id="Top10">
+								<div class="widget-content nopadding size-12">
+                                    <ul class="activity-list">
+                                        <li tal:repeat="T Top10">
+											<a class="course-item">
+												<button class="Course pull-left" tal:attributes="alt T/getCourse/getId;data-delta 'plus' ">+</button>
+												<strong tal:content="T/getCourse/getName"/>
+												<button class="Course pull-right" tal:attributes="alt T/getCourse/getId;data-delta 'minus' ">-</button>
+											</a>
+										</li>
+                                    </ul>
+                                </div>
+							</div>
+						</div>
 						<div class="accordion-group widget-box" tal:repeat="Category CategoryAll">
 							<div class="accordion-heading">
 								<div class="widget-title">
 									<a data-parent="#collapse-group" tal:attributes="href php:'#'.Category->getIdString();" data-toggle="collapse">
-										<span class="icon"><i class="glyphicon glyphicon-glass"></i></span><h5 tal:content="Category/getName"/>
+										<span class="icon"><i class="glyphicons-fast_food"></i></span><h5 tal:content="Category/getName"/>
 									</a>
 								</div>
 							</div>
@@ -42,9 +64,9 @@
                                     <ul class="activity-list">
                                         <li tal:repeat="Course Category/getCourseAll">
 											<a class="course-item">
-												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' "><i class="glyphicons-circle_plus"/></button>
+												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' ">+</button>
 												<strong tal:content="Course/getName"/>
-												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' "><i class="glyphicons-circle_minus"></i></button>
+												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' ">-</button>
 											</a>
 										</li>
                                     </ul>
@@ -60,10 +82,10 @@
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
         <script>
-			$("#TableAll").load("/sellingbeta/load/domain/"+$("#DomainActive").attr('alt'));
+			$("#TableAll").load("/selling/load/domain/"+$("#DomainActive").attr('alt'));
 			$('.Domain').click(function(){
 				var IdDomain = $(this).attr('alt');				
-				$("#TableAll").load("/sellingbeta/load/domain/"+IdDomain);
+				$("#TableAll").load("/selling/load/domain/"+IdDomain);
 				$(this).toggleClass('active').siblings().removeClass('active');
 			});
         </script>

@@ -1,6 +1,6 @@
 <?php
 	namespace MVC\Command;
-	class SellingBetaCallTable extends Command{
+	class SellingTableCallExe extends Command{
 		function doExecute( \MVC\Controller\Request $request ) {
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------

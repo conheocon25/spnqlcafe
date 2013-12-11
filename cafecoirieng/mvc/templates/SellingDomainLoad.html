@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<body>		
+		<div id="TableAll" class="widget-box">			
+			<div class="widget-content nopadding">
+				<div class="gallery-masonry">
+					<div tal:repeat="Table Domain/getTableAll" tal:attributes="id php:'Table' . Table->getId();alt Table/getId;class php:Table->getSessionActive()==null? 'Table item':'Table item actived'">
+						<a class="thumbnail" tal:content="Table/getName"/>						
+					</div>
+				</div>
+			</div>					
+		</div>						
+        <script>
+			$(".Table").click(function(){
+				var IdTable = $(this).attr('alt');
+				
+				$("#Session").load("/selling/load/table/"+IdTable);
+				$(this).toggleClass('active').siblings().removeClass('active');
+				
+				//Nhớ lại Table đang được chọn.
+				$("#TableActive").attr('alt', 'Table'+IdTable);
+			});
+			
+			$('.gallery-masonry').masonry({
+				itemSelector: '.item',
+				isAnimated: true,
+				isFitWidth: true
+			});
+        </script>
+	</body>
+</html>
