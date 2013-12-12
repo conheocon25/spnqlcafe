@@ -16,7 +16,7 @@ class TrackingStore extends Mapper implements \MVC\Domain\TrackingStoreFinder{
 		$deleteByTrackingStmt 		= sprintf("delete from %s where id_tracking=? AND id_td=?", $tblTrackingStore);
 		$findByStmt 				= sprintf("select *  from %s where id_tracking=?", $tblTrackingStore);
 		$findByDailyStmt			= sprintf("select *  from %s where id_tracking=? AND id_td=?", $tblTrackingStore);
-		$findByPreStmt 				= sprintf("select *  from %s where id_tracking<? AND id_resource=? ORDER BY id_tracking DESC", $tblTrackingStore);
+		$findByPreStmt 				= sprintf("select *  from %s where id_td<? AND id_resource=? ORDER BY id_td DESC", $tblTrackingStore);
 		$findByCourseStmt 			= sprintf("select *  from %s where id_tracking=? AND id_resource=?", $tblTrackingStore);
 		
         $this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
