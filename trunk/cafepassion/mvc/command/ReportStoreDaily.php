@@ -57,7 +57,7 @@
 					}
 					
 					//Tính toán tồn cũ còn trước đó
-					$TSAllPre = $mTS->findByPre(array($IdTrack, $Resource->getId()));
+					$TSAllPre = $mTS->findByPre(array($IdTD, $Resource->getId()));
 					if ($TSAllPre->count()==0){
 						$CountOld = 0;
 					}else{
