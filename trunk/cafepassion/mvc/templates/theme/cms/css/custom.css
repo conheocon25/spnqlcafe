@@ -1,4 +1,5 @@
 
+	table a { display: block; width: 100%; }
 	th { font-size: 12px !important; }
 	th.left, td.left { text-align: left !important; }
 	th.center, td.center { text-align: center !important; }
