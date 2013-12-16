@@ -46,34 +46,33 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 10);
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("bao_cao_karaoke_bdc.pdf", 'I');
+		$Out = $pdf->Output("bao_cao_cafe_passion.pdf", 'I');
 		unset($pdf);
 		return $Out;
 	}
 	
 	function custompdf(){		
+		
 		$html = $this->html();		
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		//$width = 73; //76 mm 
-		//$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
+
 		$width 	= 56;
-		$height = 50;
+		$height = 83;
 		$pdf->addFormat("custom", $width, $height);  
 		$pdf->reFormat("custom", 'P');
-		
-		// set default header data		
+				
 		$pdf->setHeaderFont(Array('arial', '', '10'));
 		$pdf->setPrintFooter(false);
 		$pdf->SetMargins(1, 14, 1);
-		
 		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
-				
+			
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('phieu_cafe_passion.pdf', 'I');
-		unset($Out);
-		return $Out;
+		$Out = $pdf->Output('cafe_passion_inphieu.pdf', 'I');
+		unset($pdf);
+		
+		return $Out;		
 	}			
 }
 ?>
