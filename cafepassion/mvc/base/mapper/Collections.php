@@ -34,6 +34,7 @@ class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection			{function targetClass(){return "\MVC\Domain\Config";}}
 
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection		{function targetClass(){return "\MVC\Domain\Tracking";}}
+class TrackingCustomerCollection 	extends Collection implements \MVC\Domain\TrackingCustomerCollection	{function targetClass(){return "\MVC\Domain\TrackingCustomer";}}
 class TrackingStoreCollection 	extends Collection implements \MVC\Domain\TrackingStoreCollection	{function targetClass(){return "\MVC\Domain\TrackingStore";}}
 class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection	{function targetClass(){return "\MVC\Domain\TrackingDaily";}}
 class TrackingCourseCollection 	extends Collection implements \MVC\Domain\TrackingCourseCollection	{function targetClass(){return "\MVC\Domain\TrackingCourse";}}

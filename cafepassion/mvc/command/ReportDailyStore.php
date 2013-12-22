@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportStoreDaily extends Command{
+	class ReportDailyStore extends Command{
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");			
 			//-------------------------------------------------------------
@@ -29,8 +29,8 @@
 			//-------------------------------------------------------------
 			$Tracking 		= $mTracking->find($IdTrack);
 			$TD				= $mTD->find($IdTD);
-			$ResourceAll 	= $mResource->findAll();
 			
+			$ResourceAll 	= $mResource->findAll();			
 			//Xóa những dữ liệu tồn kho cũ
 			$mTS->deleteByTracking(array($IdTrack, $IdTD));
 			

@@ -35,45 +35,25 @@
 											<th width="90"><div class="text-right">KHO HÀNG</div></th>
 											<th width="90"><div class="text-right">TIỀN CHI</div></th>
 											<th width="90"><div class="text-right">TIỀN THU</div></th>
-											<th width="90"><div class="text-right">QUỸ</div></th>
+											<th width="90"><div class="text-right">QUỸ</div></th>											
 											<th width="90"><div class="text-center">TK.MÓN</div></th>
+											<th width="90"><div class="text-center">TK.KHÁCH</div></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr tal:repeat="TD Tracking/getDailyAll">
-											<td><span tal:content="TD/getDatePrint"/></td>
-											<td align="right">
-												<a tal:attributes="href TD/getURLReportSelling">
-													<span tal:content="TD/getSellingPrint"/>
-												</a>
-											</td>
-											<td align="right">
-												<a tal:attributes="href TD/getURLReportImport">
-													<span tal:content="TD/getImportPrint"/>
-												</a>
-											</td>
-											<td align="right">												
-												<a tal:attributes="href TD/getURLReportStore">
-													<span tal:content="TD/getStorePrint"/>
-												</a>
-											</td>
-											<td align="right">												
-												<a tal:attributes="href TD/getURLReportPaid">
-													<span tal:content="TD/getPaidPrint"/>
-												</a>
-											</td>
-											<td align="right">
-												<a tal:attributes="href TD/getURLReportCollect">
-													<span tal:content="TD/getCollectPrint"/>
-												</a>
-											</td>
-											<td align="right">												
-												<b tal:content="TD/getValuePrint"/>
-											</td>
+											<td><div class="TDExe" tal:attributes="alt TD/getURLReport"><span tal:content="TD/getDatePrint"/></div></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportImport"><span tal:content="TD/getImportPrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportStore"><span tal:content="TD/getStorePrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportPaid"><span tal:content="TD/getPaidPrint"/></a></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportCollect"><span tal:content="TD/getCollectPrint"/></a></td>
+											<td align="right"><b tal:content="TD/getValuePrint"/></td>
 											<td align="center"><a tal:attributes="href TD/getURLReportCourse">Xem</a></td>
+											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
 										</tr>
 										<tr>
-											<td align="right"><B>TỔNG CỘNG</B></td>
+											<td align="right"><B>TỔNG KẾT</B></td>
 											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueImport/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueStore/formatCurrency"/></td>
@@ -81,6 +61,7 @@
 											<td align="right"><B tal:content="ValueCollect/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueNew/formatCurrency"/></td>
 											<td align="center"><a tal:attributes="href Tracking/getURLReportCourse">Xem</a></td>
+											<td align="center"></td>
 										</tr>
 									</tbody>
 								</table>								
@@ -92,5 +73,23 @@
 		</div>
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/
+			//-----------------------------------------------------------------------------------
+			//EXE DAILY			
+			//-----------------------------------------------------------------------------------						
+			$('.TDExe').click(function(){
+				var URL = $(this).attr('alt');				
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						
+					}
+				});
+				location.reload();
+			});														
+		/*]]>*/
+		</script>
 	</body>
 </html>

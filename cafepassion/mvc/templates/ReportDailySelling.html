@@ -15,14 +15,16 @@
 					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-content nopadding">								
-								<table class="table table-bordered table-striped table-hover">
+								<table class="table table-striped table-hover">
 									<thead>
 										<tr>										
 											<th width="5%"><B>#ID</B></th>
-											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="18%"><div class="text-left">NHÂN VIÊN</div></th>
-											<th width="37%"><div class="text-left">BÀN</div></th>
-											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
+											<th width="11%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="11%"><div class="text-left">NHÂN VIÊN</div></th>
+											<th width="15%"><div class="text-left">BÀN</div></th>
+											<th width="18%"><div class="text-left">KHÁCH HÀNG</div></th>
+											<th width="18%"><div class="text-left">TÌNH TRẠNG</div></th>
+											<th width="22%"><div class="text-right">PHIẾU</div></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -31,11 +33,13 @@
 											<td align="left"><span tal:content="Session/getDateTimePrint"/></td>
 											<td align="left"><span tal:content="Session/getUser/getName"/></td>
 											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
+											<td align="left"><span tal:content="Session/getCustomer/getName"/></td>
+											<td align="left"><span tal:content="Session/getStatusPrint"/></td>
 											<td align="right"><span tal:content="Session/getValuePrint"/></td>
 										</tr>
 										<tr>
-											<td align="right" colspan="4"><B>TỔNG CỘNG</B></td>
-											<td align="right"><B tal:content="php: NTotal->formatCurrency() . ' đ'"/></td>
+											<td align="right" colspan="6">TỔNG CỘNG</td>
+											<td align="right"><B tal:content="NTotal/formatCurrency"/> đ</td>
 										</tr>
 									</tbody>
 								</table>								

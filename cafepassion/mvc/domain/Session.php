@@ -120,7 +120,8 @@ class Session extends Object{
 	function getTimeRangePrint(){
 		$DS = date('d/m H:i',strtotime($this->getDateTime()));
 		$DE = date('H:i',strtotime($this->getDateTimeEnd()));
-		return $DS." - ".$DE;
+		//return $DS." - ".$DE;
+		return $DS;
 	}
 	function getCurrentDatePrint(){$date = new Date();return $date->getCurrentDateVN();}
 		

@@ -43,14 +43,13 @@
 				$ValuePaid 		+= $TD->getPaid();
 				$ValueCollect	+= $TD->getCollect();				
 				$TDAll->next();		
-			}
-			$ValueNew		= $ValueSelling + $ValueStore + $ValueCollect - $ValueImport - $ValuePaid;
+			}			
 			$NValueSelling 	= new \MVC\Library\Number($ValueSelling);
 			$NValueImport 	= new \MVC\Library\Number($ValueImport);
 			$NValueStore 	= new \MVC\Library\Number($ValueStore);
 			$NValuePaid 	= new \MVC\Library\Number($ValuePaid);
 			$NValueCollect 	= new \MVC\Library\Number($ValueCollect);
-			$NValueNew 		= new \MVC\Library\Number($ValueNew);
+			$NValueNew 		= new \MVC\Library\Number($TDAll->last()->getValue());
 			
 			$Title = $Tracking->getName();
 			$Navigation = array(				

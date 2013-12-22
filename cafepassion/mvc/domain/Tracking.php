@@ -17,7 +17,8 @@ class Tracking extends Object{
 	){
 			$this->Id 					= $Id; 
 			$this->DateStart 			= $DateStart; 
-			$this->DateEnd 				= $DateEnd;															
+			$this->DateEnd 				= $DateEnd;						
+									
 			parent::__construct( $Id );
 	}
     
@@ -74,21 +75,7 @@ class Tracking extends Object{
 			$mTD->insert($TD);
 			$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
 		}
-	}
-	//-------------------------------------------------------------------------------------
-	//THEO DÕI SỐ MÓN ĐÃ GỌI
-	//-------------------------------------------------------------------------------------
-	function getCountCategory($IdCategory){$mSD = new \MVC\Mapper\SessionDetail();$Count = $mSD->trackByCategory( array($IdCategory, $this->getDateStart(), $this->getDateEnd()) );return $Count;}
-	function getCountCategoryPrint($IdCategory){$N = new \MVC\Library\Number($this->getCountCategory($IdCategory));return $N->formatCurrency();}	
-	
-	function getCourseExport($IdCourse){$mSD = new \MVC\Mapper\SessionDetail();$Count = $mSD->trackByCount( array($IdCourse, $this->getDateStart(), $this->getDateEnd()) );return $Count;}
-	function getCourseExportPrint($IdCourse){$N = new \MVC\Library\Number($this->getCourseExport($IdCourse));return $N->formatCurrency();}
-	
-	function getCountCourse1($IdCourse){$mSD = new \MVC\Mapper\SessionDetail();$Count = $mSD->trackByCount1( array($IdCourse, $this->getDateStart(), $this->getDateEnd()) );return $Count;}
-	function getCountCourse1Print($IdCourse){$N = new \MVC\Library\Number($this->getCountCourse1($IdCourse));return $N->formatCurrency();}
-	
-	function getCountCourse2($IdCourse){$mSD = new \MVC\Mapper\SessionDetail();$Count = $mSD->trackByCount2( array($IdCourse, $this->getDateStart(), $this->getDateEnd()) );return $Count;}
-	function getCountCourse2Print($IdCourse){$N = new \MVC\Library\Number($this->getCountCourse2($IdCourse));return $N->formatCurrency();}
+	}	
 	
 	//CÁC LIÊN KẾT CỦA CÁC NGÀY TRONG THÁNG
 	function getURLDayAll(){
@@ -200,26 +187,6 @@ class Tracking extends Object{
 		$SessionAll = $mSession->findByTableTracking(array($IdTable,$Date1,$Date2));
 		return $SessionAll;
 	}
-			
-	//-------------------------------------------------------------------------------
-	//LƯƠNG NHÂN VIÊN
-	//-------------------------------------------------------------------------------
-	function getPaidPayRollAll(){ $mPPR = new \MVC\Mapper\PaidPayRoll(); $PPRAll = $mPPR->findByTracking( array( $this->getDateStart(), $this->getDateEnd() )); return $PPRAll;}	
-	//TỔNG LƯƠNG CƠ BẢN
-	function getPaidPayRollAllValueBase(){ $PPRAll = $this->getPaidPayRollAll(); $Value = 0; $PPRAll->rewind(); while ( $PPRAll->valid() ){ $PPR = $PPRAll->current(); $Value += $PPR->getValueBase(); $PPRAll->next(); }  return $Value; }
-	function getPaidPayRollAllValueBasePrint(){ $N = new \MVC\Library\Number( $this->getPaidPayRollAllValueBase() ); return $N->formatCurrency()." đ"; }	
-	//TỔNG LƯƠNG PHỤ CẤP
-	function getPaidPayRollAllValueSub(){$PPRAll = $this->getPaidPayRollAll();$Value = 0;$PPRAll->rewind();while ( $PPRAll->valid() ){$PPR = $PPRAll->current();$Value += $PPR->getValueSub();$PPRAll->next();}return $Value;}
-	function getPaidPayRollAllValueSubPrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValueSub() );return $N->formatCurrency()." đ";}	
-	//TỔNG LƯƠNG ỨNG TIỀN
-	function getPaidPayRollAllValuePre(){$PPRAll = $this->getPaidPayRollAll();$Value = 0;$PPRAll->rewind();while ( $PPRAll->valid() ){$PPR = $PPRAll->current();$Value += $PPR->getValuePre();$PPRAll->next();}return $Value;}
-	function getPaidPayRollAllValuePrePrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValuePre() );return $N->formatCurrency()." đ";}	
-	//TỔNG LƯƠNG THỰC LÃNH
-	function getPaidPayRollALlValueReal(){$PPRAll = $this->getPaidPayRollAll();$Value = 0;$PPRAll->rewind();while ( $PPRAll->valid() ){$PPR = $PPRAll->current();$Value += $PPR->getValueReal();$PPRAll->next();}return $Value;}
-	function getPaidPayRollAllValueRealPrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValueReal() );return $N->formatCurrency()." đ";}
-	//TỔNG LƯƠNG
-	function getPaidPayRollAllValue(){$Value = $this->getPaidPayRollAllValueBase() + $this->getPaidPayRollAllValueSub();return $Value;}	
-	function getPaidPayRollAllValuePrint(){$N = new \MVC\Library\Number( $this->getPaidPayRollAllValue() );return $N->formatCurrency()." đ";}
 	
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
@@ -232,11 +199,10 @@ class Tracking extends Object{
 			
 	function getURLCustomer(){return "/report/customer/".$this->getId();}
 	function getURLCustomerDetail($IdCustomer){return "/report/customer/".$this->getId()."/".$IdCustomer;}
-			
-	function getURLCourse()		{return "/report/course/".$this->getId();}
-	function getURLResource()	{return "/report/resource/".$this->getId();}
-	function getURLHours()		{return "/report/hours/".$this->getId();}
-	function getURLGeneral()	{return "/report/general/".$this->getId();}
+	
+	function getURLResource()		{return "/report/resource/".$this->getId();}
+	function getURLHours()			{return "/report/hours/".$this->getId();}
+	function getURLGeneral()		{return "/report/general/".$this->getId();}
 		
 	//--------------------------------------------------------------------------
     static function findAll() {$finder = self::getFinder( __CLASS__ ); return $finder->findAll();}
