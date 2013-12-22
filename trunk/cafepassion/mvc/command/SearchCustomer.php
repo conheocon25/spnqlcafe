@@ -23,6 +23,9 @@
 			//-------------------------------------------------------------
 			$mCustomer 	= new \MVC\Mapper\Customer;
 			$Customer 	= $mCustomer->findByCard(array($IdCard));
+			if (!isset($Customer)){
+				$Customer 	= $mCustomer->find(1);				
+			}
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

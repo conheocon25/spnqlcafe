@@ -3,16 +3,14 @@
 	<body>				
 		<div id="Session" class="widget-box">
 			<div class="widget-title">
-				<span class="icon">
-					<i class="glyphicon glyphicon-th-list"></i>
-				</span>
-				<h5>PHIẾU TÍNH TIỀN</h5>
+				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
 				<div class="buttons" tal:condition="Table/getSessionActive">
 					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
 					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
 					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
 					<a title="In phiếu" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
+					<a title="Xem phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-star" /></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">
@@ -177,6 +175,25 @@
 						</div>
 					</div>
 					<!-- END DIALOG EDIT -->
+					
+					<!-- DIALOG PREVIEW	-->
+					<div id="DialogPreview" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header"><h3><i class="glyphicons-star modal-icon"/>XEM PHIẾU</h3></div>
+								<div class="form-horizontal">
+									<div class="form-group">
+										<div id="DocPreview" />
+									</div>
+									<div class="modal-footer">
+										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng lại</button>
+									</div>									
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END DIALOG MOVE-->
+					
 					<!-- DIALOG MOVE	-->
 					<div id="DialogMove" class="modal fade">
 						<div class="modal-dialog">
@@ -203,7 +220,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- END DIALOG EDIT -->
+					<!-- END DIALOG MOVE-->
 					
 					<!-- DIALOG MERGE	-->
 					<div id="DialogMerge" class="modal fade">
@@ -313,6 +330,23 @@
 					$("#DiscountPercent1").val(data.Discount);
 					$("#CustomerName").val(data.Name);
 				});				
+			});
+			
+			$(".SessionPreview").click(function(){				
+				URL = $(this).attr('alt');
+				
+				var mPDF = new PDFObject({ 		
+					url: URL,				
+					height: "500px",
+					pdfOpenParams:{
+						view: 'Fit', 
+						toolbar: '1', 
+						statusbar: '1', 
+						messages: '1',
+						navpanes: '1' 
+					}				
+				}).embed("DocPreview");
+				//$("#DocPreview").show().printElement();	
 			});
 			
 			//-----------------------------------------------------------------------------------

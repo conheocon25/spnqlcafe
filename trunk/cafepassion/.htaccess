@@ -102,15 +102,19 @@ RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSu
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^report$ 									?cmd=Report [L]
-RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
-RewriteRule ^report/([0-9]+)/course$ 					?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 			?cmd=ReportSellingDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 			?cmd=ReportImportDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/store$ 			?cmd=ReportStoreDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 			?cmd=ReportPaidDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 			?cmd=ReportCollectDaily&IdTrack=$1&IdTD=$2 [L]
-RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 			?cmd=ReportCourseDaily&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report$ 										?cmd=Report [L]
+RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
+
+RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 				?cmd=ReportDailyImport&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/store$ 				?cmd=ReportDailyStore&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 				?cmd=ReportDailyCourse&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer$ 			?cmd=ReportDailyCustomer&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer/([0-9]+)$ 	?cmd=ReportDailyCustomerDetail&IdTrack=$1&IdTD=$2&IdCustomer=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING

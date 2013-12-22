@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportCollectDaily extends Command {
+	class ReportDailySelling extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,7 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mCollect 	= new \MVC\Mapper\CollectGeneral();
+			$mSession 	= new \MVC\Mapper\Session();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			
@@ -27,24 +27,24 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
-			$CollectAll = $mCollect->findByTracking( array(
-				$TD->getDate(), 
-				$TD->getDate()
+			$SessionAll = $mSession->findByTracking( array(
+				$TD->getDate()." 0:0:0", 
+				$TD->getDate()." 23:59:59"
 			));
 			
 			$Value 		= 0;
-			while ($CollectAll->valid()){
-				$Collect 	= $CollectAll->current();
-				$Value 	+= $Collect->getValue();
-				$CollectAll->next();
+			while ($SessionAll->valid()){
+				$Session = $SessionAll->current();
+				$Value 	+= $Session->getValue();
+				$SessionAll->next();
 			}			
 			$NTotal = new \MVC\Library\Number($Value);
 			
 			//Cập nhật kết quả vào DB
-			$TD->setCollect($Value);
+			$TD->setSelling($Value);
 			$mTD->update($TD);
 			
-			$Title 		= "TIỀN THU".$TD->getDatePrint();
+			$Title 		= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
 				array($Tracking->getName()	, $Tracking->getURLView())
@@ -56,7 +56,7 @@
 			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('NTotal'		, $NTotal);
-			$request->setObject('CollectAll'	, $CollectAll);
+			$request->setObject('SessionAll'	, $SessionAll);
 		}
 	}
 ?>

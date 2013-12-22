@@ -1,6 +1,6 @@
 <?php		
 	namespace MVC\Command;	
-	class ReportImportDaily extends Command {
+	class ReportDailyPaid extends Command {
 		function doExecute( \MVC\Controller\Request $request ){
 			require_once("mvc/base/domain/HelperFactory.php");
 			//-------------------------------------------------------------
@@ -17,7 +17,7 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mOrder 	= new \MVC\Mapper\OrderImport();
+			$mPaid 		= new \MVC\Mapper\PaidGeneral();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			
@@ -27,24 +27,24 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
-			$OrderAll = $mOrder->findByTracking( array(
+			$PaidAll = $mPaid->findByTracking( array(
 				$TD->getDate(), 
 				$TD->getDate()
 			));
 			
 			$Value 		= 0;
-			while ($OrderAll->valid()){
-				$Order 	= $OrderAll->current();
-				$Value 	+= $Order->getValue();
-				$OrderAll->next();
+			while ($PaidAll->valid()){
+				$Paid 	= $PaidAll->current();
+				$Value 	+= $Paid->getValue();
+				$PaidAll->next();
 			}			
 			$NTotal = new \MVC\Library\Number($Value);
 			
 			//Cập nhật kết quả vào DB
-			$TD->setImport($Value);
+			$TD->setPaid($Value);
 			$mTD->update($TD);
 			
-			$Title 		= "NHẬP HÀNG ".$TD->getDatePrint();
+			$Title 		= "TIỀN CHI ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
 				array($Tracking->getName()	, $Tracking->getURLView())
@@ -56,7 +56,7 @@
 			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('NTotal'		, $NTotal);
-			$request->setObject('OrderAll'		, $OrderAll);
+			$request->setObject('PaidAll'		, $PaidAll);
 		}
 	}
 ?>

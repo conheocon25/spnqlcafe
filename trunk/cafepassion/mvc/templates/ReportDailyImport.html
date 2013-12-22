@@ -21,21 +21,25 @@
 										<tr>										
 											<th width="5%"><B>#ID</B></th>
 											<th width="18%"><div class="text-left">THỜI GIAN</div></th>
-											<th width="15%"><div class="text-left">LOẠI CHI</div></th>
-											<th width="40%"><div class="text-left">DIỄN GIẢI</div></th>
+											<th width="55%"><div class="text-left">DIỄN GIẢI</div></th>
 											<th width="22%"><div class="text-right">GIÁ TRỊ</div></th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr tal:repeat="Collect CollectAll">
-											<td align="center"><span tal:content="Collect/getId"/></td>
-											<td align="left"><span tal:content="Collect/getDatePrint"/></td>
-											<td align="left"><span tal:content="Collect/getTerm/getName"/></td>
-											<td align="left"><span tal:content="Collect/getNote"/></td>
-											<td align="right"><span tal:content="Collect/getValuePrint"/></td>
+										<tr tal:repeat="Order OrderAll">
+											<td align="center"><span tal:content="Order/getId"/></td>
+											<td align="left">
+												<span tal:content="Order/getDatePrint"/>
+											</td>
+											<td align="left">
+												<span tal:content="Order/getDescription"/>
+											</td>											
+											<td align="right">
+												<span tal:content="Order/getValuePrint"/>
+											</td>											
 										</tr>
 										<tr>
-											<td align="right" colspan="4">TỔNG CỘNG</td>
+											<td align="right" colspan="3">TỔNG CỘNG</td>
 											<td align="right"><B tal:content="php: NTotal->formatCurrency() . ' đ'"/></td>
 										</tr>
 									</tbody>
