@@ -378,14 +378,13 @@ class CUSTOMPDF extends TCPDF {
 	
 	//Page header
     public function Header() {        
-        $this->SetFont('arial', 'B', 12);
-        // Title
+        // Set font
+        $this->SetFont('arial', 'B', 12);      
 		$this->Ln(6);		
         $this->Cell(0, 5, 'CAFE PASSION', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-		$this->SetFont('arial', '', 10);
-		$this->Ln(5);
-        $this->Cell(0, 0, '54/14 Phạm Thái Bường, TP.VL', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-		$this->Ln(5);        
+		$this->SetFont('arial', 'N', 10);
+		$this->Ln(5);			 
+        $this->Cell(0, 0, '54/14 Phạm Thái Bường, TP.VL', 0, false, 'C', 0, '', 0, false, 'M', 'M');		
     }
 
     // Page footer

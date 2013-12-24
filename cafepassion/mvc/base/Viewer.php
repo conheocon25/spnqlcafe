@@ -61,10 +61,13 @@ class Viewer {
 		$pdf->addFormat("custom", $width, $height);  
 		$pdf->reFormat("custom", 'P');
 				
-		$pdf->setHeaderFont(Array('arial', '', '10'));
+		//$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 14, 1);
-		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
+		$pdf->SetHeaderMargin(0);
+		$pdf->SetFooterMargin(0);
+		$pdf->SetMargins(-1.5, 0, 1);
+		$pdf->SetAutoPageBreak(FALSE, 0);
 			
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
