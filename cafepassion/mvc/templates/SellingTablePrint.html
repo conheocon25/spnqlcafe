@@ -41,16 +41,18 @@
 	<table align="left" style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
 		<thead>
 			<tr>
-				<th width="55%"><b>MÓN</b></th>
+				<th width="45%"><b>MÓN</b></th>
 				<th width="15%" align="right"><b>SL</b></th>
-				<th width="30%" align="right"><b>T.TIỀN</b></th>
+				<th width="20%" align="right"><b>Đ.GIÁ</b></th>
+				<th width="20%" align="right"><b>T.TIỀN</b></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr tal:repeat="Detail Session/getDetails">
-				<td width="55%" align='left' tal:content="Detail/getCourse/getName" />
-				<td width="15%" align='right' tal:content="Detail/getCount" />				
-				<td width="30%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+				<td width="45%" align='left' tal:content="Detail/getCourse/getName" />
+				<td width="15%" align='right' tal:content="Detail/getCount" />
+				<td width="20%" align='right' tal:content="Detail/getPricePrint" />
+				<td width="20%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
 			</tr>		
 		</tbody>
 	</table>
@@ -73,5 +75,5 @@
 			</tr>
 		</tbody>
 	</table>
-	<h4 align="center">CÁM ƠN QUÍ KHÁCH. HẸN GẶP LẠI</h4>
+	<h3 align="center">CÁM ƠN QUÍ KHÁCH. HẸN GẶP LẠI</h3>
 </font>

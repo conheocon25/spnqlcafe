@@ -48,21 +48,13 @@
 		</tbody>
 	</table>
 	<table style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
-		<tbody>
+		<tbody>			
 			<tr  tal:condition="Session/getDiscountPercent">
 				<td align='right' width="65%">
-					<font align='right' size="10pt">Tiền phiếu</font>
+					<font align='right' size="10pt">Giảm giá:</font>
 				</td>
 				<td align='right' width="35%">
-					<font align='right' size="10pt"><span tal:content="Session/getPreValuePrint"/></font>
-				</td>
-			</tr>
-			<tr  tal:condition="Session/getDiscountPercent">
-				<td align='right' width="65%">
-					<font align='right' size="10pt">Giảm giá: <span tal:content="Session/getDiscountPercent" /> %</font>
-				</td>
-				<td align='right' width="35%">
-					<font align='right' size="10pt"><span tal:content="Session/getDiscountPercentValuePrint" /></font>
+					<font align='right' size="10pt"><span tal:content="Session/getDiscountPercent" /> %</font>
 				</td>
 			</tr>
 			<tr>								
