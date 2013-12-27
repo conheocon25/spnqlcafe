@@ -139,7 +139,7 @@ class Session extends Object{
     }
 	function getDiscountValuePrint(){
 		$num = new Number($this->getDiscountValue());
-		return $num->formatCurrency()." đ";
+		return $num->formatCurrency();
 	}
 	
 	function setDiscountPercent( $DiscountPercent ) {
@@ -152,7 +152,7 @@ class Session extends Object{
 	//Phụ thu
 	function setSurtax( $Surtax ) {$this->Surtax = $Surtax;$this->markDirty();}
 	function getSurtax( ) {return $this->Surtax;}
-	function getSurtaxPrint(){$num = new Number($this->getSurtax());return $num->formatCurrency()." đ";}
+	function getSurtaxPrint(){$num = new Number($this->getSurtax());return $num->formatCurrency();}
 		
 	//Tình trạng
 	function getStatus( ) {return $this->Status;}	
@@ -259,9 +259,8 @@ class Session extends Object{
 		$Value = $this->getSurtax() + (int)( ($Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1) /1000)*1000;
 		return $Value;
 	}
-	
-	
-	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency()." đ";}	
+		
+	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency();}
 	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit()." đồng";}	
 	function getValueBase(){
 		$Value = 0;

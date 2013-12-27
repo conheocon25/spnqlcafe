@@ -57,7 +57,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-disk_save modal-icon"/>THÊM MỚI KHOẢN THU</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormTermCollectInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -70,7 +70,7 @@
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-disk_save modal-icon"/>CẬP NHẬT KHOẢN THU</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormTermCollectUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -94,7 +94,7 @@
 										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -149,20 +149,38 @@
 		
 			//-----------------------------------------------------------------------------------
 			//Insert 1 TERM COLLECT
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#Name1').val();
-																		
-				var URL = "/object/ins/TermCollect";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormTermCollectInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+																			
+					var URL = "/object/ins/TermCollect";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -181,22 +199,40 @@
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 TERM COLLECT
-			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
-																	
-				var URL = "/object/upd/TermCollect";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//-----------------------------------------------------------------------------------			
+			$("#FormTermCollectUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
 					}
-				});
-			});			
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+																		
+					var URL = "/object/upd/TermCollect";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
 		/*]]>*/</script>
 	</body>
 </html>

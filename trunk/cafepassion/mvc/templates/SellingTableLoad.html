@@ -8,9 +8,8 @@
 					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
 					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
-					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
-					<a title="In phiếu" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
-					<a title="Xem phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-star" /></a>
+					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>					
+					<a title="In phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print" /></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">
@@ -180,7 +179,7 @@
 					<div id="DialogPreview" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header"><h3><i class="glyphicons-star modal-icon"/>XEM PHIẾU</h3></div>
+								<div class="modal-header"><h3><i class="glyphicons-print modal-icon"/>XEM PHIẾU</h3></div>
 								<div class="form-horizontal">
 									<div class="form-group">
 										<div id="DocPreview" />
