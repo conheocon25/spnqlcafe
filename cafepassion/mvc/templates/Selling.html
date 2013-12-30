@@ -14,7 +14,13 @@
 						<i class="glyphicons-show_big_thumbnails" />
 						<span tal:content="Domain/getName"/>
 					</a>
-				</li>				
+				</li>
+				<li class="Domain" tal:attributes="alt '101'">
+					<a><i class="glyphicons-show_big_thumbnails" />CHƯA CÓ KHÁCH</a>
+				</li>
+				<li class="Domain" tal:attributes="alt '102'">
+					<a><i class="glyphicons-show_big_thumbnails" />ĐANG CÓ KHÁCH</a>
+				</li>
 			</ul>
 		</div>
 		<div id="content">
@@ -37,7 +43,7 @@
 									</a>
 								</div>
 							</div>
-							<div class="collapse accordion-body" id="Top10">
+							<div class="collapse in accordion-body" id="Top10">
 								<div class="widget-content nopadding size-12">
                                     <ul class="activity-list">
                                         <li tal:repeat="T Top10">

@@ -16,23 +16,30 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mDomain = new \MVC\Mapper\Domain();
+			$mDomain 	= new \MVC\Mapper\Domain();
+			$mTable 	= new \MVC\Mapper\Table();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------						
-			$Domain = $mDomain->find($IdDomain);
+			//-------------------------------------------------------------
+			if ($IdDomain==101){
+				$TableAll = $mTable->findAllNonGuest(array());
+			}else if ($IdDomain==102){
+				$TableAll = $mTable->findAllGuest(array(-1));
+			}else{
+				$TableAll = $mTable->findByDomain(array($IdDomain));
+			}			
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = "BÁN HÀNG BETA";
+			$Title = "BÁN HÀNG";
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title', $Title);
-			$request->setObject('Domain', $Domain);
+			$request->setObject('TableAll', $TableAll);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

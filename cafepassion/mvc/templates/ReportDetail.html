@@ -26,7 +26,7 @@
 					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-content nopadding">								
-								<table class="table table-bordered table-striped table-hover">
+								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>										
 											<th><div class="text-left">NGÀY</div></th>
@@ -64,7 +64,25 @@
 											<td align="center"></td>
 										</tr>
 									</tbody>
-								</table>								
+								</table>
+								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()" class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>										
+											<th><div class="text-left">NGÀY</div></th>
+											<th width="90"><div class="text-right">BÁN HÀNG</div></th>											
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="TD Tracking/getDailyAll">
+											<td><div class="TDExe" tal:attributes="alt TD/getURLReport"><span tal:content="TD/getDatePrint"/></div></td>
+											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>											
+										</tr>
+										<tr>
+											<td align="right"><B>TỔNG KẾT</B></td>
+											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>											
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>

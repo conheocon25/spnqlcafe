@@ -6,7 +6,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			$Session = \MVC\Base\SessionRegistry::instance();
+			//$Session = \MVC\Base\SessionRegistry::instance();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
@@ -28,7 +28,9 @@
 			$Table = $mTable->find($IdTable);
 			$Domain = $mDomain->find($IdDomain);
 			$Session = $mSession->find($IdSession);
-						
+			$Session->setNote("P");
+			$mSession->update($Session);
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
