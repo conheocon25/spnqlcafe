@@ -275,7 +275,8 @@ a {
 
 /* Content */
 #content {
-    background: none repeat scroll 0 0 #eceaef;
+    *background: none repeat scroll 0 0 #eceaef;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, .3);
     margin-left: 220px;
     margin-right: 0;
     position: relative;
@@ -287,6 +288,9 @@ a {
 }
 
 #content-header {
+	background-color: rgba(255, 255, 255, .8);
+	
+	/*
 	background-color: #f6f6f6;
     background-image: -webkit-gradient(linear, 0 0%, 0 100%, from(#FFFFFF), to(#eceaef));
     background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #eceaef 100%);
@@ -294,6 +298,7 @@ a {
     background-image: -ms-linear-gradient(top, #FFFFFF 0%, #eceaef 100%);
     background-image: -o-linear-gradient(top, #FFFFFF 0%, #eceaef 100%);
     background-image: linear-gradient(top, #FFFFFF 0%, #eceaef 100%);
+	*/
     border-top-left-radius: 8px;
     min-height: 80px; /*FIX: Use MIN-height... Allow header to get bigger for larger content (such as the h1) */
     /*position: absolute; FIX: This breaks layout significantly when spelled correctly*/
@@ -368,7 +373,8 @@ a {
 
 /* Breadcrumb */
 #breadcrumb {
-	background-color: #eeeeee;
+	background-color: rgba(255, 255, 255, .8);
+	*background-color: #eeeeee;
 	box-shadow: 0 0 1px #ffffff;
 	border-top: 1px solid #d6d6d6;
 	border-bottom: 1px solid #d6d6d6;
@@ -1328,9 +1334,10 @@ ul#icons li {
     color: #888888;
     display: block;
     padding: 7px 10px;
+	cursor: pointer;
 }
 .activity-list li a:hover {
-    background-color: #FBFBFB;
+    background-color: rgba(0, 0, 0, .2);
 }
 .activity-list li a span {
     color: #AAAAAA;
