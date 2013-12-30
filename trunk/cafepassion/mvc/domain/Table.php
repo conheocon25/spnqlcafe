@@ -158,7 +158,20 @@ class Table extends Object{
 		$this->IdUser 		= $Data[3];
 		$this->Type 		= $Data[4];
     }
-			
+	
+	function getClassPrint(){		
+		if ($this->getSessionActive()==null){
+			$Class = "Table item";
+		}else{
+			if ($this->getSessionActive()->getNote()==""){
+				$Class = "Table item actived";
+			}else{
+				$Class = "Table item print";
+			}
+		}
+		return $Class;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	

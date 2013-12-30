@@ -332,8 +332,11 @@
 			});
 			
 			$(".SessionPreview").click(function(){				
-				URL = $(this).attr('alt');
+				var TableActive = "#" + $("#TableActive").attr('alt');				
+				$(TableActive).removeClass('actived');
+				$(TableActive).addClass('print');
 				
+				var URL = $(this).attr('alt');
 				var mPDF = new PDFObject({ 		
 					url: URL,				
 					height: "500px",
@@ -344,8 +347,7 @@
 						messages: '1',
 						navpanes: '1' 
 					}				
-				}).embed("DocPreview");
-				//$("#DocPreview").show().printElement();	
+				}).embed("DocPreview");				
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -469,7 +471,8 @@
 						$("#Session").load("/selling/load/table/"+IdTable);
 																		
 						//Đánh dấu Table có khách
-						$(TableActive).toggleClass('actived');
+						$(TableActive).removeClass('actived');
+						$(TableActive).removeClass('print');
 					}
 				});
 			});
