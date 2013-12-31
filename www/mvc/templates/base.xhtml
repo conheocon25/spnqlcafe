@@ -28,17 +28,7 @@
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/animate.css"/>
 		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/bootstrap/css/css.css"/>
 	</span>
-	
-	<span metal:define-macro="IncludeCSS-Search">	
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/bootstrap.css"/>
-		<style>body { padding-top:43px; padding-bottom:40px; }</style>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/font-awesome.min.css"/>		
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/bootstrap-responsive.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/demo.css"/>
-		<link rel="stylesheet" type="text/css" href="/mvc/templates/theme/base/css/pricing-table-global.css"/>
-	</span>
-	
+			
 	<!-- ======================================================================== -->
 	<!-- JAVASCRIPT INCLUDE														  -->
 	<!-- ======================================================================== -->
@@ -47,16 +37,7 @@
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap.js"/>
 		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/theme.js"/>
 	</span>
-	
-	<span metal:define-macro="IncludeJS-Search">
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/jquery-2.0.3.min.js"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/bootstrap/js/bootstrap.js"/>		
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/plugins.js"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/script.js"/>
-		<script type="text/javascript" language="javascript" src="/mvc/templates/script/library/jquery.raty.min.js"/>		
-		<!-- <script type="text/javascript" language="javascript" src="/mvc/templates/theme/base/js/modernizr-2.5.3.min.js"/> -->
-	</span>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- HEADER																	  -->
 	<!-- ======================================================================== -->
@@ -74,84 +55,15 @@
 					</a>
 					<div class="nav-collapse collapse">
 						<ul class="nav pull-right">
-							<li><a href="/trang-chu">Trang chủ</a></li>														
-							<li><a class="btn-header" href="/dang-ki">Đăng kí</a></li>
-							<li><a class="btn-header" href="/dang-nhap">Đăng nhập</a></li>
+							<li><a href="/trang-chu">Trang chủ</a></li>
+							<li><a href="#feature">Tính năng</a></li>
+							<li><a href="#price">Điểm nổi bật</a></li>
+							<li><a href="#testimonials">Liên hệ</a></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<header metal:define-macro="Header-Search" class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<a class="brand" href="#">
-					<img src="/data/images/logo/spn-cafe.png" width="100" alt="logo"/>
-				</a>
-				<nav class="nav-collapse pull-right">
-					<ul class="nav pull-right">						
-						<li><a href="/trang-chu">Trang chủ</a></li>						
-						<li><a class="btn-header" href="/tu-van/phan-mem-quan-ly">Quản lý</a></li>
-						<li><a class="btn-header" href="/dang-ki">Đăng kí</a></li>
-						<li><a class="btn-header" href="/dang-nhap">Đăng nhập</a></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-			
-	<div metal:define-macro="HeaderVideo">
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">				
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand scroller" href="http://www.quanly-cafe.com">
-						<img src="/data/images/logo/spn-cafe.png" width="190" alt="logo"/>
-					</a>
-					<div class="nav-collapse collapse">
-						<ul class="nav pull-right">
-							
-						</ul>
-					</div>
-				</div>			
-			</div>
-		</div>
-	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- LOCATION BAR															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="LocationBar">
-		<div class="row-fluid">			
-			<ul class="span12 breadcrumb">
-				<li tal:repeat="Item Navigation">
-					<a tal:attributes="href php:Item[1]" tal:content="php:Item[0]" /> <span class="divider">/</span>
-				</li>
-				<li class="active" tal:content="Title"/>
-			</ul>
-		</div>
-	</div>
-	
-	<!-- ======================================================================== -->
-	<!-- PAGE BAR																  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="PageBar" class="pagination">
-		<ul>
-			<li tal:repeat="P PN/getPages" tal:attributes="class php:Page==P->getId()?'disabled':'active'">
-				<a tal:attributes="href P/getURL" tal:content="P/getName" />
-			</li>
-		</ul>
 	</div>
 		
 	<!-- ======================================================================== -->
@@ -159,7 +71,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer">
 		<div class="row-fluid footer">
-			<span class="label pull-right copyright">&#169; 2012 SPN</span>
+			<span class="label pull-right copyright">&#169; 2009 - 2013 SPN</span>
 		</div>
 	</div>	
 </body>
