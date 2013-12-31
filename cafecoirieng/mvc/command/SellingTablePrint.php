@@ -20,7 +20,6 @@
 			//-------------------------------------------------------------
 			$mDomain = new \MVC\Mapper\Domain();
 			$mTable = new \MVC\Mapper\Table();
-			$mTableLog = new \MVC\Mapper\TableLog();
 			$mSession = new \MVC\Mapper\Session();
 						
 			//-------------------------------------------------------------
@@ -29,25 +28,15 @@
 			$Table = $mTable->find($IdTable);
 			$Domain = $mDomain->find($IdDomain);
 			$Session = $mSession->find($IdSession);
-			
-			$Session->setNote("In phieu");			
+			$Session->setNote("P");
 			$mSession->update($Session);
-			
-			$Log = new \MVC\Domain\TableLog(
-				null,
-				@\MVC\Base\SessionRegistry::getCurrentIdUser(),
-				$Session->getIdTable(),
-				date('Y-m-d H:i:s'),
-				"In phiếu ".$Session->getValuePrint()
-			);
-			$mTableLog->insert($Log);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setObject("Table", $Table);
 			$request->setObject("Domain", $Domain);
-			$request->setObject("Session", $Session);
+			$request->setObject("Session", $Session);			
 		}
 	}
 ?>

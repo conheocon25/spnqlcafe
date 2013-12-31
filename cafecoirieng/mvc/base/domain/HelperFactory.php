@@ -7,10 +7,13 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Supplier.php" );
 	require_once( "mvc/mapper/Session.php" );
 	require_once( "mvc/mapper/SessionDetail.php" );	
+	require_once( "mvc/mapper/OrderImport.php" );
+	require_once( "mvc/mapper/OrderImportDetail.php" );
 	require_once( "mvc/mapper/Category.php" );
 	require_once( "mvc/mapper/Course.php" );		
 	require_once( "mvc/mapper/PayRoll.php");	
 	require_once( "mvc/mapper/PaidGeneral.php");	
+	require_once( "mvc/mapper/PaidEmployee.php");
 	require_once( "mvc/mapper/TermPaid.php");
 	require_once( "mvc/mapper/TermCollect.php");	
 	require_once( "mvc/mapper/CollectGeneral.php");	
@@ -21,6 +24,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Unit.php");
 	require_once( "mvc/mapper/Config.php");
 	require_once( "mvc/mapper/Tracking.php");	
+	require_once( "mvc/mapper/TrackingDaily.php");
 	require_once( "mvc/mapper/Resource.php");
 	require_once( "mvc/mapper/Guest.php");
 }

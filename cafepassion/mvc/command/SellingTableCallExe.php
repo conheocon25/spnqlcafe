@@ -6,7 +6,8 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-												
+			$Session1 = \MVC\Base\SessionRegistry::instance();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
@@ -35,8 +36,8 @@
 				$Session = new \MVC\Domain\Session(
 					null,					//Id
 					$IdTable,				//IdTable
-					1,						//IdUser
-					1,						//IdCustomer	
+					$Session1->getCurrentIdUser(),//IdUser
+					1,						//IdCustomer
 					\date("Y-m-d H:i:s"), 	//DateTime
 					null, 					//DateTimeEnd
 					"",						//Note

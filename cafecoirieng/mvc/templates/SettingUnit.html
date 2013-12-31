@@ -49,8 +49,8 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<h3><i class="glyphicons-tag modal-icon"/>THÊM MỚI ĐƠN VỊ</h3>
-								</div>
-								<div class="form-horizontal">
+								</div>								
+								<form id="FormUnitInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -63,7 +63,7 @@
 										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>									
@@ -75,8 +75,8 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<h3><i class="glyphicons-tag modal-icon"/>CẬP NHẬT ĐƠN VỊ</h3>
-								</div>
-								<div method="post" class="form-horizontal">
+								</div>								
+								<form id="FormUnitUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -87,7 +87,7 @@
 										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -143,21 +143,39 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 UNIT
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#Name1').val();
-																		
-				var URL = "/object/ins/Unit";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 UNIT			
+			$("#FormUnitInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+																			
+					var URL = "/object/ins/Unit";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -176,23 +194,40 @@
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 UNIT
-			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
-																	
-				var URL = "/object/upd/Unit";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//-----------------------------------------------------------------------------------			
+			$("#FormUnitUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+																		
+					var URL = "/object/upd/Unit";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
-			
 		/*]]>*/</script>
 	</body>
 </html>

@@ -16,41 +16,63 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
-			$mTermPaid = new \MVC\Mapper\TermPaid();
-			$mTermCollect = new \MVC\Mapper\TermCollect();
-			$mCustomer = new \MVC\Mapper\Customer();			
-			$mEmployee = new \MVC\Mapper\Employee();
-									
+			$mTracking = new \MVC\Mapper\Tracking();			
+												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Tracking = $mTracking->find($IdTrack);
 			$TrackingAll = $mTracking->findAll();
-			$TermPaidAll = $mTermPaid->findAll();
-			$TermCollectAll = $mTermCollect->findAll();			
-			$CustomerAll = $mCustomer->findAll();
-			$EmployeeAll = $mEmployee->findAll();
 			
-			$DateCurrent = 'THÁNG '.\date("m/Y", strtotime($Tracking->getDateStart()));
+			$TDAll = $Tracking->getDailyAll();
+			if ($TDAll->count()==0){
+				$Tracking->generateDaily();
+			}
 			
-			$Title = \mb_strtoupper($Tracking->getName(), 'UTF8');
+			$ValueSelling 	= 0;
+			$ValueImport 	= 0;
+			$ValueStore 	= 0;
+			$ValuePaid 		= 0;
+			$ValueCollect	= 0;
+			$ValueNew		= 0;
+			while ($TDAll->valid()){
+				$TD = $TDAll->current();
+				$ValueSelling 	+= $TD->getSelling();
+				$ValueImport 	+= $TD->getImport();
+				$ValueStore 	+= $TD->getStore();
+				$ValuePaid 		+= $TD->getPaid();
+				$ValueCollect	+= $TD->getCollect();				
+				$TDAll->next();		
+			}			
+			$NValueSelling 	= new \MVC\Library\Number($ValueSelling);
+			$NValueImport 	= new \MVC\Library\Number($ValueImport);
+			$NValueStore 	= new \MVC\Library\Number($ValueStore);
+			$NValuePaid 	= new \MVC\Library\Number($ValuePaid);
+			$NValueCollect 	= new \MVC\Library\Number($ValueCollect);
+			$ValueNew = 0;
+			if ($TDAll->count()>0)
+				$ValueNew = $TDAll->last()->getValue();				
+			$NValueNew 		= new \MVC\Library\Number($ValueNew);
+			
+			$Title = $Tracking->getName();
 			$Navigation = array(				
 				array("BÁO CÁO", "/report")
 			);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
-			$request->setProperty('DateCurrent', $DateCurrent);
-			$request->setProperty('Title', $Title);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('TrackingAll', $TrackingAll);
-			$request->setObject('Tracking', $Tracking);
-			$request->setObject('CustomerAll', $CustomerAll);
-			$request->setObject('TermPaidAll', $TermPaidAll);
-			$request->setObject('TermCollectAll', $TermCollectAll);			
-			$request->setObject('EmployeeAll', $EmployeeAll);
+			//-------------------------------------------------------------												
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('TrackingAll'	, $TrackingAll);
+			$request->setObject('Tracking'		, $Tracking);
+			
+			$request->setObject('ValueSelling'	, $NValueSelling);
+			$request->setObject('ValueImport'	, $NValueImport);
+			$request->setObject('ValueStore'	, $NValueStore);
+			$request->setObject('ValuePaid'		, $NValuePaid);
+			$request->setObject('ValueCollect'	, $NValueCollect);
+			$request->setObject('ValueNew'		, $NValueNew);
 		}
 	}
 ?>

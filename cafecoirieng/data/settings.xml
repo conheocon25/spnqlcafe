@@ -40,6 +40,15 @@
 		<command name="ObjectUpd"><view>ObjectUpd</view></command>
 		
 		<!-- ============================================================================== -->
+		<!-- MONEY		 																	-->
+		<!-- ============================================================================== -->
+		<command name="Money"><view>Money</view></command>
+		<command name="MoneyCollectGeneral"><view>MoneyCollectGeneral</view></command>
+		<command name="MoneyCollectCustomer"><view>MoneyCollectCustomer</view></command>
+		<command name="MoneyPaidGeneral"><view>MoneyPaidGeneral</view></command>
+		<command name="MoneyPaidEmployee"><view>MoneyPaidEmployee</view></command>
+		
+		<!-- ============================================================================== -->
 		<!-- PAYROLL			 															-->
 		<!-- ============================================================================== -->		
 		<command name="PayRoll"><view>PayRoll</view></command>
@@ -90,5 +99,14 @@
 		<command name="SettingTermCollect"><view>SettingTermCollect</view></command>
 		<command name="SettingSupplier"><view>SettingSupplier</view></command>
 		<command name="SettingSupplierResource"><view>SettingSupplierResource</view></command>
+		
+		<!-- ============================================================================== -->
+		<!-- IMPORT				 															-->
+		<!-- ============================================================================== -->
+		<command name="Import"><view>Import</view></command>
+		<command name="ImportSupplier"><view>ImportSupplier</view></command>
+		<command name="ImportSupplierOrder"><view>ImportSupplierOrder</view></command>
+		<command name="ImportSupplierOrderPrint"><view>ImportSupplierOrderPrint</view></command>
+		
 	</control>
 </options>

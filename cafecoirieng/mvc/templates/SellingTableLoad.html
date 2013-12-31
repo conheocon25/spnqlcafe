@@ -3,16 +3,13 @@
 	<body>				
 		<div id="Session" class="widget-box">
 			<div class="widget-title">
-				<span class="icon">
-					<i class="glyphicon glyphicon-th-list"></i>
-				</span>
-				<h5>PHIẾU TÍNH TIỀN</h5>
+				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
 				<div class="buttons" tal:condition="Table/getSessionActive">
 					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
 					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
-					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>
-					<a title="In phiếu" class="btn" target="blank" tal:attributes="href Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
+					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe;data-note Table/getSessionActive/getNote"><i class="glyphicons-ok_2" /></a>
+					<a title="In phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print" /></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">
@@ -130,7 +127,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT GIAO DỊCH</h3>
 								</div>
-								<div class="form-horizontal">									
+								<div class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label">Bắt đầu</label>
 										<div class="controls">
@@ -177,6 +174,7 @@
 						</div>
 					</div>
 					<!-- END DIALOG EDIT -->
+															
 					<!-- DIALOG MOVE	-->
 					<div id="DialogMove" class="modal fade">
 						<div class="modal-dialog">
@@ -203,7 +201,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- END DIALOG EDIT -->
+					<!-- END DIALOG MOVE-->
 					
 					<!-- DIALOG MERGE	-->
 					<div id="DialogMerge" class="modal fade">
@@ -226,7 +224,7 @@
 									<div class="modal-footer">
 										<button id="URLSessionMergeButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-									</div>
+									</div>									
 								</form>
 							</div>
 						</div>
@@ -237,7 +235,7 @@
 			</div>
 		</div>
 		
-		<div id="Session" class="widget-box">			
+		<div id="Session" class="widget-box">
 			<div class="widget-content nopadding">
 				<div>
 					<table class="table table-striped table-hover">
@@ -254,7 +252,8 @@
 								<td><div class="text-center" tal:content="repeat/Session/number"/></td>
 								<td><div class="text-left" tal:content="Session/getDateTimePrint"/></td>
 								<td>
-									<a tal:attributes="href Session/getURLPrint" target="blank">
+									<a title="Xem phiếu" class="SessionPreview"  target="blank"
+										tal:attributes="href Session/getURLPrint">
 										<div class="text-right" tal:content="Session/getValuePrint"/>
 									</a>
 								</td>
@@ -283,7 +282,24 @@
 					</div>
 				</div>
 			</div>
-		</div>		
+		</div>
+		<!-- DIALOG PREVIEW	-->
+		<div id="DialogPreview" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-print modal-icon"/>XEM PHIẾU</h3></div>
+					<div class="form-horizontal">
+						<div class="form-group">
+							<div id="DocPreview" />
+						</div>
+						<div class="modal-footer">
+							<button id="ButtonDocPreview" data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng lại</button>
+						</div>									
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END DIALOG MOVE-->
         <script>						
 			$('#DateTime1').datetimepicker({
 				language:  'vi',
@@ -306,6 +322,12 @@
 				showMeridian: 1
 			});
 			
+			var Note = $(".Checkout").attr("data-note");
+			if (Note=="")
+				$(".Checkout").hide();
+			else
+				$(".Checkout").show();
+			
 			$("#SearchIdCustomer").change(function(){				
 				URL = "/search/customer/"+$(this).val();
 				$.getJSON(URL, function(data){
@@ -313,6 +335,26 @@
 					$("#DiscountPercent1").val(data.Discount);
 					$("#CustomerName").val(data.Name);
 				});				
+			});
+			
+			$(".SessionPreview").click(function(){								
+				var TableActive = "#" + $("#TableActive").attr('alt');
+				$(TableActive).removeClass('actived');
+				$(TableActive).addClass('print');
+				
+				var URL = $(this).attr('alt');				
+				var mPDF = new PDFObject({ 		
+					url: URL,				
+					height: "500px",
+					pdfOpenParams:{
+						view: 'Fit', 
+						toolbar: '1', 
+						statusbar: '1', 
+						messages: '1',
+						navpanes: '1' 
+					}				
+				}).embed("DocPreview");						
+				
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -436,7 +478,8 @@
 						$("#Session").load("/selling/load/table/"+IdTable);
 																		
 						//Đánh dấu Table có khách
-						$(TableActive).toggleClass('actived');
+						$(TableActive).removeClass('actived');
+						$(TableActive).removeClass('print');
 					}
 				});
 			});
@@ -499,7 +542,10 @@
 						$("#Session").load("/selling/load/table/"+IdTable);
 					}
 				});
-			});		
+			});
+			$("#ButtonDocPreview").click(function(){								
+				$(".Checkout").show();
+			});
         </script>
 	</body>
 </html>
