@@ -13,15 +13,19 @@ class DomainCollection 			extends Collection implements \MVC\Domain\DomainCollec
 class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection{function targetClass( ) {return "\MVC\Domain\Employee";}}
 class GuestCollection 			extends Collection implements \MVC\Domain\GuestCollection{function targetClass(){return "\MVC\Domain\Guest";}}
 class PaidGeneralCollection 	extends Collection implements \MVC\Domain\PaidGeneralCollection{function targetClass( ) {return "\MVC\Domain\PaidGeneral";}}
+class PaidEmployeeCollection 	extends Collection implements \MVC\Domain\PaidEmployeeCollection{function targetClass( ) {return "\MVC\Domain\PaidEmployee";}}
 class PayRollCollection 		extends Collection implements \MVC\Domain\PayRollCollection{function targetClass( ) {return "\MVC\Domain\PayRoll";}}
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection {function targetClass( ) {return "\MVC\Domain\Supplier";}}			
 class SessionCollection 		extends Collection implements \MVC\Domain\SessionCollection {function targetClass( ) {return "\MVC\Domain\Session";}}			
 class SessionDetailCollection 	extends Collection implements \MVC\Domain\SessionDetailCollection {function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
+class OrderImportCollection 	extends Collection implements \MVC\Domain\OrderImportCollection {function targetClass( ) {return "\MVC\Domain\OrderImport";}}
+class OrderImportDetailCollection 	extends Collection implements \MVC\Domain\OrderImportDetailCollection {function targetClass( ) {return "\MVC\Domain\OrderImportDetail";}}
 class TableCollection 			extends Collection implements \MVC\Domain\TableCollection {function targetClass( ) {return "\MVC\Domain\Table";}}		
 class TableLogCollection 		extends Collection implements \MVC\Domain\TableLogCollection {function targetClass( ) {return "\MVC\Domain\TableLog";}}
 class TermCollectCollection 	extends Collection implements \MVC\Domain\TermCollectCollection{function targetClass(){return "\MVC\Domain\TermCollect";}}
 class TermPaidCollection 		extends Collection implements \MVC\Domain\TermPaidCollection{function targetClass(){return "\MVC\Domain\TermPaid";}}
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection{function targetClass(){return "\MVC\Domain\Tracking";}}
+class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection{function targetClass(){return "\MVC\Domain\TrackingDaily";}}
 class ResourceCollection 		extends Collection implements \MVC\Domain\ResourceCollection{function targetClass(){return "\MVC\Domain\Resource";}}
 class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection{function targetClass(){return "\MVC\Domain\Unit";}}
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}

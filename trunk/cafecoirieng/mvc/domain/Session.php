@@ -139,7 +139,7 @@ class Session extends Object{
     }
 	function getDiscountValuePrint(){
 		$num = new Number($this->getDiscountValue());
-		return $num->formatCurrency()." đ";
+		return $num->formatCurrency();
 	}
 	
 	function setDiscountPercent( $DiscountPercent ) {
@@ -152,7 +152,7 @@ class Session extends Object{
 	//Phụ thu
 	function setSurtax( $Surtax ) {$this->Surtax = $Surtax;$this->markDirty();}
 	function getSurtax( ) {return $this->Surtax;}
-	function getSurtaxPrint(){$num = new Number($this->getSurtax());return $num->formatCurrency()." đ";}
+	function getSurtaxPrint(){$num = new Number($this->getSurtax());return $num->formatCurrency();}
 		
 	//Tình trạng
 	function getStatus( ) {return $this->Status;}	
@@ -244,40 +244,41 @@ class Session extends Object{
 			
 	function getValue(){		
 		$SDAll = $this->getDetails();
-		$Sum = 0;
-				
+		$Sum1 = 0;
+		$Sum2 = 0;
+		
 		while ($SDAll->valid()){
 			$SD = $SDAll->current();
-			//if ($SD->getCourse()->getIsDiscount()==0){
-				$Sum += $SD->getValue();	
-			//}else{
-			//	$Sum2 += $SD->getValue();
-			//}
+			if ($SD->getCourse()->getIsDiscount()==0){
+				$Sum1 += $SD->getValue();	
+			}else{
+				$Sum2 += $SD->getValue();
+			}
 			$SDAll->next();
 		}		
-		$Value = $this->getSurtax() + (int)( ($Sum *(1.0 - $this->getDiscountPercent()/100.0) ) /1000)*1000;
+		$Value = $this->getSurtax() + (int)( ($Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1) /1000)*1000;
 		return $Value;
 	}
-	
-	
-	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency()." đ";}	
-	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit()." đồng";}	
+		
+	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency();}
+	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit()." đồng";}
 	function getValueBase(){
 		$Value = 0;
 		$SDs = $this->getDetails();
 		while($SDs->valid()){
-			$Value += $SDs->current()->getValueBase();
+			$Value += $SDs->current()->getValue();
 			$SDs->next();
 		}
 		return $Value;
 	}
-	
+	function getValueBasePrint(){$num = new Number($this->getValueBase());return $num->formatCurrency();}
+			
 	function findItem($IdCourse){
 		$mSD = new \MVC\Mapper\SessionDetail();
 		$SD = $mSD->findItem( array($this->getId(), $IdCourse) );
 		return $SD;
 	}
-	
+		
 	//-------------------------------------------------------------------------------
 	//DEFINE URL
 	//-------------------------------------------------------------------------------		

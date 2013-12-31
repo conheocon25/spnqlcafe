@@ -31,7 +31,7 @@
 				HĐ: <span tal:content="Session/getId" />
 			</td>
 			<td width="60%" align="right">
-				NV: <span tal:content="Session/getUser/getName" />
+				<span tal:content="Session/getUser/getName" />
 			</td>
 		</tr>		
 	</table>
@@ -58,6 +58,11 @@
 	</table>
 	<table align="left" style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
 		<tbody>
+			<tr tal:condition="Session/getDiscountPercent">
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="10pt">T.PHIẾU: <b tal:content="Session/getValueBasePrint"/></font>
+				</td>	
+			</tr>
 			<tr tal:condition="Session/getDiscountPercent">
 				<td align='right' colspan="5" width="100%">
 					<font align='right' size="12pt">GIẢM GIÁ: <b tal:content="Session/getDiscountPercentPrint"/></font>
