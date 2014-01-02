@@ -135,10 +135,7 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
-			</li>
+			</li>			
 			<li>
 				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
 			</li>
