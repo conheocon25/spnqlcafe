@@ -10,6 +10,7 @@ class Session extends Object{
 	private $IdTable;
 	private $IdUser;
 	private $IdCustomer;
+	private $IdEmployee;
 	private $DateTime;
 	private $DateTimeEnd;
 	private $Note;
@@ -22,19 +23,20 @@ class Session extends Object{
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $IdTable=null, $IdUser=null, $IdCustomer=null, $DateTime=null, $DateTimeEnd=null, $Note=null, $Status=null, $DiscountValue=null, $DiscountPercent=null, $Surtax=null, $Payment=null ) {
-        $this->Id = $Id;
-		$this->IdTable = $IdTable;
-		$this->IdUser = $IdUser;
-		$this->IdCustomer = $IdCustomer;
-		$this->DateTime = $DateTime;
-		$this->DateTimeEnd = $DateTimeEnd;
-		$this->Note = $Note;
-		$this->Status = $Status;
+    function __construct( $Id=null, $IdTable=null, $IdUser=null, $IdCustomer=null, $IdEmployee=null, $DateTime=null, $DateTimeEnd=null, $Note=null, $Status=null, $DiscountValue=null, $DiscountPercent=null, $Surtax=null, $Payment=null ) {
+        $this->Id 			= $Id;
+		$this->IdTable 		= $IdTable;
+		$this->IdUser 		= $IdUser;
+		$this->IdCustomer 	= $IdCustomer;
+		$this->IdEmployee 	= $IdEmployee;
+		$this->DateTime 	= $DateTime;
+		$this->DateTimeEnd 	= $DateTimeEnd;
+		$this->Note 		= $Note;
+		$this->Status 		= $Status;
 		$this->DiscountValue = $DiscountValue;
 		$this->DiscountPercent = $DiscountPercent;
-		$this->Surtax = $Surtax;
-		$this->Payment = $Payment;
+		$this->Surtax 		= $Surtax;
+		$this->Payment 		= $Payment;
 		
         parent::__construct( $Id );
     }
@@ -45,6 +47,7 @@ class Session extends Object{
 			'IdUser'			=> $this->getIdUser(),						
 			'IdCustomer'		=> $this->getIdCustomer(),
 			'CustomerName'		=> $this->getCustomer()->getName(),
+			'IdEmployee'		=> $this->getIdEmployee(),
 			'DateTime'			=> $this->getDateTime(),
 			'DateTimeEnd'		=> $this->getDateTimeEnd(),
 			'Note'				=> $this->getNote(),
@@ -62,14 +65,15 @@ class Session extends Object{
 		$this->IdTable 			= $Data[1];
 		$this->IdUser 			= $Data[2];
 		$this->IdCustomer 		= $Data[3];
-		$this->DateTime 		= $Data[4];
-		$this->DateTimeEnd 		= $Data[5];
-		$this->Note 			= $Data[6];
-		$this->Status 			= $Data[7];
-		$this->DiscountValue 	= $Data[8];
-		$this->DiscountPercent 	= $Data[9];
-		$this->Surtax 			= $Data[10];
-		$this->Payment 			= $Data[11];
+		$this->IdEmployee 		= $Data[4];
+		$this->DateTime 		= $Data[5];
+		$this->DateTimeEnd 		= $Data[6];
+		$this->Note 			= $Data[7];
+		$this->Status 			= $Data[8];
+		$this->DiscountValue 	= $Data[9];
+		$this->DiscountPercent 	= $Data[10];
+		$this->Surtax 			= $Data[11];
+		$this->Payment 			= $Data[12];
     }
 		
 	function setId( $Id) {return $this->Id = $Id;}
@@ -98,7 +102,15 @@ class Session extends Object{
 		$Customer = $mCustomer->find($this->IdCustomer);
         return $Customer;
     }		
-			
+	
+	function getIdEmployee( ) {return $this->IdEmployee;}
+	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee;$this->markDirty();}
+	function getEmployee( ) {
+		$mEmployee 	= new \MVC\Mapper\Employee();
+		$Employee 	= $mEmployee->find($this->IdEmployee);
+        return $Employee;
+    }		
+	
 	//Giờ bắt đầu
 	function setDateTime( $DateTime ) {$this->DateTime = $DateTime;$this->markDirty();}	
 	function getDateTime( ){return $this->DateTime;}

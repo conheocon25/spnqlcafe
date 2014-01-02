@@ -122,6 +122,8 @@ class TrackingDaily extends Object{
 	function getURLReportCollect()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/collect";}
 	function getURLReportCourse()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/course";}
 	function getURLReportCustomer()	{return "/report/".$this->getIdTracking()."/".$this->getId()."/customer";}
+	function getURLReportLog()		{return "/report/".$this->getIdTracking()."/".$this->getId()."/log";}
+	
 	function getURLReportCustomerDetail($IdCustomer){
 		return "/report/".$this->getIdTracking()."/".$this->getId()."/customer/".$IdCustomer;
 	}
