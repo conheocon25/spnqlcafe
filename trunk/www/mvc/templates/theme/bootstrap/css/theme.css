@@ -7,7 +7,7 @@ body {
 	background: #DDDCE2 url(/data/images/bg/content_bg.jpg) repeat left top;
 	-webkit-font-smoothing: antialiased;
 	font-size: 14px;
-	font-family: 'Lato', sans-serif !important;
+	font-family: Segoe UI, sans-serif !important;
 	color: #333;
 }
 .scrolltop {
@@ -149,7 +149,7 @@ input[type="color"]:focus,
 	text-shadow: none;
 }
 .navbar .nav.pull-right {
-	top: 10px;
+	top: 0;
 	/*margin-right: 40px;*/
 }
 .navbar .nav > li > a {
@@ -932,4 +932,13 @@ i.forrst { background-position: -156px -51px; }
 i.rss { background-position: -194px -51px; }
 i.myspace { background-position: -233px -51px; }
 
-
+.guide1-cont { position: relative; }
+.guide1-content {
+	width: 100%;
+	background-color: rgba(0, 0, 0, .1);
+	position: absolute;
+	bottom: -10px;
+	padding: 10px;
+	text-align: justify;
+	line-height: 20px;
+}
