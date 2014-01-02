@@ -172,6 +172,12 @@ class Table extends Object{
 		return $Class;
 	}
 	
+	function getLog($Date){
+		$mLog 	= new \MVC\Mapper\TableLog();
+		$LogAll = $mLog->findBy(array($this->getId(), $Date));
+		return $LogAll;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//DEFINE SELLING URL
 	//-------------------------------------------------------------------------------	

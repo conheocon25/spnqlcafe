@@ -17,6 +17,7 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mTable 	= new \MVC\Mapper\Table();
+			$mEmployee 	= new \MVC\Mapper\Employee();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -26,13 +27,18 @@
 			$TableAllNonGuest	= $mTable->findAllNonGuest(array());
 			$TableAllGuest		= $mTable->findAllGuest(array($IdTable));
 			
+			$EmployeeAll 		= $mEmployee->findAll();
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
 			$request->setObject('Table'				, $Table);
+			$request->setObject('Session'			, $Table->getSessionActive() );
 			$request->setObject('TableAll'			, $TableAll);
 			$request->setObject('TableAllNonGuest'	, $TableAllNonGuest);
 			$request->setObject('TableAllGuest'		, $TableAllGuest);
+			
+			$request->setObject('EmployeeAll'		, $EmployeeAll);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

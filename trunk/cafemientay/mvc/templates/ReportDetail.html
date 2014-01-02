@@ -29,7 +29,8 @@
 								<table tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()" class="table table-bordered table-striped table-hover">
 									<thead>
 										<tr>										
-											<th><div class="text-left">NGÀY</div></th>
+											<th width="32"></th>
+											<th><div class="text-left">NGÀY</div></th>											
 											<th width="90"><div class="text-right">BÁN HÀNG</div></th>
 											<th width="90"><div class="text-right">NHẬP HÀNG</div></th>
 											<th width="90"><div class="text-right">KHO HÀNG</div></th>
@@ -42,6 +43,7 @@
 									</thead>
 									<tbody>
 										<tr tal:repeat="TD Tracking/getDailyAll">
+											<td><a tal:attributes="href TD/getURLReportLog"><i class="glyphicons-edit"/></a></td>
 											<td><div class="TDExe" tal:attributes="alt TD/getURLReport"><span tal:content="TD/getDatePrint"/></div></td>
 											<td align="right"><a tal:attributes="href TD/getURLReportSelling"><span tal:content="TD/getSellingPrint"/></a></td>
 											<td align="right"><a tal:attributes="href TD/getURLReportImport"><span tal:content="TD/getImportPrint"/></a></td>
@@ -53,7 +55,7 @@
 											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
 										</tr>
 										<tr>
-											<td align="right"><B>TỔNG KẾT</B></td>
+											<td colspan="2" align="right"><B>TỔNG KẾT</B></td>
 											<td align="right"><B tal:content="ValueSelling/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueImport/formatCurrency"/></td>
 											<td align="right"><B tal:content="ValueStore/formatCurrency"/></td>

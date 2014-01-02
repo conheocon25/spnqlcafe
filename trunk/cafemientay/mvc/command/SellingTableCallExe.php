@@ -18,17 +18,20 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable = new \MVC\Mapper\Table();
-			$mCategory = new \MVC\Mapper\Category();
-			$mCourse = new \MVC\Mapper\Course();
-			$mSession = new \MVC\Mapper\Session();
-			$mSD = new \MVC\Mapper\SessionDetail();
+			$mTable 	= new \MVC\Mapper\Table();
+			$mTableLog 	= new \MVC\Mapper\TableLog();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mCourse 	= new \MVC\Mapper\Course();
+			$mSession 	= new \MVC\Mapper\Session();
+			$mSD 		= new \MVC\Mapper\SessionDetail();
+			$mEmployee	= new \MVC\Mapper\Employee();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Table = $mTable->find($IdTable);
-			$Course = $mCourse->find($IdCourse);
+			$Table 			= $mTable->find($IdTable);
+			$Course 		= $mCourse->find($IdCourse);
+			$EmployeeAll 	= $mEmployee->findAll();
 												
 			//Nếu chưa có Session thì tạo
 			$Session = $Table->getSessionActive();			
@@ -38,7 +41,8 @@
 					$IdTable,				//IdTable
 					$Session1->getCurrentIdUser(),//IdUser
 					1,						//IdCustomer
-					\date("Y-m-d H:i:s"), 	//DateTime
+					$EmployeeAll->current()->getId(),	//IdEmployee
+					\date("Y-m-d H:i:s"), 	//DateTime					
 					null, 					//DateTimeEnd
 					"",						//Note
 					"",						//Status
@@ -48,6 +52,15 @@
 					0						//Payment
 				);
 				$IdSession = $mSession->insert($Session);
+				
+				$Log = new \MVC\Domain\TableLog(
+					null,
+					@\MVC\Base\SessionRegistry::getCurrentIdUser(),
+					$Session->getIdTable(),
+					date('Y-m-d H:i:s'),
+					"Tạo mới giao dịch"
+				);
+				$mTableLog->insert($Log);
 			}
 			$IdSession = $Session->getId();
 						
@@ -67,6 +80,15 @@
 				$Count = $SD->getCount() + $Delta;				
 				$SD->setCount($Count);
 				$mSD->update($SD);
+				
+				$Log = new \MVC\Domain\TableLog(
+					null,
+					@\MVC\Base\SessionRegistry::getCurrentIdUser(),
+					$Session->getIdTable(),
+					date('Y-m-d H:i:s'),
+					"Cập nhật món ".$SD->getCourse()->getName()." ".$Count
+				);
+				$mTableLog->insert($Log);
 			}						
 			
 			//-------------------------------------------------------------

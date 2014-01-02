@@ -141,6 +141,16 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="control-label">Nhân viên phục vụ</label>
+										<div class="controls">
+											<select name="IdEmployee1" id="IdEmployee1" style="width:80%;" class="form-control">
+												<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId;selected php:Session->getIdEmployee()==Employee->getId()?true:false">
+													<span tal:content="Employee/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="control-label">Gõ/quét mã thẻ</label>
 										<div class="controls">
 											<input id="SearchIdCustomer" name="SearchIdCustomer" type="text" class="form-control input-small" />
@@ -494,14 +504,15 @@
 				Data[1] 	= IdTable;
 				Data[2] 	= $('#IdUser1').attr('alt');				
 				Data[3] 	= $('#IdCustomer1').attr('alt');				
-				Data[4] 	= $('#DateTime1').val();
-				Data[5] 	= $('#DateTimeEnd1').val();
-				Data[6] 	= "";//$('#Note1').attr('alt');
-				Data[7] 	= $('#Status1').attr('alt');
-				Data[8] 	= $('#DiscountValue1').attr('alt');
-				Data[9] 	= $('#DiscountPercent1').val();
-				Data[10] 	= $('#Surtax1').val();
-				Data[11] 	= "0";//$('#Payment1').val();
+				Data[4] 	= $('#IdEmployee1').val();
+				Data[5] 	= $('#DateTime1').val();
+				Data[6] 	= $('#DateTimeEnd1').val();				
+				Data[7] 	= "";//$('#Note1').attr('alt');
+				Data[8] 	= $('#Status1').attr('alt');
+				Data[9] 	= $('#DiscountValue1').attr('alt');
+				Data[10] 	= $('#DiscountPercent1').val();
+				Data[11] 	= $('#Surtax1').val();
+				Data[12] 	= "0";//$('#Payment1').val();
 				
 				$("#DialogSession").modal('hide');
 				e.stopImmediatePropagation();
