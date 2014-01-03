@@ -12,30 +12,9 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
 		$selectStmt = sprintf("select *  from %s where id=?", $tblTracking);
 		$updateStmt = sprintf("update %s set 
 			date_start=?,
-			date_end=?,
-			paid_general=?,
-			paid_pay_roll=?,
-			paid_import=?,
-			collect_general=?,
-			collect_customer=?,
-			collect_selling_debt=?, 
-			collect_selling_nodebt=?, 
-			estate_rate=?, 
-			store_value=?
+			date_end=?			
 		where id=?", $tblTracking);
-		$insertStmt = sprintf("insert into %s (
-			date_start, 
-			date_end, 
-			paid_general,
-			paid_pay_roll,
-			paid_import,
-			collect_general,
-			collect_customer,
-			collect_selling_debt, 
-			collect_selling_nodebt, 
-			estate_rate, 
-			store_value
-		) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblTracking);
+		$insertStmt = sprintf("insert into %s (date_start, date_end	) values(?, ?)", $tblTracking);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTracking);
 		$findByNearestStmt = sprintf("select * from %s where date_start<? ORDER BY date_start DESC LIMIT 1 ", $tblTracking);
 		
@@ -54,16 +33,7 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
         $obj = new \MVC\Domain\Tracking( 
 			$array['id'],
 			$array['date_start'],
-			$array['date_end'],
-			$array['paid_general'],
-			$array['paid_pay_roll'],
-			$array['paid_import'],
-			$array['collect_general'],
-			$array['collect_customer'],
-			$array['collect_selling_debt'],
-			$array['collect_selling_nodebt'],
-			$array['estate_rate'],
-			$array['store_value']
+			$array['date_end']			
 		);
         return $obj;
     }
@@ -72,16 +42,7 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getDateStart(), 
-			$object->getDateEnd(),
-			$object->getPaidGeneral(),
-			$object->getPaidPayRoll(),
-			$object->getPaidImport(),
-			$object->getCollectGeneral(),
-			$object->getCollectCustomer(),
-			$object->getCollectSellingDebt(),
-			$object->getCollectSellingNoDebt(),
-			$object->getEstateRate(),
-			$object->getStoreValue()
+			$object->getDateEnd()			
 		);
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -90,16 +51,7 @@ class Tracking extends Mapper implements \MVC\Domain\TrackingFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getDateStart(), 
-			$object->getDateEnd(),
-			$object->getPaidGeneral(),
-			$object->getPaidPayRoll(),
-			$object->getPaidImport(),
-			$object->getCollectGeneral(),
-			$object->getCollectCustomer(),
-			$object->getCollectSellingDebt(),
-			$object->getCollectSellingNoDebt(),
-			$object->getEstateRate(),
-			$object->getStoreValue(),
+			$object->getDateEnd(),			
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );

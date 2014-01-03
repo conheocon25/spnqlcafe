@@ -52,7 +52,7 @@ class SessionDetail extends Object{
 	function getPricePrint( ) {$num = new Number($this->Price);return $num->formatCurrency();}
 	
 	function getValue( ) {return $this->Price*$this->Count;}
-	function getValuePrint( ) {$num = new Number($this->getValue());return $num->formatCurrency()." đ";}
+	function getValuePrint( ) {$num = new Number($this->getValue());return $num->formatCurrency();}
 	
 	function getValueBase( ){
 		return $this->getValue()* ( 1.0 - (float)($this->getCourse()->getRate())/100.0);

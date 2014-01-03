@@ -1,7 +1,9 @@
 <?php
 require_once("mvc/base/Library.php");
 class Viewer {
-	function __construct($Path=null){$this->Path = $Path;}
+	function __construct($Path=null){
+		$this->Path = $Path;
+    }
 	
 	//-------------------------------------------------
 	//Hỗ trợ template xuất ra dưới dạng HTML    
@@ -9,8 +11,7 @@ class Viewer {
 	function html(){
 		//Lấy các tham số toàn cục
 		$Session = \MVC\Base\SessionRegistry::instance();		
-		$User = $Session->getCurrentUser();
-				
+						
 		//Lấy các tham số đã được xử lí
 		$request = \MVC\Base\RequestRegistry::getRequest();
 		$objects = $request->getObjects();
@@ -23,55 +24,75 @@ class Viewer {
 		}
 		while (list($key, $val) = each($properties)){
 			$tpl->$key = $val;
-		}		
-		$tpl->User = $User;
-		$HTML = $tpl->execute();
+		}				
+		$Out = $tpl->execute();
 		unset($tpl);
 		
 		//Kết xuất dữ liệu ra HTML
-		return $HTML;
+		return $Out;
 	}
 	
 	//-------------------------------------------------
 	//Hỗ trợ template xuất ra dưới dạng HTML    
 	//-------------------------------------------------
-	function pdf(){
-			
+	function pdf(){		
 		$html = $this->html();		
 		$pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$pdf->SetMargins(3, 1, 3);		
-		$pdf->setPrintHeader(false);
-		
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->SetMargins(5, 12, 5);
+		$pdf->SetHeaderMargin(1);		
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);			
 		$pdf->AddPage();
-		$pdf->SetFont('arial', 'N', 10);
+		$pdf->SetFont('arial', 'N', 10);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("bao_cao_karaoke_bdc.pdf", 'I');
+		$Out = $pdf->Output("cafe_passion.pdf", 'I');
 		unset($pdf);
 		return $Out;
 	}
 	
-	function custompdf(){		
+	
+			
+	function custompdf(){
+		
 		$html = $this->html();		
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 		$width = 73; //76 mm 
 		$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
-		$pdf->addFormat("custom", $width, $height);  
+		$pdf->addFormat("custom", $width, $height); 
 		$pdf->reFormat("custom", 'P');
-		
-		// set default header data		
-		$pdf->setHeaderFont(Array('arial', '', '10'));
-		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);
-		
-		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
 				
+		$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->SetMargins(1, 1, 1);
+		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
+			
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('phieu_karaoke_bdc.pdf', 'I');
-		unset($Out);
+		$Out = $pdf->Output('cafe_mien_tay.pdf', 'I');
+		unset($pdf);
+		
 		return $Out;
-	}			
+	}
+	
+	function pdfFormatSize() {
+		
+		$html = $this->html();		
+		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		
+		$pdf->reFormat("A4", "L");
+
+		$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+		$pdf->SetMargins(1, 18, 1);		
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);		
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		
+		$pdf->AddPage();
+		$pdf->SetFont('arial', 'N', 8);					
+		$pdf->writeHTML($html, true, false, true, false, '');
+		return $pdf->Output("cafe_mien_tay_1.pdf", 'I');
+	}
 }
 ?>

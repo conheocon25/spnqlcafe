@@ -14,14 +14,18 @@
 									
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			//-------------------------------------------------------------			
+			$mDomain 	= new \MVC\Mapper\Domain();
+			$mCategory 	= new \MVC\Mapper\Category();
+			$mSD 		= new \MVC\Mapper\SessionDetail();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$DomainAll = $mDomain->findAll();			
-						
+			$DomainAll 		= $mDomain->findAll();
+			$CategoryAll 	= $mCategory->findAll();			
+			$Domain			= $DomainAll->current();
+			$Top10			= $mSD->findByTop10(array());
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -31,12 +35,13 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Selling');
-			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title'		, $Title);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('Domain'		, $Domain);
+			$request->setObject('DomainAll'		, $DomainAll);
+			$request->setObject('CategoryAll'	, $CategoryAll);
+			$request->setObject('Top10'			, $Top10);
 			
-			$request->setObject('DomainAll', $DomainAll);			
-						
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

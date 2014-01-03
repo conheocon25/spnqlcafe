@@ -58,6 +58,10 @@ abstract class Collection {
     public function current() {
        return $this->getRow( $this->pointer );
     }
+	
+	public function last() {
+       return $this->getRow( $this->total-1 );
+    }
 
     public function key() {
         return $this->pointer;
