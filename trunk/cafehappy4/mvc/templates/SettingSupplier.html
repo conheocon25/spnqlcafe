@@ -27,6 +27,8 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
+										<th width="120" class="left">ĐIỆN THOẠI</th>
+										<th class="left">ĐỊA CHỈ</th>
 										<th class="right" width="100">MÓN</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
@@ -36,6 +38,8 @@
 									<tr tal:repeat="Supplier SupplierAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Supplier/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId" tal:content="Supplier/getName"/></td>
+										<td><span tal:content="Supplier/getPhone"/></td>
+										<td><span tal:content="Supplier/getAddress"/></td>
 										<td class="right"><a tal:attributes="href Supplier/getURLResource"> <span tal:content="Supplier/getResourceAll/count" /> món</a></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId">
@@ -57,10 +61,8 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-truck modal-icon"/>THÊM NHÀ CUNG CẤP</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>THÊM NHÀ CUNG CẤP</h3></div>								
+								<form id="FormSupplierInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -94,10 +96,10 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -107,10 +109,8 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-truck modal-icon"/>CẬP NHẬT NHÀ CUNG CẤP</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>CẬP NHẬT NHÀ CUNG CẤP</h3></div>
+								<form id="FormSupplierUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -145,7 +145,7 @@
 										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -199,25 +199,47 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 CATEGORY
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Phone1').val();
-				Data[3] = $('#Address1').val();
-				Data[4] = $('#Note1').val();
-				Data[5] = $('#Debt1').val();
-				
-				var URL = "/object/ins/Supplier";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 SUPPLIER
+			$("#FormSupplierInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 4,
+						required:true
+					},
+					Debt1:{						
+						required:true,
+						number:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Phone1').val();
+					Data[3] = $('#Address1').val();
+					Data[4] = $('#Note1').val();
+					Data[5] = $('#Debt1').val();
+					
+					var URL = "/object/ins/Supplier";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -241,25 +263,48 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 CATEGORY
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
-				Data[2] = $('#Phone2').val();
-				Data[3] = $('#Address2').val();
-				Data[4] = $('#Note2').val();
-				Data[5] = $('#Debt2').val();
-				
-				var URL = "/object/upd/Supplier";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormSupplierUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 4,
+						required:true
+					},
+					Debt2:{
+						required:true,
+						number:true
 					}
-				});
-			});			
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Phone2').val();
+					Data[3] = $('#Address2').val();
+					Data[4] = $('#Note2').val();
+					Data[5] = $('#Debt2').val();
+					
+					var URL = "/object/upd/Supplier";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+						
 		/*]]>*/
 		</script>
 	</body>

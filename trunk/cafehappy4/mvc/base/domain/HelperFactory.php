@@ -5,6 +5,7 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/User.php" );	
 	require_once( "mvc/mapper/Domain.php" );
 	require_once( "mvc/mapper/Table.php" );
+	require_once( "mvc/mapper/TableLog.php" );
 	require_once( "mvc/mapper/Session.php" );
 	require_once( "mvc/mapper/SessionDetail.php" );	
 	require_once( "mvc/mapper/Category.php" );
@@ -30,8 +31,13 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/Employee.php" );
 	require_once( "mvc/mapper/Unit.php");
 	require_once( "mvc/mapper/Config.php");
+	
 	require_once( "mvc/mapper/Tracking.php");
+	require_once( "mvc/mapper/TrackingCustomer.php");
 	require_once( "mvc/mapper/TrackingStore.php");
+	require_once( "mvc/mapper/TrackingDaily.php");
+	require_once( "mvc/mapper/TrackingCourse.php");
+	
 	require_once( "mvc/mapper/R2C.php");
 	require_once( "mvc/mapper/Guest.php");	
 }

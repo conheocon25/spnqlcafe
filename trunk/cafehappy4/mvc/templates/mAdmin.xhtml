@@ -55,7 +55,10 @@
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datepicker.vi.js"></script>				                                   
         <script src="/mvc/templates/theme/cms/js/jquery.masonry.min.js"></script>
-		
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
+		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
+		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
+		<script src="/mvc/templates/theme/cms/js/pdfobject.js"/>
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -69,11 +72,15 @@
 		<div id="user-nav">			
             <ul class="btn-group">
 				<li class="btn">
-					<a><i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" /></a>
+					<a class="tip-bottom" data-original-title="Click để đăng nhập" href="/signin/load">
+						<i class="glyphicons-imac" style="margin-top:-5px;margin-right:5px;"/> <span tal:content="php:@\MVC\Library\Statistic::getIPPrint()" />
+					</a>
 				</li>
-                <li class="btn"><a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/exe">
-					<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
-				</a></li>
+                <li class="btn">
+					<a class="tip-bottom" data-original-title="Click để đăng xuất" href="/signout/exe">
+						<i class="glyphicon glyphicon-user"></i> <span class="text" tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()" tal:content="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->getEmail()"/>
+					</a>
+				</li>
             </ul>
         </div>
 	</div>
@@ -90,7 +97,7 @@
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CAFE PASSION</h1></div>
+	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CAFE HAPPY4</h1></div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
@@ -106,12 +113,9 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="MenuApp" id="sidebar">
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isAdmin()">
-			<li tal:attributes="class php:ActiveAdmin=='SellingBeta'?'active':'disable'">
-				<a tal:attributes="href '/sellingbeta'"><i class="glyphicons-drink" />BÁN HÀNG (N)</a>
-			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
+			</li>			
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
 			</li>
@@ -130,15 +134,15 @@
 		</ul>
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-					<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+			</li>			
 			<li>
 				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
 			</li>
 		</ul>
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isManager()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
-					<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
+				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
 			</li>
 			<li tal:attributes="class php:ActiveAdmin=='Import'?'active':'disable'">
 				<a tal:attributes="href '/import'"><i class="glyphicons-truck" />NHẬP HÀNG</a>
@@ -226,7 +230,7 @@
 	<!-- ======================================================================== -->
 	<div metal:define-macro="Footer" class="row">
 		<div id="footer" class="col-12" style="text-align:right; padding-right:20px;">
-			2011 - 2013 &copy; <a href="https://www.spn-soft.com">SPN Group</a>
+			2009 - 2013 &copy; <a href="http://quanly-cafe.com">SPN Soft - Cafe App</a>
 		</div>
 	</div>
 	
@@ -249,15 +253,15 @@
 	<div metal:define-macro="ReportHeader">
 		<table width="100%" border="0" cellpadding="2" >
 			<tr>			
-				<td width="50%" align="left"><B>CAFE PASSION</B></td>
+				<td width="50%" align="left"><B>CAFE HAPPY4</B></td>
 				<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
 			</tr>
 			<tr>
-				<td width="50%" align="left">Phạm Thái Bường, P4 TP.VL</td>
+				<td width="50%" align="left">TP CẦN THƠ</td>				
 				<td width="50%" align="right">Lưu hành nội bộ</td>
 			</tr>
 			<tr>
-				<td width="50%" align="left">0939 528 166</td>
+				<td width="50%" align="left">0919 153 189</td>
 				<td width="50%" align="left" />
 			</tr>
 		</table>

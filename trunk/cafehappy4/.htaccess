@@ -33,43 +33,23 @@ RewriteRule ^object/del/([A-Za-z0-9]+)/([0-9]+)$ 					?cmd=ObjectDel&ObjectName=
 RewriteRule ^object/ins/([A-Za-z0-9]+)$ 							?cmd=ObjectIns&ObjectName=$1 [L]
 RewriteRule ^object/upd/([A-Za-z0-9]+)$ 							?cmd=ObjectUpd&ObjectName=$1 [L]
 
+RewriteRule ^search/customer/([A-Za-z0-9]+)$ 						?cmd=SearchCustomer&IdCard=$1 [L]
+
 #---------------------------------------------------------------------------------------------------------------------------
 # SELLING
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^app$ 													?cmd=App [L]
+RewriteRule ^app$ 												?cmd=App [L]
 
-RewriteRule ^sellingbeta$ 											?cmd=SellingBeta [L]
-RewriteRule ^sellingbeta/load/domain/([0-9]+)$ 						?cmd=SellingBetaLoadDomain&IdDomain=$1 [L]
-RewriteRule ^sellingbeta/load/table/([0-9]+)$ 						?cmd=SellingBetaLoadTable&IdTable=$1 [L]
-RewriteRule ^sellingbeta/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingBetaCallTable&IdTable=$1&IdCourse=$2&Delta=1 [L]
-RewriteRule ^sellingbeta/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingBetaCallTable&IdTable=$1&IdCourse=$2&Delta=-1 [L]
+RewriteRule ^selling$ 											?cmd=Selling [L]
+RewriteRule ^selling/load/domain/([0-9]+)$ 						?cmd=SellingDomainLoad&IdDomain=$1 [L]
+RewriteRule ^selling/load/table/([0-9]+)$ 						?cmd=SellingTableLoad&IdTable=$1 [L]
+RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/plus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=1 [L]
+RewriteRule ^selling/call/table/([0-9]+)/([0-9]+)/minus$ 		?cmd=SellingTableCallExe&IdTable=$1&IdCourse=$2&Delta=-1 [L]
 
-RewriteRule ^selling$ 												?cmd=Selling [L]
-RewriteRule ^selling/([0-9]+)$ 										?cmd=SellingDomain&IdDomain=$1 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)$ 							?cmd=SellingDomainTable&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/call/load$ 					?cmd=SellingDomainTableCallLoad&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/call/load/([0-9]+)$ 			?cmd=SellingDomainTableCallLoad&IdDomain=$1&IdTable=$2&IdCategory=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/call/exe/([0-9]+)$			?cmd=SellingDomainTableCallExe&IdDomain=$1&IdTable=$2&IdCourse=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/call/exe/([0-9]+)/plus$		?cmd=SellingDomainTableCallExe&IdDomain=$1&IdTable=$2&IdCourse=$3&Delta=1 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/call/exe/([0-9]+)/minus$		?cmd=SellingDomainTableCallExe&IdDomain=$1&IdTable=$2&IdCourse=$3&Delta=-1 [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/move/load$ 					?cmd=SellingDomainTableMoveLoad&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$					?cmd=SellingDomainTableMoveExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/load$ 					?cmd=SellingDomainTableMergeLoad&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 					?cmd=SellingDomainTableMergeExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/del/load$ 					?cmd=SellingDomainTableDelLoad&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/del/exe$ 					?cmd=SellingDomainTableDelExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log$							?cmd=SellingDomainTableLog&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log/page/([0-9]+)$			?cmd=SellingDomainTableLog&IdDomain=$1&IdTable=$2&Page=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log/([0-9]+)/del/load$ 		?cmd=SellingDomainTableLogDelLoad&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log/([0-9]+)/del/exe$ 		?cmd=SellingDomainTableLogDelExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log/([0-9]+)/upd/load$ 		?cmd=SellingDomainTableLogUpdLoad&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log/([0-9]+)/upd/exe$ 		?cmd=SellingDomainTableLogUpdExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/log/([0-9]+)/detail$ 		?cmd=SellingDomainTableLogDetail&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print$				?cmd=SellingDomainTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
-
-RewriteRule ^selling/([0-9]+)/([0-9]+)/checkin/exe$					?cmd=SellingDomainTableCheckinExe&IdDomain=$1&IdTable=$2 [L]
-RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$		?cmd=SellingDomainTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/move/exe$				?cmd=SellingTableMoveExe&IdDomain=$1&IdTable=$2 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/merge/exe$ 				?cmd=SellingTableMergeExe&IdDomain=$1&IdTable=$2 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/print$			?cmd=SellingTablePrint&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
+RewriteRule ^selling/([0-9]+)/([0-9]+)/([0-9]+)/checkout/exe$	?cmd=SellingTableCheckoutExe&IdDomain=$1&IdTable=$2&IdSession=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # MONEY
@@ -122,35 +102,20 @@ RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSu
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^report$ 									?cmd=Report [L]
-RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report$ 										?cmd=Report [L]
+RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
 
-RewriteRule ^report/import/([0-9]+)/general$ 			?cmd=ReportImportGeneral&IdTrack=$1 [L]
-
-RewriteRule ^report/paid/([0-9]+)$ 						?cmd=ReportPaidGeneral&IdTrack=$1 [L]
-RewriteRule ^report/paid/([0-9]+)/save$ 				?cmd=ReportPaidGeneral&IdTrack=$1&Save=yes [L]
-
-RewriteRule ^report/payroll/([0-9]+)$ 					?cmd=ReportPayRoll&IdTrack=$1 [L]
-RewriteRule ^report/payroll/([0-9]+)/save$ 				?cmd=ReportPayRoll&IdTrack=$1&Save=yes [L]
-
-RewriteRule ^report/collect/([0-9]+)$ 					?cmd=ReportCollectGeneral&IdTrack=$1 [L]
-RewriteRule ^report/collect/([0-9]+)/save$ 				?cmd=ReportCollectGeneral&IdTrack=$1&Save=yes [L]
-
-RewriteRule ^report/customer/([0-9]+)$ 					?cmd=ReportCustomer&IdTrack=$1 [L]
-RewriteRule ^report/customer/([0-9]+)/general$ 			?cmd=ReportCustomerGeneral&IdTrack=$1 [L]
-RewriteRule ^report/customer/([0-9]+)/([0-9]+)$ 		?cmd=ReportCustomerDetail&IdTrack=$1&IdCustomer=$2 [L]
-
-RewriteRule ^report/store/([0-9]+)$ 					?cmd=ReportStore&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/save$ 				?cmd=ReportStore&IdTrack=$1&Save=yes [L]
-RewriteRule ^report/store/([0-9]+)/evaluate$ 			?cmd=ReportStoreEvaluate&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/empty$ 				?cmd=ReportStoreEmpty&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/init$ 				?cmd=ReportStoreInit&IdTrack=$1 [L]
-RewriteRule ^report/store/([0-9]+)/print$ 				?cmd=ReportStorePrint&IdTrack=$1 [L]
-
-RewriteRule ^report/course/([0-9]+)$ 					?cmd=ReportCourse&IdTrack=$1 [L]
-RewriteRule ^report/resource/([0-9]+)$ 					?cmd=ReportResource&IdTrack=$1 [L]
-RewriteRule ^report/hours/([0-9]+)$ 					?cmd=ReportHours&IdTrack=$1 [L]
-RewriteRule ^report/general/([0-9]+)$ 					?cmd=ReportGeneral&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 				?cmd=ReportDailyImport&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/store$ 				?cmd=ReportDailyStore&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 				?cmd=ReportDailyCourse&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer$ 			?cmd=ReportDailyCustomer&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/log$ 					?cmd=ReportDailyLog&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer/([0-9]+)$ 	?cmd=ReportDailyCustomerDetail&IdTrack=$1&IdTD=$2&IdCustomer=$3 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # SETTING
