@@ -15,45 +15,95 @@
 					<div class="col-12">
 						<div class="widget-box">
 							<div class="widget-content nopadding">
-								<h1 tal:content="php: 'TỔNG CỘNG ( ' . NTotal->formatCurrency() . ' / ' . NTotal1->formatCurrency() . ' / ' . NTotal2->formatCurrency() . ')'"/>
-								<div tal:repeat="Domain DomainAll">
-									<div tal:condition="php: Domain->getSessionByDate(TD->getDate())->count()">
-										<h3 tal:content="php: Domain->getName() . ' (' . Domain->getSessionByDateValuePrint(TD->getDate()) . ' / ' . Domain->getSessionByDateValue1Print(TD->getDate()) . ' / ' . Domain->getSessionByDateValue2Print(TD->getDate()) . ')'" />
-										<div tal:repeat="Table Domain/getTableAll">
-											<div tal:condition="php: Table->getSessionByDate(TD->getDate())->count()">												
-												<h5 tal:content="php: Table->getName() . ' (' . Table->getSessionByDateValuePrint(TD->getDate()) . ' / ' . Table->getSessionByDateValue1Print(TD->getDate()) . ' / ' . Table->getSessionByDateValue2Print(TD->getDate()) . ')'" />
-												<table class="table table-striped table-hover">
-													<thead>
-														<tr>										
-															<th width="5%"><B>#ID</B></th>
-															<th width="15%"><div class="text-left">THỜI GIAN</div></th>
-															<th width="11%"><div class="text-left">THU NGÂN</div></th>
-															<th width="14%"><div class="text-left">NHÂN VIÊN</div></th>
-															<th width="33%"><div class="text-left">BÀN</div></th>											
-															<th width="11%"><div class="text-right">CHƯA TÍNH</div></th>
-															<th width="11%"><div class="text-right">ĐÃ TÍNH</div></th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr tal:repeat="Session php: Table->getSessionByDate(TD->getDate())">
-															<td align="center"><span tal:content="Session/getId"/></td>
-															<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
-															<td align="left"><span tal:content="Session/getUser/getName"/></td>
-															<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
-															<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
-															<td align="right">
-																<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
-															</td>
-															<td align="right">
-																<a tal:condition="php: Session->getStatus()==1" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
-															</td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>																							
+								<h1 tal:content="php: 'TỔNG CỘNG ( ' . NTotal->formatCurrency() . ' / ' . NTotal_1->formatCurrency() . ' / ' . NTotal_2->formatCurrency() . ')'"/>
+								<h3>CA 1 <span tal:content="php: 'TỔNG CỘNG ( ' . NTotal1->formatCurrency() . ' / ' . NTotal11->formatCurrency() . ' / ' . NTotal12->formatCurrency() . ')'"/></h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="5%"><B>#ID</B></th>
+											<th width="15%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="11%"><div class="text-left">THU NGÂN</div></th>
+											<th width="14%"><div class="text-left">NHÂN VIÊN</div></th>
+											<th width="33%"><div class="text-left">BÀN</div></th>											
+											<th width="11%"><div class="text-right">CHƯA TÍNH</div></th>
+											<th width="11%"><div class="text-right">ĐÃ TÍNH</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Session Session1All">
+											<td align="center"><span tal:content="Session/getId"/></td>
+											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
+											<td align="left"><span tal:content="Session/getUser/getName"/></td>
+											<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
+											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==1" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>								
+								<h3>CA 2 <span tal:content="php: 'TỔNG CỘNG ( ' . NTotal2->formatCurrency() . ' / ' . NTotal21->formatCurrency() . ' / ' . NTotal22->formatCurrency() . ')'"/></h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="5%"><B>#ID</B></th>
+											<th width="15%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="11%"><div class="text-left">THU NGÂN</div></th>
+											<th width="14%"><div class="text-left">NHÂN VIÊN</div></th>
+											<th width="33%"><div class="text-left">BÀN</div></th>											
+											<th width="11%"><div class="text-right">CHƯA TÍNH</div></th>
+											<th width="11%"><div class="text-right">ĐÃ TÍNH</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Session Session2All">
+											<td align="center"><span tal:content="Session/getId"/></td>
+											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
+											<td align="left"><span tal:content="Session/getUser/getName"/></td>
+											<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
+											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==1" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								
+								<h3>CA 3 <span tal:content="php: 'TỔNG CỘNG ( ' . NTotal3->formatCurrency() . ' / ' . NTotal31->formatCurrency() . ' / ' . NTotal32->formatCurrency() . ')'"/></h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="5%"><B>#ID</B></th>
+											<th width="15%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="11%"><div class="text-left">THU NGÂN</div></th>
+											<th width="14%"><div class="text-left">NHÂN VIÊN</div></th>
+											<th width="33%"><div class="text-left">BÀN</div></th>											
+											<th width="11%"><div class="text-right">CHƯA TÍNH</div></th>
+											<th width="11%"><div class="text-right">ĐÃ TÍNH</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Session Session3All">
+											<td align="center"><span tal:content="Session/getId"/></td>
+											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
+											<td align="left"><span tal:content="Session/getUser/getName"/></td>
+											<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
+											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==1" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>								
 							</div>
 						</div>
 					</div>

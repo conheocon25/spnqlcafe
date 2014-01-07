@@ -33,7 +33,7 @@
 			
 			$TableLog	= new \MVC\Domain\TableLog(
 				null,
-				$Table->getIdUser(),
+				$Session->getIdUser(),
 				$Table->getId(),
 				\date('Y-m-d H:i:s'),
 				"tính tiền ".$Session->getValuePrint()
