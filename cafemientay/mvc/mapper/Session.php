@@ -192,7 +192,7 @@ class Session extends Mapper implements \MVC\Domain\SessionFinder {
 			$object->getDiscountPercent(),
 			$object->getSurtax(),
 			$object->getPayment()			
-		);
+		);		
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
         $object->setId( $id );

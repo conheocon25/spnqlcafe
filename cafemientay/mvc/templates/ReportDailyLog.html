@@ -22,7 +22,7 @@
 											<h2 tal:content="Table/getName"/>
 											<ul tal:condition="php:Table->getLog(TD->getDate())">
 												<li tal:repeat="Log php:Table->getLog(TD->getDate())">
-													<span tal:condition="not: Log/getUser" tal:content="string:VD"/> : <span tal:content="Log/getDateTime"/> - <span tal:content="Log/getNote"/>
+													<span tal:condition="not: Log/getUser" tal:content="string:VD"/>
 													<span tal:condition="Log/getUser" tal:content="Log/getUser/getName"/> : <span tal:content="Log/getDateTime"/> - <span tal:content="Log/getNote"/>
 												</li>
 											</ul>

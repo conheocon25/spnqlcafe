@@ -35,7 +35,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Supplier SupplierAll1">
+									<tr tal:repeat="PR PRAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Supplier/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId" tal:content="Supplier/getName"/></td>
 										<td><span tal:content="Supplier/getPhone"/></td>

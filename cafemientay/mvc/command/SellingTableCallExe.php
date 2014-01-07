@@ -39,7 +39,7 @@
 				$Session = new \MVC\Domain\Session(
 					null,					//Id
 					$IdTable,				//IdTable
-					$Session1->getCurrentIdUser(),//IdUser
+					@\MVC\Base\SessionRegistry::getCurrentIdUser(),//IdUser
 					1,						//IdCustomer
 					$EmployeeAll->current()->getId(),	//IdEmployee
 					\date("Y-m-d H:i:s"), 	//DateTime					
