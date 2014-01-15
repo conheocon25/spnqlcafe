@@ -26,6 +26,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
+										<th width="120" class="left">CMND</th>
 										<th width="120" class="left">ĐIỆN THOẠI</th>
 										<th class="left">ĐỊA CHỈ</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
@@ -35,6 +36,7 @@
 									<tr tal:repeat="Employee EmployeeAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Employee/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Employee/getId" tal:content="Employee/getName"/></td>
+										<td><span tal:content="Employee/getCard"/></td>
 										<td><span tal:content="Employee/getPhone"/></td>
 										<td><span tal:content="Employee/getAddress"/></td>
 										<td class="center">
@@ -62,6 +64,12 @@
 											<label class="control-label">Tên</label>
 											<div class="controls">
 												<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">CMND</label>
+											<div class="controls">
+												<input id="Card1" name="Card1" type="text" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -130,6 +138,12 @@
 												<label class="control-label">Tên</label>
 												<div class="controls">
 													<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+											<div class="form-group">
+												<label class="control-label">CMND</label>
+												<div class="controls">
+													<input id="Card2" name="Card2" type="text" class="form-control input-small"/>
 												</div>
 											</div>
 											<div class="control-group">
@@ -258,7 +272,8 @@
 					Data[3] = $('#Job1').val();
 					Data[4] = $('#Phone1').val();
 					Data[5] = $('#Address1').val();
-					Data[6] = $('#SalaryBase1').val();
+					Data[6] = $('#Card1').val();
+					Data[7] = $('#SalaryBase1').val();
 															
 					var URL = "/object/ins/Employee";
 					$.ajax({
@@ -288,6 +303,7 @@
 					$('#Job2').attr('value', data.Job);
 					$('#Phone2').attr('value', data.Phone);
 					$('#Address2').attr('value', data.Address);
+					$('#Card2').attr('value', data.Card);
 					$('#SalaryBase2').attr('value', data.SalaryBase);
 				});
 			});
@@ -323,8 +339,9 @@
 					Data[2] = $('#Gender2').val();
 					Data[3] = $('#Job2').val();
 					Data[4] = $('#Phone2').val();
-					Data[5] = $('#Address2').val();				
-					Data[6] = $('#SalaryBase2').val();
+					Data[5] = $('#Address2').val();
+					Data[6] = $('#Card2').val();
+					Data[7] = $('#SalaryBase2').val();
 															
 					var URL = "/object/upd/Employee";
 					$.ajax({

@@ -10,8 +10,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 						
 		$selectAllStmt = sprintf("select * from %s", $tblEmployee);
 		$selectStmt = sprintf("select * from %s where id=?", $tblEmployee);
-		$updateStmt = sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=? where id=?", $tblEmployee);
-		$insertStmt = sprintf("insert into %s (name, gender, job, phone, address, salary_base) values(?, ?, ?, ?, ?, ?)", $tblEmployee);
+		$updateStmt = sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, card=?, salary_base=? where id=?", $tblEmployee);
+		$insertStmt = sprintf("insert into %s (name, gender, job, phone, address, card, salary_base) values(?, ?, ?, ?, ?, ?, ?)", $tblEmployee);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblEmployee);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
 		
@@ -33,6 +33,7 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$array['job'],
 			$array['phone'],			
 			$array['address'],
+			$array['card'],
 			$array['salary_base']
 		);
         return $obj;
@@ -49,6 +50,7 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getJob(),
 			$object->getPhone(),			
 			$object->getAddress(),
+			$object->getCard(),
 			$object->getSalaryBase()
 		); 
         $this->insertStmt->execute( $values );
@@ -63,14 +65,13 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getJob(),
 			$object->getPhone(),
 			$object->getAddress(),
+			$object->getCard(),
 			$object->getSalaryBase(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
     }
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
