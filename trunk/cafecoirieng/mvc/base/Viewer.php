@@ -19,12 +19,14 @@ class Viewer {
 		
 		//Khởi tạo template và chuyển các thuộc tính và đối tượng sang
 		$tpl = new PHPTAL($this->Path);				
-		while (list($key, $val) = each($objects)){
-			$tpl->$key = $val;
+		while (list($key, $val) = each($objects)){			
+			if (substr($key, 0, 1)!='_')
+				$tpl->$key = $val;			
 		}
-		while (list($key, $val) = each($properties)){
-			$tpl->$key = $val;
-		}				
+		while (list($key, $val) = each($properties)){			
+			if (substr($key, 0, 1)!='_')
+				$tpl->$key = $val;
+		}
 		$Out = $tpl->execute();
 		unset($tpl);
 		
@@ -44,7 +46,7 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 10);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("print_BDC.pdf", 'I');
+		$Out = $pdf->Output("cafe_passion.pdf", 'I');
 		unset($pdf);
 		return $Out;
 	}
@@ -61,14 +63,15 @@ class Viewer {
 		$pdf->reFormat("custom", 'P');
 				
 		$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);		
+		$pdf->SetMargins(1, 1, 1);
 		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
 			
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('custompdf.pdf', 'I');
+		$Out = $pdf->Output('cafe_coi_rieng.pdf', 'I');
 		unset($pdf);
 		
 		return $Out;
@@ -91,7 +94,7 @@ class Viewer {
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		return $pdf->Output("pdfFormatSize.pdf", 'I');
+		return $pdf->Output("cafe_coi_rieng_1.pdf", 'I');
 	}
 }
 ?>

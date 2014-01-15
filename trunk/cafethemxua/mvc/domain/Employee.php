@@ -25,33 +25,25 @@
 	private $Job;
 	private $Phone;
 	private $Address;
+	private $Card;
 	private $SalaryBase;
 			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null){
-        $this->Id = $Id;
-		$this->Name = $Name;
-		$this->Gender = $Gender;
-		$this->Job = $Job;
-		$this->Phone = $Phone;
-		$this->Address = $Address;
-		$this->SalaryBase = $SalaryBase;
+    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $Card=null, $SalaryBase=null){
+        $this->Id 			= $Id;
+		$this->Name 		= $Name;
+		$this->Gender 		= $Gender;
+		$this->Job 			= $Job;
+		$this->Phone 		= $Phone;
+		$this->Address 		= $Address;
+		$this->Card 		= $Card;
+		$this->SalaryBase 	= $SalaryBase;
 		
         parent::__construct( $Id );
     }
-	
-	function setArray( $Data ){
-        $this->Id = $Data[0];
-		$this->Name = $Data[1];
-		$this->Gender = $Data[2];
-		$this->Job = $Data[3];
-		$this->Phone = $Data[4];
-		$this->Address = $Data[5];
-		$this->SalaryBase = $Data[6];
-    }
-	
+			
     function getId( ) {return $this->Id;}
 	function getIdPrint( ) {return "e".$this->Id;}
 		
@@ -70,6 +62,9 @@
 		
 	function setAddress( $Address ) {$this->Address = $Address;$this->markDirty();}
 	function getAddress( ) {return $this->Address;}
+	
+	function setCard( $Card ) {$this->Card = $Card; $this->markDirty();}
+	function getCard( ) {return $this->Card;}
 	
 	function setSalaryBase( $SalaryBase ) {$this->SalaryBase = $SalaryBase;$this->markDirty();}
 	function getSalaryBase( ) {return $this->SalaryBase;}
@@ -98,10 +93,22 @@
 			'Job'			=> $this->getJob(),
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
+			'Card'			=> $this->getCard(),
 			'SalaryBase'	=> $this->getSalaryBase()
 		);
 		return json_encode($json);
 	}
+	
+	function setArray( $Data ){
+        $this->Id 			= $Data[0];
+		$this->Name 		= $Data[1];
+		$this->Gender 		= $Data[2];
+		$this->Job 			= $Data[3];
+		$this->Phone 		= $Data[4];
+		$this->Address 		= $Data[5];
+		$this->Card 		= $Data[6];
+		$this->SalaryBase 	= $Data[7];
+    }
 	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
