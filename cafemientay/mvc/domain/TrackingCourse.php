@@ -41,6 +41,11 @@ class TrackingCourse extends Object{
 	
 	function setIdTD( $IdTD ) {$this->IdTD = $IdTD;$this->markDirty();}   
 	function getIdTD( ) {return $this->IdTD;}
+	function getTD( ) {
+		$mTD = new \MVC\Mapper\TrackingDaily();
+		$TD = $mTD->find($this->IdTD);
+		return $TD;
+	}
 	
 	function setIdCourse( $IdCourse ) {$this->IdCourse = $IdCourse;$this->markDirty();}   
 	function getIdCourse( ) {return $this->IdCourse;}

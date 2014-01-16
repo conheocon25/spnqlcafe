@@ -23,3 +23,11 @@
 	.course-item button { width: 26px; margin-top: -5px; }
 
 	.background-cont { background-color: rgba(0, 0, 0, .9); }
+	
+	.full-screen {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		top: 0;
+		left: 0;
+	}
