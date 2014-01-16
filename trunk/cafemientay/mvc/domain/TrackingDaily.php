@@ -49,6 +49,7 @@ class TrackingDaily extends Object{
 	function setDate( $Date ) {$this->Date = $Date;$this->markDirty();}   
 	function getDate( ) {return $this->Date;}
 	function getDatePrint( ) {$D = new \MVC\Library\Date($this->Date);return $D->getDateFormat();}
+	function getDateShortPrint( ) {return date('d/m',strtotime($this->Date));}
 	
 	function setSelling( $Selling ) {$this->Selling = $Selling;$this->markDirty();}   
 	function getSelling( ) {return $this->Selling;}
