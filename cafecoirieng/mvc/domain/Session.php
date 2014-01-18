@@ -249,11 +249,11 @@ class Session extends Object{
 		
 		while ($SDAll->valid()){
 			$SD = $SDAll->current();
-			if ($SD->getCourse()->getIsDiscount()==0){
-				$Sum1 += $SD->getValue();	
-			}else{
-				$Sum2 += $SD->getValue();
-			}
+			//if ($SD->getCourse()->getIsDiscount()==0){
+				$Sum2 += $SD->getValue();	
+			//}else{
+			//	$Sum2 += $SD->getValue();
+			//}
 			$SDAll->next();
 		}		
 		$Value = $this->getSurtax() + (int)( ($Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1) /1000)*1000;
