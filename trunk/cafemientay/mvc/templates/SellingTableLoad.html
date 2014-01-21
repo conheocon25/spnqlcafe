@@ -310,7 +310,8 @@
 			</div>
 		</div>
 		<!-- END DIALOG MOVE-->
-        <script>						
+        <script>
+			//THIẾT LẬP NGÀY GIỜ GIAO DỊCH
 			$('#DateTime1').datetimepicker({
 				language:  'vi',
 				weekStart: 1,
@@ -449,10 +450,18 @@
 					dataType: 'json',
 					success: function(data){
 						var TableActive = "#" + $("#TableActive").attr('alt');
-						$("#Session").load("/selling/load/table/"+IdTable);
-						
+						$("#Session").load("/selling/load/table/"+IdTable);						
 						//Đánh dấu Table có khách
 						$(TableActive).addClass('actived');
+						
+						//hiển thị thông báo
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	: 'gritter-green',
+							text		:'Gọi món ' + data.Name + " " + data.Count + " (" + data.Unit + ")",
+							time		:5000,
+							sticky		: false
+						});
 					}
 				});
 			});
@@ -550,6 +559,14 @@
 					data: {Data:Data},
 					url: URL,
 					success: function(msg){
+						//hiển thị thông báo
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	:'gritter-green',
+							text		:'Đã cập nhật xong món',
+							time		:5000,
+							sticky		: false
+						});
 						$("#Session").load("/selling/load/table/"+IdTable);
 					}
 				});
@@ -557,6 +574,8 @@
 			$("#ButtonDocPreview").click(function(){								
 				$(".Checkout").show();
 			});
+			
+			
         </script>
 	</body>
 </html>

@@ -36,7 +36,8 @@
 								<thead>
 									<tr role="row">
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th width="40"></th>
+										<th width="40" />
+										<th width="40" />
 										<th><div class="text-left">TÊN</div></th>
 										<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
 										<th width="120"><div class="text-right">GIÁ BÁN</div></th>
@@ -47,10 +48,11 @@
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
 									<tr tal:repeat="Course CourseAll" class="gradeA odd">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Course/getId"/></td>
+										<td><div tal:condition="Course/getEnable" class="glyphicons-eye_open text-center"/></td>
 										<td>
 											<i tal:condition="Course/getIsDiscount" class="glyphicons-star"/>
 											<i tal:condition="not: Course/getIsDiscount" class="glyphicons-dislikes"/>
-										</td>
+										</td>										
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
 										<td><div tal:content="Course/getUnit"/></td>
 										<td align="right"><div tal:content="Course/getPrice1Print"/></td>
@@ -108,6 +110,15 @@
 												</select>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label">Ẩn / Hiện</label>
+											<div class="controls">
+												<select name="Enable1" id="Enable1" style="width:80%;">
+													<option value="0">Ẩn</option>
+													<option value="1">Hiện</option>
+												</select>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -161,6 +172,15 @@
 											<select name="IsDiscount2" id="IsDiscount2" style="width:80%;">
 												<option value="0">Không giảm</option>
 												<option value="1">Giảm giá</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Ẩn / Hiện</label>
+										<div class="controls">
+											<select name="Enable2" id="Enable2" style="width:80%;">
+												<option value="0">Ẩn</option>
+												<option value="1">Hiện</option>
 											</select>
 										</div>
 									</div>
@@ -238,6 +258,7 @@
 				Data[8] = $('#Price1').val();
 				Data[9] = "";
 				Data[10] = $('#IsDiscount1').val();
+				Data[11] = $('#Enable1').val();
 				
 				var URL = "/object/ins/Course";
 				$.ajax({
@@ -259,12 +280,13 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#ShortName2').attr('value', data.Name);
-					$('#Unit2').select2('val', data.Unit);
-					$('#Price2').attr('value', data.Price1);
-					$('#IsDiscount2').select2('val', data.IsDiscount);
+					$('#URLUpdButton').attr('alt', 		data.Id);
+					$('#Name2').attr('value', 			data.Name);
+					$('#ShortName2').attr('value', 		data.Name);
+					$('#Unit2').select2('val', 			data.Unit);
+					$('#Price2').attr('value', 			data.Price1);
+					$('#IsDiscount2').select2('val', 	data.IsDiscount);
+					$('#Enable2').select2('val', 		data.Enable);
 				});
 			});
 			
@@ -284,6 +306,7 @@
 				Data[8] = $('#Price2').val();				
 				Data[9] = "";
 				Data[10] = $('#IsDiscount2').val();
+				Data[11] = $('#Enable2').val();
 				var URL = "/object/upd/Course";
 				$.ajax({
 					type: "POST",

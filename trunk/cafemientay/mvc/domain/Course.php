@@ -16,6 +16,7 @@ class Course extends Object{
 	private $Price4;
 	private $Picture;
 	private $IsDiscount;
+	private $Enable;
 	
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
@@ -31,7 +32,9 @@ class Course extends Object{
 		$Price3		=null, 
 		$Price4		=null, 
 		$Picture	=null,
-		$IsDiscount	=null) 
+		$IsDiscount	=null,
+		$Enable		=null
+	) 
 	{
         $this->Id 			= $Id;
 		$this->IdCategory 	= $IdCategory;
@@ -44,6 +47,7 @@ class Course extends Object{
 		$this->Price4 		= $Price4;
 		$this->Picture 		= $Picture;
 		$this->IsDiscount	= $IsDiscount;
+		$this->Enable		= $Enable;
 		
         parent::__construct( $Id );
     }
@@ -84,6 +88,9 @@ class Course extends Object{
 	function setIsDiscount( $IsDiscount ) {$this->IsDiscount = $IsDiscount;$this->markDirty();}	
 	function getIsDiscount( ) {return $this->IsDiscount;}
 	
+	function setEnable( $Enable ) {$this->Enable = $Enable;$this->markDirty();}	
+	function getEnable( ) {return $this->Enable;}
+	
 	public function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -96,7 +103,8 @@ class Course extends Object{
 		 	'Price3'		=> $this->getPrice3(),
 		 	'Price4'		=> $this->getPrice4(),
 		 	'Picture'		=> $this->getPicture(),
-			'IsDiscount'	=> $this->getIsDiscount()
+			'IsDiscount'	=> $this->getIsDiscount(),
+			'Enable'		=> $this->getEnable()
 		);
 		return json_encode($json);
 	}
@@ -112,6 +120,7 @@ class Course extends Object{
 		$this->Price4 		= $Data[8];
 		$this->Picture 		= $Data[9];
 		$this->IsDiscount 	= $Data[10];
+		$this->Enable 		= $Data[11];
     }
 	
 	function getURLRecipe(){return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/recipe";}
