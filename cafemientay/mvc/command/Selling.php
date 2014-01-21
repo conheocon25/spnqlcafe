@@ -23,7 +23,8 @@
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$DomainAll 		= $mDomain->findAll();
-			$CategoryAll 	= $mCategory->findAll();			
+			$CategoryAll 	= $mCategory->findSelling(array());
+			
 			$Domain			= $DomainAll->current();
 			$Top10			= $mSD->findByTop10(array());
 			//-------------------------------------------------------------

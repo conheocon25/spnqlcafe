@@ -1,6 +1,5 @@
 <?php
 namespace MVC\Mapper;
-
 require_once( "mvc/base/Mapper.php" );
 class Course extends Mapper implements \MVC\Domain\CourseFinder {
 
@@ -9,10 +8,10 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 		$tblCourse = "tbl_course";
 		$tblSessionDetail = "tbl_session_detail";
 		
-		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblCourse);								
+		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblCourse);
 		$selectStmt = sprintf("select * from %s where id=?", $tblCourse);
-		$updateStmt = sprintf("update %s set idcategory=?, name=?, shortname=?, unit=?, price1=?, price2=?, price3=?, price4=?, picture=?, is_discount=? where id=?", $tblCourse);
-		$insertStmt = sprintf("insert into %s (idcategory, name, shortname, unit, price1, price2, price3, price4, picture, is_discount) 
+		$updateStmt = sprintf("update %s set idcategory=?, name=?, shortname=?, unit=?, price1=?, price2=?, price3=?, price4=?, picture=?, is_discount=?, enable=? where id=?", $tblCourse);
+		$insertStmt = sprintf("insert into %s (idcategory, name, shortname, unit, price1, price2, price3, price4, picture, is_discount, enable) 
 							values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblCourse);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCourse);
 		$findByPageStmt = sprintf("
@@ -24,6 +23,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 				", $tblCourse);
 				
 		$findByCategoryStmt = sprintf("select * from %s where idcategory=? ORDER BY name", $tblCourse);
+		$findSellingStmt = sprintf("select * from %s where idcategory=? AND enable=1 ORDER BY name", $tblCourse);
+		
 		$findTop20Stmt = sprintf("SELECT
 								C.id, 
 								C.idcategory, 
@@ -36,7 +37,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 								C.price4,
 								C.picture, 
 								sum(SD.count) as count,
-								C.is_discount 
+								C.is_discount,
+								C.enable
 							FROM 
 								 %s C LEFT JOIN %s SD
 								 ON C.id = SD.idcourse
@@ -45,14 +47,15 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 							LIMIT 20
 							" , $tblCourse, $tblSessionDetail);
 				
-		$this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
-        $this->selectStmt = self::$PDO->prepare($selectStmt);
-        $this->updateStmt = self::$PDO->prepare($updateStmt);
-        $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);		
-		$this->findByCategoryStmt = self::$PDO->prepare($findByCategoryStmt);
-		$this->findTop20Stmt = self::$PDO->prepare($findTop20Stmt);
-		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
+        $this->selectStmt 			= self::$PDO->prepare($selectStmt);
+        $this->updateStmt 			= self::$PDO->prepare($updateStmt);
+        $this->insertStmt 			= self::$PDO->prepare($insertStmt);
+		$this->deleteStmt 			= self::$PDO->prepare($deleteStmt);
+		$this->findByCategoryStmt 	= self::$PDO->prepare($findByCategoryStmt);
+		$this->findSellingStmt 		= self::$PDO->prepare($findSellingStmt);
+		$this->findTop20Stmt 		= self::$PDO->prepare($findTop20Stmt);
+		$this->findByPageStmt 		= self::$PDO->prepare($findByPageStmt);
     }
 	
     function getCollection( array $raw ) {return new CourseCollection( $raw, $this );}
@@ -68,7 +71,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$array['price3'],
 			$array['price4'],
 			$array['picture'],
-			$array['is_discount']
+			$array['is_discount'],
+			$array['enable']
 		);
         return $obj;
     }
@@ -85,7 +89,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$object->getPrice3(),
 			$object->getPrice4(),
 			$object->getPicture(),
-			$object->getIsDiscount()
+			$object->getIsDiscount(),
+			$object->getEnable()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -104,6 +109,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 			$object->getPrice4(),
 			$object->getPicture(),
 			$object->getIsDiscount(),
+			$object->getEnable(),
 			$object->getId()
 		);
         $this->updateStmt->execute( $values );
@@ -113,6 +119,10 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 	function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
+	function findSelling( $values ) {
+        $this->findSellingStmt->execute( $values );
+		return new CourseCollection( $this->findSellingStmt->fetchAll(), $this );
+    }
 	function findByCategory( $values ) {
         $this->findByCategoryStmt->execute( $values );
 		return new CourseCollection( $this->findByCategoryStmt->fetchAll(), $this );

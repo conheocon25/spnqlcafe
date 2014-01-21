@@ -68,7 +68,7 @@
 							<div class="collapse accordion-body" tal:attributes="id Category/getIdString">
 								<div class="widget-content nopadding size-12">
                                     <ul class="activity-list">
-                                        <li tal:repeat="Course Category/getCourseAll">
+                                        <li tal:repeat="Course Category/getCourseSelling">
 											<a class="course-item">
 												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' ">+</button>
 												<strong tal:content="Course/getShortName"/>
