@@ -12,7 +12,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 		$selectStmt = sprintf("select * from %s where id=?", $tblCourse);
 		$updateStmt = sprintf("update %s set idcategory=?, name=?, shortname=?, unit=?, price1=?, price2=?, price3=?, price4=?, picture=?, is_discount=?, enable=? where id=?", $tblCourse);
 		$insertStmt = sprintf("insert into %s (idcategory, name, shortname, unit, price1, price2, price3, price4, picture, is_discount, enable) 
-							values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblCourse);
+							values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", $tblCourse);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblCourse);
 		$findByPageStmt = sprintf("
 							SELECT *

@@ -34,7 +34,10 @@
 											<td align="center"><span tal:content="Session/getId"/></td>
 											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
 											<td align="left"><span tal:content="Session/getUser/getName"/></td>
-											<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
+											<td align="left">
+												<span tal:condition="Session/getEmployee" tal:content="Session/getEmployee/getName"/>
+												<span tal:condition="not: Session/getEmployee">Chưa xác định</span>
+											</td>
 											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
 											<td align="right">
 												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
@@ -63,7 +66,10 @@
 											<td align="center"><span tal:content="Session/getId"/></td>
 											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
 											<td align="left"><span tal:content="Session/getUser/getName"/></td>
-											<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
+											<td align="left">
+												<span tal:condition="Session/getEmployee" tal:content="Session/getEmployee/getName"/>
+												<span tal:condition="not: Session/getEmployee">Chưa xác định</span>
+											</td>
 											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
 											<td align="right">
 												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
@@ -93,7 +99,10 @@
 											<td align="center"><span tal:content="Session/getId"/></td>
 											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
 											<td align="left"><span tal:content="Session/getUser/getName"/></td>
-											<td align="left"><span tal:content="Session/getEmployee/getName"/></td>
+											<td align="left">
+												<span tal:condition="Session/getEmployee" tal:content="Session/getEmployee/getName"/>
+												<span tal:condition="not: Session/getEmployee">Chưa xác định</span>
+											</td>
 											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
 											<td align="right">
 												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
