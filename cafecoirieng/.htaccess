@@ -63,15 +63,28 @@ RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSu
 #---------------------------------------------------------------------------------------------------------------------------
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
-RewriteRule ^report$ 									?cmd=Report [L]
+RewriteRule ^report$ 										?cmd=Report [L]
+RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
 
-RewriteRule ^report/recipe/print$ 						?cmd=ReportStoreRecipePrint [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)$ 						?cmd=ReportDaily&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/selling$ 				?cmd=ReportDailySelling&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/import$ 				?cmd=ReportDailyImport&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/store$ 				?cmd=ReportDailyStore&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/paid$ 				?cmd=ReportDailyPaid&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/collect$ 				?cmd=ReportDailyCollect&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/course$ 				?cmd=ReportDailyCourse&IdTrack=$1&IdTD=$2 [L]
 
-RewriteRule ^report/selling/([0-9]+)$ 					?cmd=ReportSelling&Type=$1 [L]
-RewriteRule ^report/selling/([0-9]+)/general$ 			?cmd=ReportSellingGeneral&IdTrack=$1 [L]
-RewriteRule ^report/selling/([a-z0-9_-]+)/detail$ 		?cmd=ReportSellingDetail&Type=$1 [L]
-RewriteRule ^report/log/([a-z0-9_-]+)$ 					?cmd=ReportLog&Date=$1 [L]
-RewriteRule ^report/([0-9]+)$ 							?cmd=ReportDetail&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer$ 			?cmd=ReportDailyCustomer&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/log$ 					?cmd=ReportDailyLog&IdTrack=$1&IdTD=$2 [L]
+RewriteRule ^report/([0-9]+)/([0-9]+)/customer/([0-9]+)$ 	?cmd=ReportDailyCustomerDetail&IdTrack=$1&IdTD=$2&IdCustomer=$3 [L]
+
+RewriteRule ^report/([0-9]+)/course/chart/([0-9]+)$ 		?cmd=ReportCourseChart&IdTrack=$1&IdCourse=$2 [L]
+RewriteRule ^report/([0-9]+)/selling/chart$ 				?cmd=ReportSellingChart&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/import/chart$ 					?cmd=ReportImportChart&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/paid/chart$ 					?cmd=ReportPaidChart&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/collect/chart$ 				?cmd=ReportCollectChart&IdTrack=$1 [L]
+RewriteRule ^report/([0-9]+)/value/chart$ 					?cmd=ReportValueChart&IdTrack=$1 [L]
 
 #---------------------------------------------------------------------------------------------------------------------------
 # MONEY

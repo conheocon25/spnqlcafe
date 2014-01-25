@@ -24,8 +24,12 @@ interface TermCollectCollection 	extends \Iterator {function add( Object $TermCo
 interface TermPaidCollection 		extends \Iterator {function add( Object $TermPaid );}
 interface TrackingCollection 		extends \Iterator {function add( Object $Tracking);}
 interface TrackingDailyCollection 	extends \Iterator {function add( Object $TrackingDaily);}
+interface TrackingCourseCollection 	extends \Iterator {function add( Object $TrackingCourse);}
+interface TrackingStoreCollection 	extends \Iterator {function add( Object $TrackingStore);}
+interface TrackingCustomerCollection extends \Iterator {function add( Object $TrackingCustomer);}
 interface ResourceCollection 		extends \Iterator {function add( Object $Resource);}
 interface UnitCollection 			extends \Iterator {function add( Object $Unit );}
 interface UserCollection 			extends \Iterator {function add( Object $user );}
 interface PageCollection 			extends \Iterator {function add( Object $Page);}
+interface R2CCollection 			extends \Iterator {function add( Object $R2C);}
 ?>
