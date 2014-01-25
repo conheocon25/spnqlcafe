@@ -30,10 +30,14 @@ interface TableFinder  			extends Finder {}
 interface TableLogFinder  		extends Finder {}
 interface TermCollectFinder 	extends Finder {}
 interface TermPaidFinder 		extends Finder {}
-interface TrackingFinder 		extends Finder {}
-interface TrackingDailyFinder 	extends Finder {}
 interface ResourceFinder 		extends Finder {}
 interface UnitFinder 			extends Finder {}
 interface UserFinder  			extends Finder {}
+interface R2CFinder  			extends Finder {}
+interface TrackingFinder 		extends Finder {}
+interface TrackingDailyFinder 	extends Finder {}
+interface TrackingCourseFinder 	extends Finder {}
+interface TrackingStoreFinder 	extends Finder {}
+interface TrackingCustomerFinder extends Finder {}
 
 ?>

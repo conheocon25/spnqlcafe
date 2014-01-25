@@ -26,9 +26,13 @@ class TermCollectCollection 	extends Collection implements \MVC\Domain\TermColle
 class TermPaidCollection 		extends Collection implements \MVC\Domain\TermPaidCollection{function targetClass(){return "\MVC\Domain\TermPaid";}}
 class TrackingCollection 		extends Collection implements \MVC\Domain\TrackingCollection{function targetClass(){return "\MVC\Domain\Tracking";}}
 class TrackingDailyCollection 	extends Collection implements \MVC\Domain\TrackingDailyCollection{function targetClass(){return "\MVC\Domain\TrackingDaily";}}
+class TrackingCourseCollection 	extends Collection implements \MVC\Domain\TrackingCourseCollection{function targetClass(){return "\MVC\Domain\TrackingCourse";}}
+class TrackingCustomerCollection extends Collection implements \MVC\Domain\TrackingCustomerCollection{function targetClass(){return "\MVC\Domain\TrackingCustomer";}}
+class TrackingStoreCollection 	extends Collection implements \MVC\Domain\TrackingStoreCollection{function targetClass(){return "\MVC\Domain\TrackingStore";}}
 class ResourceCollection 		extends Collection implements \MVC\Domain\ResourceCollection{function targetClass(){return "\MVC\Domain\Resource";}}
 class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection{function targetClass(){return "\MVC\Domain\Unit";}}
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection{function targetClass(){return "\MVC\Domain\Page";}}
+class R2CCollection 			extends Collection implements \MVC\Domain\R2CCollection{function targetClass(){return "\MVC\Domain\R2C";}}
 
 ?>

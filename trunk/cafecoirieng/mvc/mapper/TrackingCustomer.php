@@ -6,7 +6,7 @@ class TrackingCustomer extends Mapper implements \MVC\Domain\TrackingCustomerFin
     function __construct() {
         parent::__construct();
 				
-		$tblTrackingCustomer = "cafecoirieng_tracking_customer";
+		$tblTrackingCustomer = "tbl_tracking_customer";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date_start", $tblTrackingCustomer);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingCustomer);
