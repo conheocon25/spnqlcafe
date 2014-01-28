@@ -27,21 +27,24 @@
 			$Navigation = array(				
 				array("THIẾT LẬP", "/setting")
 			);
-			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$ConfigAll1 = $mConfig->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($ConfigAll->count(), $Config->getValue(), "/setting/config" );
+			
+			$RowPerPage 	= $mConfig->findByName("ROW_PER_PAGE");
+			$Every5Minutes 	= $mConfig->findByName("EVERY_5_MINUTES");
+			$GuestVisit 	= $mConfig->findByName("GUEST_VISIT");
+			$Discount 		= $mConfig->findByName("DISCOUNT");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Config');
-			$request->setProperty('Page', $Page);
+			$request->setProperty('ActiveAdmin', 'Config');			
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('ConfigAll1', $ConfigAll1);
-			$request->setObject('PN', $PN);
-									
+			
+			$request->setObject('RowPerPage', 		$RowPerPage);
+			$request->setObject('Every5Minutes', 	$Every5Minutes);
+			$request->setObject('GuestVisit', 		$GuestVisit);
+			$request->setObject('Discount', 		$Discount);
+												
 			return self::statuses('CMD_DEFAULT');
 		}
 	}
