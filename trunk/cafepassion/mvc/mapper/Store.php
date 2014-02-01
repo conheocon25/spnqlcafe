@@ -7,7 +7,7 @@ class Store extends Mapper implements \MVC\Domain\StoreFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblStore = "tbl_store";
+		$tblStore = "cafepassion_store";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblStore);
 		$selectStmt = sprintf("select *  from %s where id=?", $tblStore);

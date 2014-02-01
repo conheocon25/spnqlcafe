@@ -6,7 +6,7 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTrackingDaily = "tbl_tracking_daily";
+		$tblTrackingDaily = "cafepassion_tracking_daily";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date", $tblTrackingDaily);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingDaily);

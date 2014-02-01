@@ -6,8 +6,8 @@ class CourseLog extends Mapper implements \MVC\Domain\CourseLogFinder{
     function __construct() {
         parent::__construct();
 		
-		$tblCourse 		= "tbl_course";	
-		$tblCourseLog 	= "tbl_course_log";		
+		$tblCourse 		= "cafehappy4_course";	
+		$tblCourseLog 	= "cafehappy4_course_log";		
 		
 		$selectAllStmt 		= sprintf("SELECT * FROM %s", $tblCourseLog);
 		$findByPrintStmt 	= sprintf("SELECT * FROM %s CL WHERE state=0", $tblCourseLog);

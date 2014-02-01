@@ -7,26 +7,26 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from tbl_customer");
+                            "select * from cafethemxua_customer");
         $this->selectStmt = self::$PDO->prepare( 
-                            "select * from tbl_customer where id=?");
+                            "select * from cafethemxua_customer where id=?");
         $this->updateStmt = self::$PDO->prepare( 
-                            "update tbl_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
+                            "update cafethemxua_customer set name=?, type=?, card=?, phone=?, address=?, note=?, discount=? where id=?");
         $this->insertStmt = self::$PDO->prepare( 
-                            "insert into tbl_customer (name, type, card, phone, address, note, discount) 
+                            "insert into cafethemxua_customer (name, type, card, phone, address, note, discount) 
 							values( ?, ?, ?, ?, ?, ?, ?)");
 		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from tbl_customer where id=?");
+                            "delete from cafethemxua_customer where id=?");
 		$this->findByPositionStmt = self::$PDO->prepare("
 						SELECT id 
-						FROM tbl_customer
+						FROM cafethemxua_customer
 						WHERE idlocation=?
 						LIMIT ?,1
 						ORDER By id asc
 		");
-		$this->findByCardStmt = self::$PDO->prepare("select * from tbl_customer where card=?");
+		$this->findByCardStmt = self::$PDO->prepare("select * from cafethemxua_customer where card=?");
 		
-		$tblCustomer = "tbl_customer";
+		$tblCustomer = "cafethemxua_customer";
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblCustomer);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
 		 
@@ -81,7 +81,7 @@ class Customer extends Mapper implements \MVC\Domain\CustomerFinder {
     }
 	
 	function findByPostion($values) {		
-        $str = "SELECT id FROM tbl_customer ORDER BY id LIMIT ". $values[0] .",1";		
+        $str = "SELECT id FROM cafethemxua_customer ORDER BY id LIMIT ". $values[0] .",1";		
 		$this->findByPositionStmt = self::$PDO->prepare($str);
         $this->findByPositionStmt->execute($values);
 		$result = $this->findByPositionStmt->fetchAll();

@@ -6,7 +6,7 @@ class TrackingCourse extends Mapper implements \MVC\Domain\TrackingCourseFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblTrackingCourse = "tbl_tracking_course";
+		$tblTrackingCourse = "cafepassion_tracking_course";
 		
 		$selectAllStmt 				= sprintf("select * from %s ORDER BY date_start", $tblTrackingCourse);
 		$selectStmt 				= sprintf("select *  from %s where id=?", $tblTrackingCourse);

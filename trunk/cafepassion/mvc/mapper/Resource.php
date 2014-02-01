@@ -6,7 +6,7 @@ class Resource extends Mapper implements \MVC\Domain\ResourceFinder {
 
     function __construct() {
         parent::__construct();
-		$tblResource = "tbl_resource";
+		$tblResource = "cafepassion_resource";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblResource);
 		$selectStmt = sprintf("select * from %s where id=?", $tblResource);

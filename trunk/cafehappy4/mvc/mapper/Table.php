@@ -7,9 +7,9 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblTable = "tbl_table";
-		$tblSession = "tbl_session";
-		$tblSessionDetail = "tbl_session_detail";
+		$tblTable = "cafehappy4_table";
+		$tblSession = "cafehappy4_session";
+		$tblSessionDetail = "cafehappy4_session_detail";
 				
 		$selectAllStmt = sprintf("select * from %s", $tblTable);								
 		$selectStmt = sprintf("select * from %s where id=?", $tblTable);
@@ -41,12 +41,12 @@ class Table extends Mapper implements \MVC\Domain\UserFinder {
 			WHERE 				
 				(
 					SELECT count(S.id)
-					FROM tbl_session S
+					FROM cafehappy4_session S
 					WHERE T.id = S.idtable	
 				)=0 OR
 				(
 					SELECT S1.status
-					FROM tbl_session S1
+					FROM cafehappy4_session S1
 					WHERE T.id = S1.idtable
 					order by datetime DESC
 					LIMIT 1
