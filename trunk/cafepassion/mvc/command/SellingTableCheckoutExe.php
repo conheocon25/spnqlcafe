@@ -16,9 +16,10 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable = new \MVC\Mapper\Table();			
-			$mCourse = new \MVC\Mapper\Course();
-			$mSession = new \MVC\Mapper\Session();
+			$mTable 	= new \MVC\Mapper\Table();			
+			$mTableLog 	= new \MVC\Mapper\TableLog();
+			$mCourse 	= new \MVC\Mapper\Course();
+			$mSession 	= new \MVC\Mapper\Session();
 									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,6 +30,15 @@
 			//Thanh toán đủ
 			$Session->setStatus(1);
 			$mSession->update($Session);
+			
+			$TableLog	= new \MVC\Domain\TableLog(
+				null,
+				$Table->getIdUser(),
+				$Table->getId(),
+				\date('Y-m-d H:i:s'),
+				"tính tiền ".$Session->getValuePrint()
+			);
+			$mTableLog->insert($TableLog);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

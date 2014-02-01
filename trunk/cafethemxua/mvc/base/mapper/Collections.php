@@ -7,10 +7,12 @@ class AppCollection 			extends Collection implements \MVC\Domain\AppCollection 	
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection 			{function targetClass( ) {return "\MVC\Domain\User";}}
 class DomainCollection 			extends Collection implements \MVC\Domain\DomainCollection 			{function targetClass( ) {return "\MVC\Domain\Domain";}}	
 class TableCollection 			extends Collection implements \MVC\Domain\TableCollection 			{function targetClass( ) {return "\MVC\Domain\Table";}}		
+class TableLogCollection 		extends Collection implements \MVC\Domain\TableLogCollection 		{function targetClass( ) {return "\MVC\Domain\TableLog";}}
 class SessionCollection 		extends Collection implements \MVC\Domain\SessionCollection 		{function targetClass( ) {return "\MVC\Domain\Session";}}			
 class SessionDetailCollection 	extends Collection implements \MVC\Domain\SessionDetailCollection 	{function targetClass( ) {return "\MVC\Domain\SessionDetail";}}
 class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCollection 		{function targetClass( ) {return "\MVC\Domain\Category";}}	
 class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection 			{function targetClass( ) {return "\MVC\Domain\Course";}}
+class CourseLogCollection 		extends Collection implements \MVC\Domain\CourseLogCollection 		{function targetClass( ) {return "\MVC\Domain\CourseLog";}}
 class SupplierCollection 		extends Collection implements \MVC\Domain\SupplierCollection 		{function targetClass( ) {return "\MVC\Domain\Supplier";}}
 
 class PaidSupplierCollection 	extends Collection implements \MVC\Domain\PaidSupplierCollection 	{function targetClass( ) {return "\MVC\Domain\PaidSupplier";}}

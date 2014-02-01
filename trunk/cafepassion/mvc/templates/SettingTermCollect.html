@@ -182,6 +182,12 @@
 					return false;
 				}
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 TERM COLLECT
@@ -233,6 +239,13 @@
 					return false;
 				}
 			});
-		/*]]>*/</script>
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

@@ -14,10 +14,12 @@ interface AppFinder  			extends Finder {}
 interface UserFinder  			extends Finder {}
 interface DomainFinder  		extends Finder {}
 interface TableFinder  			extends Finder {}
+interface TableLogFinder  		extends Finder {}
 interface SessionFinder  		extends Finder {}
 interface SessionDetailFinder  	extends Finder {}
 interface CategoryFinder  		extends Finder {}
 interface CourseFinder  		extends Finder {}
+interface CourseLogFinder  		extends Finder {}
 interface SupplierFinder 		extends Finder {}
 
 interface PaidSupplierFinder 	extends Finder {}

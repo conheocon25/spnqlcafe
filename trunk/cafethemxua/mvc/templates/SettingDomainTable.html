@@ -58,10 +58,8 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI BÀN</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>THÊM MỚI BÀN</h3></div>
+								<form id="FormTableInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -81,7 +79,7 @@
 										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -91,10 +89,8 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT BÀN</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-show_big_thumbnails modal-icon"/>CẬP NHẬT BÀN</h3></div>
+								<form id="FormTableUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -111,10 +107,10 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -169,24 +165,48 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 TABLE
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#IdDomain').attr('alt');
-				Data[2] = $('#Name1').val();
-				Data[3] = '1';
-				Data[4] = $('#Type1').val();
-							
-				var URL = "/object/ins/Table";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 TABLE						
+			$("#FormTableInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#IdDomain').attr('alt');
+					Data[2] = $('#Name1').val();
+					Data[3] = '1';
+					Data[4] = $('#Type1').val();
+								
+					var URL = "/object/ins/Table";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -207,24 +227,48 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 TABLE
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdDomain').attr('alt');
-				Data[2] = $('#Name2').val();
-				Data[3] = '1';
-				Data[4] = $('#Type2').val();
-				
-				var URL = "/object/upd/Table";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormTableUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
 					}
-				});
-			});			
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#IdDomain').attr('alt');
+					Data[2] = $('#Name2').val();
+					Data[3] = '1';
+					Data[4] = $('#Type2').val();
+					
+					var URL = "/object/upd/Table";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
 		/*]]>*/
 		</script>
 	</body>

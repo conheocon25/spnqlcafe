@@ -1,9 +1,7 @@
 <?php
 require_once("mvc/base/Library.php");
 class Viewer {
-	function __construct($Path=null){
-		$this->Path = $Path;
-    }
+	function __construct($Path=null){$this->Path = $Path;}
 	
 	//-------------------------------------------------
 	//Hỗ trợ template xuất ra dưới dạng HTML    
@@ -11,7 +9,8 @@ class Viewer {
 	function html(){
 		//Lấy các tham số toàn cục
 		$Session = \MVC\Base\SessionRegistry::instance();		
-						
+		$User = $Session->getCurrentUser();
+				
 		//Lấy các tham số đã được xử lí
 		$request = \MVC\Base\RequestRegistry::getRequest();
 		$objects = $request->getObjects();
@@ -19,80 +18,112 @@ class Viewer {
 		
 		//Khởi tạo template và chuyển các thuộc tính và đối tượng sang
 		$tpl = new PHPTAL($this->Path);				
-		while (list($key, $val) = each($objects)){
-			$tpl->$key = $val;
+		while (list($key, $val) = each($objects)){			
+			if (substr($key, 0, 1)!='_')
+				$tpl->$key = $val;			
 		}
-		while (list($key, $val) = each($properties)){
-			$tpl->$key = $val;
-		}				
-		$Out = $tpl->execute();
+		while (list($key, $val) = each($properties)){			
+			if (substr($key, 0, 1)!='_')
+				$tpl->$key = $val;
+		}
+		$tpl->User = $User;
+		$HTML = $tpl->execute();
 		unset($tpl);
 		
 		//Kết xuất dữ liệu ra HTML
-		return $Out;
+		return $HTML;
 	}
 	
 	//-------------------------------------------------
 	//Hỗ trợ template xuất ra dưới dạng HTML    
 	//-------------------------------------------------
-	function pdf(){		
+	function pdfA4(){
 		$html = $this->html();		
 		$pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$pdf->SetMargins(5, 12, 5);
-		$pdf->SetHeaderMargin(1);		
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);			
+		$pdf->SetMargins(3, 1, 3);		
+		$pdf->setPrintHeader(false);
+		
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		$pdf->AddPage();
-		$pdf->SetFont('arial', 'N', 10);					
-		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output("cafe_passion.pdf", 'I');
+		$pdf->SetFont('arial', 'N', 10);
+		$pdf->writeHTML($html, true, false, true, false, '');		
+		$Out = $pdf->Output("bao_cao_quan_an_lang_chai.pdf", 'I');
 		unset($pdf);
 		return $Out;
 	}
-	
-	
 			
-	function custompdf(){
-		
+	function pdfReceipt1(){
 		$html = $this->html();		
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-		$width = 73; //76 mm 
+		$width 	= 73; //76 mm 
 		$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
-		$pdf->addFormat("custom", $width, $height); 
+		$pdf->addFormat("custom", $width, $height);  
 		$pdf->reFormat("custom", 'P');
-				
+		
+		// set default header data		
 		$pdf->setHeaderFont(Array('arial', '', '10'));
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
 		$pdf->SetMargins(1, 1, 1);
-		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
-			
-		$pdf->AddPage();
-		$pdf->SetFont('arial', 'N', 8);					
-		$pdf->writeHTML($html, true, false, true, false, '');
-		$Out = $pdf->Output('cafe_passion.pdf', 'I');
-		unset($pdf);
 		
+		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
+				
+		$pdf->AddPage();
+		$pdf->SetFont('arial', 'N', 8);							
+		$pdf->writeHTML($html, true, false, true, false, '');
+		$Out = $pdf->Output('phieu_quan_cafe_mien_tay_2_lien.pdf', 'I');
+		unset($Out);
 		return $Out;
 	}
 	
-	function pdfFormatSize() {
-		
+	function pdfReceipt2(){		
 		$html = $this->html();		
 		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$width 	= 73; //76 mm 
+		$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
+		$pdf->addFormat("custom", $width, $height);  
+		$pdf->reFormat("custom", 'P');
 		
-		$pdf->reFormat("A4", "L");
-
+		// set default header data		
 		$pdf->setHeaderFont(Array('arial', '', '10'));
 		$pdf->setPrintHeader(false);
 		$pdf->setPrintFooter(false);
-		$pdf->SetMargins(1, 18, 1);		
-		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);		
-		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+		$pdf->SetMargins(1, 1, 1);
 		
+		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
+				
+		$pdf->AddPage();
+		$pdf->SetFont('arial', 'N', 8);							
+		$pdf->writeHTML($html, true, false, true, false, '');
+		$pdf->AddPage();
+		$pdf->writeHTML($html, true, false, true, false, '');
+		$Out = $pdf->Output('phieu_quan_cafe_mien_tay_2_lien.pdf', 'I');
+		unset($Out);
+		return $Out;
+	}
+	
+	function pdfPrepareKitchen(){
+		$html = $this->html();		
+		$pdf = new \CUSTOMPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+		$width = 73; //76 mm 
+		$height = 297; //30 mmm mac dinh nhung 1 vong giay la 83 mm	
+		$pdf->addFormat("custom", $width, $height);  
+		$pdf->reFormat("custom", 'P');
+		
+		// set default header data		
+		$pdf->setHeaderFont(Array('arial', '', '10'));
+		$pdf->setPrintFooter(false);
+		$pdf->setPrintHeader(false);
+		$pdf->SetMargins(1, 1, 1);
+		
+		$pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
+				
 		$pdf->AddPage();
 		$pdf->SetFont('arial', 'N', 8);					
 		$pdf->writeHTML($html, true, false, true, false, '');
-		return $pdf->Output("cafe_passion.pdf", 'I');
+		$Out = $pdf->Output('phieu_quan_cafe_mien_tay.pdf', 'I');
+		unset($Out);
+		return $Out;
 	}
 }
 ?>

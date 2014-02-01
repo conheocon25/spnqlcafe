@@ -5,7 +5,7 @@
 	<!-- ======================================================================== -->
 	<span metal:define-macro="IncludeMETA">
 		<title tal:content="string:Hệ thống quản lý Cafe"/>
-		<base href="http://cafethemxua.quanly-cafe.com"/>
+		<base href="http://mientaycoffee.quanly-cafe.com"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta http-equiv="Pragma" content="no-cache"/>
@@ -16,7 +16,7 @@
 		<meta name="page-topic" content="Hệ thống quản lý Cafe"/>
 		<meta name="Abstract" content="Hệ thống quản lý Cafe"/>
 		<meta name="classification" content="Hệ thống quản lý Cafe"/>
-		<link rel="shortcut icon" type="image/png" href="/data/images/app/icon.png" />
+		<link rel="shortcut icon" type="image/png" href="/data/images/icon.ico" />
 	</span>
 	
 	<!-- ======================================================================== -->
@@ -58,6 +58,13 @@
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.js"></script>
 		<script src="/mvc/templates/theme/cms/js/bootstrap-datetimepicker.vi.js"></script>
 		<script src="/mvc/templates/theme/cms/js/jquery.validate.js"/>
+		
+		<script src="/mvc/templates/theme/cms/js/excanvas.min.js"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.js"/>
+        <script src="/mvc/templates/theme/cms/js/jquery.flot.pie.min.js"/>
+        <script src="/mvc/templates/theme/cms/js/jquery.flot.resize.min.js"/>
+		<script src="/mvc/templates/theme/cms/js/jquery.flot.categories.js"/>
+			
 		<script src="/mvc/templates/theme/cms/js/pdfobject.js"/>
 	</span>
 	
@@ -97,7 +104,7 @@
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
 	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CAFE THỀM XƯA</h1></div>
+	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ MIỀN TÂY COFFEE</h1></div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
@@ -135,10 +142,7 @@
 		<ul tal:condition="php: @\MVC\Base\SessionRegistry::instance()->getCurrentUser()->isSeller()">
 			<li tal:attributes="class php:ActiveAdmin=='Selling'?'active':'disable'">
 				<a tal:attributes="href '/selling'"><i class="glyphicons-drink" />BÁN HÀNG</a>
-			</li>
-			<li tal:attributes="class php:ActiveAdmin=='Report'?'active':'disable'">
-				<a tal:attributes="href '/report'"><i class="glyphicons-fax" />BÁO CÁO</a>
-			</li>
+			</li>			
 			<li>
 				<a tal:attributes="href '/change/pass/load'"><i class="glyphicons-keys" />ĐỔI MẬT KHẨU</a>
 			</li>
@@ -256,15 +260,15 @@
 	<div metal:define-macro="ReportHeader">
 		<table width="100%" border="0" cellpadding="2" >
 			<tr>			
-				<td width="50%" align="left"><B>CAFE PASSION</B></td>
+				<td width="50%" align="left"><B>MIỀN TẦY COFFEE</B></td>
 				<td width="50%" align="left"><B align="right" tal:content="Title" /></td>
 			</tr>
 			<tr>
-				<td width="50%" align="left">Phạm Thái Bường, P4 TP.VL</td>
+				<td width="50%" align="left">79/12A Phó Cơ Điều P3 TPVL</td>				
 				<td width="50%" align="right">Lưu hành nội bộ</td>
 			</tr>
 			<tr>
-				<td width="50%" align="left">0939 528 166</td>
+				<td width="50%" align="left">0702 488 988</td>
 				<td width="50%" align="left" />
 			</tr>
 		</table>

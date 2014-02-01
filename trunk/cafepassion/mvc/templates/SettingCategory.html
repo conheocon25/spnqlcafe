@@ -26,6 +26,7 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="40" />
 										<th class="left">TÊN</th>
 										<th class="right" width="100">MÓN</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
@@ -35,6 +36,9 @@
 								<tbody>
 									<tr tal:repeat="Category CategoryAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category/getId"/></td>
+										<td class="center">
+											<i tal:condition="Category/getEnable" class="glyphicons-eye_open"/>											
+										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category/getId" tal:content="Category/getName"/></td>
 										<td class="right"><a tal:attributes="href Category/getURLCourse"> <span tal:content="Category/getCourseAll/count" /> món</a></td>
 										<td class="center">
@@ -64,7 +68,16 @@
 										<div class="controls">
 											<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hiển thị</label>
+										<div class="controls">											
+											<select name="Enable1" id="Enable1" style="width:80%;">
+												<option value="0">Tắt</option>
+												<option value="1">Bật</option>
+											</select>
+										</div>
+									</div>
 									<div class="form-actions">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -86,7 +99,16 @@
 										<div class="controls">
 											<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hiển thị</label>
+										<div class="controls">											
+											<select name="Enable2" id="Enable2" style="width:80%;">
+												<option value="0">Tắt</option>
+												<option value="1">Bật</option>
+											</select>
+										</div>
+									</div>
 									<div class="form-actions">
 										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -167,7 +189,9 @@
 					var Data = [];
 					Data[0] = 'null';
 					Data[1] = $('#Name1').val();
-
+					Data[2] = "";
+					Data[3] = $('#Enable1').val();
+					
 					var URL = "/object/ins/Category";
 					$.ajax({
 						type: "POST",
@@ -180,6 +204,12 @@
 					return false;
 				}
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 CATEGORY
@@ -190,8 +220,9 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
+					$('#URLUpdButton').attr('alt', 	data.Id);
+					$('#Name2').attr('value', 		data.Name);
+					$('#Enable2').select2('val', 	data.Enable);
 				});
 			});
 			
@@ -214,7 +245,9 @@
 				submitHandler: function (form) {					
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
-					Data[1] = $('#Name2').val();												
+					Data[1] = $('#Name2').val();
+					Data[2] = "";
+					Data[3] = $('#Enable2').val();
 					var URL = "/object/upd/Category";
 					$.ajax({
 						type: "POST",
@@ -226,7 +259,13 @@
 					});			
 					return false;
 				}
-			});				
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
 		/*]]>*/
 		</script>
 	</body>
