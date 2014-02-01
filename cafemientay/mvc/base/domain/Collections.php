@@ -7,10 +7,11 @@ interface DomainCollection 			extends \Iterator {function add( Object $domain );
 interface TableCollection 			extends \Iterator {function add( Object $table );}
 interface TableLogCollection 		extends \Iterator {function add( Object $TableLog );}
 interface SessionCollection 		extends \Iterator {function add( Object $session );	}
-interface SessionDetailCollection 	extends \Iterator {function add( Object $SessionDetail );	}
-interface CategoryCollection 		extends \Iterator {function add( Object $category );	}
-interface CourseCollection 			extends \Iterator {function add( Object $course );	}
-interface SupplierCollection 		extends \Iterator {function add( Object $supplier );	}
+interface SessionDetailCollection 	extends \Iterator {function add( Object $SessionDetail );}
+interface CategoryCollection 		extends \Iterator {function add( Object $category );}
+interface CourseCollection 			extends \Iterator {function add( Object $course );}
+interface CourseLogCollection 		extends \Iterator {function add( Object $CourseLog );}
+interface SupplierCollection 		extends \Iterator {function add( Object $supplier );}
 
 interface PaidSupplierCollection 	extends \Iterator {function add( Object $PaidSupplier );}
 interface PaidPayRollCollection 	extends \Iterator {function add( Object $PaidPayRoll );}

@@ -4,7 +4,6 @@ use MVC\Library\Number;
 require_once( "mvc/base/domain/DomainObject.php");
 
 class Course extends Object{
-
     private $Id;
 	private $IdCategory;
 	private $Name;
@@ -15,6 +14,7 @@ class Course extends Object{
 	private $Price3;
 	private $Price4;
 	private $Picture;
+	private $Prepare;
 	private $IsDiscount;
 	private $Enable;
 	
@@ -22,19 +22,19 @@ class Course extends Object{
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
     function __construct( 
-		$Id			=null, 
-		$IdCategory	=null, 
-		$Name		=null, 
-		$ShortName	=null, 
-		$Unit		=null, 
-		$Price1		=null, 
-		$Price2		=null, 
-		$Price3		=null, 
-		$Price4		=null, 
-		$Picture	=null,
-		$IsDiscount	=null,
-		$Enable		=null
-	) 
+		$Id=null, 
+		$IdCategory=null, 
+		$Name=null, 
+		$ShortName=null, 
+		$Unit=null, 
+		$Price1=null, 
+		$Price2=null, 
+		$Price3=null, 
+		$Price4=null, 
+		$Picture=null,
+		$Prepare=null,
+		$IsDiscount=null,
+		$Enable=null) 
 	{
         $this->Id 			= $Id;
 		$this->IdCategory 	= $IdCategory;
@@ -46,9 +46,9 @@ class Course extends Object{
 		$this->Price3 		= $Price3;
 		$this->Price4 		= $Price4;
 		$this->Picture 		= $Picture;
-		$this->IsDiscount	= $IsDiscount;
-		$this->Enable		= $Enable;
-		
+		$this->Prepare 		= $Prepare;
+		$this->IsDiscount 	= $IsDiscount;		
+		$this->Enable 		= $Enable;
         parent::__construct( $Id );
     }
     function getId( ) {return $this->Id;}
@@ -85,6 +85,9 @@ class Course extends Object{
 	function setPicture( $Picture ) {$this->Picture = $Picture;$this->markDirty();}	
 	function getPicture( ) {return $this->Picture;}
 	
+	function setPrepare( $Picture ) {$this->Prepare = $Prepare;$this->markDirty();}	
+	function getPrepare( ) {return $this->Prepare;}
+	
 	function setIsDiscount( $IsDiscount ) {$this->IsDiscount = $IsDiscount;$this->markDirty();}	
 	function getIsDiscount( ) {return $this->IsDiscount;}
 	
@@ -103,6 +106,7 @@ class Course extends Object{
 		 	'Price3'		=> $this->getPrice3(),
 		 	'Price4'		=> $this->getPrice4(),
 		 	'Picture'		=> $this->getPicture(),
+			'Prepare'		=> $this->getPrepare(),
 			'IsDiscount'	=> $this->getIsDiscount(),
 			'Enable'		=> $this->getEnable()
 		);
@@ -119,12 +123,12 @@ class Course extends Object{
 		$this->Price3 		= $Data[7];
 		$this->Price4 		= $Data[8];
 		$this->Picture 		= $Data[9];
-		$this->IsDiscount 	= $Data[10];
-		$this->Enable 		= $Data[11];
+		$this->Prepare 		= $Data[10];
+		$this->IsDiscount 	= $Data[11];
+		$this->Enable 		= $Data[12];
     }
 	
-	function getURLRecipe(){return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/recipe";}
-	
+	function getURLRecipe(){return "/setting/category/".$this->getIdCategory()."/".$this->getId()."/recipe";}	
 	function getRecipeAll(){
 		$mR2C = new \MVC\Mapper\R2C();
 		$R2CAll = $mR2C->findBy(array($this->getId()));
