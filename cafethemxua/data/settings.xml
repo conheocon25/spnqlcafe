@@ -42,6 +42,13 @@
 		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
 		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
 		
+		<command name="ReportCourseChart">	<view>ReportCourseChart</view>	</command>
+		<command name="ReportSellingChart">	<view>ReportSellingChart</view>	</command>
+		<command name="ReportImportChart">	<view>ReportImportChart</view>	</command>
+		<command name="ReportPaidChart">	<view>ReportPaidChart</view>	</command>
+		<command name="ReportCollectChart">	<view>ReportCollectChart</view>	</command>
+		<command name="ReportValueChart">	<view>ReportValueChart</view>	</command>
+		
 		<command name="ReportDaily">		<view>ReportDaily</view>		</command>
 		<command name="ReportDailySelling">	<view>ReportDailySelling</view>	</command>
 		<command name="ReportDailyImport">	<view>ReportDailyImport</view>	</command>
@@ -50,22 +57,28 @@
 		<command name="ReportDailyCollect">	<view>ReportDailyCollect</view>	</command>
 		<command name="ReportDailyCourse">	<view>ReportDailyCourse</view>	</command>
 		<command name="ReportDailyCustomer"><view>ReportDailyCustomer</view></command>
+		<command name="ReportDailyLog">		<view>ReportDailyLog</view>	</command>
 		<command name="ReportDailyCustomerDetail"><view>ReportDailyCustomerDetail</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- SELLING.DOMAIN		 															-->
 		<!-- ============================================================================== -->
 		<command name="Selling"><view>Selling</view></command>
+		<command name="SellingSearchCourse"><view>SellingSearchCourse</view></command>
+		<command name="SellingLogCourse"><view>SellingLogCourse</view></command>
+		<command name="SellingLogCoursePreparePrint"><view>SellingLogCoursePreparePrint</view></command>
 		<command name="SellingDomainLoad"><view>SellingDomainLoad</view></command>
 		<command name="SellingTableLoad"><view>SellingTableLoad</view></command>
-		<command name="SellingTableCallExe"><view>SellingTableCallExe</view></command>										
+		<command name="SellingTableCallExe"><view>SellingTableCallExe</view></command>
 		<command name="SellingTableMoveExe"><view>SellingTableMoveExe</view><status value="CMD_OK"><forward>Selling</forward></status></command>
 		<command name="SellingTableMergeExe">
 			<view>SellingTableMergeExe</view>
 			<status value="CMD_OK"><forward>Selling</forward></status>
 		</command>				
-		<command name="SellingTablePrint"><view>SellingTablePrint</view></command>		
+		<command name="SellingTablePrint"><view>SellingTablePrint</view></command>
 		<command name="SellingTableCheckoutExe"><view>SellingTableCheckoutExe</view></command>
+		<command name="CallLog"><view>CallLog</view></command>
+		<command name="CallLogLoading"><view>CallLogLoading</view></command>
 		
 		<!-- ============================================================================== -->
 		<!-- PAYROLL			 															-->

@@ -67,12 +67,6 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label">CMND</label>
-											<div class="controls">
-												<input id="Card1" name="Card1" type="text" class="form-control input-small"/>
-											</div>
-										</div>
-										<div class="form-group">
 											<label class="control-label">Giới tính</label>
 											<div class="controls">
 												<select name="Gender1" id="Gender1" style="width:80%;">
@@ -113,6 +107,14 @@
 												</div>
 											</div>
 										</div>
+										<div class="form-group">
+											<div class="control-group">
+												<label class="control-label">CMND</label>
+												<div class="controls">
+													<input id="Card1" name="Card1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
@@ -138,12 +140,6 @@
 												<label class="control-label">Tên</label>
 												<div class="controls">
 													<input id="Name2" name="Name2" type="text" class="form-control input-small"/>
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="control-label">CMND</label>
-												<div class="controls">
-													<input id="Card2" name="Card2" type="text" class="form-control input-small"/>
 												</div>
 											</div>
 											<div class="control-group">
@@ -174,13 +170,21 @@
 												</div>
 											</div>
 											<div class="form-group">
-											<div class="control-group">
-												<label class="control-label">Lương cơ bản</label>
-												<div class="controls">			
-													<input id="SalaryBase2" name="SalaryBase2" type="text" class="form-control input-small"/>
+												<div class="control-group">
+													<label class="control-label">Lương cơ bản</label>
+													<div class="controls">			
+														<input id="SalaryBase2" name="SalaryBase2" type="text" class="form-control input-small"/>
+													</div>
 												</div>
 											</div>
-										</div>
+											<div class="form-group">
+												<div class="control-group">
+													<label class="control-label">CMND</label>
+													<div class="controls">
+														<input id="Card2" name="Card2" type="text" class="form-control input-small"/>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>									
 									<div class="modal-footer">
@@ -272,8 +276,8 @@
 					Data[3] = $('#Job1').val();
 					Data[4] = $('#Phone1').val();
 					Data[5] = $('#Address1').val();
-					Data[6] = $('#Card1').val();
-					Data[7] = $('#SalaryBase1').val();
+					Data[6] = $('#SalaryBase1').val();
+					Data[7] = $('#Card1').val();
 															
 					var URL = "/object/ins/Employee";
 					$.ajax({
@@ -287,6 +291,13 @@
 					return false;
 				}
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
 			//-----------------------------------------------------------------------------------
 			//Load 1 Employee
 			//-----------------------------------------------------------------------------------
@@ -303,8 +314,8 @@
 					$('#Job2').attr('value', data.Job);
 					$('#Phone2').attr('value', data.Phone);
 					$('#Address2').attr('value', data.Address);
-					$('#Card2').attr('value', data.Card);
 					$('#SalaryBase2').attr('value', data.SalaryBase);
+					$('#Card2').attr('value', data.Card);
 				});
 			});
 			
@@ -339,10 +350,10 @@
 					Data[2] = $('#Gender2').val();
 					Data[3] = $('#Job2').val();
 					Data[4] = $('#Phone2').val();
-					Data[5] = $('#Address2').val();
-					Data[6] = $('#Card2').val();
-					Data[7] = $('#SalaryBase2').val();
-															
+					Data[5] = $('#Address2').val();				
+					Data[6] = $('#SalaryBase2').val();
+					Data[7] = $('#Card2').val();
+					
 					var URL = "/object/upd/Employee";
 					$.ajax({
 						type: "POST",
@@ -355,7 +366,13 @@
 					return false;
 				}
 			});
-						
-		/*]]>*/</script>		
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

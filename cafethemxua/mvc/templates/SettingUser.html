@@ -75,7 +75,7 @@
 										<div class="form-group">
 											<label class="control-label">Mật khẩu</label>
 											<div class="controls">
-												<input id="Pass1" name="Pass1" type="text" class="form-control input-small"/>
+												<input id="Pass1" name="Pass1" type="password" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -139,7 +139,7 @@
 										<div class="form-group">
 											<label class="control-label">Mật khẩu</label>
 											<div class="controls">
-												<input id="Pass2" name="Pass2" type="text" class="form-control input-small"/>
+												<input id="Pass2" name="Pass2" type="password" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -275,6 +275,12 @@
 					return false;
 				}
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 USER
@@ -345,6 +351,13 @@
 					return false;
 				}
 			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+			
 		/*]]>*/
 		</script>
 	</body>

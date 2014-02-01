@@ -12,176 +12,194 @@
 			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
 			<div metal:use-macro="mAdmin.xhtml/Locationbar"/>
 			<div class="row">
-				<div class="col-12">					
-					<a class="btn btn-primary" tal:attributes="href php: URLBase . '/all/yes'">Chấm tất cả </a>
-					<a class="btn btn-primary" href="#DialogInfo" data-toggle="modal">Tổng kết lương </a>
+				<div class="col-12">
 					<div class="widget-box">
 						<div class="widget-content nopadding">
 							<table class="table table-striped table-hover">
 								<thead>
 									<tr>										
 										<th><div class="text-left">NGÀY</div></th>
-										<th width="90"><div class="text-center">CÓ LÀM</div></th>
-										<th width="90"><div class="text-center">TĂNG CA</div></th>
-										<th width="50"><div class="text-left">GIỜ</div></th>
-										<th width="90"><div class="text-center">LÀM TRỄ</div></th>
-										<th width="50"><div class="text-left">PHÚT</div></th>
+										<th width="120"><div class="text-right">CA 1</div></th>
+										<th width="120"><div class="text-right">CA 2</div></th>
+										<th width="120"><div class="text-right">CA 3</div></th>
+										<th width="120"><div class="text-right">TĂNG CA</div></th>
+										<th width="120"><div class="text-right">PHẠT TRỄ</div></th>
+										<th width="120"><div class="text-right">TIỀN</div></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="Day Track/getURLDayAll">
-										<td><div class="text-left" tal:content="php: Day[0]"/></td>
+									<tr tal:repeat="PR PRAll">
 										<td>
-											<div class="text-center">
-												<a tal:condition="php: Employee->getPayRoll(Day[5])" tal:attributes="href php: URLBase . '/' . Day[5] . '/no'">
-													<div tal:condition="php: Employee->getPayRoll(Day[5])->getState()==1" >
-														<i class="glyphicons-check"/>
-													</div>													
-												</a>
-												<a tal:condition="php: Employee->getPayRoll(Day[5])" tal:attributes="href php: URLBase . '/' . Day[5] . '/yes'">
-													<div tal:condition="php: Employee->getPayRoll(Day[5])->getState()==0" >
-														<i class="glyphicons-unchecked"/>
-													</div>
-												</a>
-												<a tal:condition="not: php: Employee->getPayRoll(Day[5])" tal:attributes="href php: URLBase . '/' . Day[5] . '/yes'">
-													<i class="glyphicons-unchecked"/>
-												</a>
-											</div>
+											<a class="PayRoll" href="#DialogPayRoll" data-toggle="modal" tal:attributes="
+												data-id 		PR/getId;
+												data-date 		PR/getDate;
+												data-session1 	PR/getSession1;
+												data-session2 	PR/getSession2;
+												data-session3 	PR/getSession3;
+												data-extra 	  	PR/getExtra;
+												data-late 	  	PR/getLate">
+												<div class="text-left" tal:content="PR/getDatePrint"/>
+											</a>
 										</td>
-										<td>
-											<div class="text-center" tal:condition="php: Employee->getPayRoll(Day[5])">
-												<div class="btn-group">
-													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-														<span class="caret"/>Thêm
-													</a>
-													<ul class="dropdown-menu">
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/0';class php: Employee->getPayRoll(Day[5])->getExtra()==0?'btn btn-primary':'btn'">0 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/1';class php: Employee->getPayRoll(Day[5])->getExtra()==1?'btn btn-primary':'btn'">1 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/2';class php: Employee->getPayRoll(Day[5])->getExtra()==2?'btn btn-primary':'btn'">2 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/3';class php: Employee->getPayRoll(Day[5])->getExtra()==3?'btn btn-primary':'btn'">3 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/4';class php: Employee->getPayRoll(Day[5])->getExtra()==4?'btn btn-primary':'btn'">4 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/5';class php: Employee->getPayRoll(Day[5])->getExtra()==5?'btn btn-primary':'btn'">5 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/6';class php: Employee->getPayRoll(Day[5])->getExtra()==6?'btn btn-primary':'btn'">6 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/7';class php: Employee->getPayRoll(Day[5])->getExtra()==7?'btn btn-primary':'btn'">7 giờ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/100/8';class php: Employee->getPayRoll(Day[5])->getExtra()==8?'btn btn-primary':'btn'">8 giờ</a></li>
-													</ul>
-												</div>	
-											</div>
-										</td>
-										<td>
-											<div tal:condition="php: Employee->getPayRoll(Day[5])">
-												<div class="text-left" tal:content="php: Employee->getPayRoll(Day[5])->getExtra()"/>
-											</div>
-										</td>
-										<td>
-											<div class="text-center" tal:condition="php: Employee->getPayRoll(Day[5])">
-												<div class="btn-group" tal:condition="php: Employee->getPayRoll(Day[5])->getState()==1">
-													<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-														Trễ <span class="caret"/>
-													</a>
-													<ul class="dropdown-menu">
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/0';class php: Employee->getPayRoll(Day[5])->getLate()==0?'btn btn-primary':'btn'">Không trễ</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/5';class php: Employee->getPayRoll(Day[5])->getLate()==5?'btn btn-primary':'btn'">5 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/10';class php: Employee->getPayRoll(Day[5])->getLate()==10?'btn btn-primary':'btn'">10 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/15';class php: Employee->getPayRoll(Day[5])->getLate()==15?'btn btn-primary':'btn'">15 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/20';class php: Employee->getPayRoll(Day[5])->getLate()==20?'btn btn-primary':'btn'">20 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/25';class php: Employee->getPayRoll(Day[5])->getLate()==25?'btn btn-primary':'btn'">25 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/30';class php: Employee->getPayRoll(Day[5])->getLate()==30?'btn btn-primary':'btn'">30 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/35';class php: Employee->getPayRoll(Day[5])->getLate()==35?'btn btn-primary':'btn'">35 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/40';class php: Employee->getPayRoll(Day[5])->getLate()==40?'btn btn-primary':'btn'">40 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/45';class php: Employee->getPayRoll(Day[5])->getLate()==45?'btn btn-primary':'btn'">45 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/50';class php: Employee->getPayRoll(Day[5])->getLate()==50?'btn btn-primary':'btn'">50 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/55';class php: Employee->getPayRoll(Day[5])->getLate()==55?'btn btn-primary':'btn'">55 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/60';class php: Employee->getPayRoll(Day[5])->getLate()==60?'btn btn-primary':'btn'">60 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/65';class php: Employee->getPayRoll(Day[5])->getLate()==65?'btn btn-primary':'btn'">65 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/70';class php: Employee->getPayRoll(Day[5])->getLate()==70?'btn btn-primary':'btn'">70 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/75';class php: Employee->getPayRoll(Day[5])->getLate()==75?'btn btn-primary':'btn'">75 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/80';class php: Employee->getPayRoll(Day[5])->getLate()==80?'btn btn-primary':'btn'">80 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/85';class php: Employee->getPayRoll(Day[5])->getLate()==85?'btn btn-primary':'btn'">85 phút"</a></li>
-														<li><a tal:attributes="href php: URLBase . '/' . Day[5] . '/yes/90';class php: Employee->getPayRoll(Day[5])->getLate()==90?'btn btn-primary':'btn'">90 phút"</a></li>
-													</ul>
-												</div>												
-											</div>
-										</td>
-										<td>
-											<div tal:condition="php: Employee->getPayRoll(Day[5])">
-												<div class="text-left" tal:content="php: Employee->getPayRoll(Day[5])->getLate()"/>
-											</div>
-										</td>
+										<td><div class="text-right" tal:content="PR/getSession1Print"/></td>
+										<td><div class="text-right" tal:content="PR/getSession2Print"/></td>
+										<td><div class="text-right" tal:content="PR/getSession3Print"/></td>
+										<td><div class="text-right" tal:content="PR/getExtraPrint"/></td>
+										<td><div class="text-right" tal:content="PR/getLatePrint"/></td>
+										<td><div class="text-right" tal:content="PR/getValuePrint"/></td>
+									</tr>
+									<tr>
+										<td align="left"><B>TỔNG LƯƠNG</B></td>
+										<td align="right"><B tal:content="NSession1/formatCurrency"/></td>
+										<td align="right"><B tal:content="NSession2/formatCurrency"/></td>
+										<td align="right"><B tal:content="NSession3/formatCurrency"/></td>
+										<td align="right"><B tal:content="NExtra/formatCurrency"/></td>
+										<td align="right"><B tal:content="NLate/formatCurrency"/></td>
+										<td align="right"><B tal:content="NValue/formatCurrency"/></td>
 									</tr>
 								</tbody>								
-							</table>													
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- UPDATE DIALOG  -->
-		<div id="DialogInfo" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3><i class="glyphicons-tag modal-icon"/>TỔNG KẾT LƯƠNG</h3>
-					</div>
-					<div method="post" class="form-horizontal">
-						<table width="100%" border="0" cellpadding="2">
-							<tr>
-								<td align="right" width="40%">NHÂN VIÊN</td>
-								<td align="left" width="60%"> _ <B tal:content="Employee/getName"/></td>
-							</tr>
-							<tr>
-								<td align="right" width="40%">LƯƠNG CB</td>
-								<td align="left" width="60%"> _ <B tal:content="Employee/getSalaryBasePrint"/> Đ</td>
-							</tr>
-							<tr>
-								<td align="right" width="40%">NGÀY LƯƠNG</td>
-								<td align="left" width="60%"> _ <B tal:content="Employee/getSalaryBaseDPrint"/> Đ</td>
-							</tr>
-							<tr>
-								<td align="right" width="40%">TĂNG CA</td>
-								<td align="left" width="60%"> _ <B tal:content="Employee/getSalaryBaseHPrint"/> Đ/GIỜ</td>
-							</tr>
-							<tr>
-								<td align="right" width="40%">PHẠT TRỄ</td>
-								<td align="left" width="60%"> _ <B tal:content="Config5Minutes"/> Đ/5 PHÚT</td>
-							</tr>
-							<tr>
-								<td align="right">------------------------</td>
-								<td align="left">-----------------------</td>
-							</tr>
-							<tr>
-								<td align="right">NGÀY CÔNG</td>
-								<td align="left"> + <B tal:content="YesValue"/> (<span tal:content="Yes"/> CA)</td>
-							</tr>
-							<tr>
-								<td align="right">LÀM THÊM</td>
-								<td align="left"> + <B tal:content="ExtraValue"/> Đ (<span tal:content="Extra"/> GIỜ)</td>
-							</tr>
-							<tr>
-								<td align="right">NGHỈ </td>
-								<td align="left"> - <B tal:content="AbsentValue"/> Đ (<span tal:content="Absent"/> CA)</td>
-							</tr>		
-							<tr>
-								<td align="right">PHẠT TRỄ</td>
-								<td align="left"> - <B tal:content="LateValue"/> Đ (<span tal:content="Late"/> PHÚT)</td>
-							</tr>
-							<tr>
-								<td align="right">------------------------</td>
-								<td align="left">-----------------------</td>
-							</tr>
-							<tr>
-								<td align="right"><b>TỔNG LƯƠNG</b></td>
-								<td align="left"> + <B tal:content="Salary"/> ĐỒNG</td>
-							</tr>
-						</table>
-						<div class="modal-footer">
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
-						</div>
+			<div id="EmployeeCurrent" tal:attributes="alt Employee/getId"/>
+			<!-- PAYROLL  -->
+			<div id="DialogPayRoll" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header"><h3><i class="glyphicons-truck modal-icon"/>CHẤM CÔNG</h3></div>
+						<form id="FormPayRoll" action="#" class="form-horizontal" novalidate="novalidate">
+							<div class="modal-body">
+								<div class="form-group">
+									<label class="control-label">Ngày</label>
+									<div class="controls">
+										<input id="Date" name="Date" type="text" class="form-control input-small" readonly="true"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Ca 1</label>
+									<div class="controls">
+										<input id="Session1" name="Session1" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Ca 2</label>
+									<div class="controls">
+										<input id="Session2" name="Session2" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Ca 3</label>
+									<div class="controls">
+										<input id="Session3" name="Session3" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Tăng ca</label>
+									<div class="controls">
+										<input id="Extra" name="Extra" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Phạt trễ</label>
+									<div class="controls">
+										<input id="Late" name="Late" type="text" class="form-control input-small"/>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
+								<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
-		</div>
+			<!-- END INSERT DIALOG  -->
+		</div>		
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">
+		/*<![CDATA[*/										
+			//-----------------------------------------------------------------------------------
+			//Load 1 PR
+			//-----------------------------------------------------------------------------------
+			$('.PayRoll').click(function(){
+				$("#URLUpdButton").attr('alt', $(this).attr('data-id'));
+				$("#Date").val($(this).attr('data-date'));
+				$("#Session1").val($(this).attr('data-session1'));
+				$("#Session2").val($(this).attr('data-session2'));
+				$("#Session3").val($(this).attr('data-session3'));
+				$("#Extra").val($(this).attr('data-extra'));
+				$("#Late").val($(this).attr('data-late'));
+			});
+			
+			//-----------------------------------------------------------------------------------
+			//Update 1 TABLE
+			//-----------------------------------------------------------------------------------
+			$("#FormPayRoll").validate({
+				rules:{
+					Session1:{
+						required:true,
+						number:true,
+						min:0
+					},
+					Session2:{
+						required:true,
+						number:true,
+						min:0
+					},
+					Session3:{
+						required:true,
+						number:true,
+						min:0
+					},
+					Extra:{
+						required:true,
+						number:true,
+						min:0
+					},
+					Late:{
+						required:true,
+						number:true,
+						min:0
+					}
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#EmployeeCurrent').attr('alt');
+					Data[2] = $('#Date').val();
+					Data[3] = $('#Session1').val();
+					Data[4] = $('#Session2').val();
+					Data[5] = $('#Session3').val();
+					Data[6] = $('#Extra').val();
+					Data[7] = $('#Late').val();
+																			
+					var URL = "/object/upd/PayRoll";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();							
+						}
+					});					
+					return false;
+				}
+			});			
+		/*]]>*/
+		</script>
+		
 	</body>
 </html>

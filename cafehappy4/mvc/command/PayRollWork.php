@@ -25,74 +25,76 @@
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Track = $mTracking->find($IdTrack);			
-			$Employee  = $mEmployee->find($IdEmployee);
+			$Track 		= $mTracking->find($IdTrack);			
+			$Employee  	= $mEmployee->find($IdEmployee);
 						
 			$Title = mb_strtoupper($Employee->getName(), 'UTF8');
 			$Navigation = array(				
 				array("CHẤM CÔNG", $Track->getURLPayRoll() )
-			);
-			$URLBase = $Track->getURLPayRoll()."/".$Employee->getId();
-			
-			//Tính luôn lương
-			$Config5Minutes = $mConfig->findByName('EVERY_5_MINUTES');
-			$Employee = $mEmployee->find($IdEmployee);
-			$DayValue = $Employee->getSalaryBase()/30;
-						
+			);								
 			$PRAll = $mPR->findByTracking(array($IdEmployee, $Track->getDateStart(), $Track->getDateEnd()));
 			
-			$Extra = 0;
-			$Late = 0;
-			$Absent = 0;
-			$Yes = 0;
+			//Nếu chưa có thì phát sinh ra 30 ngày lương rỗng
+			if ($PRAll->count()==0){				
+				$Date 		= $Track->getDateStart();
+				$EndDate 	= $Track->getDateEnd();								
+				while (strtotime($Date) <= strtotime($EndDate)){
+					$PR = new \MVC\Domain\PayRoll(
+						null,
+						$IdEmployee, 
+						$Date, 
+						0, 
+						0, 
+						0, 
+						0, 
+						0
+					);
+					$mPR->insert($PR);
+					$Date = \date("Y-m-d", strtotime("+1 day", strtotime($Date)));
+				}
+			}			
+			$PRAll = $mPR->findByTracking(array($IdEmployee, $Track->getDateStart(), $Track->getDateEnd()));
+			
+			$Value 		= 0;
+			$Session1 	= 0;
+			$Session2 	= 0;
+			$Session3 	= 0;
+			$Extra 		= 0;
+			$Late 		= 0;
+			
 			while ($PRAll->valid()){
-				$PR = $PRAll->current();
-				$Extra += $PR->getExtra();
-				$Absent += $PR->getState()==0?1:0;
-				$Yes += $PR->getState()==1?1:0;
-				$Late += $PR->getLate();
+				$PR 		= $PRAll->current();
+				$Value 		+= $PR->getValue();
+				$Session1 	+= $PR->getSession1();
+				$Session2 	+= $PR->getSession2();
+				$Session3 	+= $PR->getSession3();
+				$Extra 		+= $PR->getExtra();
+				$Late 		+= $PR->getLate();
+				
 				$PRAll->next();
 			}
-			
-			//Tính thời gian trễ
-			$LateValue = ($Late/5)*$Config5Minutes->getValue();
-			$NLateValue = new \MVC\Library\Number($LateValue);
-			
-			//Tính làm thêm
-			$ExtraValue = $Extra*$Employee->getSalaryBaseH();
-			$NExtraValue = new \MVC\Library\Number($ExtraValue);
-			
-			//Làm chính thức
-			$YesValue = $Yes*$Employee->getSalaryBaseD();
-			$NYesValue = new \MVC\Library\Number($YesValue);
-			
-			//Tính nghỉ ca
-			$AbsentValue = $Absent*$DayValue;
-			$NAbsentValue = new \MVC\Library\Number($AbsentValue);
-			
-			//Tổng lương
-			$Salary = $YesValue + $ExtraValue - $LateValue;
-			$NSalary = new \MVC\Library\Number($Salary);
+			$NValue 	= new \MVC\Library\Number($Value);
+			$NSession1 	= new \MVC\Library\Number($Session1);
+			$NSession2 	= new \MVC\Library\Number($Session2);
+			$NSession3 	= new \MVC\Library\Number($Session3);
+			$NExtra 	= new \MVC\Library\Number($Extra);
+			$NLate 		= new \MVC\Library\Number($Late);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setProperty('Title', $Title);
-			$request->setProperty('URLBase', $URLBase);
+			$request->setProperty('Title'	, $Title);			
 			$request->setObject('Navigation', $Navigation);
-			$request->setObject('Track', $Track);
-			$request->setObject('Employee', $Employee);
+			$request->setObject('Track'		, $Track);
+			$request->setObject('Employee'	, $Employee);
+			$request->setObject('PRAll'		, $PRAll);
 			
-			$request->setProperty('Config5Minutes', $Config5Minutes->getValue());
-			$request->setProperty('Extra', $Extra);
-			$request->setProperty('ExtraValue', $NExtraValue->formatCurrency() );
-			$request->setProperty('Yes', $Yes);
-			$request->setProperty('YesValue', $NYesValue->formatCurrency() );
-			$request->setProperty('Absent', $Absent);
-			$request->setProperty('AbsentValue', $NAbsentValue->formatCurrency() );
-			$request->setProperty('Late', $Late);
-			$request->setProperty('LateValue', $NLateValue->formatCurrency() );
-			$request->setProperty('Salary', $NSalary->formatCurrency() );
+			$request->setObject('NValue'	, $NValue);
+			$request->setObject('NSession1'	, $NSession1);
+			$request->setObject('NSession2'	, $NSession2);
+			$request->setObject('NSession3'	, $NSession3);
+			$request->setObject('NExtra'	, $NExtra);
+			$request->setObject('NLate'		, $NLate);
 		}
 	}
 ?>

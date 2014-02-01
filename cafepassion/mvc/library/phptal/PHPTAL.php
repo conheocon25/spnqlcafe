@@ -183,18 +183,15 @@ class PHPTAL
         $this->_context->setGlobal($this->_globalContext);
 
         if (function_exists('sys_get_temp_dir')) {
-            //$this->setPhpCodeDestination(sys_get_temp_dir());
-            $this->setPhpCodeDestination('mvc/library/tmp/');
+            $this->setPhpCodeDestination(sys_get_temp_dir());
         } elseif (substr(PHP_OS, 0, 3) == 'WIN') {
             if (file_exists('c:\\WINNT\\Temp\\')) {
-                //$this->setPhpCodeDestination('c:\\WINNT\\Temp\\');
-                $this->setPhpCodeDestination('mvc/library/tmp/');
+                $this->setPhpCodeDestination('c:\\WINNT\\Temp\\');
             } else {
-                //$this->setPhpCodeDestination('c:\\WINDOWS\\Temp\\');
-                $this->setPhpCodeDestination('mvc/library/tmp/');
+                $this->setPhpCodeDestination('c:\\WINDOWS\\Temp\\');
             }
         } else {
-            $this->setPhpCodeDestination('mvc/library/tmp/');
+            $this->setPhpCodeDestination('/tmp/');
         }
     }
 

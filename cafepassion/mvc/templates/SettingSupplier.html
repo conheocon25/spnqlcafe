@@ -35,7 +35,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr tal:repeat="PR PRAll">
+									<tr tal:repeat="Supplier SupplierAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Supplier/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Supplier/getId" tal:content="Supplier/getName"/></td>
 										<td><span tal:content="Supplier/getPhone"/></td>
@@ -241,6 +241,12 @@
 					return false;
 				}
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
 			
 			//-----------------------------------------------------------------------------------
 			//Load 1 CATEGORY
@@ -304,7 +310,13 @@
 					return false;
 				}
 			});
-						
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+			
 		/*]]>*/
 		</script>
 	</body>

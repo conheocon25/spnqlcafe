@@ -5,10 +5,12 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/User.php" );	
 	require_once( "mvc/mapper/Domain.php" );
 	require_once( "mvc/mapper/Table.php" );
+	require_once( "mvc/mapper/TableLog.php" );
 	require_once( "mvc/mapper/Session.php" );
 	require_once( "mvc/mapper/SessionDetail.php" );	
 	require_once( "mvc/mapper/Category.php" );
 	require_once( "mvc/mapper/Course.php" );
+	require_once( "mvc/mapper/CourseLog.php" );
 	require_once( "mvc/mapper/Supplier.php" );	
 	
 	require_once( "mvc/mapper/PaidSupplier.php");

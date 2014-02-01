@@ -106,20 +106,14 @@ class Table extends Object{
 		return $num->formatCurrency()." đ";
 	}
 	
-	function getSessionsTracking(){			
-		if (!isset($this->SessionsTracking)){
-			$Session = \MVC\Base\SessionRegistry::instance();
-			$DateStart = $Session->getReportSellingDateStart();
-			$DateEnd = $Session->getReportSellingDateEnd();
-		
-			$mSession = new	\MVC\Mapper\Session();		
-			$this->SessionsTracking = $mSession->findByTracking2(array($this->getId(), $DateStart, $DateEnd));
-		}
-		return $this->SessionsTracking;
+	function getSessionByDate($Date){
+		$mSession 	= new \MVC\Mapper\Session();
+		$SessionAll = $mSession->findByTableTracking(array($this->getId(), $Date." 0:0:0", $Date." 23:59:59"));
+		return $SessionAll;
 	}
 	
-	function getSessionsTrackingValue(){
-		$Sessions = $this->getSessionsTracking();
+	function getSessionByDateValue($Date){
+		$Sessions = $this->getSessionByDate($Date);
 		$Sum = 0;
 		$Sessions->rewind();
 		while($Sessions->valid()){
@@ -128,18 +122,46 @@ class Table extends Object{
 			$Sessions->next();
 		}
 		return $Sum;
+	}	
+	function getSessionByDateValuePrint($Date){
+		$num = new Number($this->getSessionByDateValue($Date));
+		return $num->formatCurrency();
 	}
 	
-	function getSessionsTrackingValuePrint(){
-		$num = new Number($this->getSessionsTrackingValue());
-		return $num->formatCurrency()." đ";
+	function getSessionByDateValue1($Date){
+		$Sessions = $this->getSessionByDate($Date);
+		$Sum = 0;
+		$Sessions->rewind();
+		while($Sessions->valid()){
+			$Session = $Sessions->current();
+			if ($Session->getStatus()==0)
+				$Sum += $Session->getValue();
+			$Sessions->next();
+		}
+		return $Sum;
+	}	
+	function getSessionByDateValue1Print($Date){
+		$num = new Number($this->getSessionByDateValue1($Date));
+		return $num->formatCurrency();
 	}
 	
-	function getTrackingCount($DateStart, $DateEnd){
-		$mSession = new \MVC\Mapper\Session();
-		return $mSession->trackingCount(array($this->getId(), $DateStart, $DateEnd));
+	function getSessionByDateValue2($Date){
+		$Sessions = $this->getSessionByDate($Date);
+		$Sum = 0;
+		$Sessions->rewind();
+		while($Sessions->valid()){
+			$Session = $Sessions->current();
+			if ($Session->getStatus()==1)
+				$Sum += $Session->getValue();
+			$Sessions->next();
+		}
+		return $Sum;
+	}	
+	function getSessionByDateValue2Print($Date){
+		$num = new Number($this->getSessionByDateValue2($Date));
+		return $num->formatCurrency();
 	}
-	
+			
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -170,6 +192,12 @@ class Table extends Object{
 			}
 		}
 		return $Class;
+	}
+	
+	function getLog($Date){
+		$mLog 	= new \MVC\Mapper\TableLog();
+		$LogAll = $mLog->findBy(array($this->getId(), $Date));
+		return $LogAll;
 	}
 	
 	//-------------------------------------------------------------------------------

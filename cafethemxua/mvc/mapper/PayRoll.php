@@ -9,25 +9,15 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
 				
 		$tblPayRoll = "tbl_pay_roll";
 		
-		$selectAllStmt = sprintf("select * from %s", $tblPayRoll);
-		$selectStmt = sprintf("select * from %s where id=?", $tblPayRoll);
-		$updateStmt = sprintf("update %s set id_employee=?, date=?, state=?, extra=?, late=? where id=?", $tblPayRoll);
-		$insertStmt = sprintf("insert into %s (id_employee, date, state, extra, late) values(?,?,?,?,?)", $tblPayRoll);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblPayRoll);
-		$findByStmt = sprintf("select * from %s where id_employee = ? order by date DESC", $tblPayRoll);
+		$selectAllStmt 	= sprintf("select * from %s", $tblPayRoll);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblPayRoll);
+		$updateStmt 	= sprintf("update %s set id_employee=?, date=?, session1=?, session2=?, session3=?, extra=?, late=? where id=?", $tblPayRoll);
+		$insertStmt 	= sprintf("insert into %s (id_employee, date, session1, session2, session3, extra, late) values(?,?,?,?,?,?,?)", $tblPayRoll);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblPayRoll);
+		$findByStmt 	= sprintf("select * from %s where id_employee = ? order by date DESC", $tblPayRoll);
 				
-		$findByTrackingStmt = sprintf(
-			"select * from %s
-			where
-				id_employee = ? AND `date` >= ? AND `date` <= ?
-			ORDER BY `date`
-			"
-		, $tblPayRoll);
-		$checkStmt = sprintf("
-			select distinct id 
-			from %s 
-			where id_employee=? and `date`=?
-		", $tblPayRoll);
+		$findByTrackingStmt = sprintf("select * from %s where id_employee = ? AND `date` >= ? AND `date` <= ? ORDER BY `date`", $tblPayRoll);
+		$checkStmt 		= sprintf("select distinct id from %s where id_employee=? and `date`=?", $tblPayRoll);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
@@ -45,22 +35,23 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
 			$array['id'],
 			$array['id_employee'],
 			$array['date'],
-			$array['state'],
+			$array['session1'],
+			$array['session2'],
+			$array['session3'],
 			$array['extra'],
 			$array['late']
 		);
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "PayRoll";
-    }
-
+    protected function targetClass() {return "PayRoll";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdEmployee(),
 			$object->getDate(),
-			$object->getState(),
+			$object->getSession1(),
+			$object->getSession2(),
+			$object->getSession3(),
 			$object->getExtra(),
 			$object->getLate()
 		); 
@@ -73,7 +64,9 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
         $values = array( 
 			$object->getIdEmployee(),
 			$object->getDate(),
-			$object->getState(),
+			$object->getSession1(),
+			$object->getSession2(),
+			$object->getSession3(),
 			$object->getExtra(),			
 			$object->getLate(),
 			$object->getId()
@@ -91,7 +84,6 @@ class PayRoll extends Mapper implements \MVC\Domain\PayRollFinder{
     }
 			
 	function findByTracking($values ){
-		//print_r($values);
         $this->findByTrackingStmt->execute( $values );
         return new PayRollCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
