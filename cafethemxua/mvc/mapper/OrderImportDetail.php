@@ -7,11 +7,11 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
     function __construct() {
         parent::__construct();
 		
-		$tblResource = "tbl_resource";
-		$tblOrderImport = "tbl_order_import";
-		$tblOrderImportDetail = "tbl_order_import_detail";
-		$tblSessionDetail = "tbl_session_detail";
-		$tblR2C = "tbl_r2c";
+		$tblResource = "cafethemxua_resource";
+		$tblOrderImport = "cafethemxua_order_import";
+		$tblOrderImportDetail = "cafethemxua_order_import_detail";
+		$tblSessionDetail = "cafethemxua_session_detail";
+		$tblR2C = "cafethemxua_r2c";
 								
 		$selectAllStmt = sprintf("select * from %s", $tblOrderImportDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblOrderImportDetail);
@@ -60,9 +60,9 @@ class OrderImportDetail extends Mapper implements \MVC\Domain\OrderImportDetailF
 			select
 				sum(SD.count) as count
 			from
-				tbl_session S inner join tbl_session_detail SD on S.id = SD.idsession
+				cafethemxua_session S inner join cafethemxua_session_detail SD on S.id = SD.idsession
 			where
-				SD.idcourse IN(select id_course from tbl_r2c where id_resource=?) AND
+				SD.idcourse IN(select id_course from cafethemxua_r2c where id_resource=?) AND
 				S.datetime >= ? AND S.datetime <= ? 
 		", $tblSessionDetail, $tblR2C);
 		

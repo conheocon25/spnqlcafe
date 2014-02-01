@@ -5,7 +5,7 @@ class Category extends Mapper implements \MVC\Domain\CategoryFinder {
 
     function __construct() {
         parent::__construct();			
-		$tblCategory = "tbl_category";
+		$tblCategory = "cafepassion_category";
 		
 		$selectAllStmt 			= sprintf("select * from %s ORDER BY name", 						$tblCategory);
 		$selectStmt 			= sprintf("select *  from %s where id=?", 							$tblCategory);

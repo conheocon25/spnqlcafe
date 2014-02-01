@@ -7,15 +7,15 @@ class App extends Mapper implements \MVC\Domain\AppFinder {
     function __construct() {
         parent::__construct();
         $this->selectAllStmt = self::$PDO->prepare( 
-                            "select * from tbl_app");
+                            "select * from cafethemxua_app");
         $this->selectStmt = self::$PDO->prepare( 
-                            "select * from tbl_app where id=?");
+                            "select * from cafethemxua_app where id=?");
 		$this->findByStmt = self::$PDO->prepare( 
-                            "select * from tbl_app where alias=?");
+                            "select * from cafethemxua_app where alias=?");
 		
 		$this->notSignedStmt = self::$PDO->prepare("
 							SELECT * 
-							FROM `tbl_app` 
+							FROM `cafethemxua_app` 
 							WHERE 
 								id NOT IN ( 
 									SELECT id_app FROM cfa_user_app
@@ -24,7 +24,7 @@ class App extends Mapper implements \MVC\Domain\AppFinder {
 							");
 							
         $this->updateStmt = self::$PDO->prepare( 
-                            "update tbl_app set 
+                            "update cafethemxua_app set 
 								name=?, 
 								phone=?, 
 								address=?, 
@@ -40,13 +40,13 @@ class App extends Mapper implements \MVC\Domain\AppFinder {
 							where id=?
 						");
         $this->insertStmt = self::$PDO->prepare( 
-                            "insert into tbl_app ( name, phone, address, email, banner, prefix, app, datecreate, dateupdate, dateactivity, type) values(?,?,?,?,?,?,?,?,?,?,?)");
+                            "insert into cafethemxua_app ( name, phone, address, email, banner, prefix, app, datecreate, dateupdate, dateactivity, type) values(?,?,?,?,?,?,?,?,?,?,?)");
 		$this->deleteStmt = self::$PDO->prepare( 
-                            "delete from tbl_app where id=?");
+                            "delete from cafethemxua_app where id=?");
 		$this->checkStmt = self::$PDO->prepare( 
-                            "select distinct id from tbl_app where app=?");			
+                            "select distinct id from cafethemxua_app where app=?");			
 		$this->checkEmailStmt = self::$PDO->prepare( 
-                            "select distinct id from tbl_app where email=?");									
+                            "select distinct id from cafethemxua_app where email=?");									
 		
     } 
     function getCollection( array $raw ) {

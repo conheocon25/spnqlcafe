@@ -6,10 +6,10 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
     function __construct() {
         parent::__construct();
 			
-		$tblCourse = "tbl_course";
-		$tblSession = "tbl_session";
-		$tblSessionDetail = "tbl_session_detail";
-		$tblR2C = "tbl_r2c";
+		$tblCourse = "cafethemxua_course";
+		$tblSession = "cafethemxua_session";
+		$tblSessionDetail = "cafethemxua_session_detail";
+		$tblR2C = "cafethemxua_r2c";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblSessionDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSessionDetail);
@@ -19,7 +19,7 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
 
 		$findByTop10Stmt = sprintf("
 			SELECT 1 as id, 2 as idsession, idcourse, sum(count) as count, 3 as price 
-				FROM `tbl_session_detail`
+				FROM `cafethemxua_session_detail`
 			GROUP BY idcourse
 			ORDER BY count DESC
 			LIMIT 10

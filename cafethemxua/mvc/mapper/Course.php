@@ -5,8 +5,8 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 
     function __construct() {
         parent::__construct();
-		$tblCourse = "tbl_course";
-		$tblSessionDetail = "tbl_session_detail";
+		$tblCourse = "cafethemxua_course";
+		$tblSessionDetail = "cafethemxua_session_detail";
 		
 		$selectAllStmt = sprintf("select * from %s ORDER BY name", $tblCourse);
 		$selectStmt = sprintf("select * from %s where id=?", $tblCourse);
