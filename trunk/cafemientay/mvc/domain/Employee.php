@@ -26,30 +26,33 @@
 	private $Phone;
 	private $Address;
 	private $SalaryBase;
+	private $Card;
 			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------
-    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null){
-        $this->Id = $Id;
-		$this->Name = $Name;
-		$this->Gender = $Gender;
-		$this->Job = $Job;
-		$this->Phone = $Phone;
-		$this->Address = $Address;
-		$this->SalaryBase = $SalaryBase;
+    function __construct( $Id=null, $Name=null, $Gender=null, $Job=null, $Phone=null, $Address=null, $SalaryBase=null, $Card=null){
+        $this->Id 			= $Id;
+		$this->Name 		= $Name;
+		$this->Gender 		= $Gender;
+		$this->Job 			= $Job;
+		$this->Phone 		= $Phone;
+		$this->Address 		= $Address;
+		$this->SalaryBase 	= $SalaryBase;
+		$this->Card 		= $Card;
 		
         parent::__construct( $Id );
     }
 	
 	function setArray( $Data ){
-        $this->Id = $Data[0];
-		$this->Name = $Data[1];
-		$this->Gender = $Data[2];
-		$this->Job = $Data[3];
-		$this->Phone = $Data[4];
-		$this->Address = $Data[5];
-		$this->SalaryBase = $Data[6];
+        $this->Id 			= $Data[0];
+		$this->Name 		= $Data[1];
+		$this->Gender 		= $Data[2];
+		$this->Job 			= $Data[3];
+		$this->Phone 		= $Data[4];
+		$this->Address 		= $Data[5];
+		$this->SalaryBase 	= $Data[6];
+		$this->Card 		= $Data[7];
     }
 	
     function getId( ) {return $this->Id;}
@@ -90,6 +93,9 @@
 		return $N->formatCurrency();
 	}
 	
+	function setCard( $Card ) {$this->Card = $Card;$this->markDirty();}
+	function getCard( ) {return $this->Card;}
+	
 	function toJSON(){
 		$json = array(
 			'Id' 			=> $this->getId(),
@@ -98,7 +104,8 @@
 			'Job'			=> $this->getJob(),
 			'Phone'			=> $this->getPhone(),
 			'Address'		=> $this->getAddress(),
-			'SalaryBase'	=> $this->getSalaryBase()
+			'SalaryBase'	=> $this->getSalaryBase(),
+			'Card'			=> $this->getCard()
 		);
 		return json_encode($json);
 	}

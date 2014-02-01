@@ -36,7 +36,9 @@
 								<tbody>
 									<tr tal:repeat="Category CategoryAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Category/getId"/></td>
-										<td><div tal:condition="Category/getEnable" class="glyphicons-eye_open text-center"/></td>
+										<td class="center">
+											<i tal:condition="Category/getEnable" class="glyphicons-eye_open"/>											
+										</td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Category/getId" tal:content="Category/getName"/></td>
 										<td class="right"><a tal:attributes="href Category/getURLCourse"> <span tal:content="Category/getCourseAll/count" /> món</a></td>
 										<td class="center">
@@ -44,7 +46,11 @@
 												<i class="glyphicon glyphicon-pencil"/>
 											</a>
 										</td>
-										<td class="center"><a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category/getId"><i class="glyphicon glyphicon-remove"/></a></td>
+										<td class="center">
+											<a class="remove-item" href="#DialogDel" data-toggle="modal" tal:attributes="data-id Category/getId">
+												<i class="glyphicon glyphicon-remove"/>
+											</a>
+										</td>
 									</tr>
 								</tbody>
 							</table>
@@ -62,7 +68,16 @@
 										<div class="controls">
 											<input id="Name1" name="Name1" type="text" class="form-control input-small"/>
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hiển thị</label>
+										<div class="controls">											
+											<select name="Enable1" id="Enable1" style="width:80%;">
+												<option value="0">Tắt</option>
+												<option value="1">Bật</option>
+											</select>
+										</div>
+									</div>
 									<div class="form-actions">
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
@@ -86,17 +101,11 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Hình</label>
-										<div class="controls">
-											<input id="Picture2" name="Picture2" type="text" class="form-control input-small"/>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="control-label">Ẩn / Hiện</label>
+										<label class="control-label">Hiển thị</label>
 										<div class="controls">											
 											<select name="Enable2" id="Enable2" style="width:80%;">
-												<option value="0">Ẩn</option>
-												<option value="1">Hiện</option>
+												<option value="0">Tắt</option>
+												<option value="1">Bật</option>
 											</select>
 										</div>
 									</div>
@@ -180,7 +189,9 @@
 					var Data = [];
 					Data[0] = 'null';
 					Data[1] = $('#Name1').val();
-
+					Data[2] = "";
+					Data[3] = $('#Enable1').val();
+					
 					var URL = "/object/ins/Category";
 					$.ajax({
 						type: "POST",
@@ -192,6 +203,12 @@
 					});
 					return false;
 				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -205,7 +222,6 @@
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', 	data.Id);
 					$('#Name2').attr('value', 		data.Name);
-					$('#Picture2').attr('value', 	data.Picture);
 					$('#Enable2').select2('val', 	data.Enable);
 				});
 			});
@@ -230,9 +246,8 @@
 					var Data = [];
 					Data[0] = $('#URLUpdButton').attr('alt');
 					Data[1] = $('#Name2').val();
-					Data[2] = $('#Picture2').val();
+					Data[2] = "";
 					Data[3] = $('#Enable2').val();
-					
 					var URL = "/object/upd/Category";
 					$.ajax({
 						type: "POST",
@@ -244,7 +259,13 @@
 					});			
 					return false;
 				}
-			});				
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
 		/*]]>*/
 		</script>
 	</body>

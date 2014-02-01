@@ -61,20 +61,18 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MÓN</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-divide modal-icon"/>THÊM CÔNG THỨC TỈ LỆ</h3></div>
+								<form id="FormFormularInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">													
 										<div class="form-group">
-										<label class="control-label">Đơn vị</label>
-										<div class="controls">
-											<select name="IdResource1" id="IdResource1" style="width:80%;">
-												<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
-													<span tal:content="Resource/getSupplier/getName" /> / <span tal:content="Resource/getName" /> (<span tal:content="Resource/getUnit" />)
-												</option>
-											</select>
-										</div>
+											<label class="control-label">Đơn vị</label>
+											<div class="controls">
+												<select name="IdResource1" id="IdResource1" style="width:80%;">
+													<option tal:repeat="Resource ResourceAll" tal:attributes="value Resource/getId">
+														<span tal:content="Resource/getSupplier/getName" /> / <span tal:content="Resource/getName" /> (<span tal:content="Resource/getUnit" />)
+													</option>
+												</select>
+											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label">Tỉ lệ nhập</label>
@@ -90,10 +88,10 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button type="submit" value="Validation" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -103,10 +101,8 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CHỈNH SỬA MÓN</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-divide modal-icon"/>CHỈNH SỬA CÔNG THỨC TỈ LỆ</h3></div>								
+								<form id="FormFormularUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Đơn vị</label>
 										<div class="controls">
@@ -130,10 +126,10 @@
 										</div>
 									</div>
 									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLUpdButton" type="submit" value="Validation" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -189,26 +185,50 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 R2C
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';								
-				Data[1] = $('#IdCourse').attr('alt');				
-				Data[2] = $('#IdResource1').val();				
-				Data[3] = $('#Value11').val();
-				Data[4] = $('#Value12').val();
-				
-				var URL = "/object/ins/R2C";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 R2C						
+			$("#FormFormularInsert").validate({
+				rules:{
+					Value11:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
+					},
+					Value12:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#IdCourse').attr('alt');				
+					Data[2] = $('#IdResource1').val();				
+					Data[3] = $('#Value11').val();
+					Data[4] = $('#Value12').val();
+					
+					var URL = "/object/ins/R2C";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+				}
 			});
-			
 			//-----------------------------------------------------------------------------------
 			//Load 1 R2C
 			//-----------------------------------------------------------------------------------
@@ -228,24 +248,50 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 RESOURCE
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];								
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdCourse').attr('alt');				
-				Data[2] = $('#IdResource2').val();				
-				Data[3] = $('#Value21').val();
-				Data[4] = $('#Value22').val();
-				
-				var URL = "/object/upd/R2C";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormFormularUpdate").validate({
+				rules:{
+					Value21:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
+					},
+					Value22:{
+						number:true,
+						required:true,
+						min:1,
+						max:200
 					}
-				});
-			});			
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#IdCourse').attr('alt');
+					Data[2] = $('#IdResource2').val();
+					Data[3] = $('#Value21').val();
+					Data[4] = $('#Value22').val();
+					
+					var URL = "/object/upd/R2C";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
 		/*]]>*/
 		</script>		
 	</body>
