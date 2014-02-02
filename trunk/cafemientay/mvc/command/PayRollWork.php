@@ -17,14 +17,15 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
-			$mEmployee = new \MVC\Mapper\Employee();
-			$mConfig = new \MVC\Mapper\Config();
-			$mPR = new \MVC\Mapper\PayRoll();			
+			$mTracking 	= new \MVC\Mapper\Tracking();
+			$mEmployee 	= new \MVC\Mapper\Employee();
+			$mConfig 	= new \MVC\Mapper\Config();
+			$mPR 		= new \MVC\Mapper\PayRoll();			
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
+			$ConfigName	= $mConfig->findByName("NAME");			
 			$Track 		= $mTracking->find($IdTrack);			
 			$Employee  	= $mEmployee->find($IdEmployee);
 						
@@ -88,6 +89,7 @@
 			$request->setObject('Track'		, $Track);
 			$request->setObject('Employee'	, $Employee);
 			$request->setObject('PRAll'		, $PRAll);
+			$request->setObject('ConfigName', $ConfigName);
 			
 			$request->setObject('NValue'	, $NValue);
 			$request->setObject('NSession1'	, $NSession1);

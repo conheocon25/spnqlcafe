@@ -29,53 +29,71 @@
 				array("THIẾT LẬP", "/setting")
 			);
 			
-			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB
-			$RowPerPage 			= $mConfig->findByName("ROW_PER_PAGE");
-			if ($RowPerPage==null){
-				$RowPerPage = new \MVC\Domain\Config(null, 'ROW_PER_PAGE', 12);
+			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			
+			$ConfigName 	= $mConfig->findByName("NAME");
+			if ($ConfigName==null){
+				$ConfigName = new \MVC\Domain\Config(null, 'NAME', 'QUÁN CAFE');
+				$mConfig->insert($ConfigName);
+			}
+			
+			$ConfigAddress 	= $mConfig->findByName("ADDRESS");
+			if ($ConfigAddress==null){
+				$ConfigAddress = new \MVC\Domain\Config(null, 'ADDRESS', 'Vĩnh Long');
+				$mConfig->insert($ConfigAddress);
+			}
+			
+			$ConfigPhone 	= $mConfig->findByName("PHONE");
+			if ($ConfigPhone==null){
+				$ConfigPhone = new \MVC\Domain\Config(null, 'PHONE', '0919 153 189');
+				$mConfig->insert($ConfigPhone);
+			}
+			
+			$ConfigRowPerPage	= $mConfig->findByName("ROW_PER_PAGE");
+			if ($ConfigRowPerPage==null){
+				$ConfigRowPerPage = new \MVC\Domain\Config(null, 'ROW_PER_PAGE', 12);
 				$mConfig->insert($RowPerPage);
 			}
 			
-			$Every5Minutes 			= $mConfig->findByName("EVERY_5_MINUTES");
-			if ($Every5Minutes==null){
-				$Every5Minutes = new \MVC\Domain\Config(null, 'EVERY_5_MINUTES', 2000);
-				$mConfig->insert($Every5Minutes);
+			$ConfigEvery5Minutes = $mConfig->findByName("EVERY_5_MINUTES");
+			if ($ConfigEvery5Minutes==null){
+				$ConfigEvery5Minutes = new \MVC\Domain\Config(null, 'EVERY_5_MINUTES', 2000);
+				$mConfig->insert($ConfigEvery5Minutes);
 			}
 			
-			$GuestVisit 			= $mConfig->findByName("GUEST_VISIT");
-			if ($GuestVisit==null){
-				$GuestVisit = new \MVC\Domain\Config(null, 'GUEST_VISIT', 1);
-				$mConfig->insert($GuestVisit);
+			$ConfigGuestVisit 	= $mConfig->findByName("GUEST_VISIT");
+			if ($ConfigGuestVisit==null){
+				$ConfigGuestVisit = new \MVC\Domain\Config(null, 'GUEST_VISIT', 1);
+				$mConfig->insert($ConfigGuestVisit);
 			}
 			
-			$Discount 				= $mConfig->findByName("DISCOUNT");
-			if ($Discount==null){
-				$Discount = new \MVC\Domain\Config(null, 'DISCOUNT', 0);
-				$mConfig->insert($Discount);
+			$ConfigDiscount 	= $mConfig->findByName("DISCOUNT");
+			if ($ConfigDiscount==null){
+				$ConfigDiscount = new \MVC\Domain\Config(null, 'DISCOUNT', 0);
+				$mConfig->insert($ConfigDiscount);
 			}
 			
-			$CategoryAuto 			= $mConfig->findByName("CATEGORY_AUTO");
-			if ($CategoryAuto==null){
-				$CategoryAuto = new \MVC\Domain\Config(null, 'CATEGORY_AUTO', $CategoryAll->current()->getId());
-				$mConfig->insert($CategoryAuto);
+			$ConfigCategoryAuto = $mConfig->findByName("CATEGORY_AUTO");
+			if ($ConfigCategoryAuto==null){
+				$ConfigCategoryAuto = new \MVC\Domain\Config(null, 'CATEGORY_AUTO', $CategoryAll->current()->getId());
+				$mConfig->insert($ConfigCategoryAuto);
 			}
 			
-			$SwitchBoardCall		= $mConfig->findByName("SWITCH_BOARD_CALL");
-			if ($SwitchBoardCall==null){
-				$SwitchBoardCall = new \MVC\Domain\Config(null, 'SWITCH_BOARD_CALL', 1);
-				$mConfig->insert($SwitchBoardCall);
+			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
+			if ($ConfigSwitchBoardCall==null){
+				$ConfigSwitchBoardCall = new \MVC\Domain\Config(null, 'SWITCH_BOARD_CALL', 1);
+				$mConfig->insert($ConfigSwitchBoardCall);
 			}
 			
-			$ReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
-			if ($ReceiptVirtualDouble==null){
-				$ReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
-				$mConfig->insert($ReceiptVirtualDouble);
+			$ConfigReceiptVirtualDouble	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
+			if ($ConfigReceiptVirtualDouble==null){
+				$ConfigReceiptVirtualDouble = new \MVC\Domain\Config(null, 'RECEIPT_VIRTUAL_DOUBLE', 1);
+				$mConfig->insert($ConfigReceiptVirtualDouble);
 			}
 			
-			$nMonthLog				= $mConfig->findByName("N_MONTH_LOG");
-			if ($nMonthLog==null){
-				$nMonthLog = new \MVC\Domain\Config(null, 'N_MONTH_LOG', 1);
-				$mConfig->insert($nMonthLog);
+			$ConfignMonthLog	= $mConfig->findByName("N_MONTH_LOG");
+			if ($ConfignMonthLog==null){
+				$ConfignMonthLog = new \MVC\Domain\Config(null, 'N_MONTH_LOG', 1);
+				$mConfig->insert($ConfignMonthLog);
 			}
 			
 			//-------------------------------------------------------------
@@ -86,14 +104,17 @@
 			$request->setObject('Navigation', 			$Navigation);
 			$request->setObject('CategoryAll', 			$CategoryAll);
 			
-			$request->setObject('RowPerPage', 			$RowPerPage);
-			$request->setObject('Every5Minutes', 		$Every5Minutes);
-			$request->setObject('GuestVisit', 			$GuestVisit);
-			$request->setObject('Discount', 			$Discount);
-			$request->setObject('CategoryAuto', 		$CategoryAuto);
-			$request->setObject('SwitchBoardCall', 		$SwitchBoardCall);
-			$request->setObject('ReceiptVirtualDouble', $ReceiptVirtualDouble);
-			$request->setObject('nMonthLog', 			$nMonthLog);
+			$request->setObject('ConfigName', 				$ConfigName);			
+			$request->setObject('ConfigAddress', 			$ConfigAddress);
+			$request->setObject('ConfigPhone', 				$ConfigPhone);
+			$request->setObject('ConfigRowPerPage', 		$ConfigRowPerPage);
+			$request->setObject('ConfigEvery5Minutes', 		$ConfigEvery5Minutes);
+			$request->setObject('ConfigGuestVisit', 		$ConfigGuestVisit);
+			$request->setObject('ConfigDiscount', 			$ConfigDiscount);
+			$request->setObject('ConfigCategoryAuto', 		$ConfigCategoryAuto);
+			$request->setObject('ConfigSwitchBoardCall', 	$ConfigSwitchBoardCall);
+			$request->setObject('ConfigReceiptVirtualDouble', $ConfigReceiptVirtualDouble);
+			$request->setObject('ConfignMonthLog', 			$ConfignMonthLog);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

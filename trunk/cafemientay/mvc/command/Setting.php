@@ -15,24 +15,23 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			require_once("mvc/base/mapper/MapperDefault.php");
+			$mConfig = new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
+			$ConfigName = $mConfig->findByName("NAME");
 						
-			//-------------------------------------------------------------
-			//THAM SỐ GỬI ĐI
-			//-------------------------------------------------------------									
 			$Title = "THIẾT LẬP";
 			$Navigation = array();
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Setting');
-			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveAdmin', 	'Setting');
+			$request->setObject('Navigation', 		$Navigation);
+			$request->setObject('ConfigName', 		$ConfigName);
 						
 			return self::statuses('CMD_DEFAULT');
 		}

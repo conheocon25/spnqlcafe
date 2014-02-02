@@ -18,37 +18,52 @@
 							<div class="form-horizontal">
 								<div class="modal-body">
 									<div class="form-group">
+										<label class="control-label">Tên quán</label>
+										<div class="controls">
+											<input id="Name2" tal:attributes="value ConfigName/getValue;data-id ConfigName/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Địa chỉ</label>
+										<div class="controls">
+											<input id="Address2" tal:attributes="value ConfigAddress/getValue;data-id ConfigAddress/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Điện thoại</label>
+										<div class="controls">
+											<input id="Phone2" tal:attributes="value ConfigPhone/getValue;data-id ConfigPhone/getId" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="control-label">Số dòng trên trang</label>
 										<div class="controls">
-											<input id="RowPerPage2" tal:attributes="value RowPerPage/getValue;data-id RowPerPage/getId" type="text" class="form-control input-small"/>
+											<input id="RowPerPage2" tal:attributes="value ConfigRowPerPage/getValue;data-id ConfigRowPerPage/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Số lượt truy cập</label>
 										<div class="controls">
-											<input id="GuestVisit2" tal:attributes="value GuestVisit/getValue;data-id GuestVisit/getId" type="text" class="form-control input-small"/>
+											<input id="GuestVisit2" tal:attributes="value ConfigGuestVisit/getValue;data-id ConfigGuestVisit/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Giảm giá (mặc định)</label>
 										<div class="controls">
-											<input id="Discount2" tal:attributes="value Discount/getValue;data-id Discount/getId" type="text" class="form-control input-small"/>
+											<input id="Discount2" tal:attributes="value ConfigDiscount/getValue;data-id ConfigDiscount/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Phạt trễ giờ</label>
 										<div class="controls">
-											<input id="Every5Minutes2" tal:attributes="value Every5Minutes/getValue;data-id Every5Minutes/getId" type="text" class="form-control input-small"/>
+											<input id="Every5Minutes2" tal:attributes="value ConfigEvery5Minutes/getValue;data-id ConfigEvery5Minutes/getId" type="text" class="form-control input-small"/>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Danh mục tự chọn</label>
-										<div class="controls">
-											<!--
-											<input id="CategoryAuto2" tal:attributes="value CategoryAuto/getValue;data-id CategoryAuto/getId" type="text" class="form-control input-small"/>
-											!-->
-											<select name="CategoryAuto2" id="CategoryAuto2" style="width:80%;" tal:attributes="data-id nMonthLog/getId">
-												<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId; selected php:CategoryAuto->getValue()==Category->getId()?'selected':''">
+										<div class="controls">											
+											<select name="CategoryAuto2" id="CategoryAuto2" style="width:80%;" tal:attributes="data-id ConfigCategoryAuto/getId">
+												<option tal:repeat="Category CategoryAll" tal:attributes="value Category/getId; selected php:ConfigCategoryAuto->getValue()==Category->getId()?'selected':''">
 													<span tal:content="Category/getName" />
 												</option>
 											</select>
@@ -57,28 +72,28 @@
 									<div class="form-group">
 										<label class="control-label">Hiển thị gọi món</label>
 										<div class="controls">											
-											<select name="SwitchBoardCall2" id="SwitchBoardCall2" style="width:80%;" tal:attributes="data-id SwitchBoardCall/getId">
-												<option value="0" tal:attributes="selected php:SwitchBoardCall->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:SwitchBoardCall->getValue()=='1'?'selected':''">Bật</option>
+											<select name="SwitchBoardCall2" id="SwitchBoardCall2" style="width:80%;" tal:attributes="data-id ConfigSwitchBoardCall/getId">
+												<option value="0" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='0'?'selected':''">Tắt</option>
+												<option value="1" tal:attributes="selected php:ConfigSwitchBoardCall->getValue()=='1'?'selected':''">Bật</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Giả lặp phiếu 2 liên</label>
 										<div class="controls">											
-											<select name="ReceiptVirtualDouble2" id="ReceiptVirtualDouble2" style="width:80%;" tal:attributes="data-id ReceiptVirtualDouble/getId">
-												<option value="0" tal:attributes="selected php:ReceiptVirtualDouble->getValue()=='0'?'selected':''">Tắt</option>
-												<option value="1" tal:attributes="selected php:ReceiptVirtualDouble->getValue()=='1'?'selected':''">Bật</option>
+											<select name="ReceiptVirtualDouble2" id="ReceiptVirtualDouble2" style="width:80%;" tal:attributes="data-id ConfigReceiptVirtualDouble/getId">
+												<option value="0" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='0'?'selected':''">Tắt</option>
+												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">Bật</option>
 											</select>
 										</div>
 									</div>
 									<div class="form-group">
 										<label class="control-label">Thời gian lưu Log</label>
 										<div class="controls">											
-											<select name="nMonthLog2" id="nMonthLog2" style="width:80%;" tal:attributes="data-id nMonthLog/getId">
-												<option value="1" tal:attributes="selected php:ReceiptVirtualDouble->getValue()=='1'?'selected':''">1 tháng</option>
-												<option value="2" tal:attributes="selected php:ReceiptVirtualDouble->getValue()=='2'?'selected':''">2 tháng</option>
-												<option value="3" tal:attributes="selected php:ReceiptVirtualDouble->getValue()=='3'?'selected':''">3 tháng</option>
+											<select name="nMonthLog2" id="nMonthLog2" style="width:80%;" tal:attributes="data-id ConfignMonthLog/getId">
+												<option value="1" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='1'?'selected':''">1 tháng</option>
+												<option value="2" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='2'?'selected':''">2 tháng</option>
+												<option value="3" tal:attributes="selected php:ConfigReceiptVirtualDouble->getValue()=='3'?'selected':''">3 tháng</option>
 											</select>
 										</div>
 									</div>
@@ -107,6 +122,9 @@
 				var Data5 = [];
 				var Data6 = [];
 				var Data7 = [];
+				var Data8 = [];
+				var Data9 = [];
+				var Data10 = [];
 				
 				Data1[0] = $('#RowPerPage2').attr('data-id');
 				Data1[1] = "ROW_PER_PAGE";
@@ -178,6 +196,39 @@
 				$.ajax({
 					type: "POST",
 					data: {Data:Data7},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật tên quán
+				Data8[0] = $('#Name2').attr('data-id');
+				Data8[1] = "NAME";
+				Data8[2] = $('#Name2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data8},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật địa chỉ
+				Data9[0] = $('#Address2').attr('data-id');
+				Data9[1] = "ADDRESS";
+				Data9[2] = $('#Address2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data9},
+					url: URL,
+					success: function(msg){}
+				});
+				
+				//Cập nhật điện thoại
+				Data10[0] = $('#Phone2').attr('data-id');
+				Data10[1] = "PHONE";
+				Data10[2] = $('#Phone2').val();
+				$.ajax({
+					type: "POST",
+					data: {Data:Data10},
 					url: URL,
 					success: function(msg){}
 				});
