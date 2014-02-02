@@ -27,10 +27,11 @@
 			$DomainAll 		= $mDomain->findAll();
 			$CategoryAll 	= $mCategory->findAll();
 			$UnitAll		= $mUnit->findAll();
-			$Domain			= $DomainAll->current();
-			$Config			= $mConfig->findByName("CATEGORY_AUTO");
-			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
+			$Domain			= $DomainAll->current();			
 			$Top10			= $mSD->findByTop10(array());
+			$ConfigCategoryAuto		= $mConfig->findByName("CATEGORY_AUTO");
+			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
+			$ConfigName				= $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -41,15 +42,16 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);
-			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('Domain'		, $Domain);
-			$request->setObject('DomainAll'		, $DomainAll);
-			$request->setObject('UnitAll'		, $UnitAll);
-			$request->setObject('CategoryAll'	, $CategoryAll);
-			$request->setObject('Top10'			, $Top10);
-			$request->setObject('Config'		, $Config);
-			$request->setObject('ConfigSwitchBoardCall'		, $ConfigSwitchBoardCall);
+			$request->setProperty('Title'				, $Title);
+			$request->setObject('Navigation'			, $Navigation);
+			$request->setObject('Domain'				, $Domain);
+			$request->setObject('DomainAll'				, $DomainAll);
+			$request->setObject('UnitAll'				, $UnitAll);
+			$request->setObject('CategoryAll'			, $CategoryAll);
+			$request->setObject('Top10'					, $Top10);
+			$request->setObject('ConfigCategoryAuto'	, $ConfigCategoryAuto);
+			$request->setObject('ConfigName'			, $ConfigName);
+			$request->setObject('ConfigSwitchBoardCall'	, $ConfigSwitchBoardCall);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

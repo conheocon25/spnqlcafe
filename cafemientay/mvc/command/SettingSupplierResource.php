@@ -21,18 +21,10 @@
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
-			//-------------------------------------------------------------			
-			$CategoryAll = $mCategory->findAll();			
-			$DomainAll = $mDomain->findAll();			
-			$EmployeeAll = $mEmployee->findAll();
-			$UnitAll = $mUnit->findAll();			
-			$CustomerAll = $mCustomer->findAll();
-			$TermPaidAll = $mTermPaid->findAll();
-			$TermCollectAll = $mTermCollect->findAll();			
-			$UserAll = $mUser->findAll();
+			//-------------------------------------------------------------						
+			$UnitAll = $mUnit->findAll();						
 			$SupplierAll = $mSupplier->findAll();
-			$ConfigAll = $mConfig->findAll();
-			
+						
 			$Supplier = $mSupplier->find($IdSupplier);			
 			$Title = mb_strtoupper($Supplier->getName(), 'UTF8');
 			$Navigation = array(				
@@ -40,31 +32,26 @@
 				array("NHÀ CUNG CẤP", "/setting/supplier")
 			);
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");			
+			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName = $mConfig->findByName("NAME");
+			
 			$ResourceAll1 = $mResource->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Supplier->getResourceAll()->count(), $Config->getValue(), $Supplier->getURLResource() );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Resource');
-			$request->setProperty('Page', $Page);
-			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Resource');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('Navigation'	, $Navigation);
 			
 			$request->setObject('ResourceAll1'	, $ResourceAll1);
 			$request->setObject('Supplier'		, $Supplier);
 			$request->setObject('PN'			, $PN);
-			
-			$request->setObject('CategoryAll'	, $CategoryAll);			
-			$request->setObject('DomainAll'		, $DomainAll);
-			$request->setObject('EmployeeAll'	, $EmployeeAll);
-			$request->setObject('UnitAll'		, $UnitAll);			
-			$request->setObject('CustomerAll'	, $CustomerAll);
-			$request->setObject('TermPaidAll'	, $TermPaidAll);
-			$request->setObject('TermCollectAll', $TermCollectAll);
-			$request->setObject('UserAll'		, $UserAll);			
-			$request->setObject('ConfigAll'		, $ConfigAll);
+			$request->setObject('ConfigName'	, $ConfigName);
+						
+			$request->setObject('UnitAll'		, $UnitAll);									
 			$request->setObject('SupplierAll'	, $SupplierAll);
 			
 			return self::statuses('CMD_DEFAULT');

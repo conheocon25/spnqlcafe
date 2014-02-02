@@ -30,14 +30,20 @@
 			$Domain 	= $mDomain->find($IdDomain);
 			$Session 	= $mSession->find($IdSession);
 			$Config 	= $mConfig->findByName("RECEIPT_VIRTUAL_DOUBLE");
+			$ConfigName		= $mConfig->findByName("NAME");
+			$ConfigAddress	= $mConfig->findByName("ADDRESS");
+			$ConfigPhone	= $mConfig->findByName("PHONE");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setObject("Table", 	$Table);
-			$request->setObject("Domain", 	$Domain);
-			$request->setObject("Session", 	$Session);
-			$request->setObject("Config", 	$Config);
+			$request->setObject("Table"			, $Table);
+			$request->setObject("Domain"		, $Domain);
+			$request->setObject("Session"		, $Session);
+			$request->setObject("Config"		, $Config);
+			$request->setObject("ConfigName"	, $ConfigName);
+			$request->setObject("ConfigAddress"	, $ConfigAddress);
+			$request->setObject("ConfigPhone"	, $ConfigPhone);
 		}
 	}
 ?>

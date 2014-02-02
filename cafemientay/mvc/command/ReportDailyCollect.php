@@ -20,12 +20,14 @@
 			$mCollect 	= new \MVC\Mapper\CollectGeneral();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
+			$ConfigName		= $mConfig->findByName("NAME");
 			
 			$CollectAll = $mCollect->findByTracking( array(
 				$TD->getDate(), 
@@ -57,6 +59,7 @@
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('NTotal'		, $NTotal);
 			$request->setObject('CollectAll'	, $CollectAll);
+			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}
 ?>

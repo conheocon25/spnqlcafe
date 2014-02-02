@@ -29,18 +29,22 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$TermCollectAll1 = $mTermCollect->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($TermCollectAll->count(), $Config->getValue(), "/setting/termcollect" );
+			$Config 			= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName			= $mConfig->findByName("NAME");
+			
+			$TermCollectAll1 	= $mTermCollect->findByPage(array($Page, $Config->getValue() ));
+			$PN 				= new \MVC\Domain\PageNavigation($TermCollectAll->count(), $Config->getValue(), "/setting/termcollect" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'TermCollect');
-			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
-			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'TermCollect');
+			$request->setProperty('Page'		, $Page);
+			
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('TermCollectAll1', $TermCollectAll1);
 												
 			return self::statuses('CMD_DEFAULT');

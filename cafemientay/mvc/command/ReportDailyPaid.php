@@ -20,12 +20,14 @@
 			$mPaid 		= new \MVC\Mapper\PaidGeneral();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
+			$ConfigName	= $mConfig->findByName("NAME");
 			
 			$PaidAll = $mPaid->findByTracking( array(
 				$TD->getDate(), 
@@ -54,6 +56,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);			
+			
+			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('NTotal'		, $NTotal);
 			$request->setObject('PaidAll'		, $PaidAll);
