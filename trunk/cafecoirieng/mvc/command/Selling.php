@@ -18,14 +18,21 @@
 			$mDomain 	= new \MVC\Mapper\Domain();
 			$mCategory 	= new \MVC\Mapper\Category();
 			$mSD 		= new \MVC\Mapper\SessionDetail();
+			$mConfig	= new \MVC\Mapper\Config();
+			$mUnit 		= new \MVC\Mapper\Unit();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
 			$DomainAll 		= $mDomain->findAll();
-			$CategoryAll 	= $mCategory->findAll();			
-			$Domain			= $DomainAll->current();
+			$CategoryAll 	= $mCategory->findAll();
+			$UnitAll		= $mUnit->findAll();
+			$Domain			= $DomainAll->current();			
 			$Top10			= $mSD->findByTop10(array());
+			$ConfigCategoryAuto		= $mConfig->findByName("CATEGORY_AUTO");
+			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
+			$ConfigName				= $mConfig->findByName("NAME");
+			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
@@ -35,12 +42,16 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title'		, $Title);
-			$request->setObject('Navigation'	, $Navigation);
-			$request->setObject('Domain'		, $Domain);
-			$request->setObject('DomainAll'		, $DomainAll);
-			$request->setObject('CategoryAll'	, $CategoryAll);
-			$request->setObject('Top10'			, $Top10);
+			$request->setProperty('Title'				, $Title);
+			$request->setObject('Navigation'			, $Navigation);
+			$request->setObject('Domain'				, $Domain);
+			$request->setObject('DomainAll'				, $DomainAll);
+			$request->setObject('UnitAll'				, $UnitAll);
+			$request->setObject('CategoryAll'			, $CategoryAll);
+			$request->setObject('Top10'					, $Top10);
+			$request->setObject('ConfigCategoryAuto'	, $ConfigCategoryAuto);
+			$request->setObject('ConfigName'			, $ConfigName);
+			$request->setObject('ConfigSwitchBoardCall'	, $ConfigSwitchBoardCall);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

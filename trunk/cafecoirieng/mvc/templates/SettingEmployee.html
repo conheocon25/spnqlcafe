@@ -26,6 +26,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th class="left">TÊN</th>
+										<th width="120" class="left">CMND</th>
 										<th width="120" class="left">ĐIỆN THOẠI</th>
 										<th class="left">ĐỊA CHỈ</th>
 										<th width="40"><i class="glyphicons-bin"/></th>
@@ -35,6 +36,7 @@
 									<tr tal:repeat="Employee EmployeeAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Employee/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Employee/getId" tal:content="Employee/getName"/></td>
+										<td><span tal:content="Employee/getCard"/></td>
 										<td><span tal:content="Employee/getPhone"/></td>
 										<td><span tal:content="Employee/getAddress"/></td>
 										<td class="center">
@@ -56,7 +58,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NHÂN VIÊN</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormEmployeeInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -105,12 +107,20 @@
 												</div>
 											</div>
 										</div>
+										<div class="form-group">
+											<div class="control-group">
+												<label class="control-label">CMND</label>
+												<div class="controls">
+													<input id="Card1" name="Card1" type="text" class="form-control input-small"/>
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="modal-footer">
 										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>								
+								</form>								
 							</div>
 						</div>
 					</div>
@@ -123,7 +133,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NHÂN VIÊN</h3>
 								</div>
-								<div class="form-horizontal" id="update-link">
+								<form id="FormEmployeeUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<div class="control-group">
@@ -160,20 +170,28 @@
 												</div>
 											</div>
 											<div class="form-group">
-											<div class="control-group">
-												<label class="control-label">Lương cơ bản</label>
-												<div class="controls">			
-													<input id="SalaryBase2" name="SalaryBase2" type="text" class="form-control input-small"/>
+												<div class="control-group">
+													<label class="control-label">Lương cơ bản</label>
+													<div class="controls">			
+														<input id="SalaryBase2" name="SalaryBase2" type="text" class="form-control input-small"/>
+													</div>
 												</div>
 											</div>
-										</div>
+											<div class="form-group">
+												<div class="control-group">
+													<label class="control-label">CMND</label>
+													<div class="controls">
+														<input id="Card2" name="Card2" type="text" class="form-control input-small"/>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>									
 									<div class="modal-footer">
 										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -228,26 +246,56 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 EMPLOYEEE
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Gender1').val();
-				Data[3] = $('#Job1').val();
-				Data[4] = $('#Phone1').val();
-				Data[5] = $('#Address1').val();
-				Data[6] = $('#SalaryBase1').val();
-														
-				var URL = "/object/ins/Employee";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 EMPLOYEEE			
+			$("#FormEmployeeInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					SalaryBase1:{						
+						required:true,
+						number:true,
+						min:0
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Gender1').val();
+					Data[3] = $('#Job1').val();
+					Data[4] = $('#Phone1').val();
+					Data[5] = $('#Address1').val();
+					Data[6] = $('#SalaryBase1').val();
+					Data[7] = $('#Card1').val();
+															
+					var URL = "/object/ins/Employee";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -267,33 +315,64 @@
 					$('#Phone2').attr('value', data.Phone);
 					$('#Address2').attr('value', data.Address);
 					$('#SalaryBase2').attr('value', data.SalaryBase);
+					$('#Card2').attr('value', data.Card);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 EMPLOYEEE
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#Name2').val();
-				Data[2] = $('#Gender2').val();
-				Data[3] = $('#Job2').val();
-				Data[4] = $('#Phone2').val();
-				Data[5] = $('#Address2').val();				
-				Data[6] = $('#SalaryBase2').val();
-														
-				var URL = "/object/upd/Employee";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormEmployeeUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					SalaryBase2:{						
+						required:true,
+						number:true,
+						min:0
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Gender2').val();
+					Data[3] = $('#Job2').val();
+					Data[4] = $('#Phone2').val();
+					Data[5] = $('#Address2').val();				
+					Data[6] = $('#SalaryBase2').val();
+					Data[7] = $('#Card2').val();
+					
+					var URL = "/object/upd/Employee";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
-			
-		/*]]>*/</script>		
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

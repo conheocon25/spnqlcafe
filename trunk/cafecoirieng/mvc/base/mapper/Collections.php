@@ -8,6 +8,7 @@ class CategoryCollection 		extends Collection implements \MVC\Domain\CategoryCol
 class CollectGeneralCollection 	extends Collection implements \MVC\Domain\CollectGeneralCollection{function targetClass( ) {return "\MVC\Domain\CollectGeneral";}}
 class ConfigCollection 			extends Collection implements \MVC\Domain\ConfigCollection{function targetClass(){return "\MVC\Domain\Config";}}
 class CourseCollection 			extends Collection implements \MVC\Domain\CourseCollection {function targetClass( ) {return "\MVC\Domain\Course";}}
+class CourseLogCollection 		extends Collection implements \MVC\Domain\CourseLogCollection {function targetClass( ) {return "\MVC\Domain\CourseLog";}}
 class CustomerCollection 		extends Collection implements \MVC\Domain\CustomerCollection {function targetClass( ) {return "\MVC\Domain\Customer";}}
 class DomainCollection 			extends Collection implements \MVC\Domain\DomainCollection {function targetClass( ) {return "\MVC\Domain\Domain";}}	
 class EmployeeCollection 		extends Collection implements \MVC\Domain\EmployeeCollection{function targetClass( ) {return "\MVC\Domain\Employee";}}

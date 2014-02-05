@@ -36,6 +36,8 @@
 								<thead>
 									<tr role="row">
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
+										<th width="40" />
+										<th width="40" />
 										<th><div class="text-left">TÊN</div></th>
 										<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
 										<th width="120"><div class="text-right">GIÁ BÁN</div></th>
@@ -46,6 +48,11 @@
 								<tbody role="alert" aria-live="polite" aria-relevant="all">
 									<tr tal:repeat="Course CourseAll" class="gradeA odd">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Course/getId"/></td>
+										<td>
+											<i tal:condition="Course/getIsDiscount" class="glyphicons-star"/>
+											<i tal:condition="not: Course/getIsDiscount" class="glyphicons-dislikes"/>
+										</td>
+										<td><i tal:condition="Course/getEnable" class="glyphicons-eye_open"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" tal:attributes="data-id Course/getId" tal:content="Course/getName"/></td>
 										<td><div tal:content="Course/getUnit"/></td>
 										<td align="right"><div tal:content="Course/getPrice1Print"/></td>
@@ -64,7 +71,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MÓN</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormCourseInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">													
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -94,12 +101,36 @@
 												</select>
 											</div>
 										</div>
+										<div class="form-group">
+											<label class="control-label">Số phút chuẩn bị</label>
+											<div class="controls">
+												<input id="Prepare1" name="Prepare1" type="text" class="form-control input-small" value="1"/>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Giảm giá</label>
+											<div class="controls">
+												<select name="IsDiscount1" id="IsDiscount1" style="width:80%;">
+													<option value="0">Không giảm</option>
+													<option value="1">Giảm giá</option>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="control-label">Hiển thị</label>
+											<div class="controls">
+												<select name="Enable1" id="Enable1" style="width:80%;">
+													<option value="0">Tắt</option>
+													<option value="1">Bật</option>
+												</select>
+											</div>
+										</div>
 									</div>
-									<div class="modal-footer">
-										<button id="URLInsButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+									<div class="modal-footer">										
+										<button class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -112,7 +143,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>CHỈNH SỬA MÓN</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormCourseUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Tên</label>
 										<div class="controls">
@@ -140,12 +171,36 @@
 												</option>
 											</select>
 										</div>
-									</div>									
+									</div>
+									<div class="form-group">
+										<label class="control-label">Số phút chuẩn bị</label>
+										<div class="controls">
+											<input id="Prepare2" name="Prepare2" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Giảm giá</label>
+										<div class="controls">
+											<select name="IsDiscount2" id="IsDiscount2" style="width:80%;">
+												<option value="0">Không giảm</option>
+												<option value="1">Giảm giá</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Hiển thị</label>
+										<div class="controls">
+											<select name="Enable2" id="Enable2" style="width:80%;">
+												<option value="0">Tắt</option>
+												<option value="1">Bật</option>
+											</select>
+										</div>
+									</div>
 									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -199,31 +254,74 @@
 					}
 				});
 			});
-		
+						
 			//-----------------------------------------------------------------------------------
-			//Insert 1 RESOURCE
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';								
-				Data[1] = $('#IdCategory').attr('alt');				
-				Data[2] = $('#Name1').val();
-				Data[3] = $('#ShortName1').val();
-				Data[4] = $('#Unit1').val();
-				Data[5] = $('#Price1').val();
-				Data[6] = $('#Price1').val();
-				Data[7] = $('#Price1').val();
-				Data[8] = $('#Price1').val();				
-				Data[9] = "";
-				
-				var URL = "/object/ins/Course";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 RESOURCE			
+			$("#FormCourseInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					ShortName1:{
+						minlength: 2,
+						required:true
+					},
+					Price1:{
+						number:true,
+						required:true,
+						min:0,
+						max:10000000
+					},
+					Prepare1:{
+						number:true,
+						required:true,
+						min:0,
+						max:120
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';								
+					Data[1] = $('#IdCategory').attr('alt');				
+					Data[2] = $('#Name1').val();
+					Data[3] = $('#ShortName1').val();
+					Data[4] = $('#Unit1').val();
+					Data[5] = $('#Price1').val();
+					Data[6] = $('#Price1').val();
+					Data[7] = $('#Price1').val();
+					Data[8] = $('#Price1').val();
+					Data[9] = "";
+					Data[10] = $('#Prepare1').val();
+					Data[11] = $('#IsDiscount1').val();
+					Data[12] = $('#Enable1').val();
+					
+					var URL = "/object/ins/Course";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -235,112 +333,87 @@
 				
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
-					$('#URLUpdButton').attr('alt', data.Id);
-					$('#Name2').attr('value', data.Name);
-					$('#ShortName2').attr('value', data.Name);
-					$('#Unit2').select2('val', data.Unit);
-					$('#Price2').attr('value', data.Price1);
+					$('#URLUpdButton').attr('alt'	, data.Id);
+					$('#Name2').attr('value'		, data.Name);
+					$('#ShortName2').attr('value'	, data.ShortName);
+					$('#Unit2').select2('val'		, data.Unit);
+					$('#Price2').attr('value'		, data.Price1);
+					$('#Prepare2').attr('value'		, data.Prepare);
+					$('#IsDiscount2').select2('val'	, data.IsDiscount);
+					$('#Enable2').select2('val'		, data.Enable);
 				});
 			});
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 RESOURCE
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];								
-				Data[0] = $('#URLUpdButton').attr('alt');
-				Data[1] = $('#IdCategory').attr('alt');				
-				Data[2] = $('#Name2').val();
-				Data[3] = $('#ShortName2').val();
-				Data[4] = $('#Unit2').val();
-				Data[5] = $('#Price2').val();
-				Data[6] = $('#Price2').val();
-				Data[7] = $('#Price2').val();
-				Data[8] = $('#Price2').val();				
-				Data[9] = "";
-				var URL = "/object/upd/Course";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormCourseUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					ShortName2:{
+						minlength: 2,
+						required:true
+					},
+					Price2:{
+						number:true,
+						required:true,
+						min:0,
+						max:10000000
+					},
+					Prepare2:{
+						number:true,
+						required:true,
+						min:0,
+						max:120
 					}
-				});
-			});			
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#IdCategory').attr('alt');				
+					Data[2] = $('#Name2').val();
+					Data[3] = $('#ShortName2').val();
+					Data[4] = $('#Unit2').val();
+					Data[5] = $('#Price2').val();
+					Data[6] = $('#Price2').val();
+					Data[7] = $('#Price2').val();
+					Data[8] = $('#Price2').val();
+					Data[9] = "";
+					Data[10] = $('#Prepare2').val();
+					Data[11] = $('#IsDiscount2').val();
+					Data[12] = $('#Enable2').val();
+					
+					var URL = "/object/upd/Course";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
 		/*]]>*/
 		</script>		
 	</body>
 </html>
-<!--
-<!DOCTYPE html>
-<html style="overflow-y:hidden;" lang="en">
-	<head>
-		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
-	</head>
-	
-	<body data-menu-position="closed">
-		<div metal:use-macro="mAdmin.xhtml/Header"/>
-		<div class="menu">
-			<div id="sidebar">
-				
-			</div>
-		</div>
-		<div id="content">
-			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
-			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
-			<div class="container-fluid">							
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="widget-box">
-							<div class="widget-title">
-								<span class="icon"><i class="icon-table"/></span>
-								<h5 tal:content="Title"/> 
-							</div>
-							<div class="widget-content nopadding">
-								<div role="grid" class="dataTables_wrapper">
-									<table class="table table-bordered table-striped table-hover data-table">
-										<thead>
-											<tr role="row">
-												<th width="35">STT</th>
-												<th><div class="text-left">TÊN</div></th>
-												<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
-												<th width="120"><div class="text-right">GIÁ BÁN</div></th>
-												<th width="64">TỈ LỆ</th>
-												<th width="32"><i class="icon-refresh my-ico"/></th>
-												<th width="32"><i class="icon-trash my-ico"/></th>
-											</tr>
-										</thead>
-										<tbody role="alert" aria-live="polite" aria-relevant="all">
-											<tr tal:repeat="Course CourseAll" class="gradeA odd">
-												<td align="center" tal:content="repeat/Course/number"/>
-												<td><a tal:attributes="href Course/getURLUpdLoad" tal:content="Course/getName"/></td>
-												<td><div tal:content="Course/getUnit"/></td>
-												<td align="right"><div tal:content="Course/getPrice1Print"/></td>
-												<td align="center"><a tal:attributes="href Course/getURLRecipe"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Course/getURLUpdLoad"><i class="icon-pencil"/></a></td>
-												<td align="center"><a tal:attributes="href Course/getURLDelLoad"><i class="icon-remove"/></a></td>
-											</tr>
-										</tbody>
-									</table>
-									<div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-										<div class="dataTables_filter">
-											<label style="margin-top:5px;">
-												<a tal:attributes="href Category/getURLCourseInsLoad"><span class="icon-plus"/> Thêm mới</a>
-											</label>
-										</div>
-										<div metal:use-macro="mAdmin.xhtml/Pagebar"/>
-									</div>
-								</div>  
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div metal:use-macro="mAdmin.xhtml/Footer"/>
-		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
-	</body>
-</html>
-!-->

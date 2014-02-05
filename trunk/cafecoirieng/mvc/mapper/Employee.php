@@ -2,17 +2,15 @@
 namespace MVC\Mapper;
 require_once( "mvc/base/Mapper.php" );
 class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
-
     function __construct() {
-        parent::__construct();
-				
-		$tblEmployee = "cafecoirieng_employee";
-						
-		$selectAllStmt = sprintf("select * from %s", $tblEmployee);
-		$selectStmt = sprintf("select * from %s where id=?", $tblEmployee);
-		$updateStmt = sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=? where id=?", $tblEmployee);
-		$insertStmt = sprintf("insert into %s (name, gender, job, phone, address, salary_base) values(?, ?, ?, ?, ?, ?)", $tblEmployee);
-		$deleteStmt = sprintf("delete from %s where id=?", $tblEmployee);
+        parent::__construct();				
+		$tblEmployee 	= "cafecoirieng_employee";
+		
+		$selectAllStmt 	= sprintf("select * from %s", $tblEmployee);
+		$selectStmt 	= sprintf("select * from %s where id=?", $tblEmployee);
+		$updateStmt 	= sprintf("update %s set name=?, gender=?, job=?, phone=?, address=?, salary_base=?, card=? where id=?", $tblEmployee);
+		$insertStmt 	= sprintf("insert into %s (name, gender, job, phone, address, salary_base, card) values(?, ?, ?, ?, ?, ?, ?)", $tblEmployee);
+		$deleteStmt 	= sprintf("delete from %s where id=?", $tblEmployee);
 		$findByPageStmt = sprintf("SELECT * FROM  %s LIMIT :start,:max", $tblEmployee);
 		
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
@@ -25,23 +23,20 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     } 
     function getCollection( array $raw ) {return new EmployeeCollection( $raw, $this );}
 
-    protected function doCreateObject( array $array ) {		
-        $obj = new \MVC\Domain\Employee( 
-			$array['id'],			
+    protected function doCreateObject( array $array ){
+        $obj = new \MVC\Domain\Employee(
+			$array['id'],
 			$array['name'],
 			$array['gender'],
 			$array['job'],
-			$array['phone'],			
+			$array['phone'],
 			$array['address'],
-			$array['salary_base']
+			$array['salary_base'],
+			$array['card']
 		);
         return $obj;
-    }
-	
-    protected function targetClass() {        
-		return "Employee";
-    }
-
+    }	
+    protected function targetClass() { return "Employee";}
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 			
 			$object->getName(),
@@ -49,7 +44,8 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getJob(),
 			$object->getPhone(),			
 			$object->getAddress(),
-			$object->getSalaryBase()
+			$object->getSalaryBase(),
+			$object->getCard()
 		); 
         $this->insertStmt->execute( $values );
         $id = self::$PDO->lastInsertId();
@@ -64,13 +60,12 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 			$object->getPhone(),
 			$object->getAddress(),
 			$object->getSalaryBase(),
+			$object->getCard(),
 			$object->getId()
 		);		
         $this->updateStmt->execute( $values );
     }
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
     function selectStmt() {return $this->selectStmt;}
     function selectAllStmt() {return $this->selectAllStmt;}
 	
@@ -79,6 +74,6 @@ class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
 		$this->findByPageStmt->bindValue(':max', (int)($values[1]), \PDO::PARAM_INT);
 		$this->findByPageStmt->execute();
         return new EmployeeCollection( $this->findByPageStmt->fetchAll(), $this );
-    }	
+    }
 }
 ?>
