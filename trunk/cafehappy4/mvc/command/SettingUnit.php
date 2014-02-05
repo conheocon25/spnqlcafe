@@ -30,19 +30,23 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$UnitAll1 = $mUnit->findByPage(array($Page, $Config->getValue() ));
-			$PN = new \MVC\Domain\PageNavigation($UnitAll->count(), $Config->getValue(), "/setting/unit" );
+			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName	= $mConfig->findByName("NAME");
+			
+			$UnitAll1 	= $mUnit->findByPage(array($Page, $Config->getValue() ));
+			$PN 		= new \MVC\Domain\PageNavigation($UnitAll->count(), $Config->getValue(), "/setting/unit" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Unit');
-			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
-			$request->setObject('Navigation', $Navigation);			
-			$request->setObject('UnitAll1', $UnitAll1);
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Unit');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
+			
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('UnitAll1'		, $UnitAll1);
 									
 			return self::statuses('CMD_DEFAULT');
 		}

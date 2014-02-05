@@ -16,16 +16,14 @@
 			
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
-			//-------------------------------------------------------------			
-			$mSupplier 		= new \MVC\Mapper\Supplier();
-			$mConfig 		= new \MVC\Mapper\Config();
-			$mOrderImport 	= new \MVC\Mapper\OrderImport();
+			//-------------------------------------------------------------
+			require_once("mvc/base/mapper/MapperDefault.php");
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$SupplierAll = $mSupplier->findAll();			
-			$Supplier = $mSupplier->find($IdSupplier);
+			$SupplierAll 	= $mSupplier->findAll();			
+			$Supplier 		= $mSupplier->find($IdSupplier);
 						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -35,7 +33,9 @@
 				array("NHẬP HÀNG", "/import")				
 			);
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName 	= $mConfig->findByName("NAME");
+			
 			$OrderAll = $mOrderImport->findByPage(array($IdSupplier, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($Supplier->getOrderAll()->count(), $Config->getValue(), $Supplier->getURLImport());
 			
@@ -47,6 +47,7 @@
 			$request->setProperty('ActiveAdmin', 'Import');
 			$request->setObject('Navigation', $Navigation);
 			$request->setObject('PN', $PN);
+			$request->setObject('ConfigName', $ConfigName);
 			
 			$request->setObject('SupplierAll', $SupplierAll);
 			$request->setObject('OrderAll', $OrderAll);

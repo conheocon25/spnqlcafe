@@ -19,12 +19,14 @@
 			//-------------------------------------------------------------
 			$mOrderImport 	= new \MVC\Mapper\OrderImport();
 			$mSupplier 		= new \MVC\Mapper\Supplier();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$Supplier 	= $mSupplier->find($IdSupplier);
 			$Order 		= $mOrderImport->find($IdOrder);
+			$ConfigName	= $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -38,11 +40,12 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);			
-			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 									
-			$request->setObject('Order', $Order);
-			$request->setObject('Supplier', $Supplier);
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('Order'			, $Order);
+			$request->setObject('Supplier'		, $Supplier);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

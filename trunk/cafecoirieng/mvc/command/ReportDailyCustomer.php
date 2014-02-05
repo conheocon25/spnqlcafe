@@ -20,13 +20,15 @@
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			$mCustomer	= new \MVC\Mapper\Customer();
-									
+			$mConfig	= new \MVC\Mapper\Config();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
 			$TD 			= $mTD->find($IdTD);
 			$Tracking		= $mTracking->find($IdTrack);
 			$CustomerAll	= $mCustomer->findAll();
+			$ConfigName		= $mConfig->findByName("NAME");
 									
 			$Title 		= "CÔNG NỢ KHÁCH HÀNG TÍNH ĐẾN ".$TD->getDatePrint();
 			$Navigation = array(
@@ -41,6 +43,7 @@
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('CustomerAll'	, $CustomerAll);
 			$request->setObject('TD'			, $TD);
+			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}
 ?>

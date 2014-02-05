@@ -20,10 +20,12 @@
 			$mOrder 	= new \MVC\Mapper\OrderImport();
 			$mTracking 	= new \MVC\Mapper\Tracking();
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------									
+			$ConfigName	= $mConfig->findByName("NAME");
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
@@ -54,6 +56,8 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
 			$request->setProperty('Title'		, $Title);			
+			
+			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('NTotal'		, $NTotal);
 			$request->setObject('OrderAll'		, $OrderAll);

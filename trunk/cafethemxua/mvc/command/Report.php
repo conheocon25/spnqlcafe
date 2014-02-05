@@ -11,22 +11,25 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();
+			$mTracking 	= new \MVC\Mapper\Tracking();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
-			$Tracks = $mTracking->findAll();
-			$Title = "BÁO CÁO";			
+			$Tracks 	= $mTracking->findAll();
+			$Title 		= "BÁO CÁO";			
 			$Navigation = array();
+			$ConfigName = $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setProperty('Title', $Title);						
-			$request->setProperty('ActiveAdmin', 'Report');
-			$request->setObject('Tracks', $Tracks);
-			$request->setObject('Navigation', $Navigation);
+			$request->setProperty('Title'		, $Title);						
+			$request->setProperty('ActiveAdmin'	, 'Report');
+			$request->setObject('Tracks'		, $Tracks);
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('Navigation'	, $Navigation);
 		}
 	}
 ?>

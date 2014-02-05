@@ -29,19 +29,23 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$CustomerAll1 = $mCustomer->findByPage(array($Page, $Config->getValue() ));
+			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName		= $mConfig->findByName("NAME");
+			
+			$CustomerAll1 	= $mCustomer->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($CustomerAll->count(), $Config->getValue(), "/setting/customer" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Customer');
-			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('CustomerAll1', $CustomerAll1);
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Customer');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
+			
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('CustomerAll1'	, $CustomerAll1);
 															
 			return self::statuses('CMD_DEFAULT');
 		}

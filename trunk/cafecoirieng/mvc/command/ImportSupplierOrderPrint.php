@@ -17,22 +17,30 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------						
-			$mOI = new \MVC\Mapper\OrderImport();
-			$mSupplier = new \MVC\Mapper\Supplier();
+			$mOI 		= new \MVC\Mapper\OrderImport();
+			$mSupplier 	= new \MVC\Mapper\Supplier();
+			$mConfig 	= new \MVC\Mapper\Config();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$OI = $mOI->find($IdOrder);
-			$Supplier = $mSupplier->find($IdSupplier);
-			$DateCurrent = "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
+			$OI 			= $mOI->find($IdOrder);
+			$Supplier 		= $mSupplier->find($IdSupplier);
+			$DateCurrent 	= "Vĩnh Long, ngày ".\date("d")." tháng ".\date("m")." năm ".\date("Y");
+			
+			$ConfigName		= $mConfig->findByName("NAME");
+			$ConfigAddress	= $mConfig->findByName("ADDRESS");
+			$ConfigPhone	= $mConfig->findByName("PHONE");
 
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------			
-			$request->setProperty('DateCurrent', $DateCurrent);
-			$request->setObject('OI', $OI);
-			$request->setObject('Supplier', $Supplier );
+			$request->setProperty('DateCurrent'	, $DateCurrent);
+			$request->setObject('OI'			, $OI);
+			$request->setObject('Supplier'		, $Supplier );
+			$request->setObject('ConfigName'	, $ConfigName );
+			$request->setObject('ConfigAddress'	, $ConfigAddress );
+			$request->setObject('ConfigPhone'	, $ConfigPhone );
 		}
 	}
 ?>

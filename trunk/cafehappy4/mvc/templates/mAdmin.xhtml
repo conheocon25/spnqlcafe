@@ -100,11 +100,13 @@
 		<a tal:repeat="Item Navigation" tal:attributes="href php:Item[1]" tal:content="php:Item[0]" data-original-title="Về trang này" class="tip-bottom"/>
 		<a tal:content="Title" class="current"/>
 	</div>
-	
+		
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CAFE HAPPY4</h1></div>
+	<!-- ======================================================================== -->	
+	<div metal:define-macro="ContentHeader" id="content-header">
+		<h1>HỆ THỐNG QUẢN LÝ <span tal:content="ConfigName/getValue|'QUÁN CAFE'"/></h1>
+	</div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->

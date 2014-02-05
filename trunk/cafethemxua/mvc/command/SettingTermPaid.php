@@ -29,19 +29,23 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
-			$TermPaidAll1 = $mTermPaid->findByPage(array($Page, $Config->getValue() ));
+			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName		= $mConfig->findByName("NAME");
+			
+			$TermPaidAll1 	= $mTermPaid->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($TermPaidAll->count(), $Config->getValue(), "/setting/termpaid" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'TermPaid');
-			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('TermPaidAll1', $TermPaidAll1);
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'TermPaid');
+			$request->setProperty('Page'		, $Page);
+			
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('TermPaidAll1'	, $TermPaidAll1);
 												
 			return self::statuses('CMD_DEFAULT');
 		}

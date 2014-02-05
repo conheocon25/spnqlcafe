@@ -23,12 +23,14 @@
 			$mSD 		= new \MVC\Mapper\SessionDetail();
 			$mR2C  		= new \MVC\Mapper\R2C();
 			$mResource 	= new \MVC\Mapper\Resource();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
 			$Tracking 		= $mTracking->find($IdTrack);
 			$TD				= $mTD->find($IdTD);
+			$ConfigName		= $mConfig->findByName("NAME");
 			
 			$ResourceAll 	= $mResource->findAll();			
 			//Xóa những dữ liệu tồn kho cũ
@@ -102,6 +104,7 @@
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
 			$request->setProperty('Title'		, $Title);
+			$request->setObject('ConfigName'	, $ConfigName);
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('Tracking'		, $Tracking);
 			$request->setObject('TSAll'			, $TSAll);			

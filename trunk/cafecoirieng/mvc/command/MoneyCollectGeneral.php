@@ -17,9 +17,9 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTerm = new \MVC\Mapper\TermCollect();
-			$mCollectGeneral = new \MVC\Mapper\CollectGeneral();
-			$mConfig = new \MVC\Mapper\Config();
+			$mTerm 				= new \MVC\Mapper\TermCollect();
+			$mCollectGeneral 	= new \MVC\Mapper\CollectGeneral();
+			$mConfig 			= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,7 +31,9 @@
 				$Term = $TermAll->current();
 				$IdTerm = $Term->getId();
 			}						
-			$Config = $mConfig->findByName('ROW_PER_PAGE');
+			$Config 	= $mConfig->findByName('ROW_PER_PAGE');
+			$ConfigName = $mConfig->findByName('NAME');
+			
 			if (!isset($Page)) $Page = 1;
 			$CollectAll = $mCollectGeneral->findByPage(array($IdTerm, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Term->getCollectAll()->count(), $Config->getValue(), $Term->getURLCollect());
@@ -44,12 +46,14 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject('Term', $Term);
-			$request->setObject('TermAll', $TermAll);
+			$request->setObject('Term'		, $Term);
+			$request->setObject('TermAll'	, $TermAll);
 			$request->setObject('CollectAll', $CollectAll);
-			$request->setObject('PN', $PN);
-			$request->setProperty('Page', $Page);
-			$request->setProperty('Title', $Title);			
+			$request->setObject('PN'		, $PN);
+			$request->setObject('ConfigName', $ConfigName);
+			
+			$request->setProperty('Page'	, $Page);
+			$request->setProperty('Title'	, $Title);			
 			$request->setObject('Navigation', $Navigation);
 		}
 	}

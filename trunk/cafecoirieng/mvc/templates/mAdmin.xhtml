@@ -95,8 +95,10 @@
 	
 	<!-- ======================================================================== -->
 	<!-- CONTENT HEADER															  -->
-	<!-- ======================================================================== -->
-	<div metal:define-macro="ContentHeader" id="content-header"><h1>HỆ THỐNG QUẢN LÝ CAFE CÕI RIÊNG</h1></div>
+	<!-- ======================================================================== -->	
+	<div metal:define-macro="ContentHeader" id="content-header">
+		<h1>HỆ THỐNG QUẢN LÝ <span tal:content="ConfigName/getValue|'QUÁN CAFE'"/></h1>
+	</div>
 	
 	<!-- ======================================================================== -->
 	<!-- PAGE BAR																  -->
