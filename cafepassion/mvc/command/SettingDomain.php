@@ -28,20 +28,23 @@
 				array("THIẾT LẬP", "/setting")
 			);
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$Config 	= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName = $mConfig->findByName("NAME");
+			
 			$DomainAll1 = $mDomain->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($DomainAll->count(), $Config->getValue(), "/setting/domain" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Domain');
-			$request->setProperty('Page', $Page);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('DomainAll1', $DomainAll1);
-			$request->setObject('PN', $PN);
-												
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Domain');
+			$request->setProperty('Page'		, $Page);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('DomainAll1'	, $DomainAll1);
+			$request->setObject('ConfigName'	, $ConfigName);
+															
 			return self::statuses('CMD_DEFAULT');
 		}
 	}

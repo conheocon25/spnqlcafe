@@ -16,7 +16,8 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------			
-			$mTracking = new \MVC\Mapper\Tracking();			
+			$mTracking 	= new \MVC\Mapper\Tracking();			
+			$mConfig 	= new \MVC\Mapper\Config();
 												
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -58,6 +59,7 @@
 			$Navigation = array(				
 				array("BÁO CÁO", "/report")
 			);
+			$ConfigName = $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -66,6 +68,7 @@
 			$request->setObject('Navigation'	, $Navigation);
 			$request->setObject('TrackingAll'	, $TrackingAll);
 			$request->setObject('Tracking'		, $Tracking);
+			$request->setObject('ConfigName'	, $ConfigName);
 			
 			$request->setObject('ValueSelling'	, $NValueSelling);
 			$request->setObject('ValueImport'	, $NValueImport);

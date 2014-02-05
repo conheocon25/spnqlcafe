@@ -15,19 +15,22 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-						
+			$mConfig = new \MVC\Mapper\Config();
+			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------						
-			$Title = "THU / CHI";
-			$Navigation = array();
+			$Title 			= "THU / CHI";
+			$Navigation 	= array();
+			$ConfigName 	= $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------																		
-			$request->setProperty('Title', $Title );
-			$request->setProperty('ActiveAdmin', 'Money' );
-			$request->setObject("Navigation", $Navigation);
+			$request->setProperty('Title', 			$Title );
+			$request->setProperty('ActiveAdmin', 	'Money' );
+			$request->setObject("Navigation", 		$Navigation);
+			$request->setObject("ConfigName", 		$ConfigName);
 			
 			return self::statuses('CMD_DEFAULT');
 		}

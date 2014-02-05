@@ -24,6 +24,7 @@
 			$mTD 		= new \MVC\Mapper\TrackingDaily();
 			$mSession 	= new \MVC\Mapper\Session();
 			$mCC 		= new \MVC\Mapper\CollectCustomer();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,6 +32,7 @@
 			$Tracking 	= $mTracking->find($IdTrack);
 			$TD 		= $mTD->find($IdTD);
 			$Customer 	= $mCustomer->find($IdCustomer);
+			$ConfigName	= $mConfig->findByName("NAME");
 			
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
@@ -118,6 +120,7 @@
 			$request->setObject('Tracking'	, $Tracking);
 			$request->setObject('TD'		, $TD);
 			$request->setObject('Customer'	, $Customer);
+			$request->setObject('ConfigName', $ConfigName);
 			
 			$request->setObject('SessionAll', $SessionAll);
 			$request->setObject('CollectAll', $CollectAll);

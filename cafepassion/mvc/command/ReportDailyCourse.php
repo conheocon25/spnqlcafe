@@ -22,6 +22,7 @@
 			$mTC 		= new \MVC\Mapper\TrackingCourse();
 			$mSD 		= new \MVC\Mapper\SessionDetail();
 			$mCourse 	= new \MVC\Mapper\Course();
+			$mConfig 	= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -29,6 +30,7 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			$CourseAll	= $mCourse->findAll();
+			$ConfigName	= $mConfig->findByName("NAME");
 			
 			//Xóa dữ liệu cũ trong DB
 			$mTC->deleteByTracking(array($IdTrack, $IdTD));
@@ -68,6 +70,7 @@
 			$request->setProperty('Title'		, $Title);			
 			$request->setObject('Navigation'	, $Navigation);			
 			$request->setObject('TCAll'			, $TCAll);
+			$request->setObject('ConfigName'	, $ConfigName);
 		}
 	}
 ?>

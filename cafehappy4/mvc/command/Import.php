@@ -25,17 +25,18 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$Title = "NHẬP HÀNG";
+			$Title 		= "NHẬP HÀNG";
 			$Navigation = array();
+			$ConfigName	= $mConfig->findByName("NAME");
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Import');
-			$request->setObject('Navigation', $Navigation);
-			
-			$request->setObject('SupplierAll', $SupplierAll);			
+			$request->setProperty('Title'		, $Title);
+			$request->setProperty('ActiveAdmin'	, 'Import');
+			$request->setObject('Navigation'	, $Navigation);
+			$request->setObject('ConfigName'	, $ConfigName);
+			$request->setObject('SupplierAll'	, $SupplierAll);			
 						
 			return self::statuses('CMD_DEFAULT');
 		}

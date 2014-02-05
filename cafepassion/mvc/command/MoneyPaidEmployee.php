@@ -17,9 +17,9 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mEmployee = new \MVC\Mapper\Employee();
-			$mPaidEmployee = new \MVC\Mapper\PaidEmployee();
-			$mConfig = new \MVC\Mapper\Config();
+			$mEmployee 		= new \MVC\Mapper\Employee();
+			$mPaidEmployee 	= new \MVC\Mapper\PaidEmployee();
+			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -31,7 +31,9 @@
 				$Employee = $EmployeeAll->current();
 				$IdEmployee = $Employee->getId();
 			}						
-			$Config = $mConfig->findByName('ROW_PER_PAGE');
+			$Config 	= $mConfig->findByName('ROW_PER_PAGE');
+			$ConfigName = $mConfig->findByName('NAME');
+			
 			if (!isset($Page)) $Page = 1;
 			$PaidAll = $mPaidEmployee->findByPage(array($IdEmployee, $Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation( $Employee->getPaidAll()->count(), $Config->getValue(), $Employee->getURLPaid());
@@ -44,13 +46,15 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
-			$request->setObject('Employee', $Employee);
-			$request->setObject('EmployeeAll', $EmployeeAll);
-			$request->setObject('PaidAll', $PaidAll);
-			$request->setObject('PN', $PN);
-			$request->setProperty('Page', $Page);
-			$request->setProperty('Title', $Title);			
-			$request->setObject('Navigation', $Navigation);
+			$request->setObject('Employee'		, $Employee);
+			$request->setObject('EmployeeAll'	, $EmployeeAll);
+			$request->setObject('PaidAll'		, $PaidAll);
+			$request->setObject('PN'			, $PN);
+			$request->setObject('ConfigName'	, $ConfigName);
+			
+			$request->setProperty('Page'		, $Page);
+			$request->setProperty('Title'		, $Title);			
+			$request->setObject('Navigation'	, $Navigation);
 		}
 	}
 ?>

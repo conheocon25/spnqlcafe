@@ -29,19 +29,22 @@
 			);
 			
 			if (!isset($Page)) $Page=1;
-			$Config = $mConfig->findByName("ROW_PER_PAGE");
+			$Config 		= $mConfig->findByName("ROW_PER_PAGE");
+			$ConfigName		= $mConfig->findByName("NAME");
+			
 			$SupplierAll1 = $mSupplier->findByPage(array($Page, $Config->getValue() ));
 			$PN = new \MVC\Domain\PageNavigation($SupplierAll->count(), $Config->getValue(), "/setting/supplier" );
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
-			$request->setProperty('Title', $Title);
-			$request->setProperty('ActiveAdmin', 'Supplier');
-			$request->setProperty('Page', $Page);
-			$request->setObject('PN', $PN);
-			$request->setObject('Navigation', $Navigation);
-			$request->setObject('SupplierAll1', $SupplierAll1);
+			$request->setProperty('Title', 			$Title);
+			$request->setProperty('ActiveAdmin', 	'Supplier');
+			$request->setProperty('Page', 			$Page);
+			$request->setObject('PN', 				$PN);
+			$request->setObject('ConfigName', 		$ConfigName);
+			$request->setObject('Navigation', 		$Navigation);
+			$request->setObject('SupplierAll1', 	$SupplierAll1);
 															
 			return self::statuses('CMD_DEFAULT');
 		}
