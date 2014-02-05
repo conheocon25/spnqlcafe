@@ -5,9 +5,10 @@ interface AppCollection 			extends \Iterator {function add( Object $App );}
 interface CategoryCollection 		extends \Iterator {function add( Object $category );	}
 interface CollectGeneralCollection 	extends \Iterator {function add( Object $CollectGeneral );}
 interface ConfigCollection 			extends \Iterator {function add( Object $Config );}
-interface CourseCollection 			extends \Iterator {function add( Object $course );	}
+interface CourseCollection 			extends \Iterator {function add( Object $Course );	}
+interface CourseLogCollection 		extends \Iterator {function add( Object $CourseLog );	}
 interface CustomerCollection 		extends \Iterator {function add( Object $Customer );}
-interface DomainCollection 			extends \Iterator {function add( Object $domain );}
+interface DomainCollection 			extends \Iterator {function add( Object $Domain );}
 interface EmployeeCollection 		extends \Iterator {function add( Object $Employee );}
 interface GuestCollection 			extends \Iterator {function add( Object $Guest);}
 interface PaidGeneralCollection 	extends \Iterator {function add( Object $PaidGeneral );}

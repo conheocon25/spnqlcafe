@@ -473,8 +473,7 @@
 					}
 				});
 			});
-			
-											
+														
 			//-----------------------------------------------------------------------------------
 			//click gọi món
 			//-----------------------------------------------------------------------------------
@@ -495,6 +494,14 @@
 						
 						//Đánh dấu Table có khách
 						$(TableActive).addClass('actived');
+						
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	:'gritter-green',
+							text		:'Đã cập nhật món ' + data.Name,
+							time		:5000,
+							sticky		: false
+						});
 					}
 				});
 			});
@@ -575,6 +582,14 @@
 						data: {Data:Data},
 						url: URL,
 						success: function(msg){
+							$.gritter.add({
+								title		:'Thông tin',
+								class_name	:'gritter-green',
+								text		:'Đã cập nhật món xong',
+								time		:5000,
+								sticky		: false
+							});
+						
 							$("#Session").load("/selling/load/table/"+IdTable);
 						}
 					});

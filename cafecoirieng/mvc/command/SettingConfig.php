@@ -33,7 +33,7 @@
 			//Kiểm tra nếu chưa tồn tại trong DB thì sẽ tự động khởi tạo giá trị mặc định và lưu vào DB			
 			$ConfigName 	= $mConfig->findByName("NAME");
 			if ($ConfigName==null){
-				$ConfigName = new \MVC\Domain\Config(null, 'NAME', 'QUÁN ĂN');
+				$ConfigName = new \MVC\Domain\Config(null, 'NAME', 'QUÁN CAFE');
 				$mConfig->insert($ConfigName);
 			}
 			

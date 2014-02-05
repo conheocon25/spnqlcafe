@@ -3,13 +3,15 @@
 	<body>				
 		<div id="Session" class="widget-box">
 			<div class="widget-title">
-				<span class="icon"><i class="glyphicon glyphicon-th-list"></i></span>
+				<span class="icon">
+					<i class="glyphicon glyphicon-th-list"></i>
+				</span>				
 				<div class="buttons" tal:condition="Table/getSessionActive">
 					<a title="Chuyển bàn" data-toggle="modal" class="btn SessionMove" href="#DialogMove" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-move" /></a>
 					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
-					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe;data-note Table/getSessionActive/getNote"><i class="glyphicons-ok_2" /></a>
-					<a title="In phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print" /></a>
+					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>					
+					<a title="In phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">
@@ -27,18 +29,10 @@
 							<div id="IdSession" tal:attributes="alt Table/getSessionActive/getId" />
 						</div>
 						<div class="invoice-to">
-							<ul>
-								<li>									
-									<span tal:content="Table/getSessionActive/getUser/getName"/>
-								</li>
-							</ul>
+							<ul><li><span tal:content="Table/getSessionActive/getUser/getName"/></li></ul>
 						</div>
 						<div class="invoice-from">
-							<ul>
-								<li>									
-									<span tal:content="Table/getSessionActive/getDateTimePrint"/>
-								</li>
-							</ul>
+							<ul><li><span tal:content="Table/getSessionActive/getDateTimePrint"/></li></ul>
 						</div>
 					</div>
 						<table class="table table-striped table-hover">
@@ -67,25 +61,35 @@
 								</tr>
 							</tbody>
 						</table>
-						<table width="100%">
+						<table width="100%">							
+							<tr>								
+								<td tal:content="Table/getSessionActive/getNote" />
+							</tr>							
 							<tr>
-								<td style="text-align:right;">GIẢM GIÁ:</td>
-								<td tal:content="Table/getSessionActive/getDiscountPercentPrint" style="color:#5476A6;text-align:right;"/>
+								<td style="text-align:right;">GIẢM GIÁ %:</td>
+								<td tal:content="Table/getSessionActive/getDiscountPercent" style="color:#5476A6;text-align:right;"/>
+								<th width="36" />
+							</tr>
+							<tr>
+								<td style="text-align:right;">GIẢM GIÁ $:</td>
+								<td tal:content="Table/getSessionActive/getDiscountValuePrint" style="color:#5476A6;text-align:right;"/>
+								<th width="36" />
 							</tr>
 							<tr>
 								<td style="text-align:right;">TỔNG CỘNG:</td>
 								<td tal:content="Table/getSessionActive/getValuePrint" style="color:#5476A6;text-align:right;"/>
+								<th width="36" />
 							</tr>
 						</table>
-															
+																					
 					<!-- DIALOG EDIT	-->
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT MÓN</h3>
-								</div>
-								<div class="form-horizontal">
+								</div>								
+								<form id="FormSDUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="form-group">
 										<label class="control-label">Id</label>
 										<div class="controls">
@@ -110,23 +114,21 @@
 											<input id="Price1" name="Price1" type="text" class="form-control input-small"/>
 										</div>
 									</div>
-									<div class="modal-footer">
-										<button id="URLUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
+									<div class="form-actions">										
+										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit" value="Validate"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
 					<!-- END DIALOG EDIT -->
-					
+																								
 					<!-- DIALOG SESSION EDIT	-->
 					<div id="DialogSession" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-fast_food modal-icon"/>CẬP NHẬT GIAO DỊCH</h3>
-								</div>
+								<div class="modal-header"><h3><i class="glyphicons-edit modal-icon"/>CẬP NHẬT GIAO DỊCH</h3></div>
 								<div class="form-horizontal">
 									<div class="form-group">
 										<label class="control-label">Bắt đầu</label>
@@ -138,6 +140,27 @@
 										<label class="control-label">Kết thúc</label>
 										<div class="controls">
 											<input id="DateTimeEnd1" name="DateTimeEnd1" type="text" class="form-control input-small" data-date-format="yyyy-mm-dd hh:ii"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Nhân viên</label>
+										<div class="controls">
+											<select name="IdEmployee1" id="IdEmployee1" style="width:80%;" class="form-control">
+												<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId;selected php:Session->getIdEmployee()==Employee->getId()?true:false">
+													<span tal:content="Employee/getName" />
+												</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Tính tiền</label>
+										<div class="controls">
+											<select name="Status1" id="Status1" style="width:80%;" class="form-control">
+												<option tal:attributes="selected php:Session->getStatus()==0?'true':false" value="0">Chưa tính</option>
+												<option tal:attributes="selected php:Session->getStatus()==1?'true':false" value="1">Thanh toán đủ</option>
+												<option tal:attributes="selected php:Session->getStatus()==2?'true':false" value="2">Nợ phiếu</option>
+												<option tal:attributes="selected php:Session->getStatus()==3?'true':false" value="3">Tiếp khách</option>
+											</select>
 										</div>
 									</div>
 									<div class="form-group">
@@ -153,28 +176,36 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Giảm giá</label>
+										<label class="control-label">Giảm giá %</label>
 										<div class="controls">
 											<input id="DiscountPercent1" name="DiscountPercent1" type="text" class="form-control input-small"/>
 										</div>
 									</div>
-									<div class="modal-footer">
+									<div class="form-group">
+										<label class="control-label">Giảm giá tiền</label>
+										<div class="controls">
+											<input id="DiscountValue1" name="DiscountValue1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label">Ghi chú</label>
+										<div class="controls">
+											<input id="Note1" name="Note1" type="text" class="form-control input-small"/>
+										</div>
+									</div>
+									<div class="form-actions">
 										<button id="URLSessionUpdButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
 									<div id="IdUser1"/>
-									<div id="IdCustomer1"/>
-									<div id="Note1"/>
-									<div id="Status1"/>
-									<div id="DiscountValue1"/>
+									<div id="IdCustomer1"/>									
 									<div id="Surtax1"/>
-									<div id="Payment1"/>									
+									<div id="Payment1"/>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- END DIALOG EDIT -->
-															
 					<!-- DIALOG MOVE	-->
 					<div id="DialogMove" class="modal fade">
 						<div class="modal-dialog">
@@ -201,7 +232,7 @@
 							</div>
 						</div>
 					</div>
-					<!-- END DIALOG MOVE-->
+					<!-- END DIALOG EDIT -->
 					
 					<!-- DIALOG MERGE	-->
 					<div id="DialogMerge" class="modal fade">
@@ -252,8 +283,8 @@
 								<td><div class="text-center" tal:content="repeat/Session/number"/></td>
 								<td><div class="text-left" tal:content="Session/getDateTimePrint"/></td>
 								<td>
-									<a title="Xem phiếu" class="SessionPreview"  target="blank"
-										tal:attributes="href Session/getURLPrint">
+									<a title="Xem phiếu" data-toggle="modal" class="SessionPreview" href="#DialogPreview" 
+										tal:attributes="alt Session/getURLPrint">
 										<div class="text-right" tal:content="Session/getValuePrint"/>
 									</a>
 								</td>
@@ -285,22 +316,25 @@
 		</div>
 		<!-- DIALOG PREVIEW	-->
 		<div id="DialogPreview" class="modal fade">
-			<div class="modal-dialog full-screen">
+			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header"><h3><i class="glyphicons-print modal-icon"/>XEM PHIẾU</h3></div>
-					<div class="form-horizontal">
+					<div class="modal-header">
+						<h3><i class="glyphicons-star modal-icon"/>XEM TRƯỚC KHI IN</h3>
+					</div>								
+					<form class="form">
 						<div class="form-group">
-							<div id="DocPreview" />
+							<div id="DocPreview" width="320px" height="480px"/>
 						</div>
-						<div class="modal-footer">
-							<button id="ButtonDocPreview" data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng lại</button>
-						</div>									
-					</div>
+						<div class="modal-footer">									
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!-- END DIALOG MOVE-->
-        <script>						
+		<!-- END DIALOG EDIT -->
+        <script type="text/javascript">
+		/*<![CDATA[*/
 			$('#DateTime1').datetimepicker({
 				language:  'vi',
 				weekStart: 1,
@@ -320,14 +354,7 @@
 				startView: 2,
 				forceParse: 0,
 				showMeridian: 1
-			});
-			
-			var Note = $(".Checkout").attr("data-note");
-			if (Note=="")
-				$(".Checkout").hide();
-			else
-				$(".Checkout").show();
-			
+			});			
 			$("#SearchIdCustomer").change(function(){				
 				URL = "/search/customer/"+$(this).val();
 				$.getJSON(URL, function(data){
@@ -336,13 +363,8 @@
 					$("#CustomerName").val(data.Name);
 				});				
 			});
-			
-			$(".SessionPreview").click(function(){								
-				var TableActive = "#" + $("#TableActive").attr('alt');
-				$(TableActive).removeClass('actived');
-				$(TableActive).addClass('print');
-				
-				var URL = $(this).attr('alt');				
+			$(".SessionPreview").click(function(){
+				URL = $(this).attr('alt');
 				var mPDF = new PDFObject({ 		
 					url: URL,				
 					height: "500px",
@@ -353,17 +375,15 @@
 						messages: '1',
 						navpanes: '1' 
 					}				
-				}).embed("DocPreview");						
-				
+				}).embed("DocPreview");												
+				$("#DocPreview").show().printElement();	
 			});
-			
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DETAIL			
 			//-----------------------------------------------------------------------------------
 			$('.remove-item').click(function(){
 				$('#URLDelButton').attr('alt', $(this).attr('data-id'));
-			});
-			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			});			
 			$('#URLDelButton').click(function(e){								
 				var URL = "/object/del/SessionDetail/" + $(this).attr('alt');
 				var IdTable = $("#CurrentTable").attr('alt');
@@ -383,8 +403,7 @@
 			//-----------------------------------------------------------------------------------
 			$('.remove-session-item').click(function(){
 				$('#URLSessionDelButton').attr('alt', $(this).attr('data-id'));
-			});
-			//Khi người dùng Click vào nút URLDelButton thì tiến  hành gọi Ajax xóa tự động
+			});			
 			$('#URLSessionDelButton').click(function(e){								
 				var URL = "/object/del/Session/" + $(this).attr('alt');
 				var IdTable = $("#CurrentTable").attr('alt');
@@ -398,8 +417,9 @@
 					}
 				});
 			});
+			
 			//-----------------------------------------------------------------------------------
-			//Click cập nhật giao dịch			
+			//Update 1 SESSION
 			//-----------------------------------------------------------------------------------
 			$('.SessionUpdate').click(function(e){
 				//Load dữ liệu JSON về
@@ -411,24 +431,55 @@
 					$('#DateTime1').attr('value'		, data.DateTime);
 					$('#DateTimeEnd1').attr('value'		, data.DateTimeEnd);
 					$('#DiscountPercent1').attr('value'	, data.DiscountPercent);
-					$('#CustomerName').attr('value'		, data.CustomerName);
-															
+					$('#DiscountValue1').attr('value'	, data.DiscountValue);
+					$('#CustomerName').attr('value'		, data.CustomerName);					
+					$('#Note1').attr('value'			, data.Note);
+					
 					$('#IdUser1').attr('alt'			, data.IdUser);
-					$('#IdCustomer1').attr('alt'		, data.IdCustomer);
-					$('#Note1').attr('alt'				, data.Note);
-					$('#Status1').attr('alt'			, data.Status);
-					$('#DiscountValue1').attr('alt'		, data.DiscountValue);
+					$('#IdCustomer1').attr('alt'		, data.IdCustomer);					
 					$('#Surtax1').attr('alt'			, data.Surtax);
 					$('#Payment1').attr('alt'			, data.Payment);
 				});
 			});
-						
+			$("#URLSessionUpdButton").click(function(){
+				var IdTable = $("#CurrentTable").attr('alt');
+				var Data = [];
+				Data[0] 	= $('#URLSessionUpdButton').attr('alt');
+				Data[1] 	= IdTable;
+				Data[2] 	= $('#IdUser1').attr('alt');				
+				Data[3] 	= $('#IdCustomer1').attr('alt');				
+				Data[4] 	= $('#IdEmployee1').val();
+				Data[5] 	= $('#DateTime1').val();
+				Data[6] 	= $('#DateTimeEnd1').val();
+				Data[7] 	= $('#Note1').val();
+				Data[8] 	= $('#Status1').val();
+				Data[9] 	= $('#DiscountValue1').val();
+				Data[10] 	= $('#DiscountPercent1').val();
+				Data[11] 	= $('#Surtax1').val();
+				Data[12] 	= "0";//$('#Payment1').val();
+				$("#DialogSession").modal('hide');
+									
+				var URL = "/object/upd/Session";
+				$.ajax({
+					type: "POST",
+					data: {Data:Data},
+					url: URL,
+					success: function(msg){
+						var TableActive = "#" + $("#TableActive").attr('alt');
+						if ($('#Status1').val()>0){														
+							$(TableActive).removeClass('actived');
+						}
+						$("#Session").load("/selling/load/table/"+IdTable);
+					}
+				});
+			});
+														
 			//-----------------------------------------------------------------------------------
 			//click gọi món
 			//-----------------------------------------------------------------------------------
 			$('.Course').click(function(e){
 				var IdCourse 	= $(this).attr('alt');
-				var Delta 		= $(this).attr('data-delta');				
+				var Delta 		= $(this).attr('data-delta');
 				var IdTable 	= $("#CurrentTable").attr('alt');
 				URL = "/selling/call/table/"+IdTable+"/"+IdCourse+"/"+Delta;				
 				e.stopImmediatePropagation();
@@ -443,6 +494,14 @@
 						
 						//Đánh dấu Table có khách
 						$(TableActive).addClass('actived');
+						
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	:'gritter-green',
+							text		:'Đã cập nhật món ' + data.Name,
+							time		:5000,
+							sticky		: false
+						});
 					}
 				});
 			});
@@ -465,7 +524,7 @@
 			});
 			
 			//-----------------------------------------------------------------------------------
-			//Update 1 SESSION DETAIL
+			//CHECKOUT
 			//-----------------------------------------------------------------------------------
 			$('.Checkout').click(function(e){
 				var URL = $(this).attr('alt');
@@ -478,74 +537,71 @@
 						$("#Session").load("/selling/load/table/"+IdTable);
 																		
 						//Đánh dấu Table có khách
-						$(TableActive).removeClass('actived');
-						$(TableActive).removeClass('print');
+						$(TableActive).toggleClass('actived');
 					}
 				});
 			});
-			//-----------------------------------------------------------------------------------
-			//Update 1 SESSION
-			//-----------------------------------------------------------------------------------
-			$('#URLSessionUpdButton').click(function(e){
-				//alert("co");
-				var IdTable = $("#CurrentTable").attr('alt');
-				var Data = [];
-				Data[0] 	= $('#URLSessionUpdButton').attr('alt');
-				Data[1] 	= IdTable;
-				Data[2] 	= $('#IdUser1').attr('alt');				
-				Data[3] 	= $('#IdCustomer1').attr('alt');				
-				Data[4] 	= $('#DateTime1').val();
-				Data[5] 	= $('#DateTimeEnd1').val();
-				Data[6] 	= "";//$('#Note1').attr('alt');
-				Data[7] 	= $('#Status1').attr('alt');
-				Data[8] 	= $('#DiscountValue1').attr('alt');
-				Data[9] 	= $('#DiscountPercent1').val();
-				Data[10] 	= $('#Surtax1').val();
-				Data[11] 	= "0";//$('#Payment1').val();
-				
-				$("#DialogSession").modal('hide');
-				e.stopImmediatePropagation();
-				
-				var URL = "/object/upd/Session";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						$("#Session").load("/selling/load/table/"+IdTable);
-					}
-				});				
-			});	
-			
+						
 			//-----------------------------------------------------------------------------------
 			//Update 1 SESSION DETAIL
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(e){
-				//alert("co");
-				var IdTable = $("#CurrentTable").attr('alt');
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');				
-				Data[1] = $('#IdSession').attr('alt')				
-				Data[2] = $('#IdCourse1').val();
-				Data[3] = $('#Count1').val();
-				Data[4] = $('#Price1').val();
-				
-				$("#DialogEdit").modal('hide');
-				e.stopImmediatePropagation();
-				
-				var URL = "/object/upd/SessionDetail";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						$("#Session").load("/selling/load/table/"+IdTable);
+			$("#FormSDUpdate").validate({
+				rules:{
+					Count1:{
+						min: 0,
+						required:true
+					},
+					Price1:{
+						min: 0,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var IdTable = $("#CurrentTable").attr('alt');
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');				
+					Data[1] = $('#IdSession').attr('alt')				
+					Data[2] = $('#IdCourse1').val();
+					Data[3] = $('#Count1').val();
+					Data[4] = $('#Price1').val();
+					
+					$("#DialogEdit").modal('hide');
+										
+					var URL = "/object/upd/SessionDetail";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							$.gritter.add({
+								title		:'Thông tin',
+								class_name	:'gritter-green',
+								text		:'Đã cập nhật món xong',
+								time		:5000,
+								sticky		: false
+							});
+						
+							$("#Session").load("/selling/load/table/"+IdTable);
+						}
+					});
+					return false;
+				}
 			});
-			$("#ButtonDocPreview").click(function(){								
-				$(".Checkout").show();
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(function(){
+				$(event.currentTarget).find('input#Count1').first().focus()
+				}, 0500);
 			});
-        </script>
+		/*]]>*/
+		</script>
 	</body>
 </html>

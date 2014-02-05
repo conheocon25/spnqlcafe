@@ -25,7 +25,11 @@
 								<thead>
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
-										<th class="left">TÊN</th>										
+										<th width="200" class="left">TÊN</th>
+										<th width="120" class="left">CMND</th>
+										<th width="120" class="left">ĐIỆN THOẠI</th>
+										<th width="120" class="left">GIẢM GIÁ</th>
+										<th class="left">ĐỊA CHỈ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
 										<th width="40"><i class="glyphicons-bin"/></th>
 									</tr>
@@ -34,6 +38,10 @@
 									<tr tal:repeat="Customer CustomerAll1">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Customer/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId" tal:content="Customer/getName"/></td>
+										<td><span tal:content="Customer/getCard"/></td>
+										<td><span tal:content="Customer/getPhone"/></td>
+										<td><span tal:content="Customer/getDiscount"/></td>
+										<td><span tal:content="Customer/getAddress"/></td>
 										<td class="center">
 											<a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="Customer" tal:attributes="data-id Customer/getId">
 												<i class="glyphicon glyphicon-pencil"/>
@@ -55,10 +63,8 @@
 					<div id="DialogIns" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3>
-								</div>
-								<div class="form-horizontal">
+								<div class="modal-header"><h3><i class="glyphicons-user modal-icon"/>THÊM MỚI KHÁCH HÀNG</h3></div>								
+								<form id="FormCustomerInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<div class="control-group">
@@ -109,7 +115,7 @@
 										<button class="btn btn-primary btn-small" id="URLInsButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>								
+								</form>								
 							</div>
 						</div>
 					</div>
@@ -119,10 +125,8 @@
 					<div id="DialogEdit" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
-								<div class="modal-header">
-									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3>
-								</div>
-								<div class="form-horizontal" id="update-link">
+								<div class="modal-header"><h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT KHÁCH HÀNG</h3></div>								
+								<form id="FormCustomerUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<div class="control-group">
@@ -173,7 +177,7 @@
 										<button class="btn btn-primary btn-small" id="URLUpdButton"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -228,27 +232,56 @@
 			});
 		
 			//-----------------------------------------------------------------------------------
-			//Insert 1 EMPLOYEEE
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';				
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Type1').val();
-				Data[3] = $('#Card1').val();
-				Data[4] = $('#Phone1').val();
-				Data[5] = $('#Address1').val();
-				Data[6] = $('#Note1').val();
-				Data[7] = $('#Discount1').val();
-														
-				var URL = "/object/ins/Customer";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//Insert 1 CUSTOMER			
+			$("#FormCustomerInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					Discount1:{
+						number: true,
+						required:true,
+						min:0
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';				
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Type1').val();
+					Data[3] = $('#Card1').val();
+					Data[4] = $('#Phone1').val();
+					Data[5] = $('#Address1').val();
+					Data[6] = $('#Note1').val();
+					Data[7] = $('#Discount1').val();
+															
+					var URL = "/object/ins/Customer";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -275,28 +308,57 @@
 			//-----------------------------------------------------------------------------------
 			//Update 1 EMPLOYEEE
 			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];
-				Data[0] = $('#URLUpdButton').attr('alt');				
-				Data[1] = $('#Name2').val();
-				Data[2] = $('#Type2').val();
-				Data[3] = $('#Card2').val();
-				Data[4] = $('#Phone2').val();
-				Data[5] = $('#Address2').val();
-				Data[6] = $('#Note2').val();
-				Data[7] = $('#Discount2').val();
-														
-				var URL = "/object/upd/Customer";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormCustomerUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					Discount2:{
+						number: true,
+						required:true,
+						min:0
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Type2').val();
+					Data[3] = $('#Card2').val();
+					Data[4] = $('#Phone2').val();
+					Data[5] = $('#Address2').val();
+					Data[6] = $('#Note2').val();
+					Data[7] = $('#Discount2').val();
+															
+					var URL = "/object/upd/Customer";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
-			
-		/*]]>*/</script>		
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+		/*]]>*/
+		</script>
 	</body>
 </html>

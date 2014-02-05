@@ -58,7 +58,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-user modal-icon"/>THÊM MỚI NGƯỜI DÙNG</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormUserInsert" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -75,7 +75,7 @@
 										<div class="form-group">
 											<label class="control-label">Mật khẩu</label>
 											<div class="controls">
-												<input id="Pass1" name="Pass1" type="text" class="form-control input-small"/>
+												<input id="Pass1" name="Pass1" type="password" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -109,7 +109,7 @@
 										<button id="URLInsButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -122,7 +122,7 @@
 								<div class="modal-header">
 									<h3><i class="glyphicons-user modal-icon"/>CẬP NHẬT NGƯỜI DÙNG</h3>
 								</div>
-								<div class="form-horizontal">
+								<form id="FormUserUpdate" action="#" class="form-horizontal" novalidate="novalidate">
 									<div class="modal-body">
 										<div class="form-group">
 											<label class="control-label">Tên</label>
@@ -139,7 +139,7 @@
 										<div class="form-group">
 											<label class="control-label">Mật khẩu</label>
 											<div class="controls">
-												<input id="Pass2" name="Pass2" type="text" class="form-control input-small"/>
+												<input id="Pass2" name="Pass2" type="password" class="form-control input-small"/>
 											</div>
 										</div>
 										<div class="form-group">
@@ -173,7 +173,7 @@
 										<button id="URLUpdButton" class="btn btn-primary btn-small" type="submit"><i class="glyphicons-download_alt"/> Lưu</button>
 										<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
 									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -229,29 +229,57 @@
 		
 			//-----------------------------------------------------------------------------------
 			//Insert 1 USER
-			$('#URLInsButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';
-				Data[1] = $('#Name1').val();
-				Data[2] = $('#Email1').val();				
-				Data[3] = $('#Pass1').val();
-				Data[4] = $('#Gender1').val();
-				Data[5] = $('#Note1').val();
-				Data[6] = 'null';
-				Data[7] = 'null';				
-				Data[8] = 'null';
-				Data[9] = $('#Type1').val();
-				Data[10] = $('#Code1').val();
-							
-				var URL = "/object/ins/User";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			$("#FormUserInsert").validate({
+				rules:{
+					Name1:{
+						minlength: 2,
+						required:true
+					},
+					Email1:{
+						email: true,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];
+					Data[0] = 'null';
+					Data[1] = $('#Name1').val();
+					Data[2] = $('#Email1').val();				
+					Data[3] = $('#Pass1').val();
+					Data[4] = $('#Gender1').val();
+					Data[5] = $('#Note1').val();
+					Data[6] = 'null';
+					Data[7] = 'null';				
+					Data[8] = 'null';
+					Data[9] = $('#Type1').val();
+					Data[10] = $('#Code1').val();
+								
+					var URL = "/object/ins/User";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
+			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
 			});
 			
 			//-----------------------------------------------------------------------------------
@@ -276,31 +304,60 @@
 			
 			//-----------------------------------------------------------------------------------
 			//Update 1 USER
-			//-----------------------------------------------------------------------------------
-			$('#URLUpdButton').click(function(){
-				var Data = [];								
-				Data[0] = $('#URLUpdButton').attr('alt');				
-				Data[1] = $('#Name2').val();
-				Data[2] = $('#Email2').val();				
-				Data[3] = $('#Pass2').val();
-				Data[4] = $('#Gender2').val();
-				Data[5] = $('#Note2').val();
-				Data[6] = 'null';
-				Data[7] = 'null';				
-				Data[8] = 'null';
-				Data[9] = $('#Type2').val();
-				Data[10] = $('#Code2').val();
-								
-				var URL = "/object/upd/User";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
+			//-----------------------------------------------------------------------------------			
+			$("#FormUserUpdate").validate({
+				rules:{
+					Name2:{
+						minlength: 2,
+						required:true
+					},
+					Email2:{
+						email: true,
+						required:true
 					}
-				});
+				},
+				errorClass: "help-inline",
+				errorElement: "span",
+				highlight:function(element, errorClass, validClass) {
+					$(element).parents('.form-group').addClass('has-error');
+				},
+				unhighlight: function(element, errorClass, validClass) {
+					$(element).parents('.form-group').removeClass('has-error');
+					$(element).parents('.form-group').addClass('has-success');
+				},
+				submitHandler: function (form) {					
+					var Data = [];								
+					Data[0] = $('#URLUpdButton').attr('alt');
+					Data[1] = $('#Name2').val();
+					Data[2] = $('#Email2').val();				
+					Data[3] = $('#Pass2').val();
+					Data[4] = $('#Gender2').val();
+					Data[5] = $('#Note2').val();
+					Data[6] = 'null';
+					Data[7] = 'null';				
+					Data[8] = 'null';
+					Data[9] = $('#Type2').val();
+					Data[10] = $('#Code2').val();
+									
+					var URL = "/object/upd/User";
+					$.ajax({
+						type: "POST",
+						data: {Data:Data},
+						url: URL,
+						success: function(msg){
+							location.reload();
+						}
+					});
+					return false;
+				}
 			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
+			
 		/*]]>*/
 		</script>
 	</body>

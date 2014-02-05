@@ -10,7 +10,8 @@ if ( ! isset( $EG_DISABLE_INCLUDES ) ) {
 	require_once( "mvc/mapper/OrderImport.php" );
 	require_once( "mvc/mapper/OrderImportDetail.php" );
 	require_once( "mvc/mapper/Category.php" );
-	require_once( "mvc/mapper/Course.php" );		
+	require_once( "mvc/mapper/Course.php" );
+	require_once( "mvc/mapper/CourseLog.php" );
 	require_once( "mvc/mapper/PayRoll.php");	
 	require_once( "mvc/mapper/PaidGeneral.php");	
 	require_once( "mvc/mapper/PaidEmployee.php");

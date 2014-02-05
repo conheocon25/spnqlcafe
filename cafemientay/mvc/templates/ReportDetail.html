@@ -154,7 +154,13 @@
 					type: "POST",					
 					url: URL,
 					success: function(msg){
-						
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	:'gritter-green',
+							text		:'Đã cập nhật xong BÁO CÁO TRONG NGÀY',
+							time		:5000,
+							sticky		: false
+						});
 					}
 				});
 				location.reload();

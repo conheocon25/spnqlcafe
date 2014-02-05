@@ -174,6 +174,13 @@
 					return false;
 				}
 			});
+			$("#DialogIns").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name1').first().focus()},
+					0500
+				);
+			});
+			
 			//-----------------------------------------------------------------------------------
 			//Load 1 DOMAIN
 			//-----------------------------------------------------------------------------------
@@ -223,7 +230,13 @@
 					});		
 					return false;
 				}
-			});						
+			});
+			$("#DialogEdit").on('show.bs.modal', function(event){
+				window.setTimeout(
+					function(){$(event.currentTarget).find('input#Name2').first().focus()},
+					0500
+				);
+			});
 		/*]]>*/
 		</script>
 	</body>

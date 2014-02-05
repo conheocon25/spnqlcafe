@@ -7,7 +7,7 @@
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
 			//$Session = \MVC\Base\SessionRegistry::instance();
-						
+									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
 			//-------------------------------------------------------------
@@ -16,16 +16,16 @@
 			//-------------------------------------------------------------
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
-			$mTable 	= new \MVC\Mapper\Table();
+			$mTable 	= new \MVC\Mapper\Table();			
 			$mTableLog 	= new \MVC\Mapper\TableLog();
 			$mCourse 	= new \MVC\Mapper\Course();
 			$mSession 	= new \MVC\Mapper\Session();
-						
+									
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------			
-			$Table 		= $mTable->find($IdTable);
-			$Session 	= $mSession->find($IdSession);
+			$Table = $mTable->find($IdTable);
+			$Session = $mSession->find($IdSession);
 			
 			//Thanh toán đủ
 			$Session->setStatus(1);
