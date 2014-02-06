@@ -67,6 +67,7 @@ RewriteRule ^import/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)/([0-9]+)$ 	?cmd=ImportSu
 # REPORT
 #---------------------------------------------------------------------------------------------------------------------------
 RewriteRule ^report$ 										?cmd=Report [L]
+RewriteRule ^report/info$ 									?cmd=ReportInfo [L]
 RewriteRule ^report/([0-9]+)$ 								?cmd=ReportDetail&IdTrack=$1 [L]
 RewriteRule ^report/([0-9]+)/course$ 						?cmd=ReportCourse&IdTrack=$1&IdTD=$2 [L]
 
