@@ -64,6 +64,7 @@
 		<!-- ============================================================================== -->
 		<command name="Report">				<view>Report</view>				</command>
 		<command name="ReportInfo">			<view>ReportInfo</view>			</command>
+		<command name="ReportLogExe">		<view>ReportLogExe</view>		</command>
 		<command name="ReportDetail">		<view>ReportDetail</view>		</command>
 		<command name="ReportCourse">		<view>ReportCourse</view>		</command>
 		
