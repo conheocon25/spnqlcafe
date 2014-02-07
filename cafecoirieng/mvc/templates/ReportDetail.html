@@ -55,7 +55,8 @@
 											<td align="center"><a tal:attributes="href TD/getURLReportCustomer">Xem</a></td>
 										</tr>
 										<tr>
-											<td colspan="2" align="right"><B>TỔNG KẾT</B></td>
+											<td><a class="TrackingLogExe" tal:attributes="alt Tracking/getURLLogExe"><i class="glyphicons-edit"/></a></td>
+											<td align="left"><B>TỔNG KẾT</B></td>
 											<td align="right">																								
 												<a class="ViewSellingChart" href="#DialogSellingChart" data-toggle="modal" tal:attributes="data-id Tracking/getId"><span tal:content="ValueSelling/formatCurrency"/></a>
 											</td>
@@ -147,7 +148,25 @@
 		/*<![CDATA[*/
 			//-----------------------------------------------------------------------------------
 			//EXE DAILY			
-			//-----------------------------------------------------------------------------------						
+			//-----------------------------------------------------------------------------------
+			$('.TrackingLogExe').click(function(){
+				var URL = $(this).attr('alt');				
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					success: function(msg){
+						$.gritter.add({
+							title		:'Thông tin',
+							class_name	:'gritter-green',
+							text		:'Đã xuất Log file',
+							time		:5000,
+							sticky		: false
+						});	
+					}
+				});
+				//location.reload();
+			});
+			
 			$('.TDExe').click(function(){
 				var URL = $(this).attr('alt');				
 				$.ajax({

@@ -14,21 +14,25 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
 		$updateStmt = sprintf("update %s set iduser=?, idtable=?, `datetime`=?, note=? where id=?", $tblTableLog);
 		$insertStmt = sprintf("insert into %s (iduser, idtable, `datetime`, note) values(?, ?, ?, ?)", $tblTableLog);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTableLog);
+		$deleteByTrackingStmt = sprintf("delete from %s where date(datetime)>=? AND date(datetime)<=?", $tblTableLog);
+		
 		$findByStmt = sprintf("select * from %s where idtable =? AND date(datetime)=? ORDER BY datetime", $tblTableLog);
+		$findByTrackingStmt = sprintf("select * from %s where date(datetime)>=? AND date(datetime)<=? ORDER BY datetime", $tblTableLog);
+		
 		$findByPageStmt = sprintf("SELECT *  FROM %s WHERE idtable=:idtable ORDER BY datetime desc LIMIT :start,:max", $tblTableLog);
 				
         $this->selectAllStmt = self::$PDO->prepare($selectAllStmt);
         $this->selectStmt = self::$PDO->prepare($selectStmt);
         $this->updateStmt = self::$PDO->prepare($updateStmt);
         $this->insertStmt = self::$PDO->prepare($insertStmt);
-		$this->deleteStmt = self::$PDO->prepare($deleteStmt);							
+		$this->deleteStmt = self::$PDO->prepare($deleteStmt);
+		$this->deleteByTrackingStmt = self::$PDO->prepare($deleteByTrackingStmt);							
 		$this->findByStmt = self::$PDO->prepare($findByStmt);
 		$this->findByPageStmt = self::$PDO->prepare($findByPageStmt);
+		$this->findByTrackingStmt = self::$PDO->prepare($findByTrackingStmt);
 		
     } 
-    function getCollection( array $raw ) {
-        return new TableLogCollection( $raw, $this );
-    }
+    function getCollection( array $raw ) {return new TableLogCollection( $raw, $this );}
 
     protected function doCreateObject( array $array ) {		
         $obj = new \MVC\Domain\TableLog( 
@@ -67,7 +71,12 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
 		);		
         $this->updateStmt->execute( $values );
     }
-
+	
+	function deleteByTracking($values ) {
+        $this->deleteByTrackingStmt->execute( $values );
+        return true;
+    }
+	
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}	
     function selectStmt() {return $this->selectStmt;}	
     function selectAllStmt() {return $this->selectAllStmt;}
@@ -75,6 +84,11 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
 	function findBy($values ) {	
         $this->findByStmt->execute( $values );
         return new TableLogCollection( $this->findByStmt->fetchAll(), $this );
+    }
+	
+	function findByTracking($values ) {	
+        $this->findByTrackingStmt->execute( $values );
+        return new TableLogCollection( $this->findByTrackingStmt->fetchAll(), $this );
     }
 	
 	function findByPage( $values ) {
