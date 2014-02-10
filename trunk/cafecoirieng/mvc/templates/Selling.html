@@ -78,9 +78,16 @@
 								<div class="widget-content nopadding size-12">
 									<ul class="activity-list">
 										<li tal:repeat="Course Category/getCourseAll">
-											<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
-												<strong class="Course" tal:content="Course/getShortName" tal:attributes="alt Course/getId;data-delta 'plus' "/>
+											<a class="course-item">
+												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' ">+</button>
+												<strong tal:content="Course/getName"/>
+												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' ">-</button>
 											</a>
+											<!--
+											<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
+												<strong class="Course" tal:content="Course/getName" tal:attributes="alt Course/getId;data-delta 'plus' "/>
+											</a>
+											!-->
 										</li>
 									</ul>
 								</div>
