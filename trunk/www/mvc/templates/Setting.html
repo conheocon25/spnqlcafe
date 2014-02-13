@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>
+		<div metal:use-macro="mAdmin.xhtml/StyleTools"/>
+		<div metal:use-macro="mAdmin.xhtml/MenuApp"/>
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">
+								<table class="table table-bordered table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="40"><i class="glyphicons-cogwheels"/></th>
+											<th><div class="text-left">THIẾT LẬP</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td align="center"><a href="/setting/customer"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/customer'" >KHÁCH HÀNG</a></td>
+										</tr>										
+										<tr>
+											<td align="center"><a href="/setting/supplier"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/supplier'" >NHÀ CUNG CẤP</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/setting/province"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/province'" >TỈNH / THÀNH</a></td>
+										</tr>
+										<tr>
+											<td align="center"><a href="/setting/user"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/user'" >NGƯỜI DÙNG</a></td>
+										</tr>																																							
+										<tr>
+											<td align="center"><a href="/setting/config"><i class="glyphicons-cogwheel"/></a></td>
+											<td><a tal:attributes="href '/setting/config'" >CẤU HÌNH</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>					
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+	</body>
+</html>

@@ -268,7 +268,7 @@ class Session extends Object{
 			}
 			$SDAll->next();
 		}		
-		$Value = $this->getSurtax() + (int)( ($Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1) /1000)*1000;
+		$Value = $this->getSurtax() +  $Sum2 *(1.0 - $this->getDiscountPercent()/100.0) + $Sum1;
 		return $Value;
 	}
 		
