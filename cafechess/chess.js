@@ -1,21 +1,3 @@
-/**
-* @package HTML Chess
-* @version 1.0 revision #8
-* @author Stefano Gioffre', see README.txt
-* @copyleft 2010 Stefano Gioffre'
-* See COPYRIGHT.txt for copyright notices and details.
-* @license GNU/GPL Version 3, see LICENSE.txt
-* HTML Chess is free software; you can redistribute it and/or
-* modify it under the terms of the GNU General Public License
-* as published by the Free Software Foundation; version 3 of the License.
-*
-* http://htmlchess.sourceforge.net/
-*
-* The chess engine is written by Oscar Toledo (http://nanochess.110mb.com/),
-* the 3D canvas pieces and the 3D canvas renderer are written by Jacob
-* Seidelin (http://www.nihilogic.dk/).
-*/
-
 var chess = (function() {
 	// 3d
 	var oSolidBoard, bUseKeyboard = false, graphicsStatus = 0,
@@ -52,12 +34,14 @@ var chess = (function() {
 		i3DWidth: nDeskWidth,
 		i3DHeight: nDeskHeight,
 		lookAt: function(nGetPosX, nGetPosY) { return(this.aBoard[nGetPosY * 10 + nGetPosX + 21]); },
+		
+		//Kiểm tra nước đi
 		isValidMove: function(nPosX, nPosY, nTargetX, nTargetY) {
 			var startSq = nPosY * 10 + nPosX + 21, nPiece = this.aBoard[startSq];
 			if (nPiece === 0) { return(true); }
 			var endSq = nTargetY * 10 + nTargetX + 21, nTarget = this.aBoard[endSq], nPieceType = nPiece & 7, flagPcColor = nPiece & 8, bHasMoved = Boolean(nPiece & 16 ^ 16), flagTgColor = nTarget & 8, nWay = 4 - flagPcColor >> 2, nDiffX = nTargetX - nPosX, nDiffY = nTargetY - nPosY;
 			switch (nPieceType) {
-				case 1: // pawn
+				case 1: // Chốt
 					if (((nDiffY | 7) - 3) >> 2 !== nWay) { return(false); }
 					if (nDiffX === 0) {
 						if ((nDiffY + 1 | 2) !== 2 && (nDiffY + 2 | 4) !== 4) { return(false); }
@@ -71,20 +55,20 @@ var chess = (function() {
 						if ((nTarget < 1 || flagTgColor === flagPcColor) && (/* not en passant: */ nPosY !== 7 + nWay >> 1 || /* if our pawn is not on the opening, or if it is but... */ nPawnStride % 10 - 1 !== nTargetX /* ...not near him another pawn has moved for first time. */)) { return(false); }
 					} else { return(false); }
 					break;
-				case 3: // knight
+				case 3: // Xe
 					if (((nDiffY + 1 | 2) - 2 | (nDiffX + 2 | 4) - 2) !== 2 && ((nDiffY + 2 | 4) - 2 | (nDiffX + 1 | 2) - 2) !== 2) { return(false); }
 					if (nTarget > 0 && flagTgColor === flagPcColor) { return(false); }
 					break;
-				case 6: // queen
+				case 6: // Hậu
 					if (nTargetY !== nPosY && nTargetX !== nPosX && Math.abs(nDiffX) !== Math.abs(nDiffY)) { return(false); }
 					break;
-				case 5: // rook
+				case 5: // Xe
 					if (nTargetY !== nPosY && nTargetX !== nPosX) { return(false); }
 					break;
-				case 4: // bishop
+				case 4: // Tượng
 					if (Math.abs(nDiffX) !== Math.abs(nDiffY)) { return(false); }
 					break;
-				case 2: // king
+				case 2: // Xe
 					var ourRook;
 					if ((nDiffY === 0 || (nDiffY + 1 | 2) === 2) && (nDiffX === 0 || (nDiffX + 1 | 2) === 2)) {
 						if (nTarget > 0 && flagTgColor === flagPcColor) { return(false); }
@@ -154,6 +138,7 @@ var chess = (function() {
 			}
 			return(true);
 		},
+		//Chọn quân
 		makeSelection: function(nSquareId, bFromSolid) {
 			if (!bReady) { return; }
 			fourBtsLastPc = (etc.aBoard[nSquareId] ^ flagWhoMoved) & 15;
@@ -270,7 +255,7 @@ var chess = (function() {
 
 	/*
 	* signedNumber is a 29 bits number.
-	* 		01010			01010			01010			0101010			0101010			
+	* 		01010				01010				01010				0101010				0101010			
 	*		promotion (5 bits)	target (5 bits)		piece (5 bits)		end point (7 bits)	start point (7 bits)
 	*		[bits 25 to 29]		[bits 20 to 24]		[bits 15 to 19]		[bits 8 to 14]		[bits 1 to 7]
 	*/
