@@ -6,32 +6,12 @@
 	<script src="js/piece.js"></script>	
 	<script src="js/board.js"></script>	
 	<script>	
-		//BIẾN TOÀN CỤC
-		var XStart		= 100;
-		var YStart		= 50;
-		var nWidthCell  = 48;
-		var nHeightCell = 48;
-		var nWPiece  	= 32;
-		var nHPiece 	= 32;
-		var Space		= 2;
-		var Stick		= 4;
-						
-		//HÀM TỔNG QUÁT
-		function getXPos(X){return XStart + X*nWidthCell + X*Space;}
-		function getYPos(Y){return YStart + Y*nHeightCell + Y*Space;}
-		function loadPiece(canvas, context, X, Y, type, name){
-			var image = new Image();
-			image.onload = function() {
-				context.drawImage(image, getXPos(X) - nWPiece/2, getYPos(Y) - nHPiece/2, nWPiece, nHPiece);
-			}
-			image.src = "image/"+type+name+".gif";
-		}
-		
+								
 		window.onload = function() {
 			
 			var canvas 		= document.getElementById("ChessBoard");
 			var context 	= canvas.getContext("2d");														
-			var VC			= new Board("Van1", 50, 50);
+			var VC			= new Board("Van1", 25, 25);
 			VC.init();
 			VC.draw(canvas, context);
 			
@@ -42,8 +22,7 @@
 	</style>
 </head>
 
-<body>
-	<h1>Minh họa Cờ Tướng Online</h1>
-	<canvas width="800px" height="800" id="ChessBoard"></canvas>
+<body>	
+	<canvas width="550px" height="640px" id="ChessBoard"></canvas>
 </body>
 </html>
