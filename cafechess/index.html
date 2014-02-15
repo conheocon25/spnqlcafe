@@ -3,8 +3,9 @@
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />	
 	<title>Cờ Tướng Online</title>
-	<script>
-	
+	<script src="js/piece.js"></script>	
+	<script src="js/board.js"></script>	
+	<script>	
 		//BIẾN TOÀN CỤC
 		var XStart		= 100;
 		var YStart		= 50;
@@ -14,22 +15,10 @@
 		var nHPiece 	= 32;
 		var Space		= 2;
 		var Stick		= 4;
-		
-		//LỚP CỜ
-		function Piece(name, type, x, y) {
-			this.Name 	= name;     
-			this.Type 	= type;
-			this.X		= x;
-			this.Y		= y;
 						
-			this.draw = function(canvas, context) {				
-				loadPiece(canvas, context, this.X, this.Y, this.Type, this.Name);
-			}
-		}
-		
 		//HÀM TỔNG QUÁT
 		function getXPos(X){return XStart + X*nWidthCell + X*Space;}
-		function getYPos(Y){return YStart + Y*nHeightCell + Y*Space;}		
+		function getYPos(Y){return YStart + Y*nHeightCell + Y*Space;}
 		function loadPiece(canvas, context, X, Y, type, name){
 			var image = new Image();
 			image.onload = function() {
@@ -41,178 +30,10 @@
 		window.onload = function() {
 			
 			var canvas 		= document.getElementById("ChessBoard");
-			var context 	= canvas.getContext("2d");
-															
-			//Vẽ các ô trong bàn cờ			
-			context.fillStyle = "lightblue";
-			context.fill();
-			for (var i=0; i<9; i++){
-				for (var j=0; j<8; j++){
-					context.fillRect( 
-						XStart + j*(nWidthCell+Space), 
-						YStart + i*(nHeightCell+Space), 
-						nWidthCell, 
-						nHeightCell
-					);
-				}
-			}
-			
-			//===============================================================================
-			//Vẽ các đường chéo, sông hà														
-			//===============================================================================
-			context.beginPath();
-			//Chéo cung bên XANH
-			context.moveTo(XStart + 3*(nWidthCell+Space)		, YStart + 0*(nHeightCell+Space));
-			context.lineTo(XStart + 5*(nWidthCell+Space)-Space 	, YStart + 2*(nHeightCell+Space)-Space);
-			context.moveTo(XStart + 5*(nWidthCell+Space)		, YStart + 0*(nHeightCell+Space));
-			context.lineTo(XStart + 3*(nWidthCell+Space)-Space	, YStart + 2*(nHeightCell+Space)-Space);
-			
-			//Vị trí Pháo bên XANH
-			context.moveTo(XStart + 1*(nWidthCell+Space)-Stick	, YStart + 2*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 1*(nWidthCell+Space)+Stick	, YStart + 2*(nHeightCell+Space)+Stick);			
-			context.moveTo(XStart + 1*(nWidthCell+Space)+Stick	, YStart + 2*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 1*(nWidthCell+Space)-Stick	, YStart + 2*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 7*(nWidthCell+Space)-Stick	, YStart + 2*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 7*(nWidthCell+Space)+Stick	, YStart + 2*(nHeightCell+Space)+Stick);			
-			context.moveTo(XStart + 7*(nWidthCell+Space)+Stick	, YStart + 2*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 7*(nWidthCell+Space)-Stick	, YStart + 2*(nHeightCell+Space)+Stick);
-			
-			//Vị trí Chốt bên XANH
-			context.moveTo(XStart + 0*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 0*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 0*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 0*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 2*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 2*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 2*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 2*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 4*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 4*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 4*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 4*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 6*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 6*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 6*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 6*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 8*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 8*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 8*(nWidthCell+Space)+Stick	, YStart + 3*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 8*(nWidthCell+Space)-Stick	, YStart + 3*(nHeightCell+Space)+Stick);
-			
-			//Chéo cung bên ĐỎ
-			context.moveTo(XStart + 3*(nWidthCell+Space)		, YStart + 7*(nHeightCell+Space));
-			context.lineTo(XStart + 5*(nWidthCell+Space)-Space 	, YStart + 9*(nHeightCell+Space)-Space);			
-			context.moveTo(XStart + 3*(nWidthCell+Space)-Space	, YStart + 9*(nHeightCell+Space)-Space);
-			context.lineTo(XStart + 5*(nWidthCell+Space)-Space 	, YStart + 7*(nHeightCell+Space)-Space);
-			
-			//Vị trí Pháo bên ĐỎ
-			context.moveTo(XStart + 1*(nWidthCell+Space)-Stick	, YStart + 7*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 1*(nWidthCell+Space)+Stick	, YStart + 7*(nHeightCell+Space)+Stick);			
-			context.moveTo(XStart + 1*(nWidthCell+Space)+Stick	, YStart + 7*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 1*(nWidthCell+Space)-Stick	, YStart + 7*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 7*(nWidthCell+Space)-Stick	, YStart + 7*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 7*(nWidthCell+Space)+Stick	, YStart + 7*(nHeightCell+Space)+Stick);			
-			context.moveTo(XStart + 7*(nWidthCell+Space)+Stick	, YStart + 7*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 7*(nWidthCell+Space)-Stick	, YStart + 7*(nHeightCell+Space)+Stick);
-			
-			//Vị trí Chốt bên XANH
-			context.moveTo(XStart + 0*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 0*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 0*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 0*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 2*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 2*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 2*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 2*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 4*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 4*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 4*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 4*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 6*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 6*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 6*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 6*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			
-			context.moveTo(XStart + 8*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 8*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			context.moveTo(XStart + 8*(nWidthCell+Space)+Stick	, YStart + 6*(nHeightCell+Space)-Stick);
-			context.lineTo(XStart + 8*(nWidthCell+Space)-Stick	, YStart + 6*(nHeightCell+Space)+Stick);
-			
-			//Vẽ HÀ
-			context.moveTo(XStart + 0*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 1*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 1*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 2*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 2*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 3*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 3*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 4*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 4*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 5*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 5*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 6*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 6*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 7*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-			
-			context.moveTo(XStart + 7*(nWidthCell+Space)		, YStart + 4*(nHeightCell+Space));
-			context.lineTo(XStart + 8*(nWidthCell+Space)-Space	, YStart + 5*(nHeightCell+Space)-Space);
-									
-			context.stroke();
-			
-			//Load các QUÂN CỜ						
-			var APiece = [
-				new Piece("King", 		"G", 4, 0),
-				new Piece("Bishop", 	"G", 3, 0),
-				new Piece("Bishop", 	"G", 5, 0),
-				new Piece("Elephant", 	"G", 2, 0),
-				new Piece("Elephant", 	"G", 6, 0),
-				new Piece("Horse", 		"G", 1, 0),
-				new Piece("Horse", 		"G", 7, 0),
-				new Piece("Rook", 		"G", 0, 0),
-				new Piece("Rook", 		"G", 8, 0),
-				new Piece("Canon", 		"G", 1, 2),
-				new Piece("Canon", 		"G", 7, 2),
-				new Piece("Pawn", 		"G", 0, 3), 
-				new Piece("Pawn", 		"G", 2, 3), 
-				new Piece("Pawn", 		"G", 4, 3), 
-				new Piece("Pawn", 		"G", 6, 3), 
-				new Piece("Pawn", 		"G", 8, 3),
-				
-				new Piece("King", 		"R", 4, 9),
-				new Piece("Bishop", 	"R", 3, 9),
-				new Piece("Bishop", 	"R", 5, 9),
-				new Piece("Elephant", 	"R", 2, 9),
-				new Piece("Elephant", 	"R", 6, 9),
-				new Piece("Horse", 		"R", 1, 9),
-				new Piece("Horse", 		"R", 7, 9),
-				new Piece("Rook", 		"R", 0, 9),
-				new Piece("Rook", 		"R", 8, 9),
-				new Piece("Canon", 		"R", 1, 7),
-				new Piece("Canon", 		"R", 7, 7),
-				new Piece("Pawn", 		"R", 0, 6), 
-				new Piece("Pawn", 		"R", 2, 6), 
-				new Piece("Pawn", 		"R", 4, 6), 
-				new Piece("Pawn", 		"R", 6, 6), 
-				new Piece("Pawn", 		"R", 8, 6)
-			];
-			for (var i=0; i<APiece.length; i++) {
-				APiece[i].draw(canvas, context);
-			}
+			var context 	= canvas.getContext("2d");														
+			var VC			= new Board("Van1", 50, 50);
+			VC.init();
+			VC.draw(canvas, context);
 			
 		};
 	</script>
