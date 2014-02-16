@@ -15,7 +15,36 @@ function Board(Name, XStart, YStart){
 	this.Space			= 2;
 	this.Stick			= 4;
 	this.APiece 		= [];
-			
+	
+	//VỊ TRÍ PHÂN BỔ CỦA QUÂN ĐỎ (2) VÀ QUÂN XANH (1)
+	this.State			= [
+		[1,	1, 1, 1, 1, 1, 1, 1, 1],
+		[0,	0, 0, 0, 0, 0, 0, 0, 0],
+		[0,	1, 0, 0, 0, 0, 0, 1, 0],
+		[1,	0, 1, 0, 1, 0, 1, 0, 1],
+		[0,	0, 0, 0, 0, 0, 0, 0, 0],
+		[0,	0, 0, 0, 0, 0, 0, 0, 0],
+		[2,	0, 2, 0, 2, 0, 2, 0, 2],
+		[0,	2, 0, 0, 0, 0, 0, 2, 0],
+		[0,	0, 0, 0, 0, 0, 0, 0, 0],
+		[2,	2, 2, 2, 2, 2, 2, 2, 2]
+	];
+	
+	//VỊ TRÍ PHÂN BỔ CỦA CÁC ĐỐI TƯỢNG QUÂN CỜ [0...31] VỊ TRÍ CỦA QUÂN CỜ | -1 LÀ VỊ TRÍ TRỐNG
+	this.Object	= [
+		[ 7,  5,  3,  1,  0,  2,  4,  6,  8],
+		[-1, -1, -1, -1, -1, -1, -1, -1, -1],
+		[-1,  9, -1, -1, -1, -1, -1, 10, -1],
+		[11, -1, 12, -1, 13, -1, 14, -1, 15],
+		[-1, -1, -1, -1, -1, -1, -1, -1, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1, -1],
+		[27, -1, 28, -1, 29, -1, 30, -1, 31],
+		[-1, 25, -1, -1, -1, -1, -1, 26, -1],
+		[-1, -1, -1, -1, -1, -1, -1, -1, -1],
+		[23, 21, 19, 17, 16, 18, 20, 22, 24]
+	];
+		
+		
 	this.getX2Canvas 	= function(X) {return this.XStart + X*this.nWidthCell + X*this.Space;}
 	this.getY2Canvas	= function(Y){return this.YStart + Y*this.nHeightCell + Y*this.Space;}
 		
@@ -56,7 +85,14 @@ function Board(Name, XStart, YStart){
 		this.APiece[29] = 	new Piece("Pawn", 		"R", 4, 6); 
 		this.APiece[30] = 	new Piece("Pawn", 		"R", 6, 6); 
 		this.APiece[31] = 	new Piece("Pawn", 		"R", 8, 6);
-				
+						
+	}
+	
+	//--------------------------------------------------------------------
+	//DI CHUYỂN QUÂN CỜ
+	//--------------------------------------------------------------------
+	this.move = function(iPiece, XNew, YNew){
+		this.APiece[iPiece].setXY(XNew, YNew);
 	}
 	
 	//--------------------------------------------------------------------
