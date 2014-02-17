@@ -4,23 +4,24 @@
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />	
 	<title>Cờ Tướng Online</title>
 	<script src="js/piece.js"></script>	
-	<script src="js/board.js"></script>	
-	<script>	
-								
+	<script src="js/board.js"></script>
+	<style>
+		#ChessBoard { border: 2px solid #ADD8E6; box-shadow: 0 0 0 15px #ADD8E6 inset; }
+	</style>
+	<script>
 		window.onload = function() {
-			
 			var canvas 		= document.getElementById("ChessBoard");
 			var context 	= canvas.getContext("2d");														
-			var VC			= new Board("Van1", 25, 25);
+			var VC			= new Board("Van1", 20, 20);
 			VC.init();
 			//VC.move(0, 4, 1);
 			VC.move(0, 4, 2);
-			VC.draw(canvas, context);			
+			VC.draw(canvas, context);
 		};
 	</script>
 	<style type="text/css">canvas { border: 1px solid black; }</style>
 </head>
 <body>	
-	<canvas width="550px" height="640px" id="ChessBoard"></canvas>
+	<center><canvas width="438px" height="488px" id="ChessBoard"></canvas></center>
 </body>
 </html>
