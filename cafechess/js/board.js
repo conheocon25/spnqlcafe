@@ -96,18 +96,71 @@ function Board(Name, XStart, YStart){
 	}
 	
 	//--------------------------------------------------------------------
+	//VẼ VỊ TRÍ PHÁO, TỐT
+	//--------------------------------------------------------------------
+	this.drawNode = function(context, col, row){		
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)-this.Stick - 10,	this.YStart + row*(this.nHeightCell+this.Space)-this.Stick - 1);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 10,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 9);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 8);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 18);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 8);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 18);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 9);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick + 8,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 9);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick + 8,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 2,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick + 8);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 18,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 8,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick + 8);
+	}
+	
+	this.drawNodeLeft = function(context, col, row){		
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 8);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 18);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 9);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick + 8,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 9);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick + 8,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 2,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 1,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick + 8);
+	}
+	
+	this.drawNodeRight = function(context, col, row){		
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)-this.Stick - 10,	this.YStart + row*(this.nHeightCell+this.Space)-this.Stick - 1);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 10,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 9);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 8);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 18);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 18,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 8,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick - 1);
+		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick);
+		context.lineTo(this.XStart + col*(this.nWidthCell+this.Space)+this.Stick - 9,	this.YStart + row*(this.nHeightCell+this.Space)+this.Stick + 8);
+	}
+	
+	//--------------------------------------------------------------------
 	//VẼ BÀN CỜ
 	//--------------------------------------------------------------------
-	this.draw = function(canvas, context){		
-		context.fillStyle = "lightblue";
-		context.fill();
+	this.draw = function(canvas, context){
+		var width;
 		//Vẽ các ô trong bàn cờ		
 		for (var i=0; i<9; i++){
 			for (var j=0; j<8; j++){
+				if(i==4){
+					//Vẽ hà
+					context.fillStyle = "#D7ECF2";
+					if(j!=7) { width = this.nWidthCell+2;
+					} else { width = this.nWidthCell; }
+				} else {
+					context.fillStyle = "lightblue";
+					width = this.nWidthCell;
+				}
+				context.fill();
 				context.fillRect( 
 					this.XStart + j*(this.nWidthCell+this.Space), 
 					this.YStart + i*(this.nHeightCell+this.Space), 
-					this.nWidthCell, 
+					width, 
 					this.nHeightCell
 				);
 			}
@@ -117,117 +170,42 @@ function Board(Name, XStart, YStart){
 		//Vẽ các đường chéo, sông hà														
 		//===============================================================================
 		context.beginPath();
+		context.strokeStyle = "#fff";
+		context.lineWidth = 2;
 		//Chéo cung bên XANH
-		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)		, this.YStart + 0*(this.nHeightCell+this.Space));
+		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)				, this.YStart + 0*(this.nHeightCell+this.Space));
 		context.lineTo(this.XStart + 5*(this.nWidthCell+this.Space)-this.Space 	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Space);
-		context.moveTo(this.XStart + 5*(this.nWidthCell+this.Space)		, this.YStart + 0*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 3*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Space);
+		context.moveTo(this.XStart + 5*(this.nWidthCell+this.Space)-2			, this.YStart + 0*(this.nHeightCell+this.Space));
+		context.lineTo(this.XStart + 3*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Space+2);
 			
 		//Vị trí Pháo bên XANH
-		context.moveTo(this.XStart + 1*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 1*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)+this.Stick);			
-		context.moveTo(this.XStart + 1*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 1*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)+this.Stick);
-			
-		context.moveTo(this.XStart + 7*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 7*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)+this.Stick);			
-		context.moveTo(this.XStart + 7*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 7*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 2*(this.nHeightCell+this.Space)+this.Stick);
-			
+		this.drawNode(context, 1, 2);
+		this.drawNode(context, 7, 2);
+
 		//Vị trí Chốt bên XANH
-		context.moveTo(this.XStart + 0*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 0*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 0*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 0*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 2*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 2*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 2*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 2*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 4*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 4*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 4*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 4*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 6*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 6*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 6*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 6*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 8*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 8*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 8*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 8*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 3*(this.nHeightCell+this.Space)+this.Stick);
+		this.drawNodeLeft(context, 0, 3);
+		this.drawNode(context, 2, 3);
+		this.drawNode(context, 4, 3);
+		this.drawNode(context, 6, 3);
+		this.drawNodeRight(context, 8, 3);
 		
 		//Chéo cung bên ĐỎ
-		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)		, this.YStart + 7*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 5*(this.nWidthCell+this.Space)-this.Space 	, this.YStart + 9*(this.nHeightCell+this.Space)-this.Space);			
-		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 9*(this.nHeightCell+this.Space)-this.Space);
-		context.lineTo(this.XStart + 5*(this.nWidthCell+this.Space)-this.Space 	, this.YStart + 7*(this.nHeightCell+this.Space)-this.Space);
+		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)					, this.YStart + 7*(this.nHeightCell+this.Space));
+		context.lineTo(this.XStart + 5*(this.nWidthCell+this.Space)-this.Space		, this.YStart + 9*(this.nHeightCell+this.Space)-this.Space);			
+		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)-this.Space+2	, this.YStart + 9*(this.nHeightCell+this.Space)-this.Space);
+		context.lineTo(this.XStart + 5*(this.nWidthCell+this.Space)-this.Space+2	, this.YStart + 7*(this.nHeightCell+this.Space)-this.Space);
 		
 		//Vị trí Pháo bên ĐỎ
-		context.moveTo(this.XStart + 1*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 1*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)+this.Stick);			
-		context.moveTo(this.XStart + 1*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 1*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 7*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 7*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)+this.Stick);			
-		context.moveTo(this.XStart + 7*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 7*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 7*(this.nHeightCell+this.Space)+this.Stick);
-		
+		this.drawNode(context, 1, 7);
+		this.drawNode(context, 7, 7);
+
 		//Vị trí Chốt bên XANH
-		context.moveTo(this.XStart + 0*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 0*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 0*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 0*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 2*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 2*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 2*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 2*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 4*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 4*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 4*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 4*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 6*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 6*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 6*(this.nWidthCell+this.Space)+this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 6*(this.nWidthCell+this.Space)-this.Stick	, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		
-		context.moveTo(this.XStart + 8*(this.nWidthCell+this.Space)-this.Stick		, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 8*(this.nWidthCell+this.Space)+this.Stick		, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		context.moveTo(this.XStart + 8*(this.nWidthCell+this.Space)+this.Stick		, this.YStart + 6*(this.nHeightCell+this.Space)-this.Stick);
-		context.lineTo(this.XStart + 8*(this.nWidthCell+this.Space)-this.Stick		, this.YStart + 6*(this.nHeightCell+this.Space)+this.Stick);
-		
-		//Vẽ HÀ
-		context.moveTo(this.XStart + 0*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 1*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 1*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 2*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 2*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 3*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 3*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 4*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 4*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 5*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 5*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 6*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 6*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 7*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-		
-		context.moveTo(this.XStart + 7*(this.nWidthCell+this.Space)				, this.YStart + 4*(this.nHeightCell+this.Space));
-		context.lineTo(this.XStart + 8*(this.nWidthCell+this.Space)-this.Space	, this.YStart + 5*(this.nHeightCell+this.Space)-this.Space);
-								
+		this.drawNodeLeft(context, 0, 6);
+		this.drawNode(context, 2, 6);
+		this.drawNode(context, 4, 6);
+		this.drawNode(context, 6, 6);
+		this.drawNodeRight(context, 8, 6);
+
 		context.stroke();
 				
 		for (var i=0; i<this.APiece.length; i++) {			
