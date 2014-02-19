@@ -12,14 +12,17 @@
 	<script>
 		window.onload = function() {					
 			var canvas 		= document.getElementById("ChessBoard");
-			var context 	= canvas.getContext("2d");														
-			var VC			= new Board("Van1", 20, 20);
+			var context 	= canvas.getContext("2d");
+			var Rect 		= canvas.getBoundingClientRect();
+			var VC			= new Board("Van1", 20, 20, Rect);
 			
 			VC.init();
-			//VC.setState("41 30 50 20 60 10 70 00 80 12 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86");
-			VC.setState("41 DD DD DD DD DD DD 20 70 12 72 03 23 43 63 83 49 39 DD DD DD DD DD 09 89 17 77 06 26 46 66 86");
-			
 			VC.draw(canvas, context);
+			canvas.addEventListener('click', function(e){
+				VC.click(e);
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				VC.draw(canvas, context);
+			}, false);
 			
 			$(".Button").click(function(){
 				var State = $(this).attr('alt');

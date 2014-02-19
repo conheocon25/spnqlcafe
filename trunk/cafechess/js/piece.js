@@ -10,8 +10,10 @@ function Piece(Name, Type, X, Y){
 	this.Type 		= Type;
 	this.X			= X;
 	this.Y			= Y;
-	this.Image		= new Image();	
+	this.Image		= new Image();
 	this.Image.src 	= "image/"+this.Type+ this.Name+".gif";
+	this.ImageSelected	= new Image();
+	this.ImageSelected.src 	= "image/Selected.gif";
 	
 	//THIẾT LẬP TỌA ĐỘ
 	this.getX	= function(){return this.X;}
@@ -20,8 +22,10 @@ function Piece(Name, Type, X, Y){
 	
 	//THIẾT LẬP VẼ
 	this.getImage 		= function(){return this.Image;}
+	this.getImageSelected	= function(){return this.ImageSelected;}
 	this.getFileName	= function(){return "image/"+this.Type+this.Name+".gif";}
-	
+	this.getName		= function(){return this.Name;}
+		
 	//KIỂM TRA NƯỚC ĐI HỢP LỆ
 	
 }
