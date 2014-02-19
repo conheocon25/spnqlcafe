@@ -85,7 +85,24 @@ function Board(Name, XStart, YStart){
 		this.APiece[29] = 	new Piece("Pawn", 		"R", 4, 6); 
 		this.APiece[30] = 	new Piece("Pawn", 		"R", 6, 6); 
 		this.APiece[31] = 	new Piece("Pawn", 		"R", 8, 6);
-						
+	}
+	
+	this.setState 	= function(Str){
+		var arrStr = Str.split(' ');		
+		for (var i=0; i < arrStr.length; i++){
+			var S = arrStr[i];
+			if (S=="DD")
+				this.APiece[i].setXY(-1, -1);
+			else
+				this.APiece[i].setXY(S[0], S[1]);
+		}		
+	}
+	this.getState 	= function(){
+		var Str = "";
+		for (var i=0; i < arrStr.length; i++){			
+			Str += this.APiece[i].getX()+this.APiece[i].getY()+" ";
+		}
+		return Str;
 	}
 	
 	//--------------------------------------------------------------------

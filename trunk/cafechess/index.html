@@ -2,55 +2,42 @@
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />	
-	<title>Cờ Tướng Online</title>
+	<title>Cờ Tướng Online</title>	
+	<script src="js/jquery.js"></script>
 	<script src="js/piece.js"></script>	
 	<script src="js/board.js"></script>
 	<style>
 		#ChessBoard { border: 2px solid #ADD8E6; box-shadow: 0 0 0 15px #ADD8E6 inset; }
 	</style>
 	<script>
-		window.onload = function() {
+		window.onload = function() {					
 			var canvas 		= document.getElementById("ChessBoard");
 			var context 	= canvas.getContext("2d");														
 			var VC			= new Board("Van1", 20, 20);
+			
 			VC.init();
-			//VC.move(0, 4, 1);
-			VC.move(0, 5, 1);
-			VC.move(1, 5, 2);
-			VC.move(5, 4, 1);
-			VC.move(7, 3, 1);
-			VC.move(3, 4, 2);
-			VC.move(9, 6, 1);
-			VC.move(10, 7, 1);
-			VC.move(8, 8, 8);
-			VC.move(11, 3, 7);
-			VC.move(12, 5, 6);
-			VC.move(13, 6, 7);
-			VC.move(14, 8, 9);
-			VC.move(15, -1, -1);
-			VC.move(30, 6, 3);
-			VC.move(17, -1, -1);
-			VC.move(18, -1, -1);
-			VC.move(19, -1, -1);
-			VC.move(20, -1, -1);
-			VC.move(21, -1, -1);
-			VC.move(22, -1, -1);
-			VC.move(23, -1, -1);
-			VC.move(24, -1, -1);
-			VC.move(25, -1, -1);
-			VC.move(26, -1, -1);
-			VC.move(27, -1, -1);
-			VC.move(28, -1, -1);
-			VC.move(29, -1, -1);
-			VC.move(31, -1, -1);
-			VC.move(24, -1, -1);
-			VC.move(16, 5, 9);
+			//VC.setState("41 30 50 20 60 10 70 00 80 12 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86");
+			VC.setState("41 DD DD DD DD DD DD 20 70 12 72 03 23 43 63 83 49 39 DD DD DD DD DD 09 89 17 77 06 26 46 66 86");
+			
 			VC.draw(canvas, context);
+			
+			$(".Button").click(function(){
+				var State = $(this).attr('alt');
+				VC.setState(State);
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				VC.draw(canvas, context);
+			});
 		};
 	</script>
-	<style type="text/css">canvas { border: 1px solid black; }</style>
+	<style type="text/css">canvas { border: 1px solid black; }</style>	
 </head>
 <body>	
 	<center><canvas width="438px" height="488px" id="ChessBoard"></canvas></center>
+	<div class="Button" alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 1-1</div>
+	<div class="Button" alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 26 46 66 86">N 1-2</div>
+	<div class="Button" alt="40 30 50 20 60 22 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 26 46 66 86">N 2-1</div>
+	<div class="Button" alt="40 30 50 20 60 22 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 25 46 66 86">N 2-2</div>
+	<div class="Button" alt="40 30 50 20 60 22 62 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 25 46 66 86">N 3-1</div>
+	<div class="Button" alt="40 30 50 20 60 22 62 00 80 42 72 03 23 43 63 83 49 39 59 29 69 27 79 09 89 47 77 06 25 46 66 86">N 3-2</div>
 </body>
 </html>
