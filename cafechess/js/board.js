@@ -4,7 +4,7 @@
 //Name: tên quân cờ {King, Rook, Bishop, Elephant, Canon, Horse, Pawn}
 //Type: màu quân cờ {R, G} tương đương với {Đỏ, Xanh}
 //X, Y: vị trí quân cờ, vị trí ảo chưa tính tọa độ thực tế.
-function Board(Name, XStart, YStart){
+function Board(Name, XStart, YStart, Rect){
 	this.Name 			= Name;
 	this.XStart			= XStart;
 	this.YStart			= YStart;
@@ -15,21 +15,10 @@ function Board(Name, XStart, YStart){
 	this.Space			= 2;
 	this.Stick			= 4;
 	this.APiece 		= [];
+	this.Rect 			= Rect;
 	
-	//VỊ TRÍ PHÂN BỔ CỦA QUÂN ĐỎ (2) VÀ QUÂN XANH (1)
-	this.State			= [
-		[1,	1, 1, 1, 1, 1, 1, 1, 1],
-		[0,	0, 0, 0, 0, 0, 0, 0, 0],
-		[0,	1, 0, 0, 0, 0, 0, 1, 0],
-		[1,	0, 1, 0, 1, 0, 1, 0, 1],
-		[0,	0, 0, 0, 0, 0, 0, 0, 0],
-		[0,	0, 0, 0, 0, 0, 0, 0, 0],
-		[2,	0, 2, 0, 2, 0, 2, 0, 2],
-		[0,	2, 0, 0, 0, 0, 0, 2, 0],
-		[0,	0, 0, 0, 0, 0, 0, 0, 0],
-		[2,	2, 2, 2, 2, 2, 2, 2, 2]
-	];
-	
+	this.iSelected		= -1;
+			
 	//VỊ TRÍ PHÂN BỔ CỦA CÁC ĐỐI TƯỢNG QUÂN CỜ [0...31] VỊ TRÍ CỦA QUÂN CỜ | -1 LÀ VỊ TRÍ TRỐNG
 	this.Object	= [
 		[ 7,  5,  3,  1,  0,  2,  4,  6,  8],
@@ -43,8 +32,7 @@ function Board(Name, XStart, YStart){
 		[-1, -1, -1, -1, -1, -1, -1, -1, -1],
 		[23, 21, 19, 17, 16, 18, 20, 22, 24]
 	];
-		
-		
+				
 	this.getX2Canvas 	= function(X) {return this.XStart + X*this.nWidthCell + X*this.Space;}
 	this.getY2Canvas	= function(Y){return this.YStart + Y*this.nHeightCell + Y*this.Space;}
 		
@@ -91,10 +79,14 @@ function Board(Name, XStart, YStart){
 		var arrStr = Str.split(' ');		
 		for (var i=0; i < arrStr.length; i++){
 			var S = arrStr[i];
-			if (S=="DD")
+			if (S=="DD"){
 				this.APiece[i].setXY(-1, -1);
-			else
+				this.Object[this.APiece[i].getY()][this.APiece[i].getX()] = -1;
+			}				
+			else{
 				this.APiece[i].setXY(S[0], S[1]);
+				this.Object[S[1]][S[0]] = i;
+			}				
 		}		
 	}
 	this.getState 	= function(){
@@ -106,10 +98,32 @@ function Board(Name, XStart, YStart){
 	}
 	
 	//--------------------------------------------------------------------
-	//DI CHUYỂN QUÂN CỜ
+	//SỰ KIỆN CLICK CHUỘT
 	//--------------------------------------------------------------------
-	this.move = function(iPiece, XNew, YNew){
-		this.APiece[iPiece].setXY(XNew, YNew);
+	this.move = function(iPiece, XNew, YNew){this.APiece[iPiece].setXY(XNew, YNew);}
+	
+	this.click = function(e){
+		var CellX 	= Math.floor((e.clientX-this.Rect.left)/this.nWidthCell);
+		var CellY 	= Math.floor((e.clientY-this.Rect.top)/this.nHeightCell);		
+		var Id 		= -1;
+		
+		if (this.iSelected != -1){			
+			if (this.Object[CellY][CellX] == -1){												
+				//Thiết lập vị trí cũ là trống
+				this.Object[this.APiece[this.iSelected].getY()][this.APiece[this.iSelected].getX()] = -1;
+				
+				//Thiết lập vị trí mới với CellX, CellY
+				this.Object[CellY][CellX] = this.iSelected;
+				this.APiece[this.iSelected].setXY(CellX, CellY);				
+												
+				this.iSelected = -1;
+			}
+		}else{
+			if (this.Object[CellY][CellX] != -1){
+				Id = this.Object[CellY][CellX];
+				this.iSelected = Id;
+			}
+		}
 	}
 	
 	//--------------------------------------------------------------------
@@ -229,6 +243,15 @@ function Board(Name, XStart, YStart){
 			var X = this.getX2Canvas(this.APiece[i].getX()) - this.nWPiece/2;
 			var Y = this.getY2Canvas(this.APiece[i].getY()) - this.nHPiece/2;
 			context.drawImage(this.APiece[i].getImage(), X, Y, this.nWPiece, this.nHPiece);
+		}
+		
+		//Vẽ con cờ được chọn
+		if (this.iSelected != -1){
+			//alert("có chọn" + this.iSelected);
+			var i = this.iSelected;
+			var X = this.getX2Canvas(this.APiece[i].getX()) - this.nWPiece/2;
+			var Y = this.getY2Canvas(this.APiece[i].getY()) - this.nHPiece/2;
+			context.drawImage(this.APiece[0].getImageSelected(), X, Y, this.nWPiece, this.nHPiece);
 		}
 		
 	}
