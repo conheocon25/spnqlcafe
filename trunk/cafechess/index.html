@@ -1,14 +1,56 @@
 <!doctype html>
 <html>
-	<head>
-		<title>Cờ Tướng Online</title>
-		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-		<link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
-		<link href="css/style.css" rel="stylesheet" media="screen"/>	
-	</head>
+<head>
+	<title>Cờ Tướng Online</title>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />	
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet"/>
+	<link href="css/style.css" rel="stylesheet" media="screen"/>
 	
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/piece.js"></script>	
+	<script src="js/board.js"></script>
+	<style>
+		#ChessBoard { border: 2px solid #ADD8E6; box-shadow: 0 0 0 15px #ADD8E6 inset; }
+	</style>
+	<script>
+		window.onload = function() {					
+			var canvas 		= document.getElementById("ChessBoard");			
+			var context 	= canvas.getContext("2d");
+			var Rect 		= canvas.getBoundingClientRect();
+			var VC			= new Board("Van1", 20, 20, Rect);
+			
+			VC.init();
+			VC.draw(canvas, context);
+			
+			canvas.addEventListener('click', function(e){
+					VC.click(e);
+					context.clearRect(0, 0, canvas.width, canvas.height);
+					VC.draw(canvas, context);				
+					$("#MoveList").html(VC.getStepAll());
+				}, 
+			false);
+			
+			$('#MoveList').change(function() {
+				var State = $(this).val();				
+				VC.setState(State);
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				VC.draw(canvas, context);
+			});
+			
+			/*			
+			$('#Step').on('click', '.Button', function (event) {
+				var State = $(this).attr('alt');				
+				VC.setState(State);
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				VC.draw(canvas, context);
+			});
+			*/
+		}
+		</script>		
 	<body>
 		<div class="container-fluid">
 			<div class="row-fluid">
@@ -16,58 +58,16 @@
 					<canvas width="438px" height="488px" id="ChessBoard"></canvas>
 				</div>
 				<div class="span6">
-					<select class="Button">
-						<option alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 1-1</option>
-						<option alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 1-2</option>
-						<option alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 2-1</option>
-						<option alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 2-2</option>
-						<option alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 3-1</option>
-						<option alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 3-2</option>
-					</select><br/>
+					<select id="MoveList"></select>
+					<br/>
 					<div class="btn-group">
 						<button class="btn"><i class="icon-fast-backward"></i></button>
 						<button class="btn"><i class="icon-backward"></i></button>
 						<button class="btn"><i class="icon-forward"></i></button>
 						<button class="btn"><i class="icon-fast-forward"></i></button>
-					</div>
-					<!--
-					<div class="Button" alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 17 77 06 26 46 66 86">N 1-1</div>
-					<div class="Button" alt="40 30 50 20 60 10 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 26 46 66 86">N 1-2</div>
-					<div class="Button" alt="40 30 50 20 60 22 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 26 46 66 86">N 2-1</div>
-					<div class="Button" alt="40 30 50 20 60 22 70 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 25 46 66 86">N 2-2</div>
-					<div class="Button" alt="40 30 50 20 60 22 62 00 80 42 72 03 23 43 63 83 49 39 59 29 69 19 79 09 89 47 77 06 25 46 66 86">N 3-1</div>
-					<div class="Button" alt="40 30 50 20 60 22 62 00 80 42 72 03 23 43 63 83 49 39 59 29 69 27 79 09 89 47 77 06 25 46 66 86">N 3-2</div>
-					-->
+					</div>					
 				</div>
 			</div>
-		</div>
-
-		<script src="js/jquery.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/piece.js"></script>	
-		<script src="js/board.js"></script>
-		<script>
-			window.onload = function() {					
-				var canvas 		= document.getElementById("ChessBoard");
-				var context 	= canvas.getContext("2d");
-				var Rect 		= canvas.getBoundingClientRect();
-				var VC			= new Board("Van1", 20, 20, Rect);
-				
-				VC.init();
-				VC.draw(canvas, context);
-				canvas.addEventListener('click', function(e){
-					VC.click(e);
-					context.clearRect(0, 0, canvas.width, canvas.height);
-					VC.draw(canvas, context);
-				}, false);
-				
-				$(".Button").click(function(){
-					var State = $(this).attr('alt');
-					VC.setState(State);
-					context.clearRect(0, 0, canvas.width, canvas.height);
-					VC.draw(canvas, context);
-				});
-			};
-		</script>
+		</div>					
 	</body>
 </html>

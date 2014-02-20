@@ -17,6 +17,10 @@ function Board(Name, XStart, YStart, Rect){
 	this.APiece 		= [];
 	this.Rect 			= Rect;
 	
+	this.CurrentStep 	= 0;
+	this.AStep 			= [];
+	this.AStepN			= [];
+	
 	this.iSelected		= -1;
 			
 	//VỊ TRÍ PHÂN BỔ CỦA CÁC ĐỐI TƯỢNG QUÂN CỜ [0...31] VỊ TRÍ CỦA QUÂN CỜ | -1 LÀ VỊ TRÍ TRỐNG
@@ -76,23 +80,22 @@ function Board(Name, XStart, YStart, Rect){
 	}
 	
 	this.setState 	= function(Str){
-		var arrStr = Str.split(' ');		
-		for (var i=0; i < arrStr.length; i++){
+		var arrStr = Str.split(' ');
+		for (var i=0; i < 32; i++){
 			var S = arrStr[i];
 			if (S=="DD"){
 				this.APiece[i].setXY(-1, -1);
 				this.Object[this.APiece[i].getY()][this.APiece[i].getX()] = -1;
 			}				
-			else{
-				this.APiece[i].setXY(S[0], S[1]);
-				this.Object[S[1]][S[0]] = i;
-			}				
-		}		
+			else{								
+				this.move(i, S[0], S[1]);
+			}
+		}
 	}
 	this.getState 	= function(){
 		var Str = "";
-		for (var i=0; i < arrStr.length; i++){			
-			Str += this.APiece[i].getX()+this.APiece[i].getY()+" ";
+		for (var i=0; i < 32; i++){			
+			Str = Str + this.APiece[i].getX()+this.APiece[i].getY()+" ";
 		}
 		return Str;
 	}
@@ -100,7 +103,20 @@ function Board(Name, XStart, YStart, Rect){
 	//--------------------------------------------------------------------
 	//SỰ KIỆN CLICK CHUỘT
 	//--------------------------------------------------------------------
-	this.move = function(iPiece, XNew, YNew){this.APiece[iPiece].setXY(XNew, YNew);}
+	this.move = function(iPiece, XNew, YNew){
+		//Thiết lập vị trí cũ
+		this.Object[this.APiece[iPiece].getY()][this.APiece[iPiece].getX()] = -1;
+		
+		//Thiết lập vị trí mới
+		this.Object[YNew][XNew] = iPiece;
+		this.APiece[iPiece].setXY(XNew, YNew);
+		
+		//Lưu lại trong CSDL
+		this.AStep[this.CurrentStep] = this.getState();
+		this.AStepN[this.CurrentStep] = Math.floor(this.CurrentStep/2) + "." + this.APiece[iPiece].getNameShort();
+		
+		this.CurrentStep ++;
+	}
 	
 	this.click = function(e){
 		var CellX 	= Math.floor((e.clientX-this.Rect.left)/this.nWidthCell);
@@ -108,15 +124,9 @@ function Board(Name, XStart, YStart, Rect){
 		var Id 		= -1;
 		
 		if (this.iSelected != -1){			
-			if (this.Object[CellY][CellX] == -1){												
-				//Thiết lập vị trí cũ là trống
-				this.Object[this.APiece[this.iSelected].getY()][this.APiece[this.iSelected].getX()] = -1;
-				
-				//Thiết lập vị trí mới với CellX, CellY
-				this.Object[CellY][CellX] = this.iSelected;
-				this.APiece[this.iSelected].setXY(CellX, CellY);				
-												
-				this.iSelected = -1;
+			if (this.Object[CellY][CellX] == -1){																
+				this.move(this.iSelected, CellX, CellY);				
+				this.iSelected = -1;				
 			}
 		}else{
 			if (this.Object[CellY][CellX] != -1){
@@ -126,8 +136,18 @@ function Board(Name, XStart, YStart, Rect){
 		}
 	}
 	
+	this.getStepAll = function(){
+		var S = "";
+		var Temp = "";
+		for (var i=0; i < this.CurrentStep; i++){					
+			Temp = "<option class='Step' value='" + this.AStep[i] + "'>" + this.AStepN[i] +"</option>";
+			S +=  Temp;
+		}
+		return S;
+	}
+	
 	//--------------------------------------------------------------------
-	//VẼ VỊ TRÍ PHÁO, TỐT
+	//VẼ BÀN CỜ
 	//--------------------------------------------------------------------
 	this.drawNode = function(context, col, row){		
 		context.moveTo(this.XStart + col*(this.nWidthCell+this.Space)-this.Stick - 10,	this.YStart + row*(this.nHeightCell+this.Space)-this.Stick - 1);
@@ -247,7 +267,6 @@ function Board(Name, XStart, YStart, Rect){
 		
 		//Vẽ con cờ được chọn
 		if (this.iSelected != -1){
-			//alert("có chọn" + this.iSelected);
 			var i = this.iSelected;
 			var X = this.getX2Canvas(this.APiece[i].getX()) - this.nWPiece/2;
 			var Y = this.getY2Canvas(this.APiece[i].getY()) - this.nHPiece/2;

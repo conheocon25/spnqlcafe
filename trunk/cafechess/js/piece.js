@@ -15,6 +15,15 @@ function Piece(Name, Type, X, Y){
 	this.ImageSelected	= new Image();
 	this.ImageSelected.src 	= "img/Selected.gif";
 	
+	this.Hash				= {};
+	this.Hash['Canon']		= "P";
+	this.Hash['Bishop']		= "S";
+	this.Hash['Elephant'] 	= "B";
+	this.Hash['Rook'] 		= "X";
+	this.Hash['Horse'] 		= "M";
+	this.Hash['Pawn'] 		= "C";
+	this.Hash['King'] 		= "T";
+	
 	//THIẾT LẬP TỌA ĐỘ
 	this.getX	= function(){return this.X;}
 	this.getY	= function(){return this.Y;}
@@ -25,7 +34,10 @@ function Piece(Name, Type, X, Y){
 	this.getImageSelected	= function(){return this.ImageSelected;}
 	this.getFileName	= function(){return "img/"+this.Type+this.Name+".gif";}
 	this.getName		= function(){return this.Name;}
-		
+	this.getNameShort	= function(){		
+		return this.Hash[this.Name];
+	}
+	
 	//KIỂM TRA NƯỚC ĐI HỢP LỆ
 	
 }
