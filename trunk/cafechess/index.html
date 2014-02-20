@@ -41,14 +41,12 @@
 				VC.draw(canvas, context);
 			});
 			
-			/*			
-			$('#Step').on('click', '.Button', function (event) {
-				var State = $(this).attr('alt');				
-				VC.setState(State);
-				context.clearRect(0, 0, canvas.width, canvas.height);
-				VC.draw(canvas, context);
+			$(".Forward").click(function(){				
+				$('option:selected', 'select').removeAttr('selected').next('option').attr('selected', 'selected');
 			});
-			*/
+			$(".Backward").click(function(){				
+				$('option:selected', 'select').removeAttr('selected').prev('option').attr('selected', 'selected');
+			});						
 		}
 		</script>		
 	<body>
@@ -62,8 +60,8 @@
 					<br/>
 					<div class="btn-group">
 						<button class="btn"><i class="icon-fast-backward"></i></button>
-						<button class="btn"><i class="icon-backward"></i></button>
-						<button class="btn"><i class="icon-forward"></i></button>
+						<button class="btn Backward"><i class="icon-backward"></i></button>
+						<button class="btn Forward"><i class="icon-forward"></i></button>
 						<button class="btn"><i class="icon-fast-forward"></i></button>
 					</div>					
 				</div>
