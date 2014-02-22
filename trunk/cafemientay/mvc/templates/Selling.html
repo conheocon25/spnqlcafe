@@ -57,9 +57,11 @@
 							<div class="collapse in accordion-body" id="Top10">
 								<div class="widget-content nopadding size-12">
 									<ul class="activity-list">
-										<li tal:repeat="T Top10">											
-											<a class="course-item tip-left" tal:attributes="data-original-title php: T->getCourse()->getName() . ' ' . T->getCourse()->getPrice1Print()">
-												<strong class="Course" tal:content="T/getCourse/getShortName" tal:attributes="alt T/getCourse/getId;data-delta 'plus' "/>
+										<li tal:repeat="T Top10">
+											<a class="course-item">
+												<button class="Course pull-left" tal:attributes="alt T/getCourse/getId;data-delta 'plus' ">+</button>
+												<strong tal:content="T/getCourse/getName"/>
+												<button class="Course pull-right" tal:attributes="alt T/getCourse/getId;data-delta 'minus' ">-</button>
 											</a>
 										</li>
 									</ul>
@@ -78,9 +80,11 @@
 								<div class="widget-content nopadding size-12">
 									<ul class="activity-list">
 										<li tal:repeat="Course Category/getCourseAll">
-											<a tal:condition="Course/getEnable" class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
-												<strong class="Course" tal:content="Course/getShortName" tal:attributes="alt Course/getId;data-delta 'plus' "/>
-											</a>
+											<a class="course-item">
+												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' ">+</button>
+												<strong tal:content="Course/getName"/>
+												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' ">-</button>
+											</a>											
 										</li>
 									</ul>
 								</div>
