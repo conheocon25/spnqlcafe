@@ -5,7 +5,12 @@
 			<div class="widget-content nopadding">
 				<div class="gallery-masonry">
 					<div tal:repeat="Table TableAll" tal:attributes="id php:'Table' . Table->getId();alt Table/getId;class php:Table->getSessionActive()==null? 'Table item':'Table item actived'">
-						<a class="thumbnail" tal:content="Table/getName"/>
+						<a class="thumbnail">
+							<span tal:content="Table/getName"/>
+							<span tal:condition="Table/getSessionActive">
+								<span tal:content="Table/getSessionActive/getEmployee/getName"/>
+							</span>
+						</a>
 					</div>
 				</div>
 			</div>					
