@@ -9,8 +9,14 @@
 		background-color: rgba(0, 0, 0, .7);
 		margin: 2px;
 	}
-	
-	.gallery-masonry .item a { font-size: 12px; color: white; }
+
+	.gallery-masonry .item a {
+		font-size: 12px;
+		color: white;
+		text-align: center;
+		height: 60px;
+		overflow: hidden;
+	}
 	
 	.gallery-masonry .item .thumbnail { background-color: transparent; }
 	.gallery-masonry .active { background-color: green !important; }
