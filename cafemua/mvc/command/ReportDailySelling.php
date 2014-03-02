@@ -33,7 +33,7 @@
 			
 			//TỔNG KẾT CA1 01:00 ĐẾN TRƯỚC 11:00
 			$Session1All = $mSession->findByTracking( array(
-				$TD->getDate()." 1:0:0", 
+				$TD->getDate()." 0:0:0", 
 				$TD->getDate()." 13:59:59"
 			));										
 			$Value11 		= 0;

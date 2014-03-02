@@ -4,7 +4,7 @@ require_once( "mvc/base/Mapper.php" );
 class Employee extends Mapper implements \MVC\Domain\EmployeeFinder{
     function __construct() {
         parent::__construct();				
-		$tblEmployee 	= "cafecoirieng_employee";
+		$tblEmployee 	= "cafemua_employee";
 		
 		$selectAllStmt 	= sprintf("select * from %s", $tblEmployee);
 		$selectStmt 	= sprintf("select * from %s where id=?", $tblEmployee);

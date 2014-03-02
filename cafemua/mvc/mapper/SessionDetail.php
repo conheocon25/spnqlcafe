@@ -6,10 +6,10 @@ class SessionDetail extends Mapper implements \MVC\Domain\UserFinder {
     function __construct() {
         parent::__construct();
 			
-		$tblCourse 			= "cafecoirieng_course";
-		$tblSession 		= "cafecoirieng_session";
-		$tblSessionDetail 	= "cafecoirieng_session_detail";
-		$tblR2C 			= "cafecoirieng_r2c";
+		$tblCourse 			= "cafemua_course";
+		$tblSession 		= "cafemua_session";
+		$tblSessionDetail 	= "cafemua_session_detail";
+		$tblR2C 			= "cafemua_r2c";
 		
 		$selectAllStmt = sprintf("select * from %s", $tblSessionDetail);
 		$selectStmt = sprintf("select * from %s where id=?", $tblSessionDetail);
