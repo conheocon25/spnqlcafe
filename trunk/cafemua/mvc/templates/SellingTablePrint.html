@@ -1,0 +1,89 @@
+<table align="left" width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+		<tr>			
+			<td width="100%" align="center">
+				<font size="11pt"><b tal:content="ConfigName/getValue"/></font>
+			</td>
+		</tr>
+		<tr>			
+			<td width="100%" align="center">
+				<font size="10pt" tal:content="ConfigAddress/getValue"/>
+			</td>
+		</tr>
+		<tr>			
+			<td width="100%" align="center">
+				<font size="10pt" tal:content="ConfigPhone/getValue"/>
+			</td>
+		</tr>
+		<tr>			
+			<td width="100%" align="center">
+				<font size="11pt"><b>PHIẾU THANH TOÁN</b></font>
+			</td>
+		</tr>		
+	</table>
+<br/>
+<font size="10pt">	
+	<table align="left" style="padding-top:0px;" width="100%" cellpadding="1" cellspacing="0" border="0" bordercolor="#FFF">
+		<tr>
+			<td width="40%" align="left">				
+				<span tal:content="php:mb_strtoupper(Session->getTable()->getName(),'UTF8')"/>				
+			</td>
+			<td width="60%" align="right">
+				<span tal:content="Session/getTimeRangePrint" />
+			</td>
+		</tr>
+		<tr>
+			<td width="40%" align="left">
+				HĐ: <span tal:content="Session/getId" />
+			</td>
+			<td width="60%" align="right">
+				<span tal:content="Session/getEmployee/getName" />
+			</td>
+		</tr>		
+	</table>
+</font>
+<br/>
+<font size="9pt">
+	<table align="left" style="padding-bottom:0px;" width="100%" cellpadding="2" cellspacing="0" border="1">
+		<thead>
+			<tr>
+				<th width="45%"><b>MÓN</b></th>
+				<th width="15%" align="right"><b>SL</b></th>
+				<th width="20%" align="right"><b>Đ.GIÁ</b></th>
+				<th width="20%" align="right"><b>T.TIỀN</b></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr tal:repeat="Detail Session/getDetails">
+				<td width="45%" align='left' tal:content="Detail/getCourse/getName" />
+				<td width="15%" align='right' tal:content="Detail/getCount" />
+				<td width="20%" align='right' tal:content="Detail/getPricePrint" />
+				<td width="20%" align='right' ><span tal:content="Detail/getValuePrint" /></td>
+			</tr>		
+		</tbody>
+	</table>
+	<table align="left" style="padding-bottom:2px;" width="100%" cellpadding="2" cellspacing="0" border="0">
+		<tbody>
+			<tr tal:condition="Session/getDiscountPercent">
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="10pt">T.PHIẾU: <b tal:content="Session/getValueBasePrint"/></font>
+				</td>	
+			</tr>
+			<tr tal:condition="Session/getDiscountPercent">
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="12pt">GIẢM GIÁ: <b tal:content="Session/getDiscountPercentPrint"/></font>
+				</td>	
+			</tr>
+			<tr>
+				<td align='right' colspan="5" width="100%">
+					<font align='right' size="12pt">TC: <b tal:content="Session/getValuePrint"/></font>
+				</td>
+			</tr>
+			<tr>
+				<td align='right' colspan="5" width="100%">
+					<p>(<span tal:content="Session/getValueStrPrint" />)</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<h3 align="center">CÁM ƠN QUÝ KHÁCH, HẸN GẶP LẠI !</h3>
+</font>
