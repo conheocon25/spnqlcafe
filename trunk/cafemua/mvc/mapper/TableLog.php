@@ -7,7 +7,7 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
     function __construct() {
         parent::__construct();
 				
-		$tblTableLog = "cafecoirieng_table_log";
+		$tblTableLog = "cafemua_table_log";
 						
 		$selectAllStmt = sprintf("select * from %s", $tblTableLog);
 		$selectStmt = sprintf("select * from %s where id=?", $tblTableLog);

@@ -46,26 +46,6 @@
 				
 				<div class="col-3" tal:condition="ConfigSwitchBoardCall/getValue">
 					<div class="accordion widget-box" id="collapse-group">						
-						<div class="accordion-group widget-box">
-							<div class="accordion-heading">
-								<div class="widget-title">
-									<a data-parent="#collapse-group" tal:attributes="href php:'#Top10'" data-toggle="collapse">
-										<span class="icon"><i class="glyphicons-fast_food"></i></span><h5 tal:content="string:Top10"/>
-									</a>
-								</div>
-							</div>							
-							<div class="collapse in accordion-body" id="Top10">
-								<div class="widget-content nopadding size-12">
-									<ul class="activity-list">
-										<li tal:repeat="T Top10">											
-											<a class="course-item tip-left" tal:attributes="data-original-title php: T->getCourse()->getName() . ' ' . T->getCourse()->getPrice1Print()">
-												<strong class="Course" tal:content="T/getCourse/getShortName" tal:attributes="alt T/getCourse/getId;data-delta 'plus' "/>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
 						<div class="accordion-group widget-box" tal:repeat="Category CategoryAll">
 							<div tal:condition="Category/getEnable" class="accordion-heading">
 								<div class="widget-title">
@@ -82,12 +62,7 @@
 												<button class="Course pull-left" tal:attributes="alt Course/getId;data-delta 'plus' ">+</button>
 												<strong tal:content="Course/getName"/>
 												<button class="Course pull-right" tal:attributes="alt Course/getId;data-delta 'minus' ">-</button>
-											</a>
-											<!--
-											<a class="course-item tip-left" tal:attributes="data-original-title php: Course->getName() . ' ' . Course->getPrice1Print()">
-												<strong class="Course" tal:content="Course/getName" tal:attributes="alt Course/getId;data-delta 'plus' "/>
-											</a>
-											!-->
+											</a>											
 										</li>
 									</ul>
 								</div>

@@ -7,7 +7,7 @@ class PaidEmployee extends Mapper implements \MVC\Domain\PaidEmployeeFinder{
     function __construct() {
         parent::__construct();
 				
-		$tblPaidEmployee = "cafecoirieng_paid_employee";		
+		$tblPaidEmployee = "cafemua_paid_employee";		
 		$selectAllStmt = sprintf("select * from %s", $tblPaidEmployee);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaidEmployee);
 		$updateStmt = sprintf("update %s set id_employee=?, date=?, value=?, note=? where id=?", $tblPaidEmployee);

@@ -32,7 +32,7 @@
 			$ConfigCategoryAuto		= $mConfig->findByName("CATEGORY_AUTO");
 			$ConfigSwitchBoardCall	= $mConfig->findByName("SWITCH_BOARD_CALL");
 			$ConfigName				= $mConfig->findByName("NAME");
-			
+						
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------									
