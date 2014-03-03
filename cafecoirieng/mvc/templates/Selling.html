@@ -257,7 +257,8 @@
 			
 			//NẠP DANH SÁCH CÁC BÀN			
 			$('.Domain').click(function(){
-				var IdDomain = $(this).attr('alt');
+				var IdDomain = $(this).attr('alt');				
+				$("#DomainActive").attr('alt', IdDomain);
 				$("#TableAll").load("/selling/load/domain/"+IdDomain);
 				$(this).toggleClass('active').siblings().removeClass('active');
 				$("#SearchName").focus();

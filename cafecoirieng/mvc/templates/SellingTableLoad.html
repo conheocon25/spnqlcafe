@@ -479,7 +479,8 @@
 			$('.Course').click(function(e){
 				var IdCourse 	= $(this).attr('alt');
 				var Delta 		= $(this).attr('data-delta');
-				var IdTable 	= $("#CurrentTable").attr('alt');
+				var IdTable 	= $("#TableActive").attr('alt');
+				
 				URL = "/selling/call/table/"+IdTable+"/"+IdCourse+"/"+Delta;				
 				e.stopImmediatePropagation();
 				$.ajax({
@@ -489,7 +490,7 @@
 					dataType: 'json',
 					success: function(data){
 						var DomainActive = $("#DomainActive").attr('alt');
-						var TableActive = "#" + $("#TableActive").attr('alt');						
+						
 						$("#Session").load("/selling/load/table/"+IdTable);												
 						$("#TableAll").load("/selling/load/domain/"+DomainActive);
 																		

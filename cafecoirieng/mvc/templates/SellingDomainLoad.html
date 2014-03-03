@@ -25,11 +25,12 @@
 				$("#Session").load("/selling/load/table/"+IdTable);
 				$(this).toggleClass('active').siblings().removeClass('active');				
 				//Nhớ lại Table đang được chọn.
-				$("#TableActive").attr('alt', 'Table'+IdTable);
+				//$("#TableActive").attr('alt', 'Table'+IdTable);
+				$("#TableActive").attr('alt', IdTable);
 				$("#SearchName").focus();
 			});
 			//Mặc định lấy click của BÀN đầu tiên
-			$('.Table:first').click();
+			//$('.Table:first').click();
 						
 			$('.gallery-masonry').masonry({
 				itemSelector: '.item',
