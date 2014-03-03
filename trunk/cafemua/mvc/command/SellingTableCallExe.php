@@ -25,7 +25,7 @@
 			$mSession 	= new \MVC\Mapper\Session();
 			$mEmployee 	= new \MVC\Mapper\Employee();
 			$mSD 		= new \MVC\Mapper\SessionDetail();
-			$mCL 		= new \MVC\Mapper\CourseLog();
+			//$mCL 		= new \MVC\Mapper\CourseLog();
 						
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
@@ -86,17 +86,19 @@
 				$mSD->insert($SD);
 				
 				//Thêm nhật kí gọi món
+				/*
 				if ($SD->getCourse()->getPrepare()>0){
 					$CL = new \MVC\Domain\CourseLog(
 						null,
 						$IdTable,
 						$IdCourse,
-						\date('Y-m-d H:i:s'),	//Ngày giờ hiện hành
-						1,						//Số lượng
-						0						//Mới gọi món
+						\date('Y-m-d H:i:s'),	
+						1,						
+						0						
 					);
 					$mCL->insert($CL);
 				}
+				*/
 			}else{
 				$SD = $mSD->find($IdSD);									
 				$Count = $SD->getCount() + $Delta;				
@@ -104,17 +106,19 @@
 				$mSD->update($SD);
 				
 				//Thêm nhật kí gọi món
+				/*
 				if ($SD->getCourse()->getPrepare()>0){
 					$CL = new \MVC\Domain\CourseLog(
 						null,
 						$IdTable,
 						$SD->getIdCourse(),					
 						\date('Y-m-d H:i:s'),
-						$Delta,					//Số lượng gọi
-						0						//Mới gọi món
+						$Delta,					
+						0						
 					);
 					$mCL->insert($CL);
 				}								
+				*/
 			}
 			$Log = new \MVC\Domain\TableLog(
 				null,
