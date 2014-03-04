@@ -273,7 +273,7 @@ class Session extends Object{
 	}
 		
 	function getValuePrint(){$num = new Number($this->getValue());return $num->formatCurrency();}
-	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit()." đồng";}
+	function getValueStrPrint(){$num = new Number($this->getValue());return $num->readDigit();}
 	function getValueBase(){
 		$Value = 0;
 		$SDs = $this->getDetails();
