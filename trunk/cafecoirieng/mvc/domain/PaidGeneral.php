@@ -21,6 +21,7 @@ class PaidGeneral extends Object{
 
     private $Id;
 	private $IdTerm;
+	private $IdEmployee;
 	private $Date;
     private $Value;
 	private $Note;
@@ -31,15 +32,17 @@ class PaidGeneral extends Object{
     function __construct(
 		$Id=null,
 		$IdTerm=null,
+		$IdEmployee=null,
 		$Date=null,
 		$Value=0,
 		$Note=null
 	) {
-        $this->Id = $Id;
-		$this->IdTerm = $IdTerm;
-		$this->Date = $Date;
-		$this->Value = $Value;
-		$this->Note = $Note;
+        $this->Id 			= $Id;
+		$this->IdTerm 		= $IdTerm;
+		$this->IdEmployee 	= $IdEmployee;
+		$this->Date 		= $Date;
+		$this->Value 		= $Value;
+		$this->Note 		= $Note;
         parent::__construct( $Id );
     }
     function setId( $Id ) {$this->Id = $Id;$this->markDirty();}
@@ -48,7 +51,11 @@ class PaidGeneral extends Object{
 	function setIdTerm( $IdTerm ) {$this->IdTerm = $IdTerm;$this->markDirty();}
     function getIdTerm( ) {return $this->IdTerm;}
 	function getTerm( ) {$mTerm = new \MVC\Mapper\TermPaid();$Term = $mTerm->find($this->IdTerm);return $Term;}
-    
+	
+	function setIdEmployee( $IdEmployee ){$this->IdEmployee = $IdEmployee;$this->markDirty();}
+    function getIdEmployee( ) 			{return $this->IdEmployee;}
+	function getEmployee( ) 			{$mEmployee = new \MVC\Mapper\Employee();$Employee = $mEmployee->find($this->IdEmployee);return $Employee;}
+	
 	function setValue( $Value ) {$this->Value = $Value;$this->markDirty();}	
 	function getValue( ) {if (!isset($this->Value))return 0;return $this->Value;}
 	function getValuePrint( ){$num = number_format($this->Value, 0, ',', '.');return $num." đ";}
@@ -64,6 +71,7 @@ class PaidGeneral extends Object{
 		$json = array(
 			'Id' 			=> $this->getId(),
 			'IdTerm'		=> $this->getIdTerm(),
+			'IdEmployee'	=> $this->getIdEmployee(),
 			'Date'			=> $this->getDate(),
 			'Value'			=> $this->getValue(),			
 			'Note'			=> $this->getNote()
@@ -72,11 +80,12 @@ class PaidGeneral extends Object{
 	}
 			
 	function setArray( $Data ){
-        $this->Id 		= $Data[0];
-		$this->IdTerm 	= $Data[1];
-		$this->Date 	= $Data[2];
-		$this->Value 	= $Data[3];
-		$this->Note 	= $Data[4];
+        $this->Id 			= $Data[0];
+		$this->IdTerm 		= $Data[1];
+		$this->IdEmployee 	= $Data[2];
+		$this->Date 		= $Data[3];
+		$this->Value 		= $Data[4];
+		$this->Note 		= $Data[5];
     }	
 	
 	/*--------------------------------------------------------------------*/

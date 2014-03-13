@@ -11,8 +11,8 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
 						
 		$selectAllStmt = sprintf("select * from %s", $tblTableLog);
 		$selectStmt = sprintf("select * from %s where id=?", $tblTableLog);
-		$updateStmt = sprintf("update %s set iduser=?, idtable=?, `datetime`=?, note=? where id=?", $tblTableLog);
-		$insertStmt = sprintf("insert into %s (iduser, idtable, `datetime`, note) values(?, ?, ?, ?)", $tblTableLog);
+		$updateStmt = sprintf("update %s set iduser=?, idtable=?, idemployee=?, `datetime`=?, note=? where id=?", $tblTableLog);
+		$insertStmt = sprintf("insert into %s (iduser, idtable, idemployee, `datetime`, note) values(?, ?, ?, ?, ?)", $tblTableLog);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblTableLog);
 		$deleteByTrackingStmt = sprintf("delete from %s where date(datetime)>=? AND date(datetime)<=?", $tblTableLog);
 		
@@ -39,21 +39,21 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
 			$array['id'],
 			$array['iduser'],
 			$array['idtable'],
+			$array['idemployee'],
 			$array['datetime'],
 			$array['note']			
 		);
         return $obj;
     }
 	
-    protected function targetClass() {        
-		return "TableLog";
-    }
+    protected function targetClass() {return "TableLog";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array( 
 			$object->getIdUser(),
 			$object->getIdTable(),
-			$object->getDateTime(),
+			$object->getIdEmployee(),
+			$object->getDateTime(),			
 			$object->getNote()			
 		); 
         $this->insertStmt->execute( $values );
@@ -65,6 +65,7 @@ class TableLog extends Mapper implements \MVC\Domain\UserFinder {
         $values = array(
 			$object->getIdUser(),
 			$object->getIdTable(),
+			$object->getIdEmployee(),
 			$object->getDateTime(),
 			$object->getNote(),
 			$object->getId()

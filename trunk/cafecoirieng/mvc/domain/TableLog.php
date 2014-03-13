@@ -6,18 +6,20 @@ class TableLog extends Object{
     private $Id;
 	private $IdUser;
 	private $IdTable;
+	private $IdEmployee;
 	private $DateTime;
 	private $Note;
 			
 	//-------------------------------------------------------------------------------
 	//ACCESSING MEMBER PROPERTY
 	//-------------------------------------------------------------------------------		
-    function __construct( $Id=null, $IdUser=null, $IdTable=null, $DateTime=null, $Note=null){
-        $this->Id = $Id;
-		$this->IdUser = $IdUser;
-		$this->IdTable = $IdTable;
-		$this->DateTime = $DateTime;
-		$this->Note = $Note;
+    function __construct( $Id=null, $IdUser=null, $IdTable=null, $IdEmployee=null, $DateTime=null, $Note=null){
+        $this->Id 			= $Id;
+		$this->IdUser 		= $IdUser;
+		$this->IdTable 		= $IdTable;
+		$this->IdEmployee 	= $IdEmployee;
+		$this->DateTime 	= $DateTime;
+		$this->Note 		= $Note;
         parent::__construct( $Id );
     }
 	
@@ -33,19 +35,26 @@ class TableLog extends Object{
 	
 	function getIdTable( ) {return $this->IdTable;}	
 	function setIdTable( $IdTable ) {$this->IdTable = $IdTable;$this->markDirty();}
-
-	function getDateTime( ) {return $this->DateTime;}
-	function setDateTime( $DateTime ) {$this->DateTime = $DateTime;$this->markDirty();}
-
-	function getNote( ) {return $this->Note;}	
-    function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
-					
 	function getTable(){
 		$mTable = new \MVC\Mapper\Table();
 		$Table = $mTable->find($this->IdTable);
 		return $Table;
 	}
 	
+	function getIdEmployee( ) {return $this->IdEmployee;}	
+	function setIdEmployee( $IdEmployee ) {$this->IdEmployee = $IdEmployee;$this->markDirty();}
+	function getEmployee(){
+		$mEmployee 	= new \MVC\Mapper\Employee();
+		$Employee 	= $mEmployee->find($this->IdEmployee);
+		return $Employee;
+	}
+	
+	function getDateTime( ) {return $this->DateTime;}
+	function setDateTime( $DateTime ) {$this->DateTime = $DateTime;$this->markDirty();}
+
+	function getNote( ) {return $this->Note;}	
+    function setNote( $Note ) {$this->Note = $Note;$this->markDirty();}
+		
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------	

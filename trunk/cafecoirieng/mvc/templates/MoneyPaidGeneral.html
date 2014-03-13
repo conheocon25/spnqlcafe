@@ -35,6 +35,7 @@
 									<tr>
 										<th width="40"><input type="checkbox" id="title-table-checkbox" name="title-table-checkbox"/></th>
 										<th width="70" class="left">NGÀY</th>
+										<th width="120" class="left">NHÂN VIÊN</th>
 										<th class="left">DIỄN GIẢI</th>
 										<th width="120" class="right">GIÁ TRỊ</th>
 										<th width="40"><i class="glyphicons-edit"/></th>
@@ -45,6 +46,10 @@
 									<tr tal:repeat="Paid PaidAll">
 										<td class="center"><input class="CheckedDel" type="checkbox" tal:attributes="data-id Paid/getId"/></td>
 										<td><a class="update-item" href="#DialogEdit" data-toggle="modal" data-name="PaidGeneral" tal:attributes="data-id Paid/getId" tal:content="Paid/getDatePrint"/></td>
+										<td>
+											<div tal:condition="not: Paid/getEmployee" class="text-left" tal:content="string:Chưa xác định"/>
+											<div tal:condition="Paid/getEmployee" class="text-left" tal:content="Paid/getEmployee/getName"/>
+										</td>
 										<td><div class="text-left" tal:content="Paid/getNote"/></td>
 										<td><div class="text-right" tal:content="Paid/getValuePrint"/></td>
 										<td class="center">
@@ -71,6 +76,16 @@
 											<label class="control-label">Ngày</label>
 											<div class="controls">
 												<input id="Date1" name="Date1" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Nhân viên</label>
+											<div class="controls">
+												<select name="IdEmployee1" id="IdEmployee1" style="width:80%;">
+													<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId">
+														<span tal:content="Employee/getName"/>
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="control-group">
@@ -109,6 +124,16 @@
 											<label class="control-label">Ngày</label>
 											<div class="controls">
 												<input id="Date2" name="Date2" type="text" data-date-format="yyyy-mm-dd" class="form-control input-small"/>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Nhân viên</label>
+											<div class="controls">
+												<select name="IdEmployee2" id="IdEmployee2" style="width:80%;">
+													<option tal:repeat="Employee EmployeeAll" tal:attributes="value Employee/getId">
+														<span tal:content="Employee/getName"/>
+													</option>
+												</select>
 											</div>
 										</div>
 										<div class="control-group">
@@ -194,9 +219,10 @@
 				var Data = [];
 				Data[0] = 'null';
 				Data[1] = $('#IdTerm').attr('alt');
-				Data[2] = $('#Date1').val();
-				Data[3] = $('#Value1').val();
-				Data[4] = $('#Note1').val();
+				Data[2] = $('#IdEmployee1').val();
+				Data[3] = $('#Date1').val();
+				Data[4] = $('#Value1').val();
+				Data[5] = $('#Note1').val();
 																		
 				var URL = "/object/ins/PaidGeneral";
 				$.ajax({
@@ -219,6 +245,7 @@
 				//Load dữ liệu JSON lên FORM
 				$.getJSON(url, function(data){
 					$('#URLUpdButton').attr('alt', data.Id);
+					$('#IdEmployee2').select2('val', data.IdEmployee);
 					$('#Date2').attr('value', data.Date);
 					$('#Value2').attr('value', data.Value);
 					$('#Note2').attr('value', data.Note);
@@ -232,9 +259,10 @@
 				var Data = [];
 				Data[0] = $('#URLUpdButton').attr('alt');
 				Data[1] = $('#IdTerm').attr('alt');
-				Data[2] = $('#Date2').val();
-				Data[3] = $('#Value2').val();
-				Data[4] = $('#Note2').val();
+				Data[2] = $('#IdEmployee2').val();
+				Data[3] = $('#Date2').val();
+				Data[4] = $('#Value2').val();
+				Data[5] = $('#Note2').val();
 				
 				var URL = "/object/upd/PaidGeneral";
 				$.ajax({

@@ -6,7 +6,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ TOÀN CỤC
 			//-------------------------------------------------------------						
-			$Session = \MVC\Base\SessionRegistry::instance();
+			//$Session = \MVC\Base\SessionRegistry::instance();
 									
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐẾN
@@ -33,6 +33,9 @@
 			$ConfigName		= $mConfig->findByName("NAME");
 			$ConfigAddress	= $mConfig->findByName("ADDRESS");
 			$ConfigPhone	= $mConfig->findByName("PHONE");
+			
+			$Session->setNote("dain");
+			$mSession->update($Session);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI

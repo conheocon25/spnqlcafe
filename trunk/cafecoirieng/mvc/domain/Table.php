@@ -66,6 +66,18 @@ class Table extends Object{
 		return $Domain;
 	}
 	
+	function getClass(){
+		$Session = $this->getSessionActive();
+		if ( $Session==null )
+			return 'Table item';
+		else{
+			if ($Session->getNote()=="dain")
+				return 'Table item printed';
+			else
+				return 'Table item actived';
+		}
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------	

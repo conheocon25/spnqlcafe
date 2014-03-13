@@ -35,6 +35,7 @@
 				null,
 				$Table->getIdUser(),
 				$Table->getId(),
+				$Session->getIdEmployee(),
 				\date('Y-m-d H:i:s'),
 				"tính tiền ".$Session->getValuePrint()
 			);

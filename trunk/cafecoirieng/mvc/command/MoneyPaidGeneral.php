@@ -18,12 +18,14 @@
 			//MAPPER DỮ LIỆU
 			//-------------------------------------------------------------
 			$mTerm 			= new \MVC\Mapper\TermPaid();
+			$mEmployee 		= new \MVC\Mapper\Employee();
 			$mPaidGeneral 	= new \MVC\Mapper\PaidGeneral();
 			$mConfig 		= new \MVC\Mapper\Config();
 			
 			//-------------------------------------------------------------
 			//XỬ LÝ CHÍNH
 			//-------------------------------------------------------------
+			$EmployeeAll = $mEmployee->findAll();
 			$TermAll = $mTerm->findAll();
 			if (isset($IdTerm)){
 				$Term = $mTerm->find($IdTerm);
@@ -46,6 +48,7 @@
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
 			//-------------------------------------------------------------						
+			$request->setObject('EmployeeAll', $EmployeeAll);
 			$request->setObject('Term'		, $Term);
 			$request->setObject('TermAll'	, $TermAll);
 			$request->setObject('PaidAll'	, $PaidAll);

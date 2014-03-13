@@ -65,6 +65,7 @@
 					null,
 					@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 					$Session->getIdTable(),
+					$IdEmployee,
 					date('Y-m-d H:i:s'),
 					"Tạo mới giao dịch"
 				);
@@ -120,6 +121,7 @@
 				null,
 				@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 				$Session->getIdTable(),
+				$Session->getIdEmployee(),
 				date('Y-m-d H:i:s'),
 				"Cập nhật món ".$SD->getCourse()->getName()." ".$Count
 			);
