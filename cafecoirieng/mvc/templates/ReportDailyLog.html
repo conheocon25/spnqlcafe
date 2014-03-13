@@ -23,7 +23,12 @@
 											<ul tal:condition="php:Table->getLog(TD->getDate())">
 												<li tal:repeat="Log php:Table->getLog(TD->getDate())">
 													<span tal:condition="not: Log/getUser" tal:content="string:VD"/>
-													<span tal:condition="Log/getUser" tal:content="Log/getUser/getName"/> : <span tal:content="Log/getDateTime"/> - <span tal:content="Log/getNote"/>
+													<span tal:condition="Log/getUser" tal:content="Log/getUser/getName"/> : 
+													[<span tal:condition="not: Log/getEmployee" tal:content="string:Chưa xác định"/>
+													<span tal:condition="Log/getEmployee" tal:content="Log/getEmployee/getName"/>]
+													<span tal:content="Log/getDateTime"/> - 
+													<B tal:condition="php: Log->getNote()=='Tạo mới giao dịch'" tal:content="Log/getNote"/>
+													<span tal:condition="php: Log->getNote()!='Tạo mới giao dịch'" tal:content="Log/getNote"/>
 												</li>
 											</ul>
 										</div>

@@ -61,10 +61,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<table width="100%">							
-							<tr>								
-								<td tal:content="Table/getSessionActive/getNote" />
-							</tr>							
+						<table width="100%">
 							<tr>
 								<td style="text-align:right;">GIẢM GIÁ %:</td>
 								<td tal:content="Table/getSessionActive/getDiscountPercent" style="color:#5476A6;text-align:right;"/>
@@ -364,6 +361,7 @@
 				});				
 			});
 			$(".SessionPreview").click(function(){
+				var TableActive = "#" + $("#TableActive").attr('alt');
 				URL = $(this).attr('alt');
 				var mPDF = new PDFObject({ 		
 					url: URL,				
@@ -376,8 +374,13 @@
 						navpanes: '1' 
 					}				
 				}).embed("DocPreview");												
-				$("#DocPreview").show().printElement();	
+				
+				//Đánh dấu đã in
+				$(TableActive).removeClass('actived');
+				$(TableActive).removeClass('active');
+				$(TableActive).addClass('print');
 			});
+			
 			//-----------------------------------------------------------------------------------
 			//Delete 1 DETAIL			
 			//-----------------------------------------------------------------------------------
@@ -537,7 +540,11 @@
 						$("#Session").load("/selling/load/table/"+IdTable);
 																		
 						//Đánh dấu Table có khách
-						$(TableActive).toggleClass('actived');
+						//$(TableActive).toggleClass('actived');
+						//Đánh dấu đã in
+						$(TableActive).removeClass('actived');
+						$(TableActive).removeClass('active');
+						$(TableActive).removeClass('print');
 					}
 				});
 			});

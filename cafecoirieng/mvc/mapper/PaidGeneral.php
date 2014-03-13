@@ -11,8 +11,8 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
 		
 		$selectAllStmt = sprintf("select * from %s", $tblPaid);
 		$selectStmt = sprintf("select * from %s where id=?", $tblPaid);
-		$updateStmt = sprintf("update %s set id_term=?, date=?, value=?, note=? where id=?", $tblPaid);
-		$insertStmt = sprintf("insert into %s (id_term, date, value, note) values(?,?,?,?)", $tblPaid);
+		$updateStmt = sprintf("update %s set id_term=?, id_employee=?, date=?, value=?, note=? where id=?", $tblPaid);
+		$insertStmt = sprintf("insert into %s (id_term, id_employee, date, value, note) values(?,?,?,?,?)", $tblPaid);
 		$deleteStmt = sprintf("delete from %s where id=?", $tblPaid);
 		$findByStmt = sprintf("select * from %s where id_term=? order by date DESC", $tblPaid);
 		$findByTrackingStmt = sprintf(
@@ -59,6 +59,7 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
         $obj = new \MVC\Domain\PaidGeneral( 
 			$array['id'],
 			$array['id_term'],
+			$array['id_employee'],
 			$array['date'],
 			$array['value'],
 			$array['note']
@@ -66,13 +67,12 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
         return $obj;
     }
 
-    protected function targetClass() {        
-		return "Paid";
-    }
+    protected function targetClass() { return "PaidGeneral";}
 
     protected function doInsert( \MVC\Domain\Object $object ) {
         $values = array(			
 			$object->getIdTerm(),
+			$object->getIdEmployee(),
 			$object->getDate(),
 			$object->getValue(),
 			$object->getNote()
@@ -85,6 +85,7 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
     protected function doUpdate( \MVC\Domain\Object $object ) {
         $values = array(
 			$object->getIdTerm(),
+			$object->getIdEmployee(),
 			$object->getDate(),
 			$object->getValue(),
 			$object->getNote(),
@@ -92,18 +93,9 @@ class PaidGeneral extends Mapper implements \MVC\Domain\PaidGeneralFinder{
 		);
         $this->updateStmt->execute( $values );
     }
-
-	protected function doDelete(array $values) {
-        return $this->deleteStmt->execute( $values );
-    }
-
-    function selectStmt() {
-        return $this->selectStmt;
-    }
-    
-	function selectAllStmt() {
-        return $this->selectAllStmt;
-    }
+	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
+    function selectStmt() {return $this->selectStmt;}    
+	function selectAllStmt() {return $this->selectAllStmt;}
 	
 	function findBy($values ){
         $this->findByStmt->execute( $values );

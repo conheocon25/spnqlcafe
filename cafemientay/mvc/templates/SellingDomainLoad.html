@@ -4,9 +4,9 @@
 		<div id="TableAll" class="widget-box">			
 			<div class="widget-content nopadding">
 				<div class="gallery-masonry">
-					<div tal:repeat="Table TableAll" tal:attributes="id php:'Table' . Table->getId();alt Table/getId;class php:Table->getSessionActive()==null? 'Table item':'Table item actived'">
+					<div tal:repeat="Table TableAll" tal:attributes="id php:'Table' . Table->getId();alt Table/getId;class php: Table->getClassPrint()">
 						<a class="thumbnail" tal:content="Table/getName"/>
-					</div>
+					</div>					
 				</div>
 			</div>					
 		</div>						

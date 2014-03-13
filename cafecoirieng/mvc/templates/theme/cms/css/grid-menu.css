@@ -21,6 +21,7 @@
 	.gallery-masonry .item .thumbnail { background-color: transparent; }
 	.gallery-masonry .active { background-color: green !important; }
 	.gallery-masonry .actived { background-color: rgba(255, 0, 0, .7); }
+	.gallery-masonry .print { background-color: rgba(0, 0, 255, .7); }
 	
 	.Course button { width: 27px; }
 	.Course a { text-align: center; }
