@@ -33,9 +33,9 @@
 			
 			//TỔNG KẾT CA1 01:00 ĐẾN TRƯỚC 11:00
 			$Session1All = $mSession->findByTracking( array(
-				$TD->getDate()." 1:0:0", 
+				$TD->getDate()." 6:0:0", 
 				$TD->getDate()." 10:59:59"
-			));			
+			));
 			$Value11 		= 0;
 			$Value12 		= 0;
 			while ($Session1All->valid()){
@@ -74,7 +74,7 @@
 			//TỔNG KẾT CA3 17:00 ĐẾN TRƯỚC 00:00
 			$Session3All = $mSession->findByTracking( array(
 				$TD->getDate()." 17:0:0", 
-				$TD->getDate()." 23:59:59"
+				$TD->getDate()." 21:59:59"
 			));			
 			$Value31 		= 0;
 			$Value32 		= 0;
@@ -91,6 +91,29 @@
 			$NTotal31 = new \MVC\Library\Number($Value31);
 			$NTotal32 = new \MVC\Library\Number($Value32);
 			
+			//TỔNG KẾT CA4 22:00 ĐẾN TRƯỚC 6:00 HÔM SAU
+			$DateC4_ = new \DateTime($TD->getDate()." +1 day");
+			$DateC4  = $DateC4_->format('Y-m-d');
+
+			$Session4All = $mSession->findByTracking( array(
+				$TD->getDate()." 22:0:0", 
+				$DateC4." 5:59:59"
+			));			
+			$Value41 		= 0;
+			$Value42 		= 0;
+			while ($Session4All->valid()){
+				$Session = $Session4All->current();
+				if ($Session->getStatus()==0)
+					$Value41 += $Session->getValue();
+				else	
+					$Value42 += $Session->getValue();
+					
+				$Session4All->next();
+			}
+			$NTotal4 = new \MVC\Library\Number($Value41 + $Value42);
+			$NTotal41 = new \MVC\Library\Number($Value41);
+			$NTotal42 = new \MVC\Library\Number($Value42);
+			
 			$Title 		= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
@@ -98,9 +121,9 @@
 			);
 			
 			//TỔNG CỘNG
-			$NTotal 	= new \MVC\Library\Number($Value11 + $Value21 + $Value31 + $Value12 + + $Value22 + + $Value32);
-			$NTotal_1 	= new \MVC\Library\Number($Value11 + $Value21 + $Value31); 
-			$NTotal_2 	= new \MVC\Library\Number($Value12 + $Value22 + $Value32);
+			$NTotal 	= new \MVC\Library\Number($Value11 + $Value21 + $Value31 + $Value41 + $Value12 + $Value22 + $Value32 + $Value42);
+			$NTotal_1 	= new \MVC\Library\Number($Value11 + $Value21 + $Value31 + $Value41); 
+			$NTotal_2 	= new \MVC\Library\Number($Value12 + $Value22 + $Value32 + $Value42);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
@@ -122,6 +145,11 @@
 			$request->setObject('NTotal3'		, $NTotal3);
 			$request->setObject('NTotal31'		, $NTotal31);
 			$request->setObject('NTotal32'		, $NTotal32);
+			
+			$request->setObject('Session4All'	, $Session4All);
+			$request->setObject('NTotal4'		, $NTotal4);
+			$request->setObject('NTotal41'		, $NTotal41);
+			$request->setObject('NTotal42'		, $NTotal42);
 			
 			$request->setObject('NTotal'		, $NTotal);
 			$request->setObject('NTotal_1'		, $NTotal_1);

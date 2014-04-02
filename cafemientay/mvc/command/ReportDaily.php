@@ -36,11 +36,15 @@
 			$TD 		= $mTD->find($IdTD);
 			$Tracking	= $mTracking->find($IdTrack);
 			
+			
 			//(1) TÍNH BÁO CÁO BÁN HÀNG
+			$DateC4_ = new \DateTime($TD->getDate()." +1 day");
+			$DateC4  = $DateC4_->format('Y-m-d');
+			
 			$SessionAll = $mSession->findByTracking( array(
-				$TD->getDate()." 0:0:0", 
-				$TD->getDate()." 23:59:59"
-			));			
+				$TD->getDate()." 6:0:0", 
+				$DateC4." 5:59:59"
+			));
 			$ValueSelling 		= 0;
 			while ($SessionAll->valid()){
 				$Session 		= $SessionAll->current();

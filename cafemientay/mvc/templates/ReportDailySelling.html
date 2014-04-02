@@ -112,7 +112,40 @@
 											</td>
 										</tr>
 									</tbody>
-								</table>								
+								</table>
+								
+								<h3>CA 4 <span tal:content="php: 'TỔNG CỘNG ( ' . NTotal4->formatCurrency() . ' / ' . NTotal41->formatCurrency() . ' / ' . NTotal42->formatCurrency() . ')'"/></h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th width="5%"><B>#ID</B></th>
+											<th width="15%"><div class="text-left">THỜI GIAN</div></th>
+											<th width="11%"><div class="text-left">THU NGÂN</div></th>
+											<th width="14%"><div class="text-left">NHÂN VIÊN</div></th>
+											<th width="33%"><div class="text-left">BÀN</div></th>											
+											<th width="11%"><div class="text-right">CHƯA TÍNH</div></th>
+											<th width="11%"><div class="text-right">ĐÃ TÍNH</div></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr tal:repeat="Session Session4All">
+											<td align="center"><span tal:content="Session/getId"/></td>
+											<td align="left"><span tal:content="Session/getTimeRangePrint"/></td>
+											<td align="left"><span tal:content="Session/getUser/getName"/></td>
+											<td align="left">
+												<span tal:condition="Session/getEmployee" tal:content="Session/getEmployee/getName"/>
+												<span tal:condition="not: Session/getEmployee">Chưa xác định</span>
+											</td>
+											<td align="left"><span tal:content="Session/getTable/getDomain/getName"/> / <span tal:content="Session/getTable/getName"/></td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==0" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+											<td align="right">
+												<a tal:condition="php: Session->getStatus()==1" tal:content="Session/getValuePrint" data-toggle="modal" class="SessionPreview" href="#DialogPreview" tal:attributes="alt Session/getURLPrint"/>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
