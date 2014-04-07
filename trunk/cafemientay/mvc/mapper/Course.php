@@ -43,7 +43,7 @@ class Course extends Mapper implements \MVC\Domain\CourseFinder {
 							ORDER BY count DESC
 							LIMIT 20
 							" , $tblCourse, $tblSessionDetail);
-		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name", $tblCourse);
+		$findByNameStmt = sprintf("select * from %s where name like :name ORDER BY name LIMIT 12", $tblCourse);
 		
 		$this->selectAllStmt 		= self::$PDO->prepare($selectAllStmt);
         $this->selectStmt 			= self::$PDO->prepare($selectStmt);
