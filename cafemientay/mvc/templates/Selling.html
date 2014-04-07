@@ -96,162 +96,12 @@
 		</div>
 		<div id="TableActive" />
 		<div id="DomainActive" tal:attributes="alt Domain/getId"/>
-		
-		<!-- INSERT DIALOG  -->
-		<div id="DialogInsCourse" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3><i class="glyphicons-fast_food modal-icon"/>THÊM MÓN TỰ CHỌN</h3>
-					</div>
-					<div class="form-horizontal">
-						<div class="modal-body">													
-							<div class="form-group">
-								<label class="control-label">Tên</label>
-								<div class="controls">
-									<input id="CName1" name="CName1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Tên ngắn</label>
-								<div class="controls">
-									<input id="CShortName1" name="CShortName1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Giá bán</label>
-								<div class="controls">
-									<input id="CPrice1" name="CPrice1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Đơn vị</label>
-								<div class="controls">
-									<select name="CUnit1" id="CUnit1" style="width:80%;">
-										<option tal:repeat="Unit UnitAll" tal:attributes="value Unit/getName">
-											<span tal:content="Unit/getName" />
-										</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="control-label">Số phút chuẩn bị</label>
-								<div class="controls">
-									<input id="CPrepare1" name="CPrepare1" type="text" class="form-control input-small"/>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button id="URLInsCourseButton" class="btn btn-primary btn-small"><i class="glyphicons-download_alt"/> Lưu</button>
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Hủy</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<!-- INSERT DIALOG  -->
-		<div id="DialogCallCourse" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3><i class="glyphicons-bell modal-icon"/>DANH SÁCH MÓN ĐANG CHỜ ...</h3>
-					</div>
-					<div class="form-horizontal">
-						<div class="modal-body">
-							<div id="CourseLog" />
-						</div>
-						<div class="modal-footer">							
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng lại</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- DIALOG PREPARE	-->
-		<div id="DialogPrepareCourse" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3><i class="glyphicons-stopwatch modal-icon"/>IN BẾP</h3>
-					</div>
-					<form class="form">
-						<div class="form-group">
-							<div id="CoursePrepare" width="320px" height="480px"/>
-						</div>
-						<div class="modal-footer">									
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<!-- END DIALOG PREPARE -->
-					
-		<div id="audioNotify" />
+											
 		<!-- END INSERT DIALOG  -->
 		<div metal:use-macro="mAdmin.xhtml/Footer"/>
 		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
         <script>
-			//THIẾT LẬP NOTIFY CHO HỆ THỐNG			
-			function getNotifyCourse(){
-				var TypeNotify;
-				$.ajax({
-					type: "POST",
-					dataType: "json",
-					url: '/notify/course',
-					success: function(data){																													
-						if (data.result == "OK"){
-							//NGHE NHẠC NỀN CẢNH BÁO
-							$("#audioNotify").jPlayer({
-								ready: function() {
-									$(this).jPlayer("setMedia", {
-										mp3:"/data/notify/bell01.mp3"
-									}).jPlayer("play");
-								},
-								swfPath: "data",
-								supplied: "mp3",
-								loop: true,
-								wmode: "window"
-							});
-							//TĂNG SỐ LẦN NOTIFY
-							nCountNotify = nCountNotify + 1;
-							
-							//HIỂN THỊ THÔNG BÁO
-							if (data.type==1){
-								TypeNotify = "gritter-red";
-							}else{
-								TypeNotify = "gritter-green";
-							}
-							$.gritter.add({
-								title:	data.title,
-								text:	data.message,
-								position: 'bottom-left',														
-								class_name:TypeNotify,
-								sticky:true,
-								after_close: function(){
-									nCountNotify = nCountNotify - 1;
-									if (nCountNotify == 0){
-										$("#audioNotify").jPlayer("destroy");
-									}
-								}
-							});
-						}		
-					}					
-				});
-			}
-			var nCountNotify = 0;
-			$.extend($.gritter.options, { 
-				position: 'bottom-left',
-				fade_in_speed: 'medium', 
-				fade_out_speed: 2000 
-			});
-			/*
-			setInterval(function(){
-				getNotifyCourse();
-			}, 10000);
-			*/
-			
+						
 			//NẠP DANH SÁCH CÁC BÀN			
 			$('.Domain').click(function(){
 				var IdDomain = $(this).attr('alt');
@@ -260,35 +110,7 @@
 				$("#SearchName").focus();
 			});
 			$('.Domain:first').click();
-			
-			//-----------------------------------------------------------------------------------
-			//Insert 1 COURSE
-			$('#URLInsCourseButton').click(function(){
-				var Data = [];
-				Data[0] = 'null';								
-				Data[1] = 22;
-				Data[2] = $('#CName1').val();
-				Data[3] = $('#CShortName1').val();
-				Data[4] = $('#CUnit1').val();
-				Data[5] = $('#CPrice1').val();
-				Data[6] = $('#CPrice1').val();
-				Data[7] = $('#CPrice1').val();
-				Data[8] = $('#CPrice1').val();
-				Data[9] = "";
-				Data[10] = $('#CPrepare1').val();
-				Data[11] = 0;
-				
-				var URL = "/object/ins/Course";
-				$.ajax({
-					type: "POST",
-					data: {Data:Data},
-					url: URL,
-					success: function(msg){
-						location.reload();
-					}
-				});
-			});
-			
+									
 			//---------------------------------------------------------------------------
 			//Xử lí search tên			
 			$('#SearchName').keyup(function(e){
@@ -301,24 +123,7 @@
 			$(".RemoveCourseSearch").click(function(){
 				$("#CourseF").html("");
 			});
-			
-			//-----------------------------------------------------------------------------------
-			//PREPARE COURSE
-			$(".CoursePreparePrint").click(function(){
-				URL = "/selling/log/course/print/prepare";
-				var mPDF = new PDFObject({
-					url: URL,				
-					height: "500px",
-					pdfOpenParams:{
-						view: 'Fit', 
-						toolbar: '1', 
-						statusbar: '1', 
-						messages: '1',
-						navpanes: '1' 
-					}				
-				}).embed("CoursePrepare");
-			});
-			
+									
 			//Mặc định vào ô tìm kiếm
 			$("#SearchName").focus();
 			
