@@ -11,7 +11,7 @@
 					<a title="Gom bàn" data-toggle="modal" class="btn SessionMerge" href="#DialogMerge" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-resize_small"/></a>
 					<a title="Chỉnh sửa giao dịch" data-toggle="modal" class="btn SessionUpdate" href="#DialogSession" tal:attributes="data-session-id Table/getSessionActive/getId"><i class="glyphicons-edit" /></a>
 					<a title="Tính phiếu" class="btn Checkout" tal:attributes="alt Table/getSessionActive/getURLCheckoutExe"><i class="glyphicons-ok_2" /></a>					
-					<a title="In phiếu" data-toggle="modal" class="btn SessionPreview" href="#DialogPreview" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
+					<a title="In phiếu" class="btn Ticket" tal:attributes="alt Table/getSessionActive/getURLPrint"><i class="glyphicons-print"></i></a>
 				</div>
 			</div>
 			<div class="widget-content nopadding size-12">
@@ -283,7 +283,7 @@
 								<td><div class="text-center" tal:content="repeat/Session/number"/></td>
 								<td><div class="text-left" tal:content="Session/getDateTimePrint"/></td>
 								<td>
-									<a title="Xem phiếu" data-toggle="modal" class="SessionPreview" href="#DialogPreview" 
+									<a title="Xem phiếu" class="Ticket" 
 										tal:attributes="alt Session/getURLPrint">
 										<div class="text-right" tal:content="Session/getValuePrint"/>
 									</a>
@@ -313,25 +313,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- DIALOG PREVIEW	-->
-		<div id="DialogPreview" class="modal fade">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3><i class="glyphicons-star modal-icon"/>XEM TRƯỚC KHI IN</h3>
-					</div>								
-					<form class="form">
-						<div class="form-group">
-							<div id="DocPreview" width="320px" height="480px"/>
-						</div>
-						<div class="modal-footer">									
-							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Đóng</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+		</div>		
 		<!-- END DIALOG EDIT -->
         <script type="text/javascript">
 		/*<![CDATA[*/
@@ -493,14 +475,7 @@
 						
 						$("#Session").load("/selling/load/table/"+IdTable);												
 						$("#TableAll").load("/selling/load/domain/"+DomainActive);
-																		
-						$.gritter.add({
-							title		:'Thông tin',
-							class_name	:'gritter-green',
-							text		:'Đã cập nhật món ' + data.Name,
-							time		:5000,
-							sticky		: false
-						});
+																								
 					}
 				});
 			});
@@ -581,14 +556,7 @@
 						data: {Data:Data},
 						url: URL,
 						success: function(msg){
-							$.gritter.add({
-								title		:'Thông tin',
-								class_name	:'gritter-green',
-								text		:'Đã cập nhật món xong',
-								time		:5000,
-								sticky		: false
-							});
-						
+													
 							$("#Session").load("/selling/load/table/"+IdTable);
 						}
 					});
@@ -600,6 +568,13 @@
 				$(event.currentTarget).find('input#Count1').first().focus()
 				}, 0500);
 			});
+			
+			$(".Ticket").click(function(){
+				var url = $(this).attr('alt');
+				var thePopup = window.open( url, "In Phiếu", "menubar=0,location=0,height=700,width=700" );
+				thePopup.print();
+			});
+			
 		/*]]>*/
 		</script>
 	</body>
