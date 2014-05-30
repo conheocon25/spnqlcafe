@@ -66,7 +66,7 @@
 					@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 					$Session->getIdTable(),
 					$IdEmployee,
-					date('Y-m-d H:i:s'),
+					\date('Y-m-d H:i:s'),
 					"Tạo mới giao dịch"
 				);
 				$mTableLog->insert($Log);
@@ -122,7 +122,7 @@
 				@\MVC\Base\SessionRegistry::getCurrentIdUser(),
 				$Session->getIdTable(),
 				$Session->getIdEmployee(),
-				date('Y-m-d H:i:s'),
+				\date('Y-m-d H:i:s'),
 				"Cập nhật món ".$SD->getCourse()->getName()." ".$Count
 			);
 			$mTableLog->insert($Log);
