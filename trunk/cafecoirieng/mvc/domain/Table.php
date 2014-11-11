@@ -78,6 +78,17 @@ class Table extends Object{
 		}
 	}
 	
+	function toXML(){
+		$S = "
+		<object>
+			<id>".$this->getId()."</id>
+			<iddomain>".$this->getIdDomain()."</iddomain>
+			<name>".$this->getName()."</name>
+		</object>
+		";
+		return $S;
+	}
+	
 	//-------------------------------------------------------------------------------
 	//GET LISTs
 	//-------------------------------------------------------------------------------	
