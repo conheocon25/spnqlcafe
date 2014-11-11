@@ -33,4 +33,5 @@ interface UnitCollection 			extends \Iterator {function add( Object $Unit );}
 interface UserCollection 			extends \Iterator {function add( Object $user );}
 interface PageCollection 			extends \Iterator {function add( Object $Page);}
 interface R2CCollection 			extends \Iterator {function add( Object $R2C);}
+interface PrinterCollection 		extends \Iterator {function add( Object $Printer);}
 ?>

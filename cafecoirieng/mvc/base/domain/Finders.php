@@ -40,5 +40,5 @@ interface TrackingDailyFinder 	extends Finder {}
 interface TrackingCourseFinder 	extends Finder {}
 interface TrackingStoreFinder 	extends Finder {}
 interface TrackingCustomerFinder extends Finder {}
-
+interface PrinterFinder 		extends Finder {}
 ?>

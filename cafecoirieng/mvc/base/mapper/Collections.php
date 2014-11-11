@@ -35,5 +35,6 @@ class UnitCollection 			extends Collection implements \MVC\Domain\UnitCollection
 class UserCollection 			extends Collection implements \MVC\Domain\UserCollection {function targetClass( ) {return "\MVC\Domain\User";}}
 class PageCollection 			extends Collection implements \MVC\Domain\PageCollection{function targetClass(){return "\MVC\Domain\Page";}}
 class R2CCollection 			extends Collection implements \MVC\Domain\R2CCollection{function targetClass(){return "\MVC\Domain\R2C";}}
+class PrinterCollection 		extends Collection implements \MVC\Domain\PrinterCollection{function targetClass(){return "\MVC\Domain\Printer";}}
 
 ?>
