@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<div metal:use-macro="mAdmin.xhtml/IncludeMETA"/>
+		<div metal:use-macro="mAdmin.xhtml/IncludeCSS"/>
+	</head>
+	
+	<body data-menu-position="closed">
+		<div metal:use-macro="mAdmin.xhtml/Header"/>		
+		<div id="content">
+			<div metal:use-macro="mAdmin.xhtml/ContentHeader"/>			
+			<div metal:use-macro="mAdmin.xhtml/LocationBar"/>			
+			<div class="container-fluid">							
+				<div class="row">
+					<div class="col-12">
+						<div class="widget-box">
+							<div class="widget-content nopadding">								
+								<div role="grid" class="dataTables_wrapper">
+									<table class="table table-bordered table-striped table-hover">
+										<thead>
+											<tr role="row">
+												<th width="35">STT</th>
+												<th><div class="text-left">TÊN MÓN</div></th>
+												<th><div class="text-left" width="90">BIỂU ĐỒ</div></th>
+												<th width="120"><div class="text-right">SỐ LƯỢNG</div></th>
+												<th width="120"><div class="text-left">ĐƠN VỊ</div></th>
+											</tr>
+										</thead>
+										<tbody role="alert" aria-live="polite" aria-relevant="all">
+											<tr tal:repeat="TC TCAll" class="gradeA odd">
+												<td align="center" tal:content="repeat/TC/number"/>
+												<td><span tal:content="TC/getCourse/getName"/></td>
+												<td><a class="view-chart" href="#DialogCourseChart" data-toggle="modal" tal:attributes="data-id TC/getIdTracking;data-id-course TC/getIdCourse"><i class="glyphicons-charts"/></a></td>
+												<td align="right"><span tal:content="TC/getCountPrint"/></td>
+												<td><span tal:content="TC/getCourse/getUnit"/></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>								
+							</div>
+						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+		<div metal:use-macro="mAdmin.xhtml/Footer"/>
+		<div id="DialogCourseChart" class="modal fade">			
+			<div class="modal-dialog full-screen">
+				<div class="modal-content">
+					<div class="modal-header"><h3><i class="glyphicons-charts modal-icon"/>XEM BIỂU ĐỒ</h3></div>
+					<div class="form-horizontal" >
+						<div class="modal-body">
+							<div class="bars" style="width:100%;height:400px;"/>
+						</div>
+						<div class="modal-footer">							
+							<button data-dismiss="modal" class="btn btn-default btn-small"><i class="glyphicons-undo"/> Thu nhỏ lại</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END INSERT DIALOG  -->
+		<div metal:use-macro="mAdmin.xhtml/IncludeJS"/>
+		<script type="text/javascript">							
+			$(".view-chart").click(function(){
+				var id = $(this).attr("data-id");
+				var idcourse = $(this).attr("data-id-course");
+				
+				var URL = "/report/"+id+"/course/chart/"+idcourse;
+				var data = [];
+				
+				$("#DialogCourseChart").modal('hide');
+				$.ajax({
+					type: "POST",					
+					url: URL,
+					async:false,
+					dataType: "json",
+					success: function(D){
+						data = D.data;						
+					}	
+				});								
+				$.plot(".bars", [ data ], {
+					series: {
+						bars: {
+							show: true,
+							barWidth: 0.2,
+							align: "center"
+						}
+					},
+					xaxis: {
+						mode: "categories",
+						tickLength: 0
+					}
+				});
+				
+			});
+										
+		</script>
+	</body>
+</html>
