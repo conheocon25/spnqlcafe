@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<body>		
+		<div id="TableAll" class="widget-box">			
+			<div class="widget-content nopadding">
+				<div class="gallery-masonry">
+					<div tal:repeat="Table TableAll" tal:attributes="id php:'Table' . Table->getId();alt Table/getId;class Table/getClass">
+						<a class="thumbnail">
+							<span tal:content="Table/getName"/>
+							<span tal:condition="Table/getSessionActive">
+								<span tal:condition="Table/getSessionActive/getEmployee" tal:content="Table/getSessionActive/getEmployee/getName"/>
+								<span tal:condition="not: Table/getSessionActive/getEmployee" tal:content="string: Chưa xác định"/>
+							</span>
+							<span tal:condition="not: Table/getSessionActive">
+								<span>Trống</span>
+							</span>
+						</a>
+					</div>
+				</div>
+			</div>					
+		</div>						
+        <script>
+			$(".Table").click(function(){
+				var IdTable = $(this).attr('alt');
+				
+				$("#Session").load("/selling/load/table/"+IdTable);
+				$(this).toggleClass('active').siblings().removeClass('active');				
+				//Nhớ lại Table đang được chọn.
+				//$("#TableActive").attr('alt', 'Table'+IdTable);
+				$("#TableActive").attr('alt', IdTable);
+				$("#SearchName").focus();
+			});
+			//Mặc định lấy click của BÀN đầu tiên
+			//$('.Table:first').click();
+						
+			$('.gallery-masonry').masonry({
+				itemSelector: '.item',
+				isAnimated: true,
+				isFitWidth: true
+			});
+        </script>
+	</body>
+</html>
