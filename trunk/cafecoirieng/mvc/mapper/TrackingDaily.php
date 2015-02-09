@@ -68,7 +68,7 @@ class TrackingDaily extends Mapper implements \MVC\Domain\TrackingDailyFinder{
 			$object->getCollect(),
 			$object->getId()
 		);
-        $this->updateStmt->execute( $values );
+        $this->updateStmt->execute( $values );		
     }
 	
 	protected function doDelete(array $values) {return $this->deleteStmt->execute( $values );}
