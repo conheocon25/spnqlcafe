@@ -70,7 +70,7 @@
 			$NTotal2 = new \MVC\Library\Number($Value21 + $Value22);
 			$NTotal21 = new \MVC\Library\Number($Value21);
 			$NTotal22 = new \MVC\Library\Number($Value22);
-						
+															
 			$Title 		= "BÁN HÀNG ".$TD->getDatePrint();
 			$Navigation = array(
 				array("BÁO CÁO"				, "/report"),
@@ -81,6 +81,9 @@
 			$NTotal 	= new \MVC\Library\Number($Value11 + $Value21 + $Value12 + + $Value22);
 			$NTotal_1 	= new \MVC\Library\Number($Value11 + $Value21 ); 
 			$NTotal_2 	= new \MVC\Library\Number($Value12 + $Value22 );
+			
+			$TD->setSelling($Value11 + $Value21 + $Value12 + + $Value22);
+			$mTD->update($TD);
 			
 			//-------------------------------------------------------------
 			//THAM SỐ GỬI ĐI
